@@ -1,10 +1,9 @@
 import discord
 import requests
-import asyncio
 import psycopg2
-import asyncpg
+# import asyncpg
 import re
-import traceback
+# import traceback
 import aiohttp
 # import sys
 import os
@@ -16,7 +15,6 @@ from time import time
 from datetime import datetime, timedelta
 from redbot.core.i18n import Translator, cog_i18n
 from redbot.core import checks, Config, commands, app_commands
-from pylav.type_hints.bot import DISCORD_COG_TYPE_MIXIN, DISCORD_INTERACTION_TYPE
 
 # Table fields
 # id, file_path, author_id, timestamp, original_url, emote_name, guild_id
@@ -82,15 +80,6 @@ class AddEmoteModal(discord.ui.Modal, title='Name emote'):
         self.on_submit_interaction = interaction  # Save the interaction object
         self.stop()  # Stop the modal
         self.emote_name = self.emote_modal.value  # Update the emote_name attribute
-        # embed = discord.Embed(title="Adding emote...",
-        #                       description="Please wait while the emote is being added to the server.",
-        #                       colour=0x00ff00)
-        # embed.set_author(name="Emote Help Menu",
-        #                  icon_url=interaction.client.user.display_avatar.url)
-        # await interaction.response.send_message(embed=embed, ephemeral=True)
-        # await asyncio.sleep(3)
-        # await interaction.message.delete()
-
 
     async def on_error(self, interaction: discord.Interaction, error: Exception) -> None:
         await interaction.response.send_message('Oops! Something went wrong.', ephemeral=True)

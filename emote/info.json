@@ -9,5 +9,6 @@
       "emote",
       "channel"
       ],
-      "min_bot_version": "3.5.0"
+      "min_bot_version": "3.5.0",
+      "requirements": ["requests", "psycopg2", "re", "aiohttp", "os", "shutil", "tempfile", "boto3", "botocore"]
       }
