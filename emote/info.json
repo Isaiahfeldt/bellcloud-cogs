@@ -10,5 +10,5 @@
       "channel"
       ],
       "min_bot_version": "3.5.0",
-      "requirements": ["requests", "psycopg2", "aiohttp", "boto3"]
+      "requirements": ["requests", "psycopg2-binary", "aiohttp", "boto3"]
       }
