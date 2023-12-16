@@ -1,6 +1,6 @@
 import discord
 import requests
-import asyncpg
+# import asyncpg
 import psycopg2
 import aiohttp
 import sys, os
