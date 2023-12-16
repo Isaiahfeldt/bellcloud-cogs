@@ -1,0 +1,13 @@
+{
+      "author": ["Penicilin"],
+      "name": "Emote",
+      "install_msg": "Emote cog has been installed.",
+      "short": "Sorta like an emoji, but bigger",
+      "description": "Sorta like an emoji, but bigger",
+      "tags": [
+      "images",
+      "emote",
+      "channel"
+      ],
+      "min_bot_version": "3.5.0"
+      }
