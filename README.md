@@ -1,2 +1,2 @@
 # bellcloud-cogs
- Collection of cogs made for Bell
+ A collection of cogs made for Bell
