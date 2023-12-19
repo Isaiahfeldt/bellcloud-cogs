@@ -22,7 +22,7 @@ from discord import app_commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from type_hints.bot import DISCORD_COG_TYPE_MIXIN, DISCORD_INTERACTION_TYPE
+from .type_hints.bot import DISCORD_COG_TYPE_MIXIN, DISCORD_INTERACTION_TYPE
 from .utils.url import URLUtils
 
 _ = Translator("Emote", __file__)
@@ -59,20 +59,16 @@ class EmbedColor(Enum):
 @cog_i18n(_)
 @app_commands.guild_only()
 class SlashCommands(DISCORD_COG_TYPE_MIXIN):
-    """
-    This class defines the SlashCommands cog, which contains command functionalities related to emotes.
+    """This class defines the SlashCommands cog"""
 
-    Attributes:
-    - emote: Group command to perform actions related to emotes.
+    COLOR_GREEN = EmbedColor.GREEN
+    COLOR_ORANGE = EmbedColor.ORANGE
+    COLOR_RED = EmbedColor.RED
 
-    Methods:
-    - emote_add: Add an emote to the server.
-
-    """
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
-    async def _send_embed_message(self, interaction, title, description, color: EmbedColor):
-        """Send embed message to user."""
+    async def _send_help_embed_message(self, interaction, title, description, color):
+        """Send help embed message to user."""
         embed = discord.Embed(title=title,
                               description=description,
                               colour=color.value)
@@ -80,42 +76,36 @@ class SlashCommands(DISCORD_COG_TYPE_MIXIN):
                          icon_url=interaction.client.user.display_avatar.url)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
+    def _has_manage_messages_permission(self, interaction):
+        return interaction.user.guild_permissions.manage_messages
+
+    def _is_valid_emote_format(self, url):
+        format_whitelist = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
+        is_allowed, file_ext = URLUtils.is_url_allowed_format(url, format_whitelist)
+        return is_allowed
+
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
         name="The name of the new emote",
         url="The URL of a supported file type to add as an emote"
     )
     async def emote_add(self, interaction: DISCORD_INTERACTION_TYPE, name: str, url: str):
-        """
-        Add an emote to the server.
-
-        Parameters:
-        - interaction (DISCORD_INTERACTION_TYPE): The Discord interaction object.
-        - name (str): The name of the new emote.
-        - url (str): The URL of a supported file type to add as an emote.
-
-        Returns:
-        None
-
-        Throws:
-        None
-
-        Example usage:
-        emote_add("emote_name", "https://example.com/emote.png")
-        """
-
-        if not interaction.user.guild_permissions.manage_messages:
-            await self._send_embed_message(interaction,
-                                           "Hmm, something went wrong",
-                                           "You do not have the required permissions to use this command.",
-                                           EmbedColor.ORANGE)
+        """Add an emote to the server."""
+        if not self._has_manage_messages_permission(interaction):
+            await self._send_help_embed_message(
+                interaction,
+                "Hmm, something went wrong",
+                "You do not have the required permissions to use this command.",
+                self.COLOR_ORANGE
+            )
             return
 
-        is_reachable = URLUtils.is_url_reachable(url)
-        format_whitelist = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
-        is_allowed, file_ext = URLUtils.is_url_allowed_format(url, format_whitelist)
+        if not URLUtils.is_url_reachable(url) or not self._is_valid_emote_format(url):
+            return  # handle accordingly
 
-        await self._send_embed_message(interaction,
-                                       "Adding emote...",
-                                       "Please wait while the emote is being added to the server.",
-                                       EmbedColor.GREEN)
+        await self._send_help_embed_message(
+            interaction,
+            "Adding emote...",
+            "Please wait while the emote is being added to the server.",
+            self.COLOR_GREEN
+        )

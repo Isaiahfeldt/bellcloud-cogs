@@ -13,16 +13,13 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-from typing import Any, Literal
+from typing import Any
 
-import discord
 from discord import AppCommandType
-from redbot.core import Config
 from redbot.core.i18n import Translator, cog_i18n
 
-from type_hints.bot import DISCORD_BOT_TYPE
-
 from emote.slash_commands import SlashCommands
+from .type_hints.bot import DISCORD_BOT_TYPE
 
 _ = Translator("Emote", __file__)
 

@@ -17,28 +17,38 @@ import requests
 
 
 class URLUtils:
-    def __init__(self, allowed_formats):
-        self.allowed_formats = allowed_formats
 
-    def head_request(self, url_string):
+    def head_request(self, url):
+        """
+        @param url: The URL string for the HEAD request.
+        @return: The response object of the HEAD request if successful, otherwise None.
+        """
         try:
-            return requests.head(url_string)
+            return requests.head(url)
         except requests.ConnectionError:
             return None
 
-    def is_url_reachable(self, url_string):
-        response = self.head_request(url_string)
+    def is_url_reachable(self, url):
+        """
+        @param url: The URL string to check if it is reachable.
+        @return: True if the URL is reachable and returns a status code of 200, False otherwise.
+        """
+        response = self.head_request(url)
         return response is not None and response.status_code == 200
 
-    def is_url_allowed_format(self, url_string):
-        response = self.head_request(url_string)
+    def is_url_allowed_format(self, url: str, allowed_formats):
+        """
+        @param url: The URL string to be checked.
+        @return: A tuple (bool, str) indicating whether the URL has an allowed format and the file extension if it does.
+        """
+        response = self.head_request(url)
         if response is None or response.status_code != 200:
-            return False, None
+            return False, None, 'URL was not reachable'
         content_type = response.headers.get("content-type")
         if content_type is None:
-            return False, None
+            return False, None,
         file_extension = content_type.split("/")[-1].lower()
-        if file_extension in self.allowed_formats:
+        if file_extension in allowed_formats:
             return True, file_extension
         else:
             return False, file_extension

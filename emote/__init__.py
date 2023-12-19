@@ -13,11 +13,8 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-from redbot.core.utils import get_end_user_data_statement
-
-from type_hints.bot import DISCORD_BOT_TYPE
-
 from .cog import Emotes
+from .type_hints.bot import DISCORD_BOT_TYPE
 
 
 async def setup(bot: DISCORD_BOT_TYPE) -> None:

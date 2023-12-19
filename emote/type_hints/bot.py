@@ -17,7 +17,6 @@ from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 import discord
 from discord import app_commands
-
 from discord.ext.commands import AutoShardedBot, Cog, CommandError
 
 # Define TypeVars upfront to avoid Referenced before assignment issues
@@ -50,7 +49,7 @@ else:
 
 class BotClientType(BotClient):
     async def get_context(
-            self, message: discord.abc.Message | DISCORD_COG_TYPE | ClientContext, *,
+            self, message: discord.Message | DISCORD_COG_TYPE | ClientContext, *,
             cls: type[Context] = None) -> Context[Any]:
         ...
 
