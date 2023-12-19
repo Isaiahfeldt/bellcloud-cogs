@@ -49,7 +49,7 @@ from discord import app_commands
 
 class BotClientType(BotClient):
     async def get_context(
-            self, message: discord.abc.Message | DISCORD_INTERACTION_TYPE | Context, *,
+            self, message: discord.Message | DISCORD_INTERACTION_TYPE | Context, *,
             cls: type[Context] = None
     ) -> Context[Any]:
         ...
