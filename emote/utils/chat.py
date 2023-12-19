@@ -38,9 +38,8 @@ async def send_help_embed(interaction, title, description):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
-async def send_error_embed(self, interaction, error_message):
+async def send_error_embed(interaction, error_message):
     """
-    @param self: The current instance of the class.
     @param interaction: The interaction object representing the user command to respond to.
     @param error_message: The error message to display in the error embed.
 
@@ -58,3 +57,25 @@ async def send_error_embed(self, interaction, error_message):
     embed.set_author(name="Emote Help Menu",
                      icon_url=interaction.client.user.display_avatar.url)
     await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+async def send_error_embed_followup(interaction, error_message):
+    """
+    @param interaction: The interaction object representing the user command to respond to.
+    @param error_message: The error message to display in the error embed.
+
+    Sends an error embed to the user in response to a command with the provided error message.
+
+    @return: None
+    """
+    # Make sure error_message has a value attribute
+    if not hasattr(error_message, 'value'):
+        raise ValueError("Invalid error message object, must have a value attribute")
+
+    embed = discord.Embed(title="Hmm, something went wrong",
+                          description=error_message.value,
+                          colour=EmbedColor.RED.value)  # Changed usage of Enum
+    embed.set_author(name="Emote Help Menu",
+                     icon_url=interaction.client.user.display_avatar.url)
+    await interaction.delete_original_response()
+    await interaction.followup.send(embed=embed, ephemeral=True)

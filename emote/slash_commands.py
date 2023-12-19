@@ -22,9 +22,9 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed
+from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
 from .utils.enums import EmbedColor, EmoteAddError
-from .utils.url import is_url_reachable, is_url_allowed_format
+from .utils.url import is_url_reachable
 
 _ = Translator("Emote", __file__)
 
@@ -62,13 +62,9 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        validation_checks = [is_url_reachable(url), is_url_allowed_format(url, "png")]
-
-        for check in validation_checks:
-            error = await check(name, url)
-            if error is not None:
-                await send_error_embed(interaction, EmoteAddError.GENERIC_ERROR)
-                return
+        if not is_url_reachable(url):
+            await send_error_embed_followup(interaction, EmoteAddError.UNREACHABLE_URL)
+            return
 
         # Does Name contain any invalid characters
         # Does Name exceed max character limit (32)?
