@@ -16,10 +16,12 @@
 from typing import Any
 
 from discord import AppCommandType
+from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import SlashCommands
-from .type_hints.bot import DISCORD_BOT_TYPE
+
+# from .type_hints.bot import DISCORD_BOT_TYPE
 
 _ = Translator("Emote", __file__)
 
@@ -38,7 +40,7 @@ class Emotes(
 
     __version__ = "0.0.1"
 
-    def __init__(self, bot: DISCORD_BOT_TYPE, *args: Any, **kwargs: Any):
+    def __init__(self, bot: Red, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.bot = bot
 

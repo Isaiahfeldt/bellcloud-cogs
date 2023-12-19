@@ -18,11 +18,12 @@ from enum import Enum
 
 import discord
 from discord import app_commands
+from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .type_hints.bot import DISCORD_COG_TYPE_MIXIN, DISCORD_INTERACTION_TYPE
+# from .type_hints.bot import DISCORD_INTERACTION_TYPE
 from .utils.url import URLUtils
 
 _ = Translator("Emote", __file__)
@@ -58,7 +59,7 @@ class EmbedColor(Enum):
 
 @cog_i18n(_)
 @app_commands.guild_only()
-class SlashCommands(DISCORD_COG_TYPE_MIXIN):
+class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
 
     COLOR_GREEN = EmbedColor.GREEN
@@ -89,7 +90,7 @@ class SlashCommands(DISCORD_COG_TYPE_MIXIN):
         name="The name of the new emote",
         url="The URL of a supported file type to add as an emote"
     )
-    async def emote_add(self, interaction: DISCORD_INTERACTION_TYPE, name: str, url: str):
+    async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
         """Add an emote to the server."""
         if not self._has_manage_messages_permission(interaction):
             await self._send_help_embed_message(

@@ -13,10 +13,14 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+from redbot.core.bot import Red
+
 from .cog import Emotes
-from .type_hints.bot import DISCORD_BOT_TYPE
 
 
-async def setup(bot: DISCORD_BOT_TYPE) -> None:
+# from .type_hints.bot import DISCORD_BOT_TYPE
+
+
+async def setup(bot: Red) -> None:
     cog = Emotes(bot)
     await bot.add_cog(cog)
