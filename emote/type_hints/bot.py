@@ -15,8 +15,6 @@
 
 # https://github.com/PyLav/PyLav/blob/1ce1bb26d7283c51f0f80e1f54015452be7427e4/pylav/type_hints/bot.py
 
-from __future__ import annotations
-
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 import discord

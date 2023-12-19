@@ -1,0 +1,18 @@
+{
+  "author": [
+    "Veldt (penicilin)"
+  ],
+  "description": "Discord emotes slash commands. Sorta like an emoji, but bigger.",
+  "install_msg": "Installed Emotes.",
+  "short": "Sorta like an emoji, but bigger",
+  "tags": [
+    "image",
+    "emote",
+    "fun"
+  ],
+  "requirements": [
+    "requests"
+  ],
+  "type": "COG",
+  "end_user_data_statement": "This cog stores user IDs for the purpose of tracking emotes uploaded by a user."
+}
