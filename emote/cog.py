@@ -15,19 +15,21 @@
 
 from typing import Any
 
-from discord import AppCommandType
+from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
+from emote.hybrid_commands import HybridCommands
 from emote.slash_commands import SlashCommands
+from emote.user_commands import UserCommands
 
 _ = Translator("Emote", __file__)
 
 
 @cog_i18n(_)
 class Emotes(
-    # UserCommands,
-    # HybridCommands,
+    UserCommands,
+    HybridCommands,
     SlashCommands,
     # ContextMenus,
 ):
@@ -41,6 +43,20 @@ class Emotes(
     def __init__(self, bot: Red, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.bot = bot
+        self.config = Config.get_conf(self, identifier=4150561391)
+        self.config = Config.get_conf(
+            self,
+            identifier=4150561391,
+            force_registration=True,
+        )
 
-    async def cog_unload(self) -> None:
-        self.bot.tree.remove_command(self.add_as_emote, type=AppCommandType.message)
+        # self.add_as_emote = discord.app_commands.ContextMenu(
+        #     name=_("Add as emote"),
+        #     callback=self.add_as_emote,
+        #     type=AppCommandType.message,
+        #     extras={"red_force_enable": True},
+        # )
+        # self.bot.tree.add_command(self.add_as_emote)
+
+    # async def cog_unload(self) -> None:
+    #     self.bot.tree.remove_command(self.add_as_emote, type=AppCommandType.message)

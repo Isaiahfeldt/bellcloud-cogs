@@ -35,21 +35,6 @@ user = os.getenv('DB_USER')
 password = os.getenv('DB_PASSWORD')
 
 
-# def is_url_reachable(url_string):
-#     """
-#     Check if a URL is reachable by sending a HEAD request and checking the status code.
-#     Parameters:
-#     - url_string (str): The URL to check.
-#     Returns:
-#     - (bool): True if the URL is reachable, False otherwise.
-#     """
-#     try:
-#         response = requests.head(url_string)
-#         return response.status_code == 200
-#     except requests.ConnectionError:
-#         return False
-
-
 class EmbedColor(Enum):
     GREEN = 0x00ff00
     ORANGE = 0xd58907
