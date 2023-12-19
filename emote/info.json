@@ -11,7 +11,8 @@
     "fun"
   ],
   "requirements": [
-    "requests"
+    "requests",
+    "asyncpg"
   ],
   "type": "COG",
   "end_user_data_statement": "This cog stores user IDs for the purpose of tracking emotes uploaded by a user."
