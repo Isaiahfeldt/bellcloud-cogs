@@ -60,3 +60,4 @@ class SlashCommands(commands.Cog):
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
         )
+    # tetg
