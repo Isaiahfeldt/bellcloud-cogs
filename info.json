@@ -1,8 +1,16 @@
 {
-      "author" : ["Penicilin"],
-      "install_msg" : "Bitch",
-      "name" : "Bellcloud-cogs",
-      "short" : "Cogs for Bell",
-      "description" : "A collection of cogs for Bell",
-      "tags" : ["utility", "bellcloud"]
-  }
+  "author": [
+    "Penicilin"
+  ],
+  "install_msg": "Bitch",
+  "name": "Bellcloud-cogs",
+  "short": "Cogs for Bell",
+  "description": "A collection of cogs for Bell",
+  "requirements": [
+    "requests"
+  ],
+  "tags": [
+    "utility",
+    "bellcloud"
+  ]
+}
