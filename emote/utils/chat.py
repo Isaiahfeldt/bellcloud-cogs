@@ -17,8 +17,6 @@ import discord
 
 from emote.utils.enums import EmbedColor
 
-a
-
 
 async def send_help_embed(interaction, title, description):
     """
