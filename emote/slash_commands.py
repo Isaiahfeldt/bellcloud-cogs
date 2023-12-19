@@ -23,7 +23,6 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-# from .type_hints.bot import DISCORD_INTERACTION_TYPE
 from .utils.url import URLUtils
 
 _ = Translator("Emote", __file__)

@@ -21,8 +21,6 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import SlashCommands
 
-# from .type_hints.bot import DISCORD_BOT_TYPE
-
 _ = Translator("Emote", __file__)
 
 
