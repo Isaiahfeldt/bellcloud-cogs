@@ -13,6 +13,8 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+# https://github.com/PyLav/PyLav/blob/1ce1bb26d7283c51f0f80e1f54015452be7427e4/pylav/type_hints/bot.py
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, TypeVar, Union
@@ -47,7 +49,7 @@ else:
 from discord import app_commands
 
 
-class BotClientWithLavalinkType(BotClient):
+class BotClientType(BotClient):
     async def get_context(
             self, message: discord.abc.Message | DISCORD_INTERACTION_TYPE | Context, *,
             cls: type[Context] = None
@@ -56,7 +58,7 @@ class BotClientWithLavalinkType(BotClient):
 
 
 class DISCORD_INTERACTION_TYPE_BASE(discord.Interaction):
-    client: BotClientWithLavalinkType
+    client: BotClientType
     response: discord.InteractionResponse
     followup: discord.Webhook
     command: app_commands.Command[Any, ..., Any] | app_commands.ContextMenu | None
@@ -68,7 +70,7 @@ class DISCORD_COG_TYPE_MIXIN(RedCog):
     bot: DISCORD_BOT_TYPE
 
 
-DISCORD_BOT_TYPE = TypeVar("DISCORD_BOT_TYPE", bound=BotClientWithLavalinkType, covariant=True)
+DISCORD_BOT_TYPE = TypeVar("DISCORD_BOT_TYPE", bound=BotClientType, covariant=True)
 DISCORD_CONTEXT_TYPE = TypeVar("DISCORD_CONTEXT_TYPE", bound="PyLavContext", covariant=True)
 DISCORD_INTERACTION_TYPE = TypeVar(
     "DISCORD_INTERACTION_TYPE", bound=DISCORD_INTERACTION_TYPE_BASE | discord.Interaction, covariant=True
