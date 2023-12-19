@@ -22,7 +22,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed
+from .utils.chat import send_help_embed, send_error_embed
 from .utils.enums import EmbedColor, EmoteAddError
 
 _ = Translator("Emote", __file__)
@@ -51,9 +51,9 @@ class SlashCommands(commands.Cog):
     )
     async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
         # Can only be used by users with the "Manage Messages" permission
-        # if not interaction.user.guild_permissions.manage_messages:
-        #     await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-        #     return
+        if not interaction.user.guild_permissions.manage_messages:
+            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+            return
 
         print(name)
         print(url)
