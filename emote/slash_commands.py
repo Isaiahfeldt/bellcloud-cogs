@@ -22,7 +22,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_error_embed
+from .utils.chat import send_help_embed, send_error_embed
 from .utils.enums import EmbedColor, EmoteAddError
 
 _ = Translator("Emote", __file__)
@@ -51,4 +51,8 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        print("Worked!")
+        # Send pre-emptive response embed
+        await send_help_embed(
+            interaction, "Adding emote...",
+            "Please wait while the emote is being added to the server."
+        )

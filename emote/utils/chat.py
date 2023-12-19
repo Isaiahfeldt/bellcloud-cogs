@@ -17,13 +17,14 @@ import discord
 
 from emote.utils.enums import EmbedColor
 
+a
 
-async def send_help_message(interaction, title, description, color):
+
+async def send_help_embed(interaction, title, description):
     """
     @param interaction: The interaction object representing the user's interaction with the bot.
     @param title: The title of the embed message.
     @param description: The description of the embed message.
-    @param color: The color of the embed message.
     @return: None
 
     Sends an embed message for the help menu using the provided parameters. The embed message includes a title, description, color, and author information.
@@ -33,7 +34,7 @@ async def send_help_message(interaction, title, description, color):
     """
     embed = discord.Embed(title=title,
                           description=description,
-                          colour=color.value)
+                          colour=EmbedColor.GREEN.value)
     embed.set_author(name="Emote Help Menu",
                      icon_url=interaction.client.user.display_avatar.url)
     await interaction.response.send_message(embed=embed, ephemeral=True)
