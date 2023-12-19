@@ -13,14 +13,21 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+from urllib.parse import urlparse
+
 import requests
 
 
 def head_request(url):
     """
     @param url: The URL string for the HEAD request.
-    @return: The response object of the HEAD request if successful, otherwise None.
+    @return: The response object of the HEAD request if successful, error message or None.
     """
+    # Check if URL is valid
+    parsed_url = urlparse(url)
+    if not all([parsed_url.scheme, parsed_url.netloc]):
+        return "Error: Invalid URL"
+
     try:
         return requests.head(url)
     except requests.ConnectionError:
