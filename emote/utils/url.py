@@ -28,7 +28,7 @@ class URLUtils:
         except requests.ConnectionError:
             return None
 
-    def is_url_reachable(self, url):
+    def is_url_reachable(self, url: str) -> str:
         """
         @param url: The URL string to check if it is reachable.
         @return: True if the URL is reachable and returns a status code of 200, False otherwise.

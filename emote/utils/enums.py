@@ -23,6 +23,7 @@ class EmbedColor(Enum):
 
 
 class EmoteAddError(Enum):
+    GENERIC_ERROR = "Generic error has occured."
     INVALID_PERMISSION = "You do not have the required permissions to use this command."
     INVALID_NAME_CHAR = "The emote name contains invalid characters."
     EXCEED_NAME_LEN = "The emote name exceeds the maximum character limit."

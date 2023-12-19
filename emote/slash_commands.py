@@ -24,6 +24,7 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed
 from .utils.enums import EmbedColor, EmoteAddError
+from .utils.url import URLUtils
 
 _ = Translator("Emote", __file__)
 
@@ -55,13 +56,28 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        print(name)
-        print(url)
         # Send pre-emptive response embed
         await send_help_embed(
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
         )
+
+        validation_checks = [URLUtils.is_url_reachable(url), URLUtils.is_url_allowed_format(url)]
+
+        for check in validation_checks:
+            error = await check(name, url)
+            if error is not None:
+                await send_error_embed(interaction, EmoteAddError.GENERIC_ERROR)
+                return
+
+        # Does Name contain any invalid characters
+        # Does Name exceed max character limit (32)?
+        # Is URL reachable?
+        # Is URL from "https://media.bellbot.xyz/"?
+        # is URL.Image in the url an allowed format?
+        # is URL.Image file size too large?
+        # Does Emote name already exist in db?
+        # Upload to bucket
 
     @emote.command(name="remove", description="Remove an emote from the server")
     @app_commands.describe(name="The name of the emote to remove")
