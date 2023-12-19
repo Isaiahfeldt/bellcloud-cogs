@@ -42,9 +42,13 @@ print(EmoteAddError.INVALID_PERMISSION)
 @app_commands.guild_only()
 class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
-
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
+    @emote.command(name="add", description="Add an emote to the server")
+    @app_commands.describe(
+        name="The name of the new emote",
+        url="The URL of a supported file type to add as an emote"
+    )
     async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
         # Can only be used by users with the "Manage Messages" permission
         if not interaction.user.guild_permissions.manage_messages:
