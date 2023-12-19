@@ -13,19 +13,14 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 import discord
-from discord import app_commands
-from discord.ext.commands import AutoShardedBot, Cog, CommandError
-
-# Define TypeVars upfront to avoid Referenced before assignment issues
-DISCORD_BOT_TYPE = TypeVar("DISCORD_BOT_TYPE", bound=AutoShardedBot, covariant=True)
-DISCORD_COG_TYPE = TypeVar("DISCORD_COG_TYPE", bound=Cog, covariant=True)
-DISCORD_CONTEXT_TYPE = TypeVar("DISCORD_CONTEXT_TYPE", bound="Context", covariant=True)
 
 if TYPE_CHECKING:
-    from discord.ext.commands import Context
+    from discord.ext.commands import AutoShardedBot, Cog, CommandError, Context
 
     try:
         from redbot.core.bot import Red
@@ -36,28 +31,36 @@ if TYPE_CHECKING:
         BotClient = Red = AutoShardedBot
         RedCog = Cog
         ClientContext = Context
+
+
 else:
-    from discord.ext.commands import Context
+    from discord.ext.commands import Cog, CommandError
 
     try:
         from redbot.core.bot import Red as BotClient
         from redbot.core.commands import Cog as RedCog
     except ImportError:
-        BotClient = AutoShardedBot
+        from discord.ext.commands import AutoShardedBot as BotClient
+
         RedCog = Cog
 
+from discord import app_commands
 
-class BotClientType(BotClient):
+
+class BotClientWithLavalinkType(BotClient):
     async def get_context(
-            self, message: discord.Message | DISCORD_COG_TYPE | ClientContext, *,
-            cls: type[Context] = None) -> Context[Any]:
+            self, message: discord.abc.Message | DISCORD_INTERACTION_TYPE | Context, *,
+            cls: type[Context] = None
+    ) -> Context[Any]:
         ...
 
 
 class DISCORD_INTERACTION_TYPE_BASE(discord.Interaction):
-    client: BotClientType
+    client: BotClientWithLavalinkType
     response: discord.InteractionResponse
     followup: discord.Webhook
+    command: app_commands.Command[Any, ..., Any] | app_commands.ContextMenu | None
+    channel: discord.interactions.InteractionChannel | None
 
 
 class DISCORD_COG_TYPE_MIXIN(RedCog):
@@ -65,9 +68,12 @@ class DISCORD_COG_TYPE_MIXIN(RedCog):
     bot: DISCORD_BOT_TYPE
 
 
+DISCORD_BOT_TYPE = TypeVar("DISCORD_BOT_TYPE", bound=BotClientWithLavalinkType, covariant=True)
+DISCORD_CONTEXT_TYPE = TypeVar("DISCORD_CONTEXT_TYPE", bound="PyLavContext", covariant=True)
 DISCORD_INTERACTION_TYPE = TypeVar(
     "DISCORD_INTERACTION_TYPE", bound=DISCORD_INTERACTION_TYPE_BASE | discord.Interaction, covariant=True
 )
+DISCORD_COG_TYPE = TypeVar("DISCORD_COG_TYPE", bound=DISCORD_COG_TYPE_MIXIN, covariant=True)
 DISCORD_COMMAND_ERROR_TYPE = TypeVar(
     "DISCORD_COMMAND_ERROR_TYPE", bound=Union[CommandError, app_commands.errors.AppCommandError], covariant=True
 )
