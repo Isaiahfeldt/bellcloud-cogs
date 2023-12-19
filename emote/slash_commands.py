@@ -24,7 +24,7 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed
 from .utils.enums import EmbedColor, EmoteAddError
-from .utils.url import URLUtils
+from .utils.url import is_url_reachable, is_url_allowed_format
 
 _ = Translator("Emote", __file__)
 
@@ -62,7 +62,7 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        validation_checks = [URLUtils.is_url_reachable(url), URLUtils.is_url_allowed_format(url)]
+        validation_checks = [is_url_reachable(url), is_url_allowed_format(url, "png")]
 
         for check in validation_checks:
             error = await check(name, url)
