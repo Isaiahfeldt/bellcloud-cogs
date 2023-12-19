@@ -13,8 +13,6 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-from typing import Any
-
 from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
@@ -40,13 +38,13 @@ class Emotes(
 
     __version__ = "0.0.1"
 
-    def __init__(self, bot: Red, *args: Any, **kwargs: Any):
-        super().__init__(*args, **kwargs)
+    def __init__(self, bot: Red):
+        super().__init__()
         self.bot = bot
-        self.config = Config.get_conf(self, identifier=4150561391)
+        self.config = Config.get_conf(self, identifier=4150111391)
         self.config = Config.get_conf(
             self,
-            identifier=4150561391,
+            identifier=4150111391,
             force_registration=True,
         )
 
