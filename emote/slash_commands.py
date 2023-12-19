@@ -62,9 +62,16 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        if not is_url_reachable(url):
-            await send_error_embed_followup(interaction, EmoteAddError.UNREACHABLE_URL)
-            return
+        rules = [
+            (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
+            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL)
+        ]
+
+        for condition, error in rules:
+            if condition():
+                await send_error_embed_followup(interaction, error)
+                return
 
         # Does Name contain any invalid characters
         # Does Name exceed max character limit (32)?
