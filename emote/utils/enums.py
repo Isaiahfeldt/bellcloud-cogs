@@ -30,5 +30,7 @@ class EmoteAddError(Enum):
     UNREACHABLE_URL = "The URL address was invalid or unreachable."
     INVALID_URL = "The URL address cannot be from `https://media.bellbot.xyz`."
     EXCEED_FILE_SIZE = "The file size exceeds the maximum limit of 50MB."
-    INVALID_FILE_FORMAT = "The URL address points to an unsupported file format. Valid file formats include: png, webm, jpg, gif, and mp4."
+    INVALID_FILE_FORMAT = ("The URL address points to an unsupported file format. Valid file formats include: png, "
+                           "webm, jpg, gif, and mp4.")
     DUPLICATE_EMOTE_NAME = "The emote name already exists."
+    BLACKLISTED_URL = "The URL address is blacklisted, and cannot be used."
