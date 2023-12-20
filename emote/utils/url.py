@@ -84,6 +84,10 @@ def is_media_size_valid(url: str, max_size: int) -> bool:
 
 
 def is_url_blacklisted(url: str) -> bool:
+    """
+    @param url: The URL to check if it is blacklisted.
+    @return: True if the URL is blacklisted, False otherwise.
+    """
     blacklisted_websites = ["https://media.bellbot.xyz"]
 
     for website in blacklisted_websites:
