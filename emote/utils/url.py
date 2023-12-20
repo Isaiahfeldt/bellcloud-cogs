@@ -12,7 +12,6 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-
 from urllib.parse import urlparse
 
 import requests
@@ -34,7 +33,7 @@ def head_request(url):
         return None
 
 
-def is_url_reachable(url: str) -> str:
+def is_url_reachable(url: str) -> bool:
     """
     @param url: The URL string to check if it is reachable.
     @return: True if the URL is reachable and returns a status code of 200, False otherwise.
@@ -43,7 +42,7 @@ def is_url_reachable(url: str) -> str:
     return response is not None and response.status_code == 200
 
 
-def is_url_allowed_format(url: str, allowed_formats):
+def is_media_format_valid(url: str, allowed_formats):
     """
     @param url: The URL string to be checked.
     @param allowed_formats:
@@ -60,3 +59,29 @@ def is_url_allowed_format(url: str, allowed_formats):
         return True, file_extension
     else:
         return False, file_extension
+
+
+def is_media_size_valid(url: str, max_size: int) -> bool:
+    """
+    @param url: The URL string of the image to be checked.
+    @param max_size: The maximum size for the image (in bytes).
+    @return: True if the image size is less than or equal to the max_size, False otherwise.
+    """
+    response = head_request(url)
+    if response is None or response.status_code != 200:
+        return False
+
+    content_length = response.headers.get("content-length")
+    if content_length is None or int(content_length) > max_size:
+        return False
+
+    return True
+
+
+def is_url_blacklisted(url: str) -> bool:
+    blacklisted_websites = ["https://media.bellbot.xyz"]
+
+    for website in blacklisted_websites:
+        if website in url:
+            return True
+    return False
