@@ -19,6 +19,7 @@ from redbot.core.i18n import Translator, cog_i18n
 _ = Translator("Emote", __file__)
 
 
+# noinspection SpellCheckingInspection
 @cog_i18n(_)
 class HybridCommands(commands.Cog):
     pass
@@ -81,8 +82,8 @@ class HybridCommands(commands.Cog):
     #
     #
     #
-    #     format_whitelist = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
-    #     is_allowed, file_type = is_url_allowed_format(url, format_whitelist) # Returns both a bool (is_allowed) and a string (file_type)
+    # format_whitelist = ["png", "webm", "jpg", "jpeg", "gif", "mp4"] is_allowed, file_type = is_url_allowed_format(
+    # url, format_whitelist) # Returns both a bool (is_allowed) and a string (file_type)
     #
     #     if not is_url_reachable(url):
     #         await ctx.send("The URL is invalid or unreachable.", ephemeral=True)

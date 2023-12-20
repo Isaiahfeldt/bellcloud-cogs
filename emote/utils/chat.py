@@ -25,7 +25,8 @@ async def send_help_embed(interaction, title, description):
     @param description: The description of the embed message.
     @return: None
 
-    Sends an embed message for the help menu using the provided parameters. The embed message includes a title, description, color, and author information.
+    Sends an embed message for the help menu using the provided parameters. The embed message includes a title,
+    description, color, and author information.
 
     Example Usage:
         await _send_help_embed_message(interaction, "Command Help", "This is a help message.", Color.BLUE.Value)

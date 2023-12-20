@@ -19,5 +19,5 @@ from .cog import Emotes
 
 
 async def setup(bot: Red) -> None:
-    cog = Emotes(bot)
-    await bot.add_cog(cog)
+    bell_cog = Emotes(bot)
+    await bot.add_cog(bell_cog)
