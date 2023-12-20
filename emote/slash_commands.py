@@ -23,8 +23,8 @@ from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
-from .utils.enums import EmbedColor, EmoteAddError
-from .utils.url import is_url_reachable
+from .utils.enums import EmoteAddError
+from .utils.url import is_url_reachable, is_media_format_valid, is_url_blacklisted
 
 _ = Translator("Emote", __file__)
 
@@ -35,8 +35,7 @@ database = os.getenv('DB_DATABASE')
 user = os.getenv('DB_USER')
 password = os.getenv('DB_PASSWORD')
 
-print(EmbedColor.GREEN)
-print(EmoteAddError.INVALID_PERMISSION)
+allowed_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 
 
 @cog_i18n(_)
@@ -65,7 +64,10 @@ class SlashCommands(commands.Cog):
         rules = [
             (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
-            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL)
+            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
+            (lambda: not is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
+            (lambda: not is_media_format_valid(url, allowed_formats), EmoteAddError.INVALID_FILE_FORMAT),
+
         ]
 
         for condition, error in rules:
@@ -73,11 +75,6 @@ class SlashCommands(commands.Cog):
                 await send_error_embed_followup(interaction, error)
                 return
 
-        # Does Name contain any invalid characters
-        # Does Name exceed max character limit (32)?
-        # Is URL reachable?
-        # Is URL from "https://media.bellbot.xyz/"?
-        # is URL.Image in the url an allowed format?
         # is URL.Image file size too large?
         # Does Emote name already exist in db?
         # Upload to bucket
