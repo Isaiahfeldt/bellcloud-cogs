@@ -25,7 +25,7 @@ def head_request(url):
     # Check if URL is valid
     parsed_url = urlparse(url)
     if not all([parsed_url.scheme, parsed_url.netloc]):
-        return "Error: Invalid URL"
+        raise ValueError("Invalid URL")
 
     try:
         return requests.head(url)
@@ -38,8 +38,13 @@ def is_url_reachable(url: str) -> bool:
     @param url: The URL string to check if it is reachable.
     @return: True if the URL is reachable and returns a status code of 200, False otherwise.
     """
-    response = head_request(url)
-    return response is not None and response.status_code == 200
+    try:
+        response = head_request(url)
+        if response is None:
+            return False
+        return response.status_code == 200
+    except ValueError:
+        return False
 
 
 def is_media_format_valid(url: str, allowed_formats):
