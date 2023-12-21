@@ -23,7 +23,6 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
-from .utils.url import is_url_reachable, is_media_format_valid, is_url_blacklisted, is_media_size_valid
 
 _ = Translator("Emote", __file__)
 
@@ -56,21 +55,21 @@ class SlashCommands(commands.Cog):
 
         emote_exists = await db.emote_exists_in_database(name)
 
-        rules = [
-            (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
-            (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
-            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
-            (lambda: is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
-            (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
-            (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-            (lambda: not emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
-
-        ]
-
-        for condition, error in rules:
-            if condition():
-                await send_error_embed_followup(interaction, error)
-                return
+        # rules = [
+        #     (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
+        #     (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
+        #     (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
+        #     (lambda: is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
+        #     (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
+        #     (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
+        #     (lambda: not emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
+        #
+        # ]
+        #
+        # for condition, error in rules:
+        #     if condition():
+        #         await send_error_embed_followup(interaction, error)
+        #         return
 
         await send_error_embed_followup(
             interaction, "Emote added!",
