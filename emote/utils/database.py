@@ -35,7 +35,6 @@ class Database:
         "database": os.getenv('DB_DATABASE'),
         "user": os.getenv('DB_USER'),
         "password": os.getenv('DB_PASSWORD'),
-        "ssl": "require",
     }
 
     async def get_connection(self):
@@ -44,7 +43,7 @@ class Database:
 
         :return: A connection object to execute queries asynchronously.
         """
-        return await asyncpg.connect(**self.CONNECTION_PARAMS)
+        return await asyncpg.connect(self.CONNECTION_PARAMS)
 
     async def execute_query(self, query, *args):
         """
