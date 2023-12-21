@@ -63,7 +63,7 @@ class SlashCommands(commands.Cog):
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-            (lambda: emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            # (lambda: emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
 
         ]
 
