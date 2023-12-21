@@ -79,7 +79,7 @@ async def send_error_embed(interaction, error_message):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
-async def send_error_embed_followup(interaction, error_message):
+async def send_error_followup(interaction, error_message):
     """
     @param interaction: The interaction object representing the user command to respond to.
     @param error_message: The error message to display in the error embed.
