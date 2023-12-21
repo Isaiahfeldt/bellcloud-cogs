@@ -70,8 +70,6 @@ class SlashCommands(commands.Cog):
             if not condition():
                 await send_error_followup(interaction, error)
                 return
-            else:
-                await send_embed_followup(interaction, "else!", "ee")
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
