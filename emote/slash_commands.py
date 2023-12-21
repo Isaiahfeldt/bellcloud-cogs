@@ -69,16 +69,13 @@ class SlashCommands(commands.Cog):
                 await send_error_followup(interaction, error)
                 return
 
-        # if await db.emote_exists_in_database(name):
-        #     await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
-        #     return
+        if await db.emote_exists_in_database(name):
+            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            return
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
         )
-
-        exists_in_database = await db.emote_exists_in_database(name)
-        print(exists_in_database)
 
         # Does Emote name already exist in db?
         # Upload to bucket
