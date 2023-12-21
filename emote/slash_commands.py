@@ -24,18 +24,28 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
 from .utils.enums import EmoteAddError
-from .utils.url import is_url_reachable, is_media_format_valid, is_url_blacklisted
+from .utils.url import is_url_reachable, is_media_format_valid, is_url_blacklisted, is_media_size_valid
 
 _ = Translator("Emote", __file__)
 
-# Database connection parameters
-host = os.getenv('DB_HOST')
-port = os.getenv('DB_PORT')
-database = os.getenv('DB_DATABASE')
-user = os.getenv('DB_USER')
-password = os.getenv('DB_PASSWORD')
 
-allowed_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
+def get_db_params():
+    """
+    Retrieve database connection parameters for db_bellcloud from environment variables.
+
+    :return: A dictionary containing the database connection parameters.
+    :rtype: dict
+    """
+    return {
+        'host': os.getenv('DB_HOST'),
+        'port': os.getenv('DB_PORT'),
+        'database': os.getenv('DB_DATABASE'),
+        'user': os.getenv('DB_USER'),
+        'password': os.getenv('DB_PASSWORD'),
+    }
+
+
+valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 
 
 @cog_i18n(_)
@@ -66,7 +76,8 @@ class SlashCommands(commands.Cog):
             (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
             (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
             (lambda: not is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
-            (lambda: not is_media_format_valid(url, allowed_formats), EmoteAddError.INVALID_FILE_FORMAT),
+            (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
+            (lambda: not is_media_size_valid(url, 52428800), EmoteAddError.INVALID_FILE_FORMAT),
 
         ]
 
@@ -75,18 +86,16 @@ class SlashCommands(commands.Cog):
                 await send_error_embed_followup(interaction, error)
                 return
 
-        # is URL.Image file size too large?
         # Does Emote name already exist in db?
         # Upload to bucket
 
     @emote.command(name="remove", description="Remove an emote from the server")
     @app_commands.describe(name="The name of the emote to remove")
     async def emote_remove(self, interaction: discord.Interaction, name: str):
-        # if not interaction.user.guild_permissions.manage_messages:
-        #     await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-        #     return
+        if not interaction.user.guild_permissions.manage_messages:
+            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+            return
 
-        print(name)
         # Send pre-emptive response embed
         await send_help_embed(
             interaction, "Adding emote...",
