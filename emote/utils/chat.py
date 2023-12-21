@@ -41,16 +41,13 @@ async def send_help_embed(interaction, title, description):
 
 async def send_embed_followup(interaction, title, description):
     """
-    @param interaction: The interaction object representing the user's interaction with the bot.
-    @param title: The title of the embed message.
-    @param description: The description of the embed message.
-    @return: None
+    :param interaction: The interaction object representing the user's interaction with a command in Discord.
+    :param title: The title of the embedded message.
+    :param description: The description of the embedded message.
+    :return: None
 
-    Sends an embed message for the help menu using the provided parameters. The embed message includes a title,
-    description, color, and author information.
-
-    Example Usage:
-        await _send_help_embed_message(interaction, "Command Help", "This is a help message.", Color.BLUE.Value)
+    This method is used to send an embedded follow-up message in response to a user's interaction with a command in Discord. The method takes three parameters: `interaction`, `title`, and
+    * `description`.
     """
     embed = discord.Embed(title=title,
                           description=description,
