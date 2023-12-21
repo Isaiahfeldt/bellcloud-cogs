@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import re
 from urllib.parse import urlparse
 
 import requests
@@ -90,15 +91,15 @@ def is_media_size_valid(url: str, max_size: int) -> bool:
     return True
 
 
-def is_url_blacklisted(url: str) -> bool:
+def is_url_blacklisted(url: str) -> tuple:
     """
     :param url: The URL to check if it is blacklisted.
-    :return: True if the URL is blacklisted, False otherwise.
-    :rtype: bool
+    :return: Tuple where first element is a boolean indicating if the URL is blacklisted and the second element is the matching string in the URL. If no match was found, the second element is None.
+    :rtype: tuple
     """
     blacklisted_websites = ["https://media.bellbot.xyz"]
-
     for website in blacklisted_websites:
-        if website in url:
-            return True
-    return False
+        match = re.search(website, url)
+        if match:
+            return True, match.group()
+    return False, None

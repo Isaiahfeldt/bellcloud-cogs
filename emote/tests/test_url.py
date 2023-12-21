@@ -93,9 +93,11 @@ class ConditionTests(unittest.TestCase):
         self.assertEqual(result, False, "Expected False, but received True.")
 
         # Test if a blacklisted URL returns True
-        url_blacklisted = "https://media.bellbot.xyz/"
-        result_blacklisted = is_url_blacklisted(url_blacklisted)
-        self.assertEqual(result_blacklisted, True, "Expected website to be blacklisted.")
+        blacklisted_url = "https://media.bellbot.xyz/"
+        allowed_url = "https://static.wikia.nocookie.net/goanimate-news/images/9/93/Hatsune_Miku.png"
+
+        self.assertEqual(is_url_blacklisted(blacklisted_url), True, "Expected website to be blacklisted.")
+        self.assertFalse(is_url_blacklisted(allowed_url), False)
 
         # Test if a blacklisted URL that is a part of another URL returns True
         url_part_blacklisted = "https://media.bellbot.xyz/something_else"
