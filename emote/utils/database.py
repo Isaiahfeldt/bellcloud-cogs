@@ -43,7 +43,7 @@ class Database:
 
         :return: A connection object to execute queries asynchronously.
         """
-        return await asyncpg.connect(self.CONNECTION_PARAMS)
+        return await asyncpg.connect(**self.CONNECTION_PARAMS)
 
     async def execute_query(self, query, *args):
         """
