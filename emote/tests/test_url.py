@@ -16,7 +16,7 @@
 import unittest
 from unittest.mock import patch, Mock
 
-from emote.utils.url import is_url_reachable, is_media_size_valid
+from emote.utils.url import is_url_reachable, is_media_size_valid, blacklisted_url
 
 
 class ConditionTests(unittest.TestCase):
@@ -93,11 +93,11 @@ class ConditionTests(unittest.TestCase):
         self.assertEqual(result, False, "Expected False, but received True.")
 
         # Test if a blacklisted URL returns True
-        blacklisted_url = "https://media.bellbot.xyz/"
-        allowed_url = "https://static.wikia.nocookie.net/goanimate-news/images/9/93/Hatsune_Miku.png"
+        url_thats_blacklisted = "https://media.bellbot.xyz/"
+        url_thats_allowed = "https://static.wikia.nocookie.net/goanimate-news/images/9/93/Hatsune_Miku.png"
 
-        self.assertEqual(blacklisted_url(blacklisted_url), True, "Expected website to be blacklisted.")
-        self.assertFalse(blacklisted_url(allowed_url), False)
+        self.assertEqual(blacklisted_url(url_thats_blacklisted), True, "Expected website to be blacklisted.")
+        self.assertFalse(blacklisted_url(url_thats_allowed), False)
 
         # Test if a blacklisted URL that is a part of another URL returns True
         url_part_blacklisted = "https://media.bellbot.xyz/something_else"
