@@ -20,7 +20,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
@@ -66,11 +66,11 @@ class SlashCommands(commands.Cog):
         ]
 
         for condition, error in rules:
-            # if not condition():
-            #     await send_error_followup(interaction, error)
-            #     return
-            # else:
-            print("Test")
+            if not condition():
+                await send_error_followup(interaction, error)
+                return
+            else:
+                print("Success", error)
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
