@@ -13,8 +13,6 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-import os
-
 import discord
 from discord import app_commands
 from redbot.core import commands
@@ -23,29 +21,14 @@ from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
+from .utils.database import Database
 from .utils.enums import EmoteAddError
 from .utils.url import is_url_reachable, is_media_format_valid, is_url_blacklisted, is_media_size_valid
 
 _ = Translator("Emote", __file__)
 
-
-def get_db_params():
-    """
-    Retrieve database connection parameters for db_bellcloud from environment variables.
-
-    :return: A dictionary containing the database connection parameters.
-    :rtype: dict
-    """
-    return {
-        'host': os.getenv('DB_HOST'),
-        'port': os.getenv('DB_PORT'),
-        'database': os.getenv('DB_DATABASE'),
-        'user': os.getenv('DB_USER'),
-        'password': os.getenv('DB_PASSWORD'),
-    }
-
-
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
+db = Database()
 
 
 @cog_i18n(_)
@@ -78,6 +61,7 @@ class SlashCommands(commands.Cog):
             (lambda: not is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: not is_media_size_valid(url, 52428800), EmoteAddError.INVALID_FILE_FORMAT),
+            (lambda: not db.emote_exists_in_database(name), EmoteAddError.DUPLICATE_EMOTE_NAME)
 
         ]
 
