@@ -77,7 +77,8 @@ class SlashCommands(commands.Cog):
             interaction, "Success!", f"Added **{name}** as an emote."
         )
 
-        print(db.emote_exists_in_database(name))
+        exists_in_database = await db.emote_exists_in_database(name)
+        print(exists_in_database)
 
         # Does Emote name already exist in db?
         # Upload to bucket
