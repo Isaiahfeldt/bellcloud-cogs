@@ -32,5 +32,5 @@ class EmoteAddError(Enum):
     EXCEED_FILE_SIZE = "The file size exceeds the maximum limit of 50MB."
     INVALID_FILE_FORMAT = ("The URL address points to an unsupported file format. Valid file formats include: png, "
                            "webm, jpg, gif, and mp4.")
-    DUPLICATE_EMOTE_NAME = "The emote name already exists."
+    DUPLICATE_EMOTE_NAME = "That emote name already exists."
     BLACKLISTED_URL = "The URL address is blacklisted, and cannot be used."
