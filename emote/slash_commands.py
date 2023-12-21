@@ -72,6 +72,11 @@ class SlashCommands(commands.Cog):
                 await send_error_embed_followup(interaction, error)
                 return
 
+        await send_error_embed_followup(
+            interaction, "Emote added!",
+            f"The emote {name} has been successfully added to the server."
+        )
+
         # Does Emote name already exist in db?
         # Upload to bucket
 
