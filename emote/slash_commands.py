@@ -23,7 +23,7 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
-from .utils.url import is_url_reachable, is_url_blacklisted, is_media_format_valid, is_media_size_valid
+from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
 
@@ -57,10 +57,10 @@ class SlashCommands(commands.Cog):
         emote_exists = await db.emote_exists_in_database(name)
 
         rules = [
-            (lambda: name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
-            (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
+            (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
             (lambda: is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
-            (lambda: is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
+            (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
             (lambda: emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
@@ -68,7 +68,7 @@ class SlashCommands(commands.Cog):
         ]
 
         for condition, error in rules:
-            if condition():
+            if not condition():
                 await send_error_followup(interaction, error)
                 return
 

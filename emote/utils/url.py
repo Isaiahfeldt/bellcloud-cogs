@@ -37,6 +37,13 @@ def head_request(url):
         return None
 
 
+def alphanumeric_name(name: str) -> bool:
+    if not isinstance(name, str):
+        raise TypeError('name must be of type str')
+
+    return all(part.isalnum() for part in name.split())
+
+
 def is_url_reachable(url: str) -> bool:
     """
     :param url: The URL to check if it is reachable.
@@ -90,7 +97,7 @@ def is_media_size_valid(url: str, max_size: int) -> bool:
     return True
 
 
-def is_url_blacklisted(url: str) -> bool:
+def blacklisted_url(url: str) -> bool:
     """
     :param url: The URL to check if it is blacklisted.
     :return: True if the URL is blacklisted, False otherwise.
