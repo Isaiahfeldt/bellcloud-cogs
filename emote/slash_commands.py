@@ -54,6 +54,8 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
+        emote_exists = await db.emote_exists_in_database(name)
+        
         rules = [
             (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
@@ -61,7 +63,7 @@ class SlashCommands(commands.Cog):
             (lambda: is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: not is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-            (lambda: not db.emote_exists_in_database(name), EmoteAddError.DUPLICATE_EMOTE_NAME)
+            (lambda: not emote_exists, EmoteAddError.DUPLICATE_EMOTE_NAME)
 
         ]
 
