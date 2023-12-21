@@ -20,7 +20,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
@@ -54,7 +54,7 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        exists_in_database = await db.emote_exists_in_database(name)
+        # exists_in_database = await db.emote_exists_in_database(name)
         rules = [
             (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
@@ -62,16 +62,16 @@ class SlashCommands(commands.Cog):
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-            (lambda: not exists_in_database, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            # (lambda: not exists_in_database, EmoteAddError.DUPLICATE_EMOTE_NAME)
 
         ]
 
-        # for condition, error in rules:
-        #     if not condition():
-        #         await send_error_followup(interaction, error)
-        #         return
-        #     else:
-        #         await send_embed_followup(interaction, "else!", "ee")
+        for condition, error in rules:
+            if not condition():
+                await send_error_followup(interaction, error)
+                return
+            else:
+                await send_embed_followup(interaction, "else!", "ee")
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
