@@ -55,19 +55,19 @@ class SlashCommands(commands.Cog):
         )
 
         rules = [
-            (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR.value),
-            (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN.value),
-            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL.value),
-            (lambda: is_url_blacklisted(url)[0],
-             lambda: EmoteAddError.BLACKLISTED_URL.value.format(is_url_blacklisted(url)[1])),
-            (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT.value),
-            (lambda: not is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE.value),
-            (lambda: not db.emote_exists_in_database(name), EmoteAddError.DUPLICATE_EMOTE_NAME.value)
+            (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: len(name) > 32, EmoteAddError.EXCEED_NAME_LEN),
+            (lambda: not is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
+            (lambda: is_url_blacklisted(url), EmoteAddError.BLACKLISTED_URL),
+            (lambda: not is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
+            (lambda: not is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
+            (lambda: not db.emote_exists_in_database(name), EmoteAddError.DUPLICATE_EMOTE_NAME)
+
         ]
 
         for condition, error in rules:
             if condition():
-                await send_error_embed_followup(interaction, error() if callable(error) else error)
+                await send_error_embed_followup(interaction, error)
                 return
 
         # Does Emote name already exist in db?
