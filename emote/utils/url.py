@@ -19,8 +19,12 @@ import requests
 
 def head_request(url):
     """
-    @param url: The URL string for the HEAD request.
-    @return: The response object of the HEAD request if successful, error message or None.
+    Sends a HEAD request to the specified URL.
+
+    :param url: The URL string for the HEAD request.
+    :type url: str
+    :return: The response object of the HEAD request if successful, else None if a connection error occurs.
+    :raises ValueError: If the provided URL is invalid.
     """
     # Check if URL is valid
     parsed_url = urlparse(url)
@@ -35,8 +39,9 @@ def head_request(url):
 
 def is_url_reachable(url: str) -> bool:
     """
-    @param url: The URL string to check if it is reachable.
-    @return: True if the URL is reachable and returns a status code of 200, False otherwise.
+    :param url: The URL to check if it is reachable.
+    :return: True if the URL is reachable, False otherwise.
+    :rtype: bool
     """
     try:
         response = head_request(url)
@@ -47,11 +52,12 @@ def is_url_reachable(url: str) -> bool:
         return False
 
 
-def is_media_format_valid(url: str, allowed_formats):
+def is_media_format_valid(url: str, valid_formats: list):
     """
-    @param url: The URL string to be checked.
-    @param allowed_formats:
-    @return: A tuple (bool, str) indicating whether the URL has an allowed format and the file extension if it does.
+    :param url: The URL string to be checked.
+    :param valid_formats: List of allowed file formats
+    :return: A tuple (bool, str) indicating whether the URL has an allowed format and the file extension if it does.
+    :rtype: tuple (bool, str)
     """
     response = head_request(url)
     if response is None or response.status_code != 200:
@@ -60,7 +66,7 @@ def is_media_format_valid(url: str, allowed_formats):
     if content_type is None:
         return False, None,
     file_extension = content_type.split("/")[-1].lower()
-    if file_extension in allowed_formats:
+    if file_extension in valid_formats:
         return True, file_extension
     else:
         return False, file_extension
@@ -68,9 +74,10 @@ def is_media_format_valid(url: str, allowed_formats):
 
 def is_media_size_valid(url: str, max_size: int) -> bool:
     """
-    @param url: The URL string of the image to be checked.
-    @param max_size: The maximum size for the image (in bytes).
-    @return: True if the image size is less than or equal to the max_size, False otherwise.
+    :param url: The URL string of the image to be checked.
+    :param max_size: The maximum size for the image (in bytes).
+    :return: True if the image size is less than or equal to the max_size, False otherwise.
+    :rtype: bool
     """
     response = head_request(url)
     if response is None or response.status_code != 200:
@@ -85,8 +92,9 @@ def is_media_size_valid(url: str, max_size: int) -> bool:
 
 def is_url_blacklisted(url: str) -> bool:
     """
-    @param url: The URL to check if it is blacklisted.
-    @return: True if the URL is blacklisted, False otherwise.
+    :param url: The URL to check if it is blacklisted.
+    :return: True if the URL is blacklisted, False otherwise.
+    :rtype: bool
     """
     blacklisted_websites = ["https://media.bellbot.xyz"]
 
