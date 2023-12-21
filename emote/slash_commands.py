@@ -54,7 +54,6 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        # exists_in_database = await db.emote_exists_in_database(name)
         rules = [
             (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
@@ -62,7 +61,6 @@ class SlashCommands(commands.Cog):
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-            # (lambda: not exists_in_database, EmoteAddError.DUPLICATE_EMOTE_NAME)
 
         ]
 
@@ -70,6 +68,10 @@ class SlashCommands(commands.Cog):
             if not condition():
                 await send_error_followup(interaction, error)
                 return
+
+        if await db.emote_exists_in_database(name):
+            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            return
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
