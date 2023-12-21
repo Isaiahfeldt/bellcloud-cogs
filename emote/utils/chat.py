@@ -39,6 +39,28 @@ async def send_help_embed(interaction, title, description):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
+async def send_embed_followup(interaction, title, description):
+    """
+    @param interaction: The interaction object representing the user's interaction with the bot.
+    @param title: The title of the embed message.
+    @param description: The description of the embed message.
+    @return: None
+
+    Sends an embed message for the help menu using the provided parameters. The embed message includes a title,
+    description, color, and author information.
+
+    Example Usage:
+        await _send_help_embed_message(interaction, "Command Help", "This is a help message.", Color.BLUE.Value)
+    """
+    embed = discord.Embed(title=title,
+                          description=description,
+                          colour=EmbedColor.GREEN.value)
+    embed.set_author(name="Emote Help Menu",
+                     icon_url=interaction.client.user.display_avatar.url)
+    await interaction.delete_original_response()
+    await interaction.followup.send(embed=embed, ephemeral=True)
+
+
 async def send_error_embed(interaction, error_message):
     """
     @param interaction: The interaction object representing the user command to respond to.

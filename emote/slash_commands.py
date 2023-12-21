@@ -20,7 +20,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_error_embed_followup
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
 
@@ -53,7 +53,7 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being added to the server."
         )
 
-        emote_exists = await db.emote_exists_in_database(name)
+        # emote_exists = await db.emote_exists_in_database(name)
 
         # rules = [
         #     (lambda: not name.isalnum(), EmoteAddError.INVALID_NAME_CHAR),
@@ -71,9 +71,8 @@ class SlashCommands(commands.Cog):
         #         await send_error_embed_followup(interaction, error)
         #         return
 
-        await send_error_embed_followup(
-            interaction, "Emote added!",
-            f"The emote {name} has been successfully added to the server."
+        await send_embed_followup(
+            interaction, "Success!", f"Added **{name}** as an emote."
         )
 
         # Does Emote name already exist in db?
