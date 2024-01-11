@@ -48,7 +48,6 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        # Send pre-emptive response embed
         await send_help_embed(
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."

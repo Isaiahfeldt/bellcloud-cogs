@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+#  Copyright (c) 2023-2024, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -18,24 +18,24 @@ import os
 import asyncpg
 
 
-async def process_query_results(results):
-    """
-    :param results: A list of query results.
-    :return: A boolean value indicating if the results exist.
-    """
-    if not results:
-        return False
-    return results[0]['exists']
-
-
 class Database:
-    CONNECTION_PARAMS = {
-        "host": os.getenv('DB_HOST'),
-        "port": os.getenv('DB_PORT'),
-        "database": os.getenv('DB_DATABASE'),
-        "user": os.getenv('DB_USER'),
-        "password": os.getenv('DB_PASSWORD'),
-    }
+    async def process_query_results(self, results):
+        """
+        :param results: A list of query results.
+        :return: A boolean value indicating if the results exist.
+        """
+        if not results:
+            return False
+        return results[0]['exists']
+
+    def __init__(self):
+        self.CONNECTION_PARAMS: dict[str, str | None] = {
+            "host": os.getenv('DB_HOST'),
+            "port": os.getenv('DB_PORT'),
+            "database": os.getenv('DB_DATABASE'),
+            "user": os.getenv('DB_USER'),
+            "password": os.getenv('DB_PASSWORD'),
+        }
 
     async def get_connection(self):
         """
@@ -75,7 +75,7 @@ class Database:
         """
         query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1)"
         result = await self.execute_query(query, name)
-        return await process_query_results(result)
+        return await self.process_query_results(result)
 
     async def get_names_from_results(self, results):
         """

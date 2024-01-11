@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+#  Copyright (c) 2023-2024, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -19,7 +19,7 @@ import asyncio
 import unittest
 from unittest.mock import MagicMock, patch, AsyncMock
 
-from emote.utils.database import Database, process_query_results
+from emote.utils.database import Database
 
 
 class TestDatabaseMethods(unittest.TestCase):
@@ -74,9 +74,10 @@ class TestDatabaseMethods(unittest.TestCase):
         conn.close.assert_called_once()
 
     def test_process_query_results(self):
-        self.assertFalse(self.loop.run_until_complete(process_query_results(None)))
-        self.assertFalse(self.loop.run_until_complete(process_query_results([])))
-        self.assertTrue(self.loop.run_until_complete(process_query_results([{'exists': True}])))
+        db = Database()
+        self.assertFalse(self.loop.run_until_complete(db.process_query_results(None)))
+        self.assertFalse(self.loop.run_until_complete(db.process_query_results([])))
+        self.assertTrue(self.loop.run_until_complete(db.process_query_results([{'exists': True}])))
 
     def test_get_names_from_results(self):
         db = Database()
