@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+#  Copyright (c) 2023-2024, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -60,7 +60,6 @@ class SlashCommands(commands.Cog):
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
-
         ]
 
         for condition, error in rules:
