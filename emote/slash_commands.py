@@ -98,6 +98,9 @@ class SlashCommands(commands.Cog):
         if not message.content.startswith(":") or not message.content.endswith(":"):
             return
 
-        emote_name = message.content[1:-1]
+        if message.content.startswith(":~"):
+            emote_name = message.content[2:-1]  # Skip the first two characters ":~"
+        else:
+            emote_name = message.content[1:-1]  # Skip the first character ":"
 
         await message.channel.send(f"Emote '{emote_name}' not found.")
