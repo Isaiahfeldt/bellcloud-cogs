@@ -90,3 +90,14 @@ class SlashCommands(commands.Cog):
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
         )
+
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        if not message.author.bot:
+            return
+        if not message.content.startswith(":") or not message.content.endswith(":"):
+            return
+
+        emote_name = message.content[1:-1]
+
+        await message.channel.send(f"Emote '{emote_name}' not found.")
