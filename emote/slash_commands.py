@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import discord
+import psycopg2
 from discord import app_commands
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
@@ -99,4 +100,18 @@ class SlashCommands(commands.Cog):
         mc = message.content
         emote_name = mc[2:-1] if mc.startswith(":~") else mc[1:-1]
 
-        await message.channel.send(f"Emote '{emote_name}' not found.")
+        with psycopg2.connect(**db.CONNECTION_PARAMS) as conn:
+            with conn.cursor() as cur:
+                cur.execute("UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = %s", (emote_name,))
+                conn.commit()
+                cur.execute("SELECT file_path FROM emote.media WHERE emote_name = %s", (emote_name,))
+                result = cur.fetchone()
+
+        if result is not None:
+            file_path = result[0]  # Extract the file_path from the database result
+            file_url = f"https://media.bellbot.xyz/emote/{file_path}"  # Construct the final URL
+            # embed = discord.Embed()
+            # embed.set_image(url=file_url)
+            await message.channel.send(f"{file_url}")
+        else:
+            await message.channel.send(f"Emote '{emote_name}' not found.")
