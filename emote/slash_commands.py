@@ -93,14 +93,10 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        if message.author.bot:
-            return
-        if not message.content.startswith(":") or not message.content.endswith(":"):
+        if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
             return
 
-        if message.content.startswith(":~"):
-            emote_name = message.content[2:-1]  # Skip the first two characters ":~"
-        else:
-            emote_name = message.content[1:-1]  # Skip the first character ":"
+        mc = message.content
+        emote_name = mc[2:-1] if mc.startswith(":~") else mc[1:-1]
 
         await message.channel.send(f"Emote '{emote_name}' not found.")
