@@ -14,7 +14,6 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import discord
-import psycopg2
 from discord import app_commands
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
@@ -24,6 +23,7 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
+from .utils.format import convert_emote_name
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -68,7 +68,7 @@ class SlashCommands(commands.Cog):
                 await send_error_followup(interaction, error)
                 return
 
-        if await db.emote_exists_in_database(name):
+        if await db.check_emote_exists(name):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 
@@ -97,21 +97,15 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
             return
 
-        mc = message.content
-        emote_name = mc[2:-1] if mc.startswith(":~") else mc[1:-1]
+        emote_name = convert_emote_name(message.content)
 
-        with psycopg2.connect(**db.CONNECTION_PARAMS) as conn:
-            with conn.cursor() as cur:
-                cur.execute("UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = %s", (emote_name,))
-                conn.commit()
-                cur.execute("SELECT file_path FROM emote.media WHERE emote_name = %s", (emote_name,))
-                result = cur.fetchone()
-
-        if result is not None:
-            file_path = result[0]  # Extract the file_path from the database result
-            file_url = f"https://media.bellbot.xyz/emote/{file_path}"  # Construct the final URL
-            # embed = discord.Embed()
-            # embed.set_image(url=file_url)
-            await message.channel.send(f"{file_url}")
-        else:
-            await message.channel.send(f"Emote '{emote_name}' not found.")
+        result = db.get_emote(emote_name, True)
+        await message.channel.send(f"Emote '{result}'")
+        # if result is not None:
+        #     file_path = result[0]  # Extract the file_path from the database result
+        #     file_url = f"https://media.bellbot.xyz/emote/{file_path}"  # Construct the final URL
+        #     # embed = discord.Embed()
+        #     # embed.set_image(url=file_url)
+        #     await message.channel.send(f"{file_url}")
+        # else:
+        #     await message.channel.send(f"Emote '{emote_name}' not found.")

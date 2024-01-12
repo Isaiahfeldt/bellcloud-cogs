@@ -51,15 +51,28 @@ class Database:
         :param args: The arguments to be passed to the query.
         :return: The result of the query.
 
-        This method executes the provided SQL query with the given arguments and returns the result. It first gets a
-        connection from the connection pool using the get_connection() method. Then *, it executes the query using
-        the fetch() method of the connection object, passing the query and arguments as parameters. Finally,
-        it releases the connection back to the pool by closing * it.
-
         Note: This method is an asynchronous method and should be awaited when called.
 
         Example usage:
         result = await execute_query("SELECT * FROM users")
+        """
+        conn = await self.get_connection()
+        try:
+            return await conn.execute(query, *args)
+        finally:
+            if conn:
+                await conn.close()
+
+    async def fetch_query(self, query, *args):
+        """
+        :param query: The SQL query to be fetched.
+        :param args: The arguments to be passed to the query.
+        :return: The result of the query.
+
+        Note: This method is an asynchronous method and should be awaited when called.
+
+        Example usage:
+        result = await fetch_query("SELECT * FROM users")
         """
         conn = await self.get_connection()
         try:
@@ -68,23 +81,14 @@ class Database:
             if conn:
                 await conn.close()
 
-    async def emote_exists_in_database(self, name):
+    async def check_emote_exists(self, emote_name):
         """
-        :param name: The name of the emote to check existence for in the database.
+        :param emote_name: The name of the emote to check existence for in the database.
         :return: True if the emote exists in the database, False otherwise.
         """
         query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1)"
-        result = await self.execute_query(query, name)
+        result = await self.fetch_query(query, emote_name)
         return await self.process_query_results(result)
-
-    async def get_names_from_results(self, results):
-        """
-        :param results: the results from a database query
-        :return: a list of names extracted from the results
-        """
-        if results is None:
-            return []
-        return [row[0] for row in results]
 
     async def get_emote_names(self):
         """
@@ -93,5 +97,28 @@ class Database:
         :return: A list of emote names.
         """
         query = "SELECT emote_name FROM emote.media"
-        result = await self.execute_query(query)
-        return self.get_names_from_results(result)
+        result = await self.fetch_query(query)
+        return self.format_names_from_results(result)
+
+    async def format_names_from_results(self, results):
+        """
+        :param results: the results from a database query
+        :return: a list of names extracted from the results
+        """
+        if results is None:
+            return []
+
+        return [row[0] for row in results]
+
+    async def get_emote(self, emote_name, inc_count: bool = False):
+        select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
+        result = await self.fetch_query(select_query, emote_name)
+
+        if not result:
+            raise ValueError(f"Emote with name {emote_name} does not exist")
+
+        if inc_count:
+            query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
+            await self.execute_query(query, emote_name)
+
+        return result

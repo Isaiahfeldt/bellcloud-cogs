@@ -39,7 +39,7 @@ class TestDatabaseMethods(unittest.TestCase):
         self.assertTrue(mock_connect.called)
 
     @patch("asyncpg.connect")
-    def test_execute_query(self, mock_connect):
+    def test_fetch_query(self, mock_connect):
         conn = MagicMock()
         conn.fetch = AsyncMock()
         conn.close = AsyncMock()
@@ -47,7 +47,7 @@ class TestDatabaseMethods(unittest.TestCase):
 
         db = Database()
         sample_query = "SELECT * FROM table;"
-        self.loop.run_until_complete(db.execute_query(sample_query))
+        self.loop.run_until_complete(db.fetch_query(sample_query))
         conn.fetch.assert_called_once_with(sample_query)
         conn.close.assert_called_once()
 
@@ -55,8 +55,13 @@ class TestDatabaseMethods(unittest.TestCase):
         EMOTE_NAMES = ["isaiah", "miku4"]  # replace with your emote names
         db = Database()
         for emote_name in EMOTE_NAMES:
-            result = self.loop.run_until_complete(db.emote_exists_in_database(emote_name))
+            result = self.loop.run_until_complete(db.check_emote_exists(emote_name))
             self.assertTrue(result, f"Expected emote {emote_name} to exist in database, but it didn't.")
+
+    def test_get_emote_real(self):
+        emote_name = "miku4"
+        db = Database()
+        result = self.loop.run_until_complete(db.get_emote(emote_name))
 
     @patch("asyncpg.connect")
     def test_emote_exists_in_database_mock(self, mock_connect):
@@ -67,7 +72,7 @@ class TestDatabaseMethods(unittest.TestCase):
 
         db = Database()
         sample_emote_name = "emote1"
-        self.loop.run_until_complete(db.emote_exists_in_database(sample_emote_name))
+        self.loop.run_until_complete(db.check_emote_exists(sample_emote_name))
         conn.fetch.assert_called_once()
         query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1)"
         conn.fetch.assert_called_once_with(query, sample_emote_name)
@@ -79,10 +84,10 @@ class TestDatabaseMethods(unittest.TestCase):
         self.assertFalse(self.loop.run_until_complete(db.process_query_results([])))
         self.assertTrue(self.loop.run_until_complete(db.process_query_results([{'exists': True}])))
 
-    def test_get_names_from_results(self):
+    def test_format_names_from_results(self):
         db = Database()
-        self.assertEqual(self.loop.run_until_complete(db.get_names_from_results(None)), [])
-        self.assertEqual(self.loop.run_until_complete(db.get_names_from_results([['Name1'], ['Name2']])),
+        self.assertEqual(self.loop.run_until_complete(db.format_names_from_results(None)), [])
+        self.assertEqual(self.loop.run_until_complete(db.format_names_from_results([['Name1'], ['Name2']])),
                          ['Name1', 'Name2'])
 
 
