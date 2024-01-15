@@ -106,6 +106,6 @@ class SlashCommands(commands.Cog):
             file_url = f"https://media.bellbot.xyz/emote/{file_path}"  # Construct the final URL
             # embed = discord.Embed()
             # embed.set_image(url=file_url)
-            await message.channel.send(f"{file_url}")
+            await message.channel.send(f"{result}")
         else:
             await message.channel.send(f"Emote '{emote_name}' not found.")
