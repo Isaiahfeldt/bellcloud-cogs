@@ -99,7 +99,7 @@ class SlashCommands(commands.Cog):
 
         emote_name = convert_emote_name(message.content)
 
-        result = await db.get_emote(emote_name, False)
+        result = db.get_emote(emote_name, False)
         await message.channel.send(f"Emote '{result}'")
         # if result is not None:
         #     file_path = result[0]  # Extract the file_path from the database result
