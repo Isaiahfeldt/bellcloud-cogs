@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import asyncio
 
 import discord
 from discord import app_commands
@@ -37,6 +38,10 @@ db = Database()
 class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
+
+    def setUp(self):
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(None)
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -99,7 +104,8 @@ class SlashCommands(commands.Cog):
 
         emote_name = convert_emote_name(message.content)
 
-        result = db.get_emote(emote_name, False)
+        result = self.loop.run_until_complete(db.get_emote(emote_name, False))
+
         await message.channel.send(f"Emote '{result}'")
         # if result is not None:
         #     file_path = result[0]  # Extract the file_path from the database result
