@@ -101,11 +101,11 @@ class SlashCommands(commands.Cog):
 
         result = await db.get_emote(emote_name, False)
         await message.channel.send(f"Emote '{result}'")
-        # if result is not None:
-        #     file_path = result[0]  # Extract the file_path from the database result
-        #     file_url = f"https://media.bellbot.xyz/emote/{file_path}"  # Construct the final URL
-        #     # embed = discord.Embed()
-        #     # embed.set_image(url=file_url)
-        #     await message.channel.send(f"{file_url}")
-        # else:
-        #     await message.channel.send(f"Emote '{emote_name}' not found.")
+        if result is not None:
+            # file_path = result[0]  # Extract the file_path from the database result
+            file_url = f"https://media.bellbot.xyz/emote/{result}"  # Construct the final URL
+            # embed = discord.Embed()
+            # embed.set_image(url=file_url)
+            await message.channel.send(f"{file_url}")
+        else:
+            await message.channel.send(f"Emote '{emote_name}' not found.")
