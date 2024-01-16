@@ -174,7 +174,6 @@ class SlashCommands(commands.Cog):
                 command = effects_list[command_name]
                 if permissions[command['perm']]():
                     pipeline.append(command['func'])
-                    # await message.channel.send(command['func'])
                 else:
                     await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
@@ -188,8 +187,7 @@ class SlashCommands(commands.Cog):
         if result_messages:
             await message.channel.send("\n".join(result_messages))
         else:
-            await message.channel.send("No result messages to send")
-            # await self.send_emote(message, emote_name)
+            await message.channel.send(f"Could not find emote {emote_name}")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)
