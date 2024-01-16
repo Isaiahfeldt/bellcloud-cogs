@@ -44,8 +44,14 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
     #             pipeline.append(effect['func'])
     # return pipeline
 
-    for effect_name, effect in queued_effects.items():
-        if permission_list[effect['perm']](message, self):
+    # for effect_name, effect in queued_effects.items():
+    #     if permission_list[effect['perm']](message, self):
+    #         pipeline.append(effect['func'])
+    # return pipeline
+
+    for effect_name in queued_effects:
+        effect = effects_list.get(effect_name)
+        if effect and permission_list[effect['perm']](message, self):
             pipeline.append(effect['func'])
     return pipeline
 
