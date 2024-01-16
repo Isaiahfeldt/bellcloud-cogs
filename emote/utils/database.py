@@ -16,18 +16,10 @@
 import os
 
 import asyncpg
+from cachetools import TTLCache
 
 
 class Database:
-    async def process_query_results(self, results):
-        """
-        :param results: A list of query results.
-        :return: A boolean value indicating if the results exist.
-        """
-        if not results:
-            return False
-        return results[0]['exists']
-
     def __init__(self):
         self.CONNECTION_PARAMS: dict[str, str | None] = {
             "host": os.getenv('DB_HOST'),
@@ -36,6 +28,10 @@ class Database:
             "user": os.getenv('DB_USER'),
             "password": os.getenv('DB_PASSWORD'),
         }
+        self.cache = TTLCache(
+            maxsize=100,
+            ttl=600
+        )  # maxsize is the maximum number of items in the cache, and ttl is the "time to live" for each item
 
     async def get_connection(self):
         """
@@ -58,7 +54,9 @@ class Database:
         """
         conn = await self.get_connection()
         try:
-            return await conn.execute(query, *args)
+            result = await conn.execute(query, *args)
+            self.cache.clear()  # Invalidate all cache entries because database state changed
+            return result
         finally:
             if conn:
                 await conn.close()
@@ -74,21 +72,38 @@ class Database:
         Example usage:
         result = await fetch_query("SELECT * FROM users")
         """
+
+        if query in self.cache:
+            return self.cache[query]
+
         conn = await self.get_connection()
         try:
-            return await conn.fetch(query, *args)
+            result = await conn.fetch(query, *args)
+            self.cache[query] = result
+            return result
         finally:
             if conn:
                 await conn.close()
+
+    async def process_query_results(self, results):
+        if not results:
+            return False
+        return results[0]['exists']
 
     async def check_emote_exists(self, emote_name):
         """
         :param emote_name: The name of the emote to check existence for in the database.
         :return: True if the emote exists in the database, False otherwise.
         """
+        if emote_name in self.cache:
+            return self.cache[emote_name]
+
         query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1)"
         result = await self.fetch_query(query, emote_name)
-        return await self.process_query_results(result)
+        exists = await self.process_query_results(result)
+
+        self.cache[emote_name] = exists
+        return exists
 
     async def get_emote_names(self):
         """
@@ -107,18 +122,14 @@ class Database:
         """
         if results is None:
             return []
-
         return [row[0] for row in results]
 
     async def get_emote(self, emote_name, inc_count: bool = False):
         select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         result = await self.fetch_query(select_query, emote_name)
-
         if not result:
             return None
-
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
-
         return result[0]['file_path']
