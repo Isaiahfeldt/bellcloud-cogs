@@ -25,7 +25,7 @@ from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, 
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
-from .utils.format import extract_emote_effects
+from .utils.format import extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline  # replace with actual import
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
@@ -149,7 +149,7 @@ class SlashCommands(commands.Cog):
 
         start_time = time.perf_counter()  # Note the start time
 
-        emote_name, effects_list = extract_emote_effects(message.content)
+        emote_name, effects_list = extract_emote_details(message.content)
 
         pipeline = await create_pipeline(message, self, emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
         result_messages = await execute_pipeline(pipeline, start_time)

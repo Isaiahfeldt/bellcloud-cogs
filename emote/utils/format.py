@@ -13,12 +13,12 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-def convert_emote_name(emote_name):
+def clean_emote_name(emote_name):
     return emote_name[2:-1] if emote_name.startswith(":~") else emote_name[1:-1]
 
 
-def extract_emote_effects(content):
-    parsed_content = convert_emote_name(content)
+def extract_emote_details(content):
+    parsed_content = clean_emote_name(content)
     if "_" not in parsed_content:
         return parsed_content, []
 
