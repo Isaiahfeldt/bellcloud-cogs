@@ -185,7 +185,10 @@ class SlashCommands(commands.Cog):
             if isinstance(result, str):
                 result_messages.append(result)
 
-        await message.channel.send("\n".join(result_messages))
+        if result_messages:
+            await message.channel.send("\n".join(result_messages))
+        else:
+            await message.channel.send("No result messages to send")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)
