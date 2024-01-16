@@ -167,7 +167,15 @@ class SlashCommands(commands.Cog):
         }
 
         emote_name, emote_effect = extract_emote_effects(message.content)
-        await message.channel.send(emote_name)
+
+        if len(emote_effect) == 0:
+            emote = await db.get_emote(emote_name)
+            if emote is None:
+                await message.channel.send(f"Could not find emote {emote_name}")
+            else:
+                await message.channel.send(emote)
+            return
+
         pipeline = [lambda _: db.get_emote(emote_name)]
 
         for command_name in emote_effect:
