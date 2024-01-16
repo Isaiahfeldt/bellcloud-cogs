@@ -151,6 +151,7 @@ async def on_message(self, message: discord.Message):
     emote_name, emote_effect = extract_emote_effects(message.content)
 
     for command_name in emote_effect:
+        print(command_name)
         if command_name in effects_list:
             command = effects_list[command_name]
             if permissions[command['perm']]():
