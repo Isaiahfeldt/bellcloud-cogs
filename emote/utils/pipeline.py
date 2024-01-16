@@ -14,9 +14,9 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
 
-from emote.utils.database import Database  # Assuming
+from emote.utils.database import Database
 
-db = Database()  # Assuming db is defined here
+db = Database()
 
 
 async def create_pipeline(message, self, emote_name: str, effects_list: list, cmd_and_perm: dict, permissions: dict):

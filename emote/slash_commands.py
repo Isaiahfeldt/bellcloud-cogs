@@ -23,6 +23,7 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
+from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_effects
 from .utils.pipeline import create_pipeline, execute_pipeline  # replace with actual import
@@ -32,22 +33,6 @@ _ = Translator("Emote", __file__)
 
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
-
-
-async def latency(start_time):
-    # result = await db.get_emote(emote_name, False)
-    end_time = time.time()
-    elapsed_time = round(end_time - start_time, 2)
-
-    # if result is not None:
-    #     file_url = f"https://media.bellbot.xyz/emote/{result}"
-    #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
-    # else:
-    #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
-
-
-async def flip(url):
-    return url[::-1]  # Reverses the string
 
 
 @cog_i18n(_)
@@ -64,7 +49,7 @@ class SlashCommands(commands.Cog):
 
     EFFECTS_LIST = {
         "latency": {'func': latency, 'perm': 'everyone'},
-        "flip": {'func': flip, 'perm': 'everyone'},
+        "flip": {'func': flip, 'perm': 'mod'},
     }
 
     @emote.command(name="add", description="Add an emote to the server")
@@ -115,7 +100,6 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        # Send pre-emptive response embed
         await send_help_embed(
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
