@@ -167,6 +167,7 @@ class SlashCommands(commands.Cog):
         }
 
         emote_name, emote_effect = extract_emote_effects(message.content)
+        await message.channel.send(emote_name)
         pipeline = [lambda _: db.get_emote(emote_name)]
 
         for command_name in emote_effect:
