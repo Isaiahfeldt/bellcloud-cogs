@@ -174,7 +174,7 @@ class SlashCommands(commands.Cog):
                 await message.channel.send(emote)
             return
 
-        pipeline = await create_pipeline(emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
+        pipeline = await create_pipeline(message, self, emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
         result_messages = await execute_pipeline(pipeline)
 
         if result_messages:
