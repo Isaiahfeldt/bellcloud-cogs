@@ -14,7 +14,8 @@
     "requests",
     "asyncpg",
     "boto3",
-    "psycopg2-binary"
+    "psycopg2-binary",
+    "cachetools"
   ],
   "type": "COG",
   "end_user_data_statement": "This cog stores user IDs for the purpose of tracking emotes uploaded by a user."
