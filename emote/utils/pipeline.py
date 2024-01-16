@@ -14,7 +14,6 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
 
-from emote.slash_commands import SlashCommands
 from emote.utils.database import Database
 
 db = Database()
@@ -31,6 +30,9 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
     This method creates a pipeline by appending lambda functions and effect commands to it based on the queued
     effects and permissions. The pipeline is then returned.
     """
+
+    from emote.slash_commands import SlashCommands
+
     pipeline = [(lambda _: db.get_emote(emote_name))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
