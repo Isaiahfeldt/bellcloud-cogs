@@ -15,3 +15,13 @@
 
 def convert_emote_name(emote_name):
     return emote_name[2:-1] if emote_name.startswith(":~") else emote_name[1:-1]
+
+
+def extract_emote_effects(content):
+    parsed_content = convert_emote_name(content)
+    if "~" not in parsed_content:
+        return parsed_content, []
+
+    emote_name, emote_effects = parsed_content.split("~", 1)
+    emote_effects = emote_effects.split("~")
+    return emote_name, emote_effects

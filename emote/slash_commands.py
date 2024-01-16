@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import time
 
 import discord
 from discord import app_commands
@@ -23,7 +24,7 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
 from .utils.database import Database
 from .utils.enums import EmoteAddError
-from .utils.format import convert_emote_name
+from .utils.format import extract_emote_effects
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -112,19 +113,70 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    @commands.Cog.listener()
-    async def on_message(self, message: discord.Message):
-        if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
-            return
+    # @commands.Cog.listener()
+    # async def on_message(self, message: discord.Message):
+    #     if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
+    #         return
+    #
+    #     emote_name = convert_emote_name(message.content)
+    #
+    #     result = await db.get_emote(emote_name, False)
+    #     if result is not None:
+    #         # file_path = result[0]  # Extract the file_path from the database result
+    #         file_url = f"https://media.bellbot.xyz/emote/{result}"  # Construct the final URL
+    #         # embed = discord.Embed()
+    #         # embed.set_image(url=file_url)
+    #         await message.channel.send(f"{file_url}")
+    #     else:
+    #         await message.channel.send(f"Emote '{emote_name}' not found.")
 
-        emote_name = convert_emote_name(message.content)
 
-        result = await db.get_emote(emote_name, False)
-        if result is not None:
-            # file_path = result[0]  # Extract the file_path from the database result
-            file_url = f"https://media.bellbot.xyz/emote/{result}"  # Construct the final URL
-            # embed = discord.Embed()
-            # embed.set_image(url=file_url)
-            await message.channel.send(f"{file_url}")
-        else:
-            await message.channel.send(f"Emote '{emote_name}' not found.")
+@commands.Cog.listener()
+async def on_message(self, message: discord.Message):
+    if message.author.bot or not message.content.startswith(":") and message.content.endswith(":"):
+        return
+
+    effects_list = {
+        "latency": {'func': latency, 'perm': 'everyone'},
+        "flip": {'func': flip, 'perm': 'everyone'},
+    }
+
+    permissions = {
+        "owner": lambda: self.bot.is_owner(message.author),
+        "mod": lambda: message.author.guild_permissions.manage_messages,
+        "everyone": lambda: True,
+    }
+
+    pipeline = [self.get_emote]
+    emote_name, emote_effect = extract_emote_effects(message.content)
+
+    for command_name in emote_effect:
+        if command_name in effects_list:
+            command = effects_list[command_name]
+            if permissions[command['perm']]():
+                await message.channel.send(command['func'])
+                # pipeline.append(command['func'])
+            else:
+                await message.channel.send(f"You are not authorized to use the {command_name} command.")
+
+
+async def latency(message, emote_name):
+    start_time = time.time()
+    result = await db.get_emote(emote_name, False)
+    end_time = time.time()
+    elapsed_time = round(end_time - start_time, 2)
+
+    # if result is not None:
+    #     file_url = f"https://media.bellbot.xyz/emote/{result}"
+    #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
+    # else:
+    #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
+
+
+async def send_emote(message, emote_name):
+    result = await db.get_emote(emote_name, False)
+    if result is not None:
+        file_url = f"https://media.bellbot.xyz/emote/{result}"
+        await message.channel.send(f"{file_url}")
+    else:
+        await message.channel.send(f"Emote '{emote_name}' not found.")
