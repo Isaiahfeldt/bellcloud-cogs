@@ -34,9 +34,8 @@ valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
 
 
-async def latency(message, emote_name):
-    start_time = time.time()
-    result = await db.get_emote(emote_name, False)
+async def latency(start_time):
+    # result = await db.get_emote(emote_name, False)
     end_time = time.time()
     elapsed_time = round(end_time - start_time, 2)
 
@@ -164,10 +163,12 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
 
+        start_time = time.perf_counter()  # Note the start time
+
         emote_name, effects_list = extract_emote_effects(message.content)
 
         pipeline = await create_pipeline(message, self, emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
-        result_messages = await execute_pipeline(pipeline)
+        result_messages = await execute_pipeline(pipeline, start_time)
 
         if not result_messages:
             await message.channel.send(f"Emote `{emote_name}` not found.")

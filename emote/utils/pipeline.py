@@ -12,16 +12,16 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import time
 
 from emote.utils.database import Database  # Assuming
-from emote.utils.format import extract_emote_effects
 
 db = Database()  # Assuming db is defined here
 
 
 async def create_pipeline(message, self, emote_name: str, effects_list: list, cmd_and_perm: dict, permissions: dict):
     pipeline = [(lambda _: db.get_emote(emote_name))]
-    emote_name, effects_list = extract_emote_effects(message.content)
+
     for command_name in effects_list:
         if command_name in cmd_and_perm:
             command = cmd_and_perm[command_name]
@@ -30,10 +30,14 @@ async def create_pipeline(message, self, emote_name: str, effects_list: list, cm
     return pipeline
 
 
-async def execute_pipeline(pipeline):
+async def execute_pipeline(pipeline, start_time):
     result_messages, result = [], None
+    start_time = time.perf_counter()
     for function in pipeline:
+        function_start_time = time.perf_counter()
         result = await function(result)
+        function_end_time = time.perf_counter()
         if isinstance(result, str):
-            result_messages.append(result)
+            elapsed_time = function_end_time - function_start_time
+            result_messages.append(f"{elapsed_time:.6f} seconds: {result}")
     return result_messages
