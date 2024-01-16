@@ -74,12 +74,13 @@ class Database:
         """
 
         if query in self.cache:
-            return self.cache[query]
+            return self.cache[*args]
 
         conn = await self.get_connection()
         try:
             result = await conn.fetch(query, *args)
-            self.cache[query] = result
+            # print(f'result=================================: {result}')
+            self.cache[*args] = result
             return result
         finally:
             if conn:
