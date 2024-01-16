@@ -17,7 +17,6 @@ import time
 import discord
 from discord import app_commands
 from redbot.core import commands
-from redbot.core.bot import Red
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
@@ -57,9 +56,8 @@ class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
-    def __init__(self, bot: Red, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.bot = bot
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(args, kwargs)
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
