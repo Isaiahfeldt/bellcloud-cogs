@@ -14,13 +14,14 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 from emote.utils.database import Database  # Assuming
+from emote.utils.format import extract_emote_effects
 
 db = Database()  # Assuming db is defined here
 
 
 async def create_pipeline(message, self, emote_name: str, effects_list: list, cmd_and_perm: dict, permissions: dict):
     pipeline = [(lambda _: db.get_emote(emote_name))]
-
+    emote_name, effects_list = extract_emote_effects(message.content)
     for command_name in effects_list:
         if command_name in cmd_and_perm:
             command = cmd_and_perm[command_name]
