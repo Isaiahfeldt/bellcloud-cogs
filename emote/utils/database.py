@@ -115,7 +115,7 @@ class Database:
         result = await self.fetch_query(select_query, emote_name)
 
         if not result:
-            raise ValueError(f"Emote with name {emote_name} does not exist")
+            return None
 
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
