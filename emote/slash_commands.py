@@ -25,6 +25,7 @@ from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, 
 from .utils.database import Database
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_effects
+from .utils.pipeline import create_pipeline, execute_pipeline  # replace with actual import
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -56,8 +57,16 @@ class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(args, kwargs)
+    PERMISSIONS = {
+        "owner": lambda message, self: self.bot.is_owner(message.author),
+        "mod": lambda message, _: message.author.guild_permissions.manage_messages,
+        "everyone": lambda _, __: True,
+    }
+
+    EFFECTS_LIST = {
+        "latency": {'func': latency, 'perm': 'everyone'},
+        "flip": {'func': flip, 'perm': 'everyone'},
+    }
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -155,20 +164,9 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
 
-        effects_list = {
-            "latency": {'func': latency, 'perm': 'everyone'},
-            "flip": {'func': flip, 'perm': 'everyone'},
-        }
+        emote_name, effects_list = extract_emote_effects(message.content)
 
-        permissions = {
-            "owner": lambda: self.bot.is_owner(message.author),
-            "mod": lambda: message.author.guild_permissions.manage_messages,
-            "everyone": lambda: True,
-        }
-
-        emote_name, emote_effect = extract_emote_effects(message.content)
-
-        if len(emote_effect) == 0:
+        if len(effects_list) == 0:
             emote = await db.get_emote(emote_name)
             if emote is None:
                 await message.channel.send(f"Could not find emote {emote_name}")
@@ -176,25 +174,11 @@ class SlashCommands(commands.Cog):
                 await message.channel.send(emote)
             return
 
-        pipeline = [lambda _: db.get_emote(emote_name)]
-
-        for command_name in emote_effect:
-            if command_name in effects_list:
-                command = effects_list[command_name]
-                if permissions[command['perm']]():
-                    pipeline.append(command['func'])
-                else:
-                    await message.channel.send(f"You are not authorized to use the {command_name} command.")
-
-        result_messages = []
-        result = None
-        for function in pipeline:
-            result = await function(result)
-            if isinstance(result, str):
-                result_messages.append(result)
+        pipeline = await create_pipeline(emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
+        result_messages = await execute_pipeline(pipeline)
 
         if result_messages:
-            await message.channel.send("\n".join(result_messages[-1:]))
+            await message.channel.send("\n".join(result_messages))
         else:
             await message.channel.send(f"Could not find emote {emote_name}")
 
