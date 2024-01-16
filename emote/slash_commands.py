@@ -93,6 +93,7 @@ class SlashCommands(commands.Cog):
         )
 
     @emote.command(name="show_cache", description="Show current cache state")
+    @commands.is_owner()
     async def emote_show_cache(self, interaction: discord.Interaction):
         if not interaction.user.guild_permissions.manage_messages:
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
@@ -102,6 +103,7 @@ class SlashCommands(commands.Cog):
         await interaction.response.send_message(cache_state)
 
     @emote.command(name="clear_cache", description="Manually clear the cache")
+    @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
         if not interaction.user.guild_permissions.manage_messages:
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
@@ -109,7 +111,7 @@ class SlashCommands(commands.Cog):
 
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
-        
+
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
