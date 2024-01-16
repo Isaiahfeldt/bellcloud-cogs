@@ -174,7 +174,8 @@ class SlashCommands(commands.Cog):
             if command_name in effects_list:
                 command = effects_list[command_name]
                 if permissions[command['perm']]():
-                    await message.channel.send(command['func'])
+                    pipeline.append(command['func'])
+                    # await message.channel.send(command['func'])
                 else:
                     await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
