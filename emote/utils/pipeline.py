@@ -26,8 +26,14 @@ async def create_pipeline(message, self, emote_name: str, effects_list: list, cm
         if command_name in cmd_and_perm:
             command = cmd_and_perm[command_name]
             if permissions[command['perm']]:
+                print(permissions)
+                print(permissions[command['perm']])
                 pipeline.append(command['func'])
     return pipeline
+
+
+# TODO:
+# change result to a dict where each function appends its own elapsed time
 
 
 async def execute_pipeline(pipeline, start_time):
