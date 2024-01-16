@@ -157,9 +157,15 @@ class SlashCommands(commands.Cog):
         if not result_messages:
             await message.channel.send(f"Emote `{emote_name}` not found.")
             return
-        
-        await message.channel.send(issues)
-        await message.channel.send(f"```{issues}```\n".join(result_messages[-1:]))
+
+        if issues:
+            for effect_name, issue_type in issues:
+                if issue_type == "NotFound":
+                    result_messages.append(f"The effect '{effect_name}' was not found.")
+                elif issue_type == "PermissionDenied":
+                    result_messages.append(f"You do not have permission to use '{effect_name}'.")
+
+        await message.channel.send("\n".join(result_messages[-1:]))
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)
