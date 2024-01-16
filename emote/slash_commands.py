@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import asyncio
 import time
 
 import discord
@@ -183,10 +184,12 @@ class SlashCommands(commands.Cog):
         result_messages = []
         result = None
         for function in pipeline:
-            result = await function(result)
+            if asyncio.iscoroutinefunction(function):  # Check if function is a coroutine
+                result = await function(result)  # Await the coroutine
+            else:
+                result = function(result)  # Call the function normally when it's not a coroutine
             if isinstance(result, str):
                 result_messages.append(result)
-
         await message.channel.send("\n".join(result_messages))
 
     async def send_emote(self, message, emote_name):
