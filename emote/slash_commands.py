@@ -151,7 +151,7 @@ class SlashCommands(commands.Cog):
 
         emote_name, queued_effects = extract_emote_details(message.content)
 
-        pipeline = await create_pipeline(self, message, emote_name, queued_effects)
+        pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
         result_messages = await execute_pipeline(pipeline, start_time)
 
         if not result_messages:

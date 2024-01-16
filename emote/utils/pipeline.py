@@ -36,23 +36,19 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
     pipeline = [(lambda _: db.get_emote(emote_name))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
-
-    # for effect_name in effects_list:
-    #     if effect_name in queued_effects:
-    #         effect = queued_effects[effect_name]
-    #         if permission_list[effect['perm']]:
-    #             pipeline.append(effect['func'])
-    # return pipeline
-
-    # for effect_name, effect in queued_effects.items():
-    #     if permission_list[effect['perm']](message, self):
-    #         pipeline.append(effect['func'])
-    # return pipeline
+    issues = []
 
     for effect_name in queued_effects:
         effect = effects_list.get(effect_name)
-        if effect and permission_list[effect['perm']](message, self):
-            pipeline.append(effect['func'])
+        if effect is None:
+            issues.append((effect_name, "NotFound"))
+            continue
+
+        if not permission_list[effect['perm']](message, self):
+            issues.append((effect_name, "PermissionDenied"))
+            continue
+
+        pipeline.append(effect['func'])
     return pipeline
 
 
