@@ -19,9 +19,9 @@ def convert_emote_name(emote_name):
 
 def extract_emote_effects(content):
     parsed_content = convert_emote_name(content)
-    if "~" not in parsed_content:
+    if "_" not in parsed_content:
         return parsed_content, []
 
-    emote_name, emote_effects = parsed_content.split("~", 1)
-    emote_effects = emote_effects.split("~")
+    emote_name, emote_effects = parsed_content.split("_", 1)
+    emote_effects = emote_effects.split("_")
     return emote_name, emote_effects

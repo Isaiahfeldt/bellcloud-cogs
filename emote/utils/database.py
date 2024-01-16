@@ -30,7 +30,7 @@ class Database:
         }
         self.cache = TTLCache(
             maxsize=100,
-            ttl=1
+            ttl=200
         )  # maxsize is the maximum number of items in the cache, and ttl is the "time to live" for each item
 
     async def get_connection(self):
