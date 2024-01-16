@@ -47,7 +47,7 @@ async def latency(message, emote_name):
 
 
 def flip(url):
-    return str(url)[::-1]  # Reverses the string
+    return url[::-1]  # Reverses the string
 
 
 @cog_i18n(_)
