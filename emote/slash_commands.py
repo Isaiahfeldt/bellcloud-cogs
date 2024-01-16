@@ -166,21 +166,13 @@ class SlashCommands(commands.Cog):
 
         emote_name, effects_list = extract_emote_effects(message.content)
 
-        if len(effects_list) == 0:
-            emote = await db.get_emote(emote_name)
-            if emote is None:
-                await message.channel.send(f"Could not find emote {emote_name}")
-            else:
-                await message.channel.send(emote)
-            return
-
         pipeline = await create_pipeline(message, self, emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
         result_messages = await execute_pipeline(pipeline)
 
         if result_messages:
-            await message.channel.send("\n".join(result_messages))
+            await message.channel.send("\n".join(result_messages[-1:]))
         else:
-            await message.channel.send(f"Could not find emote {emote_name}")
+            await message.channel.send(f"Emote `{emote_name}` not found.")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)

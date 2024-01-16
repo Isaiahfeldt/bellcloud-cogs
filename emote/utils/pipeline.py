@@ -24,7 +24,7 @@ async def create_pipeline(message, self, emote_name: str, effects_list: list, cm
     for command_name in effects_list:
         if command_name in cmd_and_perm:
             command = cmd_and_perm[command_name]
-            if permissions[command['perm']](message, self):
+            if permissions[command['perm']]:
                 pipeline.append(command['func'])
     return pipeline
 
