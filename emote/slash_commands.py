@@ -152,7 +152,7 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        if message.author.bot or not message.content.startswith(":") and message.content.endswith(":"):
+        if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
 
         effects_list = {
@@ -166,9 +166,8 @@ class SlashCommands(commands.Cog):
             "everyone": lambda: True,
         }
 
-        pipeline = [lambda _: db.get_emote(emote_name)]
         emote_name, emote_effect = extract_emote_effects(message.content)
-        await message.channel.send(f'Emote: {emote_name}, Effect: {emote_effect}')
+        pipeline = [lambda _: db.get_emote(emote_name)]
 
         for command_name in emote_effect:
             if command_name in effects_list:
