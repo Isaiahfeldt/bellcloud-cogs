@@ -12,7 +12,6 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-import asyncio
 import time
 
 import discord
@@ -168,28 +167,24 @@ class SlashCommands(commands.Cog):
             "everyone": lambda: True,
         }
 
-        pipeline = [db.get_emote]
+        pipeline = [lambda _: db.get_emote(emote_name)]
         emote_name, emote_effect = extract_emote_effects(message.content)
 
         for command_name in emote_effect:
-            print(command_name)
             if command_name in effects_list:
                 command = effects_list[command_name]
                 if permissions[command['perm']]():
                     await message.channel.send(command['func'])
-                    # pipeline.append(command['func'])
                 else:
                     await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
         result_messages = []
         result = None
         for function in pipeline:
-            if asyncio.iscoroutinefunction(function):  # Check if function is a coroutine
-                result = await function(result)  # Await the coroutine
-            else:
-                result = function(result)  # Call the function normally when it's not a coroutine
+            result = await function(result)
             if isinstance(result, str):
                 result_messages.append(result)
+
         await message.channel.send("\n".join(result_messages))
 
     async def send_emote(self, message, emote_name):
