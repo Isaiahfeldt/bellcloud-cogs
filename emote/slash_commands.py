@@ -46,7 +46,7 @@ async def latency(message, emote_name):
     #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
 
 
-def flip(url):
+async def flip(url):
     return url[::-1]  # Reverses the string
 
 
