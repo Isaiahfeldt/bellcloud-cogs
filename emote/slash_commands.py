@@ -159,6 +159,15 @@ async def on_message(self, message: discord.Message):
             else:
                 await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
+    result_messages = []
+    result = None
+    for function in pipeline:
+        result = await function(result)
+        if isinstance(result, str):
+            result_messages.append(result)
+
+    await message.channel.send("\n".join(result_messages))
+
 
 def flip(url):
     return url[::-1]  # Reverses the string
