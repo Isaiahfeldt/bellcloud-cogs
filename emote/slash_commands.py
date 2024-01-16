@@ -188,12 +188,12 @@ class SlashCommands(commands.Cog):
         if result_messages:
             await message.channel.send("\n".join(result_messages))
         else:
-            await message.channel.send("No result messages to send")
+            await self.send_emote(message, emote_name)
 
-    # async def send_emote(self, message, emote_name):
-    #     result = await db.get_emote(emote_name, False)
-    #     if result is not None:
-    #         file_url = f"https://media.bellbot.xyz/emote/{result}"
-    #         await message.channel.send(f"{file_url}")
-    #     else:
-    #         await message.channel.send(f"Emote '{emote_name}' not found.")
+    async def send_emote(self, message, emote_name):
+        result = await db.get_emote(emote_name, False)
+        if result is not None:
+            file_url = f"https://media.bellbot.xyz/emote/{result}"
+            await message.channel.send(f"{file_url}")
+        else:
+            await message.channel.send(f"Emote '{emote_name}' not found.")
