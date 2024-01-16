@@ -136,6 +136,7 @@ async def on_message(self, message: discord.Message):
     if message.author.bot or not message.content.startswith(":") and message.content.endswith(":"):
         return
 
+    await message.channel.send("Input received...")
     effects_list = {
         "latency": {'func': latency, 'perm': 'everyone'},
         "flip": {'func': flip, 'perm': 'everyone'},
