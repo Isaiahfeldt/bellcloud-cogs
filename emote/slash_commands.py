@@ -157,7 +157,8 @@ class SlashCommands(commands.Cog):
         if not result_messages:
             await message.channel.send(f"Emote `{emote_name}` not found.")
             return
-
+        
+        await message.channel.send(issues)
         await message.channel.send(f"```{issues}```\n".join(result_messages[-1:]))
 
     async def send_emote(self, message, emote_name):

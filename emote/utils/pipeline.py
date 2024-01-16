@@ -49,6 +49,7 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
             continue
 
         pipeline.append(effect['func'])
+
     return pipeline, issues
 
 
