@@ -168,6 +168,7 @@ class SlashCommands(commands.Cog):
 
         pipeline = [lambda _: db.get_emote(emote_name)]
         emote_name, emote_effect = extract_emote_effects(message.content)
+        await message.channel.send(f'Emote: {emote_name}, Effect: {emote_effect}')
 
         for command_name in emote_effect:
             if command_name in effects_list:
@@ -190,10 +191,10 @@ class SlashCommands(commands.Cog):
         else:
             await message.channel.send("No result messages to send")
 
-    async def send_emote(self, message, emote_name):
-        result = await db.get_emote(emote_name, False)
-        if result is not None:
-            file_url = f"https://media.bellbot.xyz/emote/{result}"
-            await message.channel.send(f"{file_url}")
-        else:
-            await message.channel.send(f"Emote '{emote_name}' not found.")
+    # async def send_emote(self, message, emote_name):
+    #     result = await db.get_emote(emote_name, False)
+    #     if result is not None:
+    #         file_url = f"https://media.bellbot.xyz/emote/{result}"
+    #         await message.channel.send(f"{file_url}")
+    #     else:
+    #         await message.channel.send(f"Emote '{emote_name}' not found.")
