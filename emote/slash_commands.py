@@ -41,7 +41,7 @@ class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
-    PERMISSIONS = {
+    PERMISSION_LIST = {
         "owner": lambda message, self: self.bot.is_owner(message.author),
         "mod": lambda message, _: message.author.guild_permissions.manage_messages,
         "everyone": lambda _, __: True,
@@ -149,9 +149,9 @@ class SlashCommands(commands.Cog):
 
         start_time = time.perf_counter()  # Note the start time
 
-        emote_name, effects_list = extract_emote_details(message.content)
+        emote_name, queued_effects = extract_emote_details(message.content)
 
-        pipeline = await create_pipeline(message, self, emote_name, effects_list, self.EFFECTS_LIST, self.PERMISSIONS)
+        pipeline = await create_pipeline(self, message, emote_name, queued_effects)
         result_messages = await execute_pipeline(pipeline, start_time)
 
         if not result_messages:

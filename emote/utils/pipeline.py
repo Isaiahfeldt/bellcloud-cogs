@@ -14,21 +14,37 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
 
+from emote.slash_commands import SlashCommands
 from emote.utils.database import Database
 
 db = Database()
 
 
-async def create_pipeline(message, self, emote_name: str, effects_list: list, cmd_and_perm: dict, permissions: dict):
-    pipeline = [(lambda _: db.get_emote(emote_name))]
+async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
+    """
+    :param self: The object instance.
+    :param message: The message object.
+    :param emote_name: The name of the emote.
+    :param queued_effects: A dictionary containing queued effects.
+    :return: A list representing the pipeline.
 
-    for command_name in effects_list:
-        if command_name in cmd_and_perm:
-            command = cmd_and_perm[command_name]
-            if permissions[command['perm']]:
-                await message.channel.send(permissions)
-                await message.channel.send(permissions[command['perm']])
-                pipeline.append(command['func'])
+    This method creates a pipeline by appending lambda functions and effect commands to it based on the queued
+    effects and permissions. The pipeline is then returned.
+    """
+    pipeline = [(lambda _: db.get_emote(emote_name))]
+    effects_list = SlashCommands.EFFECTS_LIST
+    permission_list = SlashCommands.PERMISSION_LIST
+
+    # for effect_name in effects_list:
+    #     if effect_name in queued_effects:
+    #         effect = queued_effects[effect_name]
+    #         if permission_list[effect['perm']]:
+    #             pipeline.append(effect['func'])
+    # return pipeline
+
+    for effect_name, effect in queued_effects.items():
+        if permission_list[effect['perm']](message, self):
+            pipeline.append(effect['func'])
     return pipeline
 
 
