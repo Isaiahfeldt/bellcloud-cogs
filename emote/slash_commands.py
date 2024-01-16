@@ -160,6 +160,10 @@ async def on_message(self, message: discord.Message):
                 await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
 
+def flip(url):
+    return url[::-1]  # Reverses the string
+
+
 async def latency(message, emote_name):
     start_time = time.time()
     result = await db.get_emote(emote_name, False)
