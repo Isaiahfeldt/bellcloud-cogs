@@ -34,15 +34,32 @@ valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
 
 
+async def latency(message, emote_name):
+    start_time = time.time()
+    result = await db.get_emote(emote_name, False)
+    end_time = time.time()
+    elapsed_time = round(end_time - start_time, 2)
+
+    # if result is not None:
+    #     file_url = f"https://media.bellbot.xyz/emote/{result}"
+    #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
+    # else:
+    #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
+
+
+def flip(url):
+    return url[::-1]  # Reverses the string
+
+
 @cog_i18n(_)
 @app_commands.guild_only()
 class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, bot: Red, *args, **kwargs):
         super().__init__(args, kwargs)
-        self.bot = Red
+        self.bot = bot
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -142,8 +159,8 @@ class SlashCommands(commands.Cog):
 
         await message.channel.send("Input received...")
         effects_list = {
-            "latency": {'func': self.latency, 'perm': 'everyone'},
-            "flip": {'func': self.flip, 'perm': 'everyone'},
+            "latency": {'func': latency, 'perm': 'everyone'},
+            "flip": {'func': flip, 'perm': 'everyone'},
         }
 
         permissions = {
@@ -152,7 +169,7 @@ class SlashCommands(commands.Cog):
             "everyone": lambda: True,
         }
 
-        pipeline = [self.get_emote]
+        pipeline = [db.get_emote]
         emote_name, emote_effect = extract_emote_effects(message.content)
 
         for command_name in emote_effect:
@@ -173,21 +190,6 @@ class SlashCommands(commands.Cog):
                 result_messages.append(result)
 
         await message.channel.send("\n".join(result_messages))
-
-    def flip(self, url):
-        return url[::-1]  # Reverses the string
-
-    async def latency(self, message, emote_name):
-        start_time = time.time()
-        result = await db.get_emote(emote_name, False)
-        end_time = time.time()
-        elapsed_time = round(end_time - start_time, 2)
-
-        # if result is not None:
-        #     file_url = f"https://media.bellbot.xyz/emote/{result}"
-        #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
-        # else:
-        #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)
