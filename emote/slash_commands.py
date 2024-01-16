@@ -17,6 +17,7 @@ import time
 import discord
 from discord import app_commands
 from redbot.core import commands
+from redbot.core.bot import Red
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
@@ -38,6 +39,10 @@ db = Database()
 class SlashCommands(commands.Cog):
     """This class defines the SlashCommands cog"""
     emote = app_commands.Group(name="emote", description="Sorta like emojis, but cooler")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.bot = Red
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -130,68 +135,64 @@ class SlashCommands(commands.Cog):
     #     else:
     #         await message.channel.send(f"Emote '{emote_name}' not found.")
 
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        if message.author.bot or not message.content.startswith(":") and message.content.endswith(":"):
+            return
 
-@commands.Cog.listener()
-async def on_message(self, message: discord.Message):
-    if message.author.bot or not message.content.startswith(":") and message.content.endswith(":"):
-        return
+        await message.channel.send("Input received...")
+        effects_list = {
+            "latency": {'func': self.latency, 'perm': 'everyone'},
+            "flip": {'func': self.flip, 'perm': 'everyone'},
+        }
 
-    await message.channel.send("Input received...")
-    effects_list = {
-        "latency": {'func': latency, 'perm': 'everyone'},
-        "flip": {'func': flip, 'perm': 'everyone'},
-    }
+        permissions = {
+            "owner": lambda: self.bot.is_owner(message.author),
+            "mod": lambda: message.author.guild_permissions.manage_messages,
+            "everyone": lambda: True,
+        }
 
-    permissions = {
-        "owner": lambda: self.bot.is_owner(message.author),
-        "mod": lambda: message.author.guild_permissions.manage_messages,
-        "everyone": lambda: True,
-    }
+        pipeline = [self.get_emote]
+        emote_name, emote_effect = extract_emote_effects(message.content)
 
-    pipeline = [self.get_emote]
-    emote_name, emote_effect = extract_emote_effects(message.content)
+        for command_name in emote_effect:
+            print(command_name)
+            if command_name in effects_list:
+                command = effects_list[command_name]
+                if permissions[command['perm']]():
+                    await message.channel.send(command['func'])
+                    # pipeline.append(command['func'])
+                else:
+                    await message.channel.send(f"You are not authorized to use the {command_name} command.")
 
-    for command_name in emote_effect:
-        print(command_name)
-        if command_name in effects_list:
-            command = effects_list[command_name]
-            if permissions[command['perm']]():
-                await message.channel.send(command['func'])
-                # pipeline.append(command['func'])
-            else:
-                await message.channel.send(f"You are not authorized to use the {command_name} command.")
+        result_messages = []
+        result = None
+        for function in pipeline:
+            result = await function(result)
+            if isinstance(result, str):
+                result_messages.append(result)
 
-    result_messages = []
-    result = None
-    for function in pipeline:
-        result = await function(result)
-        if isinstance(result, str):
-            result_messages.append(result)
+        await message.channel.send("\n".join(result_messages))
 
-    await message.channel.send("\n".join(result_messages))
+    def flip(self, url):
+        return url[::-1]  # Reverses the string
 
+    async def latency(self, message, emote_name):
+        start_time = time.time()
+        result = await db.get_emote(emote_name, False)
+        end_time = time.time()
+        elapsed_time = round(end_time - start_time, 2)
 
-def flip(url):
-    return url[::-1]  # Reverses the string
+        # if result is not None:
+        #     file_url = f"https://media.bellbot.xyz/emote/{result}"
+        #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
+        # else:
+        #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
 
-
-async def latency(message, emote_name):
-    start_time = time.time()
-    result = await db.get_emote(emote_name, False)
-    end_time = time.time()
-    elapsed_time = round(end_time - start_time, 2)
-
-    # if result is not None:
-    #     file_url = f"https://media.bellbot.xyz/emote/{result}"
-    #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
-    # else:
-    #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
-
-
-async def send_emote(message, emote_name):
-    result = await db.get_emote(emote_name, False)
-    if result is not None:
-        file_url = f"https://media.bellbot.xyz/emote/{result}"
-        await message.channel.send(f"{file_url}")
-    else:
-        await message.channel.send(f"Emote '{emote_name}' not found.")
+    async def send_emote(self, message, emote_name):
+        result = await db.get_emote(emote_name, False)
+        if result is not None:
+            file_url = f"https://media.bellbot.xyz/emote/{result}"
+            await message.channel.send(f"{file_url}")
+        else:
+            await message.channel.send(f"Emote '{emote_name}' not found.")
