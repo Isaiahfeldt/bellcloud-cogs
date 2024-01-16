@@ -96,7 +96,7 @@ class TestDatabaseMethods(unittest.TestCase):
         env_variables = result.stdout.split('\n')
 
         desired_variables = ['DB_HOST', 'DB_USER', 'DB_PORT', 'DB_PASSWORD',
-                             'DB_DATABASE']  # Replace these with your desired variables
+                             'DB_DATABASE']
         for var in desired_variables:
             self.assertTrue(any(var in line for line in env_variables),
                             f'Expected {var} to exist in container environment, but it didn\'t.')
