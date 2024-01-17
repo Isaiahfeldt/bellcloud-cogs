@@ -165,7 +165,7 @@ class SlashCommands(commands.Cog):
         #         elif issue_type == "PermissionDenied":
         #             result_messages += f"\nYou do not have permission to use the effect `{effect_name}` effect."
 
-        await message.channel.send(result_messages)
+        await message.channel.send("\n".join(result_messages))
 
         # if SlashCommands.latency_enabled:
         #     await message.channel.send(f"`Your request was processed in {round(elapsed_times, 2)}s!`")
