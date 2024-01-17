@@ -149,8 +149,8 @@ class SlashCommands(commands.Cog):
         if message.author.bot and str(message.author.id) != "1104269848445456507":
             if message.content == "!cog update True emote":
                 ctx = await self.bot.get_context(message)
-                await message.channel.send(f"<@138148168360656896>")
                 await ctx.invoke(ctx.bot.get_command('cog update'), 'True emote')
+                await message.channel.send(f"<@138148168360656896>")
 
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
