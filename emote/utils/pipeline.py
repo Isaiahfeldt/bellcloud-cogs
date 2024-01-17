@@ -58,13 +58,13 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
 
 
 async def execute_pipeline(pipeline, start_time):
-    result_messages, result = [], None
-    start_time = time.perf_counter()
+    result_message, result = "", None
+    function_end_time = start_time
     for function in pipeline:
-        function_start_time = time.perf_counter()
         result = await function(result)
         function_end_time = time.perf_counter()
         if isinstance(result, str):
-            elapsed_time = function_end_time - function_start_time
-            result_messages.append(f"{elapsed_time:.6f} seconds: {result}")
-    return result_messages
+            result_message = result
+
+    elapsed_time = function_end_time - start_time
+    return result_message, elapsed_time
