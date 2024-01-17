@@ -150,7 +150,7 @@ class SlashCommands(commands.Cog):
             if message.content == "!cog update True emote":
                 # time.sleep(2)
                 ctx = await self.bot.get_context(message)
-                await message.channel.send("Isaiah")
+                await message.channel.send("isaiah")
                 await ctx.invoke(ctx.bot.get_command('cog update'), 'True emote')
 
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
