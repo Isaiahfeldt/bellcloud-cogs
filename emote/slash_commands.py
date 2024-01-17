@@ -148,7 +148,7 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author.bot and str(message.author.id) != "1104269848445456507":
             if message.content == "!cog update True emote":
-                await self.bot.reload_extension("emote")
+                await self.bot.reload_extension(message.content.split()[-1:][0])
 
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
