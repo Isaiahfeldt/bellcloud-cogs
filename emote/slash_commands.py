@@ -152,20 +152,20 @@ class SlashCommands(commands.Cog):
         emote_name, queued_effects = extract_emote_details(message.content)
 
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        result_message, elapsed_time = await execute_pipeline(pipeline, start_time)
+        modified_message, elapsed_time = await execute_pipeline(pipeline, start_time)
 
-        if not result_message:
+        if not modified_message:
             await message.channel.send(f"Emote `{emote_name}` not found.")
             return
 
         if issues:
             for effect_name, issue_type in issues:
                 if issue_type == "NotFound":
-                    result_message.append(f"The effect '{effect_name}' was not found.")
+                    modified_message.append(f"The effect '{effect_name}' was not found.")
                 elif issue_type == "PermissionDenied":
-                    result_message.append(f"You do not have permission to use '{effect_name}'.")
+                    modified_message.append(f"You do not have permission to use '{effect_name}'.")
 
-        await message.channel.send("\n".join(result_message[-1:]))
+        await message.channel.send("\n".join(modified_message))
         await message.channel.send(f'```{elapsed_time}```')
 
     async def send_emote(self, message, emote_name):
