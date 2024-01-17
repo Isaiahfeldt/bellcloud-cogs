@@ -165,7 +165,7 @@ class SlashCommands(commands.Cog):
                 elif issue_type == "PermissionDenied":
                     modified_message.append(f"You do not have permission to use '{effect_name}'.")
 
-        await message.channel.send("\n".join(modified_message))
+        await message.channel.send(modified_message)
         await message.channel.send(f"Your request was processed in {round(elapsed_time, 2)}s!")
 
     async def send_emote(self, message, emote_name):
