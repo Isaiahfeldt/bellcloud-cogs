@@ -52,6 +52,8 @@ class SlashCommands(commands.Cog):
         "flip": {'func': flip, 'perm': 'mod'},
     }
 
+    latency_enabled = False
+
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
         name="The name of the new emote",
@@ -166,7 +168,8 @@ class SlashCommands(commands.Cog):
                     modified_message += f"\nYou do not have permission to use the effect `{effect_name}` effect."
 
         await message.channel.send(modified_message)
-        await message.channel.send(f"`Your request was processed in {round(elapsed_time, 2)}s!`")
+        if SlashCommands.latency_enabled:
+            await message.channel.send(f"`Your request was processed in {round(elapsed_time, 2)}s!`")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)
