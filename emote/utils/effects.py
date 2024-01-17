@@ -12,13 +12,12 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-import time
 
 
-async def latency(start_time):
-    # result = await db.get_emote(emote_name, False)
-    end_time = time.time()
-    elapsed_time = round(end_time - start_time, 2)
+async def latency(result):
+    from emote.slash_commands import SlashCommands
+    SlashCommands.latency_enabled = not SlashCommands.latency_enabled
+    return result
 
     # if result is not None:
     #     file_url = f"https://media.bellbot.xyz/emote/{result}"
