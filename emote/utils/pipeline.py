@@ -71,11 +71,11 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
 
 
 async def execute_pipeline(pipeline):
-    result_message, result = "", None
+    result_messages, result = [], None
 
     for function in pipeline:
         result = await function(result)
         if isinstance(result, str):
-            result_message = result
+            result_messages.append(result)
 
-    return result_message
+    return result_messages
