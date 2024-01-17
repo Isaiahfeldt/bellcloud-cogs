@@ -52,7 +52,7 @@ class SlashCommands(commands.Cog):
         "flip": {'func': flip, 'perm': 'everyone'},
     }
 
-    latency_enabled = False
+    # latency_enabled = False
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
