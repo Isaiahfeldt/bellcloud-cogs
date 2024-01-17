@@ -12,25 +12,39 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-import time
 
 from emote.utils.database import Database
 
 db = Database()
 
 
+# class EffectManager:
+#     EFFECTS = {
+#         'flip': {'func': flip, 'perm': 'everyone', 'priority': 10},
+#         'latency': {'func': latency, 'perm': 'mod', 'priority': 1},
+#     }
+#
+#     PERMISSION_LIST = {
+#         'owner': lambda message, self: self.bot.is_owner(message.author),
+#         'mod': lambda message, _: message.author.guild_permissions.manage_messages,
+#         'everyone': lambda _, __: True,
+#     }
+#
+#     def get_by_name(self, name, message):
+#         effect_info = self.EFFECTS.get(name)
+#         if effect_info is None:
+#             # Add an error message instead of raising an exception
+#             return None, f"Effect `{name}` not found."
+#
+#         # Check if the user has permission to use the effect
+#         perm_func = self.PERMISSION_LIST.get(effect_info['perm'])
+#         if perm_func and not perm_func(message, self):
+#             return None, f"You do not have permission to use the effect `{name}`."
+#
+#         return effect_info['func'](), None
+
+
 async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
-    """
-    :param self: The object instance.
-    :param message: The message object.
-    :param emote_name: The name of the emote.
-    :param queued_effects: A dictionary containing queued effects.
-    :return: A list representing the pipeline.
-
-    This method creates a pipeline by appending lambda functions and effect commands to it based on the queued
-    effects and permissions. The pipeline is then returned.
-    """
-
     from emote.slash_commands import SlashCommands
 
     pipeline = [(lambda _: db.get_emote(emote_name))]
@@ -56,18 +70,12 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
     return pipeline, issues
 
 
-# TODO:
-# change result to a dict where each function appends its own elapsed time
-
-
-async def execute_pipeline(pipeline, start_time):
+async def execute_pipeline(pipeline):
     result_message, result = "", None
-    function_end_time = start_time
+
     for function in pipeline:
         result = await function(result)
-        function_end_time = time.perf_counter()
         if isinstance(result, str):
             result_message = result
 
-    elapsed_time = function_end_time - start_time
-    return result_message, elapsed_time
+    return result_message

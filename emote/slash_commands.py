@@ -12,7 +12,6 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-import time
 
 import discord
 from discord import app_commands
@@ -26,7 +25,7 @@ from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_details
-from .utils.pipeline import create_pipeline, execute_pipeline  # replace with actual import
+from .utils.pipeline import execute_pipeline, create_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -48,8 +47,9 @@ class SlashCommands(commands.Cog):
     }
 
     EFFECTS_LIST = {
-        "latency": {'func': latency, 'perm': 'everyone'},
-        "flip": {'func': flip, 'perm': 'mod'},
+        "latency": {'func': latency, 'perm': 'mod'},
+        "latency2": {'func': latency, 'perm': 'mod'},
+        "flip": {'func': flip, 'perm': 'everyone'},
     }
 
     latency_enabled = False
@@ -149,28 +149,26 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
 
-        start_time = time.perf_counter()  # Note the start time
-
         emote_name, queued_effects = extract_emote_details(message.content)
 
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        modified_message, elapsed_time = await execute_pipeline(pipeline, start_time)
+        emote, elapsed_times = await execute_pipeline(pipeline)
 
-        if not modified_message:
+        if not emote:
             await message.channel.send(f"Emote `{emote_name}` not found.")
             return
 
         if issues:
             for effect_name, issue_type in issues:
                 if issue_type == "NotFound":
-                    modified_message += f"\nThe '{effect_name}' effect was not found."
+                    emote += f"\nThe '{effect_name}' effect was not found."
                 elif issue_type == "PermissionDenied":
-                    modified_message += f"\nYou do not have permission to use the effect `{effect_name}` effect."
+                    emote += f"\nYou do not have permission to use the effect `{effect_name}` effect."
 
-        await message.channel.send(modified_message)
+        await message.channel.send(emote)
 
-        if SlashCommands.latency_enabled:
-            await message.channel.send(f"`Your request was processed in {round(elapsed_time, 2)}s!`")
+        # if SlashCommands.latency_enabled:
+        #     await message.channel.send(f"`Your request was processed in {round(elapsed_times, 2)}s!`")
 
     async def send_emote(self, message, emote_name):
         result = await db.get_emote(emote_name, False)

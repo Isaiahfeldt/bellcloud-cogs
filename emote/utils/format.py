@@ -13,12 +13,22 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-def clean_emote_name(emote_name):
+def clean_emote_name(emote_name: str):
+    """
+    :param emote_name: The name of the emote to be cleaned.
+    :return: The cleaned emote name where the prefix and postfix character sequence is removed, if it exists.
+
+    """
     return emote_name[2:-1] if emote_name.startswith(":~") else emote_name[1:-1]
 
 
-def extract_emote_details(content):
-    parsed_content = clean_emote_name(content)
+def extract_emote_details(message: str):
+    """
+    :param message: The content string containing the emote name and effects separated by an underscore.
+    :return: A tuple containing the extracted emote name and a list of emote effects.
+
+    """
+    parsed_content = clean_emote_name(message)
     if "_" not in parsed_content:
         return parsed_content, []
 

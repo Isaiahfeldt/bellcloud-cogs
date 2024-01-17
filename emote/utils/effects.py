@@ -19,12 +19,6 @@ async def latency(result):
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
     return result
 
-    # if result is not None:
-    #     file_url = f"https://media.bellbot.xyz/emote/{result}"
-    #     await message.channel.send(f"{file_url}\n\nTime taken: {elapsed_time}s")
-    # else:
-    #     await message.channel.send(f"Emote '{emote_name}' not found.\n\nTime taken: {elapsed_time}s")
-
 
 async def flip(url):
     return url[::-1]  # Reverses the string
