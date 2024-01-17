@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import time
 
 import discord
 from discord import app_commands
@@ -148,6 +149,7 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author.bot and str(message.author.id) != "1104269848445456507":
             if message.content == "!cog update True emote":
+                time.sleep(2)
                 ctx = await self.bot.get_context(message)
                 await ctx.invoke(ctx.bot.get_command('cog update'), 'True emote')
 
