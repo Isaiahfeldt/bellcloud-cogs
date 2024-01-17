@@ -146,7 +146,7 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        if message.author.bot:
+        if message.author.bot and not str(message.author.id) != "1104269848445456507":
             await message.channel.send(message.content)
             await message.channel.send(str(message.author.id))
 
