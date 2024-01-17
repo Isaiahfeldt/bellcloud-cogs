@@ -152,7 +152,7 @@ class SlashCommands(commands.Cog):
         emote_name, queued_effects = extract_emote_details(message.content)
 
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        result_messages, elapsed_times = await execute_pipeline(pipeline)
+        result_messages = await execute_pipeline(pipeline)
 
         if not result_messages:
             await message.channel.send(f"Emote `{emote_name}` not found.")
