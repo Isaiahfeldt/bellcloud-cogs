@@ -146,7 +146,8 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        await message.channel.send(message.content)
+        if message.author.bot:
+            await message.channel.send(message.content)
 
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
