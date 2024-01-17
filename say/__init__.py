@@ -14,8 +14,11 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 
+from redbot.core.bot import Red
+
 from .say import Say
 
 
-def setup(bot):
-    bot.add_cog(Say(bot))
+async def setup(bot: Red) -> None:
+    bell_cog = Say(bot)
+    await bot.add_cog(bell_cog)
