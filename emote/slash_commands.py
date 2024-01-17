@@ -161,9 +161,9 @@ class SlashCommands(commands.Cog):
         if issues:
             for effect_name, issue_type in issues:
                 if issue_type == "NotFound":
-                    modified_message.append(f"The effect '{effect_name}' was not found.")
+                    modified_message += f"\nThe effect '{effect_name}' was not found."
                 elif issue_type == "PermissionDenied":
-                    modified_message.append(f"You do not have permission to use '{effect_name}'.")
+                    modified_message += f"\nYou do not have permission to use '{effect_name}'."
 
         await message.channel.send(modified_message)
         await message.channel.send(f"`Your request was processed in {round(elapsed_time, 2)}s!`")
