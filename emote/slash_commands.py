@@ -16,6 +16,7 @@
 import discord
 from discord import app_commands
 from redbot.core import commands
+from redbot.core.core_commands import Core
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
@@ -148,8 +149,9 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author.bot and str(message.author.id) != "1104269848445456507":
             if message.content == "!cog update True emote":
+                ctx = await self.bot.get_context(message)
                 await message.channel.send(message.content.split()[-1:][0])
-                await self.bot.reload_extension(name=message.content.split()[-1:][0])
+                await Core.reload(Core(), ctx, str(message.content.split()[-1:][0]))
 
         if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
             return
