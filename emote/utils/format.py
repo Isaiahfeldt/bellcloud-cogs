@@ -38,7 +38,7 @@ def extract_emote_details(message: discord.Message):
         ':miku4_latency_flip:'  -> ('miku4', ['latency', 'flip'])
 
     """
-    parsed_content = clean_emote_name(message.content)
+    parsed_content = clean_emote_name(message.content.lower())
     if "_" not in parsed_content:
         return parsed_content, []
 
