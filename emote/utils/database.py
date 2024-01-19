@@ -126,6 +126,8 @@ class Database:
         return [row[0] for row in results]
 
     async def get_emote(self, emote_name, inc_count: bool = False):
+        """Retrieve the file path of the given emote and increase its usage count if specified."""
+        
         select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         result = await self.fetch_query(select_query, emote_name)
         if not result:

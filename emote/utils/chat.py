@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+#  Copyright (c) 2023-2024, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -15,6 +15,7 @@
 
 import discord
 
+from emote.utils.database import Database
 from emote.utils.enums import EmbedColor
 
 
@@ -99,3 +100,22 @@ async def send_error_followup(interaction, error_message):
                      icon_url=interaction.client.user.display_avatar.url)
     await interaction.delete_original_response()
     await interaction.followup.send(embed=embed, ephemeral=True)
+
+
+async def send_reload(self, message: discord.Message):
+    if message.content == "!cog update True emote":
+        ctx = await self.bot.get_context(message)
+        await ctx.invoke(ctx.bot.get_command('cog update'), 'True emote')
+        await message.channel.send(f"<@138148168360656896>")
+
+
+async def send_emote(message: discord.Message, emote_name, *args):
+    db = Database()
+    emote_url = await db.get_emote(emote_name, False)
+
+    if emote_url is None:
+        await message.channel.send(f"Emote '{emote_name}' not found.")
+        return
+
+    file_url = f"https://media.bellbot.xyz/emote/{emote_url}"
+    await message.channel.send(f"{file_url}\n" + "\n".join(*args))

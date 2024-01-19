@@ -20,12 +20,12 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload, \
+    send_emote
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
-from .utils.format import extract_emote_details
-from .utils.pipeline import execute_pipeline, create_pipeline
+from .utils.format import extract_emote_details, is_enclosed_in_colon
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -146,40 +146,13 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        if message.author.bot and str(message.author.id) != "1104269848445456507":
-            if message.content == "!cog update True emote":
-                ctx = await self.bot.get_context(message)
-                await ctx.invoke(ctx.bot.get_command('cog update'), 'True emote')
-                await message.channel.send(f"<@138148168360656896>")
+        await send_reload(self, message)
 
-        if message.author.bot or not message.content.startswith(":") or not message.content.endswith(":"):
+        if message.author.bot and not is_enclosed_in_colon(message):
             return
 
-        emote_name, queued_effects = extract_emote_details(message.content)
+        emote_name, queued_effects = extract_emote_details(message)
+        extra_info = ""
+        # if not queued_effects:
 
-        pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        result_messages = await execute_pipeline(pipeline)
-
-        if not result_messages:
-            await message.channel.send(f"Emote `{emote_name}` not found.")
-            return
-
-        # if issues:
-        #     for effect_name, issue_type in issues:
-        #         if issue_type == "NotFound":
-        #             result_messages += f"\nThe '{effect_name}' effect was not found."
-        #         elif issue_type == "PermissionDenied":
-        #             result_messages += f"\nYou do not have permission to use the effect `{effect_name}` effect."
-
-        await message.channel.send(result_messages)
-
-        # if SlashCommands.latency_enabled:
-        #     await message.channel.send(f"`Your request was processed in {round(elapsed_times, 2)}s!`")
-
-    async def send_emote(self, message, emote_name):
-        result = await db.get_emote(emote_name, False)
-        if result is not None:
-            file_url = f"https://media.bellbot.xyz/emote/{result}"
-            await message.channel.send(f"{file_url}")
-        else:
-            await message.channel.send(f"Emote '{emote_name}' not found.")
+        await send_emote(message, emote_name, extra_info)
