@@ -115,7 +115,8 @@ class SlashCommands(commands.Cog):
             return
 
         cache_state = str(db.cache)
-        await interaction.response.send_message(cache_state)
+        emote_usage_collection = str(db.emote_usage_collection)
+        await interaction.response.send_message(f"{cache_state}\n{emote_usage_collection}")
 
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
