@@ -47,7 +47,7 @@ async def latency(emote):
     return emote
 
 
-def flip(emote: Emote):
+async def flip(emote: Emote):
     emote.file_path = emote.file_path[::-1]  # Reverse the string
     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
     return emote_dict
