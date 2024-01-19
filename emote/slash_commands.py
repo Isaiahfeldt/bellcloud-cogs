@@ -165,7 +165,7 @@ class SlashCommands(commands.Cog):
         if issues:
             await message.channel.send(issues)
 
-        await message.channel.send[(lambda _: db.get_emote(emote_name))]
+        await message.channel.send(await db.get_emote(emote_name))
 
         # await message.channel.send(result_messages[0])
         await send_emote(message, emote, pipeline_verbose)
