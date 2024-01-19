@@ -69,11 +69,8 @@ class Emote:
 
 async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
     from emote.slash_commands import SlashCommands
-    from emote.utils.database import Database
 
-    db = Database()
-
-    pipeline = [(lambda _: db.get_emote(emote_name))]
+    pipeline = [emote_name]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []
