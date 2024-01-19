@@ -156,6 +156,7 @@ class Database:
         :return: The emote record as an asyncpg.Record object.
         """
 
+        # Change `emote_name` to `name`
         def fix_emote_dict(emote_dict: dict) -> dict:
             fixed_dict = dict(emote_dict[0])
             fixed_dict['name'] = fixed_dict.pop('emote_name')

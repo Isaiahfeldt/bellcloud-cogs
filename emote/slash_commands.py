@@ -150,6 +150,7 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         await send_reload(self, message)
 
+        # validations for author and message content
         if message.author.bot or not is_enclosed_in_colon(message):
             return
         await message.channel.typing()
@@ -160,6 +161,7 @@ class SlashCommands(commands.Cog):
         if not emote:
             return await message.channel.send(f"Emote '{emote_name}' not found.")
 
+        # past this point we've ensured `emote` contains proper emote data
         pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
         result_messages, emote = await execute_pipeline(pipeline)
 
