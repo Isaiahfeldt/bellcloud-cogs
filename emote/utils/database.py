@@ -156,19 +156,18 @@ class Database:
         :return: The emote record as an asyncpg.Record object.
         """
 
-        # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
+        def fix_emote_dict(emote_dict: dict) -> dict:
+            fixed_dict = dict(emote_dict[0])
+            fixed_dict['name'] = fixed_dict.pop('emote_name')
+            return fixed_dict
+
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
         emote = await self.fetch_query(select_query, emote_name)
-        print(f"Received emote: {emote}")
-        if emote is None:
+        if not emote:
             return None
-            # return Emote(id=0, file_path='', author_id=0, timestamp=datetime.now(), original_url='', name='',
-            #              guild_id=0, usage_count=0, error="NotFound")
 
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
 
-        record_dict = dict(emote[0])
-        record_dict['name'] = record_dict.pop('emote_name')
-        return Emote(**record_dict)
+        return Emote(**fix_emote_dict(emote))
