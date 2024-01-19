@@ -160,4 +160,4 @@ class SlashCommands(commands.Cog):
         pipeline_verbose = ""
 
         # await message.channel.send(f"\n".join(result_messages))
-        await send_emote(message, emote, pipeline_verbose)
+        await send_emote(message, emote, emote)
