@@ -156,5 +156,4 @@ class SlashCommands(commands.Cog):
         pipeline_verbose = ""
 
         emote = await db.get_emote(emote_name, False)
-        await message.channel.send(str(emote))
-        await send_emote(message, emote, pipeline_verbose)
+        await send_emote(message, emote, emote)
