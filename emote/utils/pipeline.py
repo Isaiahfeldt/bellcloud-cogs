@@ -73,7 +73,9 @@ async def execute_pipeline(pipeline):
 
     for function in pipeline:
         result = await function(result)
-        if isinstance(result, Emote):
+        if isinstance(result, str):
+            result_messages.append(result)
+        elif isinstance(result, Emote):
             emote = result
 
-    return emote  # emote is now returned as well
+    return result_messages, emote  # emote is now returned as well
