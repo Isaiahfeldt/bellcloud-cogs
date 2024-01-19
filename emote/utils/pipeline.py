@@ -67,10 +67,10 @@ class Emote:
 #         return effect_info['func'](), None
 
 
-async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
+async def create_pipeline(self, message, emote: Emote, queued_effects: dict, ):
     from emote.slash_commands import SlashCommands
 
-    pipeline = [emote_name]
+    pipeline = [emote.file_path]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []

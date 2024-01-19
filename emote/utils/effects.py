@@ -17,7 +17,7 @@
 async def latency(emote):
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
-    return result
+    return emote
 
 
 async def flip(emote):
