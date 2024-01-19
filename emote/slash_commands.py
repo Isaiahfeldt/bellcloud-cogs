@@ -20,12 +20,12 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload, \
-    send_emote
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_details, is_enclosed_in_colon
+from .utils.pipeline import create_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -153,7 +153,9 @@ class SlashCommands(commands.Cog):
             return
 
         emote_name, queued_effects = extract_emote_details(message)
+
+        pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
         pipeline_verbose = ""
 
-        emote = await db.get_emote(emote_name, False)
-        await send_emote(message, emote, emote)
+        await message.channel.send(pipeline)
+        # await send_emote(message, emote, pipeline_verbose)

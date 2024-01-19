@@ -85,9 +85,6 @@ async def create_pipeline(self, message, emote_name: str, queued_effects: dict, 
             issues.append((effect_name, "NotFound"))
             continue
 
-        if effect_name == "latency":
-            SlashCommands.latency_enabled = not SlashCommands.latency_enabled
-
         if not permission_list[effect['perm']](message, self):
             issues.append((effect_name, "PermissionDenied"))
             continue

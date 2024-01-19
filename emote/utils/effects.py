@@ -14,11 +14,12 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 
-async def latency(result):
+async def latency(emote):
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
     return result
 
 
-async def flip(url):
-    return url[::-1]  # Reverses the string
+async def flip(emote):
+    # return url[::-1]  # Reverses the string
+    return emote
