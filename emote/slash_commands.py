@@ -155,9 +155,9 @@ class SlashCommands(commands.Cog):
         emote_name, queued_effects = extract_emote_details(message)
 
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        result_messages = execute_pipeline(pipeline)
+        result_messages = await execute_pipeline(pipeline)
 
         pipeline_verbose = ""
 
-        await message.channel.send(result_messages)
+        await message.channel.send(f"\n".join(result_messages))
         # await send_emote(message, emote, pipeline_verbose)
