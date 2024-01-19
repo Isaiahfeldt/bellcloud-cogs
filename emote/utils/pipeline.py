@@ -95,7 +95,7 @@ async def execute_pipeline(pipeline):
 
     for function in pipeline:
         result = await function(result)
-        if isinstance(result, dict):
+        if isinstance(result, str):
             result_messages.append(result)
 
     return result_messages
