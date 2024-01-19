@@ -152,6 +152,8 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not is_enclosed_in_colon(message):
             return
 
+        await message.channel.typing()
+
         emote_name, queued_effects = extract_emote_details(message)
         emote = await db.get_emote(emote_name)
 
