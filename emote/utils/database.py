@@ -159,6 +159,7 @@ class Database:
         # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
         emote = await self.fetch_query(select_query, emote_name)
+        print(f"Received emote: {emote}")
         if emote is None:
             return None
             # return Emote(id=0, file_path='', author_id=0, timestamp=datetime.now(), original_url='', name='',
