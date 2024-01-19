@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import time
 
 from emote.utils.database import Database
 from emote.utils.effects import Emote, initialize
@@ -44,6 +45,13 @@ db = Database()
 #
 #         return effect_info['func'](), None
 
+async def timed_execution(func, argument, start_time):
+    result = await func(argument)
+    end_time = time.perf_counter()
+    time_elapsed = end_time - start_time
+
+    return result, time_elapsed
+
 
 async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     from emote.slash_commands import SlashCommands
@@ -68,15 +76,16 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     return pipeline, issues
 
 
-async def execute_pipeline(pipeline):
-    result_messages, result, emote = [], None, None
+async def execute_pipeline(pipeline, start_time):
+    verbose_data, function_result, emote = [], None, None
 
     for function in pipeline:
-        # TODO catch empty emotes
-        result = await function(result)
-        if isinstance(result, str):
-            result_messages.append(result)
-        elif isinstance(result, Emote):
-            emote = result
+        function_result, time_elapsed = await timed_execution(function, function_result,
+                                                              start_time)  # Pass start_time to timed_execution
 
-    return result_messages, emote  # emote is now returned as well
+        if isinstance(function_result, tuple):
+            emote, data_dict = function_result
+            data_dict['time_elapsed'] = time_elapsed
+            verbose_data.append(data_dict)
+
+    return emote, verbose_data

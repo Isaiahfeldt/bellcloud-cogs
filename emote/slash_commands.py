@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import time
 
 import discord
 from discord import app_commands
@@ -153,6 +154,7 @@ class SlashCommands(commands.Cog):
         # validations for author and message content
         if message.author.bot or not is_enclosed_in_colon(message):
             return
+        start_time = time.perf_counter()
         await message.channel.typing()
 
         emote_name, queued_effects = extract_emote_details(message)  # :miku4_flip: -> ('miku4', ['flip'])
@@ -161,11 +163,10 @@ class SlashCommands(commands.Cog):
         if not emote:
             return await message.channel.send(f"Emote '{emote_name}' not found.")
 
-        # past this point we've ensured `emote` contains proper emote data
         pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
-        result_messages, emote = await execute_pipeline(pipeline)
+        emote, verbose_data = await execute_pipeline(pipeline, start_time)
 
-        await send_emote(message, emote)
+        await send_emote(message, emote, verbose_data)
 
         # TODO: bypass effects pipeline if emote doesn't work
         # :miku5_flip: -> AttributeError: 'NoneType' object has no attribute 'file_path'

@@ -14,7 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 from dataclasses import dataclass, asdict
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Any
 
 
 @dataclass
@@ -74,18 +74,21 @@ async def latency(emote):
     return emote
 
 
-async def flip(emote: Emote):
+async def flip(emote: Emote) -> tuple[Emote, list[Any]]:
     """
-    Flip the file path of an Emote object and return it back to the dictionary.
+    Flip the file path of an Emote object and return it back.
 
     :param emote: The Emote object to flip.
-    :return: The flipped Emote object as a dictionary.
+    :return: The flipped Emote object.
 
     Example usage:
-        emote = Emote(file_path="image.png") \n
-        flipped_emote = await flip(emote) \n
-        print(flipped_emote)  # {"file_path": "gnp.ega"}
+        emote = Emote(file_path="image.png")
+        flipped_emote = await flip(emote)
+        print(flipped_emote.file_path)  # "gnp.ega"
     """
+    data_dict = []
     emote.file_path = emote.file_path[::-1]  # Reverse the string
     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
-    return emote_dict
+    emote = Emote(**emote_dict)  # Convert dict back to Emote object
+
+    return emote, data_dict
