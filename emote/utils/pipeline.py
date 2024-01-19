@@ -80,17 +80,11 @@ async def execute_pipeline(pipeline, start_time):
     verbose_data, function_result, emote = [], None, None
 
     for function in pipeline:
-        function_result, time_elapsed = await timed_execution(function, function_result,
-                                                              start_time)  # Pass start_time to timed_execution
+        function_result, time_elapsed = await timed_execution(function, function_result, start_time)
 
-        if isinstance(function_result, tuple):
-            emote, data_dict = function_result
-            data_dict['time_elapsed'] = time_elapsed
-            verbose_data.append(data_dict)
-
-        elif isinstance(function_result, Emote):
-            emote = function_result
-            data_dict = {'time_elapsed': time_elapsed}
-            verbose_data.append(data_dict)
+        # Always expect a tuple of (Emote, dict)
+        emote, data_dict = function_result
+        data_dict['time_elapsed'] = time_elapsed
+        verbose_data.append(data_dict)
 
     return emote, verbose_data

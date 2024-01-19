@@ -14,7 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 from dataclasses import dataclass, asdict
 from datetime import datetime
-from typing import Optional, Any
+from typing import Optional
 
 
 @dataclass
@@ -60,21 +60,21 @@ class Emote:
     error: Optional[str] = None
 
 
-async def initialize(emote: Emote) -> Emote:
+async def initialize(emote: Emote) -> (Emote, dict):
     """
     :param emote: The Emote object to be initialized.
     :return: The initialized Emote object.
     """
-    return emote
+    return emote, {}
 
 
-async def latency(emote):
+async def latency(emote: Emote) -> (Emote, dict):
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
-    return emote
+    return emote, {}
 
 
-async def flip(emote: Emote) -> tuple[Emote, list[Any]]:
+async def flip(emote: Emote) -> (Emote, dict):
     """
     Flip the file path of an Emote object and return it back.
 
@@ -86,9 +86,8 @@ async def flip(emote: Emote) -> tuple[Emote, list[Any]]:
         flipped_emote = await flip(emote)
         print(flipped_emote.file_path)  # "gnp.ega"
     """
-    data_dict = []
     emote.file_path = emote.file_path[::-1]  # Reverse the string
     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
     emote = Emote(**emote_dict)  # Convert dict back to Emote object
 
-    return emote, data_dict
+    return emote, {}
