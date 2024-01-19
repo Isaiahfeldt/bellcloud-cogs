@@ -12,7 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-
+import itertools
 
 import discord
 
@@ -112,8 +112,10 @@ async def send_reload(self, message: discord.Message):
 
 async def send_emote(message: discord.Message, emote: Emote, *args):
     # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
+    flattened_args = list(itertools.chain(*args))
+
     file_url = emote.file_path
-    if args:
+    if flattened_args:
         await message.channel.send(f"{file_url}\n" + "\n".join(args))
     else:
         await message.channel.send(f"{file_url}")
