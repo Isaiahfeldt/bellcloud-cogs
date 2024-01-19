@@ -162,4 +162,4 @@ class SlashCommands(commands.Cog):
         # result_messages = await execute_pipeline(pipeline)
 
         # await message.channel.send(f"\n".join(result_messages))
-        await send_emote(message, emote, emote)
+        await send_emote(message, emote)
