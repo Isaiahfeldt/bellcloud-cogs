@@ -144,7 +144,7 @@ class Database:
             return []
         return [row[0] for row in results]
 
-    async def get_emote(self, emote_name, inc_count: bool = False) -> asyncpg.Record:
+    async def get_emote(self, emote_name, inc_count: bool = False) -> dict:
         """
         Get emote from database.
 
@@ -163,4 +163,4 @@ class Database:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
 
-        return record[0]
+        return dict(record[0])

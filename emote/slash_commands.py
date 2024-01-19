@@ -20,12 +20,12 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload, \
+    send_emote
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_details, is_enclosed_in_colon
-from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -154,10 +154,10 @@ class SlashCommands(commands.Cog):
 
         emote_name, queued_effects = extract_emote_details(message)
 
-        pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
-        result_messages = await execute_pipeline(pipeline)
-
+        # pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
+        # result_messages = await execute_pipeline(pipeline)
+        emote = await db.get_emote(emote_name)
         pipeline_verbose = ""
 
-        await message.channel.send(f"\n".join(result_messages))
-        # await send_emote(message, emote, pipeline_verbose)
+        # await message.channel.send(f"\n".join(result_messages))
+        await send_emote(message, emote, pipeline_verbose)

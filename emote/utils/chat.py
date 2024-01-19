@@ -14,7 +14,6 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 
-import asyncpg
 import discord
 
 from emote.utils.enums import EmbedColor
@@ -111,7 +110,7 @@ async def send_reload(self, message: discord.Message):
         await message.channel.send(f"<@138148168360656896>")
 
 
-async def send_emote(message: discord.Message, emote: asyncpg.Record, *args):
+async def send_emote(message: discord.Message, emote: dict, *args):
     emote = Emote(**dict(emote))
 
     if emote.file_path is None:
