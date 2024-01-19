@@ -12,33 +12,11 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-from dataclasses import dataclass
-from datetime import datetime
 
+from emote.utils.database import Database
+from emote.utils.effects import Emote
 
-@dataclass
-class Emote:
-    """
-    Data class representing an emote.
-
-    Attributes:
-        id (int): The unique identifier of the emote.
-        file_path (str): The file path of the emote image.
-        author_id (int): The unique identifier of the emote's author.
-        timestamp (datetime): The timestamp when the emote was created.
-        original_url (str): The original URL from which the emote was downloaded.
-        name (str): The name of the emote.
-        guild_id (int): The unique identifier of the guild the emote belongs to.
-        usage_count (int): The number of times the emote has been used.
-    """
-    id: int
-    file_path: str
-    author_id: int
-    timestamp: datetime
-    original_url: str
-    name: str
-    guild_id: int
-    usage_count: int
+db = Database()
 
 
 # class EffectManager:
@@ -67,10 +45,10 @@ class Emote:
 #         return effect_info['func'](), None
 
 
-async def create_pipeline(self, message, emote: Emote, queued_effects: dict, ):
+async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
     from emote.slash_commands import SlashCommands
 
-    pipeline = [emote.file_path]
+    pipeline = [(lambda _: db.get_emote(emote_name))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []
@@ -91,11 +69,13 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict, ):
 
 
 async def execute_pipeline(pipeline):
-    result_messages, result = [], None
+    result_messages, result, emote = [], None, None
 
     for function in pipeline:
         result = await function(result)
         if isinstance(result, str):
             result_messages.append(result)
+        elif isinstance(result, Emote):
+            emote = result
 
-    return result_messages
+    return result_messages, emote  # emote is now returned as well

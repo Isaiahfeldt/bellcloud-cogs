@@ -19,7 +19,7 @@ from collections import defaultdict
 import asyncpg
 from cachetools import TTLCache
 
-from emote.utils.pipeline import Emote
+from emote.utils.effects import Emote
 
 
 class Database:
@@ -155,7 +155,6 @@ class Database:
 
         :return: The emote record as an asyncpg.Record object.
         """
-        from emote.utils.pipeline import Emote
 
         # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"

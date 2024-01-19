@@ -16,9 +16,9 @@
 
 import discord
 
+from emote.utils.effects import Emote
 from emote.utils.enums import EmbedColor
 from emote.utils.format import extract_emote_details
-from emote.utils.pipeline import Emote
 
 
 async def send_help_embed(interaction, title, description):
