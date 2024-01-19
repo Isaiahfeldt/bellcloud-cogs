@@ -26,7 +26,6 @@ from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_details, is_enclosed_in_colon
-from .utils.pipeline import Emote
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -154,7 +153,7 @@ class SlashCommands(commands.Cog):
             return
 
         emote_name, queued_effects = extract_emote_details(message)
-        emote = Emote(**await db.get_emote(emote_name))
+        emote = await db.get_emote(emote_name)
 
         pipeline_verbose = ""
 

@@ -19,6 +19,8 @@ from collections import defaultdict
 import asyncpg
 from cachetools import TTLCache
 
+from emote.utils.pipeline import Emote
+
 
 class Database:
     def __init__(self):
@@ -144,7 +146,7 @@ class Database:
             return []
         return [row[0] for row in results]
 
-    async def get_emote(self, emote_name, inc_count: bool = False) -> dict:
+    async def get_emote(self, emote_name, inc_count: bool = False) -> Emote | None:
         """
         Get emote from database.
 
@@ -153,16 +155,18 @@ class Database:
 
         :return: The emote record as an asyncpg.Record object.
         """
+        from emote.utils.pipeline import Emote
 
         # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
         record = await self.fetch_query(select_query, emote_name)
         if not record:
             return None
+
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
 
         record_dict = dict(record[0])
         record_dict['name'] = record_dict.pop('emote_name')
-        return record_dict
+        return Emote(**record_dict)

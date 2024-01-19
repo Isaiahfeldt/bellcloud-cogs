@@ -15,10 +15,6 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from emote.utils.database import Database
-
-db = Database()
-
 
 @dataclass
 class Emote:
@@ -73,6 +69,9 @@ class Emote:
 
 async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
     from emote.slash_commands import SlashCommands
+    from emote.utils.database import Database
+
+    db = Database()
 
     pipeline = [(lambda _: db.get_emote(emote_name))]
     effects_list = SlashCommands.EFFECTS_LIST
