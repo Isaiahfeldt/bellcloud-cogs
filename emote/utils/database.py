@@ -163,4 +163,6 @@ class Database:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
 
-        return dict(record[0])
+        record_dict = dict(record[0])
+        record_dict['name'] = record_dict.pop('emote_name')
+        return record_dict
