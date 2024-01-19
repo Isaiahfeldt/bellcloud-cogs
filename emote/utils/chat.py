@@ -17,6 +17,7 @@
 import discord
 
 from emote.utils.enums import EmbedColor
+from emote.utils.format import extract_emote_details
 from emote.utils.pipeline import Emote
 
 
@@ -114,7 +115,8 @@ async def send_emote(message: discord.Message, emote: dict, *args):
     emote = Emote(**dict(emote))
 
     if emote is None:
-        await message.channel.send(f"Emote not found.")
+        emote_name = extract_emote_details(message)
+        await message.channel.send(f"Emote '{emote_name}' not found.")
         return
 
     # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
