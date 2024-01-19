@@ -88,4 +88,9 @@ async def execute_pipeline(pipeline, start_time):
             data_dict['time_elapsed'] = time_elapsed
             verbose_data.append(data_dict)
 
+        elif isinstance(function_result, Emote):
+            emote = function_result
+            data_dict = {'time_elapsed': time_elapsed}
+            verbose_data.append(data_dict)
+
     return emote, verbose_data
