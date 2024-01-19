@@ -148,7 +148,7 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         await send_reload(self, message)
 
-        if message.author.bot and not is_enclosed_in_colon(message):
+        if message.author.bot or not is_enclosed_in_colon(message):
             return
 
         emote_name, queued_effects = extract_emote_details(message)
