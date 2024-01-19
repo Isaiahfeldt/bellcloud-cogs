@@ -116,6 +116,6 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
 
     file_url = emote.file_path
     if flattened_args:
-        await message.channel.send(f"{file_url}\n" + "\n".join(args))
+        await message.channel.send(f"{file_url}\n" + "\n".join(flattened_args))
     else:
         await message.channel.send(f"{file_url}")
