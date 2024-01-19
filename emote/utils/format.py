@@ -16,7 +16,7 @@ import discord
 
 
 def is_enclosed_in_colon(message: discord.Message) -> bool:
-    return message.startswith(":") and message.endswith(":")
+    return message.content.startswith(":") and message.content.endswith(":")
 
 
 def clean_emote_name(emote_name: str):
