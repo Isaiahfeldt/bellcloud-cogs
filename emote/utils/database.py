@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import os
+from collections import defaultdict
 
 import asyncpg
 from cachetools import TTLCache
@@ -32,6 +33,7 @@ class Database:
             maxsize=100,
             ttl=200
         )  # maxsize is the maximum number of items in the cache, and ttl is the "time to live" for each item
+        self.emote_usage_collection = defaultdict(int)
 
     async def get_connection(self):
         """
@@ -77,14 +79,30 @@ class Database:
             return self.cache[*args]
 
         conn = await self.get_connection()
+
+        if query not in self.cache or self.cache.ttl == 0:
+            await self.dump_emote_usage_to_database(conn)
+
         try:
             result = await conn.fetch(query, *args)
-            # print(f'result=================================: {result}')
             self.cache[*args] = result
             return result
         finally:
             if conn:
                 await conn.close()
+
+    async def dump_emote_usage_to_database(self, conn):
+        # conn = await self.get_connection()
+        try:
+            for emote_name, count in self.emote_usage_collection.items():
+                query = "UPDATE emote.media SET usage_count = usage_count + $1 WHERE emote_name = $2"
+                await conn.execute(query, count, emote_name)
+
+            self.emote_usage_collection.clear()  # clear the staging area
+        finally:
+            pass
+            # if conn:
+            #     await conn.close()
 
     async def process_query_results(self, results):
         if not results:
