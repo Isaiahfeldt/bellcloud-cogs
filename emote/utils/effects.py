@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 from dataclasses import dataclass, asdict
 from datetime import datetime
+from typing import Optional
 
 
 @dataclass
@@ -30,6 +31,23 @@ class Emote:
         name (str): The name of the emote.
         guild_id (int): The unique identifier of the guild the emote belongs to.
         usage_count (int): The number of times the emote has been used.
+        error (Optional[str]): An optional error message associated with the emote. Defaults to `None`.
+
+    This class is decorated with the `dataclass` decorator for convenient attribute access and comparison.
+
+    Example usage:
+
+        emote = Emote(
+            id=1,
+            file_path="352972393368780810/emote.png",
+            author_id=1234,
+            timestamp=datetime.now(),
+            original_url="https://example.com/emote.png",
+            name="emote",
+            guild_id=5678,
+            usage_count=10,
+            error=None
+        )
     """
     id: int
     file_path: str
@@ -39,6 +57,7 @@ class Emote:
     name: str
     guild_id: int
     usage_count: int
+    error: Optional[str] = None
 
 
 async def latency(emote):

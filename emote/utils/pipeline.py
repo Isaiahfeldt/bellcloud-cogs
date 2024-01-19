@@ -45,10 +45,16 @@ db = Database()
 #         return effect_info['func'](), None
 
 
-async def create_pipeline(self, message, emote_name: str, queued_effects: dict, ):
+async def create_pipeline(self, message, emote_name: str, queued_effects: dict):
     from emote.slash_commands import SlashCommands
 
-    pipeline = [(lambda _: db.get_emote(emote_name))]
+    emote = await db.get_emote(emote_name)
+
+    if emote.error is not None:
+        print(f"Error: {emote.error}")  # print or handle the error in a way that suits your needs
+        return [], []  # return empty pipeline and issues
+
+    pipeline = [(lambda _: emote)]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []
