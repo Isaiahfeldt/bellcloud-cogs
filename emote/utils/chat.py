@@ -113,7 +113,7 @@ async def send_reload(self, message: discord.Message):
 
 async def send_emote(message: discord.Message, emote: dict, *args):
     if not emote:
-        emote_name = extract_emote_details(message)
+        emote_name, _ = extract_emote_details(message)
         await message.channel.send(f"Emote '{emote_name}' not found.")
         return
 
