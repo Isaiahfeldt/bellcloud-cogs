@@ -25,7 +25,7 @@ from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
 from .utils.format import extract_emote_details, is_enclosed_in_colon
-from .utils.pipeline import create_pipeline
+from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
@@ -155,7 +155,9 @@ class SlashCommands(commands.Cog):
         emote_name, queued_effects = extract_emote_details(message)
 
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
+        result_messages = execute_pipeline(pipeline)
+
         pipeline_verbose = ""
 
-        await message.channel.send(pipeline)
+        await message.channel.send(result_messages)
         # await send_emote(message, emote, pipeline_verbose)
