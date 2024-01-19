@@ -138,10 +138,11 @@ class Database:
 
         # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
-        result = await self.fetch_query(select_query, emote_name)
-        if not result:
+        record = await self.fetch_query(select_query, emote_name)
+        if not record:
             return None
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
-        return result[0]
+
+        return record[0]

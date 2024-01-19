@@ -115,7 +115,7 @@ async def send_emote(message: discord.Message, emote: asyncpg.Record, *args):
     emote = Emote(**dict(emote))
 
     if emote.file_path is None:
-        await message.channel.send(f"Emote '{emote.name}' not found.")
+        await message.channel.send(f"Emote '{emote.emote_name}' not found.")
         return
 
     # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"

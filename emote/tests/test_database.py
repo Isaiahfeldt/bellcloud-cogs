@@ -63,7 +63,7 @@ class TestDatabaseMethods(unittest.TestCase):
         emote_name = "miku4"
         db = Database()
         result = self.loop.run_until_complete(db.get_emote(emote_name))
-        print(result)
+        # print(result)
 
     @patch("asyncpg.connect")
     def test_emote_exists_in_database_mock(self, mock_connect):

@@ -31,7 +31,7 @@ class Emote:
         author_id (int): The unique identifier of the emote's author.
         timestamp (datetime): The timestamp when the emote was created.
         original_url (str): The original URL from which the emote was downloaded.
-        name (str): The name of the emote.
+        emote_name (str): The name of the emote.
         guild_id (int): The unique identifier of the guild the emote belongs to.
         usage_count (int): The number of times the emote has been used.
     """
@@ -40,7 +40,7 @@ class Emote:
     author_id: int
     timestamp: datetime
     original_url: str
-    name: str
+    emote_name: str
     guild_id: int
     usage_count: int
 
