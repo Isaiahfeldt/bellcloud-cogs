@@ -15,7 +15,6 @@
 
 import os
 from collections import defaultdict
-from datetime import datetime
 
 import asyncpg
 from cachetools import TTLCache
@@ -161,8 +160,9 @@ class Database:
         select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
         emote = await self.fetch_query(select_query, emote_name)
         if emote is None:
-            return Emote(id=0, file_path='', author_id=0, timestamp=datetime.now(), original_url='', name='',
-                         guild_id=0, usage_count=0, error="NotFound")
+            return None
+            # return Emote(id=0, file_path='', author_id=0, timestamp=datetime.now(), original_url='', name='',
+            #              guild_id=0, usage_count=0, error="NotFound")
 
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"

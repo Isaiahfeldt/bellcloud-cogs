@@ -18,7 +18,6 @@ import discord
 
 from emote.utils.effects import Emote
 from emote.utils.enums import EmbedColor
-from emote.utils.format import extract_emote_details
 
 
 async def send_help_embed(interaction, title, description):
@@ -112,11 +111,6 @@ async def send_reload(self, message: discord.Message):
 
 
 async def send_emote(message: discord.Message, emote: Emote, *args):
-    if not emote:
-        emote_name, _ = extract_emote_details(message)
-        await message.channel.send(f"Emote '{emote_name}' not found.")
-        return
-
     # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
     file_url = emote.file_path
     if args:

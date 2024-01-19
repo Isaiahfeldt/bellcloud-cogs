@@ -152,23 +152,18 @@ class SlashCommands(commands.Cog):
 
         if message.author.bot or not is_enclosed_in_colon(message):
             return
-
         await message.channel.typing()
 
-        emote_name, queued_effects = extract_emote_details(message)
+        emote_name, queued_effects = extract_emote_details(message)  # :miku4_flip: -> ('miku4', ['flip'])
+        emote = await db.get_emote(emote_name)  # gets Emote object: "Emote(id=8, file_path='3529723980810/miku4.png',
 
-        pipeline_verbose = ""
+        if not emote:
+            return await message.channel.send(f"Emote '{emote_name}' not found.")
 
-        pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
+        pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
         result_messages, emote = await execute_pipeline(pipeline)
 
-        if issues:
-            await message.channel.send(issues)
-
-        await message.channel.send(await db.get_emote(emote_name))
-
-        # await message.channel.send(result_messages[0])
-        await send_emote(message, emote, pipeline_verbose)
+        await send_emote(message, emote)
 
         # TODO: bypass effects pipeline if emote doesn't work
         # :miku5_flip: -> AttributeError: 'NoneType' object has no attribute 'file_path'

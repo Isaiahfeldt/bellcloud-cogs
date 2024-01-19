@@ -14,7 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 from emote.utils.database import Database
-from emote.utils.effects import Emote
+from emote.utils.effects import Emote, initialize
 
 db = Database()
 
@@ -45,16 +45,10 @@ db = Database()
 #         return effect_info['func'](), None
 
 
-async def create_pipeline(self, message, emote_name: str, queued_effects: dict):
+async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     from emote.slash_commands import SlashCommands
 
-    emote = await db.get_emote(emote_name)
-
-    if emote.error is not None:
-        print(f"Error: {emote.error}")  # print or handle the error in a way that suits your needs
-        return [], []  # return empty pipeline and issues
-
-    pipeline = [(lambda _: emote)]
+    pipeline = [(lambda _: initialize(emote))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []
@@ -78,6 +72,7 @@ async def execute_pipeline(pipeline):
     result_messages, result, emote = [], None, None
 
     for function in pipeline:
+        # TODO catch empty emotes
         result = await function(result)
         if isinstance(result, str):
             result_messages.append(result)
