@@ -165,5 +165,14 @@ class SlashCommands(commands.Cog):
         if issues:
             await message.channel.send(issues)
 
+        for func in pipeline:
+            if hasattr(func, "__name__"):
+                await message.channel.send(func.__name__)
+            else:
+                await message.channel.send(func)
+
         # await message.channel.send(result_messages[0])
         await send_emote(message, emote, pipeline_verbose)
+
+        # TODO: bypass effects pipeline if emote doesn't work
+        # :miku5_flip: -> AttributeError: 'NoneType' object has no attribute 'file_path'
