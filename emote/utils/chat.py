@@ -111,13 +111,11 @@ async def send_reload(self, message: discord.Message):
         await message.channel.send(f"<@138148168360656896>")
 
 
-async def send_emote(message: discord.Message, emote: dict, *args):
+async def send_emote(message: discord.Message, emote: Emote, *args):
     if not emote:
         emote_name, _ = extract_emote_details(message)
         await message.channel.send(f"Emote '{emote_name}' not found.")
         return
-
-    emote = Emote(**emote)
 
     # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
     file_url = emote.file_path
