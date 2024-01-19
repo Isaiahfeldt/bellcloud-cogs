@@ -119,20 +119,29 @@ class Database:
     async def format_names_from_results(self, results):
         """
         :param results: the results from a database query
+
         :return: a list of names extracted from the results
         """
         if results is None:
             return []
         return [row[0] for row in results]
 
-    async def get_emote(self, emote_name, inc_count: bool = False):
-        """Retrieve the file path of the given emote and increase its usage count if specified."""
-        
-        select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
+    async def get_emote(self, emote_name, inc_count: bool = False) -> asyncpg.Record:
+        """
+        Get emote from database.
+
+        :param emote_name: The name of the emote.
+        :param inc_count: Whether to increment the usage count of the emote. Defaults to False.
+
+        :return: The emote record as an asyncpg.Record object.
+        """
+
+        # select_query = "SELECT file_path FROM emote.media WHERE emote_name = $1"
+        select_query = "SELECT * FROM emote.media WHERE emote_name = $1"
         result = await self.fetch_query(select_query, emote_name)
         if not result:
             return None
         if inc_count:
             query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1"
             await self.execute_query(query, emote_name)
-        return result[0]['file_path']
+        return result[0]

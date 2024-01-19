@@ -13,10 +13,12 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+
+import asyncpg
 import discord
 
-from emote.utils.database import Database
 from emote.utils.enums import EmbedColor
+from emote.utils.pipeline import Emote
 
 
 async def send_help_embed(interaction, title, description):
@@ -109,14 +111,13 @@ async def send_reload(self, message: discord.Message):
         await message.channel.send(f"<@138148168360656896>")
 
 
-async def send_emote(message: discord.Message, emote_name, *args):
-    db = Database()
-    emote_url = await db.get_emote(emote_name, False)
+async def send_emote(message: discord.Message, emote: asyncpg.Record, *args):
+    emote = Emote(**dict(emote))
 
-    if emote_url is None:
-        await message.channel.send(f"Emote '{emote_name}' not found.")
+    if emote.file_path is None:
+        await message.channel.send(f"Emote '{emote.name}' not found.")
         return
 
-    # file_url = f"https://media.bellbot.xyz/emote/{emote_url}"
-    file_url = emote_url
+    # file_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
+    file_url = emote.file_path
     await message.channel.send(f"{file_url}\n" + "\n".join(*args))

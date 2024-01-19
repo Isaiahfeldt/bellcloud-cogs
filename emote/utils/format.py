@@ -32,8 +32,11 @@ def extract_emote_details(message: discord.Message):
     :param message: The content string containing the emote name and effects separated by an underscore.
     :return: A tuple containing the extracted emote name and a list of emote effects.
 
-    # :miku4_latency:       -> ('miku4', ['latency'])
-    # :miku4_latency_flip:  -> ('miku4', ['latency', 'flip'])
+    Examples:
+
+        ':miku4_latency:'       -> ('miku4', ['latency']) \n
+        ':miku4_latency_flip:'  -> ('miku4', ['latency', 'flip'])
+
     """
     parsed_content = clean_emote_name(message.content)
     if "_" not in parsed_content:

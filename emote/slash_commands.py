@@ -152,7 +152,7 @@ class SlashCommands(commands.Cog):
             return
 
         emote_name, queued_effects = extract_emote_details(message)
-        extra_info = ""
-        # if not queued_effects:
+        pipeline_verbose = ""
 
-        await send_emote(message, emote_name, extra_info)
+        emote = await db.get_emote(emote_name, False)
+        await send_emote(message, emote, pipeline_verbose)
