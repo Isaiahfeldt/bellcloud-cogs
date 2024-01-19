@@ -12,7 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from datetime import datetime
 
 
@@ -47,6 +47,7 @@ async def latency(emote):
     return emote
 
 
-async def flip(emote):
-    # return url[::-1]  # Reverses the string
-    return emote
+def flip(emote: Emote):
+    emote.file_path = emote.file_path[::-1]  # Reverse the string
+    emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
+    return emote_dict

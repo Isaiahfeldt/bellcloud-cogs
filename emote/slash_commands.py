@@ -162,7 +162,6 @@ class SlashCommands(commands.Cog):
         pipeline, issues = await create_pipeline(self, message, emote_name, queued_effects)
         result_messages, emote = await execute_pipeline(pipeline)
 
-        await message.channel.send(pipeline)
         if issues:
             await message.channel.send(issues)
 
