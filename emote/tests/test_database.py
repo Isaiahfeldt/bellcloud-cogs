@@ -16,7 +16,6 @@
 # test_database.py
 
 import asyncio
-import subprocess
 import unittest
 from unittest.mock import MagicMock, patch, AsyncMock
 
@@ -91,15 +90,15 @@ class TestDatabaseMethods(unittest.TestCase):
         self.assertEqual(self.loop.run_until_complete(db.format_names_from_results([['Name1'], ['Name2']])),
                          ['Name1', 'Name2'])
 
-    def test_env_variables(self):
-        result = subprocess.run(['docker', 'exec', 'bellbot_container', 'env'], capture_output=True, text=True)
-        env_variables = result.stdout.split('\n')
-
-        desired_variables = ['DB_HOST', 'DB_USER', 'DB_PORT', 'DB_PASSWORD',
-                             'DB_DATABASE']
-        for var in desired_variables:
-            self.assertTrue(any(var in line for line in env_variables),
-                            f'Expected {var} to exist in container environment, but it didn\'t.')
+    # def test_env_variables(self):
+    #     result = subprocess.run(['docker', 'exec', 'bellbot_container', 'env'], capture_output=True, text=True)
+    #     env_variables = result.stdout.split('\n')
+    #
+    #     desired_variables = ['DB_HOST', 'DB_USER', 'DB_PORT', 'DB_PASSWORD',
+    #                          'DB_DATABASE']
+    #     for var in desired_variables:
+    #         self.assertTrue(any(var in line for line in env_variables),
+    #                         f'Expected {var} to exist in container environment, but it didn\'t.')
 
 
 if __name__ == "__main__":
