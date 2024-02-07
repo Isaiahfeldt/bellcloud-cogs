@@ -33,7 +33,7 @@ class Database:
         }
         self.cache = TTLCache(
             maxsize=100,
-            ttl=200
+            ttl=1200
         )  # maxsize is the maximum number of items in the cache, and ttl is the "time to live" for each item
         self.emote_usage_collection = defaultdict(int)
 
@@ -77,17 +77,19 @@ class Database:
         result = await fetch_query("SELECT * FROM users")
         """
 
-        if query in self.cache:
-            return self.cache[*args]
+        if args in self.cache:  # Check if *args is in the cache
+            from emote.slash_commands import SlashCommands
+            SlashCommands.was_cached = not SlashCommands.was_cached
+            return self.cache[args]  # return the result associated with *args in the cache
 
         conn = await self.get_connection()
 
-        if query not in self.cache or self.cache.ttl == 0:
+        if args not in self.cache or self.cache.ttl == 0:
             await self.dump_emote_usage_to_database(conn)
 
         try:
             result = await conn.fetch(query, *args)
-            self.cache[*args] = result
+            self.cache[args] = result
             return result
         finally:
             if conn:
