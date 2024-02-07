@@ -45,13 +45,6 @@ db = Database()
 #
 #         return effect_info['func'](), None
 
-async def timed_execution(func, argument, start_time):
-    result = await func(argument)
-    end_time = time.perf_counter()
-    time_elapsed = end_time - start_time
-
-    return result, time_elapsed
-
 
 async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     from emote.slash_commands import SlashCommands
@@ -76,15 +69,20 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     return pipeline, issues
 
 
-async def execute_pipeline(pipeline, start_time):
-    verbose_data, function_result, emote = [], None, None
+async def execute_pipeline(pipeline):
+    result = None
+    emote = None
 
-    for function in pipeline:
-        function_result, time_elapsed = await timed_execution(function, function_result, start_time)
+    for func in pipeline:
+        result = await func(result)
+        emote = result
 
-        # Always expect a tuple of (Emote, dict)
-        emote, data_dict = function_result
-        data_dict['time_elapsed'] = time_elapsed
-        verbose_data.append(data_dict)
+    return emote
 
-    return emote, verbose_data
+
+async def timed_execution(func, input_tuple, start_time):
+    result_tuple = await func(input_tuple)
+    end_time = time.perf_counter()
+    time_elapsed = end_time - start_time
+
+    return result_tuple, time_elapsed
