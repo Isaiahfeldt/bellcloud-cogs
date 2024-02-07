@@ -113,9 +113,9 @@ async def send_reload(self, message: discord.Message):
 async def send_emote(message: discord.Message, emote: Emote, *args):
     file_url = emote.file_path
 
-    lines = ['\n'.join(map(str, items)) for items in args]
-
-    if lines:
-        await message.channel.send(file_url + "\n" + '\n\n'.join(lines))
+    if args:
+        # Create a new line-separated string from args
+        args_str = '\n'.join(args)
+        await message.channel.send(f"{file_url}\n{args_str}")
     else:
-        await message.channel.send(file_url)
+        await message.channel.send(f"{file_url}")
