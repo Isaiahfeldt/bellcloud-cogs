@@ -60,34 +60,23 @@ class Emote:
     error: Optional[str] = None
 
 
-async def initialize(emote: Emote) -> (Emote, dict):
+async def initialize(emote: Emote) -> Emote:
     """
     :param emote: The Emote object to be initialized.
     :return: The initialized Emote object.
     """
-    return emote, {}
+    return emote
 
 
-async def latency(emote: Emote) -> (Emote, dict):
+async def latency(emote: Emote) -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
-    return emote, {}
+    return emote
 
 
-async def flip(emote: Emote) -> (Emote, dict):
-    """
-    Flip the file path of an Emote object and return it back.
-
-    :param emote: The Emote object to flip.
-    :return: The flipped Emote object.
-
-    Example usage:
-        emote = Emote(file_path="image.png")
-        flipped_emote = await flip(emote)
-        print(flipped_emote.file_path)  # "gnp.ega"
-    """
+async def flip(emote: Emote) -> Emote:
     emote.file_path = emote.file_path[::-1]  # Reverse the string
     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
     emote = Emote(**emote_dict)  # Convert dict back to Emote object
 
-    return emote, {}
+    return emote
