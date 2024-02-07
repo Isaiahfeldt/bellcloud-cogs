@@ -21,8 +21,7 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_reload, \
-    send_emote
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
@@ -55,6 +54,15 @@ class SlashCommands(commands.Cog):
     }
 
     latency_enabled = False
+    was_cached = False
+
+    def generate_extra_args(self, time_elapsed, emote_name):
+        if SlashCommands.latency_enabled:
+            extra_args = [f"Your request was processed in `{time_elapsed}` seconds!"]
+            if SlashCommands.was_cached:
+                extra_args.append(f"The emote `{emote_name}` was found in cache")
+            return extra_args
+        return []
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -130,43 +138,31 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    # @commands.Cog.listener()
-    # async def on_message(self, message: discord.Message):
-    #     if message.author.bot or not (message.content.startswith(":") and message.content.endswith(":")):
-    #         return
-    #
-    #     emote_name = convert_emote_name(message.content)
-    #
-    #     result = await db.get_emote(emote_name, False)
-    #     if result is not None:
-    #         # file_path = result[0]  # Extract the file_path from the database result
-    #         file_url = f"https://media.bellbot.xyz/emote/{result}"  # Construct the final URL
-    #         # embed = discord.Embed()
-    #         # embed.set_image(url=file_url)
-    #         await message.channel.send(f"{file_url}")
-    #     else:
-    #         await message.channel.send(f"Emote '{emote_name}' not found.")
-
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        await send_reload(self, message)
-
-        # validations for author and message content
+        # await send_reload(self, message)
         if message.author.bot or not is_enclosed_in_colon(message):
             return
-        start_time = time.perf_counter()
         await message.channel.typing()
 
-        emote_name, queued_effects = extract_emote_details(message)  # :miku4_flip: -> ('miku4', ['flip'])
-        emote = await db.get_emote(emote_name)  # gets Emote object: "Emote(id=8, file_path='3529723980810/miku4.png',
+        start_time = time.perf_counter()  # Start performance timer
+
+        emote_name, queued_effects = extract_emote_details(message)
+        emote = await db.get_emote(emote_name)
 
         if not emote:
             return await message.channel.send(f"Emote '{emote_name}' not found.")
 
         pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
-        emote, verbose_data = await execute_pipeline(pipeline, start_time)
+        emote = await execute_pipeline(pipeline)
 
-        await send_emote(message, emote, verbose_data)
+        # End performance timer
+        end_time = time.perf_counter()
+        time_elapsed = round(end_time - start_time, 2)
 
-        # TODO: bypass effects pipeline if emote doesn't work
-        # :miku5_flip: -> AttributeError: 'NoneType' object has no attribute 'file_path'
+        extra_args = self.generate_extra_args(time_elapsed, emote_name)
+
+        await send_emote(message, emote, *extra_args)
+
+        SlashCommands.latency_enabled = False
+        SlashCommands.was_cached = False
