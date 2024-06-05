@@ -25,7 +25,7 @@ from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, 
 from .utils.database import Database
 from .utils.effects import latency, flip
 from .utils.enums import EmoteAddError
-from .utils.format import extract_emote_details, is_enclosed_in_colon
+from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
@@ -33,6 +33,22 @@ _ = Translator("Emote", __file__)
 
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
+
+
+def calculate_extra_args(time_elapsed, emote_name) -> list:
+    extra_args = []
+    if SlashCommands.latency_enabled:
+        extra_args.append(f"Your request was processed in `{time_elapsed}` seconds!")
+    if SlashCommands.was_cached:
+        extra_args.append(f"The emote `{emote_name}` was found in cache.")
+    return extra_args
+
+
+async def get_emote_and_verify(emote_name_str: str, channel):
+    emote = await db.get_emote(emote_name_str)
+    if emote is None:
+        await channel.send(f"Emote '{emote_name_str}' not found.")
+    return emote
 
 
 @cog_i18n(_)
@@ -55,14 +71,6 @@ class SlashCommands(commands.Cog):
 
     latency_enabled = False
     was_cached = False
-
-    def generate_extra_args(self, time_elapsed, emote_name):
-        if SlashCommands.latency_enabled:
-            extra_args = [f"Your request was processed in `{time_elapsed}` seconds!"]
-            if SlashCommands.was_cached:
-                extra_args.append(f"The emote `{emote_name}` was found in cache")
-            return extra_args
-        return []
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -140,29 +148,48 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        # await send_reload(self, message)
         if message.author.bot or not is_enclosed_in_colon(message):
             return
+
         await message.channel.typing()
+        await self.process_emote_pipeline(message)
+        reset_flags()
 
-        start_time = time.perf_counter()  # Start performance timer
+    async def process_emote_pipeline(self, message):
+        timer = PerformanceTimer()
+        async with timer:
+            emote_name, queued_effects = extract_emote_details(message)
+            emote = await get_emote_and_verify(emote_name, message.channel)
+            if emote is None:
+                return
 
-        emote_name, queued_effects = extract_emote_details(message)
-        emote = await db.get_emote(emote_name)
+            pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
+            emote = await execute_pipeline(pipeline)
 
-        if not emote:
-            return await message.channel.send(f"Emote '{emote_name}' not found.")
+            SlashCommands.latencyEnabled = False
+            SlashCommands.wasCached = False
 
-        pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
-        emote = await execute_pipeline(pipeline)
-
-        # End performance timer
-        end_time = time.perf_counter()
-        time_elapsed = round(end_time - start_time, 2)
-
-        extra_args = self.generate_extra_args(time_elapsed, emote_name)
-
+        # Get elapsed time after timer has stopped
+        extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
         await send_emote(message, emote, *extra_args)
 
-        SlashCommands.latency_enabled = False
-        SlashCommands.was_cached = False
+
+def reset_flags():
+    SlashCommands.latency_enabled = False
+    SlashCommands.was_cached = False
+
+
+class PerformanceTimer:
+    def __init__(self):
+        self.startTime = None
+        self.endTime = None
+
+    async def __aenter__(self):
+        self.startTime = time.perf_counter()
+
+    async def __aexit__(self, exec_type, exec_val, exec_tb):
+        self.endTime = time.perf_counter()
+
+    @property
+    def elapsedTime(self):
+        return round(self.endTime - self.startTime, 2) if self.endTime else None

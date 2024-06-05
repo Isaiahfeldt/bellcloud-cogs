@@ -40,6 +40,7 @@ class Say(commands.Cog):
 
     @commands.command(aliases=["s"])
     @commands.guild_only()
+    @commands.is_owner()
     async def say(self, ctx, *, text):
         """Talk as Bell"""
         user = ctx.message.author
