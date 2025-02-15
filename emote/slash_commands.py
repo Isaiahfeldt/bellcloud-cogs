@@ -67,10 +67,12 @@ class SlashCommands(commands.Cog):
         "latency": {'func': latency, 'perm': 'mod'},
         "latency2": {'func': latency, 'perm': 'mod'},
         "flip": {'func': flip, 'perm': 'everyone'},
+        "debug": {'func': debug, 'perm': 'owner'},
     }
 
     latency_enabled = False
     was_cached = False
+    debug_enabled = False
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -177,6 +179,7 @@ class SlashCommands(commands.Cog):
 def reset_flags():
     SlashCommands.latency_enabled = False
     SlashCommands.was_cached = False
+    SlashCommands.debug_enabled = False
 
 
 class PerformanceTimer:

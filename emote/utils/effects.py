@@ -80,3 +80,9 @@ async def flip(emote: Emote) -> Emote:
     emote = Emote(**emote_dict)  # Convert dict back to Emote object
 
     return emote
+
+
+async def debug(emote: Emote) -> Emote:
+    from emote.slash_commands import SlashCommands
+    SlashCommands.was_cached = True  # Set the debug flag to True when the effect is applied
+    return emote

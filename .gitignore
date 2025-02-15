@@ -157,3 +157,4 @@ cython_debug/
 !/.gitattributes
 /reload_emote.py
 /bot/
+/.data/
