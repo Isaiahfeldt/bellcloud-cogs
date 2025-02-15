@@ -86,3 +86,8 @@ async def debug(emote: Emote) -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
     return emote
+
+
+async def train(emote: Emote) -> Emote:
+    print(emote)
+    return emote
