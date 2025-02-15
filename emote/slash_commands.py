@@ -42,7 +42,10 @@ def calculate_extra_args(time_elapsed, emote_name) -> list:
     # if SlashCommands.was_cached:
     #     extra_args.append(f"The emote `{emote_name}` was found in cache.")
     if SlashCommands.debug_enabled:
-        extra_args.append(f"The emote `{emote_name}` was found in cache.")
+        if get_cache_info(return_as_boolean=True):
+            extra_args.append(f"The emote `{emote_name}` was found in cache.")
+        else:
+            extra_args.append(f"The emote `{emote_name}` was not found in cache.")
     return extra_args
 
 
