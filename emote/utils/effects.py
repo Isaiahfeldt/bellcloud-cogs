@@ -89,5 +89,6 @@ async def debug(emote: Emote) -> Emote:
 
 
 async def train(emote: Emote) -> Emote:
-    print(emote)
+    from emote.slash_commands import SlashCommands
+    SlashCommands.train_count = 3
     return emote

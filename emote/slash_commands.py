@@ -95,6 +95,7 @@ class SlashCommands(commands.Cog):
     latency_enabled = False
     was_cached = False
     debug_enabled = False
+    train_count = 1
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
@@ -191,13 +192,15 @@ class SlashCommands(commands.Cog):
 
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
-        await send_emote(message, emote, *extra_args)
+        for i in range(0, SlashCommands.train_count):  # For train effect
+            await send_emote(message, emote, *extra_args)
 
 
 def reset_flags():
     SlashCommands.latency_enabled = False
     SlashCommands.was_cached = False
     SlashCommands.debug_enabled = False
+    SlashCommands.train_count = 1
 
 
 class PerformanceTimer:
