@@ -157,45 +157,42 @@ class SlashCommands(commands.Cog):
         cache_info = get_cache_info()
         await interaction.response.send_message(cache_info)
 
-
-@emote.command(name="clear_cache", description="Manually clear the cache")
-@commands.is_owner()
-async def emote_clear_cache(self, interaction: discord.Interaction):
-    if not interaction.user.guild_permissions.manage_messages:
-        await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-        return
-
-    db.cache.clear()
-    await interaction.response.send_message("Cache cleared successfully.")
-
-
-@commands.Cog.listener()
-async def on_message(self, message: discord.Message):
-    if message.author.bot or not is_enclosed_in_colon(message):
-        return
-
-    await message.channel.typing()
-    await self.process_emote_pipeline(message)
-    reset_flags()
-
-
-async def process_emote_pipeline(self, message):
-    timer = PerformanceTimer()
-    async with timer:
-        emote_name, queued_effects = extract_emote_details(message)
-        emote = await get_emote_and_verify(emote_name, message.channel)
-        if emote is None:
+    @emote.command(name="clear_cache", description="Manually clear the cache")
+    @commands.is_owner()
+    async def emote_clear_cache(self, interaction: discord.Interaction):
+        if not interaction.user.guild_permissions.manage_messages:
+            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
-        emote = await execute_pipeline(pipeline)
+        db.cache.clear()
+        await interaction.response.send_message("Cache cleared successfully.")
 
-        SlashCommands.latencyEnabled = False
-        SlashCommands.wasCached = False
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        if message.author.bot or not is_enclosed_in_colon(message):
+            return
 
-    # Get elapsed time after timer has stopped
-    extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
-    await send_emote(message, emote, *extra_args)
+        await message.channel.typing()
+        await self.process_emote_pipeline(message)
+        reset_flags()
+
+    async def process_emote_pipeline(self, message):
+        timer = PerformanceTimer()
+        async with timer:
+            emote_name, queued_effects = extract_emote_details(message)
+            emote = await get_emote_and_verify(emote_name, message.channel)
+            if emote is None:
+                return
+
+            pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
+            emote = await execute_pipeline(pipeline)
+
+            SlashCommands.latencyEnabled = False
+            SlashCommands.wasCached = False
+
+        # Get elapsed time after timer has stopped
+        extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
+        await send_emote(message, emote, *extra_args)
 
 
 def reset_flags():
