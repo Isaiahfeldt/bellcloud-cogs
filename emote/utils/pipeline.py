@@ -47,6 +47,30 @@ db = Database()
 
 
 async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
+    """
+        Constructs a pipeline for processing effects on a given emote. Validates the
+        queued effects and checks if the user has the appropriate permissions to
+        execute them. Returns the constructed pipeline and a list of any issues
+        encountered.
+
+        Parameters:
+        message (Any): The message object associated with the request; its type depends
+            on the application's context.
+        emote (Emote): An instance of the Emote class representing the emote to be
+            processed.
+        queued_effects (dict): A dictionary of effect names to be queued, where keys
+            are strings representing effect names and values are their parameters.
+
+        Returns:
+        tuple: A tuple containing:
+            - pipeline (list): A constructed list of callable functions to process
+              the emote and apply effects in sequence.
+            - issues (list): A list of encountered issues, where each issue is a
+              tuple containing:
+              - effect_name (str): The name of the effect that caused the issue.
+              - error_code (str): A string code describing the issue (e.g.,
+                "NotFound" or "PermissionDenied").
+    """
     from emote.slash_commands import SlashCommands
 
     pipeline = [(lambda _: initialize(emote))]
