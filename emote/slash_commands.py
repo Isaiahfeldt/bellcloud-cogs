@@ -39,8 +39,6 @@ def calculate_extra_args(time_elapsed, emote_name) -> list:
     extra_args = []
     if SlashCommands.latency_enabled:
         extra_args.append(f"Your request was processed in `{time_elapsed}` seconds!")
-    # if SlashCommands.was_cached:
-    #     extra_args.append(f"The emote `{emote_name}` was found in cache.")
     if SlashCommands.debug_enabled:
         if SlashCommands.was_cached:
             extra_args.append(f"The emote `{emote_name}` was found in cache.")
@@ -95,7 +93,6 @@ class SlashCommands(commands.Cog):
 
     latency_enabled = False
     was_cached = False
-    was_not_cached = False
     debug_enabled = False
 
     @emote.command(name="add", description="Add an emote to the server")
