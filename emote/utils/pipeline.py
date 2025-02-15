@@ -70,13 +70,16 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
 
 
 async def execute_pipeline(pipeline):
-    result = None
+    """
+    Executes a sequence of asynchronous functions in a pipeline, passing the result of
+    each step to the next.
+
+    :param pipeline: List of asynchronous functions to execute in order.
+    :emote: The final result after executing all functions in the pipeline.
+    """
     emote = None
-
-    for func in pipeline:
-        result = await func(result)
-        emote = result
-
+    for operation in pipeline:
+        emote = await operation(emote)
     return emote
 
 

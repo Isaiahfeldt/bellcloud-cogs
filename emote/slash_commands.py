@@ -188,9 +188,6 @@ class SlashCommands(commands.Cog):
             pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
             emote = await execute_pipeline(pipeline)
 
-            SlashCommands.latencyEnabled = False
-            SlashCommands.wasCached = False
-
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
         await send_emote(message, emote, *extra_args)
