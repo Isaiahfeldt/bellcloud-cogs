@@ -88,7 +88,7 @@ class SlashCommands(commands.Cog):
         "latency": {'func': latency, 'perm': 'mod'},
         "latency2": {'func': latency, 'perm': 'mod'},
         "flip": {'func': flip, 'perm': 'everyone'},
-        "debug": {'func': debug, 'perm': 'owner'},
+        "debug": {'func': debug, 'perm': 'everyone'},
     }
 
     latency_enabled = False
