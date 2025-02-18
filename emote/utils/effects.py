@@ -144,5 +144,9 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     if amount <= 0:
         amount = 1
         emote.errors["train"] = f"Train amount cannot be less than 1."
+        
+    if amount > 6:
+        amount = 6
+        emote.errors["train"] = f"Train amount cannot be greater than 6."
     SlashCommands.train_count = amount
     return emote
