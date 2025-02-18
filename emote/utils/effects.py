@@ -92,7 +92,7 @@ async def debug(emote: Emote) -> Emote:
     SlashCommands.debug_enabled = True
 
     # Create a dictionary to hold the debug information.
-    notes = {}
+    notes = emote.notes
 
     # Add key-value pairs for each debug detail.
     notes["emote_id"] = str(emote.id)
