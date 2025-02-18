@@ -112,7 +112,7 @@ async def send_debug_embed(message, emote):
 
     # Iterate over the dictionary items: key is the note name, and value is the note content.
     for note_name, note_content in emote.notes.items():
-        debug_embed.add_field(name=note_name, value=note_content, inline=False)
+        debug_embed.add_field(name=note_name, value=note_content, inline=True)
 
     # Add fields for each error present.
     for error_key, error_value in emote.errors.items():
