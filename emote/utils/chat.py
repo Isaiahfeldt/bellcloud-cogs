@@ -103,18 +103,18 @@ async def send_error_followup(interaction, error_message):
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
-# async def send_debug_embed(message, emote):
-#     debug_embed = discord.Embed(
-#         title="Debug Information",
-#         color=0xFF5733  # Choose your preferred color.
-#     )
-#
-#     # Add each debug note as a separate field.
-#     for index, note in enumerate(emote.notes, start=1):
-#         debug_embed.add_field(name=f"Note {index}", value=note, inline=False)
-#
-#     # Send the debug embed after the original message.
-#     await message.channel.send(embed=debug_embed)
+async def send_debug_embed(message, emote):
+    debug_embed = discord.Embed(
+        title="Debug Information",
+        color=0xFF5733  # Choose your preferred color.
+    )
+
+    # Add each debug note as a separate field.
+    for index, note in enumerate(emote.notes, start=1):
+        debug_embed.add_field(name=f"Note {index}", value=note, inline=False)
+
+    # Send the debug embed after the original message.
+    await message.channel.send(embed=debug_embed)
 
 
 async def send_reload(self, message: discord.Message):
@@ -134,5 +134,5 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
     else:
         await message.channel.send(f"{file_url}")
 
-    # if emote.notes:
-    #     await send_debug_embed(message, emote)
+    if emote.notes:
+        await send_debug_embed(message, emote)

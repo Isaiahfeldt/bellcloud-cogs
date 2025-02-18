@@ -87,7 +87,7 @@ async def flip(emote: Emote) -> Emote:
     return emote
 
 
-def debug(emote):
+async def debug(emote: Emote) -> Emote:
     # Create a list to hold the debug information strings.
     notes = []
 
