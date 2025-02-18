@@ -12,9 +12,9 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Dict
 
 
 @dataclass
@@ -62,7 +62,7 @@ class Emote:
     usage_count: int
     error: Optional[str] = None
     img_data: Optional[bytes] = None
-    notes: Optional[str] = None
+    notes: Dict[str, str] = field(default_factory=dict)
 
 
 async def initialize(emote: Emote) -> Emote:
