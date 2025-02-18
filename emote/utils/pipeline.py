@@ -87,18 +87,18 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             emote.issues[effect_name] = "PermissionDenied"
             continue
 
-        # Create wrapper that passes any arguments
-        async def effect_wrapper(emote, func=effect['func'], args=effect_args):
+        # Create a wrapper that passes any arguments, and capture the effect_name
+        async def effect_wrapper(emote, _effect_name=effect_name, func=effect['func'], args=effect_args):
             try:
                 return await func(emote, *args)
             except TypeError as e:
                 if "positional arguments" in str(e):
-                    emote.errors[effect_name] = "TooManyArguments"
+                    emote.errors[_effect_name] = "TooManyArguments"
                 else:
-                    emote.errors[effect_name] = f"InvalidArguments: {str(e)}"
+                    emote.errors[_effect_name] = f"InvalidArguments: {str(e)}"
                 return emote
             except Exception as e:
-                emote.errors[effect_name] = str(e)
+                emote.errors[_effect_name] = str(e)
                 return emote
 
         pipeline.append(effect_wrapper)
