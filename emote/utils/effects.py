@@ -48,6 +48,9 @@ class Emote:
             usage_count=10,
             error=None
         )
+
+    TODO: Currently the Emote
+
     """
     id: int
     file_path: str
@@ -58,6 +61,8 @@ class Emote:
     guild_id: int
     usage_count: int
     error: Optional[str] = None
+    img_data: Optional[bytes] = None
+    notes: Optional[str] = None
 
 
 async def initialize(emote: Emote) -> Emote:
@@ -85,6 +90,29 @@ async def flip(emote: Emote) -> Emote:
 async def debug(emote: Emote) -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
+
+    # Convert emote to a dictionary for easier iteration of its attributes
+    emote_dict = asdict(emote)
+
+    # Define header and separator for the table
+    header_sep = f"+{'-' * 15}+{'-' * 40}+"
+    header = f"|{'Field':15}|{'Value':40}|"
+
+    table_lines = [header_sep, header, header_sep]
+
+    # Generate a table row for each attribute in Emote
+    for key, value in emote_dict.items():
+        # Ensure that datetime and other types are converted to strings
+        value_str = str(value) if value is not None else "None"
+        # Each field row uses 15 and 40 characters for field name and value respectively
+        table_lines.append(f"|{key:15}|{value_str:40}|")
+
+    table_lines.append(header_sep)
+    table_str = "\n".join(table_lines)
+
+    # Assign the generated table string to the notes attribute
+    emote.notes = table_str
+
     return emote
 
 
