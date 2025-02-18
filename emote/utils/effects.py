@@ -70,6 +70,11 @@ async def initialize(emote: Emote) -> Emote:
     :param emote: The Emote object to be initialized.
     :return: The initialized Emote object.
     """
+    notes = emote.notes
+
+    notes["test"] = "value"
+
+    emote.notes = notes
     return emote
 
 
