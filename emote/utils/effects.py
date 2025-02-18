@@ -140,13 +140,29 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
 
 async def train(emote: Emote, amount: int = 3) -> Emote:
+    """
+        Duplicate the provided Emote for a specified number of times within a valid range.
+
+        Parameters:
+            emote (Emote): The emote object to be trained.
+            amount (int): The number of times to train the emote. If invalid, defaults
+                to 3. Must be an integer between 1 and 6, inclusive.
+
+        Returns:
+            Emote: The updated emote object with the training details and potential
+                error messages.
+    """
     from emote.slash_commands import SlashCommands
-    if amount <= 0:
-        amount = 1
-        emote.errors["train"] = f"Train amount cannot be less than 1."
-        
-    if amount > 6:
-        amount = 6
-        emote.errors["train"] = f"Train amount cannot be greater than 6."
+
+    try:
+        amount = int(amount)
+    except (ValueError, TypeError):
+        amount = 3
+        emote.errors["train"] = "Train amount must be a number."
+    else:
+        if not 1 <= amount <= 6:
+            amount = min(max(amount, 1), 6)
+            emote.errors["train"] = "Train amount must be between values of 1 and 6."
+
     SlashCommands.train_count = amount
     return emote
