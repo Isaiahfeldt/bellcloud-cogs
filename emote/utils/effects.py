@@ -90,8 +90,7 @@ async def initialize(emote: Emote) -> Emote:
         emote.errors["initialize"] = f"Exception occurred: {str(e)}"
 
     from emote.slash_commands import SlashCommands
-    if SlashCommands.was_cached:
-        emote.notes["was_cached"] = True
+    emote.notes["was_cached"] = SlashCommands.was_cached
 
     return emote
 
