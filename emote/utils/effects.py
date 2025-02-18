@@ -87,32 +87,31 @@ async def flip(emote: Emote) -> Emote:
     return emote
 
 
-async def debug(emote: Emote) -> Emote:
-    from emote.slash_commands import SlashCommands
-    SlashCommands.debug_enabled = True
+def debug(emote):
+    # Create a list to hold the debug information strings.
+    notes = []
 
-    # Convert emote to a dictionary for easier iteration of its attributes
-    emote_dict = asdict(emote)
+    # Append various details to the notes list.
+    notes.append(f"emote_id: {emote.id}")
+    notes.append(f"file_path: {emote.file_path}")
+    notes.append(f"author_id: {emote.author_id}")
+    notes.append(f"timestamp: {emote.timestamp}")
+    notes.append(f"original_url: {emote.original_url}")
+    notes.append(f"guild_id: {emote.guild_id}")
+    notes.append(f"usage_count: {emote.usage_count}")
 
-    # Define header and separator for the table
-    header_sep = f"+{'-' * 15}+{'-' * 40}+"
-    header = f"|{'Field':15}|{'Value':40}|"
+    if emote.error is not None:
+        notes.append(f"error: {emote.error}")
+    else:
+        notes.append("error: None")
 
-    table_lines = [header_sep, header, header_sep]
+    # Include image data information explicitly.
+    if emote.img_data is not None:
+        notes.append(f"img_data_length: {len(emote.img_data)} bytes")
+    else:
+        notes.append("img_data: None")
 
-    # Generate a table row for each attribute in Emote
-    for key, value in emote_dict.items():
-        # Ensure that datetime and other types are converted to strings
-        value_str = str(value) if value is not None else "None"
-        # Each field row uses 15 and 40 characters for field name and value respectively
-        table_lines.append(f"|{key:15}|{value_str:40}|")
-
-    table_lines.append(header_sep)
-    table_str = "\n".join(table_lines)
-
-    # Assign the generated table string to the notes attribute
-    emote.notes = table_str
-
+    emote.notes = notes
     return emote
 
 
