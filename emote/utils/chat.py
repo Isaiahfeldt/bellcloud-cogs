@@ -109,11 +109,10 @@ async def send_debug_embed(message, emote):
         color=0xFF5733  # Choose your preferred color.
     )
 
-    # Add each debug note as a separate field.
-    for index, note in enumerate(emote.notes, start=1):
-        debug_embed.add_field(name=f"Note {index}", value=note, inline=False)
+    # Iterate over the dictionary items: key is the note name, and value is the note content.
+    for note_name, note_content in emote.notes.items():
+        debug_embed.add_field(name=note_name, value=note_content, inline=False)
 
-    # Send the debug embed after the original message.
     await message.channel.send(embed=debug_embed)
 
 
