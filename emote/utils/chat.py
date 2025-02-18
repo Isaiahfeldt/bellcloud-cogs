@@ -118,6 +118,9 @@ async def send_debug_embed(message, emote):
     for error_key, error_value in emote.errors.items():
         debug_embed.add_field(name=f"Error: {error_key}", value=error_value, inline=False)
 
+    for issue_key, issue_value in emote.issues.items():
+        debug_embed.add_field(name=f"Issues: {issue_key}", value=issue_value, inline=False)
+
     await message.channel.send(embed=debug_embed)
 
 
