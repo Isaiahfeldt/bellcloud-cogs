@@ -103,16 +103,17 @@ async def send_error_followup(interaction, error_message):
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
-async def send_debug_embed(message: discord.Message, emote: Emote):
+async def send_debug_embed(message, emote):
     debug_embed = discord.Embed(
         title="Debug Information",
-        color=0xFF5733  # Adjust the color as desired.
+        color=0xFF5733  # Choose your preferred color.
     )
 
-    # Iterate over each key-value pair in emote.notes.
-    for note_name, note_content in emote.notes.items():
-        debug_embed.add_field(name=note_name, value=note_content, inline=False)
+    # Add each debug note as a separate field.
+    for index, note in enumerate(emote.notes, start=1):
+        debug_embed.add_field(name=f"Note {index}", value=note, inline=False)
 
+    # Send the debug embed after the original message.
     await message.channel.send(embed=debug_embed)
 
 

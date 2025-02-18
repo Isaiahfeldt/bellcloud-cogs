@@ -88,31 +88,33 @@ async def flip(emote: Emote) -> Emote:
 
 
 async def debug(emote: Emote) -> Emote:
-    # Create a list to hold the debug information strings.
-    notes = []
+    # Create a dictionary to hold the debug information.
+    notes = {}
 
-    # Append various details to the notes list.
-    notes.append(f"emote_id: {emote.id}")
-    notes.append(f"file_path: {emote.file_path}")
-    notes.append(f"author_id: {emote.author_id}")
-    notes.append(f"timestamp: {emote.timestamp}")
-    notes.append(f"original_url: {emote.original_url}")
-    notes.append(f"guild_id: {emote.guild_id}")
-    notes.append(f"usage_count: {emote.usage_count}")
+    # Add key-value pairs for each debug detail.
+    notes["emote_id"] = str(emote.id)
+    notes["file_path"] = emote.file_path
+    notes["author_id"] = emote.author_id
+    notes["timestamp"] = emote.timestamp
+    notes["original_url"] = emote.original_url
+    notes["guild_id"] = emote.guild_id
+    notes["usage_count"] = str(emote.usage_count)
 
     if emote.error is not None:
-        notes.append(f"error: {emote.error}")
+        notes["error"] = str(emote.error)
     else:
-        notes.append("error: None")
+        notes["error"] = "None"
 
-    # Include image data information explicitly.
     if emote.img_data is not None:
-        notes.append(f"img_data_length: {len(emote.img_data)} bytes")
+        notes["img_data_length"] = f"{len(emote.img_data)} bytes"
     else:
-        notes.append("img_data: None")
+        notes["img_data"] = "None"
 
     emote.notes = notes
     return emote
+
+
+e
 
 
 async def train(emote: Emote) -> Emote:
