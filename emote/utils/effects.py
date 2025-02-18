@@ -141,7 +141,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
 async def train(emote: Emote, amount: int = 3) -> Emote:
     from emote.slash_commands import SlashCommands
-    if amount >= 0:
+    if amount <= 0:
         amount = 1
         emote.errors["train"] = f"Train amount cannot be less than 1."
     SlashCommands.train_count = amount
