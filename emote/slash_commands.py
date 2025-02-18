@@ -190,7 +190,7 @@ class SlashCommands(commands.Cog):
             if emote is None:
                 return
 
-            pipeline, issues = await create_pipeline(self, message, emote, queued_effects)
+            pipeline = await create_pipeline(self, message, emote, queued_effects)
             emote = await execute_pipeline(pipeline)
 
         # Get elapsed time after timer has stopped

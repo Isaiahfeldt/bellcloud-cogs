@@ -33,7 +33,7 @@ class Emote:
         name (str): The name of the emote.
         guild_id (int): The unique identifier of the guild the emote belongs to.
         usage_count (int): The number of times the emote has been used.
-        error (Optional[str]): An optional error message associated with the emote. Defaults to `None`.
+        errors (Optional[str]): An optional error message associated with the emote. Defaults to `None`.
 
     This class is decorated with the `dataclass` decorator for convenient attribute access and comparison.
 
@@ -62,9 +62,10 @@ class Emote:
     name: str
     guild_id: int
     usage_count: int
-    error: Dict[str, str] = field(default_factory=dict)
-    img_data: Optional[bytes] = None
+    errors: Dict[str, str] = field(default_factory=dict)
+    issues: Dict[str, str] = field(default_factory=dict)
     notes: Dict[str, str] = field(default_factory=dict)
+    img_data: Optional[bytes] = None
 
 
 async def initialize(emote: Emote) -> Emote:
@@ -84,9 +85,9 @@ async def initialize(emote: Emote) -> Emote:
                 if response.status == 200:
                     emote.img_data = await response.read()
                 else:
-                    emote.error["initialize"] = f"HTTP error status: {response.status}"
+                    emote.errors["initialize"] = f"HTTP error status: {response.status}"
     except Exception as e:
-        emote.error["initialize"] = f"Exception occurred: {str(e)}"
+        emote.errors["initialize"] = f"Exception occurred: {str(e)}"
 
     return emote
 

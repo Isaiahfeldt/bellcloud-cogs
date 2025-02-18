@@ -82,7 +82,7 @@ async def send_error_embed(interaction, error_message):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
-async def send_error_followup(interaction, error_message):
+async def send_error_followup(interaction, error_message, emote=None):
     """
     @param interaction: The interaction object representing the user command to respond to.
     @param error_message: The error message to display in the error embed.
@@ -115,7 +115,7 @@ async def send_debug_embed(message, emote):
         debug_embed.add_field(name=note_name, value=note_content, inline=False)
 
     # Add fields for each error present.
-    for error_key, error_value in emote.error.items():
+    for error_key, error_value in emote.errors.items():
         debug_embed.add_field(name=f"Error: {error_key}", value=error_value, inline=False)
 
     await message.channel.send(embed=debug_embed)
@@ -159,5 +159,5 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
     if emote.notes:
         await send_debug_embed(message, emote)
 
-    if emote.error:
-        await message.channel.send(emote.error)
+    if emote.errors:
+        await message.channel.send(emote.errors)

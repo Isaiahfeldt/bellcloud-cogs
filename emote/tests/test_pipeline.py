@@ -38,7 +38,7 @@ class TestPipeline(unittest.TestCase):
             name="emote",
             guild_id=5678,
             usage_count=10,
-            error=None
+            errors=None
         )
 
         # Define a mock discord.Message object with required fields
