@@ -13,6 +13,7 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+import io
 
 import discord
 
@@ -124,14 +125,31 @@ async def send_reload(self, message: discord.Message):
 
 
 async def send_emote(message: discord.Message, emote: Emote, *args):
-    file_url = emote.file_path
+    """
+    Sends the emote image to the discord channel.
+    If emote.img_data exists, the image is sent as a file using an in-memory buffer.
+    Otherwise, it falls back to sending the file path text.
+    Additional arguments are sent as part of the text.
 
+    :param message: The discord.Message object where the emote should be sent.
+    :param emote: The Emote object containing image data and other details.
+    :param args: Any additional text arguments.
+    """
+    content = ""
     if args:
-        # Create a new line-separated string from args
-        args_str = '\n'.join(args)
-        await message.channel.send(f"{file_url}\n{args_str}")
-    else:
-        await message.channel.send(f"{file_url}")
+        content = "\n".join(args)
 
-    if emote.notes:
-        await send_debug_embed(message, emote)
+    if emote.img_data:
+        # Create an in-memory binary stream for the image data.
+        image_buffer = io.BytesIO(emote.img_data)
+        # You can extract a filename from emote.file_path or use a default.
+        filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+        file = discord.File(fp=image_buffer, filename=filename)
+        await message.channel.send(content=content, file=file)
+    else:
+        file_url = emote.file_path
+        # Fall back to sending the URL text if no image data available.
+        text = f"{file_url}\n{content}" if content else file_url
+        await message.channel.send(text)
+
+    await send_debug_embed(message, emote)

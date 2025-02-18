@@ -16,6 +16,8 @@ from dataclasses import dataclass, asdict, field
 from datetime import datetime
 from typing import Optional, Dict
 
+import aiohttp
+
 
 @dataclass
 class Emote:
@@ -60,21 +62,30 @@ class Emote:
     name: str
     guild_id: int
     usage_count: int
-    error: Optional[str] = None
+    error: Dict[str, str] = field(default_factory=dict)
     img_data: Optional[bytes] = None
     notes: Dict[str, str] = field(default_factory=dict)
 
 
 async def initialize(emote: Emote) -> Emote:
     """
+    Fetch the emote image from the provided original_url and store the image data
+    in-memory in the emote.img_data attribute. If an error occurs during the fetch,
+    record the error in the emote.error dictionary under the key 'initialize'.
+
     :param emote: The Emote object to be initialized.
-    :return: The initialized Emote object.
+    :return: The initialized Emote object with its image data loaded or an error noted.
     """
-    notes = emote.notes
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(emote.original_url) as response:
+                if response.status == 200:
+                    emote.img_data = await response.read()
+                else:
+                    emote.error["initialize"] = f"HTTP error status: {response.status}"
+    except Exception as e:
+        emote.error["initialize"] = f"Exception occurred: {str(e)}"
 
-    notes["test"] = "value"
-
-    emote.notes = notes
     return emote
 
 
@@ -108,10 +119,11 @@ async def debug(emote: Emote) -> Emote:
     notes["guild_id"] = emote.guild_id
     notes["usage_count"] = str(emote.usage_count)
 
-    if emote.error is not None:
-        notes["error"] = str(emote.error)
-    else:
-        notes["error"] = "None"
+    # TODO move this logic to send_debug_embed in chat.py
+    # if emote.error is not None:
+    #     notes["error"] = str(emote.error)
+    # else:
+    #     notes["error"] = "None"
 
     if emote.img_data is not None:
         notes["img_data_length"] = f"{len(emote.img_data)} bytes"
