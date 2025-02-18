@@ -142,6 +142,8 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
     :param emote: The Emote object containing image data and other details.
     :param args: Any additional text arguments.
     """
+    from emote.slash_commands import SlashCommands
+
     content = ""
     if args:
         content = "\n".join(args)
@@ -152,7 +154,9 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
         # You can extract a filename from emote.file_path or use a default.
         filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
         file = discord.File(fp=image_buffer, filename=filename)
-        await message.channel.send(content=content, file=file)
+        for _ in range(SlashCommands.train_count):
+            await message.channel.send(content=content, file=file)
+
     else:
         file_url = emote.file_path
         # Fall back to sending the URL text if no image data available.

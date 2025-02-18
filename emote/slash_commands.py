@@ -195,8 +195,7 @@ class SlashCommands(commands.Cog):
 
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
-        for i in range(0, SlashCommands.train_count):  # For train effect
-            await send_emote(message, emote, *extra_args)
+        await send_emote(message, emote, *extra_args)
 
 
 def reset_flags():
