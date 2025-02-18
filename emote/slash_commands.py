@@ -45,8 +45,8 @@ def calculate_extra_args(time_elapsed, emote) -> list:
         else:
             extra_args.append(f"The emote `{emote.name}` was not found in cache.")
     # Append emote.notes if it exists (i.e. not None)
-    if emote.notes:
-        extra_args.append(emote.notes)
+    # if emote.notes:
+    #     extra_args.append(emote.notes)
     return extra_args
 
 
