@@ -162,5 +162,4 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
     if emote.notes:
         await send_debug_embed(message, emote)
 
-    if emote.errors:
-        await message.channel.send(emote.errors)
+    # TODO update @send_embed_followup to allow for
