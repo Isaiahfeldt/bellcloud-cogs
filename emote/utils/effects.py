@@ -76,6 +76,8 @@ async def initialize(emote: Emote) -> Emote:
     :param emote: The Emote object to be initialized.
     :return: The initialized Emote object with its image data loaded or an error noted.
     """
+    emote.original_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
+
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(emote.original_url) as response:
