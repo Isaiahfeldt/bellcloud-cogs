@@ -114,6 +114,10 @@ async def send_debug_embed(message, emote):
     for note_name, note_content in emote.notes.items():
         debug_embed.add_field(name=note_name, value=note_content, inline=False)
 
+    # Add fields for each error present.
+    for error_key, error_value in emote.error.items():
+        debug_embed.add_field(name=f"Error: {error_key}", value=error_value, inline=False)
+
     await message.channel.send(embed=debug_embed)
 
 
@@ -152,4 +156,5 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
         text = f"{file_url}\n{content}" if content else file_url
         await message.channel.send(text)
 
-    await send_debug_embed(message, emote)
+    if emote.notes:
+        await send_debug_embed(message, emote)
