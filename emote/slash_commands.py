@@ -194,7 +194,7 @@ class SlashCommands(commands.Cog):
             emote = await execute_pipeline(pipeline)
 
         # Get elapsed time after timer has stopped
-        extra_args = calculate_extra_args(time_elapsed, emote)
+        extra_args = calculate_extra_args(timer.elapsedTime, emote)
         for i in range(0, SlashCommands.train_count):  # For train effect
             await send_emote(message, emote, *extra_args)
 
