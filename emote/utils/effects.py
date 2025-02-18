@@ -105,7 +105,7 @@ async def flip(emote: Emote) -> Emote:
     return emote
 
 
-async def debug(emote: Emote) -> Emote:
+async def debug(emote: Emote, mode: str = "basic") -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
 
@@ -120,6 +120,8 @@ async def debug(emote: Emote) -> Emote:
     notes["original_url"] = emote.original_url
     notes["guild_id"] = emote.guild_id
     notes["usage_count"] = str(emote.usage_count)
+
+    emote.notes["debug_mode"] = mode
 
     # TODO move this logic to send_debug_embed in chat.py
     # if emote.error is not None:

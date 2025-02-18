@@ -78,7 +78,7 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     permission_list = SlashCommands.PERMISSION_LIST
     issues = []
 
-    for effect_name in queued_effects:
+    for effect_name, effect_args in queued_effects:
         effect = effects_list.get(effect_name)
         if effect is None:
             issues.append((effect_name, "NotFound"))
@@ -88,7 +88,21 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             issues.append((effect_name, "PermissionDenied"))
             continue
 
-        pipeline.append(effect['func'])
+        # Create wrapper that passes any arguments
+        async def effect_wrapper(emote, func=effect['func'], args=effect_args):
+            try:
+                return await func(emote, *args)
+            except TypeError as e:
+                if "positional arguments" in str(e):
+                    emote.error[effect_name] = "TooManyArguments"
+                else:
+                    emote.error[effect_name] = f"InvalidArguments: {str(e)}"
+                return emote
+            except Exception as e:
+                emote.error[effect_name] = str(e)
+                return emote
+
+        pipeline.append(effect_wrapper)
 
     return pipeline, issues
 

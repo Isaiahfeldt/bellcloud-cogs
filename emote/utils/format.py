@@ -12,6 +12,8 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import re
+
 import discord
 
 
@@ -28,20 +30,31 @@ def clean_emote_name(emote_name: str):
 
 
 def extract_emote_details(message: discord.Message):
-    """
-    :param message: The content string containing the emote name and effects separated by an underscore.
-    :return: A tuple containing the extracted emote name and a list of emote effects.
-
-    Examples:
-
-        ':miku4_latency:'       -> ('miku4', ['latency']) \n
-        ':miku4_latency_flip:'  -> ('miku4', ['latency', 'flip'])
-
-    """
     parsed_content = clean_emote_name(message.content.lower())
     if "_" not in parsed_content:
         return parsed_content, []
 
-    emote_name, emote_effects = parsed_content.split("_", 1)
-    emote_effects = emote_effects.split("_")
+    emote_name, effects_part = parsed_content.split("_", 1)
+
+    # New regex pattern to capture effect names and arguments
+    effect_pattern = r"([a-zA-Z]+)(?:\(([^)]*)\))?"
+    emote_effects = []
+
+    for match in re.finditer(effect_pattern, effects_part):
+        effect_name, effect_args = match.groups()
+        parsed_args = []
+
+        if effect_args:
+            # Split arguments and auto-detect types
+            for arg in effect_args.split(','):
+                arg = arg.strip()
+                if arg.isdigit():
+                    parsed_args.append(int(arg))
+                elif arg.lower() in ['true', 'false']:
+                    parsed_args.append(arg.lower() == 'true')
+                else:
+                    parsed_args.append(arg.strip('"\' '))
+
+        emote_effects.append((effect_name, parsed_args))
+
     return emote_name, emote_effects
