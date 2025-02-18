@@ -35,15 +35,18 @@ valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
 
 
-def calculate_extra_args(time_elapsed, emote_name) -> list:
+def calculate_extra_args(time_elapsed, emote) -> list:
     extra_args = []
     if SlashCommands.latency_enabled:
         extra_args.append(f"Your request was processed in `{time_elapsed}` seconds!")
     if SlashCommands.debug_enabled:
         if SlashCommands.was_cached:
-            extra_args.append(f"The emote `{emote_name}` was found in cache.")
+            extra_args.append(f"The emote `{emote.name}` was found in cache.")
         else:
-            extra_args.append(f"The emote `{emote_name}` was not found in cache.")
+            extra_args.append(f"The emote `{emote.name}` was not found in cache.")
+    # Append emote.notes if it exists (i.e. not None)
+    if emote.notes:
+        extra_args.append(emote.notes)
     return extra_args
 
 
@@ -191,7 +194,7 @@ class SlashCommands(commands.Cog):
             emote = await execute_pipeline(pipeline)
 
         # Get elapsed time after timer has stopped
-        extra_args = calculate_extra_args(timer.elapsedTime, emote.name)
+        extra_args = calculate_extra_args(time_elapsed, emote)
         for i in range(0, SlashCommands.train_count):  # For train effect
             await send_emote(message, emote, *extra_args)
 
