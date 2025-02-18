@@ -78,7 +78,6 @@ class Database:
         """
 
         if args in self.cache:  # Check if *args is in the cache
-            print("Cache hit")
             from emote.slash_commands import SlashCommands
             SlashCommands.was_cached = True
             return self.cache[args]  # return the result associated with *args in the cache
