@@ -162,7 +162,7 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
         text = f"{file_url}\n{content}" if content else file_url
         await message.channel.send(text)
 
-    if emote.notes:
+    if emote.notes and SlashCommands.debug_enabled:
         await send_debug_embed(message, emote)
 
     # TODO update @send_embed_followup to allow for
