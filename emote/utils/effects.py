@@ -240,5 +240,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             "args": e.args,            # Additional arguments provided with the exception
         }
         emote.errors["flip"] = error_details
+        raise
     
     return emote
