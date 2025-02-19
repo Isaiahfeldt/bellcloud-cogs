@@ -179,62 +179,59 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         emote.errors["flip"] = "No image data available"
         return emote
 
-    try:
-        from PIL import Image
-        import io
-        from pathlib import Path
 
-        # Validate file type using file_path extension
-        allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
-        file_ext = emote.file_path.lower().split('.')[-1]  # Get the part after the last period
-        emote.notes["file_ext"] = str(file_ext)
-        if file_ext not in allowed_extensions:
-            emote.errors["flip"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
-            return emote
+    from PIL import Image
+    import io
+    from pathlib import Path
 
-        # Validate direction argument
-        direction = direction.lower()
-        if direction not in {'h', 'v', 'hv', 'vh'}:
-            raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
+    # Validate file type using file_path extension
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
+    file_ext = emote.file_path.lower().split('.')[-1]  # Get the part after the last period
+    emote.notes["file_ext"] = str(file_ext)
+    if file_ext not in allowed_extensions:
+        emote.errors["flip"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
+        return emote
 
-        with Image.open(io.BytesIO(emote.img_data)) as img:
-            # Process animated GIFs
-            if file_ext == 'gif' and img.is_animated:
-                frames = []
-                for frame in range(img.n_frames):
-                    img.seek(frame)
-                    frame_img = img.copy()
-                    if 'h' in direction:
-                        frame_img = frame_img.transpose(Image.FLIP_LEFT_RIGHT)
-                    if 'v' in direction:
-                        frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
-                    frames.append(frame_img)
+    # Validate direction argument
+    direction = direction.lower()
+    if direction not in {'h', 'v', 'hv', 'vh'}:
+        raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
-                # Save GIF with original metadata
-                output_buffer = io.BytesIO()
-                frames[0].save(
-                    output_buffer,
-                    format='GIF',
-                    save_all=True,
-                    append_images=frames[1:],
-                    loop=0,
-                    duration=img.info['duration'],
-                    disposal=img.info.get('disposal', 0)
-                )
-                emote.img_data = output_buffer.getvalue()
-
-            # Process static images
-            else:
+    with Image.open(io.BytesIO(emote.img_data)) as img:
+        # Process animated GIFs
+        if file_ext == 'gif' and img.is_animated:
+            frames = []
+            for frame in range(img.n_frames):
+                img.seek(frame)
+                frame_img = img.copy()
                 if 'h' in direction:
-                    img = img.transpose(Image.FLIP_LEFT_RIGHT)
+                    frame_img = frame_img.transpose(Image.FLIP_LEFT_RIGHT)
                 if 'v' in direction:
-                    img = img.transpose(Image.FLIP_TOP_BOTTOM)
-                
-                output_buffer = io.BytesIO()
-                img.save(output_buffer, format=img.format)
-                emote.img_data = output_buffer.getvalue()
+                    frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
+                frames.append(frame_img)
 
-    except Exception as e:
-        emote.errors["flip"] = str(e)
+            # Save GIF with original metadata
+            output_buffer = io.BytesIO()
+            frames[0].save(
+                output_buffer,
+                format='GIF',
+                save_all=True,
+                append_images=frames[1:],
+                loop=0,
+                duration=img.info['duration'],
+                disposal=img.info.get('disposal', 0)
+            )
+            emote.img_data = output_buffer.getvalue()
+
+        # Process static images
+        else:
+            if 'h' in direction:
+                img = img.transpose(Image.FLIP_LEFT_RIGHT)
+            if 'v' in direction:
+                img = img.transpose(Image.FLIP_TOP_BOTTOM)
+            
+            output_buffer = io.BytesIO()
+            img.save(output_buffer, format=img.format)
+            emote.img_data = output_buffer.getvalue()
     
     return emote
