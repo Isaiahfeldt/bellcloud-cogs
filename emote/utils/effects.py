@@ -235,12 +235,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 emote.img_data = output_buffer.getvalue()
 
     except Exception as e:
-        error_details = {
-            "type": type(e).__name__,  # The type of exception (e.g., ValueError, IOError)
-            "message": str(e),         # The error message
-            "args": e.args,            # Additional arguments provided with the exception
-        }
-        emote.errors["flip"] = error_details
-        raise
+        emote.errors["flip"] = str(e)
     
     return emote
