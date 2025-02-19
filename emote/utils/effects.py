@@ -89,9 +89,6 @@ async def initialize(emote: Emote) -> Emote:
     except Exception as e:
         emote.errors["initialize"] = f"Exception occurred: {str(e)}"
 
-    from emote.slash_commands import SlashCommands
-    emote.notes["was_cached"] = SlashCommands.was_cached
-
     return emote
 
 
@@ -112,6 +109,7 @@ async def latency(emote: Emote) -> Emote:
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
+    emote.notes["was_cached"] = SlashCommands.was_cached
 
     # Create a dictionary to hold the debug information.
     notes = emote.notes
