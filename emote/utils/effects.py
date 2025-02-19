@@ -101,12 +101,12 @@ async def latency(emote: Emote) -> Emote:
     return emote
 
 
-async def flip(emote: Emote) -> Emote:
-    emote.file_path = emote.file_path[::-1]  # Reverse the string
-    emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
-    emote = Emote(**emote_dict)  # Convert dict back to Emote object
+# async def flip(emote: Emote) -> Emote:
+#     emote.file_path = emote.file_path[::-1]  # Reverse the string
+#     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
+#     emote = Emote(**emote_dict)  # Convert dict back to Emote object
 
-    return emote
+#     return emote
 
 
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
@@ -172,7 +172,8 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
 
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
-    Flips the emote's image without modifying filename/path.
+    Flips the emote's image (supports GIFs) without modifying filename/path.
+    Only processes jpg, jpeg, png, and gif file types.
     Directions: "h" (horizontal), "v" (vertical), "hv/vh" (both).
     Stores errors in emote.error['flip'].
     """
@@ -184,22 +185,56 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         from PIL import Image
         import io
 
+        # Check file type before processing
+        allowed_formats = {'JPEG', 'JPG', 'PNG', 'GIF'}
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            if img.format.upper() not in allowed_formats:
+                emote.error["flip"] = f"Unsupported file type: {img.format}. Allowed types: jpg, jpeg, png, gif"
+                return emote
+
+        # Process the image if the format is allowed
         direction = direction.lower()
         valid = {'h', 'v', 'hv', 'vh'}
         if direction not in valid:
             raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
         with Image.open(io.BytesIO(emote.img_data)) as img:
-            # Apply flips
-            if 'h' in direction:
-                img = img.transpose(Image.FLIP_LEFT_RIGHT)
-            if 'v' in direction:
-                img = img.transpose(Image.FLIP_TOP_BOTTOM)
+            # Check if it's a GIF
+            if img.format == 'GIF' and img.is_animated:
+                # Process all frames for animated GIFs
+                frames = []
+                for frame in range(img.n_frames):
+                    img.seek(frame)
+                    frame_img = img.copy()
+                    if 'h' in direction:
+                        frame_img = frame_img.transpose(Image.FLIP_LEFT_RIGHT)
+                    if 'v' in direction:
+                        frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
+                    frames.append(frame_img)
 
-            # Save to buffer without changing filename
-            output_buffer = io.BytesIO()
-            img.save(output_buffer, format=img.format)
-            emote.img_data = output_buffer.getvalue()
+                # Save all frames as a new GIF
+                output_buffer = io.BytesIO()
+                frames[0].save(
+                    output_buffer,
+                    format='GIF',
+                    save_all=True,
+                    append_images=frames[1:],
+                    loop=0,  # Infinite loop
+                    duration=img.info['duration'],  # Preserve frame duration
+                    disposal=img.info.get('disposal', 0)  # Preserve disposal method
+                )
+                emote.img_data = output_buffer.getvalue()
+            else:
+                # Process single image (non-GIF or single-frame GIF)
+                if 'h' in direction:
+                    img = img.transpose(Image.FLIP_LEFT_RIGHT)
+                if 'v' in direction:
+                    img = img.transpose(Image.FLIP_TOP_BOTTOM)
+
+                # Save to buffer
+                output_buffer = io.BytesIO()
+                img.save(output_buffer, format=img.format)
+                emote.img_data = output_buffer.getvalue()
 
     except Exception as e:
         emote.error["flip"] = str(e)
