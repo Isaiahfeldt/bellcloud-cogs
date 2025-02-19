@@ -231,7 +231,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 img = img.transpose(Image.FLIP_TOP_BOTTOM)
             
             output_buffer = io.BytesIO()
-            img.save(output_buffer, format=img.format)
+            img.save(output_buffer, format=file_ext)
             emote.img_data = output_buffer.getvalue()
     
     return emote
