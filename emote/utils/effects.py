@@ -169,3 +169,39 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
 
     SlashCommands.train_count = amount
     return emote
+
+async def flip(emote: Emote, direction: str = "h") -> Emote:
+    """
+    Flips the emote's image without modifying filename/path.
+    Directions: "h" (horizontal), "v" (vertical), "hv/vh" (both).
+    Stores errors in emote.error['flip'].
+    """
+    if emote.img_data is None:
+        emote.error["flip"] = "No image data available"
+        return emote
+
+    try:
+        from PIL import Image
+        import io
+
+        direction = direction.lower()
+        valid = {'h', 'v', 'hv', 'vh'}
+        if direction not in valid:
+            raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
+
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            # Apply flips
+            if 'h' in direction:
+                img = img.transpose(Image.FLIP_LEFT_RIGHT)
+            if 'v' in direction:
+                img = img.transpose(Image.FLIP_TOP_BOTTOM)
+
+            # Save to buffer without changing filename
+            output_buffer = io.BytesIO()
+            img.save(output_buffer, format=img.format)
+            emote.img_data = output_buffer.getvalue()
+
+    except Exception as e:
+        emote.error["flip"] = str(e)
+    
+    return emote
