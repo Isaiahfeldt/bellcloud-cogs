@@ -187,6 +187,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         # Validate file type using file_path extension
         allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
         file_ext = emote.file_path.lower().split('.')[-1]  # Get the part after the last period
+        emote.notes["file_ext"] = str(file_ext)
         if file_ext not in allowed_extensions:
             emote.errors["flip"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
             return emote
