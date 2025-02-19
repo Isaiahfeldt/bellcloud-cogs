@@ -48,7 +48,7 @@ class Emote:
             name="emote",
             guild_id=5678,
             usage_count=10,
-            error=None
+            errors=None
         )
 
     TODO: Currently the Emote
@@ -72,7 +72,7 @@ async def initialize(emote: Emote) -> Emote:
     """
     Fetch the emote image from the provided original_url and store the image data
     in-memory in the emote.img_data attribute. If an error occurs during the fetch,
-    record the error in the emote.error dictionary under the key 'initialize'.
+    record the error in the emote.errors dictionary under the key 'initialize'.
 
     :param emote: The Emote object to be initialized.
     :return: The initialized Emote object with its image data loaded or an error noted.
@@ -128,7 +128,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     emote.notes["debug_mode"] = mode
 
     # TODO move this logic to send_debug_embed in chat.py
-    # if emote.error is not None:
+    # if emote.errors is not None:
     #     notes["error"] = str(emote.error)
     # else:
     #     notes["error"] = "None"
@@ -175,10 +175,10 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     Flips the emote's image (supports GIFs) without modifying filename/path.
     Only processes jpg, jpeg, png, and gif file types.
     Directions: "h" (horizontal), "v" (vertical), "hv/vh" (both).
-    Stores errors in emote.error['flip'].
+    Stores errors in emote.errors['flip'].
     """
     if emote.img_data is None:
-        emote.error["flip"] = "No image data available"
+        emote.errors["flip"] = "No image data available"
         return emote
 
     try:
@@ -189,7 +189,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         allowed_formats = {'JPEG', 'JPG', 'PNG', 'GIF'}
         with Image.open(io.BytesIO(emote.img_data)) as img:
             if img.format.upper() not in allowed_formats:
-                emote.error["flip"] = f"Unsupported file type: {img.format}. Allowed types: jpg, jpeg, png, gif"
+                emote.errors["flip"] = f"Unsupported file type: {img.format}. Allowed types: jpg, jpeg, png, gif"
                 return emote
 
         # Process the image if the format is allowed
@@ -237,6 +237,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 emote.img_data = output_buffer.getvalue()
 
     except Exception as e:
-        emote.error["flip"] = str(e)
+        emote.errors["flip"] = str(e)
     
     return emote
