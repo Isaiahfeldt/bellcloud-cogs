@@ -13,8 +13,10 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
+from datetime import datetime, timedelta, timezone
 
 import discord
+import jwt
 from discord import app_commands
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
@@ -152,6 +154,28 @@ class SlashCommands(commands.Cog):
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
         )
+
+    @emote.command(name="website", description="Get a secure link to view the server's emotes")
+    async def emote_website(self, interaction: discord.Interaction):
+        # Set token expiration (15 minutes from now)
+        expiration = datetime.now(timezone.utc) + timedelta(days=1)
+        server_id = interaction.guild_id
+
+        # Create a simple JWT payload.
+        payload = {
+            "server_id": server_id,
+            "iat": datetime.now(timezone.utc),
+            "exp": expiration,
+        }
+
+        # Generate the JWT. (HS256 is a symmetric algorithm that keeps the token compact.)
+        token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
+
+        # Construct the secure URL that includes the token.
+        secure_url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
+
+        # Respond to the interaction with the secure link.
+        await interaction.response.send_message(f"Here is your secure link: {secure_url}")
 
     @emote.command(name="show_cache", description="Show current cache state")
     @commands.is_owner()
