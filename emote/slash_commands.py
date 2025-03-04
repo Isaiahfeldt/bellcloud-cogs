@@ -163,7 +163,7 @@ class SlashCommands(commands.Cog):
 
         # Create a simple JWT payload.
         payload = {
-            "server_id": server_id,
+            "server_id": str(server_id),
             "iat": datetime.now(timezone.utc),
             "exp": expiration,
         }
