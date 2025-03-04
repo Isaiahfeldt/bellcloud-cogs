@@ -173,7 +173,8 @@ class SlashCommands(commands.Cog):
         token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
         # Construct the secure URL that includes the token.
-        secure_url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
+        url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
+        secure_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
         # Respond to the interaction with the secure link.
         await interaction.response.send_message(f"Here is your secure link: {secure_url}")
