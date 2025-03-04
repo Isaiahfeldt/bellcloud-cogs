@@ -16,7 +16,8 @@
     "boto3",
     "psycopg2-binary",
     "cachetools",
-    "pillow"
+    "pillow",
+    "PyJWT"
   ],
   "type": "COG",
   "end_user_data_statement": "This cog stores user IDs for the purpose of tracking emotes uploaded by a user."
