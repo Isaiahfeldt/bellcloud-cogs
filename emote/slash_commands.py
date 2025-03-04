@@ -168,6 +168,7 @@ class SlashCommands(commands.Cog):
             "exp": expiration,
         }
 
+        JWT_SECRET = "yammychocolatecake"
         # Generate the JWT. (HS256 is a symmetric algorithm that keeps the token compact.)
         token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
