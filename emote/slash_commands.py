@@ -284,7 +284,7 @@ class SlashCommands(commands.Cog):
                         user_doc = next_line.split('.')[0]
                         break
 
-                display_name = f"**{name}** - {user_doc}" if user_doc else name
+                display_name = f"{name} - {user_doc}" if user_doc else name
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
