@@ -53,7 +53,7 @@ def calculate_extra_args(time_elapsed, emote) -> list:
 
 
 async def get_emote_and_verify(emote_name_str: str, channel):
-    emote = await db.get_emote(emote_name_str)
+    emote = await db.get_emote(emote_name_str, channel.guild.id)
     if emote is None:
         await channel.send(f"Emote '{emote_name_str}' not found.")
     return emote
@@ -132,7 +132,7 @@ class SlashCommands(commands.Cog):
                 await send_error_followup(interaction, error)
                 return
 
-        if await db.check_emote_exists(name):
+        if await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 

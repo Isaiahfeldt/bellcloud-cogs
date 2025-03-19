@@ -1,19 +1,18 @@
+# File: emote/tests/test_database.py
 #  Copyright (c) 2023-2024, Isaiah Feldt
-#  ͏
+#
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
 #     - the Free Software Foundation, either version 3 of this License,
 #     - or (at your option) any later version.
-#  ͏
+#
 #     - This program is distributed in the hope that it will be useful,
 #     - but without any warranty, without even the implied warranty of
 #     - merchantability or fitness for a particular purpose.
 #     - See the GNU Affero General Public License for more details.
-#  ͏
+#
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-
-# test_database.py
 
 import asyncio
 import unittest
@@ -24,10 +23,11 @@ from emote.utils.database import Database
 
 class TestDatabaseMethods(unittest.TestCase):
 
-    # Using events loop for functions that require async/await
     def setUp(self):
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(None)
+        # Use a dummy server id for tests that require it.
+        self.test_server_id = "server1"
 
     def tearDown(self):
         self.loop.close()
@@ -55,13 +55,14 @@ class TestDatabaseMethods(unittest.TestCase):
         EMOTE_NAMES = ["isaiah", "miku4"]  # replace with your emote names
         db = Database()
         for emote_name in EMOTE_NAMES:
-            result = self.loop.run_until_complete(db.check_emote_exists(emote_name))
+            result = self.loop.run_until_complete(db.check_emote_exists(emote_name, self.test_server_id))
             self.assertTrue(result, f"Expected emote {emote_name} to exist in database, but it didn't.")
 
     def test_get_emote_real(self):
         emote_name = "miku4"
         db = Database()
-        result = self.loop.run_until_complete(db.get_emote(emote_name))
+        result = self.loop.run_until_complete(db.get_emote(emote_name, self.test_server_id))
+        # Further assertions can be added here based on expected result.
 
     @patch("asyncpg.connect")
     def test_emote_exists_in_database_mock(self, mock_connect):
@@ -72,10 +73,10 @@ class TestDatabaseMethods(unittest.TestCase):
 
         db = Database()
         sample_emote_name = "emote1"
-        self.loop.run_until_complete(db.check_emote_exists(sample_emote_name))
-        conn.fetch.assert_called_once()
-        query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1)"
-        conn.fetch.assert_called_once_with(query, sample_emote_name)
+        self.loop.run_until_complete(db.check_emote_exists(sample_emote_name, self.test_server_id))
+        # Verify that the query was called with server_id parameter.
+        query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1 AND server_id = $2)"
+        conn.fetch.assert_called_once_with(query, sample_emote_name, self.test_server_id)
         conn.close.assert_called_once()
 
     def test_process_query_results(self):
@@ -89,16 +90,6 @@ class TestDatabaseMethods(unittest.TestCase):
         self.assertEqual(self.loop.run_until_complete(db.format_names_from_results(None)), [])
         self.assertEqual(self.loop.run_until_complete(db.format_names_from_results([['Name1'], ['Name2']])),
                          ['Name1', 'Name2'])
-
-    # def test_env_variables(self):
-    #     result = subprocess.run(['docker', 'exec', 'bellbot_container', 'env'], capture_output=True, text=True)
-    #     env_variables = result.stdout.split('\n')
-    #
-    #     desired_variables = ['DB_HOST', 'DB_USER', 'DB_PORT', 'DB_PASSWORD',
-    #                          'DB_DATABASE']
-    #     for var in desired_variables:
-    #         self.assertTrue(any(var in line for line in env_variables),
-    #                         f'Expected {var} to exist in container environment, but it didn\'t.')
 
 
 if __name__ == "__main__":
