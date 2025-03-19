@@ -208,13 +208,13 @@ class SlashCommands(commands.Cog):
         embed = discord.Embed(
             title="Available Effects",
             description=description,
-            colour=0x00FF00  # Green color
+            colour=0xe44c3c  # Green color
         )
         embed.set_author(
             name="Emote Effects",
             icon_url=interaction.client.user.display_avatar.url
         )
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed, ephemeral=False)
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
