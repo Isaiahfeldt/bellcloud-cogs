@@ -201,7 +201,6 @@ class SlashCommands(commands.Cog):
 
     @emote.command(name="effects", description="List available effects")
     async def list_effects(self, interaction: discord.Interaction):
-        """List the effects available to the user based on their permissions with a comma-separated list."""
         available_effects = []
         # Check each effect and only add it if the user has permission.
         for effect_name, effect_data in self.EFFECTS_LIST.items():
@@ -218,12 +217,12 @@ class SlashCommands(commands.Cog):
                 available_effects.append(effect_name)
 
         effects_list = ", ".join(available_effects)
-        description = f"Effects available to {interaction.user.display_name}: {effects_list}"
         embed = discord.Embed(
             title="Available Effects",
-            description=description,
+            description=f"Effects available to {interaction.user.display_name}",
             colour=0xe44c3c
         )
+        embed.add_field(name="Effects List", value=effects_list, inline=False)
         embed.set_author(
             name="Emote Effects",
             icon_url=interaction.client.user.display_avatar.url
