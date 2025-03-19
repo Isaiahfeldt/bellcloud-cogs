@@ -219,12 +219,11 @@ class SlashCommands(commands.Cog):
         effects_list = ", ".join(available_effects)
         embed = discord.Embed(
             title="Available Effects",
-            description=f"Effects available to {interaction.user.display_name}",
             colour=0xe44c3c
         )
-        embed.add_field(name="Effects List", value=effects_list, inline=False)
+        embed.add_field(name=f"Effects available for {interaction.user.display_name}", value=effects_list, inline=False)
         embed.set_author(
-            name="Emote Effects",
+            name="Emote",
             icon_url=interaction.client.user.display_avatar.url
         )
         await interaction.response.send_message(embed=embed, ephemeral=False)
