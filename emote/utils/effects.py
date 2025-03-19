@@ -12,7 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-from dataclasses import dataclass, asdict, field
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, Dict
 
@@ -98,14 +98,6 @@ async def latency(emote: Emote) -> Emote:
     return emote
 
 
-# async def flip(emote: Emote) -> Emote:
-#     emote.file_path = emote.file_path[::-1]  # Reverse the string
-#     emote_dict = asdict(emote)  # Convert Emote object back to dict (requires from dataclasses import asdict)
-#     emote = Emote(**emote_dict)  # Convert dict back to Emote object
-
-#     return emote
-
-
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
@@ -168,6 +160,7 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     SlashCommands.train_count = amount
     return emote
 
+
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote's image using file_path extension for validation.
@@ -179,10 +172,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         emote.errors["flip"] = "No image data available"
         return emote
 
-
     from PIL import Image
     import io
-    from pathlib import Path
 
     # Validate file type using file_path extension
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
@@ -229,9 +220,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 img = img.transpose(Image.FLIP_LEFT_RIGHT)
             if 'v' in direction:
                 img = img.transpose(Image.FLIP_TOP_BOTTOM)
-            
+
             output_buffer = io.BytesIO()
             img.save(output_buffer, format=file_ext)
             emote.img_data = output_buffer.getvalue()
-    
+
     return emote

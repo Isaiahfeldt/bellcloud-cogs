@@ -199,16 +199,30 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
+    # language: python
     @emote.command(name="effects", description="List available effects")
     async def list_effects(self, interaction: discord.Interaction):
-        """List all available effects in a nice embed."""
+        """List the effects available to the user based on their permissions."""
         description = "Available effects:\n\n"
-        for effect_name in self.EFFECTS_LIST.keys():
-            description += f"`{effect_name}`\n"
+        # Check each effect and only add it if the user has permission.
+        for effect_name, effect_data in self.EFFECTS_LIST.items():
+            perm = effect_data.get("perm", "everyone")
+            allowed = False
+            if perm == "owner":
+                # Check if the user is the owner.
+                allowed = await self.bot.is_owner(interaction.user)
+            elif perm == "mod":
+                # Check if the user has manage_messages permissions.
+                allowed = interaction.user.guild_permissions.manage_messages
+            elif perm == "everyone":
+                allowed = True
+
+            if allowed:
+                description += f"`{effect_name}`\n"
         embed = discord.Embed(
             title="Available Effects",
             description=description,
-            colour=0xe44c3c  # Green color
+            colour=0xe44c3c
         )
         embed.set_author(
             name="Emote Effects",
