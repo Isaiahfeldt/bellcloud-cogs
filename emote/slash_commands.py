@@ -232,12 +232,22 @@ class SlashCommands(commands.Cog):
         effect_func = effect_info.get("func")
         raw_doc = effect_func.__doc__ or "No description available."
         doc_lines = raw_doc.splitlines()
-        filtered_lines = []
+
+        # Extract only the user documentation section
+        user_doc = []
+        capture = False
         for line in doc_lines:
-            if line.strip().startswith("Parameters:") or line.strip().startswith("Returns:"):
-                break  # Skip the Parameters and Returns section.
-            filtered_lines.append(line)
-        description = "\n".join(filtered_lines).strip() or "No description available."
+            if line.strip().startswith("User:"):
+                capture = True
+                continue
+            elif capture and (line.strip().startswith("Parameters:") or
+                              line.strip().startswith("Returns:") or
+                              line.strip().startswith("Raises:")):
+                break
+            elif capture:
+                user_doc.append(line)
+
+        description = "\n".join(user_doc).strip() or "No user documentation available."
 
         embed = discord.Embed(
             title=f"Effect: {effect_name.capitalize()}",

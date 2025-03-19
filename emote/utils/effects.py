@@ -96,6 +96,10 @@ async def latency(emote: Emote) -> Emote:
     """
     Toggles the latency measurement flag for subsequent processing.
 
+    User:
+        Displays how long it takes to process your emote.
+        Use this to see processing time in milliseconds.
+
     Parameters:
         emote (Emote): The emote object to pass through without modification.
 
@@ -108,6 +112,18 @@ async def latency(emote: Emote) -> Emote:
 
 
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
+    """
+        User:
+            Shows detailed information about the emote. Including its ID, file path, and other technical details.
+            Useful when you need help troubleshooting issues with an emote.
+
+        Parameters:
+            emote (Emote): The emote object to pass through without modification.
+            mode (str): The debug mode to use (currently only 'basic' is supported).
+
+        Returns:
+            Emote: The same emote object with debug information added.
+    """
     from emote.slash_commands import SlashCommands
     SlashCommands.debug_enabled = True
     emote.notes["was_cached"] = SlashCommands.was_cached
@@ -145,6 +161,12 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     """
         Duplicate the provided Emote for a specified number of times within a valid range.
 
+        User:
+            Creates multiple copies of the emote in a row. You can specify a
+            number between 1 and 6 to control how many copies appear.
+
+            Default is 3 if no number is provided.
+
         Parameters:
             emote (Emote): The emote object to be trained.
             amount (int): The number of times to train the emote. If invalid, defaults
@@ -178,6 +200,12 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     Supports: jpg, jpeg, png, gif (based on file extension).
     Directions: "h" (horizontal), "v" (vertical), "hv/vh" (both).
     Errors stored in emote.errors['flip'].
+
+    User:
+        Mirrors the emote. You can flip horizontally (h), vertically (v),
+        or both ways (hv). Works with static images and animated GIFs.
+
+        Default is horizontal flip if no direction is specified.
 
     Parameters:
         emote (Emote): The emote object containing the image data to be flipped.
