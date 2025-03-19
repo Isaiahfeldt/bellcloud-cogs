@@ -98,9 +98,9 @@ class Database:
     async def dump_emote_usage_to_database(self, conn):
         try:
             for key, count in self.emote_usage_collection.items():
-                # If keys are tuples, they are of the form (emote_name, server_id)
+                # If keys are tuples, they are of the form (emote_name, guild_id)
                 if isinstance(key, tuple):
-                    query = "UPDATE emote.media SET usage_count = usage_count + $1 WHERE emote_name = $2 AND server_id = $3"
+                    query = "UPDATE emote.media SET usage_count = usage_count + $1 WHERE emote_name = $2 AND guild_id = $3"
                     await conn.execute(query, count, key[0], key[1])
                 else:
                     query = "UPDATE emote.media SET usage_count = usage_count + $1 WHERE emote_name = $2"
@@ -114,30 +114,30 @@ class Database:
             return False
         return results[0]['exists']
 
-    async def check_emote_exists(self, emote_name, server_id):
+    async def check_emote_exists(self, emote_name, guild_id):
         """
         :param emote_name: The name of the emote to check existence for in the database.
         :return: True if the emote exists in the database, False otherwise.
         """
-        key = (emote_name, server_id)
+        key = (emote_name, guild_id)
         if key in self.cache:
             return self.cache[key]
 
-        query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1 AND server_id = $2)"
-        result = await self.fetch_query(query, emote_name, server_id)
+        query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1 AND guild_id = $2)"
+        result = await self.fetch_query(query, emote_name, guild_id)
         exists = await self.process_query_results(result)
 
         self.cache[key] = exists
         return exists
 
-    async def get_emote_names(self, server_id):
+    async def get_emote_names(self, guild_id):
         """
         Retrieve the names of emotes from the media table.
 
         :return: A list of emote names.
         """
-        query = "SELECT emote_name FROM emote.media WHERE server_id = $1"
-        result = await self.fetch_query(query, server_id)
+        query = "SELECT emote_name FROM emote.media WHERE guild_id = $1"
+        result = await self.fetch_query(query, guild_id)
         return self.format_names_from_results(result)
 
     async def format_names_from_results(self, results):
@@ -150,7 +150,7 @@ class Database:
             return []
         return [row[0] for row in results]
 
-    async def get_emote(self, emote_name, server_id, inc_count: bool = False) -> Emote | None:
+    async def get_emote(self, emote_name, guild_id, inc_count: bool = False) -> Emote | None:
         """
         Get emote from database.
 
@@ -166,13 +166,13 @@ class Database:
             fixed_dict['name'] = fixed_dict.pop('emote_name')
             return fixed_dict
 
-        query = "SELECT * FROM emote.media WHERE emote_name = $1 AND server_id = $2"
-        emote_rows = await self.fetch_query(query, emote_name, server_id)
+        query = "SELECT * FROM emote.media WHERE emote_name = $1 AND guild_id = $2"
+        emote_rows = await self.fetch_query(query, emote_name, guild_id)
         if not emote_rows:
             return None
 
         if inc_count:
-            update_query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1 AND server_id = $2"
-            await self.execute_query(update_query, emote_name, server_id)
+            update_query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1 AND guild_id = $2"
+            await self.execute_query(update_query, emote_name, guild_id)
 
         return Emote(**fix_emote_dict(emote_rows))
