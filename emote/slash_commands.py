@@ -199,12 +199,52 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    @emote.command(name="effects", description="List available effects")
-    async def list_effects(self, interaction: discord.Interaction):
-        available_effects = []
-        # Check each effect and only add it if the user has permission.
-        for effect_name, effect_data in self.EFFECTS_LIST.items():
-            perm = effect_data.get("perm", "everyone")
+    @emote.command(name="effect", description="Learn more about an effect")
+    @app_commands.describe(effect_name="Name of the effect to get details about")
+    async def effect(self, interaction: discord.Interaction, effect_name: str):
+        # Retrieve effect information from EFFECTS_LIST
+        effect_info = self.EFFECTS_LIST.get(effect_name.lower())
+        if not effect_info:
+            await interaction.response.send_message(f"Effect '{effect_name}' not found.", ephemeral=True)
+            return
+
+        # Check user's permission for the effect
+        perm = effect_info.get("perm", "everyone")
+        allowed = False
+        if perm == "owner":
+            allowed = await self.bot.is_owner(interaction.user)
+        elif perm == "mod":
+            allowed = interaction.user.guild_permissions.manage_messages
+        elif perm == "everyone":
+            allowed = True
+
+        if not allowed:
+            await interaction.response.send_message(
+                "You do not have permission to view details for this effect.",
+                ephemeral=True
+            )
+            return
+
+        # Retrieve the docstring from the effect function
+        effect_func = effect_info.get("func")
+        description = effect_func.__doc__ or "No description available."
+
+        embed = discord.Embed(
+            title=f"Effect: {effect_name.capitalize()}",
+            description=description,
+            colour=0xe44c3c
+        )
+        embed.set_author(
+            name="Emote Effects",
+            icon_url=interaction.client.user.display_avatar.url
+        )
+        await interaction.response.send_message(embed=embed, ephemeral=False)
+
+    @effect.autocomplete("effect_name")
+    async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
+        suggestions = []
+        for name, data in self.EFFECTS_LIST.items():
+            perm = data.get("perm", "everyone")
             allowed = False
             if perm == "owner":
                 allowed = await self.bot.is_owner(interaction.user)
@@ -213,20 +253,9 @@ class SlashCommands(commands.Cog):
             elif perm == "everyone":
                 allowed = True
 
-            if allowed:
-                available_effects.append(effect_name)
-
-        effects_list = ", ".join(available_effects)
-        embed = discord.Embed(
-            title="Available Effects",
-            colour=0xe44c3c
-        )
-        embed.add_field(name=f"Effects available for {interaction.user.display_name}", value=effects_list, inline=False)
-        embed.set_author(
-            name="Emote",
-            icon_url=interaction.client.user.display_avatar.url
-        )
-        await interaction.response.send_message(embed=embed, ephemeral=False)
+            if allowed and current.lower() in name.lower():
+                suggestions.append(app_commands.Choice(name=name, value=name))
+        return suggestions
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):

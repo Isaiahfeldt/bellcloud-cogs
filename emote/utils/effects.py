@@ -93,6 +93,15 @@ async def initialize(emote: Emote) -> Emote:
 
 
 async def latency(emote: Emote) -> Emote:
+    """
+    Toggles the latency measurement flag for subsequent processing.
+
+    Parameters:
+        emote (Emote): The emote object to pass through without modification.
+
+    Returns:
+        Emote: The same emote object after toggling the latency flag.
+    """
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
     return emote
@@ -163,10 +172,23 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
 
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
+    Flips the emote image data in the specified direction(s).
+
     Flips the emote's image using file_path extension for validation.
     Supports: jpg, jpeg, png, gif (based on file extension).
     Directions: "h" (horizontal), "v" (vertical), "hv/vh" (both).
     Errors stored in emote.errors['flip'].
+
+    Parameters:
+        emote (Emote): The emote object containing the image data to be flipped.
+        direction (str, optional): The direction to flip the image. Valid values are "h", "v", "hv", or "vh"
+            (default is "h"). "h" indicates horizontal, "v" indicates vertical, and "hv" or "vh" indicate both.
+
+    Returns:
+        Emote: The updated emote object with its image data flipped, or with an error recorded if the operation failed.
+
+    Raises:
+        ValueError: If the provided direction is not one of the accepted values.
     """
     if emote.img_data is None:
         emote.errors["flip"] = "No image data available"
