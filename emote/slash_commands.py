@@ -274,7 +274,18 @@ class SlashCommands(commands.Cog):
                 allowed = True
 
             if allowed and current.lower() in name.lower():
-                suggestions.append(app_commands.Choice(name=name, value=name))
+                # Extract first sentence of user documentation
+                doc = data['func'].__doc__ or ""
+                doc_lines = doc.splitlines()
+                user_doc = ""
+                for line in doc_lines:
+                    if line.strip().startswith("User:"):
+                        next_line = doc_lines[doc_lines.index(line) + 1].strip()
+                        user_doc = next_line.split('.')[0]
+                        break
+
+                display_name = f"{name} - {user_doc}" if user_doc else name
+                suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
     @commands.Cog.listener()
