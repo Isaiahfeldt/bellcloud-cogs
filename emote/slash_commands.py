@@ -205,7 +205,10 @@ class SlashCommands(commands.Cog):
         # Retrieve effect information from EFFECTS_LIST
         effect_info = self.EFFECTS_LIST.get(effect_name.lower())
         if not effect_info:
-            await interaction.response.send_message(f"Effect '{effect_name}' not found.", ephemeral=True)
+            await interaction.response.send_message(
+                f"Effect '{effect_name}' not found.",
+                ephemeral=True
+            )
             return
 
         # Check user's permission for the effect
@@ -225,9 +228,16 @@ class SlashCommands(commands.Cog):
             )
             return
 
-        # Retrieve the docstring from the effect function
+        # Retrieve and filter the docstring from the effect function
         effect_func = effect_info.get("func")
-        description = effect_func.__doc__ or "No description available."
+        raw_doc = effect_func.__doc__ or "No description available."
+        doc_lines = raw_doc.splitlines()
+        filtered_lines = []
+        for line in doc_lines:
+            if line.strip().startswith("Parameters:") or line.strip().startswith("Returns:"):
+                break  # Skip the Parameters and Returns section.
+            filtered_lines.append(line)
+        description = "\n".join(filtered_lines).strip() or "No description available."
 
         embed = discord.Embed(
             title=f"Effect: {effect_name.capitalize()}",
