@@ -135,12 +135,11 @@ class SlashCommands(commands.Cog):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 
+        # Upload to bucket
+
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
         )
-
-        # Does Emote name already exist in db?
-        # Upload to bucket
 
     @emote.command(name="remove", description="Remove an emote from the server")
     @app_commands.describe(name="The name of the emote to remove")
@@ -157,6 +156,8 @@ class SlashCommands(commands.Cog):
         if not await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
             return
+
+        # Remove emote from db
 
         await send_embed_followup(
             interaction, "Success!", f"Removed **{name}** as an emote."

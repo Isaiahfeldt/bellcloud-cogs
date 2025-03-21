@@ -15,8 +15,12 @@
 
 import os
 from collections import defaultdict
+from datetime import datetime
+from time import time
 
 import asyncpg
+import boto3
+import discord
 from cachetools import TTLCache
 
 from emote.utils.effects import Emote
@@ -29,7 +33,11 @@ class Database:
             "port": os.getenv('DB_PORT'),
             "database": os.getenv('DB_DATABASE'),
             "user": os.getenv('DB_USER'),
-            "password": os.getenv('DB_PASSWORD'),
+            "password": os.getenv('DB_PASSWORD')
+        }
+        self.BUCKET_PARAMS: dict[str, str | None] = {
+            "access_key_id": os.getenv('BK_ACCESS_KEY'),
+            "secret_access_key": os.getenv('BK_SECRET_KEY')
         }
         self.cache = TTLCache(
             maxsize=100,
@@ -108,6 +116,35 @@ class Database:
             self.emote_usage_collection.clear()  # Clear the staging area
         finally:
             pass
+
+    async def update_file_to_bucket(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
+        session = boto3.session.Session()
+        s3_client = session.client('s3',
+                                   region_name='nyc3',
+                                   endpoint_url='https://bkt-bellcloud.nyc3.digitaloceanspaces.com',
+                                   aws_access_key_id=self.BUCKET_PARAMS['access_key_id'],
+                                   aws_secret_access_key=self.BUCKET_PARAMS['secret_access_key']
+                                   )
+
+        pass
+
+    async def add_emote_to_database(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
+        timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
+
+        query = (
+            "INSERT INTO emote.media "
+            "(file_path, author_id, timestamp, original_url, emote_name, guild_id, usage_count) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        )
+        values = (f"{interaction.guild.id}/{name.lower()}.{file_type}",
+                  interaction.user.id,
+                  timestamp,
+                  url,
+                  name,
+                  interaction.guild.id,
+                  0)
+
+        await self.execute_query(query, *values)
 
     async def process_query_results(self, results):
         if not results:

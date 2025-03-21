@@ -72,9 +72,9 @@ async def send_error_embed(interaction, error_message):
     """
     # Make sure error_message has a value attribute
     if not hasattr(error_message, 'value'):
-        raise ValueError("Invalid error message object, must have a value attribute")
+        raise ValueError("Invalid error message object, must have a value attribute.")
 
-    embed = discord.Embed(title="Hmm, something went wrong",
+    embed = discord.Embed(title="Hmm, something went wrong.",
                           description=error_message.value,
                           colour=EmbedColor.RED.value)  # Changed usage of Enum
     embed.set_author(name="Emote Help Menu",
@@ -93,9 +93,9 @@ async def send_error_followup(interaction, error_message, emote=None):
     """
     # Make sure error_message has a value attribute
     if not hasattr(error_message, 'value'):
-        raise ValueError("Invalid error message object, must have a value attribute")
+        raise ValueError("Invalid error message object, must have a value attribute.")
 
-    embed = discord.Embed(title="Hmm, something went wrong",
+    embed = discord.Embed(title="Hmm, something went wrong.",
                           description=error_message.value,
                           colour=EmbedColor.RED.value)  # Changed usage of Enum
     embed.set_author(name="Emote Help Menu",
