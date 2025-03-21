@@ -19,7 +19,7 @@ from enum import Enum
 class EmbedColor(Enum):
     GREEN = 0x00ff00
     ORANGE = 0xd58907
-    RED = 0xff0000
+    RED = 0xe44c3c
 
 
 class EmoteAddError(Enum):
@@ -34,3 +34,9 @@ class EmoteAddError(Enum):
                            "webm, jpg, gif, and mp4.")
     DUPLICATE_EMOTE_NAME = "That emote name already exists."
     BLACKLISTED_URL = "The URL address is blacklisted, and cannot be used."
+
+
+class EmoteRemoveError(Enum):
+    GENERIC_ERROR = "Generic error has occurred."
+    INVALID_PERMISSION = "You do not have the required permissions to use this command."
+    NOTFOUND_EMOTE_NAME = "The emote name does not exist on this server."

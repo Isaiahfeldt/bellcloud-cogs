@@ -91,7 +91,6 @@ class SlashCommands(commands.Cog):
 
     EFFECTS_LIST = {
         "latency": {'func': latency, 'perm': 'mod'},
-        "latency2": {'func': latency, 'perm': 'mod'},
         "flip": {'func': flip, 'perm': 'everyone'},
         "debug": {'func': debug, 'perm': 'everyone'},
         "train": {'func': train, 'perm': 'everyone'},
@@ -153,6 +152,14 @@ class SlashCommands(commands.Cog):
         await send_help_embed(
             interaction, "Adding emote...",
             "Please wait while the emote is being added to the server."
+        )
+
+        if await db.check_emote_exists(name, interaction.guild_id):
+            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            return
+
+        await send_embed_followup(
+            interaction, "Success!", f"Removed **{name}** as an emote."
         )
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
@@ -252,7 +259,7 @@ class SlashCommands(commands.Cog):
         embed = discord.Embed(
             title=f"Effect: {effect_name.capitalize()}",
             description=description,
-            colour=0xe44c3c
+            colour=EmbedColor.RED.value
         )
         embed.set_author(
             name="Emote Effects",
