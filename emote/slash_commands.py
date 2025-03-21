@@ -26,7 +26,7 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote
 from .utils.database import Database
 from .utils.effects import latency, flip, debug, train
-from .utils.enums import EmoteAddError, EmoteRemoveError
+from .utils.enums import EmoteAddError, EmoteRemoveError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
