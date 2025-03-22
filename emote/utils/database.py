@@ -154,21 +154,11 @@ class Database:
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
 
         query = (
-            "INSERT INTO emote.media "
-            "(file_path, author_id, timestamp, original_url, emote_name, guild_id, usage_count) "
-            "VALUES ($1, $2, $3, $4, $5, $6, $7)"
-        )
-        values = (
-            f"{interaction.guild.id}/{name.lower()}.{file_type}",
-            interaction.user.id,
-            timestamp,
-            url,
-            name,
-            interaction.guild.id,
-            0
-        )
+        "INSERT INTO emote.media (file_path, author_id, timestamp, original_url, emote_name, guild_id, usage_count) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        (f"{interaction.guild.id}/{name.lower()}.{file_type}", interaction.user.id, timestamp, url, name,
+         interaction.guild.id, 0))
 
-        result = await self.execute_query(query, *values)
+        result = await self.execute_query(query)
 
         if result is not None:
             await self.update_file_to_bucket(interaction, name, url, file_type)
