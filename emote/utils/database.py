@@ -14,13 +14,17 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import os
+import shutil
+import tempfile
 from collections import defaultdict
 from datetime import datetime
 from time import time
 
 import asyncpg
 import boto3
+import botocore
 import discord
+import requests
 from cachetools import TTLCache
 
 from emote.utils.effects import Emote
@@ -126,7 +130,25 @@ class Database:
                                    aws_secret_access_key=self.BUCKET_PARAMS['secret_access_key']
                                    )
 
-        pass
+        res = requests.get(url, stream=True)
+        if res.status_code == 200:
+            with tempfile.TemporaryDirectory() as temp_dir:
+                file_path = os.path.join(temp_dir, f"{name.lower()}.{file_type}")
+                with open(file_path, 'wb') as f:
+                    shutil.copyfileobj(res.raw, f)
+
+        try:
+            if file_type == 'mp4':
+                s3_client.upload_file(file_path, 'emote', f'{interaction.guild.id}/{name.lower()}.{file_type}',
+                                      ExtraArgs={'ACL': 'public-read', 'ContentType': f'video/{file_type}'})
+                return True, None
+            else:
+                s3_client.upload_file(file_path, 'emote', f'{interaction.guild.id}/{name.lower()}.{file_type}',
+                                      ExtraArgs={'ACL': 'public-read', 'ContentType': f'image/{file_type}'})
+                return True, None
+
+        except botocore.exceptions.ClientError as e:
+            return False, e
 
     async def add_emote_to_database(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
@@ -134,15 +156,17 @@ class Database:
         query = (
             "INSERT INTO emote.media "
             "(file_path, author_id, timestamp, original_url, emote_name, guild_id, usage_count) "
-            "VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            "VALUES ($1, $2, $3, $4, $5, $6, $7)"
         )
-        values = (f"{interaction.guild.id}/{name.lower()}.{file_type}",
-                  interaction.user.id,
-                  timestamp,
-                  url,
-                  name,
-                  interaction.guild.id,
-                  0)
+        values = (
+            f"{interaction.guild.id}/{name.lower()}.{file_type}",
+            interaction.user.id,
+            timestamp,
+            url,
+            name,
+            interaction.guild.id,
+            0
+        )
 
         await self.execute_query(query, *values)
 
