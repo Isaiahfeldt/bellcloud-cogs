@@ -14,17 +14,16 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import os
-import shutil
 import tempfile
 from collections import defaultdict
 from datetime import datetime
 from time import time
 
+import aiohttp
 import asyncpg
 import boto3
 import botocore
 import discord
-import requests
 from cachetools import TTLCache
 
 from emote.utils.effects import Emote
@@ -130,12 +129,17 @@ class Database:
                                    aws_secret_access_key=self.BUCKET_PARAMS['secret_access_key']
                                    )
 
-        res = requests.get(url, stream=True)
-        if res.status_code == 200:
-            with tempfile.TemporaryDirectory() as temp_dir:
-                file_path = os.path.join(temp_dir, f"{name.lower()}.{file_type}")
-                with open(file_path, 'wb') as f:
-                    shutil.copyfileobj(res.raw, f)
+        temp_dir = tempfile.mkdtemp()
+        file_path = os.path.join(temp_dir, f"{name}.{file_type}")
+
+        # Download the file from the URL
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    with open(file_path, "wb") as f:
+                        f.write(await response.read())
+                else:
+                    raise FileNotFoundError(f"Failed to download {url}")
 
         try:
             if file_type == 'mp4':

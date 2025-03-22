@@ -13,6 +13,7 @@
   "requirements": [
     "requests",
     "asyncpg",
+    "aiohttp",
     "boto3",
     "psycopg2-binary",
     "cachetools",
