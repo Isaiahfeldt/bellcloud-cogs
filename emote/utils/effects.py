@@ -139,7 +139,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     notes["timestamp"] = emote.timestamp
     notes["original_url"] = emote.original_url
     notes["guild_id"] = emote.guild_id
-    notes["usage_count"] = str(emote.usage_count)
+    notes["usage_count"] = str(emote.usage_count + 1)
 
     emote.notes["debug_mode"] = mode
 
