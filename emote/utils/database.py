@@ -64,14 +64,15 @@ class Database:
             return result
 
     async def fetch_query(self, query, *args):
+        """Use the pool to fetch query results."""
         if self.pool is None:
             raise Exception("Pool not initialized. Call init_pool() first.")
-        key = (query, args)  # include query in the cache key
-        if key in self.cache:
-            return self.cache[key]
+        # Check cache first
+        if args in self.cache:
+            return self.cache[args]
         async with self.pool.acquire() as conn:
             result = await conn.fetch(query, *args)
-            self.cache[key] = result
+            self.cache[args] = result
             return result
 
     async def update_file_to_bucket(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
@@ -140,7 +141,7 @@ class Database:
                 return False, error
 
     async def remove_emote_from_database(self, interaction: discord.Interaction, name: str):
-        emote: Optional[Emote] = await self.get_emote(name, interaction.guild.id)
+        emote: Optional[Emote] = await self.get_emote(name, interaction.guild.id, False)
 
         query = (
             "DELETE FROM emote.media "
