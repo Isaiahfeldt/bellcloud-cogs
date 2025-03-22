@@ -40,6 +40,14 @@ class Database:
         """
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
 
+    async def close_pool(self):
+        """
+            Close the asyncpg connection pool.
+        """
+        if self.pool is not None:
+            await self.pool.close()
+            self.pool = None
+
     async def execute_query(self, query, *args):
         """
             Use the connection pool to execute a query.
