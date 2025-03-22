@@ -244,12 +244,8 @@ class Database:
             return None
 
         if inc_count:
-            from emote.slash_commands import SlashCommands
-            if SlashCommands.was_cached:
-                key = (emote_name, guild_id)
-                self.emote_usage_collection[key] = self.emote_usage_collection.get(key, 0) + 1
-            else:
-                update_query = "UPDATE emote.media SET usage_count = usage_count + 1 WHERE emote_name = $1 AND guild_id = $2"
-                await self.execute_query(update_query, emote_name, guild_id)
+            # Instead of executing an update query, increment the in‑memory usage count.
+            key = (emote_name, guild_id)
+            self.emote_usage_collection[key] = self.emote_usage_collection.get(key, -1) + 1
 
         return Emote(**fix_emote_dict(emote_rows))
