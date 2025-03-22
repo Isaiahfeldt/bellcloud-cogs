@@ -124,7 +124,8 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
         Returns:
             Emote: The same emote object with debug information added.
     """
-    from emote.slash_commands import SlashCommands
+    from emote.slash_commands import SlashCommands, db
+
     SlashCommands.debug_enabled = True
     emote.notes["was_cached"] = SlashCommands.was_cached
 
@@ -139,6 +140,11 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     notes["original_url"] = emote.original_url
     notes["guild_id"] = emote.guild_id
     notes["usage_count"] = str(emote.usage_count)
+
+    # Add the current in-memory usage count from the emote_usage_collection.
+    key = (emote.name, emote.guild_id)
+    in_memory_usage = db.emote_usage_collection.get(key, 0)
+    notes["in_memory_usage_count"] = str(in_memory_usage)
 
     emote.notes["debug_mode"] = mode
 
