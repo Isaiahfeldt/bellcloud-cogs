@@ -56,5 +56,13 @@ class Emotes(
         # )
         # self.bot.tree.add_command(self.add_as_emote)
 
+    def cog_load(self):
+        SlashCommands.db.init_pool()
+        print("Pool initialized")
+
+    def cog_unload(self):
+        SlashCommands.db.close_pool()
+        print("Pool closed")
+
     # async def cog_unload(self) -> None:
     #     self.bot.tree.remove_command(self.add_as_emote, type=AppCommandType.message)
