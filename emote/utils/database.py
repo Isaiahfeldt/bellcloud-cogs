@@ -168,7 +168,10 @@ class Database:
             0
         )
 
-        await self.execute_query(query, *values)
+        result = await self.execute_query(query, *values)
+
+        if result is not None:
+            await self.update_file_to_bucket(interaction, name, url, file_type)
 
     async def process_query_results(self, results):
         if not results:
