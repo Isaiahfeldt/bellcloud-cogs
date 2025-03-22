@@ -2,6 +2,7 @@
 import os
 import tempfile
 from datetime import datetime, timezone
+from typing import Optional
 
 import aiohttp
 import asyncpg
@@ -33,6 +34,15 @@ class Database:
         )
         # Connection pool (will be initialized via async call)
         self.pool: asyncpg.Pool | None = None
+
+        session = boto3.session.Session()
+        s3_client = session.client(
+            's3',
+            region_name='nyc3',
+            endpoint_url='https://bkt-bellcloud.nyc3.digitaloceanspaces.com',
+            aws_access_key_id=self.BUCKET_PARAMS['access_key_id'],
+            aws_secret_access_key=self.BUCKET_PARAMS['secret_access_key']
+        )
 
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
@@ -66,15 +76,6 @@ class Database:
             return result
 
     async def update_file_to_bucket(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
-        session = boto3.session.Session()
-        s3_client = session.client(
-            's3',
-            region_name='nyc3',
-            endpoint_url='https://bkt-bellcloud.nyc3.digitaloceanspaces.com',
-            aws_access_key_id=self.BUCKET_PARAMS['access_key_id'],
-            aws_secret_access_key=self.BUCKET_PARAMS['secret_access_key']
-        )
-
         temp_dir = tempfile.mkdtemp()
         file_path = os.path.join(temp_dir, f"{name}.{file_type}")
 
@@ -88,7 +89,7 @@ class Database:
 
         try:
             if file_type == 'mp4':
-                s3_client.upload_file(
+                self.s3_client.upload_file(
                     file_path,
                     'emote',
                     f"{interaction.guild.id}/{name.lower()}.{file_type}",
@@ -96,7 +97,7 @@ class Database:
                 )
                 return True, None
             else:
-                s3_client.upload_file(
+                self.s3_client.upload_file(
                     file_path,
                     'emote',
                     f"{interaction.guild.id}/{name.lower()}.{file_type}",
@@ -106,6 +107,13 @@ class Database:
 
         except botocore.exceptions.ClientError as e:
             return False, e
+
+    async def remove_file_from_bucket(self, emote: Emote):
+        if emote is not None:
+            self.s3_client.delete_object(Bucket='emote', Key=emote.file_path)
+            return True, None
+
+        return False, None
 
     async def add_emote_to_database(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
         timestamp = datetime.now(timezone.utc)
@@ -132,9 +140,26 @@ class Database:
             else:
                 return False, error
 
-    async def remove_emote_from_database(self, interaction: discord.Interaction, name: str, url: str):
+    async def remove_emote_from_database(self, interaction: discord.Interaction, name: str):
+        emote: Optional[Emote] = await self.get_emote(name, interaction.guild.id)
 
-        return False, None
+        query = (
+            "DELETE FROM emote.media "
+            "(emote_name, guild_id) "
+            "VALUES ($1, $2)"
+        )
+        values = (
+            name,
+            interaction.guild.id
+        )
+
+        result = await self.execute_query(query, *values)
+        if result is not None:
+            success, error = await self.remove_file_from_bucket(emote)
+            if success:
+                return True, None
+            else:
+                return False, error
 
     async def process_query_results(self, results):
         if not results:
@@ -150,13 +175,10 @@ class Database:
         result = await self.fetch_query(query, emote_name, guild_id)
         exists = await self.process_query_results(result)
         self.cache[key] = exists
-        print(result)
         return exists
 
     async def get_emote_names(self, guild_id):
-        """
-            Retrieve emote names from the database.
-        """
+        """Retrieve emote names from the database."""
         query = "SELECT emote_name FROM emote.media WHERE guild_id = $1"
         result = await self.fetch_query(query, guild_id)
         return await self.format_names_from_results(result)
@@ -167,9 +189,7 @@ class Database:
         return [row[0] for row in results]
 
     async def get_emote(self, emote_name, guild_id, inc_count: bool = False) -> Emote | None:
-        """
-            Get emote from database and optionally increment its usage count.
-        """
+        """Get emote from database and optionally increment its usage count."""
 
         def fix_emote_dict(emote_dict: dict) -> dict:
             fixed_dict = dict(emote_dict[0])
