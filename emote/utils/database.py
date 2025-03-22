@@ -175,7 +175,11 @@ class Database:
         result = await self.execute_query(query, *values)
 
         if result is not None:
-            await self.update_file_to_bucket(interaction, name, url, file_type)
+            success, error = await self.update_file_to_bucket(interaction, name, url, file_type)
+            if success:
+                return True, None
+            else:
+                return False, error
 
     async def process_query_results(self, results):
         if not results:
