@@ -35,23 +35,17 @@ class Database:
         self.pool: asyncpg.Pool | None = None
 
     async def init_pool(self):
-        """
-            Initialize the asyncpg connection pool.
-        """
+        """Initialize the asyncpg connection pool."""
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
 
     async def close_pool(self):
-        """
-            Close the asyncpg connection pool.
-        """
+        """Close the asyncpg connection pool."""
         if self.pool is not None:
             await self.pool.close()
             self.pool = None
 
     async def execute_query(self, query, *args):
-        """
-            Use the connection pool to execute a query.
-        """
+        """Use the connection pool to execute a query."""
         if self.pool is None:
             raise Exception("Pool not initialized. Call init_pool() first.")
         async with self.pool.acquire() as conn:
@@ -60,9 +54,7 @@ class Database:
             return result
 
     async def fetch_query(self, query, *args):
-        """
-            Use the pool to fetch query results.
-        """
+        """Use the pool to fetch query results."""
         if self.pool is None:
             raise Exception("Pool not initialized. Call init_pool() first.")
         # Check cache first
@@ -140,15 +132,17 @@ class Database:
             else:
                 return False, error
 
+    async def remove_emote_from_database(self, interaction: discord.Interaction, name: str, url: str):
+
+        return False, None
+
     async def process_query_results(self, results):
         if not results:
             return False
         return results[0]['exists']
 
     async def check_emote_exists(self, emote_name, guild_id):
-        """
-            Check for the existence of an emote in the database.
-        """
+        """Check for the existence of an emote in the database."""
         key = (emote_name, guild_id)
         if key in self.cache:
             return self.cache[key]
@@ -156,6 +150,7 @@ class Database:
         result = await self.fetch_query(query, emote_name, guild_id)
         exists = await self.process_query_results(result)
         self.cache[key] = exists
+        print(result)
         return exists
 
     async def get_emote_names(self, guild_id):

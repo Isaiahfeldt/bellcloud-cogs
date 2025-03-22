@@ -155,8 +155,8 @@ class SlashCommands(commands.Cog):
             return
 
         await send_help_embed(
-            interaction, "Adding emote...",
-            "Please wait while the emote is being added to the server."
+            interaction, "Removing emote...",
+            "Please wait while the emote is being removed from the server."
         )
 
         if not await db.check_emote_exists(name, interaction.guild_id):
@@ -164,6 +164,11 @@ class SlashCommands(commands.Cog):
             return
 
         # Remove emote from db
+        success, error = await db.remove_emote_from_database(interaction, name, url)
+
+        if not success:
+            await send_error_followup(interaction, error)
+            return
 
         await send_embed_followup(
             interaction, "Success!", f"Removed **{name}** as an emote."
