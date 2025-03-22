@@ -140,9 +140,9 @@ class SlashCommands(commands.Cog):
         # success, error = await Database.add_emote_to_database(name, interaction.guild.id,
         #                                                       is_media_format_valid(url, valid_formats)[1])
 
-        if not success:
-            await send_error_followup(interaction, error)
-            return
+        # if not success:
+        #     await send_error_followup(interaction, error)
+        #     return
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{is_media_format_valid(url, valid_formats)[1]}** as an emote."
