@@ -39,4 +39,4 @@ class EmoteAddError(Enum):
 class EmoteRemoveError(Enum):
     GENERIC_ERROR = "Generic error has occurred."
     INVALID_PERMISSION = "You do not have the required permissions to use this command."
-    NOTFOUND_EMOTE_NAME = "The emote name does not exist on this server."
+    NOTFOUND_EMOTE_NAME = "The emote name not exist on this server."
