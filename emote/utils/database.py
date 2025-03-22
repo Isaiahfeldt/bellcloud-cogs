@@ -246,6 +246,7 @@ class Database:
         if inc_count:
             # Instead of executing an update query, increment the in‑memory usage count.
             key = (emote_name, guild_id)
+            # Start at -1 to account for the initial increment
             self.emote_usage_collection[key] = self.emote_usage_collection.get(key, -1) + 1
 
         return Emote(**fix_emote_dict(emote_rows))
