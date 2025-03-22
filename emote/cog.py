@@ -56,14 +56,14 @@ class Emotes(
         # )
         # self.bot.tree.add_command(self.add_as_emote)
 
-    def cog_load(self):
+    async def cog_load(self):
         from emote.slash_commands import db
-        db.init_pool()
+        await db.init_pool()
         print("Pool initialized")
 
-    def cog_unload(self):
+    async def cog_unload(self):
         from emote.slash_commands import db
-        db.close_pool()
+        await db.close_pool()
         print("Pool closed")
 
     # async def cog_unload(self) -> None:
