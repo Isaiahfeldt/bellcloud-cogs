@@ -159,7 +159,7 @@ class SlashCommands(commands.Cog):
             "Please wait while the emote is being removed from the server."
         )
 
-        if not await db.check_emote_exists(name, interaction.guild_id)[0]:
+        if not await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
             return
 
