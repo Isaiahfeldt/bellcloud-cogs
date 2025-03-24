@@ -14,8 +14,10 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import io
+from datetime import datetime, timedelta, timezone
 
 import discord
+import jwt
 
 from emote.utils.effects import Emote
 from emote.utils.enums import EmbedColor
@@ -122,6 +124,23 @@ async def send_debug_embed(message, emote):
         debug_embed.add_field(name=f"Issues: {issue_key}", value=issue_value, inline=False)
 
     await message.channel.send(embed=debug_embed)
+
+
+async def generate_token(interaction: discord.Interaction):
+    expiration = datetime.now(timezone.utc) + timedelta(days=1)
+    server_id = interaction.guild_id
+
+    # Create a simple JWT payload.
+    payload = {
+        "server_id": str(server_id),
+        "iat": datetime.now(timezone.utc),
+        "exp": expiration,
+    }
+
+    JWT_SECRET = "yammychocolatecake"
+    # Generate the JWT. (HS256 is a symmetric algorithm that keeps the token compact.)
+    token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
+    return token
 
 
 async def send_reload(self, message: discord.Message):

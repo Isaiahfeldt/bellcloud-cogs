@@ -13,20 +13,19 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
-from datetime import datetime, timedelta, timezone
 
 import discord
-import jwt
 from discord import app_commands
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote
+from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote, \
+    generate_token
 from .utils.database import Database
 from .utils.effects import latency, flip, debug, train
-from .utils.enums import EmoteAddError, EmoteRemoveError, EmbedColor
+from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
@@ -174,28 +173,23 @@ class SlashCommands(commands.Cog):
             interaction, "Success!", f"Removed **{name}** as an emote."
         )
 
+    @emote.command(name="list", description="List all emotes in the server")
+    async def emote_list(self, interaction: discord.Interaction):
+        emote_names = await db.get_emote_names(interaction.guild_id)
+        if not emote_names:
+            await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
+            return
+
+        emote_list = "\n".join(emote_names)
+        await interaction.response.send_message(emote_list)
+
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
     async def emote_website(self, interaction: discord.Interaction):
-        # Set token expiration (15 minutes from now)
-        expiration = datetime.now(timezone.utc) + timedelta(days=1)
-        server_id = interaction.guild_id
+        token = generate_token(interaction)
 
-        # Create a simple JWT payload.
-        payload = {
-            "server_id": str(server_id),
-            "iat": datetime.now(timezone.utc),
-            "exp": expiration,
-        }
-
-        JWT_SECRET = "yammychocolatecake"
-        # Generate the JWT. (HS256 is a symmetric algorithm that keeps the token compact.)
-        token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
-
-        # Construct the secure URL that includes the token.
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
         secure_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
-        # Respond to the interaction with the secure link.
         await interaction.response.send_message(f"Here is your secure link: {secure_url}")
 
     @emote.command(name="show_cache", description="Show current cache state")
