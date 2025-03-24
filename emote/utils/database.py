@@ -36,7 +36,7 @@ class Database:
         self.pool: asyncpg.Pool | None = None
 
         session = boto3.session.Session()
-        s3_client = session.client(
+        self.s3_client = session.client(
             's3',
             region_name='nyc3',
             endpoint_url='https://bkt-bellcloud.nyc3.digitaloceanspaces.com',
