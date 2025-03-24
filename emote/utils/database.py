@@ -141,25 +141,25 @@ class Database:
                 return False, error
 
     async def remove_emote_from_database(self, interaction: discord.Interaction, name: str):
-        emote: Optional[Emote] = await self.get_emote(name, interaction.guild.id, False)
+        emote: Optional[Emote] = await self.get_emote(str(name), interaction.guild.id, False)
         return emote
-        # query = (
-        #     "DELETE FROM emote.media "
-        #     "(emote_name, guild_id) "
-        #     "VALUES ($1, $2)"
-        # )
-        # values = (
-        #     name,
-        #     interaction.guild.id
-        # )
-        #
-        # result = await self.execute_query(query, *values)
-        # if result is not None:
-        #     success, error = await self.remove_file_from_bucket(emote)
-        #     if success:
-        #         return True, None
-        #     else:
-        #         return False, error
+        query = (
+            "DELETE FROM emote.media "
+            "(emote_name, guild_id) "
+            "VALUES ($1, $2)"
+        )
+        values = (
+            name,
+            interaction.guild.id
+        )
+
+        result = await self.execute_query(query, *values)
+        if result is not None:
+            success, error = await self.remove_file_from_bucket(emote)
+            if success:
+                return True, None
+            else:
+                return False, error
 
     async def process_query_results(self, results):
         if not results:

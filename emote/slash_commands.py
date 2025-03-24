@@ -164,14 +164,14 @@ class SlashCommands(commands.Cog):
             return
 
         # Remove emote from db
-        # success, error = await db.remove_emote_from_database(interaction, name)
-        emote = await db.remove_emote_from_database(interaction, name)
+        success, error = await db.remove_emote_from_database(interaction, name)
+
         if not success:
             await send_error_followup(interaction, error)
             return
 
         await send_embed_followup(
-            interaction, "Success!", f"Removed **{emote.file_path}** as an emote."
+            interaction, "Success!", f"Removed **{name}** as an emote."
         )
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
