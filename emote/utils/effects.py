@@ -279,7 +279,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 emote.notes["movie: tmp_ouput_path"] = out_path
 
-                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
+                clip.write_videofile(out_path, codec="libx264", audio_codec="aac")
 
                 # Read processed video
                 with open(out_path, "rb") as f:
