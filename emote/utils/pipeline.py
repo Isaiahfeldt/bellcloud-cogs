@@ -93,12 +93,39 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
                 return await func(emote, *args)
             except TypeError as e:
                 if "positional arguments" in str(e):
-                    emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
+                    emote.errors[f"{_effect_name}_effect"] = {
+                        'type': 'TooManyArguments',
+                        'message': str(e),
+                        'args_received': len(args),
+                        'args_expected': str(e).split('takes ')[1].split(' ')[0] if 'takes ' in str(e) else 'unknown'
+                    }
                 else:
-                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
+                    emote.errors[f"{_effect_name}_effect"] = {
+                        'type': 'InvalidArguments',
+                        'message': str(e),
+                        'args_provided': str(args)
+                    }
+                return emote
+            except ValueError as e:
+                emote.errors[f"{_effect_name}_effect"] = {
+                    'type': 'ValueError',
+                    'message': str(e),
+                    'args_provided': str(args)
+                }
+                return emote
+            except AttributeError as e:
+                emote.errors[f"{_effect_name}_effect"] = {
+                    'type': 'AttributeError',
+                    'message': str(e),
+                    'object_type': str(type(emote))
+                }
                 return emote
             except Exception as e:
-                emote.errors[f"{_effect_name}_effect"] = str(e)
+                emote.errors[f"{_effect_name}_effect"] = {
+                    'type': e.__class__.__name__,
+                    'message': str(e),
+                    'traceback': __import__('traceback').format_exc()
+                }
                 return emote
 
         pipeline.append(effect_wrapper)
