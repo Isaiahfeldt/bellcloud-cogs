@@ -270,8 +270,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 save_all=True,
                 append_images=frames[1:],
                 loop=0,
-                duration=img.info.get('duration', 100),
-                disposal=2
+                duration=img.info['duration'],
+                disposal=img.info.get('disposal', 0)
             )
             emote.img_data = output_buffer.getvalue()
 
