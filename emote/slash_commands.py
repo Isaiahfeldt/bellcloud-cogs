@@ -72,7 +72,8 @@ async def get_emote_and_verify(emote_name_str: str, channel):
 
         if matches:
             best_match = matches[0][0]
-
+            await channel.send(f"{matches[0]}")
+            await channel.send(f"{matches[0][0]}")
             await channel.send(f"Emote '{emote_name}' not found. Did you mean '{best_match}'?",
                                delete_after=10)
     return emote
