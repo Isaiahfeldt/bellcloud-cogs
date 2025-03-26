@@ -60,7 +60,7 @@ async def get_emote_and_verify(emote_name_str: str, channel):
         valid_names = await db.get_emote_names()
 
         matches = process.extractBests(
-            emote_name,
+            emote_name_str,
             valid_names,
             scorer=fuzz.token_sort_ratio,
             score_cutoff=70
