@@ -263,7 +263,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 emote.notes["movie: temp_dir"] = temp_dir
                 emote.notes["movie: tmp_input_path"] = tmp_clip
-                emote.notes["movie: data_length"] = f"{len(tmp_clip)} bytes"
 
                 # Process video
                 clip = VideoFileClip(tmp_clip)
@@ -274,6 +273,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
+                emote.notes["movie: tmp_ouput_path"] = out_path
+
                 clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
                 emote.notes["out_path"] = out_path
