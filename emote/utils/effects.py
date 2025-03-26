@@ -268,7 +268,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 clip = clip.with_effects([MirrorY()])  # Changed this line
             # Write the flipped video to another temporary file
             out_filename = tmp_filename + "_flipped.mp4"
-            clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", verbose=False, logger=None)
+            clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", logger=None)
 
             # Read the flipped video into memory
             with open(out_filename, "rb") as f:
