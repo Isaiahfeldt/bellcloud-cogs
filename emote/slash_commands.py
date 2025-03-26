@@ -13,6 +13,7 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import time
+from textwrap import wrap
 
 import discord
 from discord import app_commands
