@@ -164,9 +164,14 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
 
         User:
             Creates multiple copies of the emote in a row. You can specify a
-            number between 1 and 6 to control how many copies appear.
+            number between 1-6 to control how many copies appear.
 
             Default is 3 if no number is provided.
+
+            Usage:
+            `:aspire_train:` - Creates 3 copies of the emote.
+            `:aspire_train(5):` - Creates 5 copies of the emote.
+
 
         Parameters:
             emote (Emote): The emote object to be trained.
@@ -207,6 +212,11 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         or both ways (hv). Works with static images and animated GIFs.
 
         Default is horizontal flip if no direction is specified.
+
+        Usage:
+        `:aspire_flip:` - Flips the emote horizontally.
+        `:aspire_flip(v):` - Flips the emote vertically.
+        `:aspire_flip(hv):` - Flips the emote both horizontally and vertically.
 
     Parameters:
         emote (Emote): The emote object containing the image data to be flipped.
