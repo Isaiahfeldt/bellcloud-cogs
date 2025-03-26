@@ -270,7 +270,10 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
                     clip = clip.with_effects([MirrorY()])
+
+                duration = clip.duration
                 clip = clip.with_effects([TimeMirror()])
+                clip = clip.subclip(0, duration)  # Ensure we stay within valid time range
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
