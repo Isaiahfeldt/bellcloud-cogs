@@ -87,45 +87,20 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             emote.issues[f"{effect_name}_effect"] = "PermissionDenied"
             continue
 
-        # Create a wrapper that passes any arguments, and capture the effect_name
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect['func'], args=effect_args):
+            import traceback
             try:
                 return await func(emote, *args)
             except TypeError as e:
+                line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
                 if "positional arguments" in str(e):
-                    emote.errors[f"{_effect_name}_effect"] = {
-                        'type': 'TooManyArguments',
-                        'message': str(e),
-                        'args_received': len(args),
-                        'args_expected': str(e).split('takes ')[1].split(' ')[0] if 'takes ' in str(e) else 'unknown'
-                    }
+                    emote.errors[f"{_effect_name}_effect"] = f"TooManyArguments at line {line_number}"
                 else:
-                    emote.errors[f"{_effect_name}_effect"] = {
-                        'type': 'InvalidArguments',
-                        'message': str(e),
-                        'args_provided': str(args)
-                    }
-                return emote
-            except ValueError as e:
-                emote.errors[f"{_effect_name}_effect"] = {
-                    'type': 'ValueError',
-                    'message': str(e),
-                    'args_provided': str(args)
-                }
-                return emote
-            except AttributeError as e:
-                emote.errors[f"{_effect_name}_effect"] = {
-                    'type': 'AttributeError',
-                    'message': str(e),
-                    'object_type': str(type(emote))
-                }
+                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments at line {line_number}: {str(e)}"
                 return emote
             except Exception as e:
-                emote.errors[f"{_effect_name}_effect"] = {
-                    'type': e.__class__.__name__,
-                    'message': str(e),
-                    'traceback': __import__('traceback').format_exc()
-                }
+                line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
+                emote.errors[f"{_effect_name}_effect"] = f"{str(e)} at line {line_number}"
                 return emote
 
         pipeline.append(effect_wrapper)

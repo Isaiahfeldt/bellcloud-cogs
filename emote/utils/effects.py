@@ -283,10 +283,21 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     emote.img_data = f.read()
 
 
+
         except Exception as err:
             import traceback
-            line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
-            emote.errors["flip"] = f"Error flipping mp4: {err} at line {line_number}"
+            trace = traceback.extract_tb(err.__traceback__)
+            last_frame = trace[-1]
+            error_details = {
+                'type': err.__class__.__name__,
+                'message': str(err),
+                'file': last_frame.filename,
+                'line': last_frame.lineno,
+                'function': last_frame.name,
+                'code': last_frame.line,
+                'traceback': traceback.format_exc().split('\n')[-2]
+            }
+            emote.errors["flip"] = error_details
             return emote
 
         return emote
