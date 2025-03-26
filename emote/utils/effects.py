@@ -257,7 +257,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
             with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
                 # Write input file
-                tmp_clip = os.path.join(temp_dir, "input.mp4")
+                tmp_clip = os.path.join(temp_dir, "input.mp4")  # Starts off empty
                 with open(tmp_clip, "wb") as f:
                     f.write(emote.img_data)
 
@@ -271,6 +271,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
                     clip = clip.with_effects([MirrorY()])
+
+                emote.notes["clip: data_length"] = f"{len(clip)} bytes"
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
