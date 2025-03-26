@@ -17,8 +17,6 @@ from datetime import datetime
 from typing import Optional, Dict
 
 import aiohttp
-import moviepy
-import os
 
 
 @dataclass
@@ -252,8 +250,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
-        # Process animated GIFs
-        if file_ext == 'gif' and img.is_animated:
+        # Process animated images (GIF and animated WebP)
+        if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
             frames = []
             for frame in range(img.n_frames):
                 img.seek(frame)
@@ -264,49 +262,17 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
                 frames.append(frame_img)
 
-            # Save GIF with original metadata
             output_buffer = io.BytesIO()
+            save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
             frames[0].save(
                 output_buffer,
-                format='GIF',
+                format="WEBP",
                 save_all=True,
                 append_images=frames[1:],
-                loop=0,
-                duration=img.info['duration'],
-                disposal=2
+                loop=img.info.get('loop', 0),
+                duration=img.info.get('duration', 100)
             )
             emote.img_data = output_buffer.getvalue()
-        elif file_ext == 'webm':
-            try:
-                from moviepy.editor import VideoFileClip, vfx
-                temp_in = tempfile.NamedTemporaryFile(suffix=".webm", delete=False)
-                temp_out = tempfile.NamedTemporaryFile(suffix=".webm", delete=False)
-
-                with open(temp_in.name, 'wb') as f:
-                    f.write(emote.img_data)
-
-                clip = VideoFileClip(temp_in.name)
-                if 'h' in direction and 'v' in direction:
-                    flipped_clip = clip.fx(vfx.mirror_x).fx(vfx.mirror_y)
-                elif 'h' in direction:
-                    flipped_clip = clip.fx(vfx.mirror_x)
-                elif 'v' in direction:
-                    flipped_clip = clip.fx(vfx.mirror_y)
-                else:
-                    flipped_clip = clip
-
-                flipped_clip.write_videofile(temp_out.name, codec="libvpx-vp9", audio=False, verbose=False, logger=None)
-                with open(temp_out.name, 'rb') as f:
-                    emote.img_data = f.read()
-
-                temp_in.close();
-                os.unlink(temp_in.name)
-                temp_out.close();
-                os.unlink(temp_out.name)
-                return emote
-            except Exception as err:
-                emote.errors["flip"] = f"Error flipping webm: {err}"
-                return emote
 
         # Process static images
         else:
@@ -316,7 +282,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 img = img.transpose(Image.FLIP_TOP_BOTTOM)
 
             output_buffer = io.BytesIO()
-            img.save(output_buffer, format=file_ext)
+            img.save(output_buffer, format=file_ext.upper())
             emote.img_data = output_buffer.getvalue()
 
     return emote
