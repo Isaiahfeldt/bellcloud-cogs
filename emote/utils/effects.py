@@ -273,9 +273,13 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
+                out_dir = os.path.dirname(out_path)
+                os.makedirs(out_dir, exist_ok=True)
+                os.chmod(out_dir, 0o777)  # Give full permissions
+
                 emote.notes["movie: tmp_ouput_path"] = out_path
 
-                clip.write_videofile(out_path, codec="libx264", logger=None)
+                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
                 # Read processed video
                 with open(out_path, "rb") as f:
