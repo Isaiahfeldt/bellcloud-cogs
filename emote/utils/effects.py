@@ -261,9 +261,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 with open(tmp_clip, "wb") as f:
                     f.write(emote.img_data)
 
-                emote.notes["movie: temp_dir"] = temp_dir
-                emote.notes["movie: tmp_input_path"] = tmp_clip
-
                 # Process video
                 clip = VideoFileClip(tmp_clip)
                 if 'h' in direction:
@@ -273,7 +270,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 duration = clip.duration
                 clip = clip.with_effects([TimeMirror()])
-                clip = clip.subclip(0, duration)  # Ensure we stay within valid time range
+                clip = clip.subclipped(0, duration)  # Ensure we stay within valid time range
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
