@@ -18,6 +18,7 @@
     "psycopg2-binary",
     "cachetools",
     "pillow",
+    "fuzzywuzzy",
     "PyJWT"
   ],
   "type": "COG",
