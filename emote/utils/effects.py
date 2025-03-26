@@ -251,34 +251,29 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
     # Process mp4 video files
     if file_ext == 'mp4':
-        try:
-            from moviepy import VideoFileClip
-            from moviepy.video.fx import MirrorX, MirrorY
+        from moviepy import VideoFileClip
+        from moviepy.video.fx import MirrorX, MirrorY
 
-            with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
-                # Write input file
-                tmp_input_path = os.path.join(temp_dir, "input.mp4")
-                with open(tmp_input_path, "wb") as tmp_input:
-                    tmp_input.write(emote.img_data)
+        with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
+            # Write input file
+            tmp_input_path = os.path.join(temp_dir, "input.mp4")
+            with open(tmp_input_path, "wb") as tmp_input:
+                tmp_input.write(emote.img_data)
 
-                # Process video
-                clip = VideoFileClip(tmp_input_path)
-                if 'h' in direction:
-                    clip = clip.with_effects([MirrorX()])
-                if 'v' in direction:
-                    clip = clip.with_effects([MirrorY()])
+            # Process video
+            clip = VideoFileClip(tmp_input_path)
+            if 'h' in direction:
+                clip = clip.with_effects([MirrorX()])
+            if 'v' in direction:
+                clip = clip.with_effects([MirrorY()])
 
-                # Write output file
-                out_path = os.path.join(temp_dir, "output.mp4")
-                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
+            # Write output file
+            out_path = os.path.join(temp_dir, "output.mp4")
+            clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
-                # Read processed video
-                with open(out_path, "rb") as f:
-                    emote.img_data = f.read()
-
-        except Exception as err:
-            emote.errors["flip"] = f"Error flipping mp4: {err}"
-            return emote
+            # Read processed video
+            with open(out_path, "rb") as f:
+                emote.img_data = f.read()
 
         return emote
 
