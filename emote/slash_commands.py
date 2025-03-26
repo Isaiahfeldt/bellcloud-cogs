@@ -195,8 +195,32 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
             return
 
+        embeds = []
+        max_characters = 1000 - len("Emotes: ")
+        embed = discord.Embed(color=EmbedColor.GREEN.value)
+
+        field_count = 0
         emote_list = ", ".join(emote_names)
+        chunks = wrap(emote_list_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
+
+        for i, chunk in enumerate(chunks):
+            embed.add_field(name="Emotes:" if i == 0 else "\u200b", value=chunk, inline=False)
+            field_count += 1
+
+        embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url)
+        embeds.append(embed)
+
+        url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
+                                       url="https://bellbot.xyz/")
+
+        view = discord.ui.View()
+        view.add_item(url_button)
+
         await interaction.response.send_message(emote_list)
+
+        for i, embed in enumerate(embeds):
+            ephemeral = False if field_count <= 3 else True
+            await interaction.response.send_message(embed=embed, ephemeral=ephemeral, view=view)
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
     async def emote_website(self, interaction: discord.Interaction):
