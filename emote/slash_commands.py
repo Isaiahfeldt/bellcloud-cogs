@@ -67,7 +67,7 @@ async def get_emote_and_verify(emote_name_str: str, channel):
         )
         await channel.send(f"Checkpoint 2 - {matches}")
 
-        if matches:
+        if matches[0]:
             await channel.send(f"Checkpoint 3")
             best_match = matches[0][0]
             await channel.send(f"Checkpoint 4")
