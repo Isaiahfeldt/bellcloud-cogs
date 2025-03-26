@@ -233,7 +233,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         emote.errors["flip"] = "No image data available"
         return emote
 
-    import io, os, tempfile
+    import io
     from PIL import Image
 
     # Validate file type using file_path extension
@@ -249,8 +249,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if direction not in {'h', 'v', 'hv', 'vh'}:
         raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
-    # Process mp4 video files
-    if file_ext == 'mp4':
+        # Process mp4 video files
+        # if file_ext == 'mp4':
+        #     try:
         from moviepy import VideoFileClip
         from moviepy.video.fx import MirrorX, MirrorY
 
@@ -268,12 +269,16 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 clip = clip.with_effects([MirrorY()])
 
             # Write output file
-            out_path = os.path.join(temp_dir, "output1.mp4")
+            out_path = os.path.join(temp_dir, "output.mp4")
             clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
             # Read processed video
             with open(out_path, "rb") as f:
                 emote.img_data = f.read()
+
+        # except Exception as err:
+        #     emote.errors["flip"] = f"Error flipping mp4: {err}"
+        #     return emote
 
         return emote
 
