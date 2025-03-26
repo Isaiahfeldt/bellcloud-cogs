@@ -265,7 +265,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 emote.notes["movie: tmp_input_path"] = tmp_clip
 
                 # Process video
-                clip = VideoFileClip(tmp_clip, audio=False)
+                clip = VideoFileClip(tmp_clip)
                 if 'h' in direction:
                     clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
@@ -273,9 +273,12 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
-                emote.notes["movie: tmp_ouput_path"] = out_path
+                temp_dir = tempfile.gettempdir()
+                temp_audio = os.path.join(temp_dir, "temp_audio.m4a")
 
-                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
+                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None,
+                                     temp_audiofile=temp_audio,
+                                     remove_temp=True)
 
                 # Read processed video
                 with open(out_path, "rb") as f:
