@@ -210,11 +210,10 @@ class SlashCommands(commands.Cog):
         embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url)
         embeds.append(embed)
 
-        token = generate_token(interaction)
+        token = await generate_token(interaction)
         server_id = interaction.guild_id
 
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-        secure_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
         url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
                                        url=f"{url}")
