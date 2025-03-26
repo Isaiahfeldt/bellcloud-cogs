@@ -252,8 +252,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     # Process mp4 video files
     if file_ext == 'mp4':
         try:
-            from moviepy.editor import VideoFileClip
-            from moviepy.video.fx import mirror_x, mirror_y
+            from moviepy import VideoFileClip
+            from moviepy.video.fx import MirrorX, MirrorY
+
             # Write the original video to a temporary file
             with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
                 tmp.write(emote.img_data)
@@ -262,9 +263,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             clip = VideoFileClip(tmp_filename)
             # Apply horizontal and/or vertical flip
             if 'h' in direction:
-                clip = mirror_x(clip)  # Changed this line
+                clip = MirrorX(clip)  # Changed this line
             if 'v' in direction:
-                clip = mirror_y(clip)  # Changed this line
+                clip = MirrorY(clip)  # Changed this line
             # Write the flipped video to another temporary file
             out_filename = tmp_filename + "_flipped.mp4"
             clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", verbose=False, logger=None)
