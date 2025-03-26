@@ -233,15 +233,15 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         emote.errors["flip"] = "No image data available"
         return emote
 
+    import io, os, tempfile
     from PIL import Image
-    import io
 
     # Validate file type using file_path extension
-    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', "webp"}
-    file_ext = emote.file_path.lower().split('.')[-1]  # Get the part after the last period
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp', 'mp4'}
+    file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["flip"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
+        emote.errors["flip"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif, webp, mp4"
         return emote
 
     # Validate direction argument
@@ -249,8 +249,40 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if direction not in {'h', 'v', 'hv', 'vh'}:
         raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
+    # Process mp4 video files
+    if file_ext == 'mp4':
+        try:
+            from moviepy import VideoFileClip, vfx
+            # Write the original video to a temporary file
+            with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
+                tmp.write(emote.img_data)
+                tmp_filename = tmp.name
+
+            clip = VideoFileClip(tmp_filename)
+            # Apply horizontal and/or vertical flip
+            if 'h' in direction:
+                clip = clip.fx(vfx.mirror_x)
+            if 'v' in direction:
+                clip = clip.fx(vfx.mirror_y)
+            # Write the flipped video to another temporary file
+            out_filename = tmp_filename + "_flipped.mp4"
+            clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", verbose=False, logger=None)
+
+            # Read the flipped video into memory
+            with open(out_filename, "rb") as f:
+                emote.img_data = f.read()
+
+            # Clean up temporary files
+            os.remove(tmp_filename)
+            os.remove(out_filename)
+        except Exception as err:
+            emote.errors["flip"] = f"Error flipping mp4: {err}"
+            return emote
+
+        return emote
+
+    # Process animated images (GIF and animated WebP)
     with Image.open(io.BytesIO(emote.img_data)) as img:
-        # Process animated images (GIF and animated WebP)
         try:
             if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
                 frames = []
@@ -267,7 +299,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
                 frames[0].save(
                     output_buffer,
-                    format="WEBP",
+                    format=save_format,
                     save_all=True,
                     append_images=frames[1:],
                     loop=img.info.get('loop', 0),
