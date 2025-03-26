@@ -56,8 +56,8 @@ async def get_emote_and_verify(emote_name_str: str, channel):
     emote = await db.get_emote(emote_name_str, channel.guild.id, True)
     if emote is None:
         # await channel.send(f"Emote '{emote_name_str}' not found.")
-        await channel.send(f"Checkpoint 1")
-        valid_names = await db.get_emote_names()
+        await channel.send(f"Checkpoint 1 {channel.guild_id}")
+        valid_names = await db.get_emote_names(channel.guild_id)
 
         matches = process.extractBests(
             emote_name_str,
