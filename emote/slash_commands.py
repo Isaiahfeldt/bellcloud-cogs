@@ -55,7 +55,8 @@ def calculate_extra_args(time_elapsed, emote) -> list:
 async def get_emote_and_verify(emote_name_str: str, channel):
     emote = await db.get_emote(emote_name_str, channel.guild.id, True)
     if emote is None:
-        await channel.send(f"Emote '{emote_name_str}' not found.")
+        # await channel.send(f"Emote '{emote_name_str}' not found.")
+        return None
     return emote
 
 
