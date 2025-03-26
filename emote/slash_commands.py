@@ -55,8 +55,6 @@ def calculate_extra_args(time_elapsed, emote) -> list:
 async def get_emote_and_verify(emote_name_str: str, channel):
     emote = await db.get_emote(emote_name_str, channel.guild.id, True)
     if emote is None:
-        # await channel.send(f"Emote '{emote_name_str}' not found.")
-        # await channel.send(f"Checkpoint 1")
         valid_names = await db.get_emote_names(channel.guild.id)
 
         matches = process.extractBests(
@@ -65,14 +63,9 @@ async def get_emote_and_verify(emote_name_str: str, channel):
             scorer=fuzz.token_sort_ratio,
             score_cutoff=70
         )
-        # await channel.send(f"Checkpoint 2 - {matches}")
 
         if matches:
-            # await channel.send(f"Checkpoint 3")
             best_match = matches[0][0]
-            # await channel.send(f"Checkpoint 4")
-            # await channel.send(f"Checkpoint 5 {matches[0]}")
-            # await channel.send(f"Checkpoint 6 {matches[0][0]}")
             await channel.send(f"Emote '{emote_name_str}' not found. Did you mean '{best_match}'?")
         else:
             await channel.send(f"Emote '{emote_name_str}' not found.")
@@ -202,7 +195,7 @@ class SlashCommands(commands.Cog):
             await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
             return
 
-        emote_list = "\n".join(emote_names)
+        emote_list = ", ".join(emote_names)
         await interaction.response.send_message(emote_list)
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
