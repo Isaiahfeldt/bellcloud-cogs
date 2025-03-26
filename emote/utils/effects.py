@@ -249,17 +249,16 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if direction not in {'h', 'v', 'hv', 'vh'}:
         raise ValueError(f"Invalid direction '{direction}'. Use h/v/hv/vh")
 
+    # Process mp4 video files
     if file_ext == 'mp4':
         try:
             from moviepy import VideoFileClip
             from moviepy.video.fx import MirrorX, MirrorY
 
-            temp_dir = tempfile.mkdtemp()
-            tmp_filename = os.path.join(temp_dir, f"{emote.name}.mp4")
-
             # Write the original video to a temporary file
-            with open(tmp_filename, "wb") as f:
-                f.write(emote.img_data)
+            with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
+                tmp.write(emote.img_data)
+                tmp_filename = tmp.name
 
             clip = VideoFileClip(tmp_filename)
             # Apply horizontal and/or vertical flip
@@ -268,7 +267,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             if 'v' in direction:
                 clip = clip.with_effects([MirrorY()])  # Changed this line
             # Write the flipped video to another temporary file
-            out_filename = os.path.join(temp_dir, f"{emote.name}_flipped.mp4")
+            out_filename = tmp_filename + "_flipped.mp4"
             clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", logger=None)
 
             # Read the flipped video into memory
@@ -278,8 +277,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             # Clean up temporary files
             os.remove(tmp_filename)
             os.remove(out_filename)
-            os.rmdir(temp_dir)
-            
+
         except Exception as err:
             emote.errors["flip"] = f"Error flipping mp4: {err}"
             return emote
