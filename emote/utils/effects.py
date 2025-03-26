@@ -265,7 +265,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 emote.notes["movie: tmp_input_path"] = tmp_clip
 
                 # Process video
-                clip = VideoFileClip(tmp_clip)
+                clip = VideoFileClip(tmp_clip, audio=False)
                 if 'h' in direction:
                     clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
