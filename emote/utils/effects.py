@@ -286,7 +286,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 img.save(output_buffer, format=file_ext.upper())
                 emote.img_data = output_buffer.getvalue()
         except Exception as err:
-            emote.errors["flip"] = f"Error flipping webm: {err}"
+            emote.errors["flip"] = f"Error flipping: {err}"
             return emote
 
     return emote
