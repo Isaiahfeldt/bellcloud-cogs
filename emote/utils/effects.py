@@ -261,19 +261,19 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 with open(tmp_input_path, "wb") as tmp_input:
                     tmp_input.write(emote.img_data)
 
-                # # Process video
-                # clip = VideoFileClip(tmp_input_path)
-                # if 'h' in direction:
-                #     clip = clip.with_effects([MirrorX()])
-                # if 'v' in direction:
-                #     clip = clip.with_effects([MirrorY()])
-                # 
-                # # Write output file
-                # out_path = os.path.join(temp_dir, "output.mp4")
-                # clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
+                # Process video
+                clip = VideoFileClip(tmp_input_path)
+                if 'h' in direction:
+                    clip = clip.with_effects([MirrorX()])
+                if 'v' in direction:
+                    clip = clip.with_effects([MirrorY()])
+
+                # Write output file
+                out_path = os.path.join(temp_dir, "output.mp4")
+                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
                 # Read processed video
-                with open(tmp_input_path, "rb") as f:
+                with open(out_path, "rb") as f:
                     emote.img_data = f.read()
 
         except Exception as err:
