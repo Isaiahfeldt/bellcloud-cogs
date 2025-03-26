@@ -222,7 +222,7 @@ class SlashCommands(commands.Cog):
         view = discord.ui.View()
         view.add_item(url_button)
 
-        await interaction.response.send_message(emote_list)
+        # await interaction.response.send_message(emote_list)
 
         for i, embed in enumerate(embeds):
             ephemeral = False if field_count <= 3 else True
