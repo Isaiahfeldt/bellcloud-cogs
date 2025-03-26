@@ -57,9 +57,6 @@ async def get_emote_and_verify(emote_name_str: str, channel):
     if emote is None:
         # await channel.send(f"Emote '{emote_name_str}' not found.")
         await channel.send(f"Checkpoint 1")
-        await channel.send(f"{channel}")
-        await channel.send(f"{channel.guild}")
-        await channel.send(f"{channel.guild.id}")
         valid_names = await db.get_emote_names(channel.guild.id)
 
         matches = process.extractBests(
@@ -76,8 +73,10 @@ async def get_emote_and_verify(emote_name_str: str, channel):
             await channel.send(f"Checkpoint 4")
             await channel.send(f"Checkpoint 5 {matches[0]}")
             await channel.send(f"Checkpoint 6 {matches[0][0]}")
-            await channel.send(f"Emote '{emote_name}' not found. Did you mean '{best_match}'?",
-                               delete_after=10)
+            await channel.send(f"Emote '{emote_name}' not found. Did you mean '{best_match}'?")
+        else:
+            await channel.send(f"Emote '{emote_name_str}' not found.")
+
     return emote
 
 
