@@ -276,11 +276,11 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 emote.notes["movie: tmp_ouput_path"] = out_path
 
                 clip.write_videofile("output.mp4", codec="libx264", audio_codec="aac", logger=None)
-
-                # Read processed video
-                with open(out_path, "rb") as f:
-                    emote.notes["with_open"] = "Yes"
-                    emote.img_data = f.read()
+                #
+                # # Read processed video
+                # with open(out_path, "rb") as f:
+                #     emote.notes["with_open"] = "Yes"
+                #     emote.img_data = f.read()
 
 
         except Exception as err:
