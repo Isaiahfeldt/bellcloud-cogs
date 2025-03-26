@@ -16,7 +16,7 @@ import time
 
 import discord
 from discord import app_commands
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
