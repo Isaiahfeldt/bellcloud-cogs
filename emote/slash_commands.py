@@ -201,7 +201,7 @@ class SlashCommands(commands.Cog):
         embed = discord.Embed(color=EmbedColor.GREEN.value)
 
         field_count = 0
-        emote_list = ", ".join(emote_names)
+        emote_list_str = ", ".join(emote_names)
         chunks = wrap(emote_list_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
 
         for i, chunk in enumerate(chunks):
