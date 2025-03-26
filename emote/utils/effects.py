@@ -253,7 +253,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if file_ext == 'mp4':
         try:
             from moviepy import VideoFileClip
-            from moviepy.video.fx import MirrorX, MirrorY
+            from moviepy.video.fx import MirrorX, MirrorY, TimeMirror
 
             with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
                 # Write input file
@@ -270,6 +270,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
                     clip = clip.with_effects([MirrorY()])
+                clip = clip.with_effects(TimeMirror())
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
