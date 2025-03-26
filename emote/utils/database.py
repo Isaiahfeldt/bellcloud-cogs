@@ -113,7 +113,7 @@ class Database:
         return False, None
 
     async def add_emote_to_database(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
-        timestamp = datetime.now(timezone.utc)
+        timestamp = datetime.now(timezone.utc).replace(tzinfo=None)
         query = (
             "INSERT INTO emote.media "
             "(file_path, author_id, timestamp, original_url, emote_name, guild_id, usage_count) "

@@ -209,9 +209,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
     User:
         Mirrors the emote. You can flip horizontally (h), vertically (v),
-        or both ways (hv). Works with static images and animated GIFs.
+        or both (hv). Works with static images and animated GIFs.
 
-        Default is horizontal flip if no direction is specified.
+        Default is a horizontal flip if no direction is specified.
 
         Usage:
         `:aspire_flip:` - Flips the emote horizontally.
@@ -270,8 +270,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 save_all=True,
                 append_images=frames[1:],
                 loop=0,
-                duration=img.info['duration'],
-                disposal=img.info.get('disposal', 0)
+                duration=img.info.get('duration', 100),
+                disposal=2
             )
             emote.img_data = output_buffer.getvalue()
 
