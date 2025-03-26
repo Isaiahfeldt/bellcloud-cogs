@@ -264,9 +264,9 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 # Process video
                 clip = VideoFileClip(tmp_input_path)
                 if 'h' in direction:
-                    clip = clip.fx(MirrorX)
+                    clip = clip.with_effects([MirrorX()])
                 if 'v' in direction:
-                    clip = clip.fx(MirrorY)
+                    clip = clip.with_effects([MirrorY()])
 
                 # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
