@@ -273,7 +273,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
                 with tempfile.TemporaryDirectory() as temp_output_dir:  # Use temporary directory
                     # Write output file\
-                    out_path = os.path.join(temp_dir, "output.mp4")
+                    out_path = os.path.join(temp_output_dir, "output.mp4")
                     emote.notes["movie: tmp_ouput_path"] = out_path
                     clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
