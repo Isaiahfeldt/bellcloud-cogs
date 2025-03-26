@@ -251,38 +251,42 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
         # Process animated images (GIF and animated WebP)
-        if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
-            frames = []
-            for frame in range(img.n_frames):
-                img.seek(frame)
-                frame_img = img.copy()
+        try:
+            if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
+                frames = []
+                for frame in range(img.n_frames):
+                    img.seek(frame)
+                    frame_img = img.copy()
+                    if 'h' in direction:
+                        frame_img = frame_img.transpose(Image.FLIP_LEFT_RIGHT)
+                    if 'v' in direction:
+                        frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
+                    frames.append(frame_img)
+
+                output_buffer = io.BytesIO()
+                save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
+                frames[0].save(
+                    output_buffer,
+                    format="WEBP",
+                    save_all=True,
+                    append_images=frames[1:],
+                    loop=img.info.get('loop', 0),
+                    duration=img.info.get('duration', 100)
+                )
+                emote.img_data = output_buffer.getvalue()
+
+            # Process static images
+            else:
                 if 'h' in direction:
-                    frame_img = frame_img.transpose(Image.FLIP_LEFT_RIGHT)
+                    img = img.transpose(Image.FLIP_LEFT_RIGHT)
                 if 'v' in direction:
-                    frame_img = frame_img.transpose(Image.FLIP_TOP_BOTTOM)
-                frames.append(frame_img)
+                    img = img.transpose(Image.FLIP_TOP_BOTTOM)
 
-            output_buffer = io.BytesIO()
-            save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
-            frames[0].save(
-                output_buffer,
-                format="WEBP",
-                save_all=True,
-                append_images=frames[1:],
-                loop=img.info.get('loop', 0),
-                duration=img.info.get('duration', 100)
-            )
-            emote.img_data = output_buffer.getvalue()
-
-        # Process static images
-        else:
-            if 'h' in direction:
-                img = img.transpose(Image.FLIP_LEFT_RIGHT)
-            if 'v' in direction:
-                img = img.transpose(Image.FLIP_TOP_BOTTOM)
-
-            output_buffer = io.BytesIO()
-            img.save(output_buffer, format=file_ext.upper())
-            emote.img_data = output_buffer.getvalue()
+                output_buffer = io.BytesIO()
+                img.save(output_buffer, format=file_ext.upper())
+                emote.img_data = output_buffer.getvalue()
+        except Exception as err:
+            emote.errors["flip"] = f"Error flipping webm: {err}"
+            return emote
 
     return emote
