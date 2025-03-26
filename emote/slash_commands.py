@@ -16,6 +16,7 @@ import time
 
 import discord
 from discord import app_commands
+from fuzzywuzzy import fuzz
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
@@ -54,22 +55,21 @@ def calculate_extra_args(time_elapsed, emote) -> list:
 async def get_emote_and_verify(emote_name_str: str, channel):
     emote = await db.get_emote(emote_name_str, channel.guild.id, True)
     if emote is None:
-        await channel.send(f"Emote '{emote_name_str}' not found.")
-        # valid_names = await db.get_emote_names()
-        #
-        # matches = process.extractBests(
-        #     emote_name,
-        #     valid_names,
-        #     scorer=fuzz.token_sort_ratio,
-        #     score_cutoff=70
-        # )
-        #
-        # if matches:
-        #     best_match = matches[0][0]
-        #
-        #     await message.channel.send(f"Emote '{emote_name}' not found. Did you mean '{best_match}'?",
-        #                                delete_after=10)
-        # return
+        # await channel.send(f"Emote '{emote_name_str}' not found.")
+        valid_names = await db.get_emote_names()
+
+        matches = process.extractBests(
+            emote_name,
+            valid_names,
+            scorer=fuzz.token_sort_ratio,
+            score_cutoff=70
+        )
+
+        if matches:
+            best_match = matches[0][0]
+
+            await channel.send(f"Emote '{emote_name}' not found. Did you mean '{best_match}'?",
+                               delete_after=10)
     return emote
 
 
