@@ -256,7 +256,8 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             from moviepy.video.fx import MirrorX, MirrorY
 
             with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
-                # Write input file
+                # Write input file\
+                os.chmod(temp_dir, 0o777)
                 tmp_clip = os.path.join(temp_dir, "input.mp4")  # Starts off empty
                 with open(tmp_clip, "wb") as f:
                     f.write(emote.img_data)
