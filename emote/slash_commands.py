@@ -210,8 +210,14 @@ class SlashCommands(commands.Cog):
         embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url)
         embeds.append(embed)
 
+        token = generate_token(interaction)
+        server_id = interaction.guild_id
+
+        url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
+        secure_url = f"[bellbot.xyz/emote/{server_id}]({url})"
+
         url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
-                                       url="https://bellbot.xyz/")
+                                       url=f"{url}")
 
         view = discord.ui.View()
         view.add_item(url_button)
@@ -224,12 +230,13 @@ class SlashCommands(commands.Cog):
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
     async def emote_website(self, interaction: discord.Interaction):
-        token = generate_token(interaction)
+        token = await generate_token(interaction)
+        server_id = interaction.guild_id
 
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-        secure_url = f"[bellbot.xyz/emote/{server_id}]({url})"
+        masked_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
-        await interaction.response.send_message(f"Here is your secure link: {secure_url}")
+        await interaction.response.send_message(f"Here is your secure link: {masked_url}")
 
     @emote.command(name="show_cache", description="Show current cache state")
     @commands.is_owner()
