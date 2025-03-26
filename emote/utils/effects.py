@@ -269,14 +269,15 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     clip = clip.with_effects([MirrorY()])
 
                 # Write output file
-                emote.notes["temp_dir"] = temp_dir
-                emote.notes["output_path"] = os.path.join(temp_dir, "output.mp4")
-
                 out_path = os.path.join(temp_dir, "output.mp4")
                 clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
 
+                emote.notes["temp_dir"] = temp_dir
+                emote.notes["out_path"] = out_path
+
                 # Read processed video
                 with open(out_path, "rb") as f:
+                    emote.notes["with_open"] = "Yes"
                     emote.img_data = f.read()
 
 
