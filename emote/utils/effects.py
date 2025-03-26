@@ -233,7 +233,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
         emote.errors["flip"] = "No image data available"
         return emote
 
-    import io, os, tempfile
+    import io
     from PIL import Image
 
     # Validate file type using file_path extension
@@ -255,28 +255,25 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             from moviepy import VideoFileClip
             from moviepy.video.fx import MirrorX, MirrorY
 
-            # Write the original video to a temporary file
-            with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
-                tmp.write(emote.img_data)
-                tmp_filename = tmp.name
+            video_stream = io.BytesIO(emote.img_data)
+            video_stream.name = f"{emote.name}.mp4"
 
-            clip = VideoFileClip(tmp_filename)
+            clip = VideoFileClip(video_stream)
+
             # Apply horizontal and/or vertical flip
             if 'h' in direction:
                 clip = clip.with_effects([MirrorX()])  # Changed this line
             if 'v' in direction:
                 clip = clip.with_effects([MirrorY()])  # Changed this line
-            # Write the flipped video to another temporary file
-            out_filename = tmp_filename + "_flipped.mp4"
-            clip.write_videofile(out_filename, codec="libx264", audio_codec="aac", logger=None)
+
+            output_buffer = io.BytesIO()
+            output_buffer.name = f"{emote.name}_flipped.mp4"
+            
+            clip.write_videofile(output_buffer, codec="libx264", audio_codec="aac", logger=None)
 
             # Read the flipped video into memory
-            with open(out_filename, "rb") as f:
-                emote.img_data = f.read()
+            emote.img_data = output_buffer.getvalue()
 
-            # Clean up temporary files
-            os.remove(tmp_filename)
-            os.remove(out_filename)
         except Exception as err:
             emote.errors["flip"] = f"Error flipping mp4: {err}"
             return emote
