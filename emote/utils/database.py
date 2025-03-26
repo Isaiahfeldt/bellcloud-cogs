@@ -73,37 +73,36 @@ class Database:
             return result
 
     async def update_file_to_bucket(self, interaction: discord.Interaction, name: str, url: str, file_type: str):
-        temp_dir = tempfile.mkdtemp()
-        file_path = os.path.join(temp_dir, f"{name}.{file_type}")
+        with tempfile.TemporaryDirectory() as temp_dir:
+            file_path = os.path.join(temp_dir, f"{name}.{file_type}")
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as response:
-                if response.status == 200:
-                    with open(file_path, "wb") as f:
-                        f.write(await response.read())
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as response:
+                    if response.status == 200:
+                        with open(file_path, "wb") as f:
+                            f.write(await response.read())
+                    else:
+                        raise FileNotFoundError(f"Failed to download {url}")
+
+            try:
+                if file_type == 'mp4':
+                    self.s3_client.upload_file(
+                        file_path,
+                        'emote',
+                        f"{interaction.guild.id}/{name.lower()}.{file_type}",
+                        ExtraArgs={'ACL': 'public-read', 'ContentType': f"video/{file_type}"}
+                    )
                 else:
-                    raise FileNotFoundError(f"Failed to download {url}")
-
-        try:
-            if file_type == 'mp4':
-                self.s3_client.upload_file(
-                    file_path,
-                    'emote',
-                    f"{interaction.guild.id}/{name.lower()}.{file_type}",
-                    ExtraArgs={'ACL': 'public-read', 'ContentType': f"video/{file_type}"}
-                )
-                return True, None
-            else:
-                self.s3_client.upload_file(
-                    file_path,
-                    'emote',
-                    f"{interaction.guild.id}/{name.lower()}.{file_type}",
-                    ExtraArgs={'ACL': 'public-read', 'ContentType': f"image/{file_type}"}
-                )
+                    self.s3_client.upload_file(
+                        file_path,
+                        'emote',
+                        f"{interaction.guild.id}/{name.lower()}.{file_type}",
+                        ExtraArgs={'ACL': 'public-read', 'ContentType': f"image/{file_type}"}
+                    )
                 return True, None
 
-        except botocore.exceptions.ClientError as e:
-            return False, e
+            except botocore.exceptions.ClientError as e:
+                return False, e
 
     async def remove_file_from_bucket(self, emote: Emote):
         if emote is not None:
