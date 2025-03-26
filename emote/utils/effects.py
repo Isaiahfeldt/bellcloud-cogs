@@ -298,7 +298,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     os.remove(out_path)
                 os.rmdir(temp_dir)
             except Exception as cleanup_err:
-                pass
+                emote.errors["flip"] = f"Error cleaning up: {cleanup_err}"
 
         return emote
 
