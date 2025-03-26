@@ -17,6 +17,8 @@ from datetime import datetime
 from typing import Optional, Dict
 
 import aiohttp
+import moviepy
+import os
 
 
 @dataclass
@@ -271,9 +273,40 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 append_images=frames[1:],
                 loop=0,
                 duration=img.info['duration'],
-                disposal=img.info.get('disposal', 0)
+                disposal=2
             )
             emote.img_data = output_buffer.getvalue()
+        elif file_ext == 'webm':
+            try:
+                from moviepy.editor import VideoFileClip, vfx
+                temp_in = tempfile.NamedTemporaryFile(suffix=".webm", delete=False)
+                temp_out = tempfile.NamedTemporaryFile(suffix=".webm", delete=False)
+
+                with open(temp_in.name, 'wb') as f:
+                    f.write(emote.img_data)
+
+                clip = VideoFileClip(temp_in.name)
+                if 'h' in direction and 'v' in direction:
+                    flipped_clip = clip.fx(vfx.mirror_x).fx(vfx.mirror_y)
+                elif 'h' in direction:
+                    flipped_clip = clip.fx(vfx.mirror_x)
+                elif 'v' in direction:
+                    flipped_clip = clip.fx(vfx.mirror_y)
+                else:
+                    flipped_clip = clip
+
+                flipped_clip.write_videofile(temp_out.name, codec="libvpx-vp9", audio=False, verbose=False, logger=None)
+                with open(temp_out.name, 'rb') as f:
+                    emote.img_data = f.read()
+
+                temp_in.close();
+                os.unlink(temp_in.name)
+                temp_out.close();
+                os.unlink(temp_out.name)
+                return emote
+            except Exception as err:
+                emote.errors["flip"] = f"Error flipping webm: {err}"
+                return emote
 
         # Process static images
         else:
