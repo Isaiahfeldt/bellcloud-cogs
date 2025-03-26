@@ -19,7 +19,8 @@ from enum import Enum
 class EmbedColor(Enum):
     GREEN = 0x00ff00
     ORANGE = 0xd58907
-    RED = 0xe44c3c
+    DEFAULT = 0xe44c3c
+    RED = 0xff0000
 
 
 class EmoteAddError(Enum):

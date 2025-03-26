@@ -198,7 +198,7 @@ class SlashCommands(commands.Cog):
 
         embeds = []
         max_characters = 1000 - len("Emotes: ")
-        embed = discord.Embed(color=EmbedColor.GREEN.value)
+        embed = discord.Embed(color=EmbedColor.DEFAULT.value)
 
         field_count = 0
         emote_list_str = ", ".join(emote_names)
@@ -215,14 +215,11 @@ class SlashCommands(commands.Cog):
         server_id = interaction.guild_id
 
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-
         url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
                                        url=f"{url}")
 
         view = discord.ui.View()
         view.add_item(url_button)
-
-        # await interaction.response.send_message(emote_list)
 
         for i, embed in enumerate(embeds):
             ephemeral = False if field_count <= 3 else True
@@ -311,7 +308,7 @@ class SlashCommands(commands.Cog):
         embed = discord.Embed(
             title=f"Effect: {effect_name.capitalize()}",
             description=description,
-            colour=EmbedColor.RED.value
+            colour=EmbedColor.DEFAULT.value
         )
         embed.set_author(
             name="Emote Effects",
