@@ -255,38 +255,32 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
             from moviepy import VideoFileClip
             from moviepy.video.fx import MirrorX, MirrorY
 
-            # with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
-            #     # Write input file
-            #     tmp_clip = os.path.join(temp_dir, "input.mp4")  # Starts off empty
-            #     with open(tmp_clip, "wb") as f:
-            #         f.write(emote.img_data)
+            with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
+                # Write input file
+                tmp_clip = os.path.join(temp_dir, "input.mp4")  # Starts off empty
+                with open(tmp_clip, "wb") as f:
+                    f.write(emote.img_data)
 
-            temp_dir = tempfile.mkdtemp()
-            file_path = os.path.join(temp_dir, 'input.mp4')
-            with open(file_path, "wb") as f:
-                f.write(emote.img_data)
+                emote.notes["movie: temp_dir"] = temp_dir
+                emote.notes["movie: tmp_input_path"] = tmp_clip
 
-            emote.notes["movie: temp_dir"] = temp_dir
-            emote.notes["movie: tmp_input_path"] = file_path
+                # Process video
+                clip = VideoFileClip(tmp_clip)
+                if 'h' in direction:
+                    clip = clip.with_effects([MirrorX()])
+                if 'v' in direction:
+                    clip = clip.with_effects([MirrorY()])
 
-            # Process video
-            clip = VideoFileClip(file_path)
-            if 'h' in direction:
-                clip = clip.with_effects([MirrorX()])
-            if 'v' in direction:
-                clip = clip.with_effects([MirrorY()])
+                # Write output file
+                out_path = os.path.join(temp_dir, "output.mp4")
+                emote.notes["movie: tmp_ouput_path"] = out_path
 
-            # Write output file
-            out_path = os.path.join(temp_dir, "output.mp4")
-            emote.notes["movie: tmp_ouput_path"] = out_path
+                clip.write_videofile("output.mp4", codec="libx264", audio_codec="aac", logger=None)
 
-            clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None)
-            emote.notes["out_path"] = out_path
-
-            # Read processed video
-            with open(out_path, "rb") as f:
-                emote.notes["with_open"] = "Yes"
-                emote.img_data = f.read()
+                # Read processed video
+                with open(out_path, "rb") as f:
+                    emote.notes["with_open"] = "Yes"
+                    emote.img_data = f.read()
 
 
         except Exception as err:
