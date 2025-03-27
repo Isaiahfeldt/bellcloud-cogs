@@ -393,7 +393,84 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
     Returns:
         Emote: The updated emote object with the modified playback speed.
     """
-    return emote
+
+    if emote.img_data is None:
+        emote.errors["speed"] = "No image data available"
+        return emote
+
+    import io, os, tempfile
+    file_ext = emote.file_path.lower().split(".")[-1]
+
+    # Only allow speeding up for MP4s
+    if file_ext == "mp4" and rate < 1:
+        emote.errors["speed"] = "MP4 files cannot be slowed down"
+        return emote
+
+    # Process video files
+    if file_ext == "mp4":
+        try:
+            from moviepy import VideoFileClip, vfx
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                input_path = os.path.join(tmp_dir, "input.mp4")
+                with open(input_path, "wb") as f:
+                    f.write(emote.img_data)
+
+                clip = VideoFileClip(input_path)
+                clip = clip.with_effects([vfx.MultiplySpeed(factor=rate)])
+
+                output_path = os.path.join(tmp_dir, "output.mp4")
+                clip.write_videofile(output_path, codec="libx264", audio_codec="aac", logger=None)
+                with open(output_path, "rb") as f:
+                    emote.img_data = f.read()
+
+        except Exception as e:
+            import traceback
+            line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
+            emote.errors["speed"] = f"Error in speed effect: {e} at line {line_number}"
+            return emote
+
+        return emote
+
+    # Process animated images (GIF and WebP)
+    elif file_ext in {"gif", "webp"}:
+        try:
+            from PIL import Image
+            with Image.open(io.BytesIO(emote.img_data)) as img:
+                if not getattr(img, "is_animated", False):
+                    emote.errors["speed"] = "Image is not animated"
+                    return emote
+
+                frames = []
+                durations = []
+                for frame in range(getattr(img, "n_frames", 1)):
+                    img.seek(frame)
+                    frame_image = img.copy()
+                    frames.append(frame_image)
+                    original_duration = img.info.get("duration", 100)
+                    durations.append(original_duration / rate)
+
+                output_buffer = io.BytesIO()
+                frames[0].save(
+                    output_buffer,
+                    format=img.format if img.format else file_ext.upper(),
+                    save_all=True,
+                    append_images=frames[1:],
+                    duration=durations,
+                    loop=img.info.get("loop", 0)
+                )
+                emote.img_data = output_buffer.getvalue()
+        except Exception as e:
+            import traceback
+            line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
+            emote.errors["speed"] = f"Error in speed effect: {e} at line {line_number}"
+            return emote
+
+        return emote
+
+    # Unsupported file type
+    else:
+        emote.errors["speed"] = f"Unsupported file type for speed effect: {file_ext}"
+        return emote
 
 
 async def invert(emote: Emote) -> Emote:
