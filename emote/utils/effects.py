@@ -239,7 +239,7 @@ async def reverse(emote: Emote) -> Emote:
                     f.write(emote.img_data)
 
                 clip = VideoFileClip(tmp_clip)
-                clip = clip.with_end(clip.duration - 1)
+                clip = clip.subclipped(-clip.end + 1, -1)
                 clip = clip.with_effects([vfx.TimeMirror()])
 
                 out_path = os.path.join(temp_dir, "output.mp4")
