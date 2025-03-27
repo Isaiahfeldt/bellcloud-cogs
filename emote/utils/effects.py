@@ -455,7 +455,7 @@ async def speed(emote: Emote, factor: float = 2) -> Emote:
                     original_duration = img.info.get("duration", 100)
                     durations.append(original_duration / factor)
 
-                emote.notes[durations] = frames
+                emote.notes["Frame Count"] = str(len(frames))
 
                 output_buffer = io.BytesIO()
                 frames[0].save(
