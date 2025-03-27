@@ -105,15 +105,15 @@ class SlashCommands(commands.Cog):
     }
 
     EFFECTS_LIST = {
-        "latency": {'func': effect.latency, 'perm': 'mod'},
+        "latency": {'func': effect.latency, 'perm': 'mod', 'single_use': True},
         "flip": {'func': effect.flip, 'perm': 'everyone'},
-        "debug": {'func': effect.debug, 'perm': 'everyone'},
-        "train": {'func': effect.train, 'perm': 'everyone'},
-        "reverse": {'func': effect.reverse, 'perm': 'everyone'},
+        "debug": {'func': effect.debug, 'perm': 'everyone', 'single_use': True},
+        "train": {'func': effect.train, 'perm': 'everyone', 'single_use': True},
+        "reverse": {'func': effect.reverse, 'perm': 'everyone', 'single_use': True},
         "invert": {'func': effect.invert, 'perm': 'everyone'},
-        "speed": {'func': effect.speed, 'perm': 'everyone'},
-        "fast": {'func': effect.fast, 'perm': 'everyone'},
-        "slow": {'func': effect.slow, 'perm': 'everyone'},
+        "speed": {'func': effect.speed, 'perm': 'everyone', 'single_use': True},
+        "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True},
+        "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True},
     }
 
     latency_enabled = False

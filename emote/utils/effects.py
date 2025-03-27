@@ -102,6 +102,8 @@ async def latency(emote: Emote) -> Emote:
         Displays how long it takes to process your emote.
         Use this to see processing time in milliseconds.
 
+        This effect can only be used once per emote.
+
     Parameters:
         emote (Emote): The emote object to pass through without modification.
 
@@ -118,6 +120,8 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
         User:
             Shows detailed information about the emote. Including its ID, file path, and other technical details.
             Useful when you need help troubleshooting issues with an emote.
+
+            This effect can only be used once per emote.
 
         Parameters:
             emote (Emote): The emote object to pass through without modification.
@@ -169,6 +173,7 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
             number between 1-6 to control how many copies appear.
 
             Default is 3 if no number is provided.
+            This effect can only be used once per emote.
 
             Usage:
             `:aspire_train:` - Creates 3 copies of the emote.
@@ -211,6 +216,8 @@ async def reverse(emote: Emote) -> Emote:
     User:
         Plays the emote in reverse.
         Works with animated GIFs and videos.
+
+        This effect can only be used once per emote.
 
         Usage:
         `:aspire_reverse:` - Plays the emote in reverse.
@@ -314,6 +321,7 @@ async def fast(emote: Emote, rate: float = 2) -> Emote:
         Works with GIFs.
 
         Default is 2x speed if no argument is provided.
+        This effect can only be used once per emote.
 
         Usage:
         `:aspire_fast:` - Speeds up the emote.
@@ -341,6 +349,7 @@ async def slow(emote: Emote, rate: float = 0.5) -> Emote:
         Works with GIFs.
 
         Default is 0.5x speed if no argument is provided.
+        This effect can only be used once per emote.
 
         Usage:
         `:aspire_slow:` - Slows down the emote.
@@ -367,7 +376,8 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
         Changes the playback speed of the emote.
         Works with animated GIFs and videos.
 
-        Default is 2.0 if no argument is provided.
+        Default is 2x speed if no argument is provided.
+        This effect can only be used once per emote.
 
         Usage:
         `:aspire_speed:` - Changes the playback speed of the emote.

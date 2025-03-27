@@ -77,17 +77,25 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
 
+    seen_effects = set()
+
     for effect_name, effect_args in queued_effects:
-        effect = effects_list.get(effect_name)
-        if effect is None:
+        effect_info = effects_list.get(effect_name)
+        if effect_info is None:
             emote.issues[f"{effect_name}_effect"] = "NotFound"
             continue
 
-        if not permission_list[effect['perm']](message, self):
+        if effect_info.get("single_use", False):
+            if effect_name in seen_effects:
+                emote.issues[f"{effect_name}_effect"] = "DuplicateNotAllowed"
+                continue
+            seen_effects.add(effect_name)
+
+        if not permission_list[effect_info['perm']](message, self):
             emote.issues[f"{effect_name}_effect"] = "PermissionDenied"
             continue
 
-        async def effect_wrapper(emote, _effect_name=effect_name, func=effect['func'], args=effect_args):
+        async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
             try:
                 return await func(emote, *args)
             except TypeError as e:
