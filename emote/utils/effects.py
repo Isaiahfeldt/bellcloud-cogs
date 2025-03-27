@@ -333,14 +333,18 @@ async def invert(emote: Emote) -> Emote:
 
     try:
         with Image.open(io.BytesIO(emote.img_data)) as img:
-            # For animated images (GIF or animated WebP), process each frame separately.
+            # For animated images: process each frame
             if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
                 frames = []
                 durations = []
-                for frame in range(img.n_frames):
-                    img.seek(frame)
-                    frame_img = img.convert("RGB")
-                    inverted_frame = ImageOps.invert(frame_img)
+                for frame_index in range(img.n_frames):
+                    img.seek(frame_index)
+                    # Convert frame to RGBA to preserve transparency if available.
+                    frame_img = img.convert("RGBA")
+                    r, g, b, a = frame_img.split()
+                    rgb_image = Image.merge("RGB", (r, g, b))
+                    inverted_rgb = ImageOps.invert(rgb_image)
+                    inverted_frame = Image.merge("RGBA", (*inverted_rgb.split(), a))
                     frames.append(inverted_frame)
                     durations.append(img.info.get('duration', 100))
 
@@ -352,12 +356,23 @@ async def invert(emote: Emote) -> Emote:
                     save_all=True,
                     append_images=frames[1:],
                     loop=img.info.get('loop', 0),
-                    duration=durations
+                    duration=durations,
+                    disposal=2
                 )
                 emote.img_data = output_buffer.getvalue()
             else:
-                img = img.convert("RGB")
-                inverted_img = ImageOps.invert(img)
+                # Process static images
+                # Use RGBA for images with transparency
+                mode = img.mode
+                if 'A' in mode:
+                    img = img.convert("RGBA")
+                    r, g, b, a = img.split()
+                    rgb_image = Image.merge("RGB", (r, g, b))
+                    inverted_rgb = ImageOps.invert(rgb_image)
+                    inverted_img = Image.merge("RGBA", (*inverted_rgb.split(), a))
+                else:
+                    img = img.convert("RGB")
+                    inverted_img = ImageOps.invert(img)
                 output_buffer = io.BytesIO()
                 inverted_img.save(output_buffer, format=img.format if img.format else file_ext.upper())
                 emote.img_data = output_buffer.getvalue()
