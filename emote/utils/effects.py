@@ -239,6 +239,7 @@ async def reverse(emote: Emote) -> Emote:
                 f.write(emote.img_data)
 
             clip = VideoFileClip(tmp_clip)
+            clip = clip.subclipped(-clip.end + 1, -1)
             clip = clip.with_effects([vfx.TimeMirror()])
 
             out_path = os.path.join(temp_dir, "output.mp4")
@@ -316,7 +317,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if file_ext == 'mp4':
         try:
             from moviepy import VideoFileClip
-            from moviepy.video.fx import MirrorX, MirrorY
+            from moviepy.video.fx import MirrorX, MirrorY, TimeMirror
 
             with tempfile.TemporaryDirectory() as temp_dir:
                 tmp_clip = os.path.join(temp_dir, "input.mp4")
@@ -330,6 +331,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                     clip = clip.with_effects([MirrorY()])
                 #
                 # duration = clip.duration
+                # clip = clip.subclipped(-clip.end + 1, -1)
                 # clip = clip.with_effects([TimeMirror()])
                 # clip = clip.subclipped(0, duration)  # Ensure we stay within valid time range
 
