@@ -136,10 +136,10 @@ async def send_followup_embed(message: discord.Message, emote):
     if not emote.followup:
         return
 
-    embed = discord.Embed(title="Just a follow up...", colour=EmbedColor.GREY.value)
+    embed = discord.Embed(title="Oop, just a follow up...", colour=EmbedColor.GREY.value)
     for key, followup_msg in emote.followup.items():
         embed.add_field(name=f"{key}", value=followup_msg, inline=False)
-    await message.channel.send(embed=embed)
+    await message.channel.send(embed=embed, delete_after=10)
 
 
 async def generate_token(interaction: discord.Interaction):

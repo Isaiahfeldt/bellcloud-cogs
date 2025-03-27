@@ -195,9 +195,9 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
         if not 1 <= amount <= 6:
             amount = min(max(amount, 1), 6)
             emote.errors["train"] = "Train amount must be between values of 1 and 6."
-            emote.followup["train"] = (
-                "Train is capped at 6 to avoid Discord rate limits and to prevent spamming "
-                "which can lead to Bell being blacklisted."
+            emote.followup["Train"] = (
+                "This effect is capped at 6 to avoid Discord rate limits and to prevent spamming "
+                "which can lead to Bell being blacklisted. Sorry!"
             )
 
     SlashCommands.train_count = amount
