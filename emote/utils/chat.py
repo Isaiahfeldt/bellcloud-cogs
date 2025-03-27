@@ -139,7 +139,7 @@ async def send_followup_embed(message: discord.Message, emote):
     embed = discord.Embed(title="Umm, just a follow up...", colour=EmbedColor.GREY.value)
     for key, followup_msg in emote.followup.items():
         embed.add_field(name=f"{key}", value=followup_msg, inline=False)
-    embed.set_footer(text="This embed will delete automatically in 15 seconds.")
+    embed.set_footer(text="-# This embed will delete automatically.")
     await message.channel.send(embed=embed, delete_after=15)
 
 
