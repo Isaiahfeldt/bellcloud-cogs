@@ -23,10 +23,10 @@ from redbot.core import commands
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
+from .utils import effects as effect
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote, \
     generate_token
 from .utils.database import Database
-from .utils.effects import latency, flip, debug, train, reverse
 from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
@@ -105,12 +105,12 @@ class SlashCommands(commands.Cog):
     }
 
     EFFECTS_LIST = {
-        "latency": {'func': latency, 'perm': 'mod'},
-        "flip": {'func': flip, 'perm': 'everyone'},
-        "debug": {'func': debug, 'perm': 'everyone'},
-        "train": {'func': train, 'perm': 'everyone'},
-        "reverse": {'func': reverse, 'perm': 'everyone'},
-        "invert": {'func': invert, 'perm': 'everyone'},
+        "latency": {'func': effect.latency, 'perm': 'mod'},
+        "flip": {'func': effect.flip, 'perm': 'everyone'},
+        "debug": {'func': effect.debug, 'perm': 'everyone'},
+        "train": {'func': effect.train, 'perm': 'everyone'},
+        "reverse": {'func': effect.reverse, 'perm': 'everyone'},
+        "invert": {'func': effect.invert, 'perm': 'everyone'},
     }
 
     latency_enabled = False
