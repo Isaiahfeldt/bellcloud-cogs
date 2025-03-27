@@ -110,6 +110,7 @@ class SlashCommands(commands.Cog):
         "debug": {'func': debug, 'perm': 'everyone'},
         "train": {'func': train, 'perm': 'everyone'},
         "reverse": {'func': reverse, 'perm': 'everyone'},
+        "invert": {'func': invert, 'perm': 'everyone'},
     }
 
     latency_enabled = False
