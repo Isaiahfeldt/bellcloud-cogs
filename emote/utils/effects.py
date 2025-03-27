@@ -312,7 +312,7 @@ async def reverse(emote: Emote) -> Emote:
     return emote
 
 
-async def fast(emote: Emote, rate: float = 2) -> Emote:
+async def fast(emote: Emote, factor: float = 2) -> Emote:
     """
     Increases the playback speed of the emote.
 
@@ -325,7 +325,7 @@ async def fast(emote: Emote, rate: float = 2) -> Emote:
 
         Usage:
         `:aspire_fast:` - Speeds up the emote.
-        `:aspire_fast(3):` - Speeds up the emote to 3x speed.
+        `:aspire_fast(3):` - Speeds up the emote by a factor of 3.
 
         Alias for `:aspire_speed(2):`.
 
@@ -336,16 +336,16 @@ async def fast(emote: Emote, rate: float = 2) -> Emote:
         Emote: The updated emote object with the sped-up image data.
     """
 
-    emote = await speed(emote, rate)
+    emote = await speed(emote, factor)
     return emote
 
 
-async def slow(emote: Emote, rate: float = 0.5) -> Emote:
+async def slow(emote: Emote, factor: float = 0.5) -> Emote:
     """
     Decreases the playback speed of the emote.
 
     User:
-        Slows down the emote.
+        Slows down the emote
         Works with GIFs.
 
         Default is 0.5x speed if no argument is provided.
@@ -353,7 +353,7 @@ async def slow(emote: Emote, rate: float = 0.5) -> Emote:
 
         Usage:
         `:aspire_slow:` - Slows down the emote.
-        `:aspire_slow(0.25):` - Slows down the emote to 0.25x speed.
+        `:aspire_slow(0.25):` - Slows down the emote by a factor of 0.25.
 
         Alias for `:aspire_speed(0.5):`.
 
@@ -364,11 +364,11 @@ async def slow(emote: Emote, rate: float = 0.5) -> Emote:
         Emote: The updated emote object with the slowed-down image data.
     """
 
-    emote = await speed(emote, rate)
+    emote = await speed(emote, factor)
     return emote
 
 
-async def speed(emote: Emote, rate: float = 2) -> Emote:
+async def speed(emote: Emote, factor: float = 2) -> Emote:
     """
     Changes the playback speed of the emote.
 
@@ -388,7 +388,7 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
 
     Parameters:
         emote (Emote): The emote object to be processed.
-        speed (float): The playback speed factor. Default is 2.0.
+        factor (float): The playback speed factor. Default is 2.0.
 
     Returns:
         Emote: The updated emote object with the modified playback speed.
@@ -401,8 +401,8 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
     import io, os, tempfile
     file_ext = emote.file_path.lower().split(".")[-1]
 
-    # Only allow speeding up for MP4s
-    if file_ext == "mp4" and rate < 1:
+    # Only allow speeding up for MP4s when factor is greater than or equal to 1.
+    if file_ext == "mp4" and factor < 1:
         emote.errors["speed"] = "MP4 files cannot be slowed down"
         return emote
 
@@ -416,12 +416,18 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
                     f.write(emote.img_data)
 
                 clip = VideoFileClip(input_path)
-                clip = clip.with_effects([vfx.MultiplySpeed(factor=rate)])
+                clip = clip.with_effects([vfx.MultiplySpeed(factor=factor)])
 
                 output_path = os.path.join(tmp_dir, "output.mp4")
-                clip.write_videofile(output_path, codec="libx264", audio_codec="aac", logger=None)
-                with open(output_path, "rb") as f:
-                    emote.img_data = f.read()
+                temp_audio = os.path.join(tmp_dir, "temp_audio.m4a")
+                clip.write_videofile(
+                    output_path,
+                    codec="libx264",
+                    audio_codec="aac",
+                    logger=None,
+                    temp_audiofile=temp_audio,
+                    remove_temp=True
+                )
 
         except Exception as e:
             import traceback
@@ -447,7 +453,9 @@ async def speed(emote: Emote, rate: float = 2) -> Emote:
                     frame_image = img.copy()
                     frames.append(frame_image)
                     original_duration = img.info.get("duration", 100)
-                    durations.append(original_duration / rate)
+                    durations.append(original_duration / factor)
+
+                emote.notes[durations] = frames
 
                 output_buffer = io.BytesIO()
                 frames[0].save(
