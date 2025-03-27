@@ -88,19 +88,16 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             continue
 
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect['func'], args=effect_args):
-            import traceback
             try:
                 return await func(emote, *args)
             except TypeError as e:
-                line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
                 if "positional arguments" in str(e):
-                    emote.errors[f"{_effect_name}_effect"] = f"TooManyArguments at line {line_number}"
+                    emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
                 else:
-                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments at line {line_number}: {str(e)}"
+                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
                 return emote
             except Exception as e:
-                line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
-                emote.errors[f"{_effect_name}_effect"] = f"{str(e)} at line {line_number}"
+                emote.errors[f"{_effect_name}_effect"] = str(e)
                 return emote
 
         pipeline.append(effect_wrapper)
