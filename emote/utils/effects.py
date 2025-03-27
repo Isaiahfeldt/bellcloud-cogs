@@ -230,34 +230,34 @@ async def reverse(emote: Emote) -> Emote:
 
     # Process mp4 video files
     if file_ext == 'mp4':
-        # try:
-        from moviepy import VideoFileClip, vfx
+        try:
+            from moviepy import VideoFileClip, vfx
 
-        with tempfile.TemporaryDirectory() as temp_dir:
-            tmp_clip = os.path.join(temp_dir, "input.mp4")
-            with open(tmp_clip, "wb") as f:
-                f.write(emote.img_data)
+            with tempfile.TemporaryDirectory() as temp_dir:
+                tmp_clip = os.path.join(temp_dir, "input.mp4")
+                with open(tmp_clip, "wb") as f:
+                    f.write(emote.img_data)
 
-            clip = VideoFileClip(tmp_clip)
-            clip = clip.subclipped(-clip.end + 1, -1)
-            clip = clip.with_effects([vfx.TimeMirror()])
+                clip = VideoFileClip(tmp_clip)
+                clip = clip.with_end(clip.duration - 1)
+                clip = clip.with_effects([vfx.TimeMirror()])
 
-            out_path = os.path.join(temp_dir, "output.mp4")
-            temp_dir = tempfile.gettempdir()
-            temp_audio = os.path.join(temp_dir, "temp_audio.m4a")
+                out_path = os.path.join(temp_dir, "output.mp4")
+                temp_dir = tempfile.gettempdir()
+                temp_audio = os.path.join(temp_dir, "temp_audio.m4a")
 
-            clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None,
-                                 temp_audiofile=temp_audio,
-                                 remove_temp=True)
+                clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None,
+                                     temp_audiofile=temp_audio,
+                                     remove_temp=True)
 
-            with open(out_path, "rb") as f:
-                emote.img_data = f.read()
+                with open(out_path, "rb") as f:
+                    emote.img_data = f.read()
 
-        # except Exception as err:
-        #     import traceback
-        #     line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
-        #     emote.errors["reverse"] = f"Error reversing: {err} at line {line_number}"
-        #     return emote
+        except Exception as err:
+            import traceback
+            line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
+            emote.errors["reverse"] = f"Error reversing: {err} at line {line_number}"
+            return emote
 
         return emote
 
