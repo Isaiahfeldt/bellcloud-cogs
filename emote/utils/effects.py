@@ -198,6 +198,69 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     return emote
 
 
+async def reverse(emote: Emote) -> Emote:
+    """
+    Reverses emote playback.
+
+    User:
+        Plays the emote in reverse.
+        Works with animated GIFs and videos.
+
+        Usage:
+        `:aspire_reverse:` - Plays the emote in reverse.
+
+    Parameters:
+        emote (Emote): The emote object to be reversed.
+
+    Returns:
+        Emote: The updated emote object with the reversed image data.
+    """
+    if emote.img_data is None:
+        emote.errors["reverse"] = "No image data available"
+        return emote
+
+    import os, tempfile
+
+    # Validate file type using file_path extension
+    allowed_extensions = {'gif', 'webp', 'mp4'}
+    file_ext = emote.file_path.lower().split('.')[-1]
+    if file_ext not in allowed_extensions:
+        emote.errors["reverse"] = f"Unsupported file type: {file_ext}. Allowed: gif, webp, mp4"
+        return emote
+
+    # Process mp4 video files
+    if file_ext == 'mp4':
+        # try:
+        from moviepy import VideoFileClip, vfx
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_clip = os.path.join(temp_dir, "input.mp4")
+            with open(tmp_clip, "wb") as f:
+                f.write(emote.img_data)
+
+            clip = VideoFileClip(tmp_clip)
+            clip = clip.with_effects([vfx.TimeMirror()])
+
+            out_path = os.path.join(temp_dir, "output.mp4")
+            temp_dir = tempfile.gettempdir()
+            temp_audio = os.path.join(temp_dir, "temp_audio.m4a")
+
+            clip.write_videofile(out_path, codec="libx264", audio_codec="aac", logger=None,
+                                 temp_audiofile=temp_audio,
+                                 remove_temp=True)
+
+            with open(out_path, "rb") as f:
+                emote.img_data = f.read()
+
+        # except Exception as err:
+        #     import traceback
+        #     line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
+        #     emote.errors["reverse"] = f"Error reversing: {err} at line {line_number}"
+        #     return emote
+
+        return emote
+
+
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote image data in the specified direction(s).
@@ -253,15 +316,13 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
     if file_ext == 'mp4':
         try:
             from moviepy import VideoFileClip
-            from moviepy.video.fx import MirrorX, MirrorY, TimeMirror
+            from moviepy.video.fx import MirrorX, MirrorY
 
-            with tempfile.TemporaryDirectory() as temp_dir:  # Use temporary directory
-                # Write input file
-                tmp_clip = os.path.join(temp_dir, "input.mp4")  # Starts off empty
+            with tempfile.TemporaryDirectory() as temp_dir:
+                tmp_clip = os.path.join(temp_dir, "input.mp4")
                 with open(tmp_clip, "wb") as f:
                     f.write(emote.img_data)
 
-                # Process video
                 clip = VideoFileClip(tmp_clip)
                 if 'h' in direction:
                     clip = clip.with_effects([MirrorX()])
@@ -272,7 +333,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 # clip = clip.with_effects([TimeMirror()])
                 # clip = clip.subclipped(0, duration)  # Ensure we stay within valid time range
 
-                # Write output file
                 out_path = os.path.join(temp_dir, "output.mp4")
                 temp_dir = tempfile.gettempdir()
                 temp_audio = os.path.join(temp_dir, "temp_audio.m4a")
@@ -281,7 +341,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                                      temp_audiofile=temp_audio,
                                      remove_temp=True)
 
-                # Read processed video
                 with open(out_path, "rb") as f:
                     emote.notes["with_open"] = "Yes"
                     emote.img_data = f.read()

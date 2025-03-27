@@ -26,7 +26,7 @@ from redbot.core.i18n import Translator, cog_i18n
 from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote, \
     generate_token
 from .utils.database import Database
-from .utils.effects import latency, flip, debug, train
+from .utils.effects import latency, flip, debug, train, reverse
 from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
@@ -109,6 +109,7 @@ class SlashCommands(commands.Cog):
         "flip": {'func': flip, 'perm': 'everyone'},
         "debug": {'func': debug, 'perm': 'everyone'},
         "train": {'func': train, 'perm': 'everyone'},
+        "reverse": {'func': reverse, 'perm': 'everyone'},
     }
 
     latency_enabled = False
