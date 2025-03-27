@@ -111,6 +111,9 @@ class SlashCommands(commands.Cog):
         "train": {'func': effect.train, 'perm': 'everyone'},
         "reverse": {'func': effect.reverse, 'perm': 'everyone'},
         "invert": {'func': effect.invert, 'perm': 'everyone'},
+        "speed": {'func': effect.speed, 'perm': 'everyone'},
+        "fast": {'func': effect.fast, 'perm': 'everyone'},
+        "slow": {'func': effect.slow, 'perm': 'everyone'},
     }
 
     latency_enabled = False

@@ -126,6 +126,22 @@ async def send_debug_embed(message, emote):
     await message.channel.send(embed=debug_embed)
 
 
+async def send_followup_embed(message: discord.Message, emote):
+    """
+    Sends a followup embed using messages in emote.followup.
+
+    :param message: The discord.Message object where the embed will be sent.
+    :param emote: The Emote object containing followup messages.
+    """
+    if not emote.followup:
+        return
+
+    embed = discord.Embed(title="Just a follow up...", colour=EmbedColor.GREY.value)
+    for key, followup_msg in emote.followup.items():
+        embed.add_field(name=f"{key}", value=followup_msg, inline=False)
+    await message.channel.send(embed=embed)
+
+
 async def generate_token(interaction: discord.Interaction):
     expiration = datetime.now(timezone.utc) + timedelta(days=1)
     server_id = interaction.guild_id
@@ -183,5 +199,8 @@ async def send_emote(message: discord.Message, emote: Emote, *args):
 
     if emote.notes and SlashCommands.debug_enabled:
         await send_debug_embed(message, emote)
+
+    if emote.followup:
+        await send_followup_embed(message, emote)
 
     # TODO update @send_embed_followup to allow for

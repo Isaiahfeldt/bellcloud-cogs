@@ -21,6 +21,7 @@ class EmbedColor(Enum):
     ORANGE = 0xd58907
     DEFAULT = 0xe44c3c
     RED = 0xff0000
+    GREY = 0x808080
 
 
 class EmoteAddError(Enum):

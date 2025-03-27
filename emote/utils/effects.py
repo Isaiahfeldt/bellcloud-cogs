@@ -66,6 +66,7 @@ class Emote:
     errors: Dict[str, str] = field(default_factory=dict)
     issues: Dict[str, str] = field(default_factory=dict)
     notes: Dict[str, str] = field(default_factory=dict)
+    followup: Dict[str, str] = field(default_factory=dict)
     img_data: Optional[bytes] = None
 
 
@@ -194,6 +195,10 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
         if not 1 <= amount <= 6:
             amount = min(max(amount, 1), 6)
             emote.errors["train"] = "Train amount must be between values of 1 and 6."
+            emote.followup["train"] = (
+                "Train is capped at 6 to avoid Discord rate limits and to prevent spamming "
+                "which can lead to Bell being blacklisted."
+            )
 
     SlashCommands.train_count = amount
     return emote
@@ -297,6 +302,87 @@ async def reverse(emote: Emote) -> Emote:
             emote.errors["reverse"] = f"Error reversing: {err} at line {line_number}"
             return emote
 
+    return emote
+
+
+async def fast(emote: Emote, rate: float = 2) -> Emote:
+    """
+    Increases the playback speed of the emote.
+
+    User:
+        Speeds up the emote.
+        Works with GIFs.
+
+        Default is 2x speed if no argument is provided.
+
+        Usage:
+        `:aspire_fast:` - Speeds up the emote.
+        `:aspire_fast(3):` - Speeds up the emote to 3x speed.
+
+        Alias for `:aspire_speed(2):`.
+
+    Parameters:
+        emote (Emote): The emote object to be sped up.
+
+    Returns:
+        Emote: The updated emote object with the sped-up image data.
+    """
+
+    emote = await speed(emote, rate)
+    return emote
+
+
+async def slow(emote: Emote, rate: float = 0.5) -> Emote:
+    """
+    Decreases the playback speed of the emote.
+
+    User:
+        Slows down the emote.
+        Works with GIFs.
+
+        Default is 0.5x speed if no argument is provided.
+
+        Usage:
+        `:aspire_slow:` - Slows down the emote.
+        `:aspire_slow(0.25):` - Slows down the emote to 0.25x speed.
+
+        Alias for `:aspire_speed(0.5):`.
+
+    Parameters:
+        emote (Emote): The emote object to be slowed down.
+
+    Returns:
+        Emote: The updated emote object with the slowed-down image data.
+    """
+
+    emote = await speed(emote, rate)
+    return emote
+
+
+async def speed(emote: Emote, rate: float = 2) -> Emote:
+    """
+    Changes the playback speed of the emote.
+
+    User:
+        Changes the playback speed of the emote.
+        Works with animated GIFs and videos.
+
+        Default is 2.0 if no argument is provided.
+
+        Usage:
+        `:aspire_speed:` - Changes the playback speed of the emote.
+        `:aspire_speed(0.5):` - Slows down the emote to 0.5x speed.
+        `:aspire_speed(2):` - Speeds up the emote to 2x speed.
+
+        Alias for `:aspire_fast:` and `:aspire_slow:`.
+
+    Parameters:
+        emote (Emote): The emote object to be processed.
+        speed (float): The playback speed factor. Default is 2.0.
+
+    Returns:
+        Emote: The updated emote object with the modified playback speed.
+    """
     return emote
 
 
