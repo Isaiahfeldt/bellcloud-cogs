@@ -219,7 +219,8 @@ async def reverse(emote: Emote) -> Emote:
         emote.errors["reverse"] = "No image data available"
         return emote
 
-    import os, tempfile
+    import io, os, tempfile
+    from PIL import Image
 
     # Validate file type using file_path extension
     allowed_extensions = {'gif', 'webp', 'mp4'}
@@ -260,6 +261,42 @@ async def reverse(emote: Emote) -> Emote:
             return emote
 
         return emote
+
+    # Process animated images (GIF and animated WebP)
+    with Image.open(io.BytesIO(emote.img_data)) as img:
+        try:
+            if file_ext in {'gif', 'webp'} and getattr(img, "is_animated", False):
+                frames = []
+                for frame in range(img.n_frames):
+                    img.seek(frame)
+                    frames.append(img.copy())
+
+                frames.reverse()
+
+                output_buffer = io.BytesIO()
+                save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
+                frames[0].save(
+                    output_buffer,
+                    format=save_format,
+                    save_all=True,
+                    append_images=frames[1:],
+                    loop=img.info.get('loop', 0),
+                    duration=img.info.get('duration', 100)
+                )
+                emote.img_data = output_buffer.getvalue()
+
+            # Process static images
+            else:
+                emote.errors["reverse"] = "Static images cannot be reversed"
+                return emote
+
+        except Exception as err:
+            import traceback
+            line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
+            emote.errors["reverse"] = f"Error reversing: {err} at line {line_number}"
+            return emote
+
+    return emote
 
 
 async def flip(emote: Emote, direction: str = "h") -> Emote:
