@@ -506,9 +506,9 @@ class SlashCommands(commands.Cog):
                 strikes_left = 3 - current_strikes
                 await message.reply(
                     "**Non-UwU Alert!** 🚨 \n"
+                    f"{analysis['reason']}\n\n"
                     f"Strike {current_strikes}/3. \n"
                     f"You have {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️\n\n",
-                    f"Reason: {analysis['reason']}\n\n",
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
