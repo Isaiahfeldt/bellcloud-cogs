@@ -62,7 +62,7 @@ def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
 
-async def analyze_uwu(content=None, image_url=None):
+async def analyze_uwu(content=None, image_data=None):
     """Analyzes text/image for UwU-style content using OpenAI"""
     client = OpenAI(
         api_key=os.getenv('OPENAI_KEY'),
@@ -79,12 +79,12 @@ async def analyze_uwu(content=None, image_url=None):
             "content": f"Message: {content}\nIs this UwU-style? Respond with JSON."
         })
 
-    if image_url:
+    if image_data:
         messages.append({
             "role": "user",
             "content": [
                 {"type": "text", "text": "Analyze this image for UwU-style text/content"},
-                {"type": "image_url", "image_url": image_url}
+                {"type": "image", "image": {"base64": encode_image(image_data)}}
             ]
         })
 
@@ -463,15 +463,15 @@ class SlashCommands(commands.Cog):
         guild_id = message.guild.id
         user_id = message.author.id
 
-        image_url = None
         valid_formats = ["png", "webm", "jpg", "jpeg", "gif"]
+        # Process attachments
         for attachment in message.attachments:
             if any(attachment.filename.lower().endswith(ext) for ext in valid_formats):
-                image_url = attachment.url
+                image_data = await attachment.read()
                 break
 
         try:
-            analysis = await analyze_uwu(content, image_url)
+            analysis = await analyze_uwu(content, image_data)
             await message.channel.send(f"{analysis}")
 
             if analysis.get("isUwU", False):
