@@ -527,8 +527,8 @@ class SlashCommands(commands.Cog):
                 await message.reply(
                     "**Non-UwU Alert!** 🚨 \n"
                     f"{analysis['reason']}\n\n"
-                    f"Strike {current_strikes}/3. \n"
-                    f"You have {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️\n\n",
+                    f"Strike {current_strikes}/3 - "
+                    f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
