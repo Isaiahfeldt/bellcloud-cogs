@@ -482,11 +482,8 @@ class SlashCommands(commands.Cog):
                 image_url = attachment.url
                 break
 
-        await message.channel.send(f"Image: `{image_url}`")
-
         # try:
         analysis = await analyze_uwu(content, image_url)
-        await message.channel.send(f"{analysis}")
 
         if analysis.get("isUwU", False):
             await message.add_reaction("✅")  # UwU approved
