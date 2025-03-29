@@ -465,6 +465,8 @@ class SlashCommands(commands.Cog):
 
         try:
             analysis = await analyze_uwu(content, image_data)
+            await message.channel.send(f"{analysis}")
+
             if analysis.get("isUwU", False):
                 await message.add_reaction("✅")  # UwU approved
             else:
