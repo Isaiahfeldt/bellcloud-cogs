@@ -84,7 +84,7 @@ async def analyze_uwu(content=None, image_url=None):
             "role": "user",
             "content": [
                 {
-                    "type": "input_text",
+                    "type": "text",
                     "text": "Analyze this image for UwU-style text/content"
                 },
                 {
