@@ -54,12 +54,15 @@ class Database:
             await self.pool.close()
             self.pool = None
 
-    async def execute_query(self, query, *args):
+    async def execute_query(self, query, *args, fetchval: bool = False):
         """Use the connection pool to execute a query."""
         if self.pool is None:
             raise Exception("Pool not initialized. Call init_pool() first.")
         async with self.pool.acquire() as conn:
-            result = await conn.execute(query, *args)
+            if fetchval:
+                result = await conn.fetchval(query, *args)
+            else:
+                result = await conn.execute(query, *args)
             self.cache.clear()  # Invalidate cache on DB write
             return result
 
