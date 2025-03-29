@@ -478,6 +478,7 @@ class SlashCommands(commands.Cog):
             else:
                 # Increment strike count
                 # current_strikes = await db.increment_strike(user_id, guild_id)
+                current_strikes = 0
 
                 if current_strikes >= 3:
                     # Revoke posting privileges
