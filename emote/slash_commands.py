@@ -505,7 +505,10 @@ class SlashCommands(commands.Cog):
             else:
                 strikes_left = 3 - current_strikes
                 await message.reply(
-                    f"**Non-UwU Alert!** 🚨 \nStrike {current_strikes}/3. You have {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️",
+                    "**Non-UwU Alert!** 🚨 \n\n"
+                    f"Reason: {analysis['reason']}\n\n"
+                    f"Strike {current_strikes}/3. \n"
+                    f"You have {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️",
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
