@@ -238,10 +238,9 @@ class Database:
         """Decrement the strike count for a user in a given guild."""
         query = """
             UPDATE april.strikes 
-            SET count = GREATEST(count - 1, 0),
-                last_updated = NOW()
+            SET strikes = GREATEST(strikes - 1, 0)
             WHERE user_id = $1 AND guild_id = $2
-            RETURNING count
+            RETURNING strikes
         """
         result = await self.execute_query(query, user_id, guild_id, fetchval=True)
 
