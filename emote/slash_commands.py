@@ -424,12 +424,13 @@ class SlashCommands(commands.Cog):
         if message.author.bot or not is_enclosed_in_colon(message):
             return
 
-        await message.channel.send((f"{message.channel.name.lower()}"))
         # Check if message is in the 'general-3-uwu' channel
         if message.channel.name.lower() == "general-3-uwu":
             await self.handle_april_fools(message)
 
         await message.channel.typing()
+        await message.channel.send(f"Test")
+        await message.channel.send(f"{message.channel.name.lower()}")
         await self.process_emote_pipeline(message)
         reset_flags()
 
