@@ -505,6 +505,7 @@ class SlashCommands(commands.Cog):
                 )
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
+                await message.add_reaction("3️⃣")
                 await message.reply(
                     f"**Oopsie OwO!~**\n"
                     f"{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
