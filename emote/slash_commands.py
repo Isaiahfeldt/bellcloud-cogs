@@ -71,6 +71,7 @@ async def analyze_uwu(content=None, image_url=None):
     messages = [{
         "role": "system",
         "content": "Analyze for UwU-style elements (cute text, emoticons, playful misspellings). "
+                   "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
                    "Write your reason in uWu speak in 1-2 sentences. "
                    "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
                    "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
