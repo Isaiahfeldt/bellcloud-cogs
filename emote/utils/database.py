@@ -210,7 +210,7 @@ class Database:
                 last_updated = NOW()
             RETURNING count
         """
-        return await self.execute(query, user_id, guild_id, fetchval=True)
+        return await self.execute_query(query, user_id, guild_id, fetchval=True)
 
     async def decrease_strike(self, user_id: int, guild_id: int) -> int:
         """Decrement the strike count for a user in a given guild."""
@@ -229,12 +229,12 @@ class Database:
     async def get_strikes(self, user_id: int, guild_id: int) -> int:
         """Get the strike count for a user in a given guild."""
         query = "SELECT count FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
-        return await self.execute(query, user_id, guild_id, fetchval=True) or 0
+        return await self.execute_query(query, user_id, guild_id, fetchval=True) or 0
 
     async def reset_strikes(self, user_id: int, guild_id: int) -> None:
         """Reset the strike count for a user in a given guild."""
         query = "DELETE FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
-        await self.execute(query, user_id, guild_id)
+        await self.execute_query(query, user_id, guild_id)
 
     # async def clear_expired_strikes(self, days: int = 7) -> None:
     #     query = """
