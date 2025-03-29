@@ -417,7 +417,7 @@ class SlashCommands(commands.Cog):
     async def reset_strikes(self, interaction: discord.Interaction, user: discord.Member):
         await db.reset_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
-            f"Strikes reset for {user.mention}",
+            f"{user.mention}-chan's stwikes have been weset, nya~! ✨ UwU~",
             ephemeral=True
         )
 
@@ -427,7 +427,7 @@ class SlashCommands(commands.Cog):
     async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
         strikes = await db.get_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
-            f"{user.mention} has {strikes}/3 strikes",
+            f"{user.mention}-chan has {strikes}/3 stwikes, nya~! Pwease be cawefuw! ⚠️",
             ephemeral=True
         )
 
@@ -437,7 +437,7 @@ class SlashCommands(commands.Cog):
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
         await interaction.response.send_message(
-            f"Removed 1 strike from {user.mention}. They now have {new_count}/3 strikes.",
+            f"Aww, {user.mention}-chan was fowgiven! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
             ephemeral=True
         )
 
