@@ -447,7 +447,7 @@ class SlashCommands(commands.Cog):
             return
 
         # Check if message is in the 'general-3-uwu' channel
-        if message.channel.name.lower() == "general-3-uwu":
+        if message.channel.name.lower() in ["general-3-uwu", "general-3"]:
             if not is_enclosed_in_colon(message):  # Ignore :emotes:
                 await message.channel.typing()
                 await self.handle_april_fools(message)
@@ -499,7 +499,9 @@ class SlashCommands(commands.Cog):
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                channel = discord.utils.get(message.guild.channels, name="general-3-uwu")
+                channel = discord.utils.get(
+                    message.guild.channels, name__in=["general-3-uwu", "general-3"]
+                )
                 await channel.set_permissions(
                     message.author,
                     send_messages=False,
