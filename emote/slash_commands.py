@@ -498,8 +498,10 @@ class SlashCommands(commands.Cog):
                 else:
                     strikes_left = 3 - current_strikes
                     await message.reply(
-                        f"Non-UwU content! Strike {current_strikes}/3. {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining. ⚠️"
+                        f"Non-UwU Alert! 🚨 Strike {current_strikes}/3. {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining. ⚠️",
+                        mention_author=True
                     )
+                    await message.add_reaction("❌")  # Non-UwU reaction
 
         except Exception as e:
             print(f"Error processing April Fools message: {e}")
