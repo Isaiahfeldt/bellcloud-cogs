@@ -225,15 +225,12 @@ class Database:
         await self.execute_query(create_table_query)
 
     async def increment_strike(self, user_id: int, guild_id: int) -> int:
-        """Increment the strike count for a user in a given guild."""
         query = """
-            INSERT INTO april.strikes (user_id, guild_id)
-            VALUES ($1, $2)
+            INSERT INTO april.strikes (user_id, guild_id, strikes)
+            VALUES ($1, $2, 1)
             ON CONFLICT (user_id, guild_id)
-            DO UPDATE SET 
-                count = april.strikes.count + 1,
-                last_updated = NOW()
-            RETURNING count
+            DO UPDATE SET strikes = april.strikes.strikes + 1
+            RETURNING strikes;
         """
         return await self.execute_query(query, user_id, guild_id, fetchval=True)
 
