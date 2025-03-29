@@ -447,7 +447,7 @@ class SlashCommands(commands.Cog):
 
         # Check if message is in the 'general-3-uwu' channel
         if message.channel.name.lower() == "general-3-uwu":
-            if not is_enclosed_in_colon(message):
+            if not is_enclosed_in_colon(message):  # Ignore :emotes:
                 await message.channel.typing()
                 await self.handle_april_fools(message)
 
