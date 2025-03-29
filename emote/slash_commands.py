@@ -447,7 +447,7 @@ class SlashCommands(commands.Cog):
             return
 
         # Check if message is in the 'general-3-uwu' channel
-        if message.channel.name.lower() in ["general-3-uwu", "general-3"]:
+        if message.channel.name.lower() == "general-3-uwu" or message.channel.name.lower() == "general-3":
             if not message.author.id == 138148168360656896 and message.content.startswith(
                     "!"):  # Ignore owner using commands
                 if not is_enclosed_in_colon(message):  # Ignore :emotes:
@@ -501,9 +501,14 @@ class SlashCommands(commands.Cog):
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                channel = discord.utils.get(
-                    message.guild.channels, name__in=["general-3-uwu", "general-3"]
+                channel_names = ["general-3-uwu", "general-3"]
+
+                channel = next(
+                    (discord.utils.get(message.guild.channels, name=name) for name in channel_names if
+                     discord.utils.get(message.guild.channels, name=name)),
+                    None
                 )
+
                 await channel.set_permissions(
                     message.author,
                     send_messages=False,
