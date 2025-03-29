@@ -18,9 +18,9 @@ import time
 from textwrap import wrap
 
 import discord
-import openai
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
+from openai import OpenAI
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
@@ -61,6 +61,10 @@ def calculate_extra_args(time_elapsed, emote) -> list:
 
 async def analyze_uwu(content=None, image_data=None):
     """Analyzes text/image for UwU-style content using OpenAI"""
+    client = OpenAI(
+        api_key=os.getenv('OPENAI_KEY'),
+    )
+
     messages = [{
         "role": "system",
         "content": "Analyze for UwU-style elements (cute text, emoticons, playful misspellings). Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
@@ -81,7 +85,7 @@ async def analyze_uwu(content=None, image_data=None):
             ]
         })
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4-vision-preview",
         messages=messages,
         max_tokens=300
