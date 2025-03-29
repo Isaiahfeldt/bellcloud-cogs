@@ -493,7 +493,7 @@ class SlashCommands(commands.Cog):
 
         except Exception as e:
             print(f"Error processing April Fools message: {e}")
-            await message.reply("Error processing April Fools message. Please try again later. \n {(str(e))}")
+            await message.reply(f"Error processing April Fools message. Please try again later. \n {(str(e))}")
             await message.add_reaction("⚠️")
 
 
