@@ -505,8 +505,11 @@ class SlashCommands(commands.Cog):
                 )
                 await db.reset_strikes(user_id, guild_id)
                 await message.reply(
-                    f"{message.author.mention} has reached 3 strikes! Posting privileges revoked. 🚫"
+                    f"**Oopsie OwO!~**\n"
+                    "{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
+                    "B-bettew wuck next time, nya~! ✨"
                 )
+
 
             else:
                 strikes_left = 3 - current_strikes
