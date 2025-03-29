@@ -418,7 +418,7 @@ class SlashCommands(commands.Cog):
         await db.reset_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
             f"{user.mention}-chan's stwikes have been weset, nya~! ✨ UwU~",
-            ephemeral=True
+            ephemeral=False
         )
 
     @emote.command(name="view_strikes", description="View current strikes for a user")
@@ -428,7 +428,7 @@ class SlashCommands(commands.Cog):
         strikes = await db.get_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
             f"{user.mention}-chan has {strikes}/3 stwikes, nya~! Pwease be cawefuw! ⚠️",
-            ephemeral=True
+            ephemeral=False
         )
 
     @emote.command(name="forgive", description="Remove a strike from a user")
@@ -438,7 +438,7 @@ class SlashCommands(commands.Cog):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
         await interaction.response.send_message(
             f"Aww, {user.mention}-chan was fowgiven! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
-            ephemeral=True
+            ephemeral=False
         )
 
     @commands.Cog.listener()
