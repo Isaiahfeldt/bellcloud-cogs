@@ -37,9 +37,6 @@ from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid,
 
 _ = Translator("Emote", __file__)
 
-# Add this with other top-level configurations
-openai.api_key = os.getenv('OPENAI_KEY')  # Replace with actual API key
-
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()
 
