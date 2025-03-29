@@ -12,10 +12,12 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import json
 import time
 from textwrap import wrap
 
 import discord
+import openai
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
 from redbot.core import commands
@@ -33,6 +35,9 @@ from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
+
+# Add this with other top-level configurations
+openai.api_key = os.getenv('OPENAI_KEY')  # Replace with actual API key
 
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
 db = Database()

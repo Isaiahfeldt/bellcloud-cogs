@@ -19,6 +19,7 @@
     "cachetools",
     "pillow",
     "moviepy",
+    "openai",
     "fuzzywuzzy",
     "PyJWT"
   ],
