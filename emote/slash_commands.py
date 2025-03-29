@@ -13,6 +13,7 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import json
+import os
 import time
 from textwrap import wrap
 
