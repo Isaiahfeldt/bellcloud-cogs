@@ -505,7 +505,6 @@ class SlashCommands(commands.Cog):
                 )
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
-                await message.add_reaction("3️⃣")
                 first_lines = [
                     "**Oopsie OwO!~**",
                     "**ZOMG!!**",
@@ -532,10 +531,6 @@ class SlashCommands(commands.Cog):
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
-
-                number_emoji = ["1️⃣", "2️⃣", "3️⃣"]
-                if 1 <= current_strikes <= 3:
-                    await message.add_reaction(number_emoji[current_strikes - 1])
 
         # except Exception as e:
         #     print(f"Error processing April Fools message: {e}")
