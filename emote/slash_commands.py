@@ -31,7 +31,7 @@ from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, 
     generate_token
 from .utils.database import Database
 from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
-from .utils.format import is_enclosed_in_colon, extract_emote_details
+from .utils.format import extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
@@ -421,18 +421,21 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        if message.author.bot or not is_enclosed_in_colon(message):
+        if message.author.bot:
             return
+
+        await message.channel.send(f"Test")
+        await message.channel.send(f"{message.channel.name.lower()}")
 
         # Check if message is in the 'general-3-uwu' channel
         if message.channel.name.lower() == "general-3-uwu":
+            await message.channel.typing()
             await self.handle_april_fools(message)
 
-        await message.channel.typing()
-        await message.channel.send(f"Test")
-        await message.channel.send(f"{message.channel.name.lower()}")
-        await self.process_emote_pipeline(message)
-        reset_flags()
+        elif is_enclosed_in_colon(message):
+            await message.channel.typing()
+            await self.process_emote_pipeline(message)
+            reset_flags()
 
     async def process_emote_pipeline(self, message):
         timer = PerformanceTimer()
