@@ -56,6 +56,11 @@ def calculate_extra_args(time_elapsed, emote) -> list:
     return extra_args
 
 
+def encode_image(image_data):
+    """Encodes image bytes as base64 string"""
+    return base64.b64encode(image_data).decode('utf-8')
+
+
 async def analyze_uwu(content=None, image_data=None):
     """Analyzes text/image for UwU-style content using OpenAI"""
     client = OpenAI(
