@@ -243,7 +243,7 @@ class Database:
             WHERE user_id = $1 AND guild_id = $2
             RETURNING count
         """
-        result = await self.execute(query, user_id, guild_id, fetchval=True)
+        result = await self.execute_query(query, user_id, guild_id, fetchval=True)
 
         # If no rows were updated (user had no strikes), return 0
         return result if result is not None else 0
