@@ -83,7 +83,7 @@ async def analyze_uwu(content=None, image_data=None):
         })
 
     response = client.chat.completions.create(
-        model="gpt-4-vision-preview",
+        model="gpt-4o-mini-2024-07-18",
         messages=messages,
         max_tokens=300
     )
