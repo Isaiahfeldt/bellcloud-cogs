@@ -41,23 +41,46 @@ class Say(commands.Cog):
     @commands.command(aliases=["s"])
     @commands.guild_only()
     @commands.is_owner()
-    async def say(self, ctx, *, text):
-        """Talk as Bell"""
+    async def say(self, ctx, *, text=""):
+        """Talk as Bell (with attachment support)"""
         user = ctx.message.author
         message = ctx.message
+
+        # Ensure the command is not triggered by bots
         if hasattr(user, 'bot') and user.bot is True:
             return
+
+        evald = text  # Default value for the evaluated message
         try:
+            # Prevent potentially harmful evaluations
             if "__" in text:
                 raise ValueError
+            # Evaluate the text if provided
             evald = eval(text, {}, {'message': ctx.message,
                                     'channel': ctx.message.channel,
-                                    'server': ctx.message.server})
+                                    'server': getattr(ctx.message, 'server', None)})
         except:
             evald = text
 
+        # Handle case where the evaluated message is too long
         if len(str(evald)) > 2000:
             evald = str(evald)[-1990:] + "blank"
 
-        await ctx.send(evald)
+        # Check for attachments in the message
+        if ctx.message.attachments:
+            for attachment in ctx.message.attachments:
+                # Ensure the file size is reasonable (e.g., <8MB)
+                if attachment.size < 8 * 1024 * 1024:
+                    # Fetch the attachment content
+                    file = await attachment.to_file()
+                    # Send the attachment as a file
+                    await ctx.send(file=file)
+                else:
+                    await ctx.send(f"Attachment {attachment.filename} is too large and was skipped.")
+
+        # Send the evaluated text
+        if evald:
+            await ctx.send(evald)
+
+        # Delete the original triggering message
         await message.delete()
