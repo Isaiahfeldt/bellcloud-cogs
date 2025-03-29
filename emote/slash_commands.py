@@ -83,8 +83,14 @@ async def analyze_uwu(content=None, image_url=None):
         messages.append({
             "role": "user",
             "content": [
-                {"type": "text", "text": "Analyze this image for UwU-style text/content"},
-                {"type": "image_url", "image_url": image_url}
+                {
+                    "type": "input_text",
+                    "text": "Analyze this image for UwU-style text/content"
+                },
+                {
+                    "type": "input_image",
+                    "image_url": image_url
+                }
             ]
         })
 
