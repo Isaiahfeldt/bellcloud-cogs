@@ -519,7 +519,7 @@ class SlashCommands(commands.Cog):
                 ]
                 first_line = random.choice(first_lines)
                 await message.reply(
-                    f"{first_line}\n"
+                    f"{first_line} 🚨\n"
                     f"{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
                     f"B-bettew wuck next time, nya~! ✨"
                 )
@@ -534,7 +534,7 @@ class SlashCommands(commands.Cog):
                 alert_line = random.choice(alert_lines)
                 strikes_left = 3 - current_strikes
                 await message.reply(
-                    f"{alert_line} 🚨\n"
+                    f"{alert_line}\n"
                     f"{analysis['reason']}\n\n"
                     f"Strike {current_strikes}/3 - "
                     f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
