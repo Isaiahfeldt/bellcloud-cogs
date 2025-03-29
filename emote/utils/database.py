@@ -47,6 +47,7 @@ class Database:
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
+        await self.init_schema()
 
     async def close_pool(self):
         """Close the asyncpg connection pool."""
@@ -201,6 +202,27 @@ class Database:
             await self.execute_query(update_query, emote_name, guild_id)
 
         return Emote(**fix_emote_dict(emote_rows))
+
+    async def init_schema(self):
+        """
+        Initialize the necessary schema and table if they do not exist.
+        """
+        # SQL to create the schema if it doesn't exist
+        create_schema_query = "CREATE SCHEMA IF NOT EXISTS april;"
+
+        # SQL to create the table 'strikes' in the schema, adjust columns as needed.
+        create_table_query = """
+        CREATE TABLE IF NOT EXISTS april.strikes (
+            user_id BIGINT NOT NULL,
+            guild_id BIGINT NOT NULL,
+            strikes INTEGER DEFAULT 0,
+            PRIMARY KEY (user_id, guild_id)
+        );
+        """
+
+        # Execute the commands
+        await self.execute_query(create_schema_query)
+        await self.execute_query(create_table_query)
 
     async def increment_strike(self, user_id: int, guild_id: int) -> int:
         """Increment the strike count for a user in a given guild."""
