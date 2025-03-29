@@ -472,42 +472,42 @@ class SlashCommands(commands.Cog):
 
         await message.channel.send(f"Image: `{image_url}`")
 
-        try:
-            analysis = await analyze_uwu(content, image_url)
-            await message.channel.send(f"{analysis}")
+        # try:
+        analysis = await analyze_uwu(content, image_url)
+        await message.channel.send(f"{analysis}")
 
-            if analysis.get("isUwU", False):
-                await message.add_reaction("✅")  # UwU approved
+        if analysis.get("isUwU", False):
+            await message.add_reaction("✅")  # UwU approved
+        else:
+            # Increment strike count
+            # current_strikes = await db.increment_strike(user_id, guild_id)
+            current_strikes = 0
+
+            if current_strikes >= 3:
+                # Revoke posting privileges
+                channel = discord.utils.get(message.guild.channels, name="general-3-uwu")
+                await channel.set_permissions(
+                    message.author,
+                    send_messages=False,
+                    reason="3 strikes reached"
+                )
+                await db.reset_strikes(user_id, guild_id)
+                await message.reply(
+                    f"{message.author.mention} has reached 3 strikes! Posting privileges revoked. 🚫"
+                )
+
             else:
-                # Increment strike count
-                # current_strikes = await db.increment_strike(user_id, guild_id)
-                current_strikes = 0
+                strikes_left = 3 - current_strikes
+                await message.reply(
+                    f"Non-UwU Alert! 🚨 \n**Strike {current_strikes}/3.** {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️",
+                    mention_author=True
+                )
+                await message.add_reaction("❌")  # Non-UwU reaction
 
-                if current_strikes >= 3:
-                    # Revoke posting privileges
-                    channel = discord.utils.get(message.guild.channels, name="general-3-uwu")
-                    await channel.set_permissions(
-                        message.author,
-                        send_messages=False,
-                        reason="3 strikes reached"
-                    )
-                    await db.reset_strikes(user_id, guild_id)
-                    await message.reply(
-                        f"{message.author.mention} has reached 3 strikes! Posting privileges revoked. 🚫"
-                    )
-
-                else:
-                    strikes_left = 3 - current_strikes
-                    await message.reply(
-                        f"Non-UwU Alert! 🚨 \n**Strike {current_strikes}/3.** {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining! ⚠️",
-                        mention_author=True
-                    )
-                    await message.add_reaction("❌")  # Non-UwU reaction
-
-        except Exception as e:
-            print(f"Error processing April Fools message: {e}")
-            await message.reply(f"Error processing April Fools message. Please try again later. \n {(str(e))}")
-            await message.add_reaction("⚠️")
+        # except Exception as e:
+        #     print(f"Error processing April Fools message: {e}")
+        #     await message.reply(f"Error processing April Fools message. Please try again later. \n {(str(e))}")
+        #     await message.add_reaction("⚠️")
 
 
 def reset_flags():
