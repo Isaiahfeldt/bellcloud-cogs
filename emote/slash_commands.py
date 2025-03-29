@@ -452,7 +452,7 @@ class SlashCommands(commands.Cog):
         if message.channel.name.lower() == "general-3-uwu" or message.channel.name.lower() == "general-3":
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
                 if not is_enclosed_in_colon(message):  # Ignore :emotes:
-                    await message.channel.typing()
+                    # await message.channel.typing()
                     await self.handle_april_fools(message)
 
         elif is_enclosed_in_colon(message):
@@ -490,7 +490,8 @@ class SlashCommands(commands.Cog):
                 break
 
         # try:
-        analysis = await analyze_uwu(content, image_url)
+        with await message.channel.typing():
+            analysis = await analyze_uwu(content, image_url)
 
         if analysis.get("isUwU", False):
             # await message.add_reaction("✅")  # UwU approved
