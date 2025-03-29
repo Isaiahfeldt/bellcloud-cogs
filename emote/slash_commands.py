@@ -412,13 +412,13 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
-    @emote.command(name="reset_strikes", description="Reset strikes for a user")
-    @app_commands.describe(user="User to reset strikes for")
+    @emote.command(name="remove_a_strike", description="Remove a single strike from a user")
+    @app_commands.describe(user="User to remove a strike from")
     @commands.is_owner()
-    async def reset_strikes(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
+    async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
+        new_count = await db.decrease_strike(user.id, interaction.guild_id)
         await interaction.response.send_message(
-            f"{user.mention}-chan's stwikes have been weset, nya~! ✨ UwU~",
+            f"Aww, {user.mention}-chan had a stwike wemoved! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
             ephemeral=False
         )
 
@@ -432,13 +432,13 @@ class SlashCommands(commands.Cog):
             ephemeral=False
         )
 
-    @emote.command(name="forgive", description="Remove a strike from a user")
-    @app_commands.describe(user="User to forgive")
+    @emote.command(name="forgive", description="Forgive all strikes for a user")
+    @app_commands.describe(user="User to forgive strikes for")
     @commands.is_owner()
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        new_count = await db.decrease_strike(user.id, interaction.guild_id)
+        await db.reset_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
-            f"Aww, {user.mention}-chan was fowgiven! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
+            f"All of{user.mention}-chan's stwikes have been fuwgiven, nya~! ✨ UwU~",
             ephemeral=False
         )
 
@@ -490,8 +490,7 @@ class SlashCommands(commands.Cog):
                 break
 
         # try:
-        with await message.channel.typing():
-            analysis = await analyze_uwu(content, image_url)
+        analysis = await analyze_uwu(content, image_url)
 
         if analysis.get("isUwU", False):
             # await message.add_reaction("✅")  # UwU approved
