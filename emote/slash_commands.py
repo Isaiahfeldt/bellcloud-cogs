@@ -302,15 +302,16 @@ class SlashCommands(commands.Cog):
 
         await interaction.response.send_message(f"Here is your secure link: {masked_url}")
 
-    @emote.command(name="show_cache", description="Show current cache state")
-    @commands.is_owner()
-    async def emote_show_cache(self, interaction: discord.Interaction):
-        if not interaction.user.guild_permissions.manage_messages:
-            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-            return
-
-        cache_info = get_cache_info()
-        await interaction.response.send_message(cache_info)
+    # Deprecated
+    # @emote.command(name="show_cache", description="Show current cache state")
+    # @commands.is_owner()
+    # async def emote_show_cache(self, interaction: discord.Interaction):
+    #     if not interaction.user.guild_permissions.manage_messages:
+    #         await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+    #         return
+    #
+    #     cache_info = get_cache_info()
+    #     await interaction.response.send_message(cache_info)
 
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
