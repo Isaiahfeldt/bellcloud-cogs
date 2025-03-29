@@ -53,6 +53,40 @@ def calculate_extra_args(time_elapsed, emote) -> list:
     return extra_args
 
 
+async def analyze_uwu(content=None, image_data=None):
+    """Analyzes text/image for UwU-style content using OpenAI"""
+    messages = [{
+        "role": "system",
+        "content": "Analyze for UwU-style elements (cute text, emoticons, playful misspellings). Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
+    }]
+
+    if content:
+        messages.append({
+            "role": "user",
+            "content": f"Message: {content}\nIs this UwU-style? Respond with JSON."
+        })
+
+    if image_data:
+        messages.append({
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Analyze this image for UwU-style text/content"},
+                {"type": "image", "image": {"base64": encode_image(image_data)}}
+            ]
+        })
+
+    response = openai.ChatCompletion.create(
+        model="gpt-4-vision-preview",
+        messages=messages,
+        max_tokens=300
+    )
+
+    try:
+        return json.loads(response.choices[0].message.content)
+    except json.JSONDecodeError:
+        return {"isUwU": False, "reason": "Invalid response from API"}
+
+
 async def get_emote_and_verify(emote_name_str: str, channel):
     emote = await db.get_emote(emote_name_str, channel.guild.id, True)
     if emote is None:
@@ -349,10 +383,44 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
+    @emote.command(name="reset_strikes", description="Reset strikes for a user")
+    @app_commands.describe(user="User to reset strikes for")
+    @commands.is_owner()
+    async def reset_strikes(self, interaction: discord.Interaction, user: discord.Member):
+        await db.reset_strikes(user.id, interaction.guild_id)
+        await interaction.response.send_message(
+            f"Strikes reset for {user.mention}",
+            ephemeral=True
+        )
+
+    @emote.command(name="view_strikes", description="View current strikes for a user")
+    @app_commands.describe(user="User to check strikes for")
+    @commands.is_owner()
+    async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
+        strikes = await db.get_strikes(user.id, interaction.guild_id)
+        await interaction.response.send_message(
+            f"{user.mention} has {strikes}/3 strikes",
+            ephemeral=True
+        )
+
+    @emote.command(name="forgive", description="Remove a strike from a user")
+    @app_commands.describe(user="User to forgive")
+    @commands.is_owner()
+    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
+        new_count = await db.decrease_strike(user.id, interaction.guild_id)
+        await interaction.response.send_message(
+            f"Removed 1 strike from {user.mention}. They now have {new_count}/3 strikes.",
+            ephemeral=True
+        )
+
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if message.author.bot or not is_enclosed_in_colon(message):
             return
+
+        # Check if message is in the 'general-3-uwu' channel
+        if message.channel.name.lower() == "general-3-uwu":
+            await self.handle_april_fools(message)
 
         await message.channel.typing()
         await self.process_emote_pipeline(message)
@@ -373,6 +441,49 @@ class SlashCommands(commands.Cog):
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
         await send_emote(message, emote, *extra_args)
+
+    async def handle_april_fools(self, message: discord.Message):
+        content = message.clean_content
+        image_data = None
+        guild_id = message.guild.id
+        user_id = message.author.id
+
+        valid_formats = ["png", "webm", "jpg", "jpeg", "gif"]
+        # Process attachments
+        for attachment in message.attachments:
+            if any(attachment.filename.lower().endswith(ext) for ext in valid_formats):
+                image_data = await attachment.read()
+                break
+
+        try:
+            analysis = await analyze_uwu(content, image_data)
+            if analysis.get("isUwU", False):
+                await message.add_reaction("✅")  # UwU approved
+            else:
+                # Increment strike count
+                current_strikes = await db.increment_strike(user_id, guild_id)
+
+                if current_strikes >= 3:
+                    # Revoke posting privileges
+                    channel = discord.utils.get(message.guild.channels, name="general-3-uwu")
+                    await channel.set_permissions(
+                        message.author,
+                        send_messages=False,
+                        reason="3 strikes reached"
+                    )
+                    await db.reset_strikes(user_id, guild_id)
+                    await message.reply(
+                        f"{message.author.mention} has reached 3 strikes! Posting privileges revoked. 🚫"
+                    )
+                else:
+                    strikes_left = 3 - current_strikes
+                    await message.reply(
+                        f"Non-UwU content! Strike {current_strikes}/3. {strikes_left} {'strikes' if strikes_left > 1 else 'strike'} remaining. ⚠️"
+                    )
+
+        except Exception as e:
+            print(f"Error processing April Fools message: {e}")
+            await message.add_reaction("⚠️")
 
 
 def reset_flags():

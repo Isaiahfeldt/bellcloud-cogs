@@ -198,3 +198,47 @@ class Database:
             await self.execute_query(update_query, emote_name, guild_id)
 
         return Emote(**fix_emote_dict(emote_rows))
+
+    async def increment_strike(self, user_id: int, guild_id: int) -> int:
+        """Increment the strike count for a user in a given guild."""
+        query = """
+            INSERT INTO april.strikes (user_id, guild_id)
+            VALUES ($1, $2)
+            ON CONFLICT (user_id, guild_id)
+            DO UPDATE SET 
+                count = april.strikes.count + 1,
+                last_updated = NOW()
+            RETURNING count
+        """
+        return await self.execute(query, user_id, guild_id, fetchval=True)
+
+    async def decrease_strike(self, user_id: int, guild_id: int) -> int:
+        """Decrement the strike count for a user in a given guild."""
+        query = """
+            UPDATE april.strikes 
+            SET count = GREATEST(count - 1, 0),
+                last_updated = NOW()
+            WHERE user_id = $1 AND guild_id = $2
+            RETURNING count
+        """
+        result = await self.execute(query, user_id, guild_id, fetchval=True)
+
+        # If no rows were updated (user had no strikes), return 0
+        return result if result is not None else 0
+
+    async def get_strikes(self, user_id: int, guild_id: int) -> int:
+        """Get the strike count for a user in a given guild."""
+        query = "SELECT count FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
+        return await self.execute(query, user_id, guild_id, fetchval=True) or 0
+
+    async def reset_strikes(self, user_id: int, guild_id: int) -> None:
+        """Reset the strike count for a user in a given guild."""
+        query = "DELETE FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
+        await self.execute(query, user_id, guild_id)
+
+    # async def clear_expired_strikes(self, days: int = 7) -> None:
+    #     query = """
+    #         DELETE FROM april.strikes
+    #         WHERE last_updated < NOW() - INTERVAL '%s days'
+    #     """
+    #     await self.execute(query, days)
