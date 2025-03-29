@@ -70,7 +70,7 @@ async def analyze_uwu(content=None, image_url=None):
 
     messages = [{
         "role": "system",
-        "content": "Analyze for UwU-style elements (cute text, emoticons, playful misspellings). Respond with JSON, write 'reason' in uWu speak: {\"isUwU\": bool, \"reason\": str}"
+        "content": "Analyze for UwU-style elements (cute text, emoticons, playful misspellings). Write your reason in uWu speak. Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
     }]
 
     if content:
