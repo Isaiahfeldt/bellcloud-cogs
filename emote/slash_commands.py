@@ -490,7 +490,8 @@ class SlashCommands(commands.Cog):
         analysis = await analyze_uwu(content, image_url)
 
         if analysis.get("isUwU", False):
-            await message.add_reaction("✅")  # UwU approved
+            # await message.add_reaction("✅")  # UwU approved
+            pass
         else:
             # Increment strike count
             current_strikes = await db.increment_strike(user_id, guild_id)
@@ -507,14 +508,14 @@ class SlashCommands(commands.Cog):
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
                 first_lines = [
-                    "**Oopsie OwO!~**",
+                    "**Oopsie!**",
                     "**ZOMG!!**",
-                    "**UwU, nuuu~!**",
-                    "**Oh noes!! >w<**",
-                    "**Sowwy nyow!!**",
-                    "**Nyaa~ what happened?**",
-                    "**Hewwo? OwO?**",
-                    "**Eep! Mistake incoming~!**"
+                    "**UwU, nuuu!**",
+                    "**Oh noes!**",
+                    "**Sowwy!**",
+                    "**Nyaa!**",
+                    "**Hewwo?**",
+                    "**Eep!**"
                 ]
                 first_line = random.choice(first_lines)
                 await message.reply(
@@ -523,9 +524,17 @@ class SlashCommands(commands.Cog):
                     f"B-bettew wuck next time, nya~! ✨"
                 )
             else:
+                alert_lines = [
+                    "**Non-UwU Alert!**",
+                    "**Oops, no UwU!**",
+                    "**Aw-aw missing!**",
+                    "**Nyoo! Not UwU!**",
+                    "**Alert! No UwU!**"
+                ]
+                alert_line = random.choice(alert_lines)
                 strikes_left = 3 - current_strikes
                 await message.reply(
-                    "**Non-UwU Alert!** 🚨 \n"
+                    f"{alert_line} 🚨\n\n"
                     f"{analysis['reason']}\n\n"
                     f"Strike {current_strikes}/3 - "
                     f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
