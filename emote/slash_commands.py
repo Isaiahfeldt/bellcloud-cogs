@@ -506,8 +506,19 @@ class SlashCommands(commands.Cog):
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
                 await message.add_reaction("3️⃣")
+                first_lines = [
+                    "**Oopsie OwO!~**",
+                    "**ZOMG!!**",
+                    "**UwU, nuuu~!**",
+                    "**Oh noes!! >w<**",
+                    "**Sowwy nyow!!**",
+                    "**Nyaa~ what happened?**",
+                    "**Hewwo? OwO?**",
+                    "**Eep! Mistake incoming~!**"
+                ]
+                first_line = random.choice(first_lines)
                 await message.reply(
-                    f"**Oopsie OwO!~**\n"
+                    f"{first_line}\n"
                     f"{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
                     f"B-bettew wuck next time, nya~! ✨"
                 )
