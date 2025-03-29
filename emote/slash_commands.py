@@ -93,7 +93,10 @@ async def analyze_uwu(content=None, image_url=None):
                 },
                 {
                     "type": "image_url",
-                    "image_url": image_url
+                    "image_url": {
+                        "url": image_url,
+                        "detail": "auto"
+                    },
                 }
             ]
         })
