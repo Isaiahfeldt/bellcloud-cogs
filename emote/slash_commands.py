@@ -20,6 +20,7 @@ import time
 from textwrap import wrap
 
 import discord
+from anyio import sleep
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
 from openai import OpenAI
@@ -523,6 +524,7 @@ class SlashCommands(commands.Cog):
 
         if analysis.get("isUwU", False):
             await message.add_reaction("✅")  # UwU approved
+            await sleep(1)
             await message.remove_reaction("✅", message.guild.me)
             pass
         else:
