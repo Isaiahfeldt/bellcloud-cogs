@@ -20,7 +20,6 @@ import time
 from textwrap import wrap
 
 import discord
-from anyio import sleep
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
 from openai import OpenAI
@@ -482,7 +481,7 @@ class SlashCommands(commands.Cog):
         if message.channel.name.lower() == "general-3-uwu" or message.channel.name.lower() == "general-3":
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
                 if not is_enclosed_in_colon(message):  # Ignore :emotes:
-                    await message.channel.typing()
+                    # await message.channel.typing()
                     await self.handle_april_fools(message)
 
         elif is_enclosed_in_colon(message):
@@ -523,11 +522,10 @@ class SlashCommands(commands.Cog):
         analysis = await analyze_uwu(content, image_url)
 
         if analysis.get("isUwU", False):
-            await message.add_reaction("✅")  # UwU approved
-            await sleep(1)
-            await message.remove_reaction("✅", message.guild.me)
+            # await message.add_reaction("✅")  # UwU approved
             pass
         else:
+            await message.channel.typing()
             # Increment strike count
             current_strikes = await db.increment_strike(user_id, guild_id)
             # current_strikes = 0
