@@ -15,7 +15,7 @@
 
 import unittest
 
-from emote.tests import test_database, test_url
+from emote.tests import test_url, test_database
 
 if __name__ == '__main__':
     loader = unittest.TestLoader()

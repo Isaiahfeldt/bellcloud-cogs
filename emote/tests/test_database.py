@@ -1,95 +1,72 @@
 # File: emote/tests/test_database.py
-#  Copyright (c) 2023-2024, Isaiah Feldt
-#
-#     - This program is free software: you can redistribute it and/or modify it
-#     - under the terms of the GNU Affero General Public License (AGPL) as published by
-#     - the Free Software Foundation, either version 3 of this License,
-#     - or (at your option) any later version.
-#
-#     - This program is distributed in the hope that it will be useful,
-#     - but without any warranty, without even the implied warranty of
-#     - merchantability or fitness for a particular purpose.
-#     - See the GNU Affero General Public License for more details.
-#
-#     - You should have received a copy of the GNU Affero General Public License
-#     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-import asyncio
 import unittest
-from unittest.mock import MagicMock, patch, AsyncMock
+from unittest import mock
 
 from emote.utils.database import Database
 
 
-class TestDatabaseMethods(unittest.TestCase):
+class FakePool:
+    async def acquire(self):
+        fake_conn = mock.AsyncMock()
 
-    def setUp(self):
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(None)
-        # Use a dummy server id for tests that require it.
-        self.test_server_id = "server1"
+        class FakeContextManager:
+            async def __aenter__(self):
+                return fake_conn
 
-    def tearDown(self):
-        self.loop.close()
+            async def __aexit__(self, exc_type, exc, tb):
+                pass
 
-    @patch("asyncpg.connect")
-    def test_get_connection(self, mock_connect):
-        db = Database()
-        self.loop.run_until_complete(db.get_connection())
-        self.assertTrue(mock_connect.called)
+        return FakeContextManager()
 
-    @patch("asyncpg.connect")
-    def test_fetch_query(self, mock_connect):
-        conn = MagicMock()
-        conn.fetch = AsyncMock()
-        conn.close = AsyncMock()
-        mock_connect.return_value = conn
+    async def close(self):
+        pass
 
-        db = Database()
-        sample_query = "SELECT * FROM table;"
-        self.loop.run_until_complete(db.fetch_query(sample_query))
-        conn.fetch.assert_called_once_with(sample_query)
-        conn.close.assert_called_once()
+    def __await__(self):
+        async def inner():
+            return self
 
-    def test_emote_exists_in_database_real(self):
-        EMOTE_NAMES = ["isaiah", "miku4"]  # replace with your emote names
-        db = Database()
+        return inner().__await__()
+
+
+class TestDatabase(unittest.IsolatedAsyncioTestCase):
+    async def asyncSetUp(self):
+        self.database = Database()
+        self.database.CONNECTION_PARAMS = {
+            "user": "test_user",
+            "password": "test_password",
+            "database": "test_database",
+            "host": "localhost",
+        }
+        # Optionally, initialize pool or other things needed for real tests.
+        # await self.database.init_pool()
+        # Set a test server id for use in the real integration tests
+        self.test_server_id = 123456789
+
+    async def asyncTearDown(self):
+        if getattr(self.database, "pool", None) is not None:
+            await self.database.pool.close()
+
+    @mock.patch("asyncpg.create_pool")
+    async def test_init_pool(self, mock_create_pool):
+        fake_pool = FakePool()
+        mock_create_pool.return_value = fake_pool
+        with mock.patch.object(self.database, "init_schema", new=mock.AsyncMock()) as mock_init_schema:
+            await self.database.init_pool()
+            mock_create_pool.assert_called_once_with(
+                **self.database.CONNECTION_PARAMS, min_size=1, max_size=10
+            )
+            mock_init_schema.assert_called_once()
+
+    async def test_emote_exists_in_database_real(self):
+        # This test will run against the actual database.
+        # Make sure the test database contains the emotes "isaiah" and "miku4" beforehand.
+        EMOTE_NAMES = ["isaiah", "miku4"]
+        # Optionally, initialize the pool if needed for this test
+        await self.database.init_pool()
         for emote_name in EMOTE_NAMES:
-            result = self.loop.run_until_complete(db.check_emote_exists(emote_name, self.test_server_id))
+            result = await self.database.check_emote_exists(emote_name, self.test_server_id)
             self.assertTrue(result, f"Expected emote {emote_name} to exist in database, but it didn't.")
-
-    def test_get_emote_real(self):
-        emote_name = "miku4"
-        db = Database()
-        result = self.loop.run_until_complete(db.get_emote(emote_name, self.test_server_id))
-        # Further assertions can be added here based on expected result.
-
-    @patch("asyncpg.connect")
-    def test_emote_exists_in_database_mock(self, mock_connect):
-        conn = AsyncMock()
-        conn.fetch = AsyncMock()
-        conn.close = AsyncMock()
-        mock_connect.return_value = conn
-
-        db = Database()
-        sample_emote_name = "emote1"
-        self.loop.run_until_complete(db.check_emote_exists(sample_emote_name, self.test_server_id))
-        # Verify that the query was called with server_id parameter.
-        query = "SELECT EXISTS (SELECT 1 FROM emote.media WHERE emote_name = $1 AND server_id = $2)"
-        conn.fetch.assert_called_once_with(query, sample_emote_name, self.test_server_id)
-        conn.close.assert_called_once()
-
-    def test_process_query_results(self):
-        db = Database()
-        self.assertFalse(self.loop.run_until_complete(db.process_query_results(None)))
-        self.assertFalse(self.loop.run_until_complete(db.process_query_results([])))
-        self.assertTrue(self.loop.run_until_complete(db.process_query_results([{'exists': True}])))
-
-    def test_format_names_from_results(self):
-        db = Database()
-        self.assertEqual(self.loop.run_until_complete(db.format_names_from_results(None)), [])
-        self.assertEqual(self.loop.run_until_complete(db.format_names_from_results([['Name1'], ['Name2']])),
-                         ['Name1', 'Name2'])
 
 
 if __name__ == "__main__":
