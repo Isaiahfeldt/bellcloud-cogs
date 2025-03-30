@@ -414,31 +414,60 @@ class SlashCommands(commands.Cog):
 
     @emote.command(name="remove_a_strike", description="Remove a single strike from a user")
     @app_commands.describe(user="User to remove a strike from")
+    @commands.guild_only()
     @commands.is_owner()
     async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
+
+        if new_count < 3:
+            channel_names = ["general-3-uwu", "general-3"]
+            channel = next(
+                (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
+                 discord.utils.get(interaction.guild.channels, name=name)),
+                None
+            )
+
+            if channel:
+                await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+
         await interaction.response.send_message(
             f"Aww, {user.mention}-chan had a stwike wemoved! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
             ephemeral=False
         )
 
+    @emote.command(name="forgive", description="Forgive all strikes for a user")
+    @app_commands.describe(user="User to forgive strikes for")
+    @commands.guild_only()
+    @commands.is_owner()
+    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
+        await db.reset_strikes(user.id, interaction.guild_id)
+
+        channel_names = ["general-3-uwu", "general-3"]
+
+        # Find the first matching channel
+        channel = next(
+            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
+             discord.utils.get(interaction.guild.channels, name=name)),
+            None
+        )
+
+        if channel:
+            # Reset user permissions for the channel
+            await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
+
+        await interaction.response.send_message(
+            f"All of {user.mention}-chan's stwikes have been fuwgiven, nya~! ✨ UwU~",
+            ephemeral=False
+        )
+
     @emote.command(name="view_strikes", description="View current strikes for a user")
     @app_commands.describe(user="User to check strikes for")
+    @commands.guild_only()
     @commands.is_owner()
     async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
         strikes = await db.get_strikes(user.id, interaction.guild_id)
         await interaction.response.send_message(
             f"{user.mention}-chan has {strikes}/3 stwikes, nya~! Pwease be cawefuw! ⚠️",
-            ephemeral=False
-        )
-
-    @emote.command(name="forgive", description="Forgive all strikes for a user")
-    @app_commands.describe(user="User to forgive strikes for")
-    @commands.is_owner()
-    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
-        await interaction.response.send_message(
-            f"All of{user.mention}-chan's stwikes have been fuwgiven, nya~! ✨ UwU~",
             ephemeral=False
         )
 
