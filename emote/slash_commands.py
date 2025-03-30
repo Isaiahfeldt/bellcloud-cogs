@@ -521,12 +521,11 @@ class SlashCommands(commands.Cog):
         # try:
         analysis = await analyze_uwu(content, image_url)
 
-        await message.channel.typing()
-
         if analysis.get("isUwU", False):
             # await message.add_reaction("✅")  # UwU approved
             pass
         else:
+            await message.channel.typing()
             # Increment strike count
             current_strikes = await db.increment_strike(user_id, guild_id)
             # current_strikes = 0
