@@ -89,7 +89,8 @@ async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
             "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
             f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
             "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
-            "End your reason with a line break and something along the lines of 'Stwike x/3. You have x tries wemaining!'"
+            "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining!' "
+            "The variation should reflect how many strikes the user has left. "
             "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
             "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
         )
