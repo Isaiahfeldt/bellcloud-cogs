@@ -90,7 +90,9 @@ async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
             f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
             "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
             "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
-            "The variation should reflect how many strikes the user has left. "
+            "The variation should reflect how many strikes the user has left, for instance, if the user has "
+            "only one try left the message could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
+            "Ensure there is a line break between the reason and the warning. "
             "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
             "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
         )
