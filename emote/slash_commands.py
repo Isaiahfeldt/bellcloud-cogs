@@ -534,7 +534,7 @@ class SlashCommands(commands.Cog):
                 break
 
         # try:
-        strikes = await db.get_strikes(user.id, interaction.guild_id)
+        strikes = await db.get_strikes(user_id, guild_id)
         analysis = await analyze_uwu(content, image_url, strikes)
 
         if analysis.get("isUwU", False):
