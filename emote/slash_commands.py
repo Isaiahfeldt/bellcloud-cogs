@@ -69,34 +69,36 @@ async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
         api_key=os.getenv('OPENAI_KEY'),
     )
 
-    # messages = [{
-    #     "role": "system",
-    #     "content": "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-    #                "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-    #                "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-    #                "Write your reason in uWu speak in 1-2 sentences. "
-    #                f"The user is currently at {current_strikes + 1}/3."
-    #                "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-    #                "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
-    # }]
-
     messages = [{
         "role": "system",
-        "content": (
+        "content":
             "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
             "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
             "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
             "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
             f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-            "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
-            "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
-            "The variation should reflect how many strikes the user has left, for instance, if the user has "
-            "only one try left the message could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
-            "Ensure there is a line break between the reason and the warning. "
+            "Write your reason in uWu speak in 1-2 sentences. "
             "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-            "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
-        )
+            "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
     }]
+
+    # messages = [{
+    #     "role": "system",
+    #     "content": (
+    #         "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
+    #         "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
+    #         "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
+    #         "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
+    #         f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
+    #         "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
+    #         "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
+    #         "The variation should reflect how many strikes the user has left, for instance, if the user has "
+    #         "onl my one try left theessage could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
+    #         "Ensure there is a line break between the reason and the warning. "
+    #         "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
+    #         "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
+    #     )
+    # }]
 
     if content:
         messages.append({
@@ -596,8 +598,8 @@ class SlashCommands(commands.Cog):
                 await message.reply(
                     f"{alert_line} 🚨\n"
                     f"{analysis['reason']}\n\n"
-                    f"Strike {current_strikes}/3 - "
-                    f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
+                    f"Stwike {current_strikes}/3 - "
+                    f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ! ⚠️\n\n",
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
