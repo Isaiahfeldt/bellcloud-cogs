@@ -249,7 +249,7 @@ class Database:
 
     async def get_strikes(self, user_id: int, guild_id: int) -> int:
         """Get the strike count for a user in a given guild."""
-        query = "SELECT count FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
+        query = "SELECT strikes FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
         return await self.execute_query(query, user_id, guild_id, fetchval=True) or 0
 
     async def reset_strikes(self, user_id: int, guild_id: int) -> None:
