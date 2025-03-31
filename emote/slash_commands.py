@@ -63,7 +63,7 @@ def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
 
-async def analyze_uwu(content=None, image_url=None, current_strikes=int):
+async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
     """Analyzes text/image for UwU-style content using OpenAI"""
     client = OpenAI(
         api_key=os.getenv('OPENAI_KEY'),
