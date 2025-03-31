@@ -599,7 +599,7 @@ class SlashCommands(commands.Cog):
                     f"{alert_line} 🚨\n"
                     f"{analysis['reason']}\n\n"
                     f"Stwike {current_strikes}/3 - "
-                    f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ! ⚠️\n\n",
+                    f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ⚠️\n\n",
                     mention_author=True
                 )
                 await message.add_reaction("❌")  # Non-UwU reaction
