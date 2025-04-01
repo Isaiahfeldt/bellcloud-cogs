@@ -657,10 +657,8 @@ async def shake(emote: Emote, intensity: int = 1) -> Emote:
         v_x, v_y = 0.0, 0.0
         step = max_shift / 10
 
-        # Store previous offset for blur blending interpolation
         prev_offset = (0.0, 0.0)
 
-        # Generate forward offsets
         for _ in range(half + 1):
             force_x = random.uniform(-step, step)
             force_y = random.uniform(-step, step)
@@ -672,11 +670,9 @@ async def shake(emote: Emote, intensity: int = 1) -> Emote:
             curr_y = max(min(curr_y, max_shift), -max_shift)
             offsets.append((curr_x, curr_y))
 
-        # Mirror the forward offsets for the second half (excluding the duplicate center)
         offsets_rev = list(reversed(offsets[1:]))
         all_offsets = offsets + offsets_rev  # ensures first and last matc
 
-        # Generate frames using computed offsets
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
                 shifted_img = img.copy().transform(
@@ -718,7 +714,8 @@ async def shake(emote: Emote, intensity: int = 1) -> Emote:
             disposal=2
         )
 
-        img.save(output_buffer, format="GIF")
+        if not emote.file_path.lower().endswith('.gif'):
+            emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
 
         emote.notes["Processed"] = str("True")
         emote.img_data = output_buffer.getvalue()
