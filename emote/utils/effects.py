@@ -710,6 +710,7 @@ async def shake(emote: Emote, intensity: int = 1) -> Emote:
 
         frames[0].save(
             output_buffer,
+            format="GIF",
             save_all=True,
             append_images=frames[1:],
             duration=duration,
