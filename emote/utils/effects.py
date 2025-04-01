@@ -642,7 +642,9 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
     with Image.open(io.BytesIO(emote.img_data)) as img:
 
         num_frames = 60
-        max_shift = 250 * intensity
+        img_width, img_height = img.size
+        scale = min(img_width, img_height) / 540.0
+        max_shift = (250 * scale) * intensity
         duration = 50
         spring = 1.3
         damping = 0.85
