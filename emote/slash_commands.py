@@ -177,7 +177,7 @@ async def get_emote_and_verify(emote_name_str: str, channel):
 
 async def keep_typing(channel):
     while True:
-        await channel.trigger_typing()  # Alternative to channel.typing()
+        await channel.typing()  # Alternative to channel.typing()
         await asyncio.sleep(5)  # Refresh every 5 seconds
 
 
