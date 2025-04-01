@@ -568,6 +568,162 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
+async def shake(emote: Emote, intensity: int = 1) -> Emote:
+    """
+        Applies a shaking effect to the emote image data by creating a looping shaking GIF.
+
+        User:
+            Shakes the emote.
+            Only the maximum shift (max_shift) can be adjusted.
+
+            Usage:
+                :aspire_shake:          - Applies a shake effect with default intensity.
+                :aspire_shake(2):       - Applies a shake effect by a factor of 2.
+
+        Parameters:
+            emote (Emote): The emote object containing the image data.
+            intensity (int): Maximum pixel offset to apply (default is 50).
+
+        Returns:
+            Emote: The updated emote object with the shaken animated GIF.
+
+        Notes:
+            This effect uses a spring/damping simulation to generate a looping shaking GIF.
+            Image data is temporarily written to disk for processing.
+        """
+    if emote.img_data is None:
+        emote.errors["shake"] = "No image data available for shaking effect."
+        return emote
+
+    allowed_extensions = {'jpg', 'jpeg', 'png'}
+    file_ext = emote.file_path.lower().split('.')[-1]
+    emote.notes["file_ext"] = str(file_ext)
+    if file_ext not in allowed_extensions:
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
+        return emote
+
+    import random, io
+    import numpy as np
+    from PIL import Image
+
+    def blend_images(images, weights):
+        """
+        Blend a list of RGBA images using premultiplied alpha.
+        This helps avoid dark edges when blending transparent areas.
+        """
+        result_rgb = None
+        result_alpha = None
+
+        for img, weight in zip(images, weights):
+            # Convert image to numpy array of type float32
+            arr = np.array(img).astype(np.float32)
+            # Separate alpha and compute a multiplier (scale between 0 and 1)
+            alpha = arr[..., 3:4] / 255.0
+            # Premultiply RGB channels by alpha
+            premul = arr[..., :3] * alpha
+            if result_rgb is None:
+                result_rgb = weight * premul
+                result_alpha = weight * arr[..., 3:4]
+            else:
+                result_rgb += weight * premul
+                result_alpha += weight * arr[..., 3:4]
+
+        # Avoid division by zero by replacing 0 alphas with 1
+        safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
+        # Revert premultiplication
+        rgb = result_rgb / (safe_alpha / 255.0)
+        # Clip the values to valid range
+        rgb = np.clip(rgb, 0, 255)
+        alpha = np.clip(result_alpha, 0, 255)
+        # Recombine the channels
+        result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
+        return Image.fromarray(result)
+
+    with Image.open(io.BytesIO(emote.img_data)) as img:
+
+        num_frames = 60
+        max_shift = 250 * intensity
+        duration = 50
+        spring = 1.3
+        damping = 0.85
+        blur_exposures = 10
+
+        frames = []
+
+        # Generate offsets using the simulation for half of the frames
+        half = num_frames // 2
+        offsets = []
+        curr_x, curr_y = 0.0, 0.0
+        v_x, v_y = 0.0, 0.0
+        step = max_shift / 10
+
+        # Store previous offset for blur blending interpolation
+        prev_offset = (0.0, 0.0)
+
+        # Generate forward offsets
+        for _ in range(half + 1):
+            force_x = random.uniform(-step, step)
+            force_y = random.uniform(-step, step)
+            v_x = damping * (v_x + force_x - spring * curr_x)
+            v_y = damping * (v_y + force_y - spring * curr_y)
+            curr_x += v_x
+            curr_y += v_y
+            curr_x = max(min(curr_x, max_shift), -max_shift)
+            curr_y = max(min(curr_y, max_shift), -max_shift)
+            offsets.append((curr_x, curr_y))
+
+        # Mirror the forward offsets for the second half (excluding the duplicate center)
+        offsets_rev = list(reversed(offsets[1:]))
+        all_offsets = offsets + offsets_rev  # ensures first and last matc
+
+        # Generate frames using computed offsets
+        for idx, (offset_x, offset_y) in enumerate(all_offsets):
+            if idx == 0 or blur_exposures <= 1:
+                shifted_img = img.copy().transform(
+                    img.size,
+                    Image.AFFINE,
+                    (1, 0, int(offset_x), 0, 1, int(offset_y)),
+                    resample=Image.BILINEAR,
+                    fillcolor=(0, 0, 0, 0)
+                )
+                final_img = shifted_img
+            else:
+                sub_images = []
+                for j in range(blur_exposures):
+                    f = (j + 1) / blur_exposures
+                    inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
+                    inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
+                    shifted_img = img.copy().transform(
+                        img.size,
+                        Image.AFFINE,
+                        (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                        resample=Image.BILINEAR,
+                        fillcolor=(0, 0, 0, 0)
+                    )
+                    sub_images.append(shifted_img)
+                weights = [1 / blur_exposures] * blur_exposures
+                final_img = blend_images(sub_images, weights)
+            frames.append(final_img)
+            prev_offset = (offset_x, offset_y)
+
+        output_buffer = io.BytesIO()
+
+        frames[0].save(
+            output_buffer,
+            save_all=True,
+            append_images=frames[1:],
+            duration=duration,
+            loop=0,
+            disposal=2
+        )
+
+        img.save(output_buffer, format=file_ext.upper())
+
+        emote.img_data = output_buffer.getvalue()
+
+    return emote
+
+
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote image data in the specified direction(s).
