@@ -720,6 +720,7 @@ async def shake(emote: Emote, intensity: int = 1) -> Emote:
 
         img.save(output_buffer, format=file_ext.upper())
 
+        emote.notes["Processed"] = str("True")
         emote.img_data = output_buffer.getvalue()
 
     return emote
