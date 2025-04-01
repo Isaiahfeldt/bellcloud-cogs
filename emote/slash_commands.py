@@ -507,9 +507,8 @@ class SlashCommands(commands.Cog):
                     await self.handle_april_fools(message)
 
         elif is_enclosed_in_colon(message):
-            async with message.channel.typing():
-                await self.process_emote_pipeline(message)
-
+            await message.channel.typing()
+            await self.process_emote_pipeline(message)
             reset_flags()
 
     async def process_emote_pipeline(self, message):
@@ -522,7 +521,8 @@ class SlashCommands(commands.Cog):
                 return
 
             pipeline = await create_pipeline(self, message, emote, queued_effects)
-            emote = await execute_pipeline(pipeline)
+            async with message.channel.typing():
+                emote = await execute_pipeline(pipeline)
 
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
