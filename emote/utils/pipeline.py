@@ -99,12 +99,14 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             try:
                 return await func(emote, *args)
             except TypeError as e:
+                print(e)  # Print the error to the console
                 if "positional arguments" in str(e):
                     emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
                 else:
                     emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
                 return emote
             except Exception as e:
+                print(e)  # Print the error to the console
                 emote.errors[f"{_effect_name}_effect"] = str(e)
                 return emote
 
