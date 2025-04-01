@@ -595,75 +595,69 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
 
-    allowed_extensions = {'jpg', 'jpeg', 'png'}
+    # Extend allowed extensions to include gif and webp.
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
         return emote
 
-    import random, io
+    import io
+    import random
     import numpy as np
-    from PIL import Image
+    from PIL import Image, ImageSequence
 
-    def blend_images(images, weights):
-        """
-        Blend a list of RGBA images using premultiplied alpha.
-        This helps avoid dark edges when blending transparent areas.
-        """
-        result_rgb = None
-        result_alpha = None
-
-        for img, weight in zip(images, weights):
-            # Convert image to numpy array of type float32
-            arr = np.array(img).astype(np.float32)
-            # Separate alpha and compute a multiplier (scale between 0 and 1)
-            alpha = arr[..., 3:4] / 255.0
-            # Premultiply RGB channels by alpha
-            premul = arr[..., :3] * alpha
-            if result_rgb is None:
-                result_rgb = weight * premul
-                result_alpha = weight * arr[..., 3:4]
-            else:
-                result_rgb += weight * premul
-                result_alpha += weight * arr[..., 3:4]
-
-        # Avoid division by zero by replacing 0 alphas with 1
-        safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
-        # Revert premultiplication
-        rgb = result_rgb / (safe_alpha / 255.0)
-        # Clip the values to valid range
-        rgb = np.clip(rgb, 0, 255)
-        alpha = np.clip(result_alpha, 0, 255)
-        # Recombine the channels
-        result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
-        return Image.fromarray(result)
-
-    with Image.open(io.BytesIO(emote.img_data)) as img:
-
+    # Helper function to generate shaken frames from a single static image.
+    def shake_frame(img: Image.Image, intensity: float) -> list[Image.Image]:
         num_frames = 60
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
         max_shift = (250 * scale) * intensity
-        duration = 50
+        duration = 50  # frame duration in ms
         spring = 1.3
         damping = 0.85
         blur_exposures = 12
 
+        # Record some notes (optional)
         emote.notes["Scale"] = str(scale)
         emote.notes["max_shift after"] = str(250 * scale)
 
-        frames = []
+        def blend_images(images, weights):
+            """
+            Blend a list of RGBA images using premultiplied alpha.
+            This helps avoid dark edges when blending transparent areas.
+            """
+            result_rgb = None
+            result_alpha = None
 
-        # Generate offsets using the simulation for half of the frames
+            for img_item, weight in zip(images, weights):
+                arr = np.array(img_item).astype(np.float32)
+                alpha = arr[..., 3:4] / 255.0
+                premul = arr[..., :3] * alpha
+                if result_rgb is None:
+                    result_rgb = weight * premul
+                    result_alpha = weight * arr[..., 3:4]
+                else:
+                    result_rgb += weight * premul
+                    result_alpha += weight * arr[..., 3:4]
+
+            safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
+            rgb = result_rgb / (safe_alpha / 255.0)
+            rgb = np.clip(rgb, 0, 255)
+            alpha = np.clip(result_alpha, 0, 255)
+            result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
+            return Image.fromarray(result)
+
+        frames = []
         half = num_frames // 2
         offsets = []
         curr_x, curr_y = 0.0, 0.0
         v_x, v_y = 0.0, 0.0
         step = max_shift / 10
-
         prev_offset = (0.0, 0.0)
 
+        # Generate simulation offsets
         for _ in range(half + 1):
             force_x = random.uniform(-step, step)
             force_y = random.uniform(-step, step)
@@ -674,10 +668,10 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             curr_x = max(min(curr_x, max_shift), -max_shift)
             curr_y = max(min(curr_y, max_shift), -max_shift)
             offsets.append((curr_x, curr_y))
-
         offsets_rev = list(reversed(offsets[1:]))
-        all_offsets = offsets + offsets_rev  # ensures first and last matc
+        all_offsets = offsets + offsets_rev
 
+        # Apply shaking for each simulated offset
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
                 shifted_img = img.copy().transform(
@@ -694,35 +688,55 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
                     f = (j + 1) / blur_exposures
                     inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
                     inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
-                    shifted_img = img.copy().transform(
+                    shifted = img.copy().transform(
                         img.size,
                         Image.AFFINE,
                         (1, 0, int(inter_x), 0, 1, int(inter_y)),
                         resample=Image.BILINEAR,
                         fillcolor=(0, 0, 0, 0)
                     )
-                    sub_images.append(shifted_img)
+                    sub_images.append(shifted)
                 weights = [1 / blur_exposures] * blur_exposures
                 final_img = blend_images(sub_images, weights)
             frames.append(final_img)
             prev_offset = (offset_x, offset_y)
+        return frames
 
+    # Open image from image data in memory
+    with Image.open(io.BytesIO(emote.img_data)) as img:
+        all_shaken_frames = []
+        is_animated = getattr(img, "is_animated", False) and getattr(img, "n_frames", 1) > 1
+
+        if is_animated:
+            # For animated input, process each frame from the source.
+            # Each original frame will be converted to a shaking sequence (e.g., 60 frames)
+            for frame in ImageSequence.Iterator(img):
+                frame = frame.convert("RGBA")
+                shaken_frames = shake_frame(frame, intensity)
+                all_shaken_frames.extend(shaken_frames)
+        else:
+            # For static input, process the image as usual.
+            img = img.convert("RGBA")
+            all_shaken_frames = shake_frame(img, intensity)
+
+        # Save the output as an animated GIF.
         output_buffer = io.BytesIO()
-
-        frames[0].save(
+        first_frame = all_shaken_frames[0]
+        first_frame.save(
             output_buffer,
             format="GIF",
             save_all=True,
-            append_images=frames[1:],
-            duration=duration,
+            append_images=all_shaken_frames[1:],
+            duration=50,
             loop=0,
-            disposal=2
+            disposal=2,
+            transparency=0
         )
 
+        # Update file extension to GIF if needed.
         if not emote.file_path.lower().endswith('.gif'):
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
-
-        emote.notes["Processed"] = str("True")
+        emote.notes["Processed"] = "True"
         emote.img_data = output_buffer.getvalue()
 
     return emote
