@@ -643,12 +643,15 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
 
         num_frames = 60
         img_width, img_height = img.size
-        scale = min(img_width, img_height) / 540.0
+        scale = max(img_width, img_height) / 540.0
         max_shift = (250 * scale) * intensity
         duration = 50
         spring = 1.3
         damping = 0.85
         blur_exposures = 10
+
+        emote.notes["Scale"] = str(scale)
+        emote.notes["max_shift after"] = str(max_shift)
 
         frames = []
 
