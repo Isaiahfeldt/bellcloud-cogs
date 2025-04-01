@@ -568,7 +568,7 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
-async def shake(emote: Emote, intensity: int = 1) -> Emote:
+async def shake(emote: Emote, intensity: float = 1) -> Emote:
     """
         Applies a shaking effect to the emote image data by creating a looping shaking GIF.
 
