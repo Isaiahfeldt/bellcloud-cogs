@@ -651,7 +651,7 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         blur_exposures = 10
 
         emote.notes["Scale"] = str(scale)
-        emote.notes["max_shift after"] = str(max_shift)
+        emote.notes["max_shift after"] = str(250 * scale)
 
         frames = []
 
