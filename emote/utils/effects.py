@@ -570,36 +570,36 @@ async def invert(emote: Emote) -> Emote:
 
 async def shake(emote: Emote, intensity: float = 1) -> Emote:
     """
-        Applies a shaking effect to the emote image data by creating a looping shaking GIF.
+    Applies a shaking effect to the emote image data by creating a looping shaking GIF.
 
-        User:
-            Shakes the emote.
-            Only the maximum shift (max_shift) can be adjusted.
+    User:
+        Shakes the emote.
+        Only the maximum shift (max_shift) can be adjusted.
 
-            Usage:
-                :aspire_shake:          - Applies a shake effect with default intensity.
-                :aspire_shake(2):       - Applies a shake effect by a factor of 2.
+        Usage:
+            :aspire_shake:          - Applies a shake effect with default intensity.
+            :aspire_shake(2):       - Applies a shake effect by a factor of 2.
 
-        Parameters:
-            emote (Emote): The emote object containing the image data.
-            intensity (int): Maximum pixel offset to apply (default is 50).
+    Parameters:
+        emote (Emote): The emote object containing the image data.
+        intensity (int): Maximum pixel offset to apply (default is 1).
 
-        Returns:
-            Emote: The updated emote object with the shaken animated GIF.
+    Returns:
+        Emote: The updated emote object with the shaken animated GIF.
 
-        Notes:
-            This effect uses a spring/damping simulation to generate a looping shaking GIF.
-            Image data is temporarily written to disk for processing.
-        """
+    Notes:
+        This effect uses a spring/damping simulation to generate a looping shaking GIF.
+        Supports static images (jpg/jpeg/png) as well as animated GIFs and WebPs.
+    """
     if emote.img_data is None:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
 
-    allowed_extensions = {'jpg', 'jpeg', 'png'}
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif, webp"
         return emote
 
     import random, io
@@ -640,30 +640,35 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         return Image.fromarray(result)
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
+        # Get basic animation properties
+        is_animated = getattr(img, "is_animated", False)
+        original_format = img.format
+        emote.notes["is_animated"] = str(is_animated)
+        emote.notes["original_format"] = str(original_format)
 
-        num_frames = 60
+        # Number of frames for the shake effect
+        shake_frames = 60
+
+        # Get image dimensions and calculate scale for shake intensity
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
         max_shift = (250 * scale) * intensity
-        duration = 50
+        duration = 50  # Duration of each shake frame
         spring = 1.3
         damping = 0.85
         blur_exposures = 12
 
         emote.notes["Scale"] = str(scale)
-        emote.notes["max_shift after"] = str(250 * scale)
+        emote.notes["max_shift"] = str(250 * scale * intensity)
 
-        frames = []
-
-        # Generate offsets using the simulation for half of the frames
-        half = num_frames // 2
+        # Generate shake offsets using the simulation
+        half = shake_frames // 2
         offsets = []
         curr_x, curr_y = 0.0, 0.0
         v_x, v_y = 0.0, 0.0
         step = max_shift / 10
 
-        prev_offset = (0.0, 0.0)
-
+        # Generate offsets for the first half
         for _ in range(half + 1):
             force_x = random.uniform(-step, step)
             force_y = random.uniform(-step, step)
@@ -675,55 +680,113 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             curr_y = max(min(curr_y, max_shift), -max_shift)
             offsets.append((curr_x, curr_y))
 
+        # Create palindrome sequence for smooth looping
         offsets_rev = list(reversed(offsets[1:]))
-        all_offsets = offsets + offsets_rev  # ensures first and last matc
+        all_offsets = offsets + offsets_rev  # ensures first and last match
 
-        for idx, (offset_x, offset_y) in enumerate(all_offsets):
-            if idx == 0 or blur_exposures <= 1:
-                shifted_img = img.copy().transform(
-                    img.size,
-                    Image.AFFINE,
-                    (1, 0, int(offset_x), 0, 1, int(offset_y)),
-                    resample=Image.BILINEAR,
-                    fillcolor=(0, 0, 0, 0)
-                )
-                final_img = shifted_img
-            else:
-                sub_images = []
-                for j in range(blur_exposures):
-                    f = (j + 1) / blur_exposures
-                    inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
-                    inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
-                    shifted_img = img.copy().transform(
-                        img.size,
+        # Handle animated or static images differently
+        if is_animated and original_format.upper() in ('GIF', 'WEBP'):
+            frames = []
+            frame_durations = []
+
+            # Extract all original frames and their durations
+            try:
+                # For GIF
+                original_frames = []
+                for frame_idx in range(getattr(img, "n_frames", 0)):
+                    img.seek(frame_idx)
+                    # Convert to RGBA to ensure consistent processing
+                    original_frames.append(img.convert('RGBA'))
+                    # Get frame duration in milliseconds
+                    frame_durations.append(img.info.get('duration', 100))
+
+                emote.notes["original_frames"] = str(len(original_frames))
+
+                # Apply shake to each original frame
+                output_frames = []
+                for i in range(len(all_offsets)):
+                    offset_x, offset_y = all_offsets[i]
+                    # Select source frame based on time distribution
+                    source_idx = i % len(original_frames)
+                    source = original_frames[source_idx]
+
+                    # Apply shake transformation to this frame
+                    shifted_img = source.copy().transform(
+                        source.size,
                         Image.AFFINE,
-                        (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                        (1, 0, int(offset_x), 0, 1, int(offset_y)),
                         resample=Image.BILINEAR,
                         fillcolor=(0, 0, 0, 0)
                     )
-                    sub_images.append(shifted_img)
-                weights = [1 / blur_exposures] * blur_exposures
-                final_img = blend_images(sub_images, weights)
-            frames.append(final_img)
-            prev_offset = (offset_x, offset_y)
+                    output_frames.append(shifted_img)
 
-        output_buffer = io.BytesIO()
+                # Save as GIF
+                output_buffer = io.BytesIO()
+                output_frames[0].save(
+                    output_buffer,
+                    format="GIF",
+                    save_all=True,
+                    append_images=output_frames[1:],
+                    duration=duration,  # Use shake duration instead of original
+                    loop=0,
+                    disposal=2
+                )
 
-        frames[0].save(
-            output_buffer,
-            format="GIF",
-            save_all=True,
-            append_images=frames[1:],
-            duration=duration,
-            loop=0,
-            disposal=2
-        )
+                emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
+                emote.img_data = output_buffer.getvalue()
 
-        if not emote.file_path.lower().endswith('.gif'):
+            except Exception as e:
+                emote.errors["shake"] = f"Error processing animated image: {str(e)}"
+                return emote
+        else:
+            # Static image processing - same as original implementation
+            frames = []
+            prev_offset = (0.0, 0.0)
+
+            for idx, (offset_x, offset_y) in enumerate(all_offsets):
+                if idx == 0 or blur_exposures <= 1:
+                    shifted_img = img.copy().transform(
+                        img.size,
+                        Image.AFFINE,
+                        (1, 0, int(offset_x), 0, 1, int(offset_y)),
+                        resample=Image.BILINEAR,
+                        fillcolor=(0, 0, 0, 0)
+                    )
+                    final_img = shifted_img
+                else:
+                    sub_images = []
+                    for j in range(blur_exposures):
+                        f = (j + 1) / blur_exposures
+                        inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
+                        inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
+                        shifted_img = img.copy().transform(
+                            img.size,
+                            Image.AFFINE,
+                            (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                            resample=Image.BILINEAR,
+                            fillcolor=(0, 0, 0, 0)
+                        )
+                        sub_images.append(shifted_img)
+                    weights = [1 / blur_exposures] * blur_exposures
+                    final_img = blend_images(sub_images, weights)
+                frames.append(final_img)
+                prev_offset = (offset_x, offset_y)
+
+            output_buffer = io.BytesIO()
+            frames[0].save(
+                output_buffer,
+                format="GIF",
+                save_all=True,
+                append_images=frames[1:],
+                duration=duration,
+                loop=0,
+                disposal=2
+            )
+
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
+            emote.img_data = output_buffer.getvalue()
 
         emote.notes["Processed"] = str("True")
-        emote.img_data = output_buffer.getvalue()
 
     return emote
 

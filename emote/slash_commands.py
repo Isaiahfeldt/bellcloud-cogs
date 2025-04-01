@@ -12,7 +12,6 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-import asyncio
 import base64
 import json
 import os
@@ -158,27 +157,22 @@ async def get_emote_and_verify(emote_name_str: str, channel):
     return emote
 
 
-# def get_cache_info(return_as_boolean=False):
-#     """
-#     Returns cache information based on the specified argument.
-#
-#     If `return_as_boolean` is True, returns a boolean indicating whether the cache contains any items.
-#     Otherwise, returns the current cache state and emote usage collection as a formatted string.
-#     """
-#     cache_state = db.cache
-#     emote_usage_collection = db.emote_usage_collection
-#
-#     # If return_as_boolean is True, return a boolean based on whether the cache has any items
-#     if return_as_boolean:
-#         return bool(cache_state)  # True if cache contains items, False otherwise
-#
-#     # Otherwise, format cache information as a string
-#     return f"{str(cache_state)}\n{str(emote_usage_collection)}"
+def get_cache_info(return_as_boolean=False):
+    """
+    Returns cache information based on the specified argument.
 
-async def keep_typing(channel):
-    while True:
-        await channel.typing()  # Alternative to channel.typing()
-        await asyncio.sleep(5)  # Refresh every 5 seconds
+    If `return_as_boolean` is True, returns a boolean indicating whether the cache contains any items.
+    Otherwise, returns the current cache state and emote usage collection as a formatted string.
+    """
+    cache_state = db.cache
+    emote_usage_collection = db.emote_usage_collection
+
+    # If return_as_boolean is True, return a boolean based on whether the cache has any items
+    if return_as_boolean:
+        return bool(cache_state)  # True if cache contains items, False otherwise
+
+    # Otherwise, format cache information as a string
+    return f"{str(cache_state)}\n{str(emote_usage_collection)}"
 
 
 @cog_i18n(_)
@@ -512,11 +506,8 @@ class SlashCommands(commands.Cog):
                     await self.handle_april_fools(message)
 
         elif is_enclosed_in_colon(message):
-            typing_task = asyncio.create_task(keep_typing(message.channel))
-            try:
+            async with message.channel.typing():
                 await self.process_emote_pipeline(message)
-            finally:
-                typing_task.cancel()  # Stop the typing indicator
             reset_flags()
 
     async def process_emote_pipeline(self, message):
