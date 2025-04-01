@@ -595,11 +595,11 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
 
-    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    allowed_extensions = {'jpg', 'jpeg', 'png'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif, webp"
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
         return emote
 
     import random, io
@@ -615,8 +615,11 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         result_alpha = None
 
         for img, weight in zip(images, weights):
+            # Convert image to numpy array of type float32
             arr = np.array(img).astype(np.float32)
+            # Separate alpha and compute a multiplier (scale between 0 and 1)
             alpha = arr[..., 3:4] / 255.0
+            # Premultiply RGB channels by alpha
             premul = arr[..., :3] * alpha
             if result_rgb is None:
                 result_rgb = weight * premul
@@ -625,99 +628,93 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
                 result_rgb += weight * premul
                 result_alpha += weight * arr[..., 3:4]
 
+        # Avoid division by zero by replacing 0 alphas with 1
         safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
+        # Revert premultiplication
         rgb = result_rgb / (safe_alpha / 255.0)
+        # Clip the values to valid range
         rgb = np.clip(rgb, 0, 255)
         alpha = np.clip(result_alpha, 0, 255)
+        # Recombine the channels
         result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
         return Image.fromarray(result)
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
-        is_animated = getattr(img, "is_animated", False)
-        total_frames = img.n_frames if is_animated else 1
 
-        all_shaken_frames = []
-        all_durations = []
+        num_frames = 60
+        img_width, img_height = img.size
+        scale = max(img_width, img_height) / 540.0
+        max_shift = (250 * scale) * intensity
+        duration = 50
+        spring = 1.3
+        damping = 0.85
+        blur_exposures = 12
 
-        for frame_idx in range(total_frames):
-            if is_animated:
-                img.seek(frame_idx)
-            current_frame = img.copy()
+        emote.notes["Scale"] = str(scale)
+        emote.notes["max_shift after"] = str(250 * scale)
 
-            # Generate shake parameters for each frame
-            num_frames = 60  # Keep the 60-frame shake for consistency
-            img_width, img_height = current_frame.size
-            scale = max(img_width, img_height) / 540.0
-            max_shift = (250 * scale) * intensity
-            spring = 1.3
-            damping = 0.85
-            blur_exposures = 12
+        frames = []
 
-            offsets = []
-            curr_x, curr_y = 0.0, 0.0
-            v_x, v_y = 0.0, 0.0
-            step = max_shift / 10
+        # Generate offsets using the simulation for half of the frames
+        half = num_frames // 2
+        offsets = []
+        curr_x, curr_y = 0.0, 0.0
+        v_x, v_y = 0.0, 0.0
+        step = max_shift / 10
 
-            prev_offset = (0.0, 0.0)
-            for _ in range(num_frames // 2 + 1):
-                force_x = random.uniform(-step, step)
-                force_y = random.uniform(-step, step)
-                v_x = damping * (v_x + force_x - spring * curr_x)
-                v_y = damping * (v_y + force_y - spring * curr_y)
-                curr_x += v_x
-                curr_y += v_y
-                curr_x = max(min(curr_x, max_shift), -max_shift)
-                curr_y = max(min(curr_y, max_shift), -max_shift)
-                offsets.append((curr_x, curr_y))
-            offsets_rev = list(reversed(offsets[1:]))
-            all_offsets = offsets + offsets_rev
+        prev_offset = (0.0, 0.0)
 
-            # Generate shaken frames for the current frame
-            frames = []
-            prev_offset = (0.0, 0.0)
-            for offset_x, offset_y in all_offsets:
-                if blur_exposures <= 1:
-                    shifted_img = current_frame.transform(
-                        current_frame.size, Image.AFFINE,
-                        (1, 0, int(offset_x), 0, 1, int(offset_y)),
-                        resample=Image.BILINEAR, fillcolor=(0, 0, 0, 0)
+        for _ in range(half + 1):
+            force_x = random.uniform(-step, step)
+            force_y = random.uniform(-step, step)
+            v_x = damping * (v_x + force_x - spring * curr_x)
+            v_y = damping * (v_y + force_y - spring * curr_y)
+            curr_x += v_x
+            curr_y += v_y
+            curr_x = max(min(curr_x, max_shift), -max_shift)
+            curr_y = max(min(curr_y, max_shift), -max_shift)
+            offsets.append((curr_x, curr_y))
+
+        offsets_rev = list(reversed(offsets[1:]))
+        all_offsets = offsets + offsets_rev  # ensures first and last matc
+
+        for idx, (offset_x, offset_y) in enumerate(all_offsets):
+            if idx == 0 or blur_exposures <= 1:
+                shifted_img = img.copy().transform(
+                    img.size,
+                    Image.AFFINE,
+                    (1, 0, int(offset_x), 0, 1, int(offset_y)),
+                    resample=Image.BILINEAR,
+                    fillcolor=(0, 0, 0, 0)
+                )
+                final_img = shifted_img
+            else:
+                sub_images = []
+                for j in range(blur_exposures):
+                    f = (j + 1) / blur_exposures
+                    inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
+                    inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
+                    shifted_img = img.copy().transform(
+                        img.size,
+                        Image.AFFINE,
+                        (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                        resample=Image.BILINEAR,
+                        fillcolor=(0, 0, 0, 0)
                     )
-                    final_img = shifted_img
-                else:
-                    sub_images = []
-                    for j in range(blur_exposures):
-                        f = (j + 1) / blur_exposures
-                        inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
-                        inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
-                        shifted_img = current_frame.transform(
-                            current_frame.size, Image.AFFINE,
-                            (1, 0, int(inter_x), 0, 1, int(inter_y)),
-                            resample=Image.BILINEAR, fillcolor=(0, 0, 0, 0)
-                        )
-                        sub_images.append(shifted_img)
-                    weights = [1 / blur_exposures] * blur_exposures
-                    final_img = blend_images(sub_images, weights)
-                frames.append(final_img)
-                prev_offset = (offset_x, offset_y)
+                    sub_images.append(shifted_img)
+                weights = [1 / blur_exposures] * blur_exposures
+                final_img = blend_images(sub_images, weights)
+            frames.append(final_img)
+            prev_offset = (offset_x, offset_y)
 
-            # Adjust duration for each shaken frame
-            original_duration = img.info.get('duration', 100) if is_animated else 100
-            frame_duration = original_duration / len(frames) if is_animated else 50
-            all_durations.extend([frame_duration] * len(frames))
-            all_shaken_frames.extend(frames)
-
-        # Save all frames as a new animated GIF
         output_buffer = io.BytesIO()
-        if len(all_shaken_frames) == 0:
-            emote.errors["shake"] = "No frames generated"
-            return emote
 
-        all_shaken_frames[0].save(
+        frames[0].save(
             output_buffer,
             format="GIF",
             save_all=True,
-            append_images=all_shaken_frames[1:],
-            duration=int(sum(all_durations) / len(all_durations)),
+            append_images=frames[1:],
+            duration=duration,
             loop=0,
             disposal=2
         )
@@ -725,6 +722,7 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         if not emote.file_path.lower().endswith('.gif'):
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
 
+        emote.notes["Processed"] = str("True")
         emote.img_data = output_buffer.getvalue()
 
     return emote
