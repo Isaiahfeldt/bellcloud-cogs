@@ -113,7 +113,7 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     return pipeline
 
 
-async def execute_pipeline(pipeline):
+async def execute_pipeline(pipeline, message):
     """
     Executes a sequence of asynchronous functions in a pipeline, passing the result of
     each step to the next.
@@ -123,6 +123,7 @@ async def execute_pipeline(pipeline):
     """
     emote = None
     for operation in pipeline:
+        await message.channel.typing()
         emote = await operation(emote)
     return emote
 

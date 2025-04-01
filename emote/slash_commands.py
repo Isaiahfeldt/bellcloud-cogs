@@ -521,8 +521,7 @@ class SlashCommands(commands.Cog):
                 return
 
             pipeline = await create_pipeline(self, message, emote, queued_effects)
-            async with message.channel.typing():
-                emote = await execute_pipeline(pipeline)
+            emote = await execute_pipeline(pipeline, message)
 
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
