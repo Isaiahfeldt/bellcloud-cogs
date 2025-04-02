@@ -135,7 +135,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     from emote.slash_commands import SlashCommands
 
     SlashCommands.debug_enabled = True
-    emote.notes["was_cached"] = SlashCommands.was_cached
+    # emote.notes["was_cached"] = SlashCommands.was_cached
 
     # Create a dictionary to hold the debug information.
     notes = emote.notes
@@ -730,7 +730,6 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         )
         if not emote.file_path.lower().endswith('.gif'):
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
-        emote.notes["Processed"] = "True"
         emote.img_data = output_buffer.getvalue()
 
     return emote
@@ -852,7 +851,6 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                                      remove_temp=True)
 
                 with open(out_path, "rb") as f:
-                    emote.notes["with_open"] = "Yes"
                     emote.img_data = f.read()
 
 
