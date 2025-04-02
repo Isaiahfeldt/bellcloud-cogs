@@ -656,13 +656,12 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-    original_duration = get_emote_duration(emote)
-    duration = original_duration
+    duration = 50 if classic else 25
 
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
     emote.notes["original_file_ext"] = str(file_ext)
-    emote.notes["original_duration"] = str(original_duration)
+    # emote.notes["original_duration"] = str(original_duration)
 
     # Generate shaking offsets
     half = num_frames // 2
