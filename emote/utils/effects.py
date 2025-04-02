@@ -72,7 +72,7 @@ class Emote:
     img_data: Optional[bytes] = None
 
 
-def get_animated_duration(emote: Emote) -> Optional[int]:
+def get_emote_duration(emote: Emote) -> Optional[int]:
     """
     Gets the duration of an animated WebP or GIF file in milliseconds.
     """
@@ -656,7 +656,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-    original_duration = get_animated_duration(emote)
+    original_duration = get_emote_duration(emote)
     duration = original_duration
 
     emote.notes["Scale"] = str(scale)
