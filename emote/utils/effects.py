@@ -595,6 +595,14 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
 
+    # Imports inside the function
+    import os
+    import random
+    import io
+    import numpy as np
+    from PIL import Image
+    from concurrent.futures import ThreadPoolExecutor
+
     allowed_extensions = {'jpg', 'jpeg', 'png'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
@@ -602,28 +610,19 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
         return emote
 
-    import random, io
-    import numpy as np
-    from PIL import Image
-    from concurrent.futures import ThreadPoolExecutor
-
     def blend_images(images, weights):
         """
-        Blend a list of RGBA images using premultiplied alpha.
-        This helps avoid dark edges when blending transparent areas.
+        Vectorized blend of a list of RGBA images using premultiplied alpha.
+        This avoids Python-level loops by leveraging NumPy.
         """
-        result_rgb = None
-        result_alpha = None
-        for img, weight in zip(images, weights):
-            arr = np.array(img).astype(np.float32)
-            alpha = arr[..., 3:4] / 255.0
-            premul = arr[..., :3] * alpha
-            if result_rgb is None:
-                result_rgb = weight * premul
-                result_alpha = weight * arr[..., 3:4]
-            else:
-                result_rgb += weight * premul
-                result_alpha += weight * arr[..., 3:4]
+        image_arrays = np.stack([np.array(img).astype(np.float32) for img in images], axis=0)
+        weights_arr = np.array(weights).reshape(-1, 1, 1, 1)
+        alpha = image_arrays[..., 3:4] / 255.0
+        premul_rgb = image_arrays[..., :3] * alpha
+        weighted_rgb = weights_arr * premul_rgb
+        weighted_alpha = weights_arr * image_arrays[..., 3:4]
+        result_rgb = np.sum(weighted_rgb, axis=0)
+        result_alpha = np.sum(weighted_alpha, axis=0)
         safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
         rgb = result_rgb / (safe_alpha / 255.0)
         rgb = np.clip(rgb, 0, 255)
@@ -637,12 +636,12 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         """
         j, prev_offset_x, prev_offset_y, curr_offset_x, curr_offset_y, exposures, image = proc_args
         f = (j + 1) / exposures
-        inter_x = prev_offset_x + f * (curr_offset_x - prev_offset_x)
-        inter_y = prev_offset_y + f * (curr_offset_y - prev_offset_y)
+        trans_x = prev_offset_x + f * (curr_offset_x - prev_offset_x)
+        trans_y = prev_offset_y + f * (curr_offset_y - prev_offset_y)
         return image.copy().transform(
             image.size,
             Image.AFFINE,
-            (1, 0, int(inter_x), 0, 1, int(inter_y)),
+            (1, 0, int(trans_x), 0, 1, int(trans_y)),
             resample=Image.BILINEAR,
             fillcolor=(0, 0, 0, 0)
         )
@@ -679,11 +678,13 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.notes["Scale"] = str(scale)
         emote.notes["max_shift after"] = str(250 * scale)
 
-        # Generate shake offsets using simulation
+        # Generate shake offsets using simulation.
         all_offsets = generate_shake_offsets(num_frames, max_shift, spring, damping)
 
         frames = []
         previous_offset = (0.0, 0.0)
+        max_workers = os.cpu_count() or 4
+
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
                 final_img = img.copy().transform(
@@ -698,7 +699,7 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
                     (j, previous_offset[0], previous_offset[1], offset_x, offset_y, blur_exposures, img)
                     for j in range(blur_exposures)
                 ]
-                with ThreadPoolExecutor() as executor:
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
                     sub_images = list(executor.map(process_sub_image, proc_args_list))
                 weights = [1 / blur_exposures] * blur_exposures
                 final_img = blend_images(sub_images, weights)
