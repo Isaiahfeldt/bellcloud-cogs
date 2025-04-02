@@ -675,6 +675,9 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         damping = 0.85
         blur_exposures = 8
 
+        if img.mode != "RGBA":
+            img = img.convert("RGBA")
+
         emote.notes["Scale"] = str(scale)
         emote.notes["max_shift after"] = str(250 * scale)
 
