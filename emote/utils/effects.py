@@ -574,7 +574,10 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
         User:
             Shakes the emote.
-            Only the maximum shift (intensity) can be adjusted.
+            Works with static images.
+
+            Default is 1x intensity if no argument is provided.
+            This effect can only be used once per emote.
 
             Usage:
                 :aspire_shake:          - Applies a shake effect with default intensity.
@@ -735,9 +738,10 @@ async def shake_classic(emote: Emote, intensity: float = 1) -> Emote:
 
         User:
             Shakes the emote, but differently...
-            Only the maximum shift (intensity) can be adjusted.
+            Works with static images.
 
-            Uses old settings for 'shake'
+            Default is 1x intensity if no argument is provided.
+            This effect can only be used once per emote.
 
             Usage:
                 :aspire_shake:          - Applies a shake effect with default intensity.
