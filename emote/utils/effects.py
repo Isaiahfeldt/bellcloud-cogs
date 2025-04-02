@@ -614,13 +614,9 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         """
         result_rgb = None
         result_alpha = None
-
         for img, weight in zip(images, weights):
-            # Convert image to numpy array of type float32
             arr = np.array(img).astype(np.float32)
-            # Separate alpha and compute a multiplier (scale between 0 and 1)
             alpha = arr[..., 3:4] / 255.0
-            # Premultiply RGB channels by alpha
             premul = arr[..., :3] * alpha
             if result_rgb is None:
                 result_rgb = weight * premul
@@ -628,24 +624,21 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             else:
                 result_rgb += weight * premul
                 result_alpha += weight * arr[..., 3:4]
-
-        # Avoid division by zero by replacing 0 alphas with 1
         safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
-        # Revert premultiplication
         rgb = result_rgb / (safe_alpha / 255.0)
-        # Clip the values to valid range
         rgb = np.clip(rgb, 0, 255)
         alpha = np.clip(result_alpha, 0, 255)
-        # Recombine the channels
         result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
         return Image.fromarray(result)
 
-    def process_sub_image(args):
-        """Helper function for parallel processing of sub-images"""
-        j, po_x, po_y, ox, oy, exposures, image = args
+    def process_sub_image(proc_args):
+        """
+        Helper function for parallel processing of sub-images.
+        """
+        j, prev_offset_x, prev_offset_y, curr_offset_x, curr_offset_y, exposures, image = proc_args
         f = (j + 1) / exposures
-        inter_x = po_x + f * (ox - po_x)
-        inter_y = po_y + f * (oy - po_y)
+        inter_x = prev_offset_x + f * (curr_offset_x - prev_offset_x)
+        inter_y = prev_offset_y + f * (curr_offset_y - prev_offset_y)
         return image.copy().transform(
             image.size,
             Image.AFFINE,
@@ -653,6 +646,25 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             resample=Image.BILINEAR,
             fillcolor=(0, 0, 0, 0)
         )
+
+    def generate_shake_offsets(num_frames: int, max_shift: float, spring: float, damping: float) -> list:
+        half_frames = num_frames // 2
+        offsets = []
+        current_x, current_y = 0.0, 0.0
+        velocity_x, velocity_y = 0.0, 0.0
+        step = max_shift / 10
+        for _ in range(half_frames + 1):
+            force_x = random.uniform(-step, step)
+            force_y = random.uniform(-step, step)
+            velocity_x = damping * (velocity_x + force_x - spring * current_x)
+            velocity_y = damping * (velocity_y + force_y - spring * current_y)
+            current_x += velocity_x
+            current_y += velocity_y
+            current_x = max(min(current_x, max_shift), -max_shift)
+            current_y = max(min(current_y, max_shift), -max_shift)
+            offsets.append((current_x, current_y))
+        offsets_reversed = list(reversed(offsets[1:]))
+        return offsets + offsets_reversed
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
         num_frames = 60
@@ -667,58 +679,33 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         emote.notes["Scale"] = str(scale)
         emote.notes["max_shift after"] = str(250 * scale)
 
+        # Generate shake offsets using simulation
+        all_offsets = generate_shake_offsets(num_frames, max_shift, spring, damping)
+
         frames = []
-
-        # Generate offsets using the simulation for half of the frames
-        half = num_frames // 2
-        offsets = []
-        curr_x, curr_y = 0.0, 0.0
-        v_x, v_y = 0.0, 0.0
-        step = max_shift / 10
-
-        prev_offset = (0.0, 0.0)
-
-        for _ in range(half + 1):
-            force_x = random.uniform(-step, step)
-            force_y = random.uniform(-step, step)
-            v_x = damping * (v_x + force_x - spring * curr_x)
-            v_y = damping * (v_y + force_y - spring * curr_y)
-            curr_x += v_x
-            curr_y += v_y
-            curr_x = max(min(curr_x, max_shift), -max_shift)
-            curr_y = max(min(curr_y, max_shift), -max_shift)
-            offsets.append((curr_x, curr_y))
-
-        offsets_rev = list(reversed(offsets[1:]))
-        all_offsets = offsets + offsets_rev  # ensures first and last match
-
+        previous_offset = (0.0, 0.0)
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
-                shifted_img = img.copy().transform(
+                final_img = img.copy().transform(
                     img.size,
                     Image.AFFINE,
                     (1, 0, int(offset_x), 0, 1, int(offset_y)),
                     resample=Image.BILINEAR,
                     fillcolor=(0, 0, 0, 0)
                 )
-                final_img = shifted_img
             else:
-                args_list = [
-                    (j, prev_offset[0], prev_offset[1], offset_x, offset_y, blur_exposures, img)
+                proc_args_list = [
+                    (j, previous_offset[0], previous_offset[1], offset_x, offset_y, blur_exposures, img)
                     for j in range(blur_exposures)
                 ]
-
                 with ThreadPoolExecutor() as executor:
-                    sub_images = list(executor.map(process_sub_image, args_list))
-
+                    sub_images = list(executor.map(process_sub_image, proc_args_list))
                 weights = [1 / blur_exposures] * blur_exposures
                 final_img = blend_images(sub_images, weights)
-
             frames.append(final_img)
-            prev_offset = (offset_x, offset_y)
+            previous_offset = (offset_x, offset_y)
 
         output_buffer = io.BytesIO()
-
         frames[0].save(
             output_buffer,
             format="GIF",
@@ -728,11 +715,9 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             loop=0,
             disposal=2
         )
-
         if not emote.file_path.lower().endswith('.gif'):
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
-
-        emote.notes["Processed"] = str("True")
+        emote.notes["Processed"] = "True"
         emote.img_data = output_buffer.getvalue()
 
     return emote
