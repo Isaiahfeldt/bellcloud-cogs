@@ -15,7 +15,6 @@
 import io
 from dataclasses import dataclass, field
 from datetime import datetime
-from functools import wraps
 from typing import Optional, Dict
 
 import aiohttp
@@ -68,48 +67,9 @@ class Emote:
     issues: Dict[str, str] = field(default_factory=dict)
     notes: Dict[str, str] = field(default_factory=dict)
     followup: Dict[str, str] = field(default_factory=dict)
-    effect_chain: Dict[str, bool] = field(default_factory=dict)
     img_data: Optional[bytes] = None
 
 
-CONFLICT_POOLS = [
-    {"shake", "shakeclassic"},
-    {"latency", "latency2"}
-]
-
-
-def record_effect(effect_func):
-    @wraps(effect_func)
-    async def wrapper(emote, *args, **kwargs):
-        effect_name = effect_func.__name__
-
-        # Gather all conflict effects across groups where the current effect belongs
-        conflicts = set()
-        for group in CONFLICT_POOLS:
-            if effect_name in group:
-                conflicts.update(group)
-
-        # Remove the effect itself from the conflict set
-        conflicts.discard(effect_name)
-
-        # Check if any conflicting effect has already been applied.
-        applied_conflicts = conflicts.intersection(emote.effect_chain.keys())
-        if applied_conflicts:
-            emote.errors[effect_name] = (
-                f"Cannot apply {effect_name} because conflicting effect(s) "
-                f"already applied: {', '.join(applied_conflicts)}"
-            )
-            return emote
-
-        # Execute the effect and record it.
-        result_emote = await effect_func(emote, *args, **kwargs)
-        result_emote.effect_chain[effect_name] = True
-        return result_emote
-
-    return wrapper
-
-
-@record_effect
 async def initialize(emote: Emote) -> Emote:
     """
     Fetch the emote image from the provided original_url and store the image data
@@ -134,7 +94,6 @@ async def initialize(emote: Emote) -> Emote:
     return emote
 
 
-@record_effect
 async def latency(emote: Emote) -> Emote:
     """
     Toggles the latency measurement flag for subsequent processing.
@@ -153,11 +112,9 @@ async def latency(emote: Emote) -> Emote:
     """
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
-
     return emote
 
 
-@record_effect
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
     """
         User:
@@ -190,6 +147,8 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     notes["guild_id"] = emote.guild_id
     notes["usage_count"] = str(emote.usage_count + 1)
 
+    emote.notes["debug_mode"] = mode
+
     # TODO move this logic to send_debug_embed in chat.py
     # if emote.errors is not None:
     #     notes["error"] = str(emote.error)
@@ -198,8 +157,6 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
     if emote.img_data is not None:
         notes["img_data_length"] = f"{len(emote.img_data)} bytes"
-    elif emote.effect_chain is not None:
-        notes["effect_chain"] = ", ".join(emote.effect_chain.keys())
     else:
         notes["img_data"] = "None"
 
@@ -207,7 +164,6 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     return emote
 
 
-@record_effect
 async def train(emote: Emote, amount: int = 3) -> Emote:
     """
         Duplicate the provided Emote for a specified number of times within a valid range.
@@ -253,7 +209,6 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     return emote
 
 
-@record_effect
 async def reverse(emote: Emote) -> Emote:
     """
     Reverses emote playback.
@@ -357,7 +312,6 @@ async def reverse(emote: Emote) -> Emote:
     return emote
 
 
-@record_effect
 async def fast(emote: Emote, factor: float = 2) -> Emote:
     """
     Increases the playback speed of the emote.
@@ -386,7 +340,6 @@ async def fast(emote: Emote, factor: float = 2) -> Emote:
     return emote
 
 
-@record_effect
 async def slow(emote: Emote, factor: float = 0.5) -> Emote:
     """
     Decreases the playback speed of the emote.
@@ -415,7 +368,6 @@ async def slow(emote: Emote, factor: float = 0.5) -> Emote:
     return emote
 
 
-@record_effect
 async def speed(emote: Emote, factor: float = 2) -> Emote:
     """
     Changes the playback speed of the emote.
@@ -531,7 +483,6 @@ async def speed(emote: Emote, factor: float = 2) -> Emote:
         return emote
 
 
-@record_effect
 async def invert(emote: Emote) -> Emote:
     """
     Inverts the colors of the emote image data.
@@ -617,17 +568,13 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
-@record_effect
-async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
+async def shake(emote: Emote, intensity: float = 1) -> Emote:
     """
         Applies a shaking effect to the emote image data by creating a looping shaking GIF.
 
         User:
             Shakes the emote.
-            Works with static images.
-
-            Default is 1x intensity if no argument is provided.
-            This effect can only be used once per emote.
+            Only the maximum shift (max_shift) can be adjusted.
 
             Usage:
                 :aspire_shake:          - Applies a shake effect with default intensity.
@@ -636,7 +583,6 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         Parameters:
             emote (Emote): The emote object containing the image data.
             intensity (int): Maximum pixel offset to apply (default is 50).
-            classic (int): Shift factor to apply (default is 180).
 
         Returns:
             Emote: The updated emote object with the shaken animated GIF.
@@ -649,14 +595,6 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
 
-    # Imports inside the function
-    import os
-    import random
-    import io
-    import numpy as np
-    from PIL import Image
-    from concurrent.futures import ThreadPoolExecutor
-
     allowed_extensions = {'jpg', 'jpeg', 'png'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["file_ext"] = str(file_ext)
@@ -664,107 +602,113 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
         return emote
 
+    import random, io
+    import numpy as np
+    from PIL import Image
+
     def blend_images(images, weights):
         """
-        Vectorized blend of a list of RGBA images using premultiplied alpha.
-        This avoids Python-level loops by leveraging NumPy.
+        Blend a list of RGBA images using premultiplied alpha.
+        This helps avoid dark edges when blending transparent areas.
         """
-        image_arrays = np.stack([np.array(img).astype(np.float32) for img in images], axis=0)
-        weights_arr = np.array(weights).reshape(-1, 1, 1, 1)
-        alpha = image_arrays[..., 3:4] / 255.0
-        premul_rgb = image_arrays[..., :3] * alpha
-        weighted_rgb = weights_arr * premul_rgb
-        weighted_alpha = weights_arr * image_arrays[..., 3:4]
-        result_rgb = np.sum(weighted_rgb, axis=0)
-        result_alpha = np.sum(weighted_alpha, axis=0)
+        result_rgb = None
+        result_alpha = None
+
+        for img, weight in zip(images, weights):
+            # Convert image to numpy array of type float32
+            arr = np.array(img).astype(np.float32)
+            # Separate alpha and compute a multiplier (scale between 0 and 1)
+            alpha = arr[..., 3:4] / 255.0
+            # Premultiply RGB channels by alpha
+            premul = arr[..., :3] * alpha
+            if result_rgb is None:
+                result_rgb = weight * premul
+                result_alpha = weight * arr[..., 3:4]
+            else:
+                result_rgb += weight * premul
+                result_alpha += weight * arr[..., 3:4]
+
+        # Avoid division by zero by replacing 0 alphas with 1
         safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
+        # Revert premultiplication
         rgb = result_rgb / (safe_alpha / 255.0)
+        # Clip the values to valid range
         rgb = np.clip(rgb, 0, 255)
         alpha = np.clip(result_alpha, 0, 255)
+        # Recombine the channels
         result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
         return Image.fromarray(result)
 
-    def process_sub_image(proc_args):
-        """
-        Helper function for parallel processing of sub-images.
-        """
-        j, prev_offset_x, prev_offset_y, curr_offset_x, curr_offset_y, exposures, image = proc_args
-        f = (j + 1) / exposures
-        trans_x = prev_offset_x + f * (curr_offset_x - prev_offset_x)
-        trans_y = prev_offset_y + f * (curr_offset_y - prev_offset_y)
-        return image.copy().transform(
-            image.size,
-            Image.AFFINE,
-            (1, 0, int(trans_x), 0, 1, int(trans_y)),
-            resample=Image.BILINEAR,
-            fillcolor=(0, 0, 0, 0)
-        )
-
-    def generate_shake_offsets(num_frames: int, max_shift: float, spring: float, damping: float) -> list:
-        half_frames = num_frames // 2
-        offsets = []
-        current_x, current_y = 0.0, 0.0
-        velocity_x, velocity_y = 0.0, 0.0
-        step = max_shift / 10
-        for _ in range(half_frames + 1):
-            force_x = random.uniform(-step, step)
-            force_y = random.uniform(-step, step)
-            velocity_x = damping * (velocity_x + force_x - spring * current_x)
-            velocity_y = damping * (velocity_y + force_y - spring * current_y)
-            current_x += velocity_x
-            current_y += velocity_y
-            current_x = max(min(current_x, max_shift), -max_shift)
-            current_y = max(min(current_y, max_shift), -max_shift)
-            offsets.append((current_x, current_y))
-        offsets_reversed = list(reversed(offsets[1:]))
-        return offsets + offsets_reversed
-
     with Image.open(io.BytesIO(emote.img_data)) as img:
 
-        num_frames = 60 if classic else 30
+        num_frames = 60
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
-        max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
-        duration = 50 if classic else 25
+        max_shift = (250 * scale) * intensity
+        duration = 50
         spring = 1.3
         damping = 0.85
-        blur_exposures = 8
-
-        if img.mode != "RGBA":
-            img = img.convert("RGBA")
+        blur_exposures = 12
 
         emote.notes["Scale"] = str(scale)
-        emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
-
-        # Generate shake offsets using simulation.
-        all_offsets = generate_shake_offsets(num_frames, max_shift, spring, damping)
+        emote.notes["max_shift after"] = str(250 * scale)
 
         frames = []
-        previous_offset = (0.0, 0.0)
-        max_workers = os.cpu_count() or 4
+
+        # Generate offsets using the simulation for half of the frames
+        half = num_frames // 2
+        offsets = []
+        curr_x, curr_y = 0.0, 0.0
+        v_x, v_y = 0.0, 0.0
+        step = max_shift / 10
+
+        prev_offset = (0.0, 0.0)
+
+        for _ in range(half + 1):
+            force_x = random.uniform(-step, step)
+            force_y = random.uniform(-step, step)
+            v_x = damping * (v_x + force_x - spring * curr_x)
+            v_y = damping * (v_y + force_y - spring * curr_y)
+            curr_x += v_x
+            curr_y += v_y
+            curr_x = max(min(curr_x, max_shift), -max_shift)
+            curr_y = max(min(curr_y, max_shift), -max_shift)
+            offsets.append((curr_x, curr_y))
+
+        offsets_rev = list(reversed(offsets[1:]))
+        all_offsets = offsets + offsets_rev  # ensures first and last matc
 
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
-                final_img = img.copy().transform(
+                shifted_img = img.copy().transform(
                     img.size,
                     Image.AFFINE,
                     (1, 0, int(offset_x), 0, 1, int(offset_y)),
                     resample=Image.BILINEAR,
                     fillcolor=(0, 0, 0, 0)
                 )
+                final_img = shifted_img
             else:
-                proc_args_list = [
-                    (j, previous_offset[0], previous_offset[1], offset_x, offset_y, blur_exposures, img)
-                    for j in range(blur_exposures)
-                ]
-                with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                    sub_images = list(executor.map(process_sub_image, proc_args_list))
+                sub_images = []
+                for j in range(blur_exposures):
+                    f = (j + 1) / blur_exposures
+                    inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
+                    inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
+                    shifted_img = img.copy().transform(
+                        img.size,
+                        Image.AFFINE,
+                        (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                        resample=Image.BILINEAR,
+                        fillcolor=(0, 0, 0, 0)
+                    )
+                    sub_images.append(shifted_img)
                 weights = [1 / blur_exposures] * blur_exposures
                 final_img = blend_images(sub_images, weights)
             frames.append(final_img)
-            previous_offset = (offset_x, offset_y)
+            prev_offset = (offset_x, offset_y)
 
         output_buffer = io.BytesIO()
+
         frames[0].save(
             output_buffer,
             format="GIF",
@@ -774,50 +718,16 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
             loop=0,
             disposal=2
         )
+
         if not emote.file_path.lower().endswith('.gif'):
             emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
-        emote.notes["Processed"] = "True"
+
+        emote.notes["Processed"] = str("True")
         emote.img_data = output_buffer.getvalue()
 
     return emote
 
 
-@record_effect
-async def shake_classic(emote: Emote, intensity: float = 1) -> Emote:
-    """
-        Applies a shaking effect to the emote image data by creating a looping shaking GIF.
-
-        User:
-            Shakes the emote, but differently...
-            Works with static images.
-
-            Default is 1x intensity if no argument is provided.
-            This effect can only be used once per emote.
-
-            Usage:
-                :aspire_shake:          - Applies a shake effect with default intensity.
-                :aspire_shake(2):       - Applies a shake effect by a factor of 2.
-
-            Alias for `:aspire_speed(2):`.
-
-        Parameters:
-            emote (Emote): The emote object containing the image data.
-            intensity (int): Maximum pixel offset to apply (default is 50).
-            classic (int): Shift factor to apply (default is 180).
-
-        Returns:
-            Emote: The updated emote object with the shaken animated GIF.
-
-        Notes:
-            This effect uses a spring/damping simulation to generate a looping shaking GIF.
-            Image data is temporarily written to disk for processing.
-        """
-
-    emote = await shake(emote, intensity, classic=True)
-    return emote
-
-
-@record_effect
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote image data in the specified direction(s).
