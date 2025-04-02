@@ -96,11 +96,13 @@ def get_animated_duration(emote: Emote) -> Optional[int]:
 
             else:
                 print(f"Error: Unsupported file type in {emote.file_path}")
-                return None
+                duration = 50
+                return duration
 
     except Exception as e:
         print(f"Error processing animated duration: {e}")
-        return None
+        duration = 50
+        return duration
 
 
 async def initialize(emote: Emote) -> Emote:
