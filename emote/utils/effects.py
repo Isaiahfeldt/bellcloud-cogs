@@ -72,12 +72,10 @@ class Emote:
     img_data: Optional[bytes] = None
 
 
-EFFECT_CONFLICTS = {
-    "spin": {"shake"},
-    "shake": {"spin"},
-    "latency": {"latency2"},
-    "latency2": {"latency"},
-}
+CONFLICT_POOLS = [
+    {"shake", "shakeclassic"},
+    {"latency", "latency2"}
+]
 
 
 def record_effect(effect_func):
@@ -85,22 +83,26 @@ def record_effect(effect_func):
     async def wrapper(emote, *args, **kwargs):
         effect_name = effect_func.__name__
 
-        # Retrieve the set of conflicting effects for this effect, if any.
-        conflict_set = EFFECT_CONFLICTS.get(effect_name, set())
+        # Gather all conflict effects across groups where the current effect belongs
+        conflicts = set()
+        for group in CONFLICT_POOLS:
+            if effect_name in group:
+                conflicts.update(group)
 
-        # Check for any conflicts.
-        if any(conflict in emote.effect_chain for conflict in conflict_set):
+        # Remove the effect itself from the conflict set
+        conflicts.discard(effect_name)
+
+        # Check if any conflicting effect has already been applied.
+        applied_conflicts = conflicts.intersection(emote.effect_chain.keys())
+        if applied_conflicts:
             emote.errors[effect_name] = (
-                f"Cannot apply {effect_name} because a conflicting effect is already applied: "
-                f"{', '.join(conflict_set & emote.effect_chain.keys())}"
+                f"Cannot apply {effect_name} because conflicting effect(s) "
+                f"already applied: {', '.join(applied_conflicts)}"
             )
             return emote
 
-        # Execute the effect.
+        # Execute the effect and record it.
         result_emote = await effect_func(emote, *args, **kwargs)
-
-        # Record the effect only if it was applied successfully.
-        # (If you need more precise error checking, adjust this section accordingly.)
         result_emote.effect_chain[effect_name] = True
         return result_emote
 
@@ -198,7 +200,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
     if emote.img_data is not None:
         notes["img_data_length"] = f"{len(emote.img_data)} bytes"
-    elif emote.effect_chain:
+    elif emote.effect_chain is not None:
         notes["effect_chain"] = ", ".join(emote.effect_chain.keys())
     else:
         notes["img_data"] = "None"
