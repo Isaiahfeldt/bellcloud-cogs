@@ -611,11 +611,11 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     from PIL import Image
     from concurrent.futures import ThreadPoolExecutor
 
-    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["original_file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
         return emote
 
     def blend_images(images, weights):
@@ -660,8 +660,13 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
             frame_durations = []
             try:
                 while True:
+                    # Preserve animation duration for webp
+                    frame_duration = img.info.get('duration', 100)
+                    if file_ext == 'webp':
+                        frame_duration = max(frame_duration, 1)  # WebP can have 0 duration frames
+
                     input_frames.append(img.copy().convert("RGBA"))
-                    frame_durations.append(img.info.get('duration', 100))
+                    frame_durations.append(frame_duration)
                     img.seek(img.tell() + 1)
             except EOFError:
                 pass
