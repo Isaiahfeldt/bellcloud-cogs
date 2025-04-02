@@ -613,7 +613,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     allowed_extensions = {'jpg', 'jpeg', 'png'}
     file_ext = emote.file_path.lower().split('.')[-1]
-    emote.notes["file_ext"] = str(file_ext)
+    emote.notes["original_file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
         emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
         return emote
