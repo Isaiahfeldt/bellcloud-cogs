@@ -665,7 +665,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         num_frames = 30
         # duration = 25
 
-    if input_frames < 25:
+    if len(input_frames) < 25:
         duration = input_frames * math.ceil(50 / input_frames)
     else:
         duration = input_frames
