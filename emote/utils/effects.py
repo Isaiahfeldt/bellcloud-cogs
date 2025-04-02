@@ -611,11 +611,11 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     from PIL import Image
     from concurrent.futures import ThreadPoolExecutor
 
-    allowed_extensions = {'jpg', 'jpeg', 'png'}
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
     file_ext = emote.file_path.lower().split('.')[-1]
     emote.notes["original_file_ext"] = str(file_ext)
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png"
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: jpg, jpeg, png, gif"
         return emote
 
     def blend_images(images, weights):
@@ -654,83 +654,104 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
             fillcolor=(0, 0, 0, 0)
         )
 
-    def generate_shake_offsets(num_frames: int, max_shift: float, spring: float, damping: float) -> list:
-        half_frames = num_frames // 2
+    try:
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            input_frames = []
+            frame_durations = []
+            try:
+                while True:
+                    input_frames.append(img.copy().convert("RGBA"))
+                    frame_durations.append(img.info.get('duration', 100))
+                    img.seek(img.tell() + 1)
+            except EOFError:
+                pass
+            is_animated = len(input_frames) > 1
+    except Exception as e:
+        emote.errors["shake"] = f"Error reading image: {str(e)}"
+        return emote
+
+        # Existing shake parameters
+    num_frames = 60 if classic else 30
+    spring = 1.3
+    damping = 0.85
+    blur_exposures = 8
+    max_workers = os.cpu_count() or 4
+
+    # Calculate scale based on first frame
+    img_width, img_height = input_frames[0].size
+    scale = max(img_width, img_height) / 540.0
+    max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
+    duration = 50 if classic else 25
+
+    # Generate shake offsets
+    def generate_shake_offsets():
+        half = num_frames // 2
         offsets = []
-        current_x, current_y = 0.0, 0.0
-        velocity_x, velocity_y = 0.0, 0.0
+        curr_x, curr_y = 0.0, 0.0
+        v_x, v_y = 0.0, 0.0
         step = max_shift / 10
-        for _ in range(half_frames + 1):
+
+        for _ in range(half + 1):
             force_x = random.uniform(-step, step)
             force_y = random.uniform(-step, step)
-            velocity_x = damping * (velocity_x + force_x - spring * current_x)
-            velocity_y = damping * (velocity_y + force_y - spring * current_y)
-            current_x += velocity_x
-            current_y += velocity_y
-            current_x = max(min(current_x, max_shift), -max_shift)
-            current_y = max(min(current_y, max_shift), -max_shift)
-            offsets.append((current_x, current_y))
-        offsets_reversed = list(reversed(offsets[1:]))
-        return offsets + offsets_reversed
+            v_x = damping * (v_x + force_x - spring * curr_x)
+            v_y = damping * (v_y + force_y - spring * curr_y)
+            curr_x += v_x
+            curr_y += v_y
+            curr_x = max(min(curr_x, max_shift), -max_shift)
+            curr_y = max(min(curr_y, max_shift), -max_shift)
+            offsets.append((curr_x, curr_y))
+        return offsets + list(reversed(offsets[1:]))
 
-    with Image.open(io.BytesIO(emote.img_data)) as img:
+    all_offsets = generate_shake_offsets()
+    output_frames = []
 
-        num_frames = 60 if classic else 30
-        img_width, img_height = img.size
-        scale = max(img_width, img_height) / 540.0
-        max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
-        duration = 50 if classic else 25
-        spring = 1.3
-        damping = 0.85
-        blur_exposures = 8
+    # Track previous offsets for each input frame
+    prev_offsets = [(0.0, 0.0) for _ in input_frames]
 
-        if img.mode != "RGBA":
-            img = img.convert("RGBA")
+    # Process each shake frame
+    for shake_idx, (offset_x, offset_y) in enumerate(all_offsets):
+        # Cycle through input frames for animated sources
+        input_idx = shake_idx % len(input_frames)
+        current_img = input_frames[input_idx]
+        prev_offset = prev_offsets[input_idx]
 
-        emote.notes["Scale"] = str(scale)
-        emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
+        # Motion blur processing
+        if shake_idx == 0 or blur_exposures <= 1:
+            final_img = current_img.transform(
+                current_img.size,
+                Image.AFFINE,
+                (1, 0, int(offset_x), 0, 1, int(offset_y)),
+                resample=Image.BILINEAR,
+                fillcolor=(0, 0, 0, 0)
+            )
+        else:
+            proc_args = [
+                (j, prev_offset[0], prev_offset[1], offset_x, offset_y, blur_exposures, current_img)
+                for j in range(blur_exposures)
+            ]
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                sub_images = list(executor.map(process_sub_image, proc_args))
+            weights = [1 / blur_exposures] * blur_exposures
+            final_img = blend_images(sub_images, weights)
 
-        # Generate shake offsets using simulation.
-        all_offsets = generate_shake_offsets(num_frames, max_shift, spring, damping)
+        output_frames.append(final_img)
+        prev_offsets[input_idx] = (offset_x, offset_y)
 
-        frames = []
-        previous_offset = (0.0, 0.0)
-        max_workers = os.cpu_count() or 4
-
-        for idx, (offset_x, offset_y) in enumerate(all_offsets):
-            if idx == 0 or blur_exposures <= 1:
-                final_img = img.copy().transform(
-                    img.size,
-                    Image.AFFINE,
-                    (1, 0, int(offset_x), 0, 1, int(offset_y)),
-                    resample=Image.BILINEAR,
-                    fillcolor=(0, 0, 0, 0)
-                )
-            else:
-                proc_args_list = [
-                    (j, previous_offset[0], previous_offset[1], offset_x, offset_y, blur_exposures, img)
-                    for j in range(blur_exposures)
-                ]
-                with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                    sub_images = list(executor.map(process_sub_image, proc_args_list))
-                weights = [1 / blur_exposures] * blur_exposures
-                final_img = blend_images(sub_images, weights)
-            frames.append(final_img)
-            previous_offset = (offset_x, offset_y)
-
-        output_buffer = io.BytesIO()
-        frames[0].save(
-            output_buffer,
-            format="GIF",
-            save_all=True,
-            append_images=frames[1:],
-            duration=duration,
-            loop=0,
-            disposal=2
-        )
-        if not emote.file_path.lower().endswith('.gif'):
-            emote.file_path = emote.file_path.rsplit('.', 1)[0] + '.gif'
-        emote.img_data = output_buffer.getvalue()
+    # Save output
+    output_buffer = io.BytesIO()
+    output_frames[0].save(
+        output_buffer,
+        format="GIF",
+        save_all=True,
+        append_images=output_frames[1:],
+        duration=duration if not is_animated else frame_durations,
+        loop=0,
+        disposal=2
+    )
+    emote.img_data = output_buffer.getvalue()
+    if not emote.file_path.lower().endswith('.gif'):
+        emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}.gif"
 
     return emote
 
