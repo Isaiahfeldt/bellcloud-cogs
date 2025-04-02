@@ -578,12 +578,11 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         return emote
 
     from PIL import Image
-    import os, random
+    import random
     import numpy as np
 
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1]
-    emote.notes["original_file_ext_test"] = str(file_ext)
 
     if file_ext not in allowed_extensions:
         emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
@@ -625,7 +624,6 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-    max_workers = os.cpu_count() or 4
 
     prev_offsets = [(0.0, 0.0) for _ in input_frames]
     frames = []
@@ -634,10 +632,15 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     img_width, img_height = input_frames[0].size
     scale = max(img_width, img_height) / 540.0
     max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
-    duration = 50 if classic else 25
+    original_duration = img.info.get("duration", 50)
+    duration = original_duration
+
+    # get original duration
 
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
+    emote.notes["original_file_ext_test"] = str(file_ext)
+    emote.notes["original_duration"] = str(original_duration)
 
     # Generate shaking offsets
     half = num_frames // 2
