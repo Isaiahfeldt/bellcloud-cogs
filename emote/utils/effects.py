@@ -15,6 +15,7 @@
 import io
 from dataclasses import dataclass, field
 from datetime import datetime
+from functools import wraps
 from typing import Optional, Dict
 
 import aiohttp
@@ -67,9 +68,46 @@ class Emote:
     issues: Dict[str, str] = field(default_factory=dict)
     notes: Dict[str, str] = field(default_factory=dict)
     followup: Dict[str, str] = field(default_factory=dict)
+    effect_chain: Dict[str, bool] = field(default_factory=dict)
     img_data: Optional[bytes] = None
 
 
+EFFECT_CONFLICTS = {
+    "spin": {"shake"},
+    "shake": {"spin"},
+    "latency": {"latency2"},
+    "latency2": {"latency"},
+}
+
+
+def record_effect(effect_func):
+    @wraps(effect_func)
+    async def wrapper(emote, *args, **kwargs):
+        effect_name = effect_func.__name__
+
+        # Retrieve the set of conflicting effects for this effect, if any.
+        conflict_set = EFFECT_CONFLICTS.get(effect_name, set())
+
+        # Check for any conflicts.
+        if any(conflict in emote.effect_chain for conflict in conflict_set):
+            emote.errors[effect_name] = (
+                f"Cannot apply {effect_name} because a conflicting effect is already applied: "
+                f"{', '.join(conflict_set & emote.effect_chain.keys())}"
+            )
+            return emote
+
+        # Execute the effect.
+        result_emote = await effect_func(emote, *args, **kwargs)
+
+        # Record the effect only if it was applied successfully.
+        # (If you need more precise error checking, adjust this section accordingly.)
+        result_emote.effect_chain[effect_name] = True
+        return result_emote
+
+    return wrapper
+
+
+@record_effect
 async def initialize(emote: Emote) -> Emote:
     """
     Fetch the emote image from the provided original_url and store the image data
@@ -94,6 +132,7 @@ async def initialize(emote: Emote) -> Emote:
     return emote
 
 
+@record_effect
 async def latency(emote: Emote) -> Emote:
     """
     Toggles the latency measurement flag for subsequent processing.
@@ -112,9 +151,11 @@ async def latency(emote: Emote) -> Emote:
     """
     from emote.slash_commands import SlashCommands
     SlashCommands.latency_enabled = not SlashCommands.latency_enabled
+
     return emote
 
 
+@record_effect
 async def debug(emote: Emote, mode: str = "basic") -> Emote:
     """
         User:
@@ -164,6 +205,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     return emote
 
 
+@record_effect
 async def train(emote: Emote, amount: int = 3) -> Emote:
     """
         Duplicate the provided Emote for a specified number of times within a valid range.
@@ -209,6 +251,7 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     return emote
 
 
+@record_effect
 async def reverse(emote: Emote) -> Emote:
     """
     Reverses emote playback.
@@ -312,6 +355,7 @@ async def reverse(emote: Emote) -> Emote:
     return emote
 
 
+@record_effect
 async def fast(emote: Emote, factor: float = 2) -> Emote:
     """
     Increases the playback speed of the emote.
@@ -340,6 +384,7 @@ async def fast(emote: Emote, factor: float = 2) -> Emote:
     return emote
 
 
+@record_effect
 async def slow(emote: Emote, factor: float = 0.5) -> Emote:
     """
     Decreases the playback speed of the emote.
@@ -368,6 +413,7 @@ async def slow(emote: Emote, factor: float = 0.5) -> Emote:
     return emote
 
 
+@record_effect
 async def speed(emote: Emote, factor: float = 2) -> Emote:
     """
     Changes the playback speed of the emote.
@@ -483,6 +529,7 @@ async def speed(emote: Emote, factor: float = 2) -> Emote:
         return emote
 
 
+@record_effect
 async def invert(emote: Emote) -> Emote:
     """
     Inverts the colors of the emote image data.
@@ -568,6 +615,7 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
+@record_effect
 async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     """
         Applies a shaking effect to the emote image data by creating a looping shaking GIF.
@@ -732,6 +780,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     return emote
 
 
+@record_effect
 async def shake_classic(emote: Emote, intensity: float = 1) -> Emote:
     """
         Applies a shaking effect to the emote image data by creating a looping shaking GIF.
@@ -765,6 +814,8 @@ async def shake_classic(emote: Emote, intensity: float = 1) -> Emote:
     emote = await shake(emote, intensity, classic=True)
     return emote
 
+
+@record_effect
 async def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote image data in the specified direction(s).
