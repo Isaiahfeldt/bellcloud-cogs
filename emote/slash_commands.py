@@ -198,7 +198,7 @@ class SlashCommands(commands.Cog):
         "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True},
         "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True},
         "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True},
-        "shake2": {'func': effect.shake_classic, 'perm': 'everyone', 'single_use': True},
+        "shakeclassic": {'func': effect.shake_classic, 'perm': 'everyone', 'single_use': True},
     }
 
     latency_enabled = False

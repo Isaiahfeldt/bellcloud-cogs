@@ -668,7 +668,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
 
-        num_frames = 30
+        num_frames = 60 if classic else 30
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
         max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
