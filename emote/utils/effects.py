@@ -666,14 +666,14 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         return offsets + offsets_reversed
 
     with Image.open(io.BytesIO(emote.img_data)) as img:
-        num_frames = 60
+        num_frames = 30
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
         max_shift = (250 * scale) * intensity
-        duration = 50
+        duration = 25
         spring = 1.3
         damping = 0.85
-        blur_exposures = 5
+        blur_exposures = 12
 
         emote.notes["Scale"] = str(scale)
         emote.notes["max_shift after"] = str(250 * scale)
