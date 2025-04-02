@@ -572,6 +572,30 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
+async def shake_new(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
+    if emote.img_data is None:
+        emote.errors["shake"] = "No image data available for shaking effect."
+        return emote
+
+    from PIL import Image
+
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    file_ext = emote.file_path.lower().split('.')[-1]
+    emote.notes["original_file_ext"] = str(file_ext)
+    if file_ext not in allowed_extensions:
+        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        return emote
+
+    img = Image.open(io.BytesIO(emote.img_data))
+    input_frames = []
+    try:
+        while True:
+            input_frames.append(img.convert("RGBA").copy())
+            img.seek(img.tell() + 1)
+    except EOFError:
+        pass
+
+
 async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     """
         Applies a shaking effect to the emote image data by creating a looping shaking GIF.
