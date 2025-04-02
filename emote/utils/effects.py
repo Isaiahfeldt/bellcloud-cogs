@@ -695,10 +695,10 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         prev_offsets[i_input] = (offset_x, offset_y)
 
     output_buffer = io.BytesIO()
-    save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
+    save_format = 'webp' if file_ext == 'webp' else 'gif'
     frames[0].save(
         output_buffer,
-        format=save_format,
+        format=save_format.upper(),
         save_all=True,
         append_images=frames[1:],
         duration=duration,
@@ -707,10 +707,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     )
 
     emote.img_data = output_buffer.getvalue()
-
-    # Make sure new file type is gif
-    if not emote.file_path.lower().endswith('.gif'):
-        emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}.gif"
+    emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}.{save_format}"
 
     return emote
 
