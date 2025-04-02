@@ -125,7 +125,7 @@ def create_looping_shaking_gif(
 
 
 if __name__ == "__main__":
-    image_file = "C://Users//L378//Downloads//nofush.gif"  # Replace with your file
+    image_file = "C://Users//L378//Downloads//slapin.gif"  # Replace with your file
     if not os.path.exists(image_file):
         print(f"Error: File '{image_file}' not found.")
     else:

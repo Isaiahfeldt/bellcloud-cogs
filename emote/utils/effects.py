@@ -578,13 +578,13 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         return emote
 
     from PIL import Image
-    import os
+    import os, random
     import numpy as np
-    import random
 
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1]
-    emote.notes["original_file_ext"] = str(file_ext)
+    emote.notes["original_file_ext_test"] = str(file_ext)
+
     if file_ext not in allowed_extensions:
         emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
         return emote
