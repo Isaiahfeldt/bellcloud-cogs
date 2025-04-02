@@ -745,15 +745,25 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     # Save output
     output_buffer = io.BytesIO()
+
+    # Handle duration for animated sources
+    if is_animated:
+        # Cycle original durations to match output frame count
+        cycle_durations = (frame_durations * (len(output_frames) // len(frame_durations) + 1))[:len(output_frames)]
+    else:
+        # Use fixed duration for all frames from shake parameters
+        cycle_durations = [duration] * len(output_frames)
+
     output_frames[0].save(
         output_buffer,
         format="GIF",
         save_all=True,
         append_images=output_frames[1:],
-        duration=duration if not is_animated else frame_durations,
+        duration=cycle_durations,
         loop=0,
         disposal=2
     )
+
     emote.img_data = output_buffer.getvalue()
 
     # Make sure new file type is gif
