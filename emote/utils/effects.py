@@ -605,6 +605,7 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
     import random, io
     import numpy as np
     from PIL import Image
+    from concurrent.futures import ThreadPoolExecutor
 
     def blend_images(images, weights):
         """
@@ -639,8 +640,21 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
         result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
         return Image.fromarray(result)
 
-    with Image.open(io.BytesIO(emote.img_data)) as img:
+    def process_sub_image(args):
+        """Helper function for parallel processing of sub-images"""
+        j, po_x, po_y, ox, oy, exposures, image = args
+        f = (j + 1) / exposures
+        inter_x = po_x + f * (ox - po_x)
+        inter_y = po_y + f * (oy - po_y)
+        return image.copy().transform(
+            image.size,
+            Image.AFFINE,
+            (1, 0, int(inter_x), 0, 1, int(inter_y)),
+            resample=Image.BILINEAR,
+            fillcolor=(0, 0, 0, 0)
+        )
 
+    with Image.open(io.BytesIO(emote.img_data)) as img:
         num_frames = 60
         img_width, img_height = img.size
         scale = max(img_width, img_height) / 540.0
@@ -676,7 +690,7 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
             offsets.append((curr_x, curr_y))
 
         offsets_rev = list(reversed(offsets[1:]))
-        all_offsets = offsets + offsets_rev  # ensures first and last matc
+        all_offsets = offsets + offsets_rev  # ensures first and last match
 
         for idx, (offset_x, offset_y) in enumerate(all_offsets):
             if idx == 0 or blur_exposures <= 1:
@@ -689,21 +703,17 @@ async def shake(emote: Emote, intensity: float = 1) -> Emote:
                 )
                 final_img = shifted_img
             else:
-                sub_images = []
-                for j in range(blur_exposures):
-                    f = (j + 1) / blur_exposures
-                    inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
-                    inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
-                    shifted_img = img.copy().transform(
-                        img.size,
-                        Image.AFFINE,
-                        (1, 0, int(inter_x), 0, 1, int(inter_y)),
-                        resample=Image.BILINEAR,
-                        fillcolor=(0, 0, 0, 0)
-                    )
-                    sub_images.append(shifted_img)
+                args_list = [
+                    (j, prev_offset[0], prev_offset[1], offset_x, offset_y, blur_exposures, img)
+                    for j in range(blur_exposures)
+                ]
+
+                with ThreadPoolExecutor() as executor:
+                    sub_images = list(executor.map(process_sub_image, args_list))
+
                 weights = [1 / blur_exposures] * blur_exposures
                 final_img = blend_images(sub_images, weights)
+
             frames.append(final_img)
             prev_offset = (offset_x, offset_y)
 
