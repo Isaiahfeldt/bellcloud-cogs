@@ -692,9 +692,10 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         prev_offsets[i_input] = (offset_x, offset_y)
 
     output_buffer = io.BytesIO()
-
+    save_format = 'WEBP' if file_ext == 'webp' else 'GIF'
     frames[0].save(
         output_buffer,
+        format=save_format,
         save_all=True,
         append_images=frames[1:],
         duration=duration,
