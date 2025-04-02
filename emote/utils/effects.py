@@ -696,6 +696,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     output_buffer = io.BytesIO()
     save_format = 'webp' if file_ext == 'webp' else 'gif'
+    emote.notes["save_format"] = str(save_format)
     frames[0].save(
         output_buffer,
         format=save_format.upper(),
