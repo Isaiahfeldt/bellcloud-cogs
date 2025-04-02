@@ -750,6 +750,8 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         disposal=2
     )
     emote.img_data = output_buffer.getvalue()
+
+    # Make sure new file type is gif
     if not emote.file_path.lower().endswith('.gif'):
         emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}.gif"
 
