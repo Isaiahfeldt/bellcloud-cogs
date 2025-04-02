@@ -656,7 +656,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-    original_duration = get_animated_duration(emote.img_data)
+    original_duration = get_animated_duration(emote)
     duration = original_duration
 
     emote.notes["Scale"] = str(scale)
