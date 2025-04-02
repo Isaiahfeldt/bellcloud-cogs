@@ -198,6 +198,8 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
     if emote.img_data is not None:
         notes["img_data_length"] = f"{len(emote.img_data)} bytes"
+    elif emote.effect_chain:
+        notes["effect_chain"] = ", ".join(emote.effect_chain.keys())
     else:
         notes["img_data"] = "None"
 
