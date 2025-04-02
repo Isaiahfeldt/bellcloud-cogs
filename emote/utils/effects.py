@@ -190,8 +190,6 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     notes["guild_id"] = emote.guild_id
     notes["usage_count"] = str(emote.usage_count + 1)
 
-    emote.notes["debug_mode"] = mode
-
     # TODO move this logic to send_debug_embed in chat.py
     # if emote.errors is not None:
     #     notes["error"] = str(emote.error)
