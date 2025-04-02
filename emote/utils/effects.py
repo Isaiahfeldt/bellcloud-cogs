@@ -636,6 +636,9 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
     duration = 50 if classic else 25
 
+    emote.notes["Scale"] = str(scale)
+    emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
+
     # Generate shaking offsets
     half = num_frames // 2
     offsets = []
