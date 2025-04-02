@@ -123,6 +123,8 @@ def create_looping_shaking_gif(
         disposal=2
     )
 
+    print(len(input_frames))
+
 
 if __name__ == "__main__":
     image_file = "C://Users//L378//Downloads//slapin.gif"  # Replace with your file

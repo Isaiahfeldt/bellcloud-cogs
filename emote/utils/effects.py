@@ -615,6 +615,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     import random
     import numpy as np
+    import math
 
     def blend_images(images, weights):
         """Blend a list of RGBA images using premultiplied alpha to avoid dark edges."""
@@ -651,17 +652,28 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
     scale = max(img_width, img_height) / 540.0
-    max_shift = (250 * scale) * intensity if classic else (180 * scale) * intensity
-    num_frames = 60 if classic else 30
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-    duration = 50 if classic else 25
+
+    if classic:
+        max_shift = (250 * scale) * intensity
+        num_frames = 60
+        # duration = 50
+    else:
+        max_shift = (180 * scale) * intensity
+        num_frames = 30
+        # duration = 25
+
+    if input_frames < 25:
+        duration = input_frames * math.ceil(50 / input_frames)
+    else:
+        duration = input_frames
 
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
     emote.notes["original_file_ext"] = str(file_ext)
-    # emote.notes["original_duration"] = str(original_duration)
+    emote.notes["original_duration"] = str(img.info.get("duration"))
 
     # Generate shaking offsets
     half = num_frames // 2
