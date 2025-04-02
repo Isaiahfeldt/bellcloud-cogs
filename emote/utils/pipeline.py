@@ -19,6 +19,12 @@ from emote.utils.effects import Emote, initialize
 
 db = Database()
 
+# Define groups of effects that cannot be used together
+CONFLICT_GROUPS = [
+    {"shake", "shakeclassic"},
+    {"latency", "latency2"}
+]
+
 
 # class EffectManager:
 #     EFFECTS = {
@@ -85,16 +91,37 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             emote.issues[f"{effect_name}_effect"] = "NotFound"
             continue
 
+        # Check for single-use violations
         if effect_info.get("single_use", False):
             if effect_name in seen_effects:
                 emote.issues[f"{effect_name}_effect"] = "DuplicateNotAllowed"
                 continue
             seen_effects.add(effect_name)
 
+        # Check permissions
         if not permission_list[effect_info['perm']](message, self):
             emote.issues[f"{effect_name}_effect"] = "PermissionDenied"
             continue
 
+        # Check for conflicting effects
+        applied_conflicts = []
+        for group in CONFLICT_GROUPS:
+            if effect_name in group:
+                for other_effect in group:
+                    if other_effect != effect_name and other_effect in emote.effect_chain:
+                        applied_conflicts.append(other_effect)
+
+        if applied_conflicts:
+            emote.errors[effect_name] = (
+                f"Cannot apply {effect_name} because conflicting effect(s) "
+                f"already applied: {', '.join(applied_conflicts)}"
+            )
+            continue
+
+        # Mark effect as used in the effect chain
+        emote.effect_chain[effect_name] = True
+
+        # Create the effect wrapper
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
             try:
                 return await func(emote, *args)
@@ -128,8 +155,8 @@ async def execute_pipeline(pipeline):
 
 
 async def timed_execution(func, input_tuple, start_time):
+    """Times the execution of a function and returns the result with elapsed time."""
     result_tuple = await func(input_tuple)
     end_time = time.perf_counter()
     time_elapsed = end_time - start_time
-
     return result_tuple, time_elapsed
