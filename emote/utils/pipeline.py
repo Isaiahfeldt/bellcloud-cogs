@@ -14,6 +14,8 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import asyncio
 import time
+import traceback
+from textwrap import wrap
 
 from emote.utils.database import Database
 from emote.utils.effects import Emote, initialize
@@ -123,18 +125,27 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
 
         # Create the effect wrapper
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
-            # try:
-            return await func(emote, *args)
-            # except TypeError as e:
-            #     if "positional arguments" in str(e):
-            #         emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
-            #     else:
-            #         emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
-            #     return emote
-            # except Exception as e:
-            #     emote.errors[f"{_effect_name}_effect"] = str(e)
-            #     print(traceback.format_exc())
-            #     return emote
+            try:
+                return await func(emote, *args)
+            except TypeError as e:
+                if "positional arguments" in str(e):
+                    emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
+                else:
+                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
+                return emote
+            except Exception as e:
+                emote.errors[f"{_effect_name}_effect"] = str(e)
+
+                max_characters = 900
+                traceback_str = str(traceback.format_exc())
+                chunks = wrap(traceback_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
+
+                for i, chunk in enumerate(chunks):
+                    emote.followup_errors.append(f"```{chunk}```")
+
+                emote.followup_errors.append(f"```{traceback.format_exc()}```")
+                print(traceback.format_exc())
+                return emote
 
         pipeline.append(effect_wrapper)
 
