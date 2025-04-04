@@ -1,17 +1,3 @@
-#  Copyright (c) 2024, Isaiah Feldt
-#  ͏
-#     - This program is free software: you can redistribute it and/or modify it
-#     - under the terms of the GNU Affero General Public License (AGPL) as published by
-#     - the Free Software Foundation, either version 3 of this License,
-#     - or (at your option) any later version.
-#  ͏
-#     - This program is distributed in the hope that it will be useful,
-#     - but without any warranty, without even the implied warranty of
-#     - merchantability or fitness for a particular purpose.
-#     - See the GNU Affero General Public License for more details.
-#  ͏
-#     - You should have received a copy of the GNU Affero General Public License
-#     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import asyncio
 import time
 
@@ -20,7 +6,6 @@ from emote.utils.effects import Emote, initialize
 
 db = Database()
 
-# Define groups of effects that cannot be used together
 CONFLICT_GROUPS = [
     {"latency", "latency2"}
 ]
@@ -91,7 +76,6 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             emote.issues[f"{effect_name}_effect"] = "NotFound"
             continue
 
-        # Check for single-use violations
         if effect_info.get("single_use", False):
             if effect_name in seen_effects:
                 emote.issues[f"{effect_name}_effect"] = "DuplicateNotAllowed"
@@ -118,10 +102,8 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             )
             continue
 
-        # Mark effect as used in the effect chain
         emote.effect_chain[effect_name] = True
 
-        # Create the effect wrapper
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
             try:
                 return await func(emote, *args)
