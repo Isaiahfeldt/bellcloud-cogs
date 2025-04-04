@@ -659,6 +659,10 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         pass
 
     orig_duration = len(input_frames)
+    if orig_duration < 25:
+        duration = orig_duration * math.ceil(50 / orig_duration)
+    else:
+        duration = orig_duration
 
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
@@ -666,26 +670,8 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 8
-
-    if classic:
-        max_shift = (250 * scale) * intensity
-        num_frames = 60
-        # duration = 50
-    else:
-        max_shift = (180 * scale) * intensity
-        num_frames = 30
-        # duration = 25
-
-    if len(input_frames) < 25:
-        duration = orig_duration * math.ceil(50 / orig_duration)
-    else:
-        duration = orig_duration
-
-    emote.notes["Scale"] = str(scale)
-    emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
-    emote.notes["original_file_ext"] = str(file_ext)
-    emote.notes["orig_duration"] = orig_duration
-    emote.notes["new_duration"] = str(duration)
+    num_frames = duration
+    max_shift = (180 * scale) * intensity
 
     # Generate shaking offsets
     half = num_frames // 2
@@ -695,6 +681,12 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     step = max_shift / 10
     prev_offsets = [(0.0, 0.0) for _ in input_frames]
     frames = []
+
+    emote.notes["Scale"] = str(scale)
+    emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
+    emote.notes["original_file_ext"] = str(file_ext)
+    emote.notes["orig_duration"] = orig_duration
+    emote.notes["new_duration"] = str(duration)
 
     for _ in range(half + 1):
         force_x = random.uniform(-step, step)
