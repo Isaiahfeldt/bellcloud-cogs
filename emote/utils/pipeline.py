@@ -136,7 +136,7 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             except Exception as e:
                 emote.errors[f"{_effect_name}_effect"] = str(e)
 
-                max_characters = 900
+                max_characters = 500
                 traceback_str = str(traceback.format_exc())
                 chunks = wrap(traceback_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
 
