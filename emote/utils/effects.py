@@ -660,16 +660,16 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     orig_duration = len(input_frames)
     if orig_duration < 25:
-        duration = orig_duration * math.ceil(50 / orig_duration)
+        duration = (orig_duration * math.ceil(50 / orig_duration) / 2)
     else:
-        duration = orig_duration
+        duration = orig_duration / 2
 
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
     scale = max(img_width, img_height) / 540.0
     spring = 1.3
     damping = 0.85
-    blur_exposures = 8
+    blur_exposures = 10
     num_frames = duration
     max_shift = (180 * scale) * intensity
 
