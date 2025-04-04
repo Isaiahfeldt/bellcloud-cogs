@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import asyncio
 import time
+import traceback
 
 from emote.utils.database import Database
 from emote.utils.effects import Emote, initialize
@@ -132,10 +133,10 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
                     emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
                 return emote
             except Exception as e:
-                emote.errors[f"{_effect_name}_effect"] = str(e)
+                emote.errors[f"{_effect_name}_effect"] = traceback.format_exc()
                 return emote
 
-        pipeline.append(effect_wrapper)
+    pipeline.append(effect_wrapper)
 
     return pipeline
 
