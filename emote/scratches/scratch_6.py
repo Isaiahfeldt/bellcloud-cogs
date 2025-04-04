@@ -38,13 +38,12 @@ def create_looping_shaking_gif(
         duration=50,
         spring=1.3,
         damping=0.85,
-        blur_exposures=10
+        blur_exposures=10,
+        intensity=1
 ):
     """Creates a looping shaking GIF from static or animated input."""
     if num_frames % 2 != 0:
         raise ValueError("num_frames must be even for a perfect loop.")
-
-    print("Check 1")
 
     # Read all frames from input (supports animated GIFs)
     img = Image.open(image_path)
@@ -56,11 +55,21 @@ def create_looping_shaking_gif(
     except EOFError:
         pass
 
-    print("Check 2")
-
     # Track previous offsets for each input frame
     prev_offsets = [(0.0, 0.0) for _ in input_frames]
     frames = []
+
+    img_width, img_height = input_frames[0].size
+    scale = max(img_width, img_height) / 540.0
+
+    orig_duration = int(len(input_frames))
+    if orig_duration < 25:
+        duration = int(orig_duration * math.ceil(50 / orig_duration)) / 2
+    else:
+        duration = int(orig_duration / 2)
+
+    num_frames = int(duration)
+    max_shift = (180 * scale) * intensity
 
     # Generate shaking offsets
     half = num_frames // 2
@@ -68,8 +77,6 @@ def create_looping_shaking_gif(
     curr_x, curr_y = 0.0, 0.0
     v_x, v_y = 0.0, 0.0
     step = max_shift / 10
-
-    print("Check 3")
 
     for _ in range(half + 1):
         force_x = random.uniform(-step, step)
@@ -82,16 +89,8 @@ def create_looping_shaking_gif(
         curr_y = max(min(curr_y, max_shift), -max_shift)
         offsets.append((curr_x, curr_y))
 
-    print("Check 4")
-
-    print(len(input_frames))
-    duration = len(input_frames) * math.ceil(50 / len(input_frames))
-    print(duration)
-
     offsets_rev = list(reversed(offsets[1:]))
     all_offsets = offsets + offsets_rev
-
-    print("Check 4.2")
 
     # Generate output frames
     for idx, (offset_x, offset_y) in enumerate(all_offsets):
@@ -142,7 +141,7 @@ def create_looping_shaking_gif(
 
 
 if __name__ == "__main__":
-    image_file = "C://Users//L378//Downloads//fush_test.webp"  # Replace with your file
+    image_file = "C://Users//L378//Downloads//slapin.gif"  # Replace with your file
     if not os.path.exists(image_file):
         print(f"Error: File '{image_file}' not found.")
     else:
