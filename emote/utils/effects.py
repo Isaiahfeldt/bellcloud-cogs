@@ -641,6 +641,15 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         return Image.fromarray(result)
 
     img = Image.open(io.BytesIO(emote.img_data))
+    mote.notes["original_img_size"] = str(img.size)
+
+    if not getattr(img, "is_animated", False):
+        max_dimension = 700  # Maximum size for either width or height
+        if max(img.size) > max_dimension:
+            # Resize while maintaining aspect ratio
+            img.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+            emote.notes["new_img_size"] = str(img.size)
+
     input_frames = []
     try:
         while True:
