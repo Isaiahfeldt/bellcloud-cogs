@@ -649,6 +649,9 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     except EOFError:
         pass
 
+    print(input_frames)
+    print(len(input_frames))
+
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
     scale = max(img_width, img_height) / 540.0
