@@ -658,19 +658,19 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     damping = 0.85
     blur_exposures = 8
 
+    if classic:
+        max_shift = (250 * scale) * intensity
+        num_frames = 60
+        # duration = 50
+    else:
+        max_shift = (180 * scale) * intensity
+        num_frames = 30
+        # duration = 25
+
     if len(input_frames) < 25:
         duration = orig_duration * math.ceil(50 / orig_duration)
     else:
         duration = orig_duration
-
-    if classic:
-        max_shift = (250 * scale) * intensity
-        num_frames = duration
-        # duration = 50
-    else:
-        max_shift = (180 * scale) * intensity
-        num_frames = duration
-        # duration = 25
 
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
