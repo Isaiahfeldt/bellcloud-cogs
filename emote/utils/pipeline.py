@@ -133,10 +133,11 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
                     emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
                 return emote
             except Exception as e:
-                emote.errors[f"{_effect_name}_effect"] = traceback.format_exc()
+                emote.errors[f"{_effect_name}_effect"] = str(e)
+                print(traceback.format_exc())
                 return emote
 
-    pipeline.append(effect_wrapper)
+        pipeline.append(effect_wrapper)
 
     return pipeline
 
