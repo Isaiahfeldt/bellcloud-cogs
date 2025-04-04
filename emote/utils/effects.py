@@ -662,7 +662,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     if orig_duration < 25:
         duration = int(orig_duration * math.ceil(50 / orig_duration)) / 2
     else:
-        duration = int(orig_duration)
+        duration = int(orig_duration / 2)
 
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
@@ -670,7 +670,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 10
-    num_frames = int(duration * 2)
+    num_frames = int(duration)
     max_shift = (180 * scale) * intensity
 
     # Generate shaking offsets
