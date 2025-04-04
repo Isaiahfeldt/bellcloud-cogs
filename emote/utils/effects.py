@@ -662,7 +662,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     if orig_duration < 25:
         duration = (orig_duration * math.ceil(50 / orig_duration) / 2)
     else:
-        duration = orig_duration / 2
+        duration = (orig_duration / 2)
 
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
