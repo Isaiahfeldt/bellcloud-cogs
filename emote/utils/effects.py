@@ -670,7 +670,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     spring = 1.3
     damping = 0.85
     blur_exposures = 10
-    num_frames = duration
+    num_frames = duration * 2
     max_shift = (180 * scale) * intensity
 
     # Generate shaking offsets
