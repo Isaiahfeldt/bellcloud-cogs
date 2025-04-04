@@ -141,10 +141,8 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
                 chunks = wrap(traceback_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
 
                 for i, chunk in enumerate(chunks):
-                    emote.followup_errors.append(f"```{chunk}```")
+                    emote.followup[f"{_effect_name}"] = (f"```{chunk}```")
 
-                emote.followup_errors.append(f"```{traceback.format_exc()}```")
-                print(traceback.format_exc())
                 return emote
 
         pipeline.append(effect_wrapper)
