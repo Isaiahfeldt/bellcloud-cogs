@@ -1,3 +1,4 @@
+import math
 import os
 import random
 
@@ -124,6 +125,8 @@ def create_looping_shaking_gif(
     )
 
     print(len(input_frames))
+    duration = len(input_frames) * math.ceil(50 / len(input_frames))
+    print(duration)
 
 
 if __name__ == "__main__":

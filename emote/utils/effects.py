@@ -649,8 +649,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     except EOFError:
         pass
 
-    print(input_frames)
-    print(len(input_frames))
+    orig_duration = len(input_frames)
 
     # Calculate scale based on first frame
     img_width, img_height = input_frames[0].size
@@ -669,16 +668,15 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
         # duration = 25
 
     if len(input_frames) < 25:
-        duration = input_frames * math.ceil(50 / input_frames)
+        duration = orig_duration * math.ceil(50 / orig_duration)
     else:
-        duration = input_frames
+        duration = orig_duration
 
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
     emote.notes["original_file_ext"] = str(file_ext)
-    emote.notes["input_frames"] = str(input_frames)
-    emote.notes["input_frames_len"] = str(len(input_frames))
-    emote.notes["duration"] = str(duration)
+    emote.notes["orig_duration"] = orig_duration
+    emote.notes["new_duration"] = str(duration)
 
     # Generate shaking offsets
     half = num_frames // 2
