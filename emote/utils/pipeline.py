@@ -1,8 +1,9 @@
 import asyncio
 import time
 
+from effects import *
 from emote.utils.database import Database
-from emote.utils.effects import Emote, initialize
+from ..effects import initialize
 
 db = Database()
 
