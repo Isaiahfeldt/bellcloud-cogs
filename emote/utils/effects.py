@@ -660,11 +660,11 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
 
     if classic:
         max_shift = (250 * scale) * intensity
-        num_frames = 60
+        num_frames = 2
         # duration = 50
     else:
         max_shift = (180 * scale) * intensity
-        num_frames = 30
+        num_frames = 2
         # duration = 25
 
     if len(input_frames) < 25:
