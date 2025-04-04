@@ -22,7 +22,6 @@ db = Database()
 
 # Define groups of effects that cannot be used together
 CONFLICT_GROUPS = [
-    {"shake", "shakeclassic"},
     {"latency", "latency2"}
 ]
 
