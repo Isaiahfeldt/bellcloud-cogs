@@ -14,8 +14,6 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import asyncio
 import time
-import traceback
-from textwrap import wrap
 
 from emote.utils.database import Database
 from emote.utils.effects import Emote, initialize
@@ -143,7 +141,7 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
             #     # for i, chunk in enumerate(chunks):
             #     #     emote.followup[f"{_effect_name}"] = (f"```{chunk}```")
 
-                return emote
+            return emote
 
         pipeline.append(effect_wrapper)
 
