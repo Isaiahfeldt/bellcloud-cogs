@@ -44,6 +44,8 @@ def create_looping_shaking_gif(
     if num_frames % 2 != 0:
         raise ValueError("num_frames must be even for a perfect loop.")
 
+    print("Check 1")
+
     # Read all frames from input (supports animated GIFs)
     img = Image.open(image_path)
     input_frames = []
@@ -53,6 +55,8 @@ def create_looping_shaking_gif(
             img.seek(img.tell() + 1)
     except EOFError:
         pass
+
+    print("Check 2")
 
     # Track previous offsets for each input frame
     prev_offsets = [(0.0, 0.0) for _ in input_frames]
@@ -65,6 +69,8 @@ def create_looping_shaking_gif(
     v_x, v_y = 0.0, 0.0
     step = max_shift / 10
 
+    print("Check 3")
+
     for _ in range(half + 1):
         force_x = random.uniform(-step, step)
         force_y = random.uniform(-step, step)
@@ -76,8 +82,16 @@ def create_looping_shaking_gif(
         curr_y = max(min(curr_y, max_shift), -max_shift)
         offsets.append((curr_x, curr_y))
 
+    print("Check 4")
+
+    print(len(input_frames))
+    duration = len(input_frames) * math.ceil(50 / len(input_frames))
+    print(duration)
+
     offsets_rev = list(reversed(offsets[1:]))
     all_offsets = offsets + offsets_rev
+
+    print("Check 4.2")
 
     # Generate output frames
     for idx, (offset_x, offset_y) in enumerate(all_offsets):
@@ -114,6 +128,8 @@ def create_looping_shaking_gif(
         frames.append(final_img)
         prev_offsets[i_input] = (offset_x, offset_y)
 
+    print("Check 5")
+
     # Save output GIF
     frames[0].save(
         output_path,
@@ -124,13 +140,9 @@ def create_looping_shaking_gif(
         disposal=2
     )
 
-    print(len(input_frames))
-    duration = len(input_frames) * math.ceil(50 / len(input_frames))
-    print(duration)
-
 
 if __name__ == "__main__":
-    image_file = "C://Users//L378//Downloads//slapin.gif"  # Replace with your file
+    image_file = "C://Users//L378//Downloads//fush_test.webp"  # Replace with your file
     if not os.path.exists(image_file):
         print(f"Error: File '{image_file}' not found.")
     else:

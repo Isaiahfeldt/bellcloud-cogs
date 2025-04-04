@@ -12,6 +12,7 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import asyncio
 import time
 
 from emote.utils.database import Database
@@ -150,7 +151,12 @@ async def execute_pipeline(pipeline):
     """
     emote = None
     for operation in pipeline:
-        emote = await operation(emote)
+        try:
+            # Add timeout (e.g., 30 seconds per effect)
+            emote = await asyncio.wait_for(operation(emote), timeout=60)
+        except asyncio.TimeoutError:
+            emote.errors["timeout"] = "Operation timed out."
+            break
     return emote
 
 
