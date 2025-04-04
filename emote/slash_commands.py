@@ -508,7 +508,7 @@ class SlashCommands(commands.Cog):
 
         elif is_enclosed_in_colon(message):
             async with message.channel.typing():
-                asyncio.create_task(self.process_emote_pipeline(message))
+                await self.process_emote_pipeline(message)
             reset_flags()
 
     async def process_emote_pipeline(self, message):
