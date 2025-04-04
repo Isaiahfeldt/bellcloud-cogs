@@ -658,9 +658,9 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     except EOFError:
         pass
 
-    orig_duration = len(input_frames)
+    orig_duration = int(len(input_frames))
     if orig_duration < 25:
-        duration = (orig_duration * math.ceil(50 / orig_duration) / 2)
+        duration = int(orig_duration * math.ceil(50 / orig_duration)) / 2
     else:
         duration = (orig_duration / 2)
 
