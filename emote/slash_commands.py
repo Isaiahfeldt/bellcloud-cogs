@@ -554,7 +554,7 @@ class SlashCommands(commands.Cog):
 
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
-            file_path="virtual/reaction_image",  # Could be adjusted as needed
+            file_path=f"virtual/{image_attachment.filename}",  # Use real file name and type
             author_id=user.id,
             timestamp=datetime.now(),
             original_url=image_attachment.url,
