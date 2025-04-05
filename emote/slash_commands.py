@@ -513,8 +513,11 @@ class SlashCommands(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_reaction_add(self, reaction: discord.Reaction, user):
+        print("Check 1")
         if user == self.user:
             return
+        print("Check 2")
+        prnit(user)
 
         reaction_effects = {
             "🔄": reverse,
@@ -527,14 +530,14 @@ class SlashCommands(commands.Cog):
         }
 
         message = reaction.message
-        image_attachment = None
-        for attachment in message.attachments:
-            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
-                image_attachment = attachment
-                break
-
-        if image_attachment is None:
-            return
+        # image_attachment = None
+        # for attachment in message.attachments:
+        #     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
+        #         image_attachment = attachment
+        #         break
+        #
+        # if image_attachment is None:
+        #     return
 
         await message.channel.send(f"Reacted! {reaction.emoji}")
 
