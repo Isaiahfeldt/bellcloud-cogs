@@ -1,17 +1,3 @@
-#  Copyright (c) 2024, Isaiah Feldt
-#  ͏
-#     - This program is free software: you can redistribute it and/or modify it
-#     - under the terms of the GNU Affero General Public License (AGPL) as published by
-#     - the Free Software Foundation, either version 3 of this License,
-#     - or (at your option) any later version.
-#  ͏
-#     - This program is distributed in the hope that it will be useful,
-#     - but without any warranty, without even the implied warranty of
-#     - merchantability or fitness for a particular purpose.
-#     - See the GNU Affero General Public License for more details.
-#  ͏
-#     - You should have received a copy of the GNU Affero General Public License
-#     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import io
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -129,7 +115,7 @@ async def initialize(emote: Emote) -> Emote:
     return emote
 
 
-async def latency(emote: Emote) -> Emote:
+def latency(emote: Emote) -> Emote:
     """
     Toggles the latency measurement flag for subsequent processing.
 
@@ -151,7 +137,7 @@ async def latency(emote: Emote) -> Emote:
     return emote
 
 
-async def debug(emote: Emote, mode: str = "basic") -> Emote:
+def debug(emote: Emote, mode: str = "basic") -> Emote:
     """
         User:
             Shows detailed information about the emote. Including its ID, file path, and other technical details.
@@ -176,11 +162,11 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
 
     # Add key-value pairs for each debug detail.
     notes["emote_id"] = str(emote.id)
-    notes["file_path"] = emote.file_path
-    notes["author_id"] = emote.author_id
-    notes["timestamp"] = emote.timestamp
-    notes["original_url"] = emote.original_url
-    notes["guild_id"] = emote.guild_id
+    notes["file_path"] = str(emote.file_path)
+    notes["author_id"] = str(emote.author_id)
+    notes["timestamp"] = str(emote.timestamp)
+    notes["original_url"] = str(emote.original_url)
+    notes["guild_id"] = str(emote.guild_id)
     notes["usage_count"] = str(emote.usage_count + 1)
 
     emote.notes["debug_mode"] = mode
@@ -202,7 +188,7 @@ async def debug(emote: Emote, mode: str = "basic") -> Emote:
     return emote
 
 
-async def train(emote: Emote, amount: int = 3) -> Emote:
+def train(emote: Emote, amount: int = 3) -> Emote:
     """
         Duplicate the provided Emote for a specified number of times within a valid range.
 
@@ -247,7 +233,7 @@ async def train(emote: Emote, amount: int = 3) -> Emote:
     return emote
 
 
-async def reverse(emote: Emote) -> Emote:
+def reverse(emote: Emote) -> Emote:
     """
     Reverses emote playback.
 
@@ -349,7 +335,7 @@ async def reverse(emote: Emote) -> Emote:
     return emote
 
 
-async def fast(emote: Emote, factor: float = 2) -> Emote:
+def fast(emote: Emote, factor: float = 2) -> Emote:
     """
     Increases the playback speed of the emote.
 
@@ -373,11 +359,11 @@ async def fast(emote: Emote, factor: float = 2) -> Emote:
         Emote: The updated emote object with the sped-up image data.
     """
 
-    emote = await speed(emote, factor)
+    emote = speed(emote, factor)
     return emote
 
 
-async def slow(emote: Emote, factor: float = 0.5) -> Emote:
+def slow(emote: Emote, factor: float = 0.5) -> Emote:
     """
     Decreases the playback speed of the emote.
 
@@ -401,11 +387,11 @@ async def slow(emote: Emote, factor: float = 0.5) -> Emote:
         Emote: The updated emote object with the slowed-down image data.
     """
 
-    emote = await speed(emote, factor)
+    emote = speed(emote, factor)
     return emote
 
 
-async def speed(emote: Emote, factor: float = 2) -> Emote:
+def speed(emote: Emote, factor: float = 2) -> Emote:
     """
     Changes the playback speed of the emote.
 
@@ -519,7 +505,7 @@ async def speed(emote: Emote, factor: float = 2) -> Emote:
         return emote
 
 
-async def invert(emote: Emote) -> Emote:
+def invert(emote: Emote) -> Emote:
     """
     Inverts the colors of the emote image data.
 
@@ -602,7 +588,7 @@ async def invert(emote: Emote) -> Emote:
     return emote
 
 
-async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
+def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     if emote.img_data is None:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
@@ -685,7 +671,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     emote.notes["Scale"] = str(scale)
     emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
     emote.notes["original_file_ext"] = str(file_ext)
-    emote.notes["orig_duration"] = orig_duration
+    emote.notes["orig_duration"] = str(orig_duration)
     emote.notes["new_duration"] = str(duration)
 
     for _ in range(half + 1):
@@ -755,7 +741,7 @@ async def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Em
     return emote
 
 
-async def flip(emote: Emote, direction: str = "h") -> Emote:
+def flip(emote: Emote, direction: str = "h") -> Emote:
     """
     Flips the emote image data in the specified direction(s).
 
@@ -854,7 +840,7 @@ async def flip(emote: Emote, direction: str = "h") -> Emote:
                 'code': last_frame.line,
                 'traceback': traceback.format_exc().split('\n')[-2]
             }
-            emote.errors["flip"] = error_details
+            emote.errors["flip"] = str(error_details)
             return emote
 
         return emote
