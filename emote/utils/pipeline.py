@@ -64,51 +64,46 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     """
     from emote.slash_commands import SlashCommands
 
-    # Initialize pipeline with the initial step.
-    pipeline = [lambda _: initialize(emote)]
+    pipeline = [(lambda _: initialize(emote))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
+
     seen_effects = set()
 
-    # Extract function to check for conflicting effects.
-    def get_conflicting_effects(effect_name: str) -> list:
-        conflicts = []
-        for group in CONFLICT_GROUPS:
-            if effect_name in group:
-                conflicts.extend([other for other in group if other != effect_name and other in emote.effect_chain])
-        return conflicts
-
-    # Process each queued effect.
-    for effect_name, effect_args in queued_effects.items():
+    for effect_name, effect_args in queued_effects:
         effect_info = effects_list.get(effect_name)
         if effect_info is None:
             emote.issues[f"{effect_name}_effect"] = "NotFound"
             continue
 
-        # Validate single-use effects.
         if effect_info.get("single_use", False):
             if effect_name in seen_effects:
                 emote.issues[f"{effect_name}_effect"] = "DuplicateNotAllowed"
                 continue
             seen_effects.add(effect_name)
 
-        # Check user permission for the effect.
+        # Check permissions
         if not permission_list[effect_info['perm']](message, self):
             emote.issues[f"{effect_name}_effect"] = "PermissionDenied"
             continue
 
-        # Conflict check for the current effect.
-        conflicting_effects = get_conflicting_effects(effect_name)
-        if conflicting_effects:
+        # Check for conflicting effects
+        applied_conflicts = []
+        for group in CONFLICT_GROUPS:
+            if effect_name in group:
+                for other_effect in group:
+                    if other_effect != effect_name and other_effect in emote.effect_chain:
+                        applied_conflicts.append(other_effect)
+
+        if applied_conflicts:
             emote.errors[effect_name] = (
-                f"Cannot apply {effect_name} because conflicting effect(s) already applied: "
-                f"{', '.join(conflicting_effects)}"
+                f"Cannot apply {effect_name} because conflicting effect(s) "
+                f"already applied: {', '.join(applied_conflicts)}"
             )
             continue
 
         emote.effect_chain[effect_name] = True
 
-        # Wrap effect call asynchronously to handle exceptions.
         async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
             try:
                 return await func(emote, *args)
@@ -138,8 +133,8 @@ async def execute_pipeline(pipeline):
     emote = None
     for operation in pipeline:
         try:
-            # Add timeout (e.g., 45 seconds per effect)
-            emote = await asyncio.wait_for(operation(emote), timeout=45)
+            # Add timeout (e.g., 30 seconds per effect)
+            emote = await asyncio.wait_for(operation(emote), timeout=60)
         except asyncio.TimeoutError:
             emote.errors["timeout"] = "Operation timed out."
             break
