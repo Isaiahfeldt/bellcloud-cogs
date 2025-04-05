@@ -517,7 +517,7 @@ class SlashCommands(commands.Cog):
         if user == self.user:
             return
         print("Check 2")
-        prnit(user)
+        print(user)
 
         reaction_effects = {
             "🔄": reverse,
