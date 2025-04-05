@@ -516,6 +516,16 @@ class SlashCommands(commands.Cog):
         if reaction.me:
             return
 
+        message = reaction.message
+        image_attachment = None
+        for attachment in message.attachments:
+            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
+                image_attachment = attachment
+                break
+
+        if image_attachment is None:
+            return
+
         reaction_effects = {
             "🔄": effect.reverse,
             "⏩": effect.fast,
@@ -526,67 +536,48 @@ class SlashCommands(commands.Cog):
             "🔃": effect.flip,
         }
 
-        try:
-            effect_func = reaction_effects.get(str(reaction.emoji))
-        except Exception as e:
-            print(f"Error getting effect function: {e}")
+        effect_func = reaction_effects.get(str(reaction.emoji))
+        if not effect_func:
             return
 
-        message = reaction.message
-        # image_attachment = None
-        # for attachment in message.attachments:
-        #     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
-        #         image_attachment = attachment
-        #         break
-        #
-        # if image_attachment is None:
-        #     return
+        # Read image data from the attachment
+        try:
+            image_bytes = await image_attachment.read()
+        except Exception as e:
+            print(f"Error reading image data: {e}")
+            return
 
-        await message.channel.send(f"Reacted! {reaction.emoji}")
-        await message.channel.send(f"Test: {effect_func}")
+        emote_instance = Emote(
+            id=0,  # Use a dummy id since this is a virtual Emote
+            file_path="virtual/reaction_image",  # Could be adjusted as needed
+            author_id=user.id,
+            timestamp=datetime.now(),
+            original_url=image_attachment.url,
+            name=image_attachment.filename,
+            guild_id=message.guild.id if message.guild else 0,
+            usage_count=0,
+            errors={},
+            issues={},
+            notes={},
+            followup={},
+            effect_chain={},
+            img_data=image_bytes,
+        )
 
-        # effect_func = reaction_effects.get(str(reaction.emoji))
-        # if not effect_func:
-        #     return
-        #
-        # # Verify if the message has an image attachment
-        # message = reaction.message
-        # image_attachment = None
-        # for attachment in message.attachments:
-        #     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-        #         image_attachment = attachment
-        #         break
-        #
-        # if image_attachment is None:
-        #     return
-        #
-        # # Download image data from the attachment
-        # image_bytes = await image_attachment.read()
-        #
-        # # Open the image using Pillow
-        # try:
-        #     image = Image.open(io.BytesIO(image_bytes))
-        # except Exception as e:
-        #     print(f"Error opening image: {e}")
-        #     return
-        #
-        # # Apply the selected effect to the image
-        # try:
-        #     processed_image = effect_func(image)
-        # except Exception as e:
-        #     print(f"Error processing effect: {e}")
-        #     return
-        #
-        # # Save the processed image to an in-memory buffer
-        # buf = io.BytesIO()
-        # processed_image.save(buf, format="PNG")
-        # buf.seek(0)
-        #
-        # # Send the processed image back into the same channel
-        # await message.channel.send(
-        #     content=f"{user.mention} here’s your image with the applied effect!",
-        #     file=discord.File(fp=buf, filename="processed.png")
-        # )
+        try:
+            processed_image = effect_func(emote_instance)
+        except Exception as e:
+            print(f"Error processing effect: {e}")
+            return
+
+        output_buffer = io.BytesIO()
+        processed_image.save(output_buffer, format="PNG")
+        output_buffer.seek(0)
+
+        await message.channel.send(
+            content=f"{user.mention} here’s your image with the applied effect!",
+            file=discord.File(fp=output_buffer, filename="processed.png")
+        )
 
     async def process_emote_pipeline(self, message):
         timer = PerformanceTimer()
