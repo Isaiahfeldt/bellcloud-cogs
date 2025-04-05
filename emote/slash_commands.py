@@ -541,13 +541,15 @@ class SlashCommands(commands.Cog):
             return
 
         from emote.utils.effects import Emote
+        from datetime import datetime
 
-        # Read image data from the attachment
         try:
             image_bytes = await image_attachment.read()
         except Exception as e:
             print(f"Error reading image data: {e}")
             return
+
+        await message.channel.typing()
 
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
