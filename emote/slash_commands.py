@@ -512,7 +512,7 @@ class SlashCommands(commands.Cog):
 
     @commands.Cog.listener()
     @commands.guild_only()
-    async def on_reaction_add(self, reaction, user):
+    async def on_reaction_add(self, reaction: discord.Reaction, user):
         if message.author.bot:
             return
 
@@ -526,7 +526,7 @@ class SlashCommands(commands.Cog):
             "🔃": flip,
         }
 
-        await message.channel.send(f"Reacted! {reaction}")
+        await reaction.message.channel.send(f"Reacted! {reaction.emoji}")
 
         # effect_func = reaction_effects.get(str(reaction.emoji))
         # if not effect_func:
