@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, Dict
 
-import requests
+import aiohttp
 from PIL import Image, ImageOps
 
 
@@ -101,14 +101,17 @@ async def initialize(emote: Emote) -> Emote:
     :return: The initialized Emote object with its image data loaded or an error noted.
     """
     emote.original_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
+
     try:
-        response = requests.get(emote.original_url)
-        if response.status_code == 200:
-            emote.img_data = response.content
-        else:
-            emote.errors["initialize"] = f"HTTP error status: {response.status_code}"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(emote.original_url) as response:
+                if response.status == 200:
+                    emote.img_data = await response.read()
+                else:
+                    emote.errors["initialize"] = f"HTTP error status: {response.status}"
     except Exception as e:
         emote.errors["initialize"] = f"Exception occurred: {str(e)}"
+
     return emote
 
 

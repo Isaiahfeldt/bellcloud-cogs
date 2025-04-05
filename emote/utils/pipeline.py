@@ -37,7 +37,7 @@ CONFLICT_GROUPS = [
 #         return effect_info['func'](), None
 
 
-def create_pipeline(self, message, emote: Emote, queued_effects: dict):
+async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     """
         Constructs a pipeline for processing effects on a given emote. Validates the
         queued effects and checks if the user has the appropriate permissions to
@@ -67,7 +67,6 @@ def create_pipeline(self, message, emote: Emote, queued_effects: dict):
     pipeline = [(lambda _: initialize(emote))]
     effects_list = SlashCommands.EFFECTS_LIST
     permission_list = SlashCommands.PERMISSION_LIST
-
     seen_effects = set()
 
     for effect_name, effect_args in queued_effects:
@@ -104,9 +103,9 @@ def create_pipeline(self, message, emote: Emote, queued_effects: dict):
 
         emote.effect_chain[effect_name] = True
 
-        def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
+        async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
             try:
-                return func(emote, *args)
+                return await func(emote, *args)
             except TypeError as e:
                 if "positional arguments" in str(e):
                     emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
