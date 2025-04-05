@@ -513,17 +513,24 @@ class SlashCommands(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_reaction_add(self, reaction: discord.Reaction, user):
-        print(reaction.me)
+        if reaction.me:
+            return
 
         reaction_effects = {
-            "🔄": reverse,
-            "⏩": fast,
-            "🐢": slow,
-            "⚡": speed,
-            "🔀": invert,
-            "😄": shake,
-            "🔃": flip,
+            "🔄": effect.reverse,
+            "⏩": effect.fast,
+            "🐢": effect.slow,
+            "⚡": effect.speed,
+            "🔀": effect.invert,
+            "😄": effect.shake,
+            "🔃": effect.flip,
         }
+
+        try:
+            effect_func = reaction_effects.get(str(reaction.emoji))
+        except Exception as e:
+            print(f"Error getting effect function: {e}")
+            return
 
         message = reaction.message
         # image_attachment = None
@@ -536,6 +543,7 @@ class SlashCommands(commands.Cog):
         #     return
 
         await message.channel.send(f"Reacted! {reaction.emoji}")
+        await message.channel.send(f"Test: {effect_func}")
 
         # effect_func = reaction_effects.get(str(reaction.emoji))
         # if not effect_func:
