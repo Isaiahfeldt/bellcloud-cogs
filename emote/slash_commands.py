@@ -576,6 +576,7 @@ class SlashCommands(commands.Cog):
             filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
             file = discord.File(fp=image_buffer, filename=filename)
             await message.channel.send(content="", file=file)
+            await message.reply(content="", file=file, mention_author=False)
 
     async def process_emote_pipeline(self, message):
         timer = PerformanceTimer()
