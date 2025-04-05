@@ -540,6 +540,7 @@ class SlashCommands(commands.Cog):
         if not effect_func:
             return
 
+        import io
         from emote.utils.effects import Emote
         from datetime import datetime
 
