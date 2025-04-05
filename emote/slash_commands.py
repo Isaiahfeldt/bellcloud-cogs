@@ -526,7 +526,17 @@ class SlashCommands(commands.Cog):
             "🔃": flip,
         }
 
-        await reaction.message.channel.send(f"Reacted! {reaction.emoji}")
+        message = reaction.message
+        image_attachment = None
+        for attachment in message.attachments:
+            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                image_attachment = attachment
+                break
+
+        if image_attachment is None:
+            return
+
+        await message.channel.send(f"Reacted! {reaction.emoji}")
 
         # effect_func = reaction_effects.get(str(reaction.emoji))
         # if not effect_func:
