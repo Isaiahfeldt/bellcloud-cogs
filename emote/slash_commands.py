@@ -405,24 +405,11 @@ class SlashCommands(commands.Cog):
 
         description = "\n".join(user_doc).strip() or "No user documentation available."
 
-        data = self.EFFECTS_LIST.get(effect_name)
-        emoji = ""
-        if data:
-            # Loop through the reaction_effects mapping to find the corresponding emoji
-            for emote, func in self.reaction_effects.items():
-                if func == data['func']:
-                    emoji = emote
-                    break
-
-        # Build the title as "Effect: [name] [emoji]"
-        title = f"Effect: {effect_name.capitalize()} {emoji}" if emoji else f"Effect: {effect_name.capitalize()}"
-
         embed = discord.Embed(
-            title=title,
+            title=f"Effect: {effect_name.capitalize()}",
             description=description,
             colour=EmbedColor.DEFAULT.value
         )
-
         embed.set_author(
             name="Emote Effects",
             icon_url=interaction.client.user.display_avatar.url
