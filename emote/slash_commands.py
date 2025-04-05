@@ -529,7 +529,7 @@ class SlashCommands(commands.Cog):
         message = reaction.message
         image_attachment = None
         for attachment in message.attachments:
-            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
+            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
                 image_attachment = attachment
                 break
 
