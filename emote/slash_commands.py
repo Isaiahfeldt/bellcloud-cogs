@@ -513,11 +513,7 @@ class SlashCommands(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_reaction_add(self, reaction: discord.Reaction, user):
-        print("Check 1")
-        if user == self.user:
-            return
-        print("Check 2")
-        print(user)
+        print(reaction.me)
 
         reaction_effects = {
             "🔄": reverse,
