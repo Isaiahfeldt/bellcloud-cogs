@@ -200,6 +200,16 @@ class SlashCommands(commands.Cog):
         "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True}
     }
 
+    reaction_effects = {
+        "🔄": effect.reverse,
+        "⏩": effect.fast,
+        "🐢": effect.slow,
+        "⚡": effect.speed,
+        "🔀": effect.invert,
+        "🫨": effect.shake,
+        "🔃": effect.flip,
+    }
+
     latency_enabled = False
     was_cached = False
     debug_enabled = False
@@ -430,7 +440,17 @@ class SlashCommands(commands.Cog):
                         user_doc = next_line.split('.')[0]
                         break
 
-                display_name = f"{name} - {user_doc}" if user_doc else name
+                emoji = ""
+                for emote, func in self.reaction_effects.items():
+                    if func == data['func']:
+                        emoji = emote
+                        break
+
+                if emoji:
+                    display_name = f"{name} - {emoji} - {user_doc}" if user_doc else f"{name} - {emoji}"
+                else:
+                    display_name = f"{name} - {user_doc}" if user_doc else name
+
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
@@ -526,17 +546,7 @@ class SlashCommands(commands.Cog):
         if image_attachment is None:
             return
 
-        reaction_effects = {
-            "🔄": effect.reverse,
-            "⏩": effect.fast,
-            "🐢": effect.slow,
-            "⚡": effect.speed,
-            "🔀": effect.invert,
-            "🫨": effect.shake,
-            "🔃": effect.flip,
-        }
-
-        effect_func = reaction_effects.get(str(reaction.emoji))
+        effect_func = self.reaction_effects.get(str(reaction.emoji))
         if not effect_func:
             return
 

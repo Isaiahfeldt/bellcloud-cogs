@@ -589,6 +589,34 @@ def invert(emote: Emote) -> Emote:
 
 
 def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
+    """
+        Applies a shaking effect to the emote image data by creating a looping shaking GIF.
+
+        User:
+            Shakes the emote, but differently...
+            Works with static images.
+
+            Default is 1x intensity if no argument is provided.
+            This effect can only be used once per emote.
+
+            Usage:
+                :aspire_shake:          - Applies a shake effect with default intensity.
+                :aspire_shake(2):       - Applies a shake effect by a factor of 2.
+
+            Alias for `:aspire_speed(2):`.
+
+        Parameters:
+            emote (Emote): The emote object containing the image data.
+            intensity (int): Maximum pixel offset to apply (default is 50).
+            classic (int): Shift factor to apply (default is 180).
+
+        Returns:
+            Emote: The updated emote object with the shaken animated GIF.
+
+        Notes:
+            This effect uses a spring/damping simulation to generate a looping shaking GIF.
+            Image data is temporarily written to disk for processing.
+    """
     if emote.img_data is None:
         emote.errors["shake"] = "No image data available for shaking effect."
         return emote
