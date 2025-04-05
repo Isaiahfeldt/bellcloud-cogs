@@ -510,7 +510,6 @@ class SlashCommands(commands.Cog):
                 await self.process_emote_pipeline(message)
             reset_flags()
 
-    @commands.Cog.listener()
     @commands.guild_only()
     async def on_reaction_add(self, reaction: discord.Reaction, user):
         if user == self.user:
