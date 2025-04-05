@@ -532,7 +532,7 @@ class SlashCommands(commands.Cog):
             "🐢": effect.slow,
             "⚡": effect.speed,
             "🔀": effect.invert,
-            "😄": effect.shake,
+            "🫨": effect.shake,
             "🔃": effect.flip,
         }
 
