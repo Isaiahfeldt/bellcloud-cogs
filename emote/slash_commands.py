@@ -540,6 +540,8 @@ class SlashCommands(commands.Cog):
         if not effect_func:
             return
 
+        from emote.utils.effects import Emote
+
         # Read image data from the attachment
         try:
             image_bytes = await image_attachment.read()
