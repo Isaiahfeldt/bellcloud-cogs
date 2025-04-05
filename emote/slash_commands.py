@@ -569,20 +569,13 @@ class SlashCommands(commands.Cog):
             img_data=image_bytes,
         )
 
-        try:
-            processed_image = effect_func(emote_instance)
-        except Exception as e:
-            print(f"Error processing effect: {e}")
-            return
+        emote = effect_func(emote_instance)
 
-        output_buffer = io.BytesIO()
-        processed_image.save(output_buffer, format="PNG")
-        output_buffer.seek(0)
-
-        await message.channel.send(
-            content=f"{user.mention} here’s your image with the applied effect!",
-            file=discord.File(fp=output_buffer, filename="processed.png")
-        )
+        if emote.img_data:
+            image_buffer = io.BytesIO(emote.img_data)
+            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+            file = discord.File(fp=image_buffer, filename=filename)
+            await message.channel.send(content="", file=file)
 
     async def process_emote_pipeline(self, message):
         timer = PerformanceTimer()
