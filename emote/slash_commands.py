@@ -506,7 +506,7 @@ class SlashCommands(commands.Cog):
                     await self.handle_april_fools(message)
 
         elif is_enclosed_in_colon(message):
-            async with message.channel.typing():
+            with message.channel.typing():
                 self.process_emote_pipeline(message)
             reset_flags()
 
