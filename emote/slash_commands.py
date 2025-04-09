@@ -245,6 +245,7 @@ class SlashCommands(commands.Cog):
                 await send_error_followup(interaction, error)
                 return
 
+        # TODO: move this function to @SlashCommands and make seperate function that we can call
         if await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
