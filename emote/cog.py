@@ -52,7 +52,7 @@ class Emotes(
 
         self.add_as_emote = discord.app_commands.ContextMenu(
             name=_("Add as emote"),
-            callback=ContextMenu.add_as_emote,
+            callback=self.add_as_emote_context,
             type=discord.AppCommandType.message,
             extras={"red_force_enable": True},
         )
