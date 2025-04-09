@@ -19,7 +19,7 @@ class ContextMenu(commands.Cog):
         self.temp_attachments = {}
 
     async def handle_add_emote(self, interaction: discord.Interaction, message: discord.Message):
-        # Check permissions
+        print("handle_add_emote")
         if not interaction.user.guild_permissions.manage_messages:
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
@@ -43,6 +43,7 @@ class ContextMenu(commands.Cog):
         await interaction.response.send_modal(modal)
 
     async def modal_callback(self, interaction: discord.Interaction, name: str):
+        print("Modal Callback")
         url = self.temp_attachments.pop(interaction.user.id, None)
         if not url:
             await send_error_embed(interaction, EmoteAddError.UNREACHABLE_URL)
