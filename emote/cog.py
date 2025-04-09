@@ -13,10 +13,12 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+import discord
 from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
+from emote.app_commands import AppCommands
 from emote.hybrid_commands import HybridCommands
 from emote.slash_commands import SlashCommands
 from emote.user_commands import UserCommands
@@ -29,7 +31,7 @@ class Emotes(
     UserCommands,
     HybridCommands,
     SlashCommands,
-    # ContextMenus,
+    AppCommands,
 ):
     """
     Discord emotes slash commands.
@@ -48,13 +50,18 @@ class Emotes(
             force_registration=True,
         )
 
-        # self.add_as_emote = discord.app_commands.ContextMenu(
-        #     name=_("Add as emote"),
-        #     callback=self.add_as_emote,
-        #     type=AppCommandType.message,
-        #     extras={"red_force_enable": True},
-        # )
-        # self.bot.tree.add_command(self.add_as_emote)
+        self.add_as_emote = discord.app_commands.ContextMenu(
+            name=_("Add as emote"),
+            callback=self.add_as_emote,
+            type=discord.AppCommandType.message,
+            extras={"red_force_enable": True},
+        )
+        self.bot.tree.add_command(self.add_as_emote)
+
+    # Add to the Emotes class
+    async def add_as_emote_context(self, interaction: discord.Interaction, message: discord.Message):
+        """Add an attachment from this message as an emote"""
+        await self.handle_add_emote(interaction, message)
 
     async def cog_load(self):
         from emote.slash_commands import db
