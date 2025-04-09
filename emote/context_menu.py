@@ -19,12 +19,13 @@ class ContextMenu(commands.Cog):
         self.temp_attachments = {}
 
     async def handle_add_emote(self, interaction: discord.Interaction, message: discord.Message):
+        """Responsible for intercepting context menu requests for adding emotes and displaying a modal to the user"""
+
         print("handle_add_emote")
         if not interaction.user.guild_permissions.manage_messages:
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        # Get first valid attachment
         attachment = next(
             (att for att in message.attachments
              if any(att.filename.lower().endswith(ext) for ext in valid_formats)),
@@ -32,10 +33,9 @@ class ContextMenu(commands.Cog):
         )
 
         if not attachment:
-            await send_error_embed(interaction, EmoteAddError.INVALID_FILE_FORMAT)
+            await send_error_embed(interaction, EmoteAddError.NO_ATTACMENTS)
             return
 
-        # Store attachment URL temporarily
         self.temp_attachments[interaction.user.id] = attachment.url
 
         # Show name modal
@@ -64,6 +64,7 @@ class ContextMenu(commands.Cog):
                 await send_error_followup(interaction, error)
                 return
 
+        print(f"Name: {name}, Guild: {interaction.guild_id}, URL: {url}")
         if await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
