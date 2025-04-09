@@ -11,7 +11,7 @@ _ = Translator("Emote", __file__)
 
 
 @cog_i18n(_)
-class AppCommands(commands.Cog):
+class ContextMenu(commands.Cog):
     def __init__(self):
         self.temp_attachments = {}
 

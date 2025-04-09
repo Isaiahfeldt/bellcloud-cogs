@@ -18,7 +18,7 @@ from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
-from emote.app_commands import AppCommands
+from emote.context_menu import ContextMenu
 from emote.hybrid_commands import HybridCommands
 from emote.slash_commands import SlashCommands
 from emote.user_commands import UserCommands
@@ -31,7 +31,7 @@ class Emotes(
     UserCommands,
     HybridCommands,
     SlashCommands,
-    AppCommands,
+    ContextMenu,
 ):
     """
     Discord emotes slash commands.
@@ -52,7 +52,7 @@ class Emotes(
 
         self.add_as_emote = discord.app_commands.ContextMenu(
             name=_("Add as emote"),
-            callback=self.add_as_emote,
+            callback=ContextMenu.add_as_emote,
             type=discord.AppCommandType.message,
             extras={"red_force_enable": True},
         )
