@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
-from slash_commands import valid_formats
+from emote.slash_commands import valid_formats
 from .utils.chat import send_error_embed
 from .utils.enums import EmoteAddError
 from .utils.modals import EmoteNameModal
