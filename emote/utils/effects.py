@@ -620,7 +620,7 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     Applies a shaking effect to the emote image data by creating a looping shaking GIF.
 
     User:
-        Shakes the emote, but differently...
+        Shakes the emote.
         Works with static and animated images.
 
         Default is 1x intensity if no argument is provided.
