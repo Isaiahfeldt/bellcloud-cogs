@@ -1224,3 +1224,225 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
         output_frames_pil.clear()
 
     return emote
+
+
+def spin(emote: Emote, speed: int = 1.0) -> Emote:
+    """
+    Applies a continuous spinning (rotation) effect.
+
+    For static images, creates an animation.
+    For animated images, applies rotation over the existing animation,
+    preserving original timing via resampling.
+
+    User:
+        Makes the emote spin around continuously.
+
+        You can adjust the speed of the spin using the `speed` parameter.
+        A higher speed value makes it rotate faster, negative numbers reverse the direction.
+
+        Works with static and animated images.
+
+        Example usage:
+        `:aspire_spin:` - Spins the emote at the default speed (one rotation/sec).
+        `:aspire_spin(0.5):` - Spins the emote slower (half rotation/sec).
+        `:aspire_spin(2.0):` - Spins the emote faster (two rotations/sec).
+        `:aspire_spin(-1.0):` - Spins the emote in reverse (one rotation/sec).
+
+    Parameters:
+        emote (Emote): The emote object.
+        speed (float): Multiplier for the rotation speed (rotations per second). Default is 1.0.
+
+    Returns:
+        Emote: The updated emote object with the spin effect applied.
+    """
+    if emote.img_data is None:
+        emote.errors["spin"] = "No image data available."
+        return emote
+
+    DEFAULT_SPEED_SCALAR: float = 1.0 / 3.0  # 1 speed = ~1 rotation / 3 seconds
+
+    original_speed_param = speed  # Keep original integer parameter for notes
+    try:
+        # Validate as integer
+        speed_int = int(speed)
+        if speed_int == 0:
+            emote.issues["spin_speed_zero"] = "Speed cannot be zero, using default 1."
+            speed_int = 1
+            original_speed_param = 1
+    except (ValueError, TypeError):
+        emote.issues["spin_speed_invalid"] = "Invalid speed value (must be a whole number), using default 1."
+        speed_int = 1
+        original_speed_param = 1
+
+    # Use the validated integer speed
+    speed = speed_int
+
+    direction_multiplier = -1.0 if speed > 0 else 1.0
+    # abs() works on integers, result is used in float calculations later
+    abs_speed = abs(speed)
+    initial_effective_abs_speed = abs_speed * DEFAULT_SPEED_SCALAR
+    if initial_effective_abs_speed <= 0: initial_effective_abs_speed = 1e-9
+
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
+    if file_ext not in allowed_extensions:
+        emote.errors["spin"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        return emote
+
+    input_frames_data = []
+    output_frames_pil = []
+    total_input_duration_ms = 0
+
+    OUTPUT_FRAME_DURATION_MS = 30
+    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)
+
+    try:
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            n_frames = getattr(img, "n_frames", 1)
+            is_animated_input = n_frames > 1
+
+            emote.notes["spin_is_animated"] = str(is_animated_input)
+            emote.notes["original_size"] = str(img.size)
+
+            effective_abs_speed = initial_effective_abs_speed
+            cycle_duration_ms = 1000.0 / effective_abs_speed
+
+            if is_animated_input:
+                last_duration = 100
+                for i in range(n_frames):
+                    img.seek(i)
+                    current_frame_pil = img.convert("RGBA").copy()
+                    duration_ms = img.info.get('duration', last_duration)
+                    if not isinstance(duration_ms, (int, float)) or duration_ms <= 0:
+                        duration_ms = last_duration
+                    duration_ms = max(10, int(duration_ms))
+                    input_frames_data.append((current_frame_pil, duration_ms))
+                    total_input_duration_ms += duration_ms
+                    last_duration = duration_ms
+
+                emote.notes["spin_input_frames"] = str(len(input_frames_data))
+                emote.notes["spin_total_input_duration_ms"] = str(total_input_duration_ms)
+
+                if total_input_duration_ms <= 0:
+                    emote.errors["spin"] = "Input animation has zero or negative total duration."
+                    return emote
+
+                if cycle_duration_ms > 0 and total_input_duration_ms > 0:
+                    num_cycles_float = total_input_duration_ms / cycle_duration_ms
+                    target_num_cycles = max(1, round(num_cycles_float))
+                    adjusted_cycle_duration_ms = total_input_duration_ms / target_num_cycles
+                    final_effective_abs_speed = 1000.0 / adjusted_cycle_duration_ms
+
+                    if abs(final_effective_abs_speed - initial_effective_abs_speed) / initial_effective_abs_speed > 0.01:
+                        emote.notes["spin_speed_adjusted_for_loop"] = "True"
+
+                    cycle_duration_ms = adjusted_cycle_duration_ms
+                    effective_abs_speed = final_effective_abs_speed
+                    emote.notes["spin_adjusted_cycle_duration_ms"] = f"{cycle_duration_ms:.2f}"
+
+                num_output_frames = math.ceil(total_input_duration_ms / OUTPUT_FRAME_DURATION_MS)
+                max_frames = 500
+                if num_output_frames > max_frames:
+                    num_output_frames = max_frames
+                    OUTPUT_FRAME_DURATION_MS = math.ceil(total_input_duration_ms / num_output_frames)
+                    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)
+                    emote.issues[
+                        "spin_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
+
+                emote.notes["spin_num_output_frames"] = str(num_output_frames)
+                emote.notes["spin_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
+
+                input_frame_index = 0
+                current_input_frame_end_time = 0
+
+                for j in range(num_output_frames):
+                    current_output_time_ms = j * OUTPUT_FRAME_DURATION_MS
+
+                    while current_input_frame_end_time <= current_output_time_ms and input_frame_index < len(
+                            input_frames_data) - 1:
+                        current_input_frame_end_time += input_frames_data[input_frame_index][1]
+                        input_frame_index += 1
+                    source_frame_pil = input_frames_data[input_frame_index][0]
+
+                    current_cycle_duration = cycle_duration_ms if cycle_duration_ms > 0 else 1e9
+                    base_angle = (current_output_time_ms % current_cycle_duration) / current_cycle_duration * 360.0
+                    angle_to_rotate = base_angle * direction_multiplier
+
+                    rotated_frame = source_frame_pil.rotate(
+                        angle_to_rotate, resample=Image.BILINEAR, expand=True, fillcolor=(0, 0, 0, 0)
+                    )
+                    output_frames_pil.append(rotated_frame)
+
+                frame_durations_to_save = OUTPUT_FRAME_DURATION_MS
+
+            else:  # Static image handling
+                NUM_OUTPUT_FRAMES_STATIC = 20
+                static_frame_delay_ms = max(20, int((1000.0 / initial_effective_abs_speed) / NUM_OUTPUT_FRAMES_STATIC))
+
+                img.seek(0)
+                source_frame_pil = img.convert("RGBA").copy()
+
+                for i in range(NUM_OUTPUT_FRAMES_STATIC):
+                    base_angle = (i / NUM_OUTPUT_FRAMES_STATIC) * 360.0
+                    angle_to_rotate = base_angle * direction_multiplier
+                    rotated_frame = source_frame_pil.rotate(
+                        angle_to_rotate, resample=Image.BILINEAR, expand=True, fillcolor=(0, 0, 0, 0)
+                    )
+                    output_frames_pil.append(rotated_frame)
+
+                frame_durations_to_save = static_frame_delay_ms
+                emote.notes["spin_type"] = "static_to_animated"
+                emote.notes["spin_output_frames"] = str(NUM_OUTPUT_FRAMES_STATIC)
+                emote.notes["spin_output_delay_ms"] = str(static_frame_delay_ms)
+                num_output_frames = NUM_OUTPUT_FRAMES_STATIC
+
+            # --- Save Output ---
+            if not output_frames_pil:
+                emote.errors["spin"] = "No output frames generated."
+                return emote
+
+            max_width = max(frame.width for frame in output_frames_pil)
+            max_height = max(frame.height for frame in output_frames_pil)
+            emote.notes["spin_output_size"] = f"({max_width}, {max_height})"
+
+            final_output_frames = []
+            for frame in output_frames_pil:
+                if frame.mode != 'RGBA': frame = frame.convert('RGBA')
+                new_frame = Image.new('RGBA', (max_width, max_height), (0, 0, 0, 0))
+                paste_x = (max_width - frame.width) // 2
+                paste_y = (max_height - frame.height) // 2
+                new_frame.paste(frame, (paste_x, paste_y), frame)
+                final_output_frames.append(new_frame)
+
+            output_buffer = io.BytesIO()
+            save_format = 'webp' if file_ext == 'webp' else 'gif'
+            emote.notes["spin_save_format"] = str(save_format)
+
+            if final_output_frames:
+                final_output_frames[0].save(
+                    output_buffer, format=save_format.upper(), save_all=True,
+                    append_images=final_output_frames[1:], duration=frame_durations_to_save,
+                    loop=0, disposal=2, optimize=True
+                )
+                emote.img_data = output_buffer.getvalue()
+            else:
+                emote.errors["spin"] = "No final frames generated after processing."
+                return emote
+
+            base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
+            emote.file_path = f"{base_name}_spin.{save_format.lower()}"
+            # Store the original integer parameter
+            emote.notes["spin_speed_param_used"] = str(original_speed_param)
+            emote.notes["spin_effective_scalar"] = str(DEFAULT_SPEED_SCALAR)
+            emote.notes["spin_final_effective_speed_factor"] = f"{effective_abs_speed / DEFAULT_SPEED_SCALAR:.3f}"
+
+    except MemoryError:
+        emote.errors["spin"] = "MemoryError: Input image/animation too large or complex to process."
+    except Exception as e:
+        tb = traceback.format_exc()
+        emote.errors["spin"] = f"Error applying spin effect: {e}\n```\n{tb}\n```"
+        input_frames_data.clear()
+        output_frames_pil.clear()
+        if 'final_output_frames' in locals(): final_output_frames.clear()
+
+    return emote
