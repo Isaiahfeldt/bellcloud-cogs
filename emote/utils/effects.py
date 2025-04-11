@@ -1214,6 +1214,25 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
     return emote
 
 
+def find_input_frame_index(target_time_ms: float, total_duration_ms: float, input_frames_data: list) -> int:
+    """Finds the index of the input frame corresponding to a specific time."""
+    if total_duration_ms <= 0 or not input_frames_data:
+        return 0  # Avoid division by zero or errors on empty data
+
+    # Ensure target time loops within the total duration
+    effective_time_ms = target_time_ms % total_duration_ms
+
+    current_elapsed_time = 0
+    for index, (_, duration_ms) in enumerate(input_frames_data):
+        # Use a small epsilon for float comparison robustness
+        if effective_time_ms < current_elapsed_time + duration_ms - 1e-6:
+            return index
+        current_elapsed_time += duration_ms
+
+    # If time is very close to or exceeds total duration (due to float precision), return the last frame
+    return len(input_frames_data) - 1
+
+
 def spin(emote: Emote, speed: int = 1.0) -> Emote:
     """
     Applies a continuous spinning (rotation) effect.
