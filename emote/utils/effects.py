@@ -1010,7 +1010,7 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
     
         User:
             Adds a rainbow hue-cycling effect to the emote.
-    
+
             You can adjust the speed of the hue cycling using the `speed` parameter. 
             A higher speed value increases the rate of hue rotation, while lower values slow it down.
     
@@ -1028,3 +1028,199 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
         Returns:
             Emote: The updated emote object.
     """
+    if emote.img_data is None:
+        emote.errors["rainbow_res"] = "No image data available."
+        return emote
+
+    # --- Input Validation ---
+    try:
+        speed = float(speed)
+        if speed <= 0:
+            emote.issues["rainbow_res_speed_invalid"] = "Speed must be positive, using default 1.0."
+            speed = 1.0
+    except (ValueError, TypeError):
+        emote.issues["rainbow_res_speed_invalid"] = "Invalid speed value, using default 1.0."
+        speed = 1.0
+
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
+    if file_ext not in allowed_extensions:
+        emote.errors["rainbow_res"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        return emote
+
+    input_frames_data = []  # Store tuples: (pil_image, duration_ms)
+    output_frames_pil = []  # Store final PIL frames for saving
+    total_input_duration_ms = 0
+
+    # Define the target frame duration for the output rainbow animation smoothness
+    OUTPUT_FRAME_DURATION_MS = 30  # ~33fps for the effect smoothness
+    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure min 20ms
+
+    try:
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            n_frames = getattr(img, "n_frames", 1)
+            is_animated_input = n_frames > 1
+
+            emote.notes["rainbow_res_is_animated"] = str(is_animated_input)
+
+            # --- Load Input Frames & Durations ---
+            last_duration = 100  # Fallback
+            if is_animated_input:
+                for i in range(n_frames):
+                    img.seek(i)
+                    current_frame_pil = img.convert("RGBA").copy()
+                    duration_ms = img.info.get('duration', last_duration)
+                    if not isinstance(duration_ms, (int, float)) or duration_ms <= 0:
+                        duration_ms = last_duration
+                    duration_ms = max(10, int(duration_ms))  # Min duration read
+                    input_frames_data.append((current_frame_pil, duration_ms))
+                    total_input_duration_ms += duration_ms
+                    last_duration = duration_ms
+            else:
+                # --- Static Image Handling ---
+                # Create a smooth N-frame animation from the static image
+                # The 'speed' parameter here controls the frame delay directly
+                NUM_OUTPUT_FRAMES_STATIC = 20
+                static_frame_delay_ms = max(20, int(60 / speed))  # Faster speed = shorter delay
+
+                img.seek(0)
+                source_frame_pil = img.convert("RGBA").copy()
+                # Convert to float numpy array once
+                base_frame_np_f32 = np.array(source_frame_pil).astype(np.float32) / 255.0
+                rgb_float = base_frame_np_f32[:, :, :3]
+                alpha_float = base_frame_np_f32[:, :, 3]
+                if alpha_float.ndim == 2: alpha_float = alpha_float[:, :, np.newaxis]
+
+                # Pre-convert to HSV
+                hsv_base = color.rgb2hsv(rgb_float)
+
+                for i in range(NUM_OUTPUT_FRAMES_STATIC):
+                    hue_shift = (i / NUM_OUTPUT_FRAMES_STATIC)  # Cycle once over N frames
+                    hsv_shifted = hsv_base.copy()
+                    hsv_shifted[:, :, 0] = (hsv_shifted[:, :, 0] + hue_shift) % 1.0
+                    shifted_rgb_float = color.hsv2rgb(hsv_shifted)
+
+                    # Combine and convert back to PIL
+                    shifted_rgb_uint8 = np.clip(shifted_rgb_float * 255.0, 0, 255)
+                    alpha_uint8 = np.clip(alpha_float * 255.0, 0, 255)  # Scale alpha back
+                    shifted_rgba_uint8 = np.concatenate((shifted_rgb_uint8, alpha_uint8), axis=2).astype(np.uint8)
+                    output_frames_pil.append(Image.fromarray(shifted_rgba_uint8, 'RGBA'))
+
+                frame_durations_to_save = static_frame_delay_ms  # Use single duration for static
+                emote.notes["rainbow_res_type"] = "static_to_animated"
+                emote.notes["rainbow_res_output_frames"] = str(NUM_OUTPUT_FRAMES_STATIC)
+                emote.notes["rainbow_res_output_delay_ms"] = str(static_frame_delay_ms)
+                # Skip the rest of the animated processing
+                # Jump directly to saving logic
+
+            # --- Animated Input Processing ---
+            if is_animated_input:
+                emote.notes["rainbow_res_type"] = "animated_resampled"
+                emote.notes["rainbow_res_input_frames"] = str(len(input_frames_data))
+                emote.notes["rainbow_res_total_input_duration_ms"] = str(total_input_duration_ms)
+
+                if total_input_duration_ms <= 0:
+                    emote.errors["rainbow_res"] = "Input animation has zero or negative total duration."
+                    return emote
+
+                # --- Calculate Number of Output Frames ---
+                num_output_frames = math.ceil(total_input_duration_ms / OUTPUT_FRAME_DURATION_MS)
+                max_frames = 500  # Prevent excessive frames
+                if num_output_frames > max_frames:
+                    num_output_frames = max_frames
+                    OUTPUT_FRAME_DURATION_MS = math.ceil(total_input_duration_ms / num_output_frames)
+                    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure minimum
+                    emote.issues[
+                        "rainbow_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
+
+                emote.notes["rainbow_res_num_output_frames"] = str(num_output_frames)
+                emote.notes["rainbow_res_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
+
+                # --- Define Hue Cycle Rate ---
+                base_cycle_duration_ms = 1000.0  # 1 second cycle for speed 1.0
+                actual_cycle_duration_ms = base_cycle_duration_ms / speed if speed > 0 else float('inf')
+                if actual_cycle_duration_ms <= 0: actual_cycle_duration_ms = 1e-9  # Avoid zero
+
+                # --- Resampling Loop ---
+                input_frame_index = 0
+                current_input_frame_end_time = 0  # Tracks end time of input_frame_index
+
+                for j in range(num_output_frames):  # Iterate through OUTPUT frames
+                    current_output_time_ms = j * OUTPUT_FRAME_DURATION_MS
+
+                    # --- Find the correct input frame for this time ---
+                    while current_input_frame_end_time <= current_output_time_ms and input_frame_index < len(
+                            input_frames_data) - 1:
+                        current_input_frame_end_time += input_frames_data[input_frame_index][1]
+                        input_frame_index += 1
+
+                    # Get the PIL Image of the correct input frame
+                    source_frame_pil = input_frames_data[input_frame_index][0]
+
+                    # --- Calculate Hue Shift based on OUTPUT time ---
+                    hue_shift = (current_output_time_ms % actual_cycle_duration_ms) / actual_cycle_duration_ms
+
+                    # --- Apply Hue Shift (Optimized) ---
+                    # Convert source PIL frame to float32 NumPy array (0.0-1.0)
+                    base_frame_np_uint8 = np.array(source_frame_pil)
+                    base_frame_np_f32 = base_frame_np_uint8.astype(np.float32) / 255.0
+
+                    rgb_float = base_frame_np_f32[:, :, :3]
+                    alpha_float = base_frame_np_f32[:, :, 3]
+                    if alpha_float.ndim == 2: alpha_float = alpha_float[:, :, np.newaxis]
+
+                    # Vectorized HSV Conversion
+                    hsv_frame = color.rgb2hsv(rgb_float)
+                    hsv_frame[:, :, 0] = (hsv_frame[:, :, 0] + hue_shift) % 1.0  # Apply time-based shift
+                    shifted_rgb_float = color.hsv2rgb(hsv_frame)
+
+                    # Combine RGB and Alpha, clip, convert to uint8
+                    shifted_rgb_uint8 = np.clip(shifted_rgb_float * 255.0, 0, 255)
+                    alpha_uint8 = np.clip(alpha_float * 255.0, 0, 255)  # Scale alpha back
+                    shifted_rgba_uint8 = np.concatenate((shifted_rgb_uint8, alpha_uint8), axis=2).astype(np.uint8)
+
+                    # Convert final NumPy array back to PIL Image
+                    output_frame_image = Image.fromarray(shifted_rgba_uint8, 'RGBA')
+                    output_frames_pil.append(output_frame_image)
+
+                frame_durations_to_save = OUTPUT_FRAME_DURATION_MS  # Use fixed duration for animated
+
+            # --- Save Output ---
+            if not output_frames_pil:
+                emote.errors["rainbow_res"] = "No output frames generated."
+                return emote
+
+            output_buffer = io.BytesIO()
+            save_format = 'webp' if file_ext == 'webp' else 'gif'  # Prefer webp if original was webp
+            emote.notes["rainbow_res_save_format"] = str(save_format)
+
+            output_frames_pil[0].save(
+                output_buffer,
+                format=save_format.upper(),
+                save_all=True,
+                append_images=output_frames_pil[1:],
+                duration=frame_durations_to_save,
+                # Use appropriate duration (fixed for animated, calculated for static)
+                loop=0,
+                disposal=2,
+                optimize=True
+            )
+
+            emote.img_data = output_buffer.getvalue()
+            base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
+            emote.file_path = f"{base_name}_rainbow.{save_format.lower()}"
+            emote.notes["rainbow_res_speed_used"] = str(speed)
+
+    except MemoryError:
+        emote.errors["rainbow_res"] = "MemoryError: Input image/animation too large or long to process."
+    except ImportError:  # Catch potential error if skimage check failed silently somehow
+        emote.errors[
+            "rainbow_res"] = "Dependency error: scikit-image not found. Install with 'pip install scikit-image'"
+    except Exception as e:
+        tb = traceback.format_exc()
+        emote.errors["rainbow_res"] = f"Error applying resampled rainbow effect: {e}\n```\n{tb}\n```"
+        # Clean up potentially large lists
+        input_frames_data.clear()
+        output_frames_pil.clear()
+
+    return emote
