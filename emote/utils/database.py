@@ -166,7 +166,7 @@ class Database:
         return success, error
 
     async def upload_variant_to_bucket(self, guild_id: int, variant_filename: str, img_data: bytes, file_type: str) -> \
-    Tuple[bool, Optional[str]]:
+            Tuple[bool, Optional[str]]:
         """Uploads generated variant data to the bucket."""
         content_type = f"video/{file_type}" if file_type == 'mp4' else f"image/{file_type}"
         s3_key = f"{guild_id}/variants/{variant_filename}"  # Store in variants subfolder
@@ -206,7 +206,7 @@ class Database:
         await self.execute_query(create_table_query)
 
     async def add_emote_to_database(self, interaction: discord.Interaction, name: str, url: str, file_type: str) -> \
-    Tuple[bool, Optional[EmoteError]]:
+            Tuple[bool, Optional[EmoteError]]:
         """Adds original emote metadata to the database."""
         timestamp = datetime.now(timezone.utc).replace(tzinfo=None)
         file_path = f"{interaction.guild.id}/{name.lower()}.{file_type}"
@@ -332,9 +332,9 @@ class Database:
     async def init_variant_schema(self):
         """Initialize the variant table schema."""
         # Using 'april' schema as used for strikes, confirm if 'emote' is preferred later
-        create_schema_query = "CREATE SCHEMA IF NOT EXISTS april;"
+        create_schema_query = "CREATE SCHEMA IF NOT EXISTS emote;"
         create_table_query = """
-        CREATE TABLE IF NOT EXISTS april.variants (
+        CREATE TABLE IF NOT EXISTS emote.variants (
             variant_id SERIAL PRIMARY KEY,
             original_emote_id INTEGER NOT NULL REFERENCES emote.media(id) ON DELETE CASCADE,
             guild_id BIGINT NOT NULL,
@@ -344,9 +344,9 @@ class Database:
             created_at TIMESTAMP NOT NULL,
             CONSTRAINT variant_emote_signature_unique UNIQUE (original_emote_id, effects_signature)
         );
-        CREATE INDEX IF NOT EXISTS variant_original_emote_id_idx ON april.variants (original_emote_id);
-        CREATE INDEX IF NOT EXISTS variant_guild_id_idx ON april.variants (guild_id);
-        CREATE INDEX IF NOT EXISTS variant_signature_idx ON april.variants (original_emote_id, effects_signature);
+        CREATE INDEX IF NOT EXISTS variant_original_emote_id_idx ON emote.variants (original_emote_id);
+        CREATE INDEX IF NOT EXISTS variant_guild_id_idx ON emote.variants (guild_id);
+        CREATE INDEX IF NOT EXISTS variant_signature_idx ON emote.variants (original_emote_id, effects_signature);
         """
         await self.execute_query(create_schema_query)
         await self.execute_query(create_table_query)
@@ -355,7 +355,7 @@ class Database:
         """Retrieve a specific variant record by original emote ID and signature."""
         query = """
             SELECT file_path, file_type
-            FROM april.variants
+            FROM emote.variants
             WHERE original_emote_id = $1 AND effects_signature = $2
         """
         variant_row = await self.fetchrow_query(query, original_emote_id, effects_signature)
@@ -366,7 +366,7 @@ class Database:
         """Adds a new variant record to the database."""
         timestamp = datetime.now(timezone.utc).replace(tzinfo=None)
         query = """
-            INSERT INTO april.variants
+            INSERT INTO emote.variants
             (original_emote_id, guild_id, effects_signature, file_path, file_type, created_at)
             VALUES ($1, $2, $3, $4, $5, $6)
             ON CONFLICT (original_emote_id, effects_signature) DO NOTHING
@@ -402,8 +402,8 @@ class Database:
 
     async def remove_variants_for_emote(self, original_emote_id: int) -> List[str]:
         """Deletes variant records for a specific emote and returns their file paths."""
-        fetch_query = "SELECT file_path FROM april.variants WHERE original_emote_id = $1"
-        delete_query = "DELETE FROM april.variants WHERE original_emote_id = $1"
+        fetch_query = "SELECT file_path FROM emote.variants WHERE original_emote_id = $1"
+        delete_query = "DELETE FROM emote.variants WHERE original_emote_id = $1"
         try:
             # Fetch paths first
             variant_rows = await self.fetch_query(fetch_query, original_emote_id)  # Use cached fetch first
@@ -420,8 +420,8 @@ class Database:
 
     async def remove_variants_for_guild(self, guild_id: int) -> List[str]:
         """Deletes all variant records for a specific guild and returns their file paths."""
-        fetch_query = "SELECT file_path FROM april.variants WHERE guild_id = $1"
-        delete_query = "DELETE FROM april.variants WHERE guild_id = $1"
+        fetch_query = "SELECT file_path FROM emote.variants WHERE guild_id = $1"
+        delete_query = "DELETE FROM emote.variants WHERE guild_id = $1"
         try:
             variant_rows = await self.fetch_query(fetch_query, guild_id)
             file_paths = [row['file_path'] for row in variant_rows] if variant_rows else []
