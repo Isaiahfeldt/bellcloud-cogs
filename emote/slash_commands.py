@@ -246,18 +246,8 @@ class SlashCommands(commands.Cog):
     debug_enabled = False
     train_count = 1
 
-    def __init__(self, bot):
-        self.bot = bot
-        self.bot.loop.create_task(db.init_pool())
-
-    async def cog_unload(self):
-        await db.close_pool()
-
     @emote.command(name="add", description="Add an emote to the server")
-    @app_commands.describe(
-        name="The name of the new emote",
-        url="The URL of a supported file type to add as an emote"
-    )
+    @app_commands.describe(name="The name of the new emote", url="The URL of a supported file type to add as an emote")
     @commands.has_permissions(manage_messages=True)  # Use Red's permission check
     async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
         await interaction.response.defer(ephemeral=True)  # Acknowledge interaction quickly
