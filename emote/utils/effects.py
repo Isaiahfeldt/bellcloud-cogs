@@ -617,19 +617,32 @@ def blend_arrays_np(arrays: list[np.ndarray], weights: list[float]) -> np.ndarra
 
 def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     """
-    Applies a shaking effect, preserving original animation timing via resampling.
+    Applies a shaking effect to the emote image data by creating a looping shaking GIF.
 
-    Uses vectorized blending and resamples the input animation onto a new timeline
-    with a fixed frame rate for the shake effect, while showing the correct
-    original frame content based on elapsed time.
+    User:
+        Shakes the emote.
+        Works with static and animated images.
+
+        Default is 1x intensity if no argument is provided.
+        This effect can only be used once per emote.
+
+        Usage:
+            :aspire_shake:          - Applies a shake effect with default intensity.
+            :aspire_shake(2):       - Applies a shake effect by a factor of 2.
+
+        Alias for `:aspire_speed(2):`.
 
     Parameters:
-        emote (Emote): The emote object.
-        intensity (float): Multiplier for shake intensity.
-        classic (bool): Unused parameter.
+        emote (Emote): The emote object containing the image data.
+        intensity (int): Maximum pixel offset to apply (default is 50).
+        classic (int): Shift factor to apply (default is 180).
 
     Returns:
-        Emote: The updated emote object.
+        Emote: The updated emote object with the shaken animated GIF.
+
+    Notes:
+        This effect uses a spring/damping simulation to generate a looping shaking GIF.
+        Image data is temporarily written to disk for processing.
     """
     if emote.img_data is None:
         emote.errors["shake_res"] = "No image data available."
@@ -848,10 +861,10 @@ def flip(emote: Emote, direction: str = "h") -> Emote:
     Errors stored in emote.errors['flip'].
 
     User:
-        Mirrors the emote. You can flip horizontally (h), vertically (v),
-        or both (hv). Works with static images and animated GIFs.
+        Mirrors the emote. You can flip horizontally (h), vertically (v),or both (hv).
 
         Default is a horizontal flip if no direction is specified.
+        Works with static images and animated GIFs.
 
         Usage:
         `:aspire_flip:` - Flips the emote horizontally.
