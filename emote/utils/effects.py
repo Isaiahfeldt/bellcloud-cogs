@@ -1246,23 +1246,36 @@ def spin(emote: Emote, speed: float = 1.0) -> Emote:
         emote.errors["spin"] = "No image data available."
         return emote
 
-        # --- Input Validation ---
+        # --- Internal Speed Scaling Factor ---
+        # Adjust this value to change the base speed associated with speed=1.0
+        # 1.0 / 3.0 means speed=1.0 results in 1 rotation every 3 seconds.
+        # 1.0 / 2.0 would mean 1 rotation every 2 seconds.
+        # 1.0 would mean 1 rotation every 1 second (original behaviour).
+    DEFAULT_SPEED_SCALAR: float = 1.0 / 3.0
+
+    # --- Input Validation ---
     original_speed = speed  # Keep original for notes
     try:
         speed = float(speed)
         if speed == 0:
             emote.issues["spin_speed_zero"] = "Speed cannot be zero, using default 1.0."
             speed = 1.0
+            original_speed = 1.0  # Update note basis
     except (ValueError, TypeError):
         emote.issues["spin_speed_invalid"] = "Invalid speed value, using default 1.0."
         speed = 1.0
-        original_speed = 1.0  # Ensure note reflects used speed
+        original_speed = 1.0  # Update note basis
 
     # Determine direction multiplier based on speed sign.
-    # PIL rotate: positive angle = counter-clockwise.
-    # We want: positive speed = clockwise (negative angle), negative speed = counter-clockwise (positive angle)
     direction_multiplier = -1.0 if speed > 0 else 1.0
-    abs_speed = abs(speed)  # Use absolute speed for rate calculations
+    abs_speed = abs(speed)  # Absolute speed from user input
+
+    # --- Apply Internal Scaling ---
+    # Calculate the effective speed used for timing calculations
+    effective_abs_speed = abs_speed * DEFAULT_SPEED_SCALAR
+    # Prevent effective speed from being zero if scalar was zero (safeguard)
+    if effective_abs_speed <= 0:
+        effective_abs_speed = 1e-9  # Use a tiny non-zero value
 
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
     file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
@@ -1299,17 +1312,15 @@ def spin(emote: Emote, speed: float = 1.0) -> Emote:
                     last_duration = duration_ms
             else:
                 # --- Static Image Handling ---
-                NUM_OUTPUT_FRAMES_STATIC = 20
-                # Calculate delay based on absolute speed
-                static_frame_delay_ms = max(20, int((1000.0 / abs_speed) / NUM_OUTPUT_FRAMES_STATIC))
+                NUM_OUTPUT_FRAMES_STATIC = 20  # Frames per rotation cycle
+                # Calculate delay based on *effective* absolute speed
+                static_frame_delay_ms = max(20, int((1000.0 / effective_abs_speed) / NUM_OUTPUT_FRAMES_STATIC))
 
                 img.seek(0)
                 source_frame_pil = img.convert("RGBA").copy()
 
                 for i in range(NUM_OUTPUT_FRAMES_STATIC):
-                    # Angle progresses 0 to 360 degrees over NUM_OUTPUT_FRAMES_STATIC
                     base_angle = (i / NUM_OUTPUT_FRAMES_STATIC) * 360.0
-                    # Apply direction multiplier
                     angle_to_rotate = base_angle * direction_multiplier
 
                     rotated_frame = source_frame_pil.rotate(
@@ -1348,10 +1359,9 @@ def spin(emote: Emote, speed: float = 1.0) -> Emote:
                 emote.notes["spin_num_output_frames"] = str(num_output_frames)
                 emote.notes["spin_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
 
-                # Calculate cycle duration based on absolute speed
-                cycle_duration_ms = 1000.0 / abs_speed if abs_speed > 0 else float(
-                    'inf')  # abs_speed already checked > 0
-                if cycle_duration_ms <= 0: cycle_duration_ms = 1e-9
+                # Calculate cycle duration based on *effective* absolute speed
+                cycle_duration_ms = 1000.0 / effective_abs_speed
+                # cycle_duration_ms should not be zero here due to checks above
 
                 input_frame_index = 0
                 current_input_frame_end_time = 0
@@ -1366,9 +1376,7 @@ def spin(emote: Emote, speed: float = 1.0) -> Emote:
 
                     source_frame_pil = input_frames_data[input_frame_index][0]
 
-                    # Calculate base angle (0-360) based on time progress within a cycle
                     base_angle = (current_output_time_ms % cycle_duration_ms) / cycle_duration_ms * 360.0
-                    # Apply direction multiplier
                     angle_to_rotate = base_angle * direction_multiplier
 
                     rotated_frame = source_frame_pil.rotate(
@@ -1418,6 +1426,7 @@ def spin(emote: Emote, speed: float = 1.0) -> Emote:
             emote.file_path = f"{base_name}_spin.{save_format.lower()}"
             # Store the originally requested speed (could be negative)
             emote.notes["spin_speed_used"] = str(original_speed)
+            emote.notes["spin_effective_scalar"] = str(DEFAULT_SPEED_SCALAR)  # Add note about scaling
 
     except MemoryError:
         emote.errors["spin"] = "MemoryError: Input image/animation too large or complex to process."
