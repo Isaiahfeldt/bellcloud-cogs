@@ -1,10 +1,15 @@
 import io
+import math
+import random
+import traceback
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, Dict
 
 import aiohttp
+import numpy as np
 from PIL import Image, ImageOps
+from skimage import color
 
 
 @dataclass
@@ -588,183 +593,247 @@ def invert(emote: Emote) -> Emote:
     return emote
 
 
+def blend_arrays_np(arrays: list[np.ndarray], weights: list[float]) -> np.ndarray:
+    # ... (Implementation from previous answer) ...
+    if not arrays:
+        raise ValueError("Input array list cannot be empty")
+    stacked_arrays = np.stack(arrays, axis=0)
+    weights_arr = np.array(weights, dtype=np.float32).reshape(-1, 1, 1, 1)
+    alpha = stacked_arrays[..., 3:4] / 255.0
+    premul_rgb = stacked_arrays[..., :3] * alpha
+    weighted_premul_rgb = premul_rgb * weights_arr
+    weighted_alpha = stacked_arrays[..., 3:4] * weights_arr
+    summed_rgb = np.sum(weighted_premul_rgb, axis=0)
+    summed_alpha = np.sum(weighted_alpha, axis=0)
+    epsilon = 1e-6
+    safe_alpha_normalized = np.maximum(summed_alpha / 255.0, epsilon)
+    final_rgb = summed_rgb / safe_alpha_normalized
+    final_rgba = np.concatenate(
+        (np.clip(final_rgb, 0, 255), np.clip(summed_alpha, 0, 255)),
+        axis=-1
+    )
+    return final_rgba.astype(np.uint8)
+
+
 def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
     """
-        Applies a shaking effect to the emote image data by creating a looping shaking GIF.
+    (SYNC) Applies a shaking effect, preserving original animation timing via resampling.
 
-        User:
-            Shakes the emote, but differently...
-            Works with static images.
+    Uses vectorized blending and resamples the input animation onto a new timeline
+    with a fixed frame rate for the shake effect, while showing the correct
+    original frame content based on elapsed time.
 
-            Default is 1x intensity if no argument is provided.
-            This effect can only be used once per emote.
+    Parameters:
+        emote (Emote): The emote object.
+        intensity (float): Multiplier for shake intensity.
+        classic (bool): Unused parameter.
 
-            Usage:
-                :aspire_shake:          - Applies a shake effect with default intensity.
-                :aspire_shake(2):       - Applies a shake effect by a factor of 2.
-
-            Alias for `:aspire_speed(2):`.
-
-        Parameters:
-            emote (Emote): The emote object containing the image data.
-            intensity (int): Maximum pixel offset to apply (default is 50).
-            classic (int): Shift factor to apply (default is 180).
-
-        Returns:
-            Emote: The updated emote object with the shaken animated GIF.
-
-        Notes:
-            This effect uses a spring/damping simulation to generate a looping shaking GIF.
-            Image data is temporarily written to disk for processing.
+    Returns:
+        Emote: The updated emote object.
     """
     if emote.img_data is None:
-        emote.errors["shake"] = "No image data available for shaking effect."
+        emote.errors["shake_res"] = "No image data available."
         return emote
 
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
-    file_ext = emote.file_path.lower().split('.')[-1]
+    file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
     if file_ext not in allowed_extensions:
-        emote.errors["shake"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        emote.errors["shake_res"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
         return emote
 
-    import random
-    import numpy as np
-    import math
+    input_frames_data = []  # Store tuples: (pil_image, duration_ms)
+    output_frames_pil = []  # Store final PIL frames for saving
+    total_input_duration_ms = 0
 
-    def blend_images(images, weights):
-        """Blend a list of RGBA images using premultiplied alpha to avoid dark edges."""
-        result_rgb = None
-        result_alpha = None
+    # Define the target frame duration for the output shake animation
+    OUTPUT_FRAME_DURATION_MS = 30  # ~33fps for the shake smoothness
+    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure min 20ms
 
-        for img, weight in zip(images, weights):
-            arr = np.array(img).astype(np.float32)
-            alpha = arr[..., 3:4] / 255.0
-            premul = arr[..., :3] * alpha
-            if result_rgb is None:
-                result_rgb = weight * premul
-                result_alpha = weight * arr[..., 3:4]
-            else:
-                result_rgb += weight * premul
-                result_alpha += weight * arr[..., 3:4]
-
-        safe_alpha = np.where(result_alpha == 0, 1, result_alpha)
-        rgb = result_rgb / (safe_alpha / 255.0)
-        rgb = np.clip(rgb, 0, 255)
-        alpha = np.clip(result_alpha, 0, 255)
-        result = np.concatenate([rgb, alpha], axis=-1).astype(np.uint8)
-        return Image.fromarray(result)
-
-    img = Image.open(io.BytesIO(emote.img_data))
-    emote.notes["original_img_size"] = str(img.size)
-
-    if not getattr(img, "is_animated", False):
-        max_dimension = 600  # Maximum size for either width or height
-        if max(img.size) > max_dimension:
-            # Resize while maintaining aspect ratio
-            img.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
-            emote.notes["new_img_size"] = str(img.size)
-
-    input_frames = []
     try:
-        while True:
-            input_frames.append(img.convert("RGBA").copy())
-            img.seek(img.tell() + 1)
-    except EOFError:
-        pass
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            emote.notes["original_img_size"] = str(img.size)
+            n_frames = getattr(img, "n_frames", 1)
+            is_animated_input = n_frames > 1
 
-    orig_duration = int(len(input_frames))
-    if orig_duration < 25:
-        duration = int(orig_duration * math.ceil(50 / orig_duration)) / 2
-    else:
-        duration = int(orig_duration / 2)
+            # --- Load Input Frames & Durations ---
+            last_duration = 100  # Fallback
+            if is_animated_input:
+                for i in range(n_frames):
+                    img.seek(i)
+                    current_frame_pil = img.convert("RGBA").copy()
+                    duration_ms = img.info.get('duration', last_duration)
+                    if not isinstance(duration_ms, (int, float)) or duration_ms <= 0:
+                        duration_ms = last_duration
+                    duration_ms = max(10, int(duration_ms))  # Min duration read
+                    input_frames_data.append((current_frame_pil, duration_ms))
+                    total_input_duration_ms += duration_ms
+                    last_duration = duration_ms
+            else:
+                # Static image: Treat as one frame with a default duration for calculations
+                img.seek(0)
+                # Optional resizing for static only could go here
+                input_frames_data.append((img.convert("RGBA").copy(), 1000))
+                total_input_duration_ms = 1000  # Or base on OUTPUT_FRAME_DURATION_MS? Let's use 1s.
 
-    # Calculate scale based on first frame
-    img_width, img_height = input_frames[0].size
-    scale = max(img_width, img_height) / 540.0
-    spring = 1.3
-    damping = 0.85
-    blur_exposures = 10
-    num_frames = int(duration)
-    max_shift = (180 * scale) * intensity
+            if not input_frames_data:
+                emote.errors["shake_res"] = "Could not read frames from image."
+                return emote
 
-    # Generate shaking offsets
-    half = num_frames // 2
-    offsets = []
-    curr_x, curr_y = 0.0, 0.0
-    v_x, v_y = 0.0, 0.0
-    step = max_shift / 10
-    prev_offsets = [(0.0, 0.0) for _ in input_frames]
-    frames = []
+            emote.notes["shake_res_input_frames"] = str(len(input_frames_data))
+            emote.notes["shake_res_total_input_duration_ms"] = str(total_input_duration_ms)
 
-    emote.notes["Scale"] = str(scale)
-    emote.notes["max_shift after"] = str((250 * scale) if classic else (180 * scale))
-    emote.notes["original_file_ext"] = str(file_ext)
-    emote.notes["orig_duration"] = str(orig_duration)
-    emote.notes["new_duration"] = str(duration)
+            if total_input_duration_ms <= 0:
+                emote.errors["shake_res"] = "Input animation has zero or negative total duration."
+                return emote
 
-    for _ in range(half + 1):
-        force_x = random.uniform(-step, step)
-        force_y = random.uniform(-step, step)
-        v_x = damping * (v_x + force_x - spring * curr_x)
-        v_y = damping * (v_y + force_y - spring * curr_y)
-        curr_x += v_x
-        curr_y += v_y
-        curr_x = max(min(curr_x, max_shift), -max_shift)
-        curr_y = max(min(curr_y, max_shift), -max_shift)
-        offsets.append((curr_x, curr_y))
+            # --- Calculate Number of Output Frames ---
+            num_output_frames = math.ceil(total_input_duration_ms / OUTPUT_FRAME_DURATION_MS)
+            max_frames = 500  # Prevent excessive frames
+            if num_output_frames > max_frames:
+                num_output_frames = max_frames
+                # Adjust output duration to cover the total time with fewer frames
+                OUTPUT_FRAME_DURATION_MS = math.ceil(total_input_duration_ms / num_output_frames)
+                OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure minimum
+                emote.issues[
+                    "shake_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
 
-    offsets_rev = list(reversed(offsets[1:]))
-    all_offsets = offsets + offsets_rev
+            emote.notes["shake_res_num_output_frames"] = str(num_output_frames)
+            emote.notes["shake_res_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
 
-    for idx, (offset_x, offset_y) in enumerate(all_offsets):
-        i_input = idx % len(input_frames)
-        current_img = input_frames[i_input]
-        prev_offset = prev_offsets[i_input]
+            # --- Calculate Shake Parameters ---
+            img_width, img_height = input_frames_data[0][0].size
+            scale = max(img_width, img_height) / 540.0
+            spring = 1.3
+            damping = 0.85
+            blur_exposures = 10
+            max_shift = (180 * scale) * intensity
 
-        if idx == 0 or blur_exposures <= 1:
-            shifted_img = current_img.copy().transform(
-                current_img.size,
-                Image.AFFINE,
-                (1, 0, int(offset_x), 0, 1, int(offset_y)),
-                resample=Image.BILINEAR,
-                fillcolor=(0, 0, 0, 0)
+            # --- Generate Shaking Offsets for OUTPUT Frames ---
+            all_offsets = [(0.0, 0.0)] * num_output_frames  # Pre-allocate
+            curr_x, curr_y = 0.0, 0.0
+            v_x, v_y = 0.0, 0.0
+            step = max_shift / 10.0
+
+            # Generate offsets for the required number of output frames using simulation step
+            # We can use the ping-pong approach if desired for looping.
+            half_frames = math.ceil(num_output_frames / 2.0)
+            temp_offsets = []
+            for i in range(half_frames + 1):  # Generate a bit more than half
+                force_x = random.uniform(-step, step)
+                force_y = random.uniform(-step, step)
+                v_x = damping * (v_x + force_x - spring * curr_x)
+                v_y = damping * (v_y + force_y - spring * curr_y)
+                curr_x += v_x
+                curr_y += v_y
+                curr_x = max(min(curr_x, max_shift), -max_shift)
+                curr_y = max(min(curr_y, max_shift), -max_shift)
+                temp_offsets.append((curr_x, curr_y))
+
+            # Construct the full list ensuring it has exactly num_output_frames
+            # Use the first half, then reverse the middle part
+            first_half = temp_offsets[:half_frames]
+            # Reverse part excluding the very first and potentially the last elements generated
+            reversed_part = list(reversed(temp_offsets[1:half_frames]))  # Adjust indices carefully
+
+            all_offsets_generated = first_half + reversed_part
+            # Trim or pad if necessary to match num_output_frames exactly
+            all_offsets = all_offsets_generated[:num_output_frames]
+            # If too short (e.g., num_output_frames=1), ensure it has at least one element
+            if not all_offsets and temp_offsets:
+                all_offsets = [temp_offsets[0]] * num_output_frames
+            elif len(all_offsets) < num_output_frames:  # Pad if needed
+                all_offsets.extend([all_offsets[-1]] * (num_output_frames - len(all_offsets)))
+
+            # --- Resampling Loop ---
+            input_frame_index = 0
+            current_input_frame_end_time = 0  # Tracks end time of input_frame_index
+
+            blur_weights = [1.0 / blur_exposures] * blur_exposures
+
+            for j in range(num_output_frames):  # Iterate through OUTPUT frames
+                # Time at the *start* of this output frame
+                current_output_time_ms = j * OUTPUT_FRAME_DURATION_MS
+
+                # --- Find the correct input frame for this time ---
+                while current_input_frame_end_time <= current_output_time_ms and input_frame_index < len(
+                        input_frames_data) - 1:
+                    current_input_frame_end_time += input_frames_data[input_frame_index][1]
+                    input_frame_index += 1
+
+                # Get the PIL Image of the correct input frame
+                source_frame_pil = input_frames_data[input_frame_index][0]
+                current_img_size = source_frame_pil.size
+
+                # --- Get Shake Offset for CURRENT output frame ---
+                offset_x, offset_y = all_offsets[j]
+
+                # --- Determine Offsets for Motion Blur ---
+                if j == 0 or blur_exposures <= 1:
+                    # --- No Motion Blur ---
+                    shifted_pil = source_frame_pil.transform(
+                        current_img_size, Image.AFFINE,
+                        (1, 0, int(offset_x), 0, 1, int(offset_y)),
+                        resample=Image.BILINEAR, fillcolor=(0, 0, 0, 0)
+                    )
+                    final_img_pil = shifted_pil
+                else:
+                    # --- Apply Motion Blur ---
+                    # Use offset from *previous output frame* and *current output frame*
+                    prev_offset_x, prev_offset_y = all_offsets[j - 1]
+                    sub_arrays_f32 = []
+                    for k in range(blur_exposures):
+                        f = (k + 1) / blur_exposures
+                        inter_x = prev_offset_x + f * (offset_x - prev_offset_x)
+                        inter_y = prev_offset_y + f * (offset_y - prev_offset_y)
+
+                        # Transform the *source* PIL image for this sub-frame
+                        shifted_pil_sub = source_frame_pil.transform(
+                            current_img_size, Image.AFFINE,
+                            (1, 0, int(inter_x), 0, 1, int(inter_y)),
+                            resample=Image.BILINEAR, fillcolor=(0, 0, 0, 0)
+                        )
+                        sub_arrays_f32.append(np.array(shifted_pil_sub).astype(np.float32))
+
+                    # Blend using optimized function
+                    final_np_uint8 = blend_arrays_np(sub_arrays_f32, blur_weights)
+                    final_img_pil = Image.fromarray(final_np_uint8, 'RGBA')
+
+                # Append the final PIL image for this output frame
+                output_frames_pil.append(final_img_pil)
+
+            # --- Save Output ---
+            if not output_frames_pil:
+                emote.errors["shake_res"] = "No output frames generated."
+                return emote
+
+            output_buffer = io.BytesIO()
+            # Determine save format based on original, default to GIF
+            save_format = 'webp' if file_ext == 'webp' else 'gif'
+            emote.notes["shake_res_save_format"] = str(save_format)
+
+            output_frames_pil[0].save(
+                output_buffer,
+                format=save_format.upper(),
+                save_all=True,
+                append_images=output_frames_pil[1:],
+                duration=OUTPUT_FRAME_DURATION_MS,  # Use fixed output duration
+                loop=0,
+                disposal=2,
+                optimize=True
             )
-            final_img = shifted_img
-        else:
-            sub_images = []
-            for j in range(blur_exposures):
-                f = (j + 1) / blur_exposures
-                inter_x = prev_offset[0] + f * (offset_x - prev_offset[0])
-                inter_y = prev_offset[1] + f * (offset_y - prev_offset[1])
-                shifted_img = current_img.copy().transform(
-                    current_img.size,
-                    Image.AFFINE,
-                    (1, 0, int(inter_x), 0, 1, int(inter_y)),
-                    resample=Image.BILINEAR,
-                    fillcolor=(0, 0, 0, 0)
-                )
-                sub_images.append(shifted_img)
-            weights = [1 / blur_exposures] * blur_exposures
-            final_img = blend_images(sub_images, weights)
 
-        frames.append(final_img)
-        prev_offsets[i_input] = (offset_x, offset_y)
+            emote.img_data = output_buffer.getvalue()
+            emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}_shake.{save_format}"
+            emote.notes["shake_res_method"] = "resampled_vectorized_blend"
 
-    output_buffer = io.BytesIO()
-    save_format = 'webp' if file_ext == 'webp' else 'gif'
-    emote.notes["save_format"] = str(save_format)
-    frames[0].save(
-        output_buffer,
-        format=save_format.upper(),
-        save_all=True,
-        append_images=frames[1:],
-        duration=duration,
-        loop=0,
-        disposal=2
-    )
-
-    emote.img_data = output_buffer.getvalue()
-    emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}.{save_format}"
+    except MemoryError:
+        emote.errors["shake_res"] = "MemoryError: Input image/animation too large or long to process."
+    except Exception as e:
+        tb = traceback.format_exc()
+        emote.errors["shake_res"] = f"Error applying resampled shake effect: {e}\n```\n{tb}\n```"
+        # Clean up potentially large lists
+        input_frames_data.clear()
+        output_frames_pil.clear()
 
     return emote
 
@@ -914,5 +983,218 @@ def flip(emote: Emote, direction: str = "h") -> Emote:
             line_number = traceback.extract_tb(err.__traceback__)[-1].lineno
             emote.errors["flip"] = f"Error flipping: {err} at line {line_number}"
             return emote
+
+    return emote
+
+
+def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
+    """
+    (SYNC) Applies a continuous rainbow hue cycling effect, preserving original timing.
+
+    Uses vectorized operations (skimage) and resamples the input animation onto
+    a new timeline with a fixed frame rate for the rainbow effect, while showing
+    the correct original frame content based on elapsed time.
+
+    Parameters:
+        emote (Emote): The emote object.
+        speed (float): Multiplier for the hue cycle speed (cycles per second).
+
+    Returns:
+        Emote: The updated emote object.
+    """
+    if emote.img_data is None:
+        emote.errors["rainbow_res"] = "No image data available."
+        return emote
+
+    # --- Input Validation ---
+    try:
+        speed = float(speed)
+        if speed <= 0:
+            emote.issues["rainbow_res_speed_invalid"] = "Speed must be positive, using default 1.0."
+            speed = 1.0
+    except (ValueError, TypeError):
+        emote.issues["rainbow_res_speed_invalid"] = "Invalid speed value, using default 1.0."
+        speed = 1.0
+
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
+    if file_ext not in allowed_extensions:
+        emote.errors["rainbow_res"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        return emote
+
+    input_frames_data = []  # Store tuples: (pil_image, duration_ms)
+    output_frames_pil = []  # Store final PIL frames for saving
+    total_input_duration_ms = 0
+
+    # Define the target frame duration for the output rainbow animation smoothness
+    OUTPUT_FRAME_DURATION_MS = 30  # ~33fps for the effect smoothness
+    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure min 20ms
+
+    try:
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            n_frames = getattr(img, "n_frames", 1)
+            is_animated_input = n_frames > 1
+
+            emote.notes["rainbow_res_is_animated"] = str(is_animated_input)
+
+            # --- Load Input Frames & Durations ---
+            last_duration = 100  # Fallback
+            if is_animated_input:
+                for i in range(n_frames):
+                    img.seek(i)
+                    current_frame_pil = img.convert("RGBA").copy()
+                    duration_ms = img.info.get('duration', last_duration)
+                    if not isinstance(duration_ms, (int, float)) or duration_ms <= 0:
+                        duration_ms = last_duration
+                    duration_ms = max(10, int(duration_ms))  # Min duration read
+                    input_frames_data.append((current_frame_pil, duration_ms))
+                    total_input_duration_ms += duration_ms
+                    last_duration = duration_ms
+            else:
+                # --- Static Image Handling ---
+                # Create a smooth N-frame animation from the static image
+                # The 'speed' parameter here controls the frame delay directly
+                NUM_OUTPUT_FRAMES_STATIC = 20
+                static_frame_delay_ms = max(20, int(60 / speed))  # Faster speed = shorter delay
+
+                img.seek(0)
+                source_frame_pil = img.convert("RGBA").copy()
+                # Convert to float numpy array once
+                base_frame_np_f32 = np.array(source_frame_pil).astype(np.float32) / 255.0
+                rgb_float = base_frame_np_f32[:, :, :3]
+                alpha_float = base_frame_np_f32[:, :, 3]
+                if alpha_float.ndim == 2: alpha_float = alpha_float[:, :, np.newaxis]
+
+                # Pre-convert to HSV
+                hsv_base = color.rgb2hsv(rgb_float)
+
+                for i in range(NUM_OUTPUT_FRAMES_STATIC):
+                    hue_shift = (i / NUM_OUTPUT_FRAMES_STATIC)  # Cycle once over N frames
+                    hsv_shifted = hsv_base.copy()
+                    hsv_shifted[:, :, 0] = (hsv_shifted[:, :, 0] + hue_shift) % 1.0
+                    shifted_rgb_float = color.hsv2rgb(hsv_shifted)
+
+                    # Combine and convert back to PIL
+                    shifted_rgb_uint8 = np.clip(shifted_rgb_float * 255.0, 0, 255)
+                    alpha_uint8 = np.clip(alpha_float * 255.0, 0, 255)  # Scale alpha back
+                    shifted_rgba_uint8 = np.concatenate((shifted_rgb_uint8, alpha_uint8), axis=2).astype(np.uint8)
+                    output_frames_pil.append(Image.fromarray(shifted_rgba_uint8, 'RGBA'))
+
+                frame_durations_to_save = static_frame_delay_ms  # Use single duration for static
+                emote.notes["rainbow_res_type"] = "static_to_animated"
+                emote.notes["rainbow_res_output_frames"] = str(NUM_OUTPUT_FRAMES_STATIC)
+                emote.notes["rainbow_res_output_delay_ms"] = str(static_frame_delay_ms)
+                # Skip the rest of the animated processing
+                # Jump directly to saving logic
+
+            # --- Animated Input Processing ---
+            if is_animated_input:
+                emote.notes["rainbow_res_type"] = "animated_resampled"
+                emote.notes["rainbow_res_input_frames"] = str(len(input_frames_data))
+                emote.notes["rainbow_res_total_input_duration_ms"] = str(total_input_duration_ms)
+
+                if total_input_duration_ms <= 0:
+                    emote.errors["rainbow_res"] = "Input animation has zero or negative total duration."
+                    return emote
+
+                # --- Calculate Number of Output Frames ---
+                num_output_frames = math.ceil(total_input_duration_ms / OUTPUT_FRAME_DURATION_MS)
+                max_frames = 500  # Prevent excessive frames
+                if num_output_frames > max_frames:
+                    num_output_frames = max_frames
+                    OUTPUT_FRAME_DURATION_MS = math.ceil(total_input_duration_ms / num_output_frames)
+                    OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)  # Ensure minimum
+                    emote.issues[
+                        "rainbow_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
+
+                emote.notes["rainbow_res_num_output_frames"] = str(num_output_frames)
+                emote.notes["rainbow_res_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
+
+                # --- Define Hue Cycle Rate ---
+                base_cycle_duration_ms = 1000.0  # 1 second cycle for speed 1.0
+                actual_cycle_duration_ms = base_cycle_duration_ms / speed if speed > 0 else float('inf')
+                if actual_cycle_duration_ms <= 0: actual_cycle_duration_ms = 1e-9  # Avoid zero
+
+                # --- Resampling Loop ---
+                input_frame_index = 0
+                current_input_frame_end_time = 0  # Tracks end time of input_frame_index
+
+                for j in range(num_output_frames):  # Iterate through OUTPUT frames
+                    current_output_time_ms = j * OUTPUT_FRAME_DURATION_MS
+
+                    # --- Find the correct input frame for this time ---
+                    while current_input_frame_end_time <= current_output_time_ms and input_frame_index < len(
+                            input_frames_data) - 1:
+                        current_input_frame_end_time += input_frames_data[input_frame_index][1]
+                        input_frame_index += 1
+
+                    # Get the PIL Image of the correct input frame
+                    source_frame_pil = input_frames_data[input_frame_index][0]
+
+                    # --- Calculate Hue Shift based on OUTPUT time ---
+                    hue_shift = (current_output_time_ms % actual_cycle_duration_ms) / actual_cycle_duration_ms
+
+                    # --- Apply Hue Shift (Optimized) ---
+                    # Convert source PIL frame to float32 NumPy array (0.0-1.0)
+                    base_frame_np_uint8 = np.array(source_frame_pil)
+                    base_frame_np_f32 = base_frame_np_uint8.astype(np.float32) / 255.0
+
+                    rgb_float = base_frame_np_f32[:, :, :3]
+                    alpha_float = base_frame_np_f32[:, :, 3]
+                    if alpha_float.ndim == 2: alpha_float = alpha_float[:, :, np.newaxis]
+
+                    # Vectorized HSV Conversion
+                    hsv_frame = color.rgb2hsv(rgb_float)
+                    hsv_frame[:, :, 0] = (hsv_frame[:, :, 0] + hue_shift) % 1.0  # Apply time-based shift
+                    shifted_rgb_float = color.hsv2rgb(hsv_frame)
+
+                    # Combine RGB and Alpha, clip, convert to uint8
+                    shifted_rgb_uint8 = np.clip(shifted_rgb_float * 255.0, 0, 255)
+                    alpha_uint8 = np.clip(alpha_float * 255.0, 0, 255)  # Scale alpha back
+                    shifted_rgba_uint8 = np.concatenate((shifted_rgb_uint8, alpha_uint8), axis=2).astype(np.uint8)
+
+                    # Convert final NumPy array back to PIL Image
+                    output_frame_image = Image.fromarray(shifted_rgba_uint8, 'RGBA')
+                    output_frames_pil.append(output_frame_image)
+
+                frame_durations_to_save = OUTPUT_FRAME_DURATION_MS  # Use fixed duration for animated
+
+            # --- Save Output ---
+            if not output_frames_pil:
+                emote.errors["rainbow_res"] = "No output frames generated."
+                return emote
+
+            output_buffer = io.BytesIO()
+            save_format = 'webp' if file_ext == 'webp' else 'gif'  # Prefer webp if original was webp
+            emote.notes["rainbow_res_save_format"] = str(save_format)
+
+            output_frames_pil[0].save(
+                output_buffer,
+                format=save_format.upper(),
+                save_all=True,
+                append_images=output_frames_pil[1:],
+                duration=frame_durations_to_save,
+                # Use appropriate duration (fixed for animated, calculated for static)
+                loop=0,
+                disposal=2,
+                optimize=True
+            )
+
+            emote.img_data = output_buffer.getvalue()
+            base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
+            emote.file_path = f"{base_name}_rainbow.{save_format.lower()}"
+            emote.notes["rainbow_res_speed_used"] = str(speed)
+
+    except MemoryError:
+        emote.errors["rainbow_res"] = "MemoryError: Input image/animation too large or long to process."
+    except ImportError:  # Catch potential error if skimage check failed silently somehow
+        emote.errors[
+            "rainbow_res"] = "Dependency error: scikit-image not found. Install with 'pip install scikit-image'"
+    except Exception as e:
+        tb = traceback.format_exc()
+        emote.errors["rainbow_res"] = f"Error applying resampled rainbow effect: {e}\n```\n{tb}\n```"
+        # Clean up potentially large lists
+        input_frames_data.clear()
+        output_frames_pil.clear()
 
     return emote

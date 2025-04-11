@@ -188,18 +188,21 @@ class SlashCommands(commands.Cog):
     }
 
     EFFECTS_LIST = {
-        "latency": {'func': effect.latency, 'perm': 'mod', 'single_use': True},
-        "flip": {'func': effect.flip, 'perm': 'everyone'},
-        "debug": {'func': effect.debug, 'perm': 'everyone', 'single_use': True},
-        "train": {'func': effect.train, 'perm': 'everyone', 'single_use': True},
-        "reverse": {'func': effect.reverse, 'perm': 'everyone', 'single_use': True},
-        "invert": {'func': effect.invert, 'perm': 'everyone'},
-        "speed": {'func': effect.speed, 'perm': 'everyone', 'single_use': True},
-        "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True},
-        "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True},
-        "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True}
-    }
+        # Non-blocking (or very fast) effects
+        "latency": {'func': effect.latency, 'perm': 'mod', 'single_use': True, 'blocking': False},
+        "debug": {'func': effect.debug, 'perm': 'everyone', 'single_use': True, 'blocking': False},
+        "train": {'func': effect.train, 'perm': 'everyone', 'single_use': True, 'blocking': False},  # Just sets a flag
 
+        # Potentially blocking effects (PIL/Numpy/Moviepy)
+        "flip": {'func': effect.flip, 'perm': 'everyone', 'blocking': True},
+        "reverse": {'func': effect.reverse, 'perm': 'everyone', 'single_use': True, 'blocking': True},
+        "invert": {'func': effect.invert, 'perm': 'everyone', 'blocking': True},
+        "speed": {'func': effect.speed, 'perm': 'everyone', 'single_use': True, 'blocking': True},
+        "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
+        "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
+        "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True, 'blocking': True},
+        "rainbow": {'func': effect.rainbow, 'perm': 'everyone', 'single_use': True, 'blocking': True}
+    }
     reaction_effects = {
         "🔄": effect.reverse,
         "⏩": effect.fast,
