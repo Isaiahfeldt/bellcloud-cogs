@@ -12,26 +12,32 @@
 #  ͏
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
+import asyncio
 import base64
+import hashlib
+import io
 import json
 import os
 import random
 import time
 from textwrap import wrap
+from typing import List, Tuple, Optional
 
+import aiohttp
 import discord
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
 from openai import OpenAI
 from redbot.core import commands
-# from discord.app_commands import Choice, commands
+# from discord.app_commands import Choice, commands # Original comments kept
 # from discord.ext.commands import HybridCommand
 from redbot.core.i18n import Translator, cog_i18n
 
-from .utils import effects as effect
-from .utils.chat import send_help_embed, send_error_embed, send_embed_followup, send_error_followup, send_emote, \
+from .utils import effects as effect  # Import effects module
+from .utils.chat import send_error_embed, send_embed_followup, send_error_followup, send_emote, \
     generate_token
 from .utils.database import Database
+from .utils.effects import Emote  # Import Emote dataclass
 from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
@@ -40,21 +46,59 @@ from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid,
 _ = Translator("Emote", __file__)
 
 valid_formats = ["png", "webm", "jpg", "jpeg", "gif", "mp4"]
-db = Database()
+db = Database()  # Instantiate Database
 
 
-def calculate_extra_args(time_elapsed, emote) -> list:
+def generate_effects_signature(queued_effects: List[Tuple[str, list]]) -> str:
+    """Generates a canonical string signature for a list of effects and their args."""
+    parts = []
+    for effect_name, effect_args in queued_effects:
+        args_str = ""
+        if effect_args:
+            args_str = f"({','.join(map(str, effect_args))})"
+        parts.append(f"{effect_name}{args_str}")
+    return "_".join(parts)
+
+
+def generate_variant_filename(original_emote_id: int, signature: str, file_type: str) -> str:
+    """Generates a unique filename for a variant based on emote ID and signature hash."""
+    hasher = hashlib.sha256(signature.encode())
+    hash_prefix = hasher.hexdigest()[:16]  # Use first 16 hex characters of the hash
+    return f"{original_emote_id}_{hash_prefix}.{file_type.lower()}"
+
+
+def get_file_type_from_path(file_path: str) -> str:
+    """Extracts the file extension from a path."""
+    return file_path.split('.')[-1].lower() if '.' in file_path else 'png'  # Default?
+
+
+def calculate_extra_args(time_elapsed: Optional[float], emote: Emote, was_cached: bool = False) -> list:
+    """Calculates extra arguments for the send_emote function."""
     extra_args = []
-    if SlashCommands.latency_enabled:
-        extra_args.append(f"Your request was processed in `{time_elapsed}` seconds!")
-    # if SlashCommands.debug_enabled:
-    #     if SlashCommands.was_cached:
-    #         extra_args.append(f"The emote `{emote.name}` was found in cache.")
-    #     else:
-    #         extra_args.append(f"The emote `{emote.name}` was not found in cache.")
-    # Append emote.notes if it exists (i.e. not None)
-    # if emote.notes:
-    #     extra_args.append(emote.notes)
+    if SlashCommands.latency_enabled and time_elapsed is not None:
+        processing_time_str = f"Processed in `{time_elapsed:.3f}` seconds!"
+        if was_cached:
+            processing_time_str += " (Cached ✨)"
+        extra_args.append(processing_time_str)
+
+    if SlashCommands.debug_enabled:
+        debug_lines = []
+        debug_lines.append(f"Variant Cache: {'Hit ⚡' if was_cached else 'Miss 🐌'}")
+        # Add other notes stored during processing
+        if emote.notes:
+            for key, value in emote.notes.items():
+                debug_lines.append(f"{key.replace('_', ' ').title()}: {value}")
+        if debug_lines:
+            extra_args.append("\n".join(debug_lines))
+
+    # Append emote.followup if it exists
+    if emote.followup:
+        followup_lines = ["**Notes:**"]
+        for key, value in emote.followup.items():
+            followup_lines.append(f"- **{key}:** {value}")
+        if len(followup_lines) > 1:
+            extra_args.append("\n".join(followup_lines))
+
     return extra_args
 
 
@@ -65,15 +109,18 @@ def encode_image(image_data):
 
 async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
     """Analyzes text/image for UwU-style content using OpenAI"""
-    client = OpenAI(
-        api_key=os.getenv('OPENAI_KEY'),
-    )
+    api_key = os.getenv('OPENAI_KEY')
+    if not api_key:
+        print("Warning: OPENAI_KEY environment variable not set. April Fools features disabled.")
+        return {"isUwU": True, "reason": "OpenAI key not configured."}  # Bypass if no key
+
+    client = OpenAI(api_key=api_key)
 
     messages = [{
         "role": "system",
         "content":
             "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-            "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
+            "Analyze for *any* UwU-style elements (cute text, emoticons, playful misspellings). "
             "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
             "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
             f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
@@ -82,77 +129,60 @@ async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
             "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
     }]
 
-    # messages = [{
-    #     "role": "system",
-    #     "content": (
-    #         "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-    #         "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-    #         "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-    #         "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-    #         f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-    #         "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
-    #         "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
-    #         "The variation should reflect how many strikes the user has left, for instance, if the user has "
-    #         "onl my one try left theessage could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
-    #         "Ensure there is a line break between the reason and the warning. "
-    #         "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-    #         "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
-    #     )
-    # }]
-
+    user_content = []
     if content:
-        messages.append({
-            "role": "user",
-            "content": f"Message: {content}\nIs this UwU-style? Respond with JSON."
-        })
+        user_content.append({"type": "text", "text": f"Message: {content}\nIs this UwU-style? Respond with JSON."})
 
     if image_url:
-        messages.append({
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Analyze this image for UwU-style text/content"
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": image_url,
-                        "detail": "auto"
-                    },
-                }
-            ]
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": image_url, "detail": "auto"},  # Let OpenAI decide detail level
         })
+        user_content.insert(0, {"type": "text",
+                                "text": "Analyze this message content and image (if present) for UwU-style elements. Respond with JSON."})
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini-2024-07-18",
-        messages=messages,
-        max_tokens=300
-    )
+    if user_content:
+        messages.append({"role": "user", "content": user_content})
+    else:
+        return {"isUwU": True, "reason": "No content to analyze."}
 
     try:
-        return json.loads(response.choices[0].message.content)
-    except json.JSONDecodeError:
-        return {"isUwU": False, "reason": "Invalid response from API"}
+        response = await client.chat.completions.create(  # Use async client if available, otherwise sync
+            model="gpt-4o-mini-2024-07-18",  # Or your preferred model
+            messages=messages,
+            max_tokens=150,  # Reduced tokens
+            response_format={"type": "json_object"}  # Request JSON output directly
+        )
+        response_content = response.choices[0].message.content
+        return json.loads(response_content)
+    except json.JSONDecodeError as e:
+        print(f"OpenAI JSON Decode Error: {e}, Response: {response_content}")
+        return {"isUwU": False, "reason": "Sorwy, couwdn't undewstand the API wesponse! >_<"}
+    except Exception as e:
+        print(f"OpenAI API Error: {e}")
+        return {"isUwU": False,
+                "reason": f"Oopsie! My bwain had a fritz connecting to the AI! (Error: {type(e).__name__})"}
 
 
 async def get_emote_and_verify(emote_name_str: str, channel):
-    emote = await db.get_emote(emote_name_str, channel.guild.id, True)
+    """Fetches the base emote data, handling not found cases."""
+    emote = await db.get_emote(emote_name_str, channel.guild.id, inc_count=False)
     if emote is None:
         valid_names = await db.get_emote_names(channel.guild.id)
 
         matches = process.extractBests(
             emote_name_str,
             valid_names,
-            scorer=fuzz.token_sort_ratio,
+            scorer=fuzz.token_sort_ratio,  # Good for matching out-of-order words
             score_cutoff=70
         )
 
         if matches:
             best_match = matches[0][0]
-            await channel.send(f"Emote '{emote_name_str}' not found. Did you mean '{best_match}'?")
+            await channel.send(f"Emote `:{emote_name_str}:` not found. Did you mean `:{best_match}:`?")
         else:
-            await channel.send(f"Emote '{emote_name_str}' not found.")
+            await channel.send(f"Emote `:{emote_name_str}:` not found.")
+        return None  # Explicitly return None
 
     return emote
 
@@ -160,19 +190,13 @@ async def get_emote_and_verify(emote_name_str: str, channel):
 def get_cache_info(return_as_boolean=False):
     """
     Returns cache information based on the specified argument.
-
-    If `return_as_boolean` is True, returns a boolean indicating whether the cache contains any items.
-    Otherwise, returns the current cache state and emote usage collection as a formatted string.
+    (Note: db.cache now holds DB query results, not generated emotes)
     """
     cache_state = db.cache
-    emote_usage_collection = db.emote_usage_collection
-
-    # If return_as_boolean is True, return a boolean based on whether the cache has any items
     if return_as_boolean:
-        return bool(cache_state)  # True if cache contains items, False otherwise
-
-    # Otherwise, format cache information as a string
-    return f"{str(cache_state)}\n{str(emote_usage_collection)}"
+        return bool(cache_state)
+    cache_details = [f"DB Query Cache Size: {cache_state.currsize}/{cache_state.maxsize}"]
+    return "\n".join(cache_details)
 
 
 @cog_i18n(_)
@@ -200,7 +224,8 @@ class SlashCommands(commands.Cog):
         "speed": {'func': effect.speed, 'perm': 'everyone', 'single_use': True, 'blocking': True},
         "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
         "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
-        "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True, 'blocking': True},
+        "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': False, 'blocking': True},
+        # Allow multiple shakes? Revisit if needed
         "rainbow": {'func': effect.rainbow, 'perm': 'everyone', 'single_use': True, 'blocking': True},
         "spin": {'func': effect.spin, 'perm': 'everyone', 'single_use': True, 'blocking': True}
     }
@@ -208,223 +233,314 @@ class SlashCommands(commands.Cog):
         "🔄": effect.reverse,
         "⏩": effect.fast,
         "🐢": effect.slow,
-        "⚡": effect.speed,
         "🔀": effect.invert,
-        "🫨": effect.shake,
-        "🔃": effect.flip,
+        "🤸": effect.flip,
+        "↕️": effect.flip,  # Note: This needs special handling for direction 'v'
         "🌈": effect.rainbow,
+        "😵": effect.spin,
+        "💥": effect.shake,
     }
 
+    # Cog state flags
     latency_enabled = False
-    was_cached = False
     debug_enabled = False
     train_count = 1
+
+    def __init__(self, bot):
+        self.bot = bot
+        self.bot.loop.create_task(db.init_pool())
+
+    async def cog_unload(self):
+        await db.close_pool()
 
     @emote.command(name="add", description="Add an emote to the server")
     @app_commands.describe(
         name="The name of the new emote",
         url="The URL of a supported file type to add as an emote"
     )
+    @commands.has_permissions(manage_messages=True)  # Use Red's permission check
     async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
-        # Can only be used by users with the "Manage Messages" permission
-        if not interaction.user.guild_permissions.manage_messages:
-            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+        await interaction.response.defer(ephemeral=True)  # Acknowledge interaction quickly
+
+        if not alphanumeric_name(name):  # Check if the name is valid first
+            await send_error_followup(interaction, EmoteAddError.INVALID_NAME_CHAR)
             return
 
-        await send_help_embed(
-            interaction, "Adding emote...",
-            "Please wait while the emote is being added to the server."
-        )
-
         rules = [
-            (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
             (lambda: is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
             (lambda: is_media_format_valid(url, valid_formats), EmoteAddError.INVALID_FILE_FORMAT),
-            (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
+            (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),  # 50MB limit
         ]
 
         for condition, error in rules:
-            if not condition():
+            is_valid = False
+            # Need to await if condition is async
+            if asyncio.iscoroutinefunction(condition):
+                is_valid = await condition()
+            else:
+                is_valid = condition()
+            if not is_valid:
                 await send_error_followup(interaction, error)
                 return
 
-        # TODO: move this function to @SlashCommands and make seperate function that we can call
         if await db.check_emote_exists(name, interaction.guild_id):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 
-        # Upload to bucket
-        file_type = str(is_media_format_valid(url, valid_formats)[1])
-        success, error = await db.add_emote_to_database(interaction, name, url, file_type)
+        valid_check_result = is_media_format_valid(url, valid_formats)
+        if not valid_check_result[0]:
+            await send_error_followup(interaction, EmoteAddError.INVALID_FILE_FORMAT)
+            return
+        file_type = str(valid_check_result[1])
+
+        success, db_error = await db.add_emote_to_database(interaction, name, url, file_type)
 
         if not success:
-            await send_error_followup(interaction, error)
+            if db_error == EmoteError.S3_UPLOAD_FAILED:
+                add_error = EmoteAddError.S3_UPLOAD_FAILED
+            elif db_error == EmoteError.DUPLICATE_EMOTE_NAME:
+                add_error = EmoteAddError.DUPLICATE_EMOTE_NAME
+            else:  # Generic DB or other error
+                add_error = EmoteAddError.DATABASE_ERROR
+            await send_error_followup(interaction, add_error)
             return
 
         await send_embed_followup(
-            interaction, "Success!", f"Added **{name}** as an emote."
+            interaction, "Success! ✨", f"Added `:{name}:` as an emote."
         )
 
-    @emote.command(name="remove", description="Remove an emote from the server")
+    @emote.command(name="remove", description="Remove an emote (and its variants) from the server")
     @app_commands.describe(name="The name of the emote to remove")
+    @commands.has_permissions(manage_messages=True)
     async def emote_remove(self, interaction: discord.Interaction, name: str):
-        if not interaction.user.guild_permissions.manage_messages:
-            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-            return
-
-        await send_help_embed(
-            interaction, "Removing emote...",
-            "Please wait while the emote is being removed from the server."
-        )
-
-        if not await db.check_emote_exists(name, interaction.guild_id):
-            await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
-            return
-
-        # Remove emote from db
-        success, error = await db.remove_emote_from_database(interaction, name)
+        success, error_enum = await db.remove_emote_from_database(interaction.guild_id, name)
 
         if not success:
-            await send_error_followup(interaction, error)
+            if error_enum == EmoteError.NOTFOUND_EMOTE_NAME:
+                remove_error = EmoteRemoveError.NOTFOUND_EMOTE_NAME
+            else:
+                remove_error = EmoteRemoveError.DATABASE_ERROR  # Use a generic one for now
+            await send_error_followup(interaction, remove_error)
             return
 
         await send_embed_followup(
-            interaction, "Success!", f"Removed **{name}** as an emote."
+            interaction, "Success! 🗑️", f"Removed `:{name}:` and all its cached variants."
         )
 
     @emote.command(name="list", description="List all emotes in the server")
     async def emote_list(self, interaction: discord.Interaction):
+        await interaction.response.defer(ephemeral=False)  # List can be public
+
         emote_names = await db.get_emote_names(interaction.guild_id)
         if not emote_names:
-            await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
+            await send_error_followup(interaction, EmoteError.EMPTY_SERVER)
             return
 
         embeds = []
-        max_characters = 1000 - len("Emotes: ")
-        embed = discord.Embed(color=EmbedColor.DEFAULT.value)
+        max_characters_per_field = 1000
+        prefix = "Emotes: "
+        emote_list_str = ", ".join([f"`:{name}:`" for name in emote_names])  # Format names
+        chunks = wrap(emote_list_str, width=max_characters_per_field,
+                      break_long_words=False, break_on_hyphens=False, placeholder="...")
 
+        current_embed = discord.Embed(color=EmbedColor.DEFAULT.value)
+        current_embed.set_author(name=f"{interaction.guild.name} Emotes",
+                                 icon_url=interaction.guild.icon.url if interaction.guild.icon else None)
         field_count = 0
-        emote_list_str = ", ".join(emote_names)
-        chunks = wrap(emote_list_str, width=max_characters, break_long_words=False, break_on_hyphens=False)
+        char_count = 0
 
         for i, chunk in enumerate(chunks):
-            embed.add_field(name="Emotes:" if i == 0 else "\u200b", value=chunk, inline=False)
-            field_count += 1
+            field_name = prefix if i == 0 else "\u200b"  # Use invisible char for subsequent field names
+            field_value = chunk
 
-        embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url)
-        embeds.append(embed)
+            if field_count >= 25 or char_count + len(field_name) + len(field_value) > 5800:  # Leave headroom
+                embeds.append(current_embed)
+                current_embed = discord.Embed(color=EmbedColor.DEFAULT.value)
+                field_count = 0
+                char_count = 0
+
+            current_embed.add_field(name=field_name, value=field_value, inline=False)
+            field_count += 1
+            char_count += len(field_name) + len(field_value)
+
+        embeds.append(current_embed)  # Add the last embed
 
         token = await generate_token(interaction)
         server_id = interaction.guild_id
-
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-        url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
-                                       url=f"{url}")
-
+        url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit Emote Gallery", url=url)
         view = discord.ui.View()
         view.add_item(url_button)
 
-        for i, embed in enumerate(embeds):
-            ephemeral = False if field_count <= 3 else True
-            await interaction.response.send_message(embed=embed, ephemeral=ephemeral, view=view)
+        await interaction.followup.send(embed=embeds[0], view=view)  # Send first embed with button
+        if len(embeds) > 1:
+            for embed in embeds[1:]:
+                await interaction.channel.send(embed=embed)
 
     @emote.command(name="website", description="Get a secure link to view the server's emotes")
     async def emote_website(self, interaction: discord.Interaction):
+        await interaction.response.defer(ephemeral=True)  # Link is user-specific
         token = await generate_token(interaction)
         server_id = interaction.guild_id
-
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-        masked_url = f"[bellbot.xyz/emote/{server_id}]({url})"
+        masked_url = f"[View Emote Gallery]({url})"  # Markdown link
+        await interaction.followup.send(
+            f"Here is your secure, temporary link to the gallery:\n{masked_url}",
+            ephemeral=True
+        )
 
-        await interaction.response.send_message(f"Here is your secure link: {masked_url}")
-
-    # Deprecated
-    # @emote.command(name="show_cache", description="Show current cache state")
-    # @commands.is_owner()
-    # async def emote_show_cache(self, interaction: discord.Interaction):
-    #     if not interaction.user.guild_permissions.manage_messages:
-    #         await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-    #         return
-    #
-    #     cache_info = get_cache_info()
-    #     await interaction.response.send_message(cache_info)
-
-    @emote.command(name="clear_cache", description="Manually clear the cache")
+    @emote.command(name="clear_cache", description="Manually clear the internal DB query cache")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
-        if not interaction.user.guild_permissions.manage_messages:
-            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+        db.cache.clear()
+        await interaction.followup.send("Internal database query cache cleared successfully.", ephemeral=True)
+
+    @emote.command(name="clear_variants", description="Clear ALL cached variants for a specific emote")
+    @app_commands.describe(name="The name of the original emote whose variants should be cleared")
+    @commands.has_permissions(manage_messages=True)
+    async def emote_clear_variants(self, interaction: discord.Interaction, name: str):
+        original_emote = await db.get_emote(name, interaction.guild_id)
+        if not original_emote:
+            await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
             return
 
-        db.cache.clear()
-        await interaction.response.send_message("Cache cleared successfully.")
+        variant_paths = await db.remove_variants_for_emote(original_emote.id)
+        if not variant_paths:
+            await interaction.followup.send(f"No cached variants found for `:{name}:`.", ephemeral=True)
+            return
+
+        failed_s3_deletions = 0
+        for path in variant_paths:
+            success, error = await db.remove_variant_from_bucket(path)
+            if not success:
+                failed_s3_deletions += 1
+                print(f"Failed to delete variant '{path}' from S3 during clear: {error}")
+
+        message = f"Successfully cleared {len(variant_paths)} cached variant(s) for `:{name}:`."
+        if failed_s3_deletions > 0:
+            message += f"\n⚠️ Failed to delete {failed_s3_deletions} file(s) from storage. Please check logs."
+        await interaction.followup.send(message, ephemeral=True)
+
+    @emote.command(name="clear_server_variants", description="Clear ALL cached variants for this entire server")
+    @commands.has_permissions(manage_messages=True)
+    async def emote_clear_server_variants(self, interaction: discord.Interaction):
+        guild_id = interaction.guild_id
+        variant_paths = await db.remove_variants_for_guild(guild_id)
+
+        if not variant_paths:
+            await interaction.followup.send("No cached variants found for this server.", ephemeral=True)
+            return
+
+        failed_s3_deletions = 0
+        total_variants = len(variant_paths)
+        await interaction.followup.send(f"Found {total_variants} variants. Starting cleanup...", ephemeral=True)
+
+        for i, path in enumerate(variant_paths):
+            success, error = await db.remove_variant_from_bucket(path)
+            if not success:
+                failed_s3_deletions += 1
+                print(f"Failed to delete variant '{path}' from S3 during server clear: {error}")
+
+        message = f"Successfully cleared {total_variants - failed_s3_deletions}/{total_variants} cached variant(s) for this server."
+        if failed_s3_deletions > 0:
+            message += f"\n⚠️ Failed to delete {failed_s3_deletions} file(s) from storage. Please check logs."
+        await interaction.edit_original_response(content=message)
 
     @emote.command(name="effect", description="Learn more about an effect")
     @app_commands.describe(effect_name="Name of the effect to get details about")
-    async def effect(self, interaction: discord.Interaction, effect_name: str):
-        # Retrieve effect information from EFFECTS_LIST
-        effect_info = self.EFFECTS_LIST.get(effect_name.lower())
+    async def effect_info(self, interaction: discord.Interaction, effect_name: str):
+        effect_name_lower = effect_name.lower()
+        effect_info = self.EFFECTS_LIST.get(effect_name_lower)
+
         if not effect_info:
-            await interaction.response.send_message(
-                f"Effect '{effect_name}' not found.",
+            all_effect_names = list(self.EFFECTS_LIST.keys())
+            matches = process.extractBests(
+                effect_name_lower, all_effect_names,
+                scorer=fuzz.ratio, score_cutoff=60, limit=3
+            )
+            suggestion = ""
+            if matches:
+                suggestions = [f"`{m[0]}`" for m in matches]
+                suggestion = f" Did you mean: {', '.join(suggestions)}?"
+            await interaction.followup.send(
+                f"Effect '{effect_name}' not found.{suggestion}",
                 ephemeral=True
             )
             return
 
-        # Check user's permission for the effect
-        perm = effect_info.get("perm", "everyone")
+        perm_key = effect_info.get("perm", "everyone")
+        perm_func = self.PERMISSION_LIST.get(perm_key)
         allowed = False
-        if perm == "owner":
-            allowed = await self.bot.is_owner(interaction.user)
-        elif perm == "mod":
-            allowed = interaction.user.guild_permissions.manage_messages
-        elif perm == "everyone":
-            allowed = True
+        mock_message = interaction
+        if perm_func:
+            if perm_key == "owner":
+                allowed = await self.bot.is_owner(interaction.user)
+            else:
+                try:
+                    allowed = perm_func(mock_message, self)
+                except Exception as e:
+                    print(f"Permission check failed for {effect_name}: {e}. Defaulting to not allowed.")
+                    allowed = False
+        else:
+            print(f"Warning: Unknown permission key '{perm_key}' for effect '{effect_name}'")
+            allowed = False
 
         if not allowed:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 "You do not have permission to view details for this effect.",
                 ephemeral=True
             )
             return
 
-        # Retrieve and filter the docstring from the effect function
         effect_func = effect_info.get("func")
         raw_doc = effect_func.__doc__ or "No description available."
-        doc_lines = raw_doc.splitlines()
+        doc_lines = raw_doc.strip().splitlines()
 
-        # Extract only the user documentation section
         user_doc = []
         capture = False
+        indent = 0  # Keep track of indentation for clean output
         for line in doc_lines:
-            if line.strip().startswith("User:"):
+            line_strip = line.strip()
+            if line_strip.startswith("User:"):
                 capture = True
                 continue
-            elif capture and (line.strip().startswith("Parameters:") or
-                              line.strip().startswith("Returns:") or
-                              line.strip().startswith("Raises:")):
+            elif capture and (line_strip.startswith("Parameters:") or
+                              line_strip.startswith("Returns:") or
+                              line_strip.startswith("Raises:") or
+                              not line_strip):  # Stop on standard sections or empty line
                 break
             elif capture:
-                user_doc.append(line)
+                if not user_doc:  # First line determines base indentation
+                    indent = len(line) - len(line.lstrip())
+                    user_doc.append(line.lstrip())
+                else:
+                    user_doc.append(line[min(indent, len(line)):])  # Remove common indent
 
-        description = "\n".join(user_doc).strip() or "No user documentation available."
+        description = "\n".join(user_doc).strip() or "No user documentation available for this effect."
 
         embed = discord.Embed(
-            title=f"Effect: {effect_name.capitalize()}",
+            title=f"Effect: `{effect_name.lower()}`",
             description=description,
             colour=EmbedColor.DEFAULT.value
         )
         embed.set_author(
-            name="Emote Effects",
-            icon_url=interaction.client.user.display_avatar.url
+            name="Emote Effect Details",
+            icon_url=interaction.client.user.display_avatar.url  # Bot's avatar
         )
-        await interaction.response.send_message(embed=embed, ephemeral=False)
+        embed.add_field(name="Permission Required", value=perm_key.capitalize(), inline=True)
+        embed.add_field(name="Can be used multiple times?", value=str(not effect_info.get("single_use", False)),
+                        inline=True)
+        embed.add_field(name="Requires Significant Processing?", value=str(effect_info.get("blocking", False)),
+                        inline=True)
+        await interaction.followup.send(embed=embed, ephemeral=False)  # Show publicly
 
-    @effect.autocomplete("effect_name")
+    @effect_info.autocomplete("effect_name")
     async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
         suggestions = []
+        current_lower = current.lower()
+
         for name, data in self.EFFECTS_LIST.items():
             perm = data.get("perm", "everyone")
             allowed = False
@@ -435,52 +551,77 @@ class SlashCommands(commands.Cog):
             elif perm == "everyone":
                 allowed = True
 
-            if allowed and current.lower() in name.lower():
-                # Extract first sentence of user documentation
+            if allowed and current_lower in name.lower():
                 doc = data['func'].__doc__ or ""
-                doc_lines = doc.splitlines()
-                user_doc = ""
-                for line in doc_lines:
-                    if line.strip().startswith("User:"):
-                        next_line = doc_lines[doc_lines.index(line) + 1].strip()
-                        user_doc = next_line.split('.')[0]
+                user_doc_first_sentence = ""
+                in_user_section = False
+                for line in doc.strip().splitlines():
+                    line_strip = line.strip()
+                    if line_strip.startswith("User:"):
+                        in_user_section = True
+                        continue
+                    if in_user_section and line_strip:
+                        sentence_end = -1
+                        for end_char in ['.', '!', '?']:
+                            found_pos = line_strip.find(end_char)
+                            if found_pos != -1:
+                                if sentence_end == -1 or found_pos < sentence_end:
+                                    sentence_end = found_pos
+                        if sentence_end != -1:
+                            user_doc_first_sentence = line_strip[:sentence_end + 1]
+                        else:
+                            user_doc_first_sentence = line_strip
+                        break  # Stop after finding the first line/sentence
+                    elif in_user_section and not line_strip:  # Stop if empty line encountered
                         break
 
                 emoji = ""
-                for emote, func in self.reaction_effects.items():
+                for reaction_emoji, func in self.reaction_effects.items():
                     if func == data['func']:
-                        emoji = emote
+                        emoji = f"{reaction_emoji} "  # Add space after emoji
                         break
 
+                display_name = f"`{name}`"
                 if emoji:
-                    display_name = f"{name} - {emoji} - {user_doc}" if user_doc else f"{name} - {emoji}"
-                else:
-                    display_name = f"{name} - {user_doc}" if user_doc else name
-
+                    display_name += f" - {emoji}"
+                if user_doc_first_sentence:
+                    display_name += f" - {user_doc_first_sentence}"
+                if len(display_name) > 100:  # Limit display name length
+                    display_name = display_name[:97] + "..."
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
+                if len(suggestions) >= 25:  # Autocomplete limit
+                    break
         return suggestions
+
+    # === April Fools Commands & Listener ===
 
     @emote.command(name="remove_a_strike", description="Remove a single strike from a user")
     @app_commands.describe(user="User to remove a strike from")
     @commands.guild_only()
     @commands.is_owner()
     async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
-        new_count = await db.decrease_strike(user.id, interaction.guild_id)
-
-        if new_count < 3:
+        await interaction.response.defer(ephemeral=False)
+        new_count = await db.decrease_strike(user.id, interaction.guild.id)
+        max_strikes = 3
+        if new_count < max_strikes:
             channel_names = ["general-3-uwu", "general-3"]
-            channel = next(
-                (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-                 discord.utils.get(interaction.guild.channels, name=name)),
-                None
-            )
-
+            channel = discord.utils.find(lambda c: c.name in channel_names, interaction.guild.text_channels)
             if channel:
-                await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+                try:
+                    current_overwrite = channel.overwrites_for(user)
+                    if not current_overwrite.is_empty() and current_overwrite.send_messages is False:
+                        await channel.set_permissions(user, send_messages=None, reason="Strike removed, below maximum.")
+                        print(f"Reset send_messages permission for {user.display_name} in {channel.name}")
+                except discord.Forbidden:
+                    print(f"Bot lacks permission to modify permissions for {user.display_name} in {channel.name}")
+                    await interaction.followup.send("Note: I couldn't reset channel permissions (missing permissions).",
+                                                    ephemeral=True)
+                except Exception as e:
+                    print(f"Error resetting permissions for {user.display_name} in {channel.name}: {e}")
 
-        await interaction.response.send_message(
-            f"Aww, {user.mention}-chan had a stwike wemoved! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
-            ephemeral=False
+        await interaction.followup.send(
+            f"Aww, {user.mention}-chan had a stwike wemoved! ✨ UwU~ They now have {new_count}/{max_strikes} stwikes. 🐾",
+            allowed_mentions=discord.AllowedMentions(users=False)
         )
 
     @emote.command(name="forgive", description="Forgive all strikes for a user")
@@ -488,24 +629,26 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @commands.is_owner()
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
-
+        await interaction.response.defer(ephemeral=False)
+        await db.reset_strikes(user.id, interaction.guild.id)
         channel_names = ["general-3-uwu", "general-3"]
-
-        # Find the first matching channel
-        channel = next(
-            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-             discord.utils.get(interaction.guild.channels, name=name)),
-            None
-        )
-
+        channel = discord.utils.find(lambda c: c.name in channel_names, interaction.guild.text_channels)
         if channel:
-            # Reset user permissions for the channel
-            await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
+            try:
+                current_overwrite = channel.overwrites_for(user)
+                if not current_overwrite.is_empty():
+                    await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven by owner.")
+                    print(f"Reset all permissions for {user.display_name} in {channel.name}")
+            except discord.Forbidden:
+                print(f"Bot lacks permission to modify permissions for {user.display_name} in {channel.name}")
+                await interaction.followup.send("Note: I couldn't reset channel permissions (missing permissions).",
+                                                ephemeral=True)
+            except Exception as e:
+                print(f"Error resetting permissions for {user.display_name} in {channel.name}: {e}")
 
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"All of {user.mention}-chan's stwikes have been fuwgiven, nya~! ✨ UwU~",
-            ephemeral=False
+            allowed_mentions=discord.AllowedMentions(users=False)
         )
 
     @emote.command(name="view_strikes", description="View current strikes for a user")
@@ -513,205 +656,425 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @commands.is_owner()
     async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
-        strikes = await db.get_strikes(user.id, interaction.guild_id)
-        await interaction.response.send_message(
-            f"{user.mention}-chan has {strikes}/3 stwikes, nya~! Pwease be cawefuw! ⚠️",
-            ephemeral=False
+        strikes = await db.get_strikes(user.id, interaction.guild.id)
+        max_strikes = 3
+        await interaction.followup.send(
+            f"{user.mention}-chan has {strikes}/{max_strikes} stwikes, nya~! Pwease be cawefuw! ⚠️",
+            ephemeral=True
         )
 
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message: discord.Message):
-        if message.author.bot:
+        # Ignore bots or DMs
+        if message.author.bot or not message.guild:
             return
 
-        # Check if message is in the 'general-3-uwu' channel
-        if message.channel.name.lower() == "general-3-uwu" or message.channel.name.lower() == "general-3":
-            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
-                if not is_enclosed_in_colon(message):  # Ignore :emotes:
-                    await self.handle_april_fools(message)
+        # --- April Fools Logic ---
+        april_fools_channels = ["general-3-uwu", "general-3"]
+        if message.channel.name.lower() in april_fools_channels:
+            is_owner_command = False
+            if await self.bot.is_owner(message.author) and message.content.startswith(
+                    tuple(await self.bot.get_prefix(message))):
+                is_owner_command = True
+            # Ignore owner commands and emote invocations
+            if not is_owner_command and not is_enclosed_in_colon(message):
+                await self.handle_april_fools(message)
 
+        # --- Emote Pipeline Logic ---
         elif is_enclosed_in_colon(message):
-            async with message.channel.typing():
+            # Check permissions
+            if not message.channel.permissions_for(message.guild.me).send_messages:
+                print(f"Missing send_messages permission in {message.channel.name}")
+                return
+            if not message.channel.permissions_for(message.guild.me).attach_files:
+                print(f"Missing attach_files permission in {message.channel.name}")
+                try:
+                    await message.channel.send("I need permission to attach files to send emotes! 😿")
+                except discord.Forbidden:
+                    pass
+                return
+
+            # Process
+            typing_task = asyncio.create_task(message.channel.typing())
+            try:
                 await self.process_emote_pipeline(message)
-            reset_flags()
+            finally:
+                typing_task.cancel()
+            reset_flags()  # Reset cog state flags
 
     @commands.Cog.listener()
     @commands.guild_only()
-    async def on_reaction_add(self, reaction: discord.Reaction, user):
-        if reaction.me:
+    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.Member):
+        # Ignore bot reactions or DMs
+        if user.bot or not reaction.message.guild:
             return
 
         message = reaction.message
         image_attachment = None
+        # Check message attachments for valid images/videos
         for attachment in message.attachments:
-            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
-                image_attachment = attachment
-                break
-
+            if any(attachment.filename.lower().endswith(f".{ext}") for ext in valid_formats):
+                if attachment.size <= 52428800:  # Basic size check
+                    image_attachment = attachment
+                    break
         if image_attachment is None:
             return
 
-        effect_func = self.reaction_effects.get(str(reaction.emoji))
-        if not effect_func:
-            return
+        # Find matching effect based on emoji
+        effect_func = None
+        effect_name_for_sig = None
+        effect_args_for_sig = []
 
-        import io
-        from emote.utils.effects import Emote
-        from datetime import datetime
+        if str(reaction.emoji) == "↕️":  # Special case for vertical flip
+            effect_func = effect.flip
+            effect_name_for_sig = "flip"
+            effect_args_for_sig = ["v"]
+        else:
+            effect_func = self.reaction_effects.get(str(reaction.emoji))
+            if effect_func:
+                # Find the effect name
+                for name, data in self.EFFECTS_LIST.items():
+                    if data['func'] == effect_func:
+                        effect_name_for_sig = name
+                        # Set default args for aliases if needed
+                        if name == 'fast':
+                            effect_args_for_sig = [2]
+                        elif name == 'slow':
+                            effect_args_for_sig = [0.5]
+                        break
+
+        if not effect_func or not effect_name_for_sig:
+            return  # Emoji doesn't match a known effect
+
+        # Process the reaction effect
+        typing_task = asyncio.create_task(message.channel.typing())
+        timer = PerformanceTimer()
+        processed_emote = None
 
         try:
-            image_bytes = await image_attachment.read()
-        except Exception as e:
-            print(f"Error reading image data: {e}")
-            return
+            async with timer:
+                # Download attachment
+                try:
+                    image_bytes = await image_attachment.read()
+                except Exception as e:
+                    print(f"Error reading attachment data for reaction effect: {e}")
+                    await message.channel.send(
+                        f"Sorry {user.mention}, I couldn't read the attachment for that reaction.", delete_after=10)
+                    return
 
-        await message.channel.typing()
+                # Create temporary Emote object
+                virtual_emote_id = 0
+                base_filename = image_attachment.filename
+                base_name_no_ext = base_filename.rsplit('.', 1)[0]
+                original_file_type = get_file_type_from_path(base_filename)
 
-        emote_instance = Emote(
-            id=0,  # Use a dummy id since this is a virtual Emote
-            file_path=f"virtual/{image_attachment.filename}",  # Use real file name and type
-            author_id=user.id,
-            timestamp=datetime.now(),
-            original_url=image_attachment.url,
-            name=image_attachment.filename,
-            guild_id=message.guild.id if message.guild else 0,
-            usage_count=0,
-            errors={},
-            issues={},
-            notes={},
-            followup={},
-            effect_chain={},
-            img_data=image_bytes,
-        )
+                queued_effects = [(effect_name_for_sig, effect_args_for_sig)]
+                effects_signature = generate_effects_signature(queued_effects)
 
-        emote = effect_func(emote_instance)
+                initial_emote = Emote(
+                    id=virtual_emote_id,
+                    file_path=f"reaction/{base_filename}",
+                    author_id=user.id,  # User who reacted
+                    timestamp=datetime.now(timezone.utc).replace(tzinfo=None),
+                    original_url=image_attachment.url,
+                    name=f"{base_name_no_ext}_{effects_signature}",
+                    guild_id=message.guild.id,
+                    usage_count=0,  # Not a tracked emote
+                    img_data=image_bytes  # Start with downloaded data
+                )
 
-        if emote.img_data:
-            image_buffer = io.BytesIO(emote.img_data)
-            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
-            file = discord.File(fp=image_buffer, filename=filename)
-            # await message.channel.send(content="", file=file)
-            await message.reply(content="", file=file, mention_author=False)
+                # Execute pipeline for the single effect
+                pipeline = await create_pipeline(self, message, initial_emote, queued_effects)
+                processed_emote = await execute_pipeline(pipeline)
 
-    async def process_emote_pipeline(self, message):
+            # Send result or error
+            if processed_emote and processed_emote.img_data and not processed_emote.errors:
+                extra_args = calculate_extra_args(timer.elapsedTime, processed_emote, was_cached=False)
+                final_file_type = get_file_type_from_path(processed_emote.file_path)
+                final_filename = f"{base_name_no_ext}_{effects_signature}.{final_file_type}"
+
+                file = discord.File(fp=io.BytesIO(processed_emote.img_data), filename=final_filename)
+                content = f"{user.mention} applied `{effect_name_for_sig}` effect:"
+                if extra_args:
+                    content += "\n" + "\n".join(extra_args)
+                await message.channel.send(content=content, file=file,
+                                           allowed_mentions=discord.AllowedMentions(users=[user]))  # Mention reactor
+
+            elif processed_emote and processed_emote.errors:
+                error_msg = f"Sorry {user.mention}, couldn't apply the `{effect_name_for_sig}` effect. 😿"
+                print(
+                    f"Reaction effect error for {user.display_name} on {image_attachment.url}: {processed_emote.errors}")
+                first_error_key = next(iter(processed_emote.errors))
+                error_reason = processed_emote.errors[first_error_key].split('\n')[0]
+                error_msg += f"\nReason: {error_reason}"[:150]
+                await message.channel.send(error_msg, delete_after=15)
+            else:
+                await message.channel.send(f"Sorry {user.mention}, something went wrong applying the effect.",
+                                           delete_after=10)
+
+        finally:
+            typing_task.cancel()
+            reset_flags()  # Reset any global flags
+
+    async def process_emote_pipeline(self, message: discord.Message):
+        """Handles fetching, caching, processing, and sending emotes with effects."""
         timer = PerformanceTimer()
+        processed_emote: Optional[Emote] = None
+        was_cached = False
+        final_emote_to_send: Optional[Emote] = None
+
         async with timer:
             emote_name, queued_effects = extract_emote_details(message)
-            emote = await get_emote_and_verify(emote_name, message.channel)
+            effects_signature = generate_effects_signature(queued_effects)
 
-            if emote is None:
-                return
+            # Get Base Emote Data
+            original_emote = await get_emote_and_verify(emote_name, message.channel)
+            if original_emote is None:
+                return  # Error handled in verify function
 
-            pipeline = await create_pipeline(self, message, emote, queued_effects)
-            emote = await execute_pipeline(pipeline)
+            # --- Cache Check ---
+            if effects_signature:  # Only check cache if effects were requested
+                variant_info = await db.get_variant(original_emote.id, effects_signature)
+                if variant_info:
+                    # Cache Hit!
+                    was_cached = True
+                    variant_file_path = variant_info['file_path']
+                    variant_file_type = variant_info['file_type']
+                    variant_url = f"https://media.bellbot.xyz/emote/{variant_file_path}"  # Construct URL
 
-        # Get elapsed time after timer has stopped
-        extra_args = calculate_extra_args(timer.elapsedTime, emote)
-        await send_emote(message, emote, *extra_args)
+                    try:
+                        # Download the cached variant data
+                        async with aiohttp.ClientSession() as session:
+                            async with session.get(variant_url) as response:
+                                response.raise_for_status()
+                                variant_img_data = await response.read()
+
+                        # Create an Emote object representing the cached variant
+                        cached_emote_state = Emote(
+                            id=original_emote.id,
+                            file_path=variant_file_path,  # Path of the *variant*
+                            author_id=original_emote.author_id,
+                            timestamp=original_emote.timestamp,  # Or maybe variant creation time?
+                            original_url=original_emote.original_url,
+                            name=original_emote.name,
+                            guild_id=original_emote.guild_id,
+                            usage_count=original_emote.usage_count,  # Usage count is on original
+                            img_data=variant_img_data,
+                            effect_chain={ef[0]: True for ef in queued_effects}
+                        )
+                        cached_emote_state.notes["cached_variant"] = "True"
+                        final_emote_to_send = cached_emote_state
+
+                        # Set flags based on effects signature if needed
+                        if "latency" in effects_signature: SlashCommands.latency_enabled = True
+                        if "debug" in effects_signature: SlashCommands.debug_enabled = True
+                        if "train" in effects_signature:
+                            for ef_name, ef_args in queued_effects:
+                                if ef_name == "train":
+                                    try:
+                                        amount = int(ef_args[0]) if ef_args else 3
+                                        amount = min(max(amount, 1), 6)  # Clamp
+                                        SlashCommands.train_count = amount
+                                    except (ValueError, IndexError, TypeError):
+                                        SlashCommands.train_count = 3
+                                    break
+
+                    except aiohttp.ClientError as e:
+                        print(f"Cache Hit: Failed to download variant {variant_url}: {e}")
+                        was_cached = False  # Treat as cache miss
+                    except Exception as e:
+                        print(f"Cache Hit: Unexpected error processing variant {variant_url}: {e}")
+                        was_cached = False
+
+            # --- Processing (Cache Miss or No Effects) ---
+            if not final_emote_to_send:  # If not a cache hit (or no effects)
+                was_cached = False
+                # Initialize pipeline (fetches data in initialize step)
+                pipeline = await create_pipeline(self, message, original_emote, queued_effects)
+                processed_emote = await execute_pipeline(pipeline)
+                final_emote_to_send = processed_emote
+
+                # --- Save to Cache ---
+                if effects_signature and final_emote_to_send and final_emote_to_send.img_data and not any(
+                        err_key in final_emote_to_send.errors for err_key in
+                        ["timeout", "pipeline_execution", "initialize"]):
+                    # Check no critical errors occurred
+                    is_critical_error = any(final_emote_to_send.errors.get(key) for key in final_emote_to_send.errors if
+                                            key.endswith(('_executor', '_execution')))
+                    if not is_critical_error:
+                        variant_file_type = get_file_type_from_path(final_emote_to_send.file_path)
+                        variant_filename = generate_variant_filename(original_emote.id, effects_signature,
+                                                                     variant_file_type)
+                        variant_s3_path = f"{original_emote.guild_id}/variants/{variant_filename}"
+
+                        # Upload generated data
+                        upload_success, upload_error = await db.upload_variant_to_bucket(
+                            original_emote.guild_id,
+                            variant_filename,
+                            final_emote_to_send.img_data,
+                            variant_file_type
+                        )
+
+                        if upload_success:
+                            # Add record to DB
+                            add_success = await db.add_variant(
+                                original_emote.id,
+                                original_emote.guild_id,
+                                effects_signature,
+                                variant_s3_path,  # Store the full S3 key
+                                variant_file_type
+                            )
+                            if not add_success:
+                                print(f"Failed to add variant record to DB for {variant_s3_path}")
+                        else:
+                            print(
+                                f"Failed to upload variant to S3 for {original_emote.name} ({effects_signature}): {upload_error}")
+                    else:
+                        print(
+                            f"Skipping variant cache save due to critical pipeline errors for {original_emote.name} ({effects_signature})")
+
+            # Increment Usage Count (once per valid request)
+            await db.increment_emote_usage(original_emote.id)
+
+        # --- Send Emote ---
+        if final_emote_to_send:
+            if final_emote_to_send.img_data:
+                extra_args = calculate_extra_args(timer.elapsedTime, final_emote_to_send, was_cached)
+                await send_emote(message, final_emote_to_send, *extra_args)
+            else:
+                # Handle failure state where img_data is missing
+                print(f"Error: Final emote state for {original_emote.name} has no image data.")
+                init_error = final_emote_to_send.errors.get("initialize")
+                if init_error:
+                    error_msg = f"Failed to fetch original emote data: {init_error}"
+                else:
+                    error_msg = "Failed to process emote: No final image data."
+                    if final_emote_to_send.errors:
+                        first_err = next(iter(final_emote_to_send.errors.values()))
+                        error_msg += f"\nDetails: {first_err.splitlines()[0]}"[:200]
+                await send_error_embed(message, error_msg)
+        else:
+            print(f"Critical error: No final emote state available for {emote_name}")
+            await send_error_embed(message, "A critical error occurred while processing the emote.")
 
     async def handle_april_fools(self, message: discord.Message):
+        """Processes messages in designated channels for April Fools UwU rules."""
         content = message.clean_content
-        image_data = None
         guild_id = message.guild.id
         user_id = message.author.id
+        max_strikes = 3
 
         image_url = None
-        valid_formats = ["png", "webm", "jpg", "jpeg", "gif"]
+        img_formats = ["png", "jpg", "jpeg", "gif", "webp"]
         for attachment in message.attachments:
-            if any(attachment.filename.lower().endswith(ext) for ext in valid_formats):
-                image_url = attachment.url
-                break
+            if any(attachment.filename.lower().endswith(ext) for ext in img_formats):
+                if attachment.size < 20 * 1024 * 1024:  # Check size limit
+                    image_url = attachment.url
+                    break
 
-        # try:
-        strikes = await db.get_strikes(user_id, guild_id)
-        analysis = await analyze_uwu(content, image_url, strikes)
+        if not content and not image_url:
+            return  # Skip messages with no content
 
-        if analysis.get("isUwU", False):
-            # await message.add_reaction("✅")  # UwU approved
-            pass
-        else:
-            await message.channel.typing()
-            # Increment strike count
-            current_strikes = await db.increment_strike(user_id, guild_id)
-            # current_strikes = 0
+        try:
+            current_strikes = await db.get_strikes(user_id, guild_id)
+            thinking_reaction_task = asyncio.create_task(message.add_reaction("🤔"))
+            analysis = await analyze_uwu(content, image_url, current_strikes)
 
-            if current_strikes >= 3:
-                # Revoke posting privileges
-                channel_names = ["general-3-uwu", "general-3"]
+            try:
+                await thinking_reaction_task
+                await message.remove_reaction("🤔", message.guild.me)
+            except (asyncio.CancelledError, discord.NotFound, discord.Forbidden):
+                pass  # Ignore errors removing reaction
 
-                channel = next(
-                    (discord.utils.get(message.guild.channels, name=name) for name in channel_names if
-                     discord.utils.get(message.guild.channels, name=name)),
-                    None
-                )
-
-                await channel.set_permissions(
-                    message.author,
-                    send_messages=False,
-                    reason="3 strikes reached"
-                )
-                await db.reset_strikes(user_id, guild_id)
-                await message.add_reaction("❌")
-                first_lines = [
-                    "**Oopsie!**",
-                    "**ZOMG!!**",
-                    "**UwU, nuuu!**",
-                    "**Oh noes!**",
-                    "**Sowwy!**",
-                    "**Nyaa!**",
-                    "**Hewwo?**",
-                    "**Eep!**"
-                ]
-                first_line = random.choice(first_lines)
-                await message.reply(
-                    f"{first_line} 🚨🚨🚨\n"
-                    f"{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
-                    f"B-bettew wuck next time, nya~! ✨"
-                )
+            if analysis.get("isUwU", False):
+                await message.add_reaction("✅")
             else:
-                alert_lines = [
-                    "**Non-UwU Alert!**",
-                    "**Oops, no UwU!**",
-                    "**Aw-aw missing!**",
-                    "**Nyoo! Not UwU!**",
-                    "**Alert! No UwU!**"
-                ]
-                alert_line = random.choice(alert_lines)
-                strikes_left = 3 - current_strikes
-                await message.reply(
-                    f"{alert_line} 🚨\n"
-                    f"{analysis['reason']}\n\n"
-                    f"Stwike {current_strikes}/3 - "
-                    f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ⚠️\n\n",
-                    mention_author=True
-                )
-                await message.add_reaction("❌")  # Non-UwU reaction
+                await message.add_reaction("❌")
+                await message.channel.typing()
+                new_strike_count = await db.increment_strike(user_id, guild_id)
+                reason = analysis.get("reason", "No weason pwovided... T_T")
 
-        # except Exception as e:
-        #     print(f"Error processing April Fools message: {e}")
-        #     await message.reply(f"Error processing April Fools message. Please try again later. \n {(str(e))}")
-        #     await message.add_reaction("⚠️")
+                if new_strike_count >= max_strikes:
+                    channel_names = ["general-3-uwu", "general-3"]
+                    channel = discord.utils.find(lambda c: c.name in channel_names, message.guild.text_channels)
+                    if channel:
+                        try:
+                            await channel.set_permissions(
+                                message.author, send_messages=False,
+                                reason=f"April Fools: Reached {max_strikes} strikes."
+                            )
+                        except discord.Forbidden:
+                            print(
+                                f"Bot lacks permission to revoke send_messages for {message.author.display_name} in {channel.name}")
+                            await message.channel.send(
+                                "⚠️ **Ewwooor:** I need permissions to manage channel access! Pwease fix! 🙏")
+                        except Exception as e:
+                            print(f"Error setting permissions for {message.author.display_name} in {channel.name}: {e}")
+
+                    # await db.reset_strikes(user_id, guild_id) # Maybe don't reset immediately
+
+                    first_lines = ["**Oopsie!**", "**ZOMG!!**", "**UwU, nuuu!**", "**Oh noes!**", "**Sowwy!**",
+                                   "**Nyaa!**", "**Hewwo?**", "**Eep!**"]
+                    first_line = random.choice(first_lines)
+                    await message.reply(
+                        f"{first_line} 🚨🚨🚨\n"
+                        f"{message.author.mention}-chan, you've hit {new_strike_count}/{max_strikes} stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
+                        f"({reason})\n"  # Include reason for final strike
+                        f"B-bettew wuck next time, nya~! ✨",
+                        allowed_mentions=discord.AllowedMentions.none()  # Don't ping
+                    )
+                else:
+                    alert_lines = ["**Non-UwU Alert!**", "**Oops, no UwU!**", "**Aw-aw missing!**",
+                                   "**Nyoo! Not UwU!**", "**Alert! No UwU!**"]
+                    alert_line = random.choice(alert_lines)
+                    strikes_left = max_strikes - new_strike_count
+                    await message.reply(
+                        f"{alert_line} 🚨\n"
+                        f"{reason}\n\n"
+                        f"Stwike {new_strike_count}/{max_strikes} - "
+                        f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ⚠️",
+                        mention_author=True  # Ping user on warnings
+                    )
+
+        except Exception as e:
+            print(f"Error processing April Fools message for {message.author.id}: {e}")
+            try:
+                await message.remove_reaction("🤔", message.guild.me)
+            except:
+                pass
+            try:
+                await message.add_reaction("⚠️")
+            except:
+                pass
+            await message.reply(
+                f"Ahhh! Sowwy {message.author.mention}-chan, I had an error checking your message! >_<\nPlease tell my owner! (Error: {type(e).__name__})")
 
 
 def reset_flags():
+    """Resets cog-level state flags after processing a message."""
     SlashCommands.latency_enabled = False
-    SlashCommands.was_cached = False
     SlashCommands.debug_enabled = False
     SlashCommands.train_count = 1
 
 
 class PerformanceTimer:
+    """Async context manager for timing operations."""
+
     def __init__(self):
         self.startTime = None
         self.endTime = None
 
     async def __aenter__(self):
         self.startTime = time.perf_counter()
+        return self
 
-    async def __aexit__(self, exec_type, exec_val, exec_tb):
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
         self.endTime = time.perf_counter()
 
     @property
-    def elapsedTime(self):
-        return round(self.endTime - self.startTime, 2) if self.endTime else None
+    def elapsedTime(self) -> Optional[float]:
+        """Returns the elapsed time in seconds, rounded."""
+        if self.startTime and self.endTime:
+            return round(self.endTime - self.startTime, 3)  # Use 3 decimal places for ms precision
+        return None
