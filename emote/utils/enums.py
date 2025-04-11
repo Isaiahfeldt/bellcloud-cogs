@@ -36,6 +36,7 @@ class EmoteAddError(Enum):
                            "webm, jpg, gif, and mp4.")
     DUPLICATE_EMOTE_NAME = "That emote name already exists."
     BLACKLISTED_URL = "The URL address is blacklisted, and cannot be used."
+    NO_ATTACMENTS = "The message does not contain any media."
 
 
 class EmoteRemoveError(Enum):

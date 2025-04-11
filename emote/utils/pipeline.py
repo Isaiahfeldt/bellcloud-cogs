@@ -1,68 +1,34 @@
+# File: emote/utils/pipeline.py (Refactored)
+
 import asyncio
+import inspect
 import time
+import traceback
+from typing import Optional
 
-from emote.utils.database import Database
-from emote.utils.effects import Emote, initialize
+from .effects import Emote, initialize
 
-db = Database()
-
+# Define groups of effects that cannot be used together
 CONFLICT_GROUPS = [
-    {"latency", "latency2"}
+    # Example: {"speed", "fast", "slow"},
 ]
 
 
-# class EffectManager:
-#     EFFECTS = {
-#         'flip': {'func': flip, 'perm': 'everyone', 'priority': 10},
-#         'latency': {'func': latency, 'perm': 'mod', 'priority': 1},
-#     }
-#
-#     PERMISSION_LIST = {
-#         'owner': lambda message, self: self.bot.is_owner(message.author),
-#         'mod': lambda message, _: message.author.guild_permissions.manage_messages,
-#         'everyone': lambda _, __: True,
-#     }
-#
-#     def get_by_name(self, name, message):
-#         effect_info = self.EFFECTS.get(name)
-#         if effect_info is None:
-#             # Add an error message instead of raising an exception
-#             return None, f"Effect `{name}` not found."
-#
-#         # Check if the user has permission to use the effect
-#         perm_func = self.PERMISSION_LIST.get(effect_info['perm'])
-#         if perm_func and not perm_func(message, self):
-#             return None, f"You do not have permission to use the effect `{name}`."
-#
-#         return effect_info['func'](), None
-
-
-async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
+async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: list):
     """
-        Constructs a pipeline for processing effects on a given emote. Validates the
-        queued effects and checks if the user has the appropriate permissions to
-        execute them. Returns the constructed pipeline and a list of any issues
-        encountered.
+    Constructs a processing pipeline for an emote based on queued effects.
+    Validates effects, checks permissions, and handles conflicts.
 
-        Parameters:
-        message (Any): The message object associated with the request; its type depends
-            on the application's context.
-        emote (Emote): An instance of the Emote class representing the emote to be
-            processed.
-        queued_effects (dict): A dictionary of effect names to be queued, where keys
-            are strings representing effect names and values are their parameters.
+    Args:
+        cog_instance: The cog instance (for permissions).
+        message: The discord message or interaction.
+        emote (Emote): The initial emote object.
+        queued_effects (list): List of (effect_name, effect_args) tuples.
 
-        Returns:
-        tuple: A tuple containing:
-            - pipeline (list): A constructed list of callable functions to process
-              the emote and apply effects in sequence.
-            - issues (list): A list of encountered issues, where each issue is a
-              tuple containing:
-              - effect_name (str): The name of the effect that caused the issue.
-              - error_code (str): A string code describing the issue (e.g.,
-                "NotFound" or "PermissionDenied").
+    Returns:
+        list: A list of awaitable functions representing the pipeline steps.
     """
-    from emote.slash_commands import SlashCommands
+    from ..slash_commands import SlashCommands  # Local import
 
     pipeline = [(lambda _: initialize(emote))]
     effects_list = SlashCommands.EFFECTS_LIST
@@ -71,78 +37,191 @@ async def create_pipeline(self, message, emote: Emote, queued_effects: dict):
 
     for effect_name, effect_args in queued_effects:
         effect_info = effects_list.get(effect_name)
+
+        # --- Validation ---
         if effect_info is None:
-            emote.issues[f"{effect_name}_effect"] = "NotFound"
+            emote.issues[f"{effect_name}_lookup"] = "EffectNotFound"
             continue
 
         if effect_info.get("single_use", False):
             if effect_name in seen_effects:
-                emote.issues[f"{effect_name}_effect"] = "DuplicateNotAllowed"
+                emote.issues[f"{effect_name}_usage"] = "DuplicateNotAllowed"
                 continue
             seen_effects.add(effect_name)
 
-        # Check permissions
-        if not permission_list[effect_info['perm']](message, self):
-            emote.issues[f"{effect_name}_effect"] = "PermissionDenied"
+        # --- Permissions ---
+        perm_key = effect_info.get("perm", "everyone")
+        perm_func = permission_list.get(perm_key)
+        allowed = False
+        if perm_func:
+            # Handle owner check specifically if needed by the permission function implementation
+            if perm_key == "owner":
+                # Assuming cog_instance.bot exists and has is_owner
+                allowed = await cog_instance.bot.is_owner(message.author)
+            else:
+                allowed = perm_func(message, cog_instance)
+        else:
+            # Log if a permission key is defined but not found in the list
+            print(f"Warning: Unknown permission key '{perm_key}' for effect '{effect_name}'")
+            allowed = False  # Default to not allowed if key is invalid
+
+        if not allowed:
+            emote.issues[f"{effect_name}_permission"] = "PermissionDenied"
             continue
 
-        # Check for conflicting effects
+        # --- Conflicts ---
         applied_conflicts = []
         for group in CONFLICT_GROUPS:
             if effect_name in group:
-                for other_effect in group:
-                    if other_effect != effect_name and other_effect in emote.effect_chain:
-                        applied_conflicts.append(other_effect)
+                # Check if any other effect from the same group is already added
+                conflicts_in_group = group.intersection(emote.effect_chain.keys())
+                conflicts_in_group.discard(effect_name)  # Don't conflict with self
+                if conflicts_in_group:
+                    applied_conflicts.extend(list(conflicts_in_group))
 
         if applied_conflicts:
-            emote.errors[effect_name] = (
-                f"Cannot apply {effect_name} because conflicting effect(s) "
-                f"already applied: {', '.join(applied_conflicts)}"
-            )
+            conflicts_str = ', '.join(applied_conflicts)
+            emote.errors[effect_name] = f"Conflict with: {conflicts_str}"
+            emote.issues[f"{effect_name}_conflict"] = f"Conflicts with {conflicts_str}"
             continue
 
-        emote.effect_chain[effect_name] = True
+        emote.effect_chain[effect_name] = True  # Mark effect as added
 
-        async def effect_wrapper(emote, _effect_name=effect_name, func=effect_info['func'], args=effect_args):
-            try:
-                return await func(emote, *args)
-            except TypeError as e:
-                if "positional arguments" in str(e):
-                    emote.errors[f"{_effect_name}_effect"] = "TooManyArguments"
-                else:
-                    emote.errors[f"{_effect_name}_effect"] = f"InvalidArguments: {str(e)}"
-                return emote
-            except Exception as e:
-                emote.errors[f"{_effect_name}_effect"] = str(e)
-                return emote
+        # --- Pipeline Step Creation ---
+        is_blocking = effect_info.get("blocking", False)
+        func = effect_info['func']
+        args_tuple = tuple(effect_args)
+        # Capture name for error reporting inside the wrapper
+        _effect_name_captured = effect_name
 
-        pipeline.append(effect_wrapper)
+        if is_blocking:
+            # Wrapper for sync effects needing executor
+            async def blocking_wrapper(current_emote: Optional[Emote], _func=func, _args=args_tuple,
+                                       _name=_effect_name_captured):
+                if not current_emote: return None  # Skip if previous step failed critically
+                if current_emote.img_data is None and _name != 'initialize':
+                    current_emote.errors[_name] = "Skipped: No image data"
+                    return current_emote
+                try:
+                    loop = asyncio.get_running_loop()
+                    # Execute synchronous function in a thread pool
+                    modified_emote = await loop.run_in_executor(None, _func, current_emote, *_args)
+                    return modified_emote
+                except Exception as e:
+                    tb = traceback.format_exc()
+                    if current_emote:
+                        current_emote.errors[f"{_name}_executor"] = f"Execution Error: {e}\n```\n{tb}\n```"
+                    print(f"Error in executor for '{_name}': {e}")
+                    return current_emote  # Return state with error recorded
+
+            pipeline.append(blocking_wrapper)
+
+        else:
+            # Wrapper for async effects or non-blocking sync effects
+            async def non_blocking_wrapper(current_emote: Optional[Emote], _func=func, _args=args_tuple,
+                                           _name=_effect_name_captured):
+                if not current_emote: return None
+                if current_emote.img_data is None and _name != 'initialize':
+                    current_emote.errors[_name] = "Skipped: No image data"
+                    return current_emote
+                try:
+                    # Await if func is async, call directly if sync
+                    if inspect.iscoroutinefunction(_func):
+                        modified_emote = await _func(current_emote, *_args)
+                    else:
+                        modified_emote = _func(current_emote, *_args)
+                    return modified_emote
+                except TypeError as e:
+                    tb = traceback.format_exc()
+                    if current_emote:
+                        err_key = f"{_name}_args"
+                        if "positional arguments" in str(e) or "required positional argument" in str(e):
+                            current_emote.errors[err_key] = f"Incorrect arguments.\n```\n{tb}\n```"
+                        else:
+                            current_emote.errors[err_key] = f"Invalid arguments: {e}\n```\n{tb}\n```"
+                    print(f"Argument error in '{_name}': {e}")
+                    return current_emote
+                except Exception as e:
+                    tb = traceback.format_exc()
+                    if current_emote:
+                        current_emote.errors[f"{_name}_execution"] = f"Execution Error: {e}\n```\n{tb}\n```"
+                    print(f"Error in effect '{_name}': {e}")
+                    return current_emote
+
+            pipeline.append(non_blocking_wrapper)
 
     return pipeline
 
 
-async def execute_pipeline(pipeline):
+async def execute_pipeline(pipeline: list) -> Optional[Emote]:
     """
-    Executes a sequence of asynchronous functions in a pipeline, passing the result of
-    each step to the next.
+    Executes the pipeline steps sequentially.
 
-    :param pipeline: List of asynchronous functions to execute in order.
-    :emote: The final result after executing all functions in the pipeline.
+    Args:
+        pipeline (list): The list of awaitable functions (steps).
+
+    Returns:
+        Optional[Emote]: The final Emote state, or None on critical failure.
     """
-    emote = None
+    emote_state: Optional[Emote] = None
+    current_step_name = "initialize"  # Start with initialize step
+
     for operation in pipeline:
+        start_time = time.monotonic()
+        # Try to get a better name for logging/errors if it's a wrapper
+        op_name = getattr(operation, '__name__', 'unknown_step')
+        if op_name in ('blocking_wrapper', 'non_blocking_wrapper') and hasattr(operation,
+                                                                               '__closure__') and operation.__closure__:
+            try:
+                closure_vars = inspect.getclosurevars(operation)
+                if '_name' in closure_vars.nonlocals:
+                    op_name = closure_vars.nonlocals['_name']
+            except Exception:
+                pass  # Ignore errors getting closure info
+
+        current_step_name = op_name  # Update step name for error reporting
+
         try:
-            # Add timeout (e.g., 30 seconds per effect)
-            emote = await asyncio.wait_for(operation(emote), timeout=60)
+            # Execute step with timeout
+            emote_state = await asyncio.wait_for(operation(emote_state), timeout=60.0)
+
+            if emote_state is None:
+                print(f"Critical Error: Pipeline step '{current_step_name}' returned None.")
+                return None  # Abort pipeline
+
+            # Check if the step itself recorded a critical error
+            critical_error = False
+            if hasattr(emote_state, 'errors') and isinstance(emote_state.errors, dict):
+                # Check for specific error keys indicating pipeline should stop
+                for key in emote_state.errors.keys():
+                    if key == "timeout" or key == "pipeline_execution" \
+                            or key.endswith("_executor") or key.endswith("_execution"):
+                        critical_error = True
+                        break
+
+            if critical_error:
+                print(f"Pipeline halted after step '{current_step_name}' due to error recorded within step.")
+                break  # Stop processing further steps
+
+            # elapsed = time.monotonic() - start_time # Optional: log time per step
+
         except asyncio.TimeoutError:
-            emote.errors["timeout"] = "Operation timed out."
-            break
-    return emote
+            error_msg = f"Pipeline step '{current_step_name}' timed out (60s)."
+            print(error_msg)
+            if emote_state and hasattr(emote_state, 'errors'):
+                emote_state.errors["timeout"] = error_msg
+            else:  # Timeout likely happened early, before emote_state was initialized properly
+                return None  # Cannot reliably add error, return None
+            break  # Stop pipeline on timeout
 
+        except Exception as e:
+            tb = traceback.format_exc()
+            error_msg = f"Pipeline Error during '{current_step_name}': {e}\n```\n{tb}\n```"
+            print(error_msg)
+            if emote_state and hasattr(emote_state, 'errors'):
+                emote_state.errors["pipeline_execution"] = error_msg
+            else:  # Error happened early
+                return None
+            break  # Stop pipeline on general error
 
-async def timed_execution(func, input_tuple, start_time):
-    """Times the execution of a function and returns the result with elapsed time."""
-    result_tuple = await func(input_tuple)
-    end_time = time.perf_counter()
-    time_elapsed = end_time - start_time
-    return result_tuple, time_elapsed
+    return emote_state
