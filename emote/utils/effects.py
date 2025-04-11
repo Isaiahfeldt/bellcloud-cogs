@@ -861,10 +861,10 @@ def flip(emote: Emote, direction: str = "h") -> Emote:
     Errors stored in emote.errors['flip'].
 
     User:
-        Mirrors the emote. You can flip horizontally (h), vertically (v),
-        or both (hv). Works with static images and animated GIFs.
+        Mirrors the emote. You can flip horizontally (h), vertically (v),or both (hv).
 
         Default is a horizontal flip if no direction is specified.
+        Works with static images and animated GIFs.
 
         Usage:
         `:aspire_flip:` - Flips the emote horizontally.
