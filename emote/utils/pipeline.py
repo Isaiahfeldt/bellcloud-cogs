@@ -124,29 +124,29 @@ async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: l
                 if current_emote.img_data is None and _name != 'initialize':
                     current_emote.errors[_name] = "Skipped: No image data"
                     return current_emote
-                # try:
-                # Await if func is async, call directly if sync
-                if inspect.iscoroutinefunction(_func):
-                    modified_emote = await _func(current_emote, *_args)
-                else:
-                    modified_emote = _func(current_emote, *_args)
-                return modified_emote
-                # except TypeError as e:
-                #     tb = traceback.format_exc()
-                #     if current_emote:
-                #         err_key = f"{_name}_args"
-                #         if "positional arguments" in str(e) or "required positional argument" in str(e):
-                #             current_emote.errors[err_key] = f"Incorrect arguments.\n```\n{tb}\n```"
-                #         else:
-                #             current_emote.errors[err_key] = f"Invalid arguments: {e}\n```\n{tb}\n```"
-                #     print(f"Argument error in '{_name}': {e}")
-                #     return current_emote
-                # except Exception as e:
-                #     tb = traceback.format_exc()
-                #     if current_emote:
-                #         current_emote.errors[f"{_name}_execution"] = f"Execution Error: {e}\n```\n{tb}\n```"
-                #     print(f"Error in effect '{_name}': {e}")
-                #     return current_emote
+                try:
+                    # Await if func is async, call directly if sync
+                    if inspect.iscoroutinefunction(_func):
+                        modified_emote = await _func(current_emote, *_args)
+                    else:
+                        modified_emote = _func(current_emote, *_args)
+                    return modified_emote
+                except TypeError as e:
+                    tb = traceback.format_exc()
+                    if current_emote:
+                        err_key = f"{_name}_args"
+                        if "positional arguments" in str(e) or "required positional argument" in str(e):
+                            current_emote.errors[err_key] = f"Incorrect arguments.\n```\n{tb}\n```"
+                        else:
+                            current_emote.errors[err_key] = f"Invalid arguments: {e}\n```\n{tb}\n```"
+                    print(f"Argument error in '{_name}': {e}")
+                    return current_emote
+                except Exception as e:
+                    tb = traceback.format_exc()
+                    if current_emote:
+                        current_emote.errors[f"{_name}_execution"] = f"Execution Error: {e}\n```\n{tb}\n```"
+                    print(f"Error in effect '{_name}': {e}")
+                    return current_emote
 
             pipeline.append(non_blocking_wrapper)
 
