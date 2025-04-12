@@ -1,45 +1,54 @@
-# --- START OF FILE user_commands.py ---
-
-from typing import Dict, Callable, Optional, Any  # For type hinting
-
 import discord
 from discord import app_commands
 from discord.ui import Select, View
-from redbot.core import commands
+from redbot.core import commands  # checks might still be useful if you add other permission checks
+# Red type hint import removed as __init__ is gone, but can be kept if preferred for type hints elsewhere
+# from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
+
+# Assuming SlashCommands cog exists and has EFFECTS_LIST accessible via self.bot.get_cog
+# from .slash_commands import SlashCommands # Or however EFFECTS_LIST is accessed
 
 _ = Translator("Emote", __file__)
 
 
 # --- Select Menu Class ---
-# (No changes needed here)
 class EffectSelect(Select):
     def __init__(self, options: list[discord.SelectOption]):
+        # Ensure we don't exceed 25 options
+        display_options = options[:25]
         super().__init__(
             placeholder="Choose one or more effects...",
             min_values=1,
-            max_values=len(options),
-            options=options,
+            max_values=len(display_options),  # Can select up to the number of displayed options
+            options=display_options,
             custom_id="effect_multi_select"
         )
 
     async def callback(self, interaction: discord.Interaction):
+        # self.values contains the 'value' strings of selected options
         selected_effects = ", ".join(self.values)
         response_message = f"You selected the following effects: `{selected_effects}`.\n"
         response_message += "(Next step: Apply these effects to the target message's image!)"
+
+        # Update the message and disable the view
         await interaction.response.edit_message(content=response_message, view=None)
 
 
 # --- View Class ---
-# (No changes needed here)
 class EffectView(View):
     message: discord.Message | None = None
 
     def __init__(self, available_options: list[discord.SelectOption], *, timeout=180):
         super().__init__(timeout=timeout)
-        if available_options:
+
+        if not available_options:
+            # If no options, the view is created empty, which might be okay
+            # or handle this state before creating the view in the command.
+            pass
+        else:
+            # Add the Select menu using the passed-in options
             self.add_item(EffectSelect(options=available_options))
-        # else: handle no options case if necessary (e.g. log, don't add item)
 
     async def on_timeout(self):
         if self.message:
@@ -48,17 +57,22 @@ class EffectView(View):
                     item.disabled = True
                 await self.message.edit(content="Effect selection timed out.", view=self)
             except (discord.NotFound, discord.Forbidden):
+                # Ignore if message deleted or permissions are missing
                 pass
-        # self.stop()
+        # self.stop() # Stop listening
 
-    # Optional check
+    # Optional: interaction check (e.g., restrict to original user)
     # async def interaction_check(self, interaction: discord.Interaction) -> bool:
-    #     return interaction.user.id == self.author_id
+    #     # return interaction.user.id == self.author_id # Needs author_id stored
+    #     return True
 
 
 @cog_i18n(_)
 class UserCommands(commands.Cog):
-    def _parse_docstring_for_description(self, func: Callable) -> str:
+    # No __init__(self, bot) here - relies on the main cog's __init__
+
+    # --- Helper Function to Parse Docstring ---
+    def _parse_docstring_for_description(self, func) -> str:
         """Extracts the user description from the function's docstring."""
         doc = getattr(func, "__doc__", None) or ""
         lines = doc.strip().splitlines()
@@ -73,10 +87,13 @@ class UserCommands(commands.Cog):
                 for next_line in lines[user_line_index + 1:]:
                     stripped_next_line = next_line.strip()
                     if stripped_next_line:
-                        return stripped_next_line.split('.')[0].strip()
+                        # Take the first sentence, max 100 chars for description
+                        desc = stripped_next_line.split('.')[0].strip()
+                        return desc[:100]
         except Exception:
+            # Log error maybe? logging.exception("Error parsing docstring")
             pass
-        return "No description available."
+        return "No description available."[:100]  # Fallback, ensure max length
 
     @app_commands.user_install()
     @app_commands.command(name="effect", description="Choose effects to apply to an image.")
@@ -84,36 +101,22 @@ class UserCommands(commands.Cog):
     async def effect(self, interaction: discord.Interaction) -> None:
         """Sends a select menu to choose image effects based on permissions."""
 
+        # Access the SlashCommands cog via self.bot (inherited from Emotes cog)
+        # Make sure "SlashCommands" is the correct registered name of that cog
         slash_cog = self.bot.get_cog("SlashCommands")
-        if not slash_cog:
+        if not slash_cog or not hasattr(slash_cog, "EFFECTS_LIST"):
+            # Maybe log this error server-side as well
             await interaction.response.send_message(
-                "Error: The SlashCommands cog is not loaded.", ephemeral=True
+                "Error: The effects list is currently unavailable. Please contact the bot owner.",
+                ephemeral=True
             )
             return
 
-        # Safely get attributes from the SlashCommands cog
-        effects_list_data: Optional[Dict[str, Dict[str, Any]]] = getattr(slash_cog, "EFFECTS_LIST", None)
-        reaction_effects_data: Optional[Dict[str, Callable]] = getattr(slash_cog, "reaction_effects", None)
-
-        if not effects_list_data:
-            await interaction.response.send_message(
-                "Error: The effects list data is missing.", ephemeral=True
-            )
-            return
-        if not reaction_effects_data:
-            await interaction.response.send_message(
-                "Error: The reaction effects data is missing.", ephemeral=True
-            )
-            return
-
-        # --- Create a reverse lookup map: function -> emoji ---
-        # This makes finding the emoji for a given function much faster
-        function_to_emoji: Dict[Callable, str] = {
-            func: emoji for emoji, func in reaction_effects_data.items()
-        }
-        # -------------------------------------------------------
-
+        # Assume EFFECTS_LIST is a dictionary {name: {"func": func, "perm": perm_level}}
+        effects_list_data = slash_cog.EFFECTS_LIST
         available_options = []
+
+        # Check ownership using self.bot.is_owner (inherited from Emotes cog)
         is_owner = await self.bot.is_owner(interaction.user)
 
         for name, data in effects_list_data.items():
@@ -121,56 +124,41 @@ class UserCommands(commands.Cog):
             func = data.get("func")
 
             if not func:
-                continue
+                continue  # Skip effects without a function defined
 
             allowed = False
             if perm == "owner":
                 allowed = is_owner
-            # elif perm == "mod": # No guild context in DMs
-            #     allowed = False
             elif perm == "everyone":
                 allowed = True
+            # Add other permission levels if needed (e.g., checks.mod_or_permissions)
+            # Note: Guild-based perms like 'mod' won't work reliably in DMs here.
 
             if allowed:
                 description = self._parse_docstring_for_description(func)
-                if len(description) > 100:
-                    description = description[:97] + "..."
-
-                # --- Look up the emoji for this function ---
-                emoji_for_option = function_to_emoji.get(func)  # Returns None if not found
-                # ------------------------------------------
-
                 available_options.append(
                     discord.SelectOption(
                         label=name.capitalize(),
                         value=name,
                         description=description
-                        # emoji=emoji_for_option  # Pass the found emoji (or None)
                     )
                 )
 
+        # --- Send the response ---
         if not available_options:
             await interaction.response.send_message(
-                "You do not have permission to use any effects, or no effects are configured.",
+                "You do not have permission to use any available effects, or no effects are configured for DM use.",
                 ephemeral=True
             )
             return
 
-        if len(available_options) > 25:
-            # Consider how to handle > 25 options. Pagination? Multiple menus?
-            # For now, just take the first 25 and warn.
-            await interaction.response.send_message(
-                "Warning: Too many effects available. Showing the first 25.",
-                ephemeral=True  # Maybe send this before the main message?
-            )
-            available_options = available_options[:25]
-
+        # Create the view with the filtered options
         view = EffectView(available_options=available_options, timeout=180)
 
+        # Send message with the view
         await interaction.response.send_message(
             "Please select the effect(s) you want to apply:",
             view=view
         )
+        # Store the message for potential timeout editing
         view.message = await interaction.original_response()
-
-# --- END OF FILE user_commands.py ---
