@@ -15,6 +15,9 @@ class UserCommands(commands.Cog):
     @app_commands.command(name="effect", description="Adds effects to images")
     @app_commands.allowed_contexts(guilds=False, dms=True, private_channels=True)
     @app_commands.describe(effect_name="Name of the effect to apply")
+    @app_commands.choices(effect_name=[
+        app_commands.Choice(name=name, value=name) for name in SlashCommands.EFFECTS_LIST
+    ])
     async def effect(self, interaction: discord.Interaction, effect_name: str) -> None:
         effect_info = SlashCommands.EFFECTS_LIST.get(effect_name.lower())
 
@@ -42,24 +45,3 @@ class UserCommands(commands.Cog):
         effect_func = effect_info.get("func")
 
         await interaction.response.send_message(f'Here is your function: {effect_func}')
-
-    @effect.autocomplete("effect_name")
-    async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
-        suggestions = []
-        for name, data in SlashCommands.EFFECTS_LIST.items():
-            if current.lower() in name.lower():
-                # Extract first sentence of user documentation
-                doc = data['func'].__doc__ or ""
-                doc_lines = doc.splitlines()
-                user_doc = ""
-                for line in doc_lines:
-                    if line.strip().startswith("User:"):
-                        next_line = doc_lines[doc_lines.index(line) + 1].strip()
-                        user_doc = next_line.split('.')[0]
-                        break
-
-                display_name = f"{name} - {user_doc}" if user_doc else name
-
-                suggestions.append(app_commands.Choice(name=display_name, value=name))
-
-        return suggestions
