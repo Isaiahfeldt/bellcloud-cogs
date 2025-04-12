@@ -58,14 +58,14 @@ class Emotes(
             extras={"red_force_enable": True},
         )
 
-        self.apply_effect_context_menu = discord.app_commands.ContextMenu(
+        self.apply_effect = discord.app_commands.ContextMenu(
             name="Apply Effect",
-            callback=self.apply_effect_message_callback,
+            callback=self.apply_effect_context,
             type=discord.AppCommandType.message,
         )
 
         self.bot.tree.add_command(self.add_as_emote)
-        self.bot.tree.add_command(self.apply_effect_context_menu)
+        self.bot.tree.add_command(self.apply_effect)
 
     async def cog_load(self):
         from emote.slash_commands import db
@@ -79,7 +79,10 @@ class Emotes(
 
     # -- Command related functions --#
 
-    # Add to the Emotes class
     async def add_as_emote_context(self, interaction: discord.Interaction, message: discord.Message):
         """Add an attachment from this message as an emote"""
         await self.handle_add_emote(interaction, message)
+
+    async def apply_effect_context(self, interaction: discord.Interaction, message: discord.Message):
+        """Apply an effect to an emote"""
+        await self.handle_apply_effect(interaction, message)
