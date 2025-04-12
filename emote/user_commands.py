@@ -46,7 +46,7 @@ class UserCommands(commands.Cog):
     @effect.autocomplete("effect_name")
     async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
         suggestions = []
-        for name, data in self.EFFECTS_LIST.items():
+        for name, data in SlashCommands.EFFECTS_LIST.items():
             perm = data.get("perm", "everyone")
             allowed = False
             if perm == "owner":
