@@ -14,10 +14,10 @@ class UserCommands(commands.Cog):
     async def effect(self, interaction: discord.Interaction) -> None:
         message = interaction.message
 
-        image_attachment = None
-        for attachment in message.attachments:
-            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
-                image_attachment = attachment
-                break
+        # image_attachment = None
+        # for attachment in message.attachments:
+        #     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
+        #         image_attachment = attachment
+        #         break
 
         await message.reply(content=f"This is a test! {message.content}", mention_author=False)
