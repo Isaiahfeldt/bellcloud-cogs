@@ -53,6 +53,8 @@ class EffectSelect(Select):
 
         selected_effects = self.values
 
+        await interaction.delete_original_response()
+
         await interaction.followup.send(
             f"Okay, I would apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
             ephemeral=True
