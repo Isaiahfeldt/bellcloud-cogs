@@ -11,5 +11,6 @@ class UserCommands(commands.Cog):
 
     @app_commands.command()
     @app_commands.user_install()
+    @app_commands.allowed_contexts(guilds=False, dms=True, private_channels=False)
     async def effect(self, interaction: discord.Interaction) -> None:
         await interaction.response.send_message('I am installed in users by default!')
