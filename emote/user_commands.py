@@ -47,16 +47,7 @@ class UserCommands(commands.Cog):
     async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
         suggestions = []
         for name, data in SlashCommands.EFFECTS_LIST.items():
-            perm = data.get("perm", "everyone")
-            allowed = False
-            if perm == "owner":
-                allowed = await SlashCommands.bot.is_owner(interaction.user)
-            elif perm == "mod":
-                allowed = interaction.user.guild_permissions.manage_messages
-            elif perm == "everyone":
-                allowed = True
-
-            if allowed and current.lower() in name.lower():
+            if current.lower() in name.lower():
                 # Extract first sentence of user documentation
                 doc = data['func'].__doc__ or ""
                 doc_lines = doc.splitlines()
@@ -67,8 +58,8 @@ class UserCommands(commands.Cog):
                         user_doc = next_line.split('.')[0]
                         break
 
-                    display_name = f"{name} - {user_doc}" if user_doc else name
+                display_name = f"{name} - {user_doc}" if user_doc else name
 
-                    suggestions.append(app_commands.Choice(name=display_name, value=name))
+                suggestions.append(app_commands.Choice(name=display_name, value=name))
 
         return suggestions
