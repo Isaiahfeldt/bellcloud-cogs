@@ -1,18 +1,5 @@
-#  Copyright (c) 2023, Isaiah Feldt
-#  ͏
-#     - This program is free software: you can redistribute it and/or modify it
-#     - under the terms of the GNU Affero General Public License (AGPL) as published by
-#     - the Free Software Foundation, either version 3 of this License,
-#     - or (at your option) any later version.
-#  ͏
-#     - This program is distributed in the hope that it will be useful,
-#     - but without any warranty, without even the implied warranty of
-#     - merchantability or fitness for a particular purpose.
-#     - See the GNU Affero General Public License for more details.
-#  ͏
-#     - You should have received a copy of the GNU Affero General Public License
-#     - If not, please see <https://www.gnu.org/licenses/#GPL>.
-
+import discord
+from discord import app_commands
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
@@ -21,4 +8,16 @@ _ = Translator("Emote", __file__)
 
 @cog_i18n(_)
 class UserCommands(commands.Cog):
-    pass
+
+    @app_commands.command()
+    @app_commands.user_install()
+    async def effect(self, interaction: discord.Interaction) -> None:
+        message = interaction.message
+
+        image_attachment = None
+        for attachment in message.attachments:
+            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
+                image_attachment = attachment
+                break
+
+        await message.reply(content=f"This is a test! {message.content}", mention_author=False)
