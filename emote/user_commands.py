@@ -17,6 +17,7 @@ class UserCommands(commands.Cog):
     @app_commands.describe(effect_name="Name of the effect to apply")
     async def effect(self, interaction: discord.Interaction, effect_name: str) -> None:
         effect_info = SlashCommands.EFFECTS_LIST.get(effect_name.lower())
+
         if not effect_info:
             await interaction.response.send_message(f"Effect '{effect_name}' not found.", ephemeral=True)
             return
@@ -41,3 +42,32 @@ class UserCommands(commands.Cog):
         effect_func = effect_info.get("func")
 
         await interaction.response.send_message(f'Here is your function: {effect_func}')
+
+    @effect.autocomplete("effect_name")
+    async def effect_autocomplete(self, interaction: discord.Interaction, current: str):
+        suggestions = []
+        for name, data in self.EFFECTS_LIST.items():
+            perm = data.get("perm", "everyone")
+            allowed = False
+            if perm == "owner":
+                allowed = await SlashCommands.bot.is_owner(interaction.user)
+            elif perm == "mod":
+                allowed = interaction.user.guild_permissions.manage_messages
+            elif perm == "everyone":
+                allowed = True
+
+            if allowed and current.lower() in name.lower():
+                # Extract first sentence of user documentation
+                doc = data['func'].__doc__ or ""
+                doc_lines = doc.splitlines()
+                user_doc = ""
+                for line in doc_lines:
+                    if line.strip().startswith("User:"):
+                        next_line = doc_lines[doc_lines.index(line) + 1].strip()
+                        user_doc = next_line.split('.')[0]
+                        break
+
+                    display_name = f"{name} - {user_doc}" if user_doc else name
+
+                suggestions.append(app_commands.Choice(name=display_name, value=name))
+        return suggestions
