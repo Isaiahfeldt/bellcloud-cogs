@@ -6,7 +6,6 @@ import discord
 from discord import app_commands
 from discord.ui import Select, View
 from redbot.core import commands
-from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
 _ = Translator("Emote", __file__)
@@ -59,11 +58,6 @@ class EffectView(View):
 
 @cog_i18n(_)
 class UserCommands(commands.Cog):
-    def __init__(self, bot: Red):
-        self.bot = bot
-        # Ensure SlashCommands cog exists and has the necessary attributes
-        # You might want to do this check more robustly, perhaps in cog_load
-
     def _parse_docstring_for_description(self, func: Callable) -> str:
         """Extracts the user description from the function's docstring."""
         doc = getattr(func, "__doc__", None) or ""
@@ -151,7 +145,7 @@ class UserCommands(commands.Cog):
                         label=name.capitalize(),
                         value=name,
                         description=description
-                        # emoji=emoji_for_option # Pass the found emoji (or None)
+                        # emoji=emoji_for_option  # Pass the found emoji (or None)
                     )
                 )
 
@@ -178,3 +172,5 @@ class UserCommands(commands.Cog):
             view=view
         )
         view.message = await interaction.original_response()
+
+# --- END OF FILE user_commands.py ---
