@@ -69,5 +69,6 @@ class UserCommands(commands.Cog):
 
                     display_name = f"{name} - {user_doc}" if user_doc else name
 
-                suggestions.append(app_commands.Choice(name=display_name, value=name))
+                    suggestions.append(app_commands.Choice(name=display_name, value=name))
+
         return suggestions
