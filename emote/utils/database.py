@@ -47,7 +47,6 @@ class Database:
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
-        await self.init_schema()
 
     async def close_pool(self):
         """Close the asyncpg connection pool."""
@@ -202,64 +201,3 @@ class Database:
             await self.execute_query(update_query, emote_name, guild_id)
 
         return Emote(**fix_emote_dict(emote_rows))
-
-    async def init_schema(self):
-        """
-        Initialize the necessary schema and table if they do not exist.
-        """
-        # SQL to create the schema if it doesn't exist
-        create_schema_query = "CREATE SCHEMA IF NOT EXISTS april;"
-
-        # SQL to create the table 'strikes' in the schema, adjust columns as needed.
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS april.strikes (
-            user_id BIGINT NOT NULL,
-            guild_id BIGINT NOT NULL,
-            strikes INTEGER DEFAULT 0,
-            PRIMARY KEY (user_id, guild_id)
-        );
-        """
-
-        # Execute the commands
-        await self.execute_query(create_schema_query)
-        await self.execute_query(create_table_query)
-
-    async def increment_strike(self, user_id: int, guild_id: int) -> int:
-        query = """
-            INSERT INTO april.strikes (user_id, guild_id, strikes)
-            VALUES ($1, $2, 1)
-            ON CONFLICT (user_id, guild_id)
-            DO UPDATE SET strikes = april.strikes.strikes + 1
-            RETURNING strikes;
-        """
-        return await self.execute_query(query, user_id, guild_id, fetchval=True)
-
-    async def decrease_strike(self, user_id: int, guild_id: int) -> int:
-        """Decrement the strike count for a user in a given guild."""
-        query = """
-            UPDATE april.strikes 
-            SET strikes = GREATEST(strikes - 1, 0)
-            WHERE user_id = $1 AND guild_id = $2
-            RETURNING strikes
-        """
-        result = await self.execute_query(query, user_id, guild_id, fetchval=True)
-
-        # If no rows were updated (user had no strikes), return 0
-        return result if result is not None else 0
-
-    async def get_strikes(self, user_id: int, guild_id: int) -> int:
-        """Get the strike count for a user in a given guild."""
-        query = "SELECT strikes FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
-        return await self.execute_query(query, user_id, guild_id, fetchval=True) or 0
-
-    async def reset_strikes(self, user_id: int, guild_id: int) -> None:
-        """Reset the strike count for a user in a given guild."""
-        query = "DELETE FROM april.strikes WHERE user_id = $1 AND guild_id = $2"
-        await self.execute_query(query, user_id, guild_id)
-
-    # async def clear_expired_strikes(self, days: int = 7) -> None:
-    #     query = """
-    #         DELETE FROM april.strikes
-    #         WHERE last_updated < NOW() - INTERVAL '%s days'
-    #     """
-    #     await self.execute(query, days)
