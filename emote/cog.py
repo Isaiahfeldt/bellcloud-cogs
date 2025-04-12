@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+﻿#  Copyright (c) 2023, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -31,7 +31,6 @@ class Emotes(
     UserCommands,
     HybridCommands,
     SlashCommands,
-    UserCommands,
     ContextMenu,
 ):
     """
