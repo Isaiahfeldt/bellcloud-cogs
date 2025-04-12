@@ -53,16 +53,14 @@ class EffectSelect(Select):
 
         selected_effects = self.values
 
-        await interaction.delete_original_response()
-
         await interaction.followup.send(
             f"Okay, I would apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
             ephemeral=True
         )
 
         # Optionally disable the original message's view if needed, although deferring might be enough
-        # if interaction.message:
-        #    await interaction.message.edit(view=None)
+        if interaction.message:
+            await interaction.message.edit(view=None)
 
 
 class EffectView(View):
