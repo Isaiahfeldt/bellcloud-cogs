@@ -1,84 +1,70 @@
 # --- START OF FILE user_commands.py ---
 
+from typing import Dict, Callable, Optional, Any  # For type hinting
+
 import discord
 from discord import app_commands
 from discord.ui import Select, View
-from redbot.core import commands  # Import checks for is_owner
-from redbot.core.bot import Red  # Import Red type hint for bot
+from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
 _ = Translator("Emote", __file__)
 
 
 # --- Select Menu Class ---
-# (Keep EffectSelect as before, it doesn't need changes for this part)
+# (No changes needed here)
 class EffectSelect(Select):
     def __init__(self, options: list[discord.SelectOption]):
         super().__init__(
             placeholder="Choose one or more effects...",
             min_values=1,
-            max_values=len(options),  # Allow selecting multiple options
+            max_values=len(options),
             options=options,
-            custom_id="effect_multi_select"  # Add a custom_id for persistence if needed
+            custom_id="effect_multi_select"
         )
 
     async def callback(self, interaction: discord.Interaction):
         selected_effects = ", ".join(self.values)
         response_message = f"You selected the following effects: `{selected_effects}`.\n"
         response_message += "(Next step: Apply these effects to the target message's image!)"
-
-        # Update the message and disable the view
         await interaction.response.edit_message(content=response_message, view=None)
 
 
 # --- View Class ---
-# Modify the View to accept the options during initialization
+# (No changes needed here)
 class EffectView(View):
-    # Store the original message for potential editing on timeout
     message: discord.Message | None = None
 
     def __init__(self, available_options: list[discord.SelectOption], *, timeout=180):
         super().__init__(timeout=timeout)
-
-        # Check if there are any options before adding the select menu
-        if not available_options:
-            # Handle the case where no options are available (e.g., log or potentially don't add the item)
-            # For now, we'll assume the command checks this before creating the view
-            pass
-        else:
-            # Add the Select menu *using the passed-in options*
+        if available_options:
             self.add_item(EffectSelect(options=available_options))
+        # else: handle no options case if necessary (e.g. log, don't add item)
 
     async def on_timeout(self):
         if self.message:
             try:
-                # Disable all components visually
                 for item in self.children:
                     item.disabled = True
                 await self.message.edit(content="Effect selection timed out.", view=self)
-            except discord.NotFound:
-                pass  # Message was deleted
-            except discord.Forbidden:
-                pass  # Missing permissions
-        # Clean up the view reference associated with the message_id if using persistent views
-        # self.stop() # Stop listening for interactions
+            except (discord.NotFound, discord.Forbidden):
+                pass
+        # self.stop()
 
-    async def interaction_check(self, interaction: discord.Interaction) -> bool:
-        # Optional: Ensure only the original command user can interact
-        # return interaction.user.id == self.author_id # You'd need to store author_id in __init__
-        return True  # Allow anyone for now
+    # Optional check
+    # async def interaction_check(self, interaction: discord.Interaction) -> bool:
+    #     return interaction.user.id == self.author_id
 
 
 @cog_i18n(_)
 class UserCommands(commands.Cog):
-    # Add bot type hint for accessing other cogs and checks
     def __init__(self, bot: Red):
         self.bot = bot
-        # You might need to ensure SlashCommands cog is loaded and EFFECTS_LIST is ready
-        # This depends on your cog structure and load order.
+        # Ensure SlashCommands cog exists and has the necessary attributes
+        # You might want to do this check more robustly, perhaps in cog_load
 
-    # --- Helper Function to Parse Docstring ---
-    def _parse_docstring_for_description(self, func) -> str:
+    def _parse_docstring_for_description(self, func: Callable) -> str:
         """Extracts the user description from the function's docstring."""
         doc = getattr(func, "__doc__", None) or ""
         lines = doc.strip().splitlines()
@@ -90,15 +76,13 @@ class UserCommands(commands.Cog):
                     break
 
             if user_line_index != -1 and user_line_index + 1 < len(lines):
-                # Get the next non-empty line after "User:"
                 for next_line in lines[user_line_index + 1:]:
                     stripped_next_line = next_line.strip()
                     if stripped_next_line:
-                        # Take the first sentence
                         return stripped_next_line.split('.')[0].strip()
-        except Exception:  # Catch potential errors during parsing
-            pass  # Log error if needed
-        return "No description available."  # Default fallback
+        except Exception:
+            pass
+        return "No description available."
 
     @app_commands.user_install()
     @app_commands.command(name="effect", description="Choose effects to apply to an image.")
@@ -106,54 +90,71 @@ class UserCommands(commands.Cog):
     async def effect(self, interaction: discord.Interaction) -> None:
         """Sends a select menu to choose image effects based on permissions."""
 
-        slash_cog = self.bot.get_cog("SlashCommands")  # Get the SlashCommands cog instance
-        if not slash_cog or not hasattr(slash_cog, "EFFECTS_LIST"):
+        slash_cog = self.bot.get_cog("SlashCommands")
+        if not slash_cog:
             await interaction.response.send_message(
-                "Error: The effects list is currently unavailable.", ephemeral=True
+                "Error: The SlashCommands cog is not loaded.", ephemeral=True
             )
             return
 
-        effects_list_data = slash_cog.EFFECTS_LIST
-        available_options = []
+        # Safely get attributes from the SlashCommands cog
+        effects_list_data: Optional[Dict[str, Dict[str, Any]]] = getattr(slash_cog, "EFFECTS_LIST", None)
+        reaction_effects_data: Optional[Dict[str, Callable]] = getattr(slash_cog, "reaction_effects", None)
 
-        # Check if the user is the bot owner
+        if not effects_list_data:
+            await interaction.response.send_message(
+                "Error: The effects list data is missing.", ephemeral=True
+            )
+            return
+        if not reaction_effects_data:
+            await interaction.response.send_message(
+                "Error: The reaction effects data is missing.", ephemeral=True
+            )
+            return
+
+        # --- Create a reverse lookup map: function -> emoji ---
+        # This makes finding the emoji for a given function much faster
+        function_to_emoji: Dict[Callable, str] = {
+            func: emoji for emoji, func in reaction_effects_data.items()
+        }
+        # -------------------------------------------------------
+
+        available_options = []
         is_owner = await self.bot.is_owner(interaction.user)
 
         for name, data in effects_list_data.items():
             perm = data.get("perm", "everyone").lower()
             func = data.get("func")
 
-            if not func:  # Skip if no function is associated
+            if not func:
                 continue
 
             allowed = False
             if perm == "owner":
                 allowed = is_owner
-            # elif perm == "mod":
-            # In DMs, guild_permissions aren't applicable.
-            # Decide how to handle 'mod'. We'll disallow it in DMs.
-            # allowed = False # Explicitly disallow mod commands in DMs
+            # elif perm == "mod": # No guild context in DMs
+            #     allowed = False
             elif perm == "everyone":
                 allowed = True
-            # Add any other permission levels here
 
             if allowed:
-                # Parse the description from the function docstring
                 description = self._parse_docstring_for_description(func)
-                # Truncate description if it's too long for Discord SelectOption
                 if len(description) > 100:
                     description = description[:97] + "..."
 
-                # Create the SelectOption
+                # --- Look up the emoji for this function ---
+                emoji_for_option = function_to_emoji.get(func)  # Returns None if not found
+                # ------------------------------------------
+
                 available_options.append(
                     discord.SelectOption(
-                        label=name.capitalize(),  # Use the effect name as the label
-                        value=name,  # Use the original key name as the value for the callback
-                        description=description  # Use the parsed docstring part
+                        label=name.capitalize(),
+                        value=name,
+                        description=description
+                        # emoji=emoji_for_option # Pass the found emoji (or None)
                     )
                 )
 
-        # --- Send the response ---
         if not available_options:
             await interaction.response.send_message(
                 "You do not have permission to use any effects, or no effects are configured.",
@@ -161,21 +162,19 @@ class UserCommands(commands.Cog):
             )
             return
 
-        # Limit to 25 options max for a select menu
         if len(available_options) > 25:
+            # Consider how to handle > 25 options. Pagination? Multiple menus?
+            # For now, just take the first 25 and warn.
             await interaction.response.send_message(
                 "Warning: Too many effects available. Showing the first 25.",
-                ephemeral=True  # Send warning ephemerally maybe?
+                ephemeral=True  # Maybe send this before the main message?
             )
             available_options = available_options[:25]
 
-        # Create an instance of our View, passing the dynamic options
-        view = EffectView(available_options=available_options,
-                          timeout=180)  # Add author_id if needed for interaction_check
+        view = EffectView(available_options=available_options, timeout=180)
 
         await interaction.response.send_message(
             "Please select the effect(s) you want to apply:",
             view=view
         )
-        # Store the message object on the view if needed for timeout editing
         view.message = await interaction.original_response()
