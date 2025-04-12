@@ -84,7 +84,8 @@ class Emotes(
         await self.handle_add_emote(interaction, message)
 
     @app_commands.user_install()
-    @app_commands.allowed_contexts(guilds=False, dms=True, private_channels=True)
+    @app_commands.guild_install()
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     async def apply_effect_context(self, interaction: discord.Interaction, message: discord.Message):
         """Apply an effect to an emote"""
         await self.handle_apply_effect(interaction, message)
