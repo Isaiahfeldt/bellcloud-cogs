@@ -6,8 +6,7 @@ from redbot.core import commands  # checks might still be useful if you add othe
 # from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
 
-# Assuming SlashCommands cog exists and has EFFECTS_LIST accessible via self.bot.get_cog
-# from .slash_commands import SlashCommands # Or however EFFECTS_LIST is accessed
+from emote.slash_commands import SlashCommands
 
 _ = Translator("Emote", __file__)
 
@@ -43,8 +42,6 @@ class EffectView(View):
         super().__init__(timeout=timeout)
 
         if not available_options:
-            # If no options, the view is created empty, which might be okay
-            # or handle this state before creating the view in the command.
             pass
         else:
             # Add the Select menu using the passed-in options
@@ -60,11 +57,6 @@ class EffectView(View):
                 # Ignore if message deleted or permissions are missing
                 pass
         # self.stop() # Stop listening
-
-    # Optional: interaction check (e.g., restrict to original user)
-    # async def interaction_check(self, interaction: discord.Interaction) -> bool:
-    #     # return interaction.user.id == self.author_id # Needs author_id stored
-    #     return True
 
 
 @cog_i18n(_)
@@ -101,19 +93,8 @@ class UserCommands(commands.Cog):
     async def effect(self, interaction: discord.Interaction) -> None:
         """Sends a select menu to choose image effects based on permissions."""
 
-        # Access the SlashCommands cog via self.bot (inherited from Emotes cog)
-        # Make sure "SlashCommands" is the correct registered name of that cog
-        slash_cog = self.bot.get_cog("SlashCommands")
-        if not slash_cog or not hasattr(slash_cog, "EFFECTS_LIST"):
-            # Maybe log this error server-side as well
-            await interaction.response.send_message(
-                "Error: The effects list is currently unavailable. Please contact the bot owner.",
-                ephemeral=True
-            )
-            return
-
         # Assume EFFECTS_LIST is a dictionary {name: {"func": func, "perm": perm_level}}
-        effects_list_data = slash_cog.EFFECTS_LIST
+        effects_list_data = SlashCommands.EFFECTS_LIST
         available_options = []
 
         # Check ownership using self.bot.is_owner (inherited from Emotes cog)
@@ -131,8 +112,6 @@ class UserCommands(commands.Cog):
                 allowed = is_owner
             elif perm == "everyone":
                 allowed = True
-            # Add other permission levels if needed (e.g., checks.mod_or_permissions)
-            # Note: Guild-based perms like 'mod' won't work reliably in DMs here.
 
             if allowed:
                 description = self._parse_docstring_for_description(func)
