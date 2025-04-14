@@ -66,11 +66,6 @@ class EffectSelect(discord.ui.Select):
             ephemeral=True
         )
 
-        if interaction.message:
-            print(f"Message Id: {interaction.message.id}")
-            print(f"Message Content: {interaction.message.content}")
-            await interaction.message.edit(content="Cancelled")
-
 
 class EffectView(View):
     """A view that allows users to select and apply effects to a Discord message."""
