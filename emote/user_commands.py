@@ -62,7 +62,7 @@ class EffectSelect(Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            await interaction.response.edit_message(content="Cancelled", view=None)
+            await interaction.message.edit_message(content="Cancelled", view=None)
 
 
 class EffectView(View):
