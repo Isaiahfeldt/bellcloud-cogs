@@ -64,8 +64,6 @@ class EffectSelect(discord.ui.Select):
         await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
-        await interaction.followup.send(content="Test", ephemeral=False)
-
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
             file_path=f"virtual/emote.{self.file_type}",  # Use real file name and type
