@@ -128,7 +128,7 @@ class EffectSelect(discord.ui.Select):
             image_buffer = io.BytesIO(emote.img_data)
             filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
             file = discord.File(fp=image_buffer, filename=filename)
-            await interaction.followup.send(content="", file=file, mention_author=False)
+            await interaction.followup.send(content="", file=file, ephemeral=False)
 
         # --- Simple confirmation for now ---
         # await interaction.followup.send(
