@@ -1,7 +1,7 @@
 # --- START OF FILE user_commands.py ---
 
 import discord
-from discord.ui import View, Select
+from discord.ui import View
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
@@ -33,36 +33,44 @@ def _parse_docstring_for_description(func) -> str:
     return "No description available."[:100]
 
 
-class EffectSelect(Select):
-    # Add attributes to store context passed from the view
+class EffectSelect(discord.ui.Select):
+    """A select menu for choosing effects to apply to a message."""
+
     def __init__(self, options: list[discord.SelectOption], target_message_id: int, target_channel_id: int):
+        """
+        Initializes the EffectSelect menu.
+
+        Args:
+            options (list[discord.SelectOption]): A list of effect options.
+            target_message_id (int): The ID of the message to apply effects to.
+            target_channel_id (int): The ID of the channel containing the message.
+        """
         self.target_message_id = target_message_id
         self.target_channel_id = target_channel_id
-        # Ensure we don't exceed 25 options
-        display_options = options[:25]
+        display_options = options[:25]  # Discord limit
         super().__init__(
             placeholder="Choose one or more effects...",
             min_values=1,
             max_values=len(display_options),
             options=display_options,
-            custom_id="effect_context_multi_select"  # Changed ID slightly for clarity
+            custom_id="effect_select"
         )
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        """Handles the user's selection of effects."""
 
+        await interaction.response.defer(ephemeral=True, thinking=True)
         selected_effects = self.values
 
-        await interaction.followup.send(
-            f"Okay, I would apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
-            ephemeral=True
-        )
-
-        # Optionally disable the original message's view if needed, although deferring might be enough
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
             await interaction.message.edit(content="Cancelled", view=None)
+
+        await interaction.followup.send(
+            f"Okay, I will apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
+            ephemeral=True
+        )
 
 
 class EffectView(View):
