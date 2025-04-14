@@ -60,10 +60,48 @@ class EffectSelect(discord.ui.Select):
         """Handles the user's selection of effects."""
 
         await interaction.response.defer(ephemeral=True, thinking=True)
-        selected_effects = self.values
+        selected_effects = self.values \
+ \
+        channel = interaction.client.get_channel(self.target_channel_id) or await interaction.client.fetch_channel(
+            self.target_channel_id)
+        if channel:
+            try:
+                message = await channel.fetch_message(self.target_message_id)
+            except (discord.NotFound, discord.Forbidden):
+                await interaction.followup.send("Error: Could not retrieve the original message.", ephemeral=True)
+                return
+        else:
+            await interaction.followup.send("Error: Could not find the original channel.", ephemeral=True)
+            return
+
+        if not message.attachments or not any(att.content_type.startswith("image/") for att in message.attachments):
+            await interaction.followup.send(
+                "The target message doesn't seem to contain a processable image attachment.", ephemeral=True)
+            return
+        image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
+        image_bytes = await image_attachment.read()
+
+        effect_funcs_to_apply = []
+
+        for effect_name in selected_effects:
+            effect_data = SlashCommands.EFFECTS_LIST.get(effect_name)
+            if effect_data and 'func' in effect_data:
+                effect_funcs_to_apply.append(effect_data['func'])
+
+        # 4. Apply the effect functions sequentially or combined to the image_bytes.
+        # processed_image_bytes = await apply_effects(image_bytes, effect_funcs_to_apply)
+
+        # # 5. Send the result as a file.
+        # await interaction.followup.send(
+        #     f"Applied effects: `{', '.join(selected_effects)}` to message {self.target_message_id}",
+        #     file=discord.File(io.BytesIO(processed_image_bytes), filename="effect_applied.png"),
+        #     ephemeral=False
+        # )
+
+        # --- Simple confirmation for now ---
         await interaction.followup.send(
-            f"Okay, I will apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
-            ephemeral=False
+            f"Okay, I would apply effects: `{', '.join(selected_effects)}. Effect funcs: `{effect_funcs_to_apply}`.",
+            ephemeral=True  # Keep confirmation ephemeral until result is ready
         )
 
 
