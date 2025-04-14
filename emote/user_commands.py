@@ -60,7 +60,10 @@ class EffectSelect(Select):
 
         # Optionally disable the original message's view if needed, although deferring might be enough
         if interaction.message:
-            await interaction.delete_original_response()
+            print(f"Message Id: {interaction.message.id}")
+            print(f"Message Content: {interaction.message.content}")
+            print(f"Original Response: {interaction.original_response()}")
+            await interaction.message.edit(view=None)
 
 
 class EffectView(View):
