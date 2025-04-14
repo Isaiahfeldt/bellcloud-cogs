@@ -94,7 +94,7 @@ class EffectView(View):
             except (discord.NotFound, discord.Forbidden):
                 pass
 
-    async def on_finished(self):
+    async def interaction_check(self):
         if self.attached_message:
             await self.attached_message.edit(content="Effect selection has ended.", view=self)
 
