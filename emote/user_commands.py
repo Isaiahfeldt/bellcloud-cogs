@@ -1,11 +1,14 @@
 # --- START OF FILE user_commands.py ---
 
+from datetime import datetime
+
 import discord
 from discord.ui import View
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import SlashCommands
+from emote.utils.effects import Emote
 
 _ = Translator("Emote", __file__)
 
@@ -78,8 +81,26 @@ class EffectSelect(discord.ui.Select):
             await interaction.followup.send(
                 "The target message doesn't seem to contain a processable image attachment.", ephemeral=True)
             return
+
         image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
         image_buffer = await image_attachment.read()
+
+        emote_instance = Emote(
+            id=0,  # Use a dummy id since this is a virtual Emote
+            file_path=f"virtual/{image_attachment.filename}",  # Use real file name and type
+            author_id=message.author.id,
+            timestamp=datetime.now(),
+            original_url=image_attachment.url,
+            name=image_attachment.filename,
+            guild_id=message.guild.id if message.guild else 0,
+            usage_count=0,
+            errors={},
+            issues={},
+            notes={},
+            followup={},
+            effect_chain={},
+            img_data=image_buffer,
+        )
 
         effect_funcs_to_apply = []
 
