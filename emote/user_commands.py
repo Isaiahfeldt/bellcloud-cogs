@@ -49,7 +49,7 @@ class EffectSelect(Select):
         )
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        # await interaction.response.defer(ephemeral=True, thinking=True)
 
         selected_effects = self.values
 
@@ -62,7 +62,7 @@ class EffectSelect(Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            await interaction.message.edit_message(content="Cancelled", view=None)
+            await interaction.response.edit_message(content="Cancelled", view=None)
 
 
 class EffectView(View):
