@@ -62,8 +62,7 @@ class EffectSelect(Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            print(f"Original Response: {interaction.original_response()}")
-            await interaction.message.edit(view=None)
+            await interaction.message.delete()
 
 
 class EffectView(View):
