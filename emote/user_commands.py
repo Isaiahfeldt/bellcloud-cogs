@@ -69,7 +69,7 @@ class EffectSelect(discord.ui.Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            await interaction.message.edit(content="Cancelled", view=None)
+            await interaction.message.edit(content="Cancelled")
 
 
 class EffectView(View):
@@ -162,6 +162,6 @@ class UserCommands(commands.Cog):
         await interaction.response.send_message(
             f"Select effect(s) to apply this message:",
             view=view,
-            ephemeral=False
+            ephemeral=True
         )
         view.attached_message = await interaction.original_response()
