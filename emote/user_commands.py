@@ -89,6 +89,7 @@ class EffectSelect(discord.ui.Select):
                 effect_funcs_to_apply.append(effect_data['func'])
 
         emote = None
+        # TODO: make async for faster, add timeout
         for effect_func in effect_funcs_to_apply:
             emote = effect_func(emote_instance)
 
@@ -152,6 +153,8 @@ class UserCommands(commands.Cog):
 
         image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
         image_buffer = await image_attachment.read()
+
+        # TODO: image compression / resize to be smaller
 
         effects_list_data = SlashCommands.EFFECTS_LIST
         available_options = []
