@@ -49,7 +49,7 @@ class EffectSelect(Select):
         )
 
     async def callback(self, interaction: discord.Interaction):
-        # await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=True, thinking=True)
 
         selected_effects = self.values
 
@@ -62,20 +62,15 @@ class EffectSelect(Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            await interaction.response.edit_message(content="Cancelled", view=None)
+            await interaction.message.edit(content="Cancelled", view=None)
 
 
 class EffectView(View):
     # Store the message this view is attached to if needed for timeout editing
     attached_message: discord.Message | None = None
 
-    def __init__(
-            self, available_options: list[discord.SelectOption],
-            target_message_id: int,
-            target_channel_id: int,
-            *,
-            timeout=180
-    ):
+    def __init__(self, available_options: list[discord.SelectOption], target_message_id: int, target_channel_id: int, *,
+                 timeout=180):
         super().__init__(timeout=timeout)
 
         if available_options:
