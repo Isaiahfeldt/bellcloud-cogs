@@ -62,7 +62,7 @@ class EffectSelect(Select):
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
-            await interaction.message.delete()
+            await interaction.response.edit_message(content="Cancelled", view=None)
 
 
 class EffectView(View):
@@ -93,10 +93,6 @@ class EffectView(View):
                 await self.attached_message.edit(content="Effect selection timed out.", view=self)
             except (discord.NotFound, discord.Forbidden):
                 pass
-
-    async def interaction_check(self):
-        if self.attached_message:
-            await self.attached_message.edit(content="Effect selection has ended.", view=self)
 
 
 @cog_i18n(_)
