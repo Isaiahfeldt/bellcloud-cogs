@@ -1,5 +1,6 @@
 # --- START OF FILE user_commands.py ---
 
+import io
 from datetime import datetime
 
 import discord
@@ -109,6 +110,10 @@ class EffectSelect(discord.ui.Select):
             if effect_data and 'func' in effect_data:
                 effect_funcs_to_apply.append(effect_data['func'])
 
+        emote = None
+        for effect_func in effect_funcs_to_apply:
+            emote = effect_func(emote_instance)
+
         # 4. Apply the effect functions sequentially or combined to the image_buffer.
         # processed_image_bytes = await apply_effects(image_buffer, effect_funcs_to_apply)
 
@@ -119,11 +124,17 @@ class EffectSelect(discord.ui.Select):
         #     ephemeral=False
         # )
 
+        if emote.img_data:
+            image_buffer = io.BytesIO(emote.img_data)
+            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+            file = discord.File(fp=image_buffer, filename=filename)
+            await interaction.followup.send(content="", file=file, mention_author=False)
+
         # --- Simple confirmation for now ---
-        await interaction.followup.send(
-            f"Okay, I would apply effects: `{', '.join(selected_effects)}. Effect funcs: `{effect_funcs_to_apply}`.",
-            ephemeral=True  # Keep confirmation ephemeral until result is ready
-        )
+        # await interaction.followup.send(
+        #     f"Okay, I would apply effects: `{', '.join(selected_effects)}. Effect funcs: `{effect_funcs_to_apply}`.",
+        #     ephemeral=True  # Keep confirmation ephemeral until result is ready
+        # )
 
 
 class EffectView(View):
