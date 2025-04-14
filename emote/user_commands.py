@@ -61,16 +61,15 @@ class EffectSelect(discord.ui.Select):
 
         await interaction.response.defer(ephemeral=True, thinking=True)
         selected_effects = self.values
+        await interaction.followup.send(
+            f"Okay, I will apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
+            ephemeral=True
+        )
 
         if interaction.message:
             print(f"Message Id: {interaction.message.id}")
             print(f"Message Content: {interaction.message.content}")
             await interaction.message.edit(content="Cancelled", view=None)
-
-        await interaction.followup.send(
-            f"Okay, I will apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
-            ephemeral=True
-        )
 
 
 class EffectView(View):
