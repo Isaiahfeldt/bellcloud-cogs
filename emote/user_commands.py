@@ -63,7 +63,7 @@ class EffectSelect(discord.ui.Select):
         selected_effects = self.values
         await interaction.followup.send(
             f"Okay, I will apply effects: `{', '.join(selected_effects)}` to message ID `{self.target_message_id}`.",
-            ephemeral=True
+            ephemeral=False
         )
 
 
