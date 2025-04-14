@@ -66,13 +66,21 @@ class EffectSelect(Select):
 
 
 class EffectView(View):
-    # Store the message this view is attached to if needed for timeout editing
-    attached_message: discord.Message | None = None
+    """A view that allows users to select and apply effects to a Discord message."""
 
     def __init__(self, available_options: list[discord.SelectOption], target_message_id: int, target_channel_id: int, *,
                  timeout=180):
-        super().__init__(timeout=timeout)
+        """
+        Initializes the EffectView.
 
+        Args:
+            available_options (list[discord.SelectOption]): A list of available effect options.
+            target_message_id (int): The ID of the message to apply the effect to.
+            target_channel_id (int): The ID of the channel where the target message is located.
+            timeout (int, optional): The timeout for the view in seconds. Defaults to 180.
+        """
+        super().__init__(timeout=timeout)
+        self.attached_message: discord.Message | None = None
         if available_options:
             self.add_item(EffectSelect(
                 options=available_options,
@@ -81,6 +89,8 @@ class EffectView(View):
             ))
 
     async def on_timeout(self):
+        """Called when the view times out. Disables all items in the view and updates the attached message."""
+
         if self.attached_message:
             try:
                 for item in self.children:
