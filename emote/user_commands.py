@@ -113,25 +113,12 @@ class EffectSelect(discord.ui.Select):
         emote = None
         for effect_func in effect_funcs_to_apply:
             emote = effect_func(emote_instance)
-            
-        # # 5. Send the result as a file.
-        # await interaction.followup.send(
-        #     f"Applied effects: `{', '.join(selected_effects)}` to message {self.target_message_id}",
-        #     file=discord.File(io.BytesIO(processed_image_bytes), filename="effect_applied.png"),
-        #     ephemeral=False
-        # )
 
         if emote.img_data:
             image_buffer = io.BytesIO(emote.img_data)
             filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
             file = discord.File(fp=image_buffer, filename=filename)
             await interaction.followup.send(content="", file=file, ephemeral=False)
-
-        # --- Simple confirmation for now ---
-        # await interaction.followup.send(
-        #     f"Okay, I would apply effects: `{', '.join(selected_effects)}. Effect funcs: `{effect_funcs_to_apply}`.",
-        #     ephemeral=True  # Keep confirmation ephemeral until result is ready
-        # )
 
 
 class EffectView(View):
