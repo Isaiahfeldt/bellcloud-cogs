@@ -1,5 +1,3 @@
-# --- START OF FILE user_commands.py ---
-
 import io
 from datetime import datetime
 
@@ -40,17 +38,17 @@ def _parse_docstring_for_description(func) -> str:
 class EffectSelect(discord.ui.Select):
     """A select menu for choosing effects to apply to a message."""
 
-    def __init__(self, options: list[discord.SelectOption], target_message_id: int, target_channel_id: int):
+    def __init__(self, options: list[discord.SelectOption], image_buffer: bytes, file_type: str, ):
         """
         Initializes the EffectSelect menu.
 
         Args:
             options (list[discord.SelectOption]): A list of effect options.
-            target_message_id (int): The ID of the message to apply effects to.
-            target_channel_id (int): The ID of the channel containing the message.
+            image_buffer (bytes): The image buffer to apply effects to.
+            file_type (str): The file type of the image (e.g., "png", "jpg", "gif")..
         """
-        self.target_message_id = target_message_id
-        self.target_channel_id = target_channel_id
+        self.image_buffer = image_buffer
+        self.file_type = file_type
         display_options = options[:25]  # Discord limit
         super().__init__(
             placeholder="Choose one or more effects...",
@@ -66,41 +64,23 @@ class EffectSelect(discord.ui.Select):
         await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
-        channel = interaction.client.get_channel(self.target_channel_id) or await interaction.client.fetch_channel(
-            self.target_channel_id)
-        if channel:
-            try:
-                message = await channel.fetch_message(self.target_message_id)
-            except (discord.NotFound, discord.Forbidden):
-                await interaction.followup.send("Error: Could not retrieve the original message.", ephemeral=True)
-                return
-        else:
-            await interaction.followup.send("Error: Could not find the original channel.", ephemeral=True)
-            return
-
-        if not message.attachments or not any(att.content_type.startswith("image/") for att in message.attachments):
-            await interaction.followup.send(
-                "The target message doesn't seem to contain a processable image attachment.", ephemeral=True)
-            return
-
-        image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
-        image_buffer = await image_attachment.read()
+        await interaction.followup.send(content="Test", ephemeral=False)
 
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
-            file_path=f"virtual/{image_attachment.filename}",  # Use real file name and type
-            author_id=message.author.id,
+            file_path=f"virtual/emote.{self.file_type}",  # Use real file name and type
+            author_id=000000000,
             timestamp=datetime.now(),
-            original_url=image_attachment.url,
-            name=image_attachment.filename,
-            guild_id=message.guild.id if message.guild else 0,
+            original_url="www.example.com",
+            name=f"emote.{self.file_type}",
+            guild_id=0,
             usage_count=0,
             errors={},
             issues={},
             notes={},
             followup={},
             effect_chain={},
-            img_data=image_buffer,
+            img_data=self.image_buffer,
         )
 
         effect_funcs_to_apply = []
@@ -124,15 +104,15 @@ class EffectSelect(discord.ui.Select):
 class EffectView(View):
     """A view that allows users to select and apply effects to a Discord message."""
 
-    def __init__(self, available_options: list[discord.SelectOption], target_message_id: int, target_channel_id: int, *,
+    def __init__(self, available_options: list[discord.SelectOption], image_buffer: bytes, file_type: str, *,
                  timeout=180):
         """
         Initializes the EffectView.
 
         Args:
             available_options (list[discord.SelectOption]): A list of available effect options.
-            target_message_id (int): The ID of the message to apply the effect to.
-            target_channel_id (int): The ID of the channel where the target message is located.
+            image_buffer (bytes): The image buffer to apply effects to.
+            file_type (str): The file type of the image (e.g., "png", "jpg", "gif").
             timeout (int, optional): The timeout for the view in seconds. Defaults to 180.
         """
         super().__init__(timeout=timeout)
@@ -140,8 +120,8 @@ class EffectView(View):
         if available_options:
             self.add_item(EffectSelect(
                 options=available_options,
-                target_message_id=target_message_id,
-                target_channel_id=target_channel_id
+                image_buffer=image_buffer,
+                file_type=file_type,
             ))
 
     async def on_timeout(self):
@@ -171,6 +151,9 @@ class UserCommands(commands.Cog):
                 ephemeral=True
             )
             return
+
+        image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
+        image_buffer = await image_attachment.read()
 
         effects_list_data = SlashCommands.EFFECTS_LIST
         available_options = []
@@ -203,8 +186,8 @@ class UserCommands(commands.Cog):
 
         view = EffectView(
             available_options=available_options,
-            target_message_id=message.id,
-            target_channel_id=interaction.channel_id,  # Channel where interaction happened
+            image_buffer=image_buffer,
+            file_type=image_attachment.content_type.split("/")[-1],
             timeout=180
         )
 
