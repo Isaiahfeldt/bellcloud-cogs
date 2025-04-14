@@ -60,8 +60,8 @@ class EffectSelect(discord.ui.Select):
         """Handles the user's selection of effects."""
 
         await interaction.response.defer(ephemeral=True, thinking=True)
-        selected_effects = self.values \
- \
+        selected_effects = self.values
+
         channel = interaction.client.get_channel(self.target_channel_id) or await interaction.client.fetch_channel(
             self.target_channel_id)
         if channel:
@@ -79,7 +79,7 @@ class EffectSelect(discord.ui.Select):
                 "The target message doesn't seem to contain a processable image attachment.", ephemeral=True)
             return
         image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
-        image_bytes = await image_attachment.read()
+        image_buffer = await image_attachment.read()
 
         effect_funcs_to_apply = []
 
@@ -88,8 +88,8 @@ class EffectSelect(discord.ui.Select):
             if effect_data and 'func' in effect_data:
                 effect_funcs_to_apply.append(effect_data['func'])
 
-        # 4. Apply the effect functions sequentially or combined to the image_bytes.
-        # processed_image_bytes = await apply_effects(image_bytes, effect_funcs_to_apply)
+        # 4. Apply the effect functions sequentially or combined to the image_buffer.
+        # processed_image_bytes = await apply_effects(image_buffer, effect_funcs_to_apply)
 
         # # 5. Send the result as a file.
         # await interaction.followup.send(
