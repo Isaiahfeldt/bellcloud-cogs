@@ -63,7 +63,7 @@ class EffectSelect(discord.ui.Select):
     async def callback(self, interaction: discord.Interaction):
         """Handles the user's selection of effects."""
 
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
         channel = interaction.client.get_channel(self.target_channel_id) or await interaction.client.fetch_channel(
