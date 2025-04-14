@@ -162,6 +162,6 @@ class UserCommands(commands.Cog):
         await interaction.response.send_message(
             f"Select effect(s) to apply this message:",
             view=view,
-            ephemeral=True
+            ephemeral=False
         )
         view.attached_message = await interaction.original_response()
