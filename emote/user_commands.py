@@ -94,7 +94,7 @@ class EffectSelect(discord.ui.Select):
             image_buffer = io.BytesIO(emote.img_data)
             filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
             file = discord.File(fp=image_buffer, filename=filename)
-            await interaction.followup.send(content="", file=file, ephemeral=False)
+            await interaction.response.send_message(content="", file=file, ephemeral=False)
 
 
 class EffectView(View):
