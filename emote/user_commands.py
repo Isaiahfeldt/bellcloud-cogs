@@ -1,3 +1,4 @@
+import io
 from datetime import datetime
 
 import discord
@@ -7,6 +8,7 @@ from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import SlashCommands
 from emote.utils.effects import Emote
+from emote.utils.pipeline import create_pipeline, execute_pipeline
 
 _ = Translator("Emote", __file__)
 
@@ -63,10 +65,10 @@ class EffectSelect(discord.ui.Select):
         await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
-        emote_effects = []
+        queued_effects = []
         for effect_name in selected_effects:
             parsed_args = []
-            emote_effects.append((effect_name, parsed_args))
+            queued_effects.append((effect_name, parsed_args))
 
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
@@ -85,18 +87,14 @@ class EffectSelect(discord.ui.Select):
             img_data=self.image_buffer,
         )
 
-        effect_funcs_to_apply = []
+        pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
+        emote = await execute_pipeline(pipeline)
 
-        await interaction.followup.send(content=f"{emote_effects}", ephemeral=True)
-
-        # pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
-        # emote = await execute_pipeline(pipeline)
-
-        # if emote.img_data:
-        #     image_buffer = io.BytesIO(emote.img_data)
-        #     filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
-        #     file = discord.File(fp=image_buffer, filename=filename)
-        #     await interaction.followup.send(content="", file=file, ephemeral=False)
+        if emote.img_data:
+            image_buffer = io.BytesIO(emote.img_data)
+            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+            file = discord.File(fp=image_buffer, filename=filename)
+            await interaction.followup.send(content="", file=file, ephemeral=False)
 
 
 class EffectView(View):
