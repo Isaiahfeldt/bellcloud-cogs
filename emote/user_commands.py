@@ -41,49 +41,36 @@ def _parse_docstring_for_description(func) -> str:
 class EffectSelect(discord.ui.Select):
     """A select menu for choosing effects to apply to a message."""
 
-    # Added original_message_id
+    # Init remains the same (stores original_message_id)
     def __init__(self, options: list[discord.SelectOption], image_buffer: bytes, file_type: str,
                  original_message_id: int):
-        """
-        Initializes the EffectSelect menu.
-
-        Args:
-            options (list[discord.SelectOption]): A list of effect options.
-            image_buffer (bytes): The image buffer to apply effects to.
-            file_type (str): The file type of the image (e.g., "png", "jpg", "gif").
-            original_message_id (int): The ID of the message the effect is applied to.
-        """
         self.image_buffer = image_buffer
         self.file_type = file_type
-        self.original_message_id = original_message_id  # Store the ID
-        display_options = options[:25]  # Discord limit
+        self.original_message_id = original_message_id
+        display_options = options[:25]
         super().__init__(
             placeholder="Choose one or more effects...",
             min_values=1,
             max_values=len(display_options),
             options=display_options,
-            custom_id="effect_select"  # custom_id can be static if state is in instance vars
+            custom_id="effect_select"
         )
 
     async def callback(self, interaction: discord.Interaction):
-        """Handles the user's selection of effects."""
+        """Handles the user's selection of effects without fetching the original message."""
 
+        # Acknowledge ephemerally (as before)
         await interaction.response.edit_message(content="Processing selected effect(s)...", view=None)
 
         selected_effects = self.values
 
-        try:
-            original_message = await interaction.channel.fetch_message(self.original_message_id)
-        except discord.NotFound:
-            await interaction.edit_original_response(content="Error: Could not find the original message to reply to.")
-            return
-        except discord.Forbidden:
-            await interaction.edit_original_response(content="Error: I lack permissions to fetch the original message.")
-            return
-        except discord.HTTPException as e:
-            await interaction.edit_original_response(content=f"Error fetching original message: {e}")
-            return
+        # --- REMOVE THE FETCH_MESSAGE BLOCK ---
+        # No need to fetch the original message object anymore!
+        # We have the ID stored in self.original_message_id
+        # We have the image buffer in self.image_buffer
+        # We have the correct channel via interaction.channel
 
+        # --- Effect processing logic (using self.image_buffer) ---
         queued_effects = []
         for effect_name in selected_effects:
             parsed_args = []  # Placeholder
@@ -92,36 +79,50 @@ class EffectSelect(discord.ui.Select):
         emote_instance = Emote(
             id=0,
             file_path=f"virtual/emote.{self.file_type}",
-            author_id=interaction.user.id,  # Use invoking user's ID
-            timestamp=discord.utils.utcnow(),  # Use timezone-aware UTC time
-            original_url=original_message.jump_url,  # Link to the source message
+            author_id=interaction.user.id,
+            timestamp=discord.utils.utcnow(),
+            # Since we don't have the original message object, jump_url is harder.
+            # You could construct it if needed:
+            # f"https://discord.com/channels/{interaction.guild_id or '@me'}/{interaction.channel_id}/{self.original_message_id}"
+            # Or just omit/use a placeholder if not critical.
+            original_url=f"Message ID: {self.original_message_id}",  # Example placeholder
             name=f"effect_{'_'.join(selected_effects)}.{self.file_type}",
             guild_id=interaction.guild_id or 0,
             usage_count=0,
             errors={}, issues={}, notes={}, followup={}, effect_chain={},
-            img_data=self.image_buffer,
+            img_data=self.image_buffer,  # Use the buffer passed during init
         )
 
         try:
-            pipeline = await create_pipeline(interaction, original_message, emote_instance, queued_effects)
+            # Pass interaction if needed by pipeline, original_message object is no longer available here
+            # Adapt pipeline call signature if it strictly required the message object previously
+            pipeline = await create_pipeline(interaction, None, emote_instance,
+                                             queued_effects)  # Pass None for original_message
             emote = await execute_pipeline(pipeline)
-
         except Exception as e:
+            # logger.exception("Error during effect pipeline execution:")
             await interaction.edit_original_response(content=f"An error occurred while applying effects: {e}")
             return
 
         if emote.img_data:
-            image_buffer = io.BytesIO(emote.img_data)
+            image_buffer_out = io.BytesIO(emote.img_data)
             filename = emote.file_path.split("/")[-1] if emote.file_path else f"effected_image.{self.file_type}"
-            file = discord.File(fp=image_buffer, filename=filename)
+            file = discord.File(fp=image_buffer_out, filename=filename)
 
+            # --- CHANGE: Construct reference manually ---
+            # Use the stored original message ID and the channel from the current interaction
+            message_reference = discord.MessageReference(
+                message_id=self.original_message_id,
+                channel_id=interaction.channel_id,  # Channel ID from the interaction context
+                fail_if_not_exists=False  # Keep this False
+            )
+
+            # --- Send NEW message replying using the manual reference ---
             try:
                 await interaction.channel.send(
                     content="",
                     file=file,
-                    reference=original_message.to_reference(fail_if_not_exists=False),
-                    mention_author=False,
-                    silent=True
+                    reference=message_reference  # Use the manually created reference
                 )
                 await interaction.edit_original_response(content="Effect applied successfully!")
 
@@ -131,6 +132,7 @@ class EffectSelect(discord.ui.Select):
             except discord.HTTPException as e:
                 await interaction.edit_original_response(content=f"Error sending the final image: {e}")
             except Exception as e:
+                # logger.exception("Unexpected error sending final image reply:")
                 await interaction.edit_original_response(
                     content=f"An unexpected error occurred while sending the result: {e}")
         else:
