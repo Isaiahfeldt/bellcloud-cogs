@@ -113,7 +113,9 @@ class EffectSelect(discord.ui.Select):
                 await interaction.followup.send(
                     content="",
                     file=file,
-                    ephemeral=False
+                    ephemeral=False,
+                    silent=True,
+                    mention_author=False
                 )
             except discord.Forbidden:
                 await interaction.followup.send("Error: I lack permission to send the final message (followup failed).",
