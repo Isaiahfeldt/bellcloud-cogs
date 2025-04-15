@@ -1,13 +1,11 @@
-# --- START OF FILE user_commands.py ---
-
 import io
+from datetime import datetime
 
 import discord
 from discord.ui import View
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
-# Assume these imports work and classes/functions exist
 from emote.slash_commands import SlashCommands
 from emote.utils.effects import Emote
 from emote.utils.pipeline import create_pipeline, execute_pipeline
@@ -17,6 +15,7 @@ _ = Translator("Emote", __file__)
 
 def _parse_docstring_for_description(func) -> str:
     """Extracts the user description from the function's docstring."""
+
     doc = getattr(func, "__doc__", None) or ""
     lines = doc.strip().splitlines()
     try:
@@ -25,6 +24,7 @@ def _parse_docstring_for_description(func) -> str:
             if line.strip().lower().startswith("user:"):
                 user_line_index = i
                 break
+
         if user_line_index != -1 and user_line_index + 1 < len(lines):
             for next_line in lines[user_line_index + 1:]:
                 stripped_next_line = next_line.strip()
@@ -37,16 +37,16 @@ def _parse_docstring_for_description(func) -> str:
 
 
 class EffectSelect(discord.ui.Select):
-    """A select menu for choosing effects."""
+    """A select menu for choosing effects to apply to a message."""
 
-    def __init__(self, options: list[discord.SelectOption], image_buffer: bytes, file_type: str):
+    def __init__(self, options: list[discord.SelectOption], image_buffer: bytes, file_type: str, ):
         """
         Initializes the EffectSelect menu.
 
         Args:
             options (list[discord.SelectOption]): A list of effect options.
             image_buffer (bytes): The image buffer to apply effects to.
-            file_type (str): The file type of the image (e.g., "png", "jpg", "gif").
+            file_type (str): The file type of the image (e.g., "png", "jpg", "gif")..
         """
         self.image_buffer = image_buffer
         self.file_type = file_type
@@ -60,23 +60,9 @@ class EffectSelect(discord.ui.Select):
         )
 
     async def callback(self, interaction: discord.Interaction):
-        """Handles the user's selection of effects using followup."""
+        """Handles the user's selection of effects."""
 
-        try:
-            await interaction.response.edit_message(content="Processing selected effect(s)...", view=None)
-        except discord.NotFound:
-            try:
-                await interaction.followup.send("The original selection message seems to be gone.", ephemeral=True)
-            except discord.HTTPException:
-                pass
-            return
-        except discord.HTTPException as e:
-            try:
-                await interaction.followup.send(f"An error occurred acknowledging selection: {e}", ephemeral=True)
-            except discord.HTTPException:
-                pass
-            return
-
+        await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
         queued_effects = []
@@ -87,51 +73,32 @@ class EffectSelect(discord.ui.Select):
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
             file_path=f"virtual/emote.{self.file_type}",  # Use real file name and type
-            author_id=interaction.user.id,
-            timestamp=discord.utils.utcnow(),
-            original_url="Interaction based",  # Placeholder
-            name=f"effect_{'_'.join(selected_effects)}.{self.file_type}",
-            guild_id=interaction.guild_id or 0,
+            author_id=000000000,
+            timestamp=datetime.now(),
+            original_url="www.example.com",
+            name=f"emote.{self.file_type}",
+            guild_id=0,
             usage_count=0,
-            errors={}, issues={}, notes={}, followup={}, effect_chain={},
+            errors={},
+            issues={},
+            notes={},
+            followup={},
+            effect_chain={},
             img_data=self.image_buffer,
         )
 
-        try:
-            pipeline = await create_pipeline(interaction, interaction.message, emote_instance, queued_effects)
-            emote = await execute_pipeline(pipeline)
-        except Exception as e:
-            await interaction.followup.send(f"An error occurred while applying effects: {e}", ephemeral=True)
-            return
+        pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
+        emote = await execute_pipeline(pipeline)
 
         if emote.img_data:
-            image_buffer_out = io.BytesIO(emote.img_data)
-            filename = emote.file_path.split("/")[-1] if emote.file_path else f"effected_image.{self.file_type}"
-            file = discord.File(fp=image_buffer_out, filename=filename)
-
-            try:
-                await interaction.followup.send(
-                    content="",
-                    file=file,
-                    ephemeral=False,
-                    silent=True,
-                    mention_author=False
-                )
-            except discord.Forbidden:
-                await interaction.followup.send("Error: I lack permission to send the final message (followup failed).",
-                                                ephemeral=True)
-            except discord.HTTPException as e:
-                await interaction.followup.send(f"Error sending the final image: {e}", ephemeral=True)
-            except Exception as e:
-                await interaction.followup.send(f"An unexpected error occurred sending the result: {e}", ephemeral=True)
-
-        else:
-            await interaction.followup.send("Effect processing completed, but no image data was generated.",
-                                            ephemeral=True)
+            image_buffer = io.BytesIO(emote.img_data)
+            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+            file = discord.File(fp=image_buffer, filename=filename)
+            await interaction.followup.send(content="", file=file, ephemeral=False)
 
 
 class EffectView(View):
-    """A view containing the EffectSelect."""
+    """A view that allows users to select and apply effects to a Discord message."""
 
     def __init__(self, available_options: list[discord.SelectOption], image_buffer: bytes, file_type: str, *,
                  timeout=180):
@@ -145,7 +112,7 @@ class EffectView(View):
             timeout (int, optional): The timeout for the view in seconds. Defaults to 180.
         """
         super().__init__(timeout=timeout)
-        self.message: discord.Message | None = None
+        self.attached_message: discord.Message | None = None
         if available_options:
             self.add_item(EffectSelect(
                 options=available_options,
@@ -155,64 +122,64 @@ class EffectView(View):
 
     async def on_timeout(self):
         """Called when the view times out. Disables all items in the view and updates the attached message."""
-        if self.message:
+
+        if self.attached_message:
             try:
                 for item in self.children:
                     item.disabled = True
-                await self.message.edit(content="Effect selection timed out.", view=self)
-            except (discord.NotFound, discord.Forbidden, discord.HTTPException):
+                await self.attached_message.edit(content="Effect selection timed out.", view=self)
+            except (discord.NotFound, discord.Forbidden):
                 pass
-        self.clear_items()
 
 
 @cog_i18n(_)
 class UserCommands(commands.Cog):
 
     async def handle_apply_effect(self, interaction: discord.Interaction, message: discord.Message):
-        """Context menu command callback to apply effects to images in a message."""
+        """Context menu command to apply effects to images in a message."""
 
-        image_attachment = None
-        if message.attachments:
-            for att in message.attachments:
-                if att.content_type and att.content_type.startswith("image/"):
-                    image_attachment = att
-                    break
+        has_image = message.attachments and any(
+            att.content_type and att.content_type.startswith("image/") for att in message.attachments)
 
-        if not image_attachment:
-            await interaction.response.send_message("No direct image attachment found.", ephemeral=True)
+        if not has_image:
+            await interaction.response.send_message(
+                "I couldn't find a direct image attachment in that message to apply effects to.",
+                ephemeral=True
+            )
             return
 
-        try:
-            image_buffer = await image_attachment.read()
-        except (discord.HTTPException, discord.NotFound) as e:
-            await interaction.response.send_message(f"Failed to download image: {e}", ephemeral=True)
-            return
-        except Exception as e:
-            await interaction.response.send_message("Error reading image.", ephemeral=True)
-            return
+        image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
+        image_buffer = await image_attachment.read()
 
         # TODO: image compression / resize to be smaller
 
-        try:
-            effects_list_data = SlashCommands.EFFECTS_LIST
-        except AttributeError:
-            await interaction.response.send_message("Effect configuration missing.", ephemeral=True)
-            return
-
+        effects_list_data = SlashCommands.EFFECTS_LIST
         available_options = []
         is_owner = await self.bot.is_owner(interaction.user)
+
         for name, data in effects_list_data.items():
             perm = data.get("perm", "everyone").lower()
             func = data.get("func")
             if not func: continue
-            allowed = (perm == "everyone") or (perm == "owner" and is_owner)
+
+            allowed = False
+            if perm == "owner":
+                allowed = is_owner
+            elif perm == "everyone":
+                allowed = True
+
             if allowed:
+                # Use the helper from UserCommands mixin
                 description = _parse_docstring_for_description(func)
                 available_options.append(
-                    discord.SelectOption(label=name.capitalize(), value=name, description=description))
+                    discord.SelectOption(label=name.capitalize(), value=name, description=description)
+                )
 
         if not available_options:
-            await interaction.response.send_message("No effects available for you.", ephemeral=True)
+            await interaction.response.send_message(
+                "You don't have permission for any effects, or none are configured for DM use.",
+                ephemeral=True
+            )
             return
 
         view = EffectView(
@@ -223,10 +190,8 @@ class UserCommands(commands.Cog):
         )
 
         await interaction.response.send_message(
-            "Select effect(s) to apply:",
+            f"Select effect(s) to apply this message:",
             view=view,
-            ephemeral=False,
-            silent=True,
-            mention_author=False
+            ephemeral=True
         )
-        view.message = await interaction.original_response()
+        view.attached_message = await interaction.original_response()
