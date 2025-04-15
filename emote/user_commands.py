@@ -68,16 +68,11 @@ class EffectSelect(discord.ui.Select):
     async def callback(self, interaction: discord.Interaction):
         """Handles the user's selection of effects."""
 
-        # --- CHANGE 1: Acknowledge ephemerally ---
-        # Edit the ephemeral message to show processing.
         await interaction.response.edit_message(content="Processing selected effect(s)...", view=None)
-        # If processing is long, could also use: await interaction.response.defer(ephemeral=True)
 
         selected_effects = self.values
 
-        # --- Fetch the original message ---
         try:
-            # interaction.channel is the channel where the command was invoked.
             original_message = await interaction.channel.fetch_message(self.original_message_id)
         except discord.NotFound:
             await interaction.edit_original_response(content="Error: Could not find the original message to reply to.")
@@ -89,7 +84,6 @@ class EffectSelect(discord.ui.Select):
             await interaction.edit_original_response(content=f"Error fetching original message: {e}")
             return
 
-        # --- Effect processing logic (no changes needed here) ---
         queued_effects = []
         for effect_name in selected_effects:
             parsed_args = []  # Placeholder
@@ -111,6 +105,7 @@ class EffectSelect(discord.ui.Select):
         try:
             pipeline = await create_pipeline(interaction, original_message, emote_instance, queued_effects)
             emote = await execute_pipeline(pipeline)
+
         except Exception as e:
             await interaction.edit_original_response(content=f"An error occurred while applying effects: {e}")
             return
@@ -124,7 +119,9 @@ class EffectSelect(discord.ui.Select):
                 await interaction.channel.send(
                     content="",
                     file=file,
-                    reference=original_message.to_reference(fail_if_not_exists=False)  # Reply!
+                    reference=original_message.to_reference(fail_if_not_exists=False),
+                    mention_author=False,
+                    silent=True
                 )
                 await interaction.edit_original_response(content="Effect applied successfully!")
 
@@ -147,8 +144,7 @@ class EffectView(View):
     # Added original_message_id
     def __init__(self, available_options: list[discord.SelectOption], image_buffer: bytes, file_type: str,
                  original_message_id: int, *, timeout=180):
-        """
-        Initializes the EffectView.
+        """Initializes the EffectView.
 
         Args:
             available_options (list[discord.SelectOption]): A list of available effect options.
