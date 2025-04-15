@@ -63,6 +63,11 @@ class EffectSelect(discord.ui.Select):
         await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
+        emote_effects = []
+        for effect_name in selected_effects:
+            parsed_args = []
+            emote_effects.append((effect_name, parsed_args))
+
         emote_instance = Emote(
             id=0,  # Use a dummy id since this is a virtual Emote
             file_path=f"virtual/emote.{self.file_type}",  # Use real file name and type
@@ -82,7 +87,7 @@ class EffectSelect(discord.ui.Select):
 
         effect_funcs_to_apply = []
 
-        await interaction.followup.send(content=f"{selected_effects}", ephemeral=True)
+        await interaction.followup.send(content=f"{emote_effects}", ephemeral=True)
 
         # pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
         # emote = await execute_pipeline(pipeline)
