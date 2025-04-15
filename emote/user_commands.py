@@ -62,7 +62,7 @@ class EffectSelect(discord.ui.Select):
     async def callback(self, interaction: discord.Interaction):
         """Handles the user's selection of effects."""
 
-        await interaction.response.defer(ephemeral=False, thinking=True)
+        # await interaction.response.defer(ephemeral=False, thinking=True)
         selected_effects = self.values
 
         queued_effects = []
@@ -86,9 +86,9 @@ class EffectSelect(discord.ui.Select):
             effect_chain={},
             img_data=self.image_buffer,
         )
-
-        pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
-        emote = await execute_pipeline(pipeline)
+        async with interaction.channel.typing():
+            pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
+            emote = await execute_pipeline(pipeline)
 
         if emote.img_data:
             image_buffer = io.BytesIO(emote.img_data)
