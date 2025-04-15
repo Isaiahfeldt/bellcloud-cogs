@@ -225,6 +225,8 @@ class UserCommands(commands.Cog):
         await interaction.response.send_message(
             "Select effect(s) to apply:",
             view=view,
-            ephemeral=False
+            ephemeral=False,
+            silent=True,
+            mention_author=False
         )
         view.message = await interaction.original_response()
