@@ -1,4 +1,3 @@
-import io
 from datetime import datetime
 
 import discord
@@ -83,21 +82,16 @@ class EffectSelect(discord.ui.Select):
 
         effect_funcs_to_apply = []
 
-        for effect_name in selected_effects:
-            effect_data = SlashCommands.EFFECTS_LIST.get(effect_name)
-            if effect_data and 'func' in effect_data:
-                effect_funcs_to_apply.append(effect_data['func'])
+        await interaction.followup.send(content=f"{selected_effects}", ephemeral=True)
 
-        emote = None
-        # TODO: make async for faster, add timeout
-        for effect_func in effect_funcs_to_apply:
-            emote = effect_func(emote_instance)
+        # pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
+        # emote = await execute_pipeline(pipeline)
 
-        if emote.img_data:
-            image_buffer = io.BytesIO(emote.img_data)
-            filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
-            file = discord.File(fp=image_buffer, filename=filename)
-            await interaction.followup.send(content="", file=file, ephemeral=False)
+        # if emote.img_data:
+        #     image_buffer = io.BytesIO(emote.img_data)
+        #     filename = emote.file_path.split("/")[-1] if emote.file_path else "emote.png"
+        #     file = discord.File(fp=image_buffer, filename=filename)
+        #     await interaction.followup.send(content="", file=file, ephemeral=False)
 
 
 class EffectView(View):
