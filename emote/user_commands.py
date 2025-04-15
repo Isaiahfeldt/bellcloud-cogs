@@ -96,7 +96,7 @@ class EffectSelect(discord.ui.Select):
         try:
             # Pass interaction if needed by pipeline, original_message object is no longer available here
             # Adapt pipeline call signature if it strictly required the message object previously
-            pipeline = await create_pipeline(interaction, None, emote_instance,
+            pipeline = await create_pipeline(interaction, interaction.message, emote_instance,
                                              queued_effects)  # Pass None for original_message
             emote = await execute_pipeline(pipeline)
         except Exception as e:
