@@ -710,8 +710,6 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
                 emote.issues[
                     "shake_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
 
-            emote.notes["shake_res_num_output_frames"] = str(num_output_frames)
-            emote.notes["shake_res_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
 
             # --- Calculate Shake Parameters ---
             img_width, img_height = input_frames_data[0][0].size
@@ -822,7 +820,6 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
             output_buffer = io.BytesIO()
             # Determine save format based on original, default to GIF
             save_format = 'webp' if file_ext == 'webp' else 'gif'
-            emote.notes["shake_res_save_format"] = str(save_format)
 
             output_frames_pil[0].save(
                 output_buffer,
@@ -837,7 +834,6 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
 
             emote.img_data = output_buffer.getvalue()
             emote.file_path = f"{emote.file_path.rsplit('.', 1)[0]}_shake.{save_format}"
-            emote.notes["shake_res_method"] = "resampled_vectorized_blend"
 
     except MemoryError:
         emote.errors["shake_res"] = "MemoryError: Input image/animation too large or long to process."
@@ -1061,8 +1057,6 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
             n_frames = getattr(img, "n_frames", 1)
             is_animated_input = n_frames > 1
 
-            emote.notes["rainbow_res_is_animated"] = str(is_animated_input)
-
             # --- Load Input Frames & Durations ---
             last_duration = 100  # Fallback
             if is_animated_input:
@@ -1107,17 +1101,10 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
                     output_frames_pil.append(Image.fromarray(shifted_rgba_uint8, 'RGBA'))
 
                 frame_durations_to_save = static_frame_delay_ms  # Use single duration for static
-                emote.notes["rainbow_res_type"] = "static_to_animated"
-                emote.notes["rainbow_res_output_frames"] = str(NUM_OUTPUT_FRAMES_STATIC)
-                emote.notes["rainbow_res_output_delay_ms"] = str(static_frame_delay_ms)
-                # Skip the rest of the animated processing
-                # Jump directly to saving logic
+
 
             # --- Animated Input Processing ---
             if is_animated_input:
-                emote.notes["rainbow_res_type"] = "animated_resampled"
-                emote.notes["rainbow_res_input_frames"] = str(len(input_frames_data))
-                emote.notes["rainbow_res_total_input_duration_ms"] = str(total_input_duration_ms)
 
                 if total_input_duration_ms <= 0:
                     emote.errors["rainbow_res"] = "Input animation has zero or negative total duration."
@@ -1133,11 +1120,8 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
                     emote.issues[
                         "rainbow_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
 
-                emote.notes["rainbow_res_num_output_frames"] = str(num_output_frames)
-                emote.notes["rainbow_res_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
-
                 # --- Define Hue Cycle Rate ---
-                base_cycle_duration_ms = 1000.0  # 1 second cycle for speed 1.0
+                base_cycle_duration_ms = 1000.0
                 actual_cycle_duration_ms = base_cycle_duration_ms / speed if speed > 0 else float('inf')
                 if actual_cycle_duration_ms <= 0: actual_cycle_duration_ms = 1e-9  # Avoid zero
 
@@ -1192,8 +1176,6 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
 
             output_buffer = io.BytesIO()
             save_format = 'webp' if file_ext == 'webp' else 'gif'  # Prefer webp if original was webp
-            emote.notes["rainbow_res_save_format"] = str(save_format)
-
             output_frames_pil[0].save(
                 output_buffer,
                 format=save_format.upper(),
@@ -1209,7 +1191,6 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
             emote.img_data = output_buffer.getvalue()
             base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
             emote.file_path = f"{base_name}_rainbow.{save_format.lower()}"
-            emote.notes["rainbow_res_speed_used"] = str(speed)
 
     except MemoryError:
         emote.errors["rainbow_res"] = "MemoryError: Input image/animation too large or long to process."
@@ -1301,9 +1282,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
             n_frames = getattr(img, "n_frames", 1)
             is_animated_input = n_frames > 1
 
-            emote.notes["spin_is_animated"] = str(is_animated_input)
-            emote.notes["original_size"] = str(img.size)
-
             effective_abs_speed = initial_effective_abs_speed
             cycle_duration_ms = 1000.0 / effective_abs_speed
 
@@ -1320,8 +1298,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
                     total_input_duration_ms += duration_ms
                     last_duration = duration_ms
 
-                emote.notes["spin_input_frames"] = str(len(input_frames_data))
-                emote.notes["spin_total_input_duration_ms"] = str(total_input_duration_ms)
 
                 if total_input_duration_ms <= 0:
                     emote.errors["spin"] = "Input animation has zero or negative total duration."
@@ -1338,7 +1314,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
 
                     cycle_duration_ms = adjusted_cycle_duration_ms
                     effective_abs_speed = final_effective_abs_speed
-                    emote.notes["spin_adjusted_cycle_duration_ms"] = f"{cycle_duration_ms:.2f}"
 
                 num_output_frames = math.ceil(total_input_duration_ms / OUTPUT_FRAME_DURATION_MS)
                 max_frames = 500
@@ -1348,9 +1323,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
                     OUTPUT_FRAME_DURATION_MS = max(20, OUTPUT_FRAME_DURATION_MS)
                     emote.issues[
                         "spin_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
-
-                emote.notes["spin_num_output_frames"] = str(num_output_frames)
-                emote.notes["spin_output_delay_ms"] = str(OUTPUT_FRAME_DURATION_MS)
 
                 input_frame_index = 0
                 current_input_frame_end_time = 0
@@ -1391,9 +1363,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
                     output_frames_pil.append(rotated_frame)
 
                 frame_durations_to_save = static_frame_delay_ms
-                emote.notes["spin_type"] = "static_to_animated"
-                emote.notes["spin_output_frames"] = str(NUM_OUTPUT_FRAMES_STATIC)
-                emote.notes["spin_output_delay_ms"] = str(static_frame_delay_ms)
                 num_output_frames = NUM_OUTPUT_FRAMES_STATIC
 
             # --- Save Output ---
@@ -1416,7 +1385,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
 
             output_buffer = io.BytesIO()
             save_format = 'webp' if file_ext == 'webp' else 'gif'
-            emote.notes["spin_save_format"] = str(save_format)
 
             if final_output_frames:
                 final_output_frames[0].save(
@@ -1431,10 +1399,7 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
 
             base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
             emote.file_path = f"{base_name}_spin.{save_format.lower()}"
-            # Store the original integer parameter
-            emote.notes["spin_speed_param_used"] = str(original_speed_param)
-            emote.notes["spin_effective_scalar"] = str(DEFAULT_SPEED_SCALAR)
-            emote.notes["spin_final_effective_speed_factor"] = f"{effective_abs_speed / DEFAULT_SPEED_SCALAR:.3f}"
+
 
     except MemoryError:
         emote.errors["spin"] = "MemoryError: Input image/animation too large or complex to process."
