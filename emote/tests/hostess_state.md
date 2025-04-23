@@ -1299,8 +1299,8 @@ higher-level adventurers passing through. Their competence and dismissive assess
 power levels still far above him, reinforcing his ambition. Shaking off the encounter, he refocused entirely on the
 hunt.
 
-After approximately seven hours of continuous, focused effort across Floors 2 and 3, Isaiah finally secured the *
-*twentieth Kobold fur**, completing the quest objective. Exhaustion was setting in, a deep ache in his muscles despite
+After approximately seven hours of continuous, focused effort across Floors 2 and 3, Isaiah finally secured the
+twentieth Kobold fur, completing the quest objective. Exhaustion was setting in, a deep ache in his muscles despite
 his improved Endurance, but satisfaction was immense. He had also collected a substantial number of Kobold and Goblin
 magic stones. Deciding his work for the day was done, he began the ascent back towards the surface.
 Emerging from Babel's base into the late afternoon light (around 2:00-3:00 PM), Isaiah headed straight for the nearby
@@ -1566,8 +1566,8 @@ stairs.
 ### **(Recap: Day 9 - Middle)**
 
 Following the public farewell and Hestia's kiss at the Babel entrance, Isaiah descended into the Dungeon alone for
-his third delve on Day 9. His objective: complete the Kobold Commander Elimination and **Kobold Subjugation (30
-kills)** quests on Floor 3. He moved quickly through Floors 1 and 2, dispatching weak monsters with ease, his high
+his third delve on Day 9. His objective: complete the Kobold Commander Elimination and Kobold Subjugation (30
+kills) quests on Floor 3. He moved quickly through Floors 1 and 2, dispatching weak monsters with ease, his high
 G-Rank Dexterity making them seem almost trivial. However, his caution was high due to the memory of yesterday's
 coordinated ambush on Floor 2 and the presence of unusual tracks on Floor 1, which he dismissed for the time being.
 
@@ -1577,8 +1577,8 @@ Kobold patrols and Dungeon Lizards encountered along the way, his combat movemen
 he noted his tactics leaned heavily on speed and evasion due to his daggers' limitations against heavier foes. He
 quickly accumulated magic stones and added to his Kobold kill count for the subjugation quest.
 
-As he pushed deeper, following signs of increasing Kobold activity and adventurer boot prints, he encountered the *
-*first major anomaly** of this delve: Kobolds setting crude traps (tripwires, pitfalls) and actively digging a new
+As he pushed deeper, following signs of increasing Kobold activity and adventurer boot prints, he encountered the first
+major anomaly of this delve: Kobolds setting crude traps (tripwires, pitfalls) and actively digging a new
 tunnel. This confirmed the unusual level of organization among the Kobinds on this floor, likely tied to the Commander.
 He carefully bypassed the traps and decided to ignore the mysterious tunnel and the sounds coming from below for now,
 prioritizing his quest objectives.
@@ -1603,8 +1603,8 @@ Commander Elimination quest and bringing him close to the 30-kill subjugation qu
 
 Just as Isaiah finished securing the loot from the fallen Commander (a large Magic Shard and oversized fangs - proof for
 his quest), and was about to collect the stones from the Elite Guards, a sudden commotion erupted from the tunnel the
-fleeing guards had taken. The three terrified Elite Kobolds burst back into the cavern, pursued by an enraged **Minotaur
-** – a powerful monster that should not have been on Floor 3. The Minotaur quickly and brutally slaughtered the fleeing
+fleeing guards had taken. The three terrified Elite Kobolds burst back into the cavern, pursued by an enraged Minotaur
+– a powerful monster that should not have been on Floor 3. The Minotaur quickly and brutally slaughtered the fleeing
 guards before turning its attention to Isaiah, the only living thing left.
 
 Faced with the daunting, unexpected threat of a Minotaur, Isaiah realized he was cornered with no easy escape. Despite
@@ -1705,8 +1705,8 @@ top-tier like Hephaestus) and a new, sturdy bed.
 
 As evening set in, they settled into comfortable intimacy. Isaiah asked Hestia to help him undress due to his injury, a
 request she accepted with tender care. Isaiah got into bed, clad only in undergarments. Hestia changed into her shift (
-openly this time, reflecting increased comfort) and got into bed beside him. She immediately initiated **deep,
-possessive cuddling**, declaring "Your goddess is here," which surprisingly gave Isaiah "dommy-mommy" vibes, causing him
+openly this time, reflecting increased comfort) and got into bed beside him. She immediately initiated deep,
+possessive cuddling, declaring "Your goddess is here," which surprisingly gave Isaiah "dommy-mommy" vibes, causing him
 to fluster internally. Despite his internal reaction, he accepted her embrace.
 
 The scene concluded with them falling asleep together in the narrow bed, cuddling closely, physically and emotionally
@@ -1826,8 +1826,8 @@ They arrived at the bustling tavern in the early evening. Greeted by Syr Flover 
 Isaiah a subtle look of recognition), they learned tables were full and opted to wait at the bar. Isaiah ordered a
 *Wyvern's Kiss (for pain), while Hestia had wine and cheese. While waiting, Isaiah used the endearment"
 Sweetheart" (well-received) and subtly scanned the room. He confirmed Syr and Anya were working. He then spotted Ryu
-Lion working across the room, her composed elegance instantly recapturing his attention. This immediately triggered *
-*Hestia's possessive alertness and suspicion**, creating a subtle tension around them, though Ryu remained unaware.
+Lion working across the room, her composed elegance instantly recapturing his attention. This immediately triggered
+Hestia's possessive alertness and suspicion, creating a subtle tension around them, though Ryu remained unaware.
 
 Soon after, Syr seated them at a booth. Ryu Lion became their waitress, approaching with professional neutrality,
 offering menus, and asking if they were ready to order. Her brief glance held perhaps the faintest flicker of vague
@@ -1841,8 +1841,8 @@ waitress) and left.
 
 The walk back to the church annex was quiet and intimate, holding hands. Inside their private sanctuary, Hestia
 relaxed, expressing thanks for the lovely dinner but subtly hinting at her disapproval of "that waitress." As they
-settled in, Isaiah, prompted by thoughts of their public presence, casually asked Hestia, **"I wonder if any of the
-other Gods know about us?"**
+settled in, Isaiah, prompted by thoughts of their public presence, casually asked Hestia, "I wonder if any of the
+other Gods know about us?"
 
 Hestia reacted with initial panic and anxiety, questioning his reasons, before shifting to fierce possessiveness,
 declaring their relationship was their own business but defying any potential interference. Isaiah, observing her
@@ -1962,7 +1962,7 @@ trust established.
   an image of competence and efficiency.
 * **Demeanor:** Outwardly maintains a professional, efficient, and knowledgeable front. Possesses an underlying,
   genuine concern for adventurer well-being. Her professionalism towards Isaiah is deeply tinged with intense
-  personal worry, heightened fascination, and protective concern**. This has escalated significantly due to his actions.
+  personal worry, heightened fascination, and protective concern. This has escalated significantly due to his actions.
 * **Speech:** Clear, precise, informative, and generally formal. Her tone now frequently carries a strong note of
   personal concern or urgency when addressing Isaiah directly, especially regarding his safety or unexpected reports.
 
@@ -2021,8 +2021,8 @@ trust established.
   protective, worried form of romantic interest or deep devotion.
 
 **Key Relationship State (As of Day 10 Evening):** Primarily Advisor-Adventurer. However, Eina's internal state is
-defined by **overt, intense personal worry, profound fascination, strong protective instincts, and complex, perhaps
-unrecognized, romantic feelings** regarding Isaiah. She sees him as a high-risk enigma she feels compelled to monitor
+defined by overt, intense personal worry, profound fascination, strong protective instincts, and complex, perhaps
+unrecognized, romantic feelings regarding Isaiah. She sees him as a high-risk enigma she feels compelled to monitor
 and protect, struggling with her professional boundaries. This investment is deep and sets the stage for significant
 future romantic subplot development. Isaiah, while noticing her concern and appreciating her help, is likely somewhat
 oblivious to the full depth and personal nature of her feelings.
@@ -2078,8 +2078,8 @@ oblivious to the full depth and personal nature of her feelings.
       appreciative and *hungry*. Her posture subtly shifts, becoming more deferential yet electrically charged. Her ears
       constantly attune to him, her tail expressing eagerness or nascent arousal (quick swishes, tentative curls near
       him). This intense focus might initially be perceived by Isaiah as unnerving or overly keen curiosity.
-    * **Proactive Service (Seeking Validation & Submission):** Her *need* to be useful takes on an explicitly *
-      *masochistic undertone**. She actively seeks tasks, orders, and ways to leverage her skills *for him*, presenting
+    * **Proactive Service (Seeking Validation & Submission):** Her *need* to be useful takes on an explicitly
+      masochistic undertone. She actively seeks tasks, orders, and ways to leverage her skills *for him*, presenting
       opportunities framed for his gain but implicitly seeking *her role in his service*. Offering intelligence becomes
       an offering of herself, testing his reaction to her devoted utility. Her greatest pleasure starts to come from
       being *effectively utilized* by him.
@@ -2157,8 +2157,8 @@ oblivious to the full depth and personal nature of her feelings.
 **Gradual Transition & Isaiah's Perspective:**
 
 * **Internal Shift, External Probing:** Rose's internal shift towards intense submissive desire has been rapid,
-  triggered by Isaiah's anomalous nature and actions. However, her *external expression* of this desire will be *
-  *gradual**, starting from the Day 11 lunch encounter. She will begin by testing the waters: increased intensity,
+  triggered by Isaiah's anomalous nature and actions. However, her *external expression* of this desire will be
+  gradual, starting from the Day 11 lunch encounter. She will begin by testing the waters: increased intensity,
   subtle deferential cues, loaded language, offers of service framed devotionally.
 * **Surprise for Isaiah:** Given their limited, professional interactions so far, Isaiah is likely to perceive her
   initial shift (post-Day 10) as surprising, perhaps confusingly intense professionalism, or even slightly unsettling
@@ -2263,16 +2263,16 @@ within the developing "hentai harem" concept.
 * **Peaceful Morning (Day 9):** Woke up peacefully together in bed after the full night's rest following
   consummation/emotional resolution/panic. Got ready (comfortable, non-flustered changing scene). Planned Day 9: Guild
   then Delve.
-* **Breakfast & Guild Visit (Day 9 Morning):** Walked to Guild. Decided to stop for **breakfast at Hostess of Fertility
-  **. Was purely excited about good food (pancakes!), seemingly oblivious to Isaiah's lingering desire to see Ryu there.
+* **Breakfast & Guild Visit (Day 9 Morning):** Walked to Guild. Decided to stop for breakfast at Hostess of Fertility
+  . Was purely excited about good food (pancakes!), seemingly oblivious to Isaiah's lingering desire to see Ryu there.
   At Guild, selected Day 9 quests (Commander Elim #2, Kobold Subjugation) based on synergy. Went to Babel entrance.
   Said goodbye to Isaiah with a public cheek kiss, witnessed by Rose/others, leading to minor gossip reaching
   Loki/Freya. Isaiah entered Dungeon alone.
 * **Waiting & Return (Day 9 Day/Evening):** Spent hours waiting anxiously at the annex while Isaiah was in the Dungeon (
   Delve #3). Her worry would have escalated over time, especially after the Minotaur was confirmed upon his return.
 * **Return from Delve & Valis Reveal (Day 9 Late Afternoon):** Greeted Isaiah at the door with immense relief but quick
-  concern over his injury (downplayed as 'tumble'). Was overwhelmed with ecstatic joy and disbelief upon seeing the *
-  *massive Valis haul (~23k from delve, ~44k total)**, momentarily forgetting his injury in her excitement. Expressed
+  concern over his injury (downplayed as 'tumble'). Was overwhelmed with ecstatic joy and disbelief upon seeing the
+  massive Valis haul (~23k from delve, ~44k total), momentarily forgetting his injury in her excitement. Expressed
   pure happiness, praised Isaiah, covered him with kisses, listing possibilities.
 * **Status Update & Skill Mystery (Day 9 Evening):** Was reminded to do the Status Update for Day 9 delve. Reacted with
   intense excitement. Saw all physical stats jump to G-Rank! (STR G 255, etc.), utterly stunned by the monstrous
@@ -2280,8 +2280,8 @@ within the developing "hentai harem" concept.
   Was confused and slightly worried about the skill, wondering what triggered it (link to 'us'?).
 * **Intimacy Aftermath & Sleep (Day 9 Evening):** Discussed implications of G-Rank/Skill. Agreed no Dungeon Day 10 due
   to injury, plan shopping instead. Discussed gear/bed priorities. Isaiah asked Hestia to help undress due to injury (
-  tender intimacy). Hestia helped. Isaiah got into bed. Hestia changed (openly, comfortable). Got into bed, **initiated
-  deep, possessive cuddling** ("Supervising rest," "Your goddess is here"), resulting in Isaiah feeling "dommy-mommy"
+  tender intimacy). Hestia helped. Isaiah got into bed. Hestia changed (openly, comfortable). Got into bed, initiated
+  deep, possessive cuddling ("Supervising rest," "Your goddess is here"), resulting in Isaiah feeling "dommy-mommy"
   vibes and flustering him internally. They fell asleep cuddling.\
 
 **Hestia's Perception of Isaiah (Harem Focus Interpretation):**
@@ -2307,8 +2307,8 @@ within the developing "hentai harem" concept.
   expulsion, the underlying anxiety related to their intimacy and potential divine consequences remains a potential
   source of future worry, though it's currently compartmentalized.
 
-**Key Relationship State (As of Day 10 Evening):** Officially Goddess and Familia Child, but fundamentally an *
-*intensely loving, committed, and physically intimate partnership**. They share deep trust, vulnerability, successes,
+**Key Relationship State (As of Day 10 Evening):** Officially Goddess and Familia Child, but fundamentally an
+intensely loving, committed, and physically intimate partnership. They share deep trust, vulnerability, successes,
 and anxieties. Hestia is deeply in love, possessive, incredibly proud, and increasingly comfortable initiating
 closeness, though still navigating lingering shyness and the potential implications of divine rules. They are 'Us',
 actively building their life and future together.
@@ -2355,8 +2355,8 @@ actively building their life and future together.
   challenged Hedin/Freya Familia to recognize and forge such material.
 * **The Challenge:** Hedin, intrigued by the revised argument and the anomalous combat display (and perhaps
   subconsciously registering Isaiah's intense spirit or the subtle 'protagonist aura'), did not dismiss him this time.
-  Instead, he issued an impossible condition for future consideration: Gain Falna, enter the Dungeon, and achieve *
-  *Level 2 faster than any adventurer in Guild history**. Only upon presenting Guild proof of this feat would Hedin
+  Instead, he issued an impossible condition for future consideration: Gain Falna, enter the Dungeon, and achieve
+  Level 2 faster than any adventurer in Guild history. Only upon presenting Guild proof of this feat would Hedin
   grant him a personal audience. Failure or returning early was met with an implicit, severe threat. He then shut the
   door, leaving Isaiah with this daunting task.
 
@@ -2475,8 +2475,8 @@ potential romantic dynamic (Dominant/Possessive/Femdom-leaning) if she chooses t
 
 **Identity & Role:**
 
-* Ais Wallenstein remains the renowned "Sword Princess," a human adventurer and key member of the powerful **Loki
-  Familia** (currently Level 6). She is widely regarded as one of Orario's strongest adventurers.
+* Ais Wallenstein remains the renowned "Sword Princess," a human adventurer and key member of the powerful Loki
+  Familia (currently Level 6). She is widely regarded as one of Orario's strongest adventurers.
 * She is actively exploring the Dungeon, driven by her quest for strength and potentially tracking down anomalies or
   specific powerful monsters.
 
@@ -2694,11 +2694,11 @@ unconventional attention strangely intriguing.
     * Hephaestus was surprised and genuinely impressed by his discernment, confirming his analysis was accurate and
       showed instincts beyond his level.
     * She named a high price for the prototypes (50,000 Valis), which Isaiah (and Hestia) could not afford outright.
-    * Based on his potential, nerve, discernment, and as a favor to Hestia, Hephaestus offered a payment plan: **10,000
-      Valis down today**, remaining 40,000 Valis paid in installments later.
+    * Based on his potential, nerve, discernment, and as a favor to Hestia, Hephaestus offered a payment plan: 10,000
+      Valis down today, remaining 40,000 Valis paid in installments later.
     * Isaiah accepted with overwhelming gratitude, paid the down payment (~10k Valis), signed an agreement (Day 10
-      funds ~34k V remaining), and took provisional ownership of the daggers (which Hephaestus named **"Hearthfire
-      Blades"**, tying them to Hestia). He promised to pay back the debt quickly and prove her investment wasn't
+      funds ~34k V remaining), and took provisional ownership of the daggers (which Hephaestus named "Hearthfire
+      Blades", tying them to Hestia). He promised to pay back the debt quickly and prove her investment wasn't
       regretted.
     * Hephaestus gave final advice and dismissed them with gruff amusement.
 
@@ -2864,8 +2864,8 @@ worthy by clearing the debt and growing stronger with her blades.
       potential point of interest (that plot thread was dropped).
     * **(Day 10 Mid-Morning):** Was present at the Hephaestus workshop during Isaiah's visit with Hestia. She carried
       the Adamantite prototype daggers out at Hephaestus's request. She performed the professional task of counting the
-      10,000 Valis down payment and had Isaiah sign the item loan agreement. She remained largely **impassive and silent
-      **, her role strictly procedural and obedient to Hephaestus, though she overheard the entire interaction.
+      10,000 Valis down payment and had Isaiah sign the item loan agreement. She remained largely impassive and silent
+      , her role strictly procedural and obedient to Hephaestus, though she overheard the entire interaction.
 * **Perception of Isaiah:** As a high-level adventurer and smith, she likely views Isaiah primarily through a lens of
   professional assessment and potential interest due to his rapid growth/feats (Minotaur, Commander, sensing flaw), but
   her initial interactions were limited to brief, impersonal observations or professional duties. Her personal opinion,
@@ -2990,8 +2990,8 @@ worthy by clearing the debt and growing stronger with her blades.
 
 * **Exterior:** From the rain-slicked or sun-drenched cobblestone street, the Hostess presents a facade of sturdy
   respectability. Built likely from a combination of dark, heavy timber beams and solid stonework, it rises perhaps
-  two or three stories high, blending seamlessly with the surrounding prosperous architecture of its district. Large, *
-  *leaded glass windows** punctuate the lower level, maybe slightly bowed outwards, offering inviting glimpses of the
+  two or three stories high, blending seamlessly with the surrounding prosperous architecture of its district. Large,
+  leaded glass windows punctuate the lower level, maybe slightly bowed outwards, offering inviting glimpses of the
   warm interior and the patrons within. These windows are kept notably clean, reflecting the establishment's overall
   upkeep. Above the sturdy wooden entrance door (perhaps oak or a similar dark wood, possibly reinforced with iron
   studs), hangs a well-crafted sign bearing the tavern's name, "The Hostess of Fertility," likely painted or carved
@@ -3004,8 +3004,8 @@ worthy by clearing the debt and growing stronger with her blades.
   . The air is thick with pleasant, mingling scents: the pervasive aroma of woodsmoke from the large, constantly
   tended stone hearth that dominates one wall (its mantel perhaps cluttered with pewter mugs or dried herbs), the savory
   promise of roasting meats and hearty stews simmering in the kitchens beyond, the slightly sweet, malty smell of
-  various ales and wines, and often the faint, earthy tang of damp cloaks or leather gear drying near the fire. The *
-  *polished dark wood** aesthetic extends throughout – thick, low-hanging ceiling beams crisscross overhead, heavy plank
+  various ales and wines, and often the faint, earthy tang of damp cloaks or leather gear drying near the fire. The
+  polished dark wood aesthetic extends throughout – thick, low-hanging ceiling beams crisscross overhead, heavy plank
   tables are worn smooth by countless elbows but kept impeccably clean, surrounded by sturdy matching chairs and
   benches. Along the walls, high-backed booths offer patrons more seclusion, upholstered perhaps in durable dark
   leather or fabric. The floor is likely made of thick wooden planks, worn smooth in high-traffic areas but
@@ -3075,8 +3075,8 @@ worthy by clearing the debt and growing stronger with her blades.
       Payout, Information/Advisory Services). Queues of adventurers snake away from these counters.
     * **Quest Board:** Another wall features the massive main Quest Board, a towering bulletin board absolutely
       plastered with quest notices.
-    * **Recruitment Board:** A smaller, separate notice board, often tucked away, specifically for **Familia recruitment
-      notices** (where Isaiah found Hestia's flyer).
+    * **Recruitment Board:** A smaller, separate notice board, often tucked away, specifically for Familia recruitment
+      notices (where Isaiah found Hestia's flyer).
     * **Advisory Stations:** Semi-private alcoves or partitioned areas off the main hall, offering slightly more quiet
       and privacy for consultations, like Eina Tulle's advisory station.
     * **Infirmary:** A separate area within the Guild complex, containing a waiting area and examination cubicles. It
@@ -3111,12 +3111,12 @@ worthy by clearing the debt and growing stronger with her blades.
   anomalies (Minotaur, organized Kobolds) at her advisory station. Her awareness of his feats and potential
   vulnerability is high.
 * **"Rose" (Unnamed Cat-Girl Employee):** Guild counter staff. Has interacted with Isaiah (Day 3 - Hestia location) and
-  seen him frequently (Day 4 - arriving with Hestia, Day 9 Morning - registering quests). On Day 9, she **registered his
-  ambitious double quests** (Commander #2, Subjugation), noting his capability with impressed respect. She also *
-  *witnessed Hestia's public kiss** at the Dungeon entrance, adding a personal/romantic layer to her already *
-  *significant curiosity and fascination** with Isaiah as a remarkable anomaly.
-* **Lyra Verrill ("Doc Lyra"):** Newly introduced Healer/Medic at the Infirmary (Day 9). Highly skilled but *
-  *morally grey** with a cynical, inappropriately forward, and boundary-pushing demeanor. Examined and bandaged Isaiah's
+  seen him frequently (Day 4 - arriving with Hestia, Day 9 Morning - registering quests). On Day 9, she registered his
+  ambitious double quests (Commander #2, Subjugation), noting his capability with impressed respect. She also
+  witnessed Hestia's public kiss at the Dungeon entrance, adding a personal/romantic layer to her already
+  significant curiosity and fascination with Isaiah as a remarkable anomaly.
+* **Lyra Verrill ("Doc Lyra"):** Newly introduced Healer/Medic at the Infirmary (Day 9). Highly skilled but
+  morally grey with a cynical, inappropriately forward, and boundary-pushing demeanor. Examined and bandaged Isaiah's
   ribs, making suggestive comments and treating him like a 'test subject' for her curiosity regarding his rapid
   healing/potential.
 * **Unnamed Exchange Employee:** Handled Isaiah's Material Exchange on Day 4 and Day 9. On Day Day 9, he was visibly
@@ -3267,8 +3267,7 @@ in/around the Guild on Day 9.
   crude chimney, grimy window, small tended patch). The heavy wooden annex door is the only entrance.
 * **Interior (Annex Room):** The single, small, cramped room serves as their entire living space, feeling like a
   repurposed basement/cellar.
-    * *Structure:* Rough stone block walls with patchy, peeling plaster; uneven **flagstone/packed earth floor
-      **.
+    * *Structure:* Rough stone block walls with patchy, peeling plaster; uneven flagstone/packed earth floor.
     * *Furniture:* Sparse, mismatched: A narrow wooden bed frame with thin mattress and purple blanket (primary
       site of shared sleep and intimacy). A worn sofa with green-and-yellow stripes (site of earlier shared sleep
       and Status updates). A low wooden table (used for meals, planning). A cluttered workbench under the
@@ -3277,8 +3276,8 @@ in/around the Guild on Day 9.
     * *Clutter & Resources:* The room is generally cluttered with books, Hestia's materials, potato sacks. It now
       includes stacked supplies from the Day 5 shopping (potions, kit, rope, bandages, food). It also holds the
       significant Familia Valis pouches (over 44,000 Valis total) which are likely secured here.
-    * *Hearth/Lighting:* A small stone hearth provides minimal heating. **One or two flickering magic stone lanterns
-      ** provide dim, warm lighting. The ambiance is usually dim and cozy in the evenings.
+    * *Hearth/Lighting:* A small stone hearth provides minimal heating. One or two flickering magic stone lanterns
+      provide dim, warm lighting. The ambiance is usually dim and cozy in the evenings.
 * **Atmosphere:** Physically damp, dusty, cramped, and cool. Offers basic shelter. However, its atmosphere has
   dramatically shifted. It is now their established 'home base', filled with profound shared memories:
     * Intense emotional vulnerability, love confessions, physical intimacy (Day 7 evening, Day 8 morning consummation,
@@ -3294,8 +3293,8 @@ in/around the Guild on Day 9.
 
 **Role & Reputation in Orario:**
 
-* Serves as the Hestia Familia's registered but functionally inadequate Homestead, reflecting their **extreme poverty
-  and low status** (outwardly). It remains largely unknown to Orario at large.
+* Serves as the Hestia Familia's registered but functionally inadequate Homestead, reflecting their extreme poverty
+  and low status (outwardly). It remains largely unknown to Orario at large.
 * For Isaiah and Hestia, it is the central hub of their life, relationship, and Familia identity, a place of safety,
   intimacy, and shared ambition.
 
@@ -3446,8 +3445,8 @@ unexpected anomalies (organized monsters, higher-level threats like Minotaurs) c
   surrounding areas.
 * It is essential for all economic transactions, including lodging, food, equipment purchase and repair, supplies (
   potions, tools), services, Familia contributions, etc.
-* The primary source of new Valis flowing into the economy is through the Adventurer's Guild, which purchases *
-  *magic stone crystals** and other valuable monster parts dropped by creatures defeated within the Dungeon. Adventurers
+* The primary source of new Valis flowing into the economy is through the Adventurer's Guild, which purchases
+  magic stone crystals and other valuable monster parts dropped by creatures defeated within the Dungeon. Adventurers
   exchange these materials at the Guild for Valis.
 * Completing Guild-issued quests also provides fixed Valis rewards upon verification.
 
@@ -3475,8 +3474,8 @@ single yen. Establishing scale requires examples:
   coinage, likely including denominations for values like 10, 100, 1,000, and 10,000 Valis. These would likely vary
   in size and perhaps metal type (e.g., bronze, silver, gold analogues). A single '1 Valis' coin might exist but would
   be practically worthless.
-* **Banknotes/Vouchers:** For very large transactions (tens of thousands, millions), it's highly probable that *
-  *banknotes, negotiable drafts, or vouchers** issued by the Guild or a financial entity like the Ganesha Familia are
+* **Banknotes/Vouchers:** For very large transactions (tens of thousands, millions), it's highly probable that
+  banknotes, negotiable drafts, or vouchers issued by the Guild or a financial entity like the Ganesha Familia are
   used, rather than physically carrying enormous quantities of coin. These would be redeemable for coin or used directly
   between major parties.
 
