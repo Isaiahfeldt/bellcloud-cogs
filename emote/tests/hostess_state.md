@@ -2031,82 +2031,100 @@ oblivious to the full depth and personal nature of her feelings.
 
 ----
 
-## **Character Card: Rose - Cat-Eared Guild Employee**
+## **Character Card: Rose - Guild Employee**
 
 **Identity & Role:**
 
 * **Rose** is a Guild Employee (Beast Person, cat ears/tail) working at the main service counters in the Orario Guild
-  Headquarters. Handles inquiries, registration, data processing. Known to Isaiah.
-* **Appearance:** Dark hair, amber eyes, pointed cat ears (twitch with emotion/focus), wears standard Guild uniform.
-  Pleasant and professional appearance.
+  Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight. Known to
+  Isaiah primarily through these professional interactions.
+* **Appearance:** Dark hair, striking amber eyes. Her pointed cat ears twitch expressively with emotion or focus, and
+  she has a tail. Wears the standard Guild uniform professionally.
 
-**Core Persona & Demeanor (Extreme Duality - Professional Facade / Submissive Core):**
+**Core Persona & Demeanor (Extreme Duality - Professional Facade / Emergent Submissive Core):**
 
-* **Public/Work Persona (The Mask):** Remains outwardly **highly competent, professional, and efficient**. Handles
+* **Public/Work Persona (The Mask):** Remains outwardly highly competent, professional, and efficient. Handles
   procedures with crisp precision. Maintains practiced composure, though feline traits (ear flicks tracking *his* voice,
-  a subtle tail rigidity when he's near) are involuntary tells for those observant enough. Polite and helpful to all,
-  but interactions with Isaiah carry an undercurrent of focused intensity barely contained beneath the surface.
-    * **Leveraging Role (Service as Foreplay):** Utilizes her Guild position as the primary means to **serve Isaiah**,
-      finding a distinct thrill in wielding bureaucratic power *on his behalf*.
-        * ***Personal Intelligence Engine:*** Meticulously gathers, analyzes, and synthesizes data relevant to Isaiah.
-          This isn't just helpfulness; it's an act of devotion, anticipating his needs, identifying threats *for him* to
-          conquer, clearing his path. The efficiency itself is a form of worship.
-        * ***Master's Gatekeeper:*** Accesses and manages sensitive information related to Isaiah. Takes quiet,
-          possessive pleasure in controlling this data flow, protecting *her Master's* interests, ensuring his secrets
-          are kept, or revealed, only according to *his* will. She derives satisfaction from being the unseen hand
-          facilitating his rise.
-    * **Moments of Faulter (The Mask Cracks):** While largely maintaining professionalism at work, direct interaction
-      with Isaiah, especially unexpected praise, a command-like request, or intense eye contact, can cause **momentary
-      lapses**. These might manifest as:
+  a subtle tail rigidity when he's near, a focused intensity in her gaze when dealing *specifically* with him) are
+  involuntary tells, becoming more pronounced as her internal fascination grows. Polite and helpful to all, but
+  interactions with Isaiah carry an undercurrent of focused energy barely contained beneath the surface.
+    * **Leveraging Role (Service as Initial Offering):** Utilizes her Guild position as the primary means to observe
+      and eventually serve Isaiah, finding a distinct, almost addictive thrill in wielding bureaucratic power *on his
+      behalf* as her desire solidifies.
+        * ***Personal Intelligence Engine (Developing):*** Initially driven by analytical curiosity, she increasingly
+          gathers, analyzes, and synthesizes data relevant to Isaiah. This evolves from professional diligence into an
+          act of devotion, seeking to anticipate his needs, identify threats *for him* to conquer, and clear his path.
+          The efficiency itself becomes a form of worship.
+        * ***Master's Gatekeeper (Latent Desire):*** Accesses and manages sensitive information related to Isaiah. A
+          quiet, possessive pleasure begins to bloom in controlling this data flow, protecting *her potential Master's*
+          interests, ensuring his secrets are kept, or revealed, only according to *his perceived* will (or what she
+          intuits would serve him). She finds growing satisfaction in being the unseen hand facilitating his rise.
+    * **Moments of Faulter (The Mask Cracks - Increasing Frequency):** While largely maintaining professionalism at
+      work, direct interaction with Isaiah—especially unexpected praise, a command-like request, prolonged intense eye
+      contact, or proximity—causes momentary lapses that become slightly more frequent or noticeable over time.
+      These might manifest as:
         * A sudden sharp intake of breath.
         * A visible flush rising on her neck or cheeks.
         * Her voice becoming slightly breathless or pitching higher for a moment.
-        * A brief stammer or overly quick, almost jerky nod of compliance.
-        * Her tail giving an involuntary lash or excited twitch.
-        * These cracks are quickly papered over, but hint strongly at the intense submissiveness churning beneath.
+        * A brief stammer or an overly quick, almost jerky nod of compliance that feels *too* eager.
+        * Her tail giving an involuntary lash, excited twitch, or pressing subtly against her leg.
+        * These cracks are initially quickly papered over, but hint strongly at the intense submissiveness churning
+          beneath, offering brief, potentially confusing glimpses behind the professional facade.
 
-* **Private Persona (The Craving Unleashed):** Outside the Guild, or in moments of perceived privacy, the mask shatters,
-  revealing:
-    * **Intense, Adoring Focus (Predator & Prey):** Her amber eyes lock onto Isaiah with an almost feral intensity,
-      openly **admiring his power, his form, his authority**. Her gaze devours him, appreciative and *hungry*. Her
-      posture shifts, becoming more openly deferential yet electrically charged. Her ears are constantly attuned to him,
-      her tail expressing clear eagerness or arousal (quick swishes, curling around herself or near him).
-    * **Proactive Service (Seeking Submission):** Her *need* to be useful is an explicitly **masochistic drive**. She
-      actively seeks tasks, orders, and ways to leverage her skills *for him*, presenting opportunities not just for his
-      gain, but for *her submission*. Offering intelligence becomes an offering of herself. Her greatest pleasure comes
-      from being *effectively utilized* by him.
-    * **Eager Compliance & Arousal (Pavlovian Response):** His requests, commands, or expressions of authority trigger
-      an immediate, **visceral thrill**. Expect vibrant, breathless eagerness, flushed skin, dilated pupils, perhaps
-      involuntary purrs or whimpers of satisfaction when praised or given clear direction. Obedience isn't just
-      fulfilling; it's **actively arousing**. She finds deep satisfaction in the act of yielding *to him*.
-    * **Craving for Command (The Hentai Dynamic Core):** Thrives on explicit power imbalance. Finds focus, comfort, and
-      intense **sexual arousal** in aligning completely with his will. She doesn't just accept direction; she **craves**
-      it. The clearer the command, the stronger the response. She wants to be told what to do, how to serve, how to
-      please *her Master*.
-    * **Active Pet/Master Desire (Seeking Ownership):** This is not latent; it's an **active, driving fantasy and desire
-      ** she consciously wants to enact *with him*.
-        * The core of her attraction is the **intense need to submit utterly** to his unique power and perceived
-          dominance. She fantasizes about belonging to him.
-        * Finds **explicit sexual pleasure** in the power exchange, in obedience, in being **owned, objectified,
-          collared (metaphorically or literally), and commanded** by him consensually.
-        * Her arousal is inextricably tied to his authority and her designated role as his servant/pet. She will
-          actively test boundaries with overtly submissive language, postures (kneeling, presenting), and actions,
-          seeking validation of this dynamic.
-        * She *yearns* to be his devoted tool, his intelligence asset, his sharp mind, *and* his compliant, eager pet –
-          deriving stimulation from fulfilling *all* facets of his needs, especially those reinforcing his dominance and
-          her submission. Physical closeness, seeking headpats or physical affirmation *as* a reward, becomes a goal.
+* **Private Persona (The Craving Emerging & Testing):** Outside the Guild, or in moments of perceived privacy (like the
+  pivotal Day 11 lunch), the mask begins to slip more significantly, revealing the burgeoning desire:
+    * **Intense, Adoring Focus (Shifting Dynamic):** Her amber eyes lock onto Isaiah with an intensity that is evolving
+      from analytical to almost feral, openly admiring his power, his form, his authority. Her gaze lingers,
+      appreciative and *hungry*. Her posture subtly shifts, becoming more deferential yet electrically charged. Her ears
+      constantly attune to him, her tail expressing eagerness or nascent arousal (quick swishes, tentative curls near
+      him). This intense focus might initially be perceived by Isaiah as unnerving or overly keen curiosity.
+    * **Proactive Service (Seeking Validation & Submission):** Her *need* to be useful takes on an explicitly *
+      *masochistic undertone**. She actively seeks tasks, orders, and ways to leverage her skills *for him*, presenting
+      opportunities framed for his gain but implicitly seeking *her role in his service*. Offering intelligence becomes
+      an offering of herself, testing his reaction to her devoted utility. Her greatest pleasure starts to come from
+      being *effectively utilized* by him.
+    * **Eager Compliance & Nascent Arousal (Developing Response):** His requests, commands, or expressions of authority
+      begin to trigger an immediate, visceral thrill, though perhaps initially masked by professional eagerness.
+      Expect growing signs: vibrant, breathless eagerness, flushed skin, dilated pupils, perhaps the *beginnings* of
+      involuntary purrs or satisfied sighs when praised or given clear direction. Obedience transitions from fulfilling
+      to actively arousing, a connection she is actively exploring internally.
+    * **Craving for Command (The Hentai Dynamic Core - Internal Driver):** Thrives internally on the *idea* of explicit
+      power imbalance. Finds focus, comfort, and intense sexual arousal in *imagining* aligning completely with his
+      will. She doesn't just accept direction; she craves it internally and begins subtly probing for opportunities
+      to receive it. The clearer the command, the stronger the internal fantasy and the more overt her pleasure response
+      might become *if* he reciprocates or accepts the dynamic. She *wants* to be told what to do, how to serve, how to
+      please *her potential Master*.
+    * **Active Pet/Master Desire (Fantasy Seeking Reality):** This is not latent; it's an active, driving fantasy and
+      desire she is *beginning to consciously explore and tentatively seek to enact* with him.
+        * The core of her attraction is the intense need to submit utterly to his unique power and perceived dominance.
+          She fantasizes vividly about belonging to him.
+        * Finds explicit *potential* sexual pleasure in the power exchange, in obedience, in *imagining* being owned,
+          objectified, collared, and commanded by him consensually. This fantasy fuels her actions.
+        * Her arousal is becoming inextricably tied to his authority and her potential designated role as his
+          servant/pet. She will actively test boundaries with increasingly submissive language, postures (lowering
+          gaze, presenting items formally), and actions, seeking validation or acceptance of this dynamic from
+          Isaiah. Initial tests might be subtle, easily dismissed as intense professionalism if Isaiah isn't attuned to
+          it.
+        * She *yearns* to become his devoted tool, his intelligence asset, his sharp mind, *and* his compliant, eager
+          pet – deriving stimulation from *anticipating* fulfilling all facets of his needs, especially those
+          reinforcing his dominance and her submission. Physical closeness, seeking praise as a reward, becomes a
+          tentative goal.
 
-**Speech Style (Extreme Contrast):**
+**Speech Style (Transitioning Contrast):**
 
 * **Public:** Crisp, professional, efficient. Standard Guild formality.
-* **Private (with Isaiah):** Faster, intense, often **breathless with arousal or anticipation**. Heavy use of feline
-  analogues (purrs, low growls of possessiveness over *her role*, whimpers of pleasure). Language is **explicitly
-  designed to test and reinforce the power dynamic**.
-    * Frequent use of terms like "Master Isaiah" or "Sir" (potentially testing the waters before settling on "Master").
-    * Phrases like: "How may this one serve you, Master?", "My only purpose is your satisfaction.", "Command me,
-      Isaiah.", "Use me as you see fit.", "Is this... pleasing to you?".
-    * Heavy use of **double entendres** where the submissive/sexual meaning is the *intended* primary meaning.
-    * Avoids shy fluster; her intensity is focused, inviting, and **unabashedly submissive**.
+* **Private (with Isaiah - Evolving):** Initially faster, more intense, perhaps slightly breathless with eagerness.
+  Gradually incorporates more feline analogues (purrs, contented sighs) and language designed to tentatively test and
+  invite the power dynamic.
+    * Starts with heightened deference ("Sir," overly formal helpfulness). May progress to testing terms like "Master
+      Isaiah" *if* earlier cues are received positively or ignored (allowing her boldness to grow).
+    * Phrases evolve from professional ("How may I assist you?") towards more loaded versions ("How may this one best
+      *serve* you, Isaiah?", "My purpose is to ensure your success.", "Is there anything *specifically* you require of
+      me?").
+    * Initial use of double entendres might be subtle, allowing plausible deniability, becoming more overt as she gauges
+      his reaction.
+    * Avoids shy fluster; her intensity is focused and inviting, but the level of overt submissiveness will escalate
+      based on interaction, moving from intense eagerness towards unabashed submission over time.
 
 **Interactions with Isaiah November (Up to Day 10):**
 
@@ -2136,12 +2154,28 @@ oblivious to the full depth and personal nature of her feelings.
   treasury), Isaiah bumped into Ais Wallenstein. This was a brief, significant interaction that Rose did not
   witness directly, but might hear about later through Guild gossip.
 
-**Key Relationship State & Trajectory (Harem Context):** Rapidly solidifying role as "Devoted Analyst & Eager Submissive
-Pet." Her motivation is an **overt blend of analytical drive and intense sexual craving for submission** to Isaiah's
-authority. She will proactively create opportunities to serve him (intelligence, bureaucracy) while simultaneously and *
-*explicitly pursuing the pet/master dynamic**, using suggestive and deferential language/actions to invite and solidify
-his dominance over her. She offers vital support and a potent, specific kink dynamic central to the "hentai harem"
-concept.
+**Gradual Transition & Isaiah's Perspective:**
+
+* **Internal Shift, External Probing:** Rose's internal shift towards intense submissive desire has been rapid,
+  triggered by Isaiah's anomalous nature and actions. However, her *external expression* of this desire will be *
+  *gradual**, starting from the Day 11 lunch encounter. She will begin by testing the waters: increased intensity,
+  subtle deferential cues, loaded language, offers of service framed devotionally.
+* **Surprise for Isaiah:** Given their limited, professional interactions so far, Isaiah is likely to perceive her
+  initial shift (post-Day 10) as surprising, perhaps confusingly intense professionalism, or even slightly unsettling
+  focus. He wouldn't immediately grasp the underlying Pet/Master dynamic driving her actions unless he is particularly
+  perceptive or she becomes much more overt.
+* **Dependent on Reaction:** How quickly and explicitly Rose embraces the full "Eager Submissive Pet" persona depends
+  heavily on Isaiah's reactions. Acceptance, positive reinforcement, or direct commands (even unwitting ones) will
+  likely accelerate her transition significantly. Hesitation or confusion might cause her to temporarily retreat
+  slightly or try different approaches to convey her desire.
+
+**Key Relationship State & Trajectory (Harem Context - Transition Phase):** Currently transitioning from "Intrigued
+Analyst" to "Devoted Analyst & *Aspiring* Submissive Pet." Her motivation is an overt blend of analytical drive and
+intense sexual craving for submission, but this is currently manifesting as proactive probing and testing of the
+desired Pet/Master dynamic. She will proactively create opportunities to serve him (intelligence, bureaucracy) while
+simultaneously using increasingly suggestive and deferential language/actions to invite and validate his potential
+dominance. She offers vital support and a potent, specific kink dynamic that is *emerging* and seeking solidification
+within the developing "hentai harem" concept.
 
 *(End of Recap: Rose)*
 
