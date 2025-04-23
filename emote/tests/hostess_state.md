@@ -3626,6 +3626,57 @@ deadline.
 
 ----
 
+## **System Card: Beast Persons (獣人 *Jūjin*)**
+
+**Definition and Types:**
+
+* **Beast Person (獣人 *Jūjin*)** is the official umbrella term for races in Orario that blend human and animal
+  characteristics.
+* This category includes numerous sub-types based on the animal traits, such as:
+  * **Cat Person (猫人 *Nekojin*)** (e.g., Anya Fromel, Rose)
+  * **Dog Person (犬人 *Inujin*)**
+  * **Werewolf (狼人 *Rōjin*)** (e.g., Bete Loga, Lunoire)
+  * **Fox Person / Renard (狐人 *Kojin*)** (e.g., Sanjouno Haruhime)
+  * Others likely exist (Boaz, etc.).
+
+**Physical Characteristics:**
+
+* **Predominantly Humanoid:** Beast Persons possess a fundamentally human body structure, shape, and proportions. Animal
+  traits are distinct additions, not a full transformation.
+* **Human-like Skin:** The vast majority of their body is covered in standard human-like skin, not fur pelts.
+* **Distinct Animal Features:** They exhibit specific, prominent animal features corresponding to their sub-type. For *
+  *Cat Persons** (like Rose), these typically include:
+  * **Furry Cat Ears:** Located on top of the head (usually replacing human ears). Highly expressive.
+  * **Furry Cat Tail:** Matches hair color, also expressive.
+  * **Eyes (Potential):** Often depicted with vertically slitted pupils, more noticeable in certain conditions or
+    emotional states.
+  * **Enhanced Senses/Agility:** May possess heightened hearing, smell, night vision, and superior reflexes/agility
+    compared to average humans.
+  * **Subtle Traits:** Potentially slightly sharper canines, though not usually pronounced fangs like some other types (
+    e.g., Werewolves).
+* **Fur Coverage:** Fur is typically confined to the distinct animal features (ears, tail). Widespread body fur is *
+  *not** a canonical trait for most common Beast Person types like Cat Persons.
+* **Nether Regions:** Canon lore does not explicitly detail this. However, based on the established pattern of
+  predominantly human-like skin, the standard and logical interpretation is that these areas also possess human-like
+  skin, not fur.
+
+**Mannerisms & Vocalizations:**
+
+* Certain Beast Persons, particularly expressive individuals like Anya Fromel, may exhibit animal-like mannerisms or
+  vocal tics (e.g., "Nya~" for Cat Persons).
+* These traits often appear innate or deeply ingrained, functioning more like a natural part of their expression (akin
+  to a regional accent or habit) rather than a consciously performed act (like an idol trying to sound cute).
+* Individual expression varies; not all members of a sub-type will exhibit these mannerisms to the same degree.
+
+**Summary:** Beast Persons are a diverse group of humanoids distinguished by specific animal features (ears, tails,
+sometimes eyes/senses). They are primarily human in form with human-like skin covering most of their body. Fur is
+generally limited to their animal appendages. Some may exhibit ingrained animal-like mannerisms or vocalizations as part
+of their natural expression.
+
+*(End of System Card: Beast Persons)*
+
+----
+
 ## **System Card: Status Update Mechanics & Excelia**
 
 At the core of an adventurer's progression in Orario is the system known as Status (能力値 *Statusu*). This is a
