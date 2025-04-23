@@ -700,7 +700,7 @@ whispered breath near his ear: *"Mine..."*
 
 -----
 
-### **(Recap: Day 4 - Beginning - CORRECTED)**
+### **(Recap: Day 4 - Beginning)**
 The first hints of grey dawn light were just beginning to seep through the grime on the single basement window when
 Isaiah surfaced from a deep, relatively restful sleep. The exhaustion from the previous days' trials – the journey, the
 confrontations, the emotional rollercoaster of finding Hestia and receiving Falna – had finally been subdued by hours of
@@ -1835,7 +1835,7 @@ a glimpse of Ryu, while Syr works nearby, aware of his presence.
 
 # Character Cards
 
-## **(Character Card: Ryu Lion)**
+## **Character Card: Ryu Lion**
 
 **Identity & Current Situation:**
 
@@ -1908,7 +1908,7 @@ trust established.
 
 ----
 
-## **(Character Card: Eina Tulle)**
+## **Character Card: Eina Tulle**
 
 **Identity & Role:**
 
@@ -1991,7 +1991,7 @@ oblivious to the full depth and personal nature of her feelings.
 
 ----
 
-## **(Character Card: "Rose" - Cat-Eared Guild Employee)**
+## **Character Card: "Rose" - Cat-Eared Guild Employee**
 
 **Identity & Role:**
 
@@ -2067,7 +2067,7 @@ mixed with curiosity.
 
 ----
 
-## **(Character Card: Hestia)**
+## **Character Card: Hestia**
 
 **Identity & Role:**
 
@@ -2203,7 +2203,7 @@ actively building their life and future together.
 
 ----
 
-## **(Character Card: Hedin Selland)**
+## **Character Card: Hedin Selland**
 
 **Identity & Role:**
 
@@ -2285,7 +2285,7 @@ a vast power disparity and a conditional challenge.
 
 ----
 
-## **(Character Card: Syr Flover / Freya)**
+## **Character Card: Syr Flover / Freya**
 
 **Identity & Role (As Perceived by Isaiah):**
 
@@ -2357,7 +2357,7 @@ potential romantic dynamic (Dominant/Possessive/Femdom-leaning) if she chooses t
 
 ----
 
-## **(Character Card: Ais Wallenstein)**
+## **Character Card: Ais Wallenstein**
 
 **Identity & Role:**
 
@@ -2442,7 +2442,7 @@ and power.
 
 ----
 
-## **(Character Card: Lyra Verrill)**
+## **Character Card: Lyra Verrill**
 
 **Identity & Role:**
 
@@ -2531,7 +2531,7 @@ unconventional attention strangely intriguing.
 
 ----
 
-## **(Character Recap: Lady Hephaestus)**
+## **Character Recap: Lady Hephaestus**
 
 **Identity & Role:**
 
@@ -2616,7 +2616,7 @@ worthy by clearing the debt and growing stronger with her blades.
 
 ----
 
-## **(Character Recap: Isaiah November - Protagonist)**
+## **Character Recap: Isaiah November - Protagonist**
 
 **Identity & Core Goal:**
 
@@ -2734,7 +2734,7 @@ worthy by clearing the debt and growing stronger with her blades.
 
 ----
 
-## **(Minor Character Recaps)**
+## **Minor Character Recaps**
 
 **1. Tsubaki Collbrande:**
 
@@ -2866,7 +2866,7 @@ worthy by clearing the debt and growing stronger with her blades.
 
 # Location Cards
 
-## **(Location Card: Hostess of Fertility)**
+## **Location Card: Hostess of Fertility**
 
 * The Hostess of Fertility is a prominent and well-regarded **tavern** situated within the bustling city of Orario.
   While its exact street address isn't pinpointed, its proximity to a major Hephaistus Familia workshop (used as a
@@ -2935,6 +2935,493 @@ worthy by clearing the debt and growing stronger with her blades.
   the background but without direct interaction with Isaiah or Hestia yet.
 
 *(End of Recap: The Hostess of Fertility*
+
+----
+
+## **Location Card: Orario Guild Headquarters**
+
+**Description & Location:**
+
+* The Guild Headquarters is a **massive, imposing, and critically important administrative building** located in the *
+  *heart of Orario**, strategically situated very close to the base of the colossal **Babel Tower**, which sits directly
+  over the Dungeon entrance. Its central location reflects its role as the nexus of all official adventuring activity
+  and the primary gateway to the Dungeon.
+* **Exterior:** Projects **authority, stability, and importance**. Constructed primarily from **large blocks of sturdy,
+  light-colored stone** (perhaps granite or marble), it presents a grand and formidable facade. Features **tall
+  archways, strong pillars, and potentially large, reinforced windows**. The main entrance consists of **massive double
+  doors**, likely heavy wood banded with bronze or iron, constantly busy with the heavy traffic of adventurers. High
+  above or prominently displayed is the **official Guild symbol**. Adornments might include carvings, statues depicting
+  legendary adventurers, or banners. The sheer scale and solid construction speak to the Guild's wealth, influence, and
+  permanence.
+* **Interior:** Features a **vast, echoing Main Hall** with soaring ceilings supported by rows of **massive stone
+  pillars**. Designed to handle hundreds, if not thousands, of people daily, the hall is brightly lit by numerous *
+  *large magic stone lamps or enchanted chandeliers**. The floor is typically made of **polished stone**.
+    * **Service Counters:** One entire wall is dominated by **long, continuous service counters**, made of polished wood
+      or stone, for various functions (Registration, Quest Reporting/Submission, Material Exchange, Treasury/Reward
+      Payout, Information/Advisory Services). Queues of adventurers snake away from these counters.
+    * **Quest Board:** Another wall features the **massive main Quest Board**, a towering bulletin board absolutely
+      plastered with quest notices.
+    * **Recruitment Board:** A smaller, separate notice board, often tucked away, specifically for **Familia recruitment
+      notices** (where Isaiah found Hestia's flyer).
+    * **Advisory Stations:** Semi-private alcoves or partitioned areas off the main hall, offering slightly more quiet
+      and privacy for consultations, like **Eina Tulle's advisory station**.
+    * **Infirmary:** A separate area within the Guild complex, containing a waiting area and examination cubicles. It
+      smells of disinfectant and healing salves and is where adventurers receive medical treatment.
+
+**Atmosphere:**
+
+* The Main Hall constantly **buzzes with energy and noise**. It's a controlled chaos – the roar of hundreds of
+  overlapping conversations, the clatter of armor and weapons, the shuffling of boots on stone, the calls of Guild
+  staff, the arguments over loot shares, the nervous excitement of rookies, the weary relief of returning veterans. The
+  air feels charged with ambition, potential, and the underlying awareness of the Dungeon's ever-present danger and
+  allure.
+
+**Role & Reputation in Orario:**
+
+* The Guild is the **central administrative body** governing adventurers and Dungeon exploration in Orario.
+* It **registers adventurers** (requiring Familia affiliation/Falna), **issues and manages quests**, **handles exchange
+  ** (magic stones, monster parts for Valis) and **payout** (quest rewards), **compiles information** about the Dungeon
+  and adventurers, maintains records, and enforces basic rules of conduct.
+* It acts as a **liaison** between adventurers, citizens needing services (via quests), and the city's deities/Familias.
+* It is generally seen as a **necessary, powerful, and bureaucratic** entity. Adventurers rely on it heavily but may
+  also grumble about its rules or fees.
+* It **serves as the primary economic engine** of Orario by converting Dungeon resources into Valis and distributing
+  wealth through quests and rewards.
+
+**Known Staff (Updated Roles & Interactions):**
+
+* **Eina Tulle:** Highly competent Half-Elf **Advisor**. Has interacted with Isaiah multiple times (Days 2, 3, 4, 9).
+  Registered his Familia and provided Lvl 2 record info. Her professional concern has escalated into **intense personal
+  worry and protective concern** due to his rapid growth and high-risk activities. On Day 9, she **intercepted injured
+  Isaiah**, took him to the infirmary personally, oversaw his treatment, and took his vital report on Dungeon
+  anomalies (Minotaur, organized Kobolds) at her **advisory station**. Her awareness of his feats and potential
+  vulnerability is high.
+* **"Rose" (Unnamed Cat-Girl Employee):** Guild counter staff. Has interacted with Isaiah (Day 3 - Hestia location) and
+  seen him frequently (Day 4 - arriving with Hestia, Day 9 Morning - registering quests). On Day 9, she **registered his
+  ambitious double quests** (Commander #2, Subjugation), noting his capability with impressed respect. She also *
+  *witnessed Hestia's public kiss** at the Dungeon entrance, adding a personal/romantic layer to her already *
+  *significant curiosity and fascination** with Isaiah as a remarkable anomaly.
+* **Lyra Verrill ("Doc Lyra"):** Newly introduced **Healer/Medic** at the Infirmary (Day 9). Highly skilled but *
+  *morally grey** with a cynical, inappropriately forward, and boundary-pushing demeanor. Examined and bandaged Isaiah's
+  ribs, making suggestive comments and treating him like a 'test subject' for her curiosity regarding his rapid
+  healing/potential.
+* **Unnamed Exchange Employee:** Handled Isaiah's Material Exchange on Day 4 and **Day 9**. On Day Day 9, he was visibly
+  surprised by the volume and value of Isaiah's drops, especially the Minotaur and Commander stones (~21.5k Valis
+  exchange value), marking Isaiah as exceptionally productive.
+* **Unnamed Treasury Clerk:** Handled Isaiah's Valis payout on Day 4 and **Day 9**. On Day 9, she processed his quest
+  rewards (1500V), noting his remarkable achievements for his level.
+* **(Other Staff):** Numerous other employees (clerks, guards, etc.) are present and contribute to the general
+  atmosphere. Some likely overheard or witnessed aspects of Isaiah's noteworthy actions (Day 9 quest report, public
+  kiss, injury).
+
+**Interactions with Isaiah November (Summary):**
+Isaiah has visited the Guild numerous times (Days 2, 3, 4, 9). He has interacted with Eina (main advisor), Rose (
+registration/info), and unnamed staff at the exchange and treasury counters. On Day 9, his Dungeon return, injury, and
+impressive report/exchange drew significant attention from staff, making him a known (and highly unusual/worrying)
+figure within the Guild administration. He also encountered the notable healer Lyra and the legendary Ais Wallenstein
+in/around the Guild on Day 9.
+
+*(End of Recap: Orario Guild Headquarters)*
+
+----
+
+## **Location Card: Babel Tower**
+
+**Description & Location:**
+
+* Babel is the **colossal, impossibly tall tower** that serves as the absolute **centerpiece and defining landmark of
+  Orario**. It pierces the heavens, visible from almost anywhere within the city and for great distances beyond.
+* Its location is paramount: it is built **directly over the only known entrance to the Dungeon**, acting as both a seal
+  and a gateway. The entire city of Orario radiates outwards from its base.
+* **Exterior (Expanded):** Babel's appearance defies conventional architecture. It's often described as being made of a
+  **strange, seamless, ivory-white or pearlescent material** that seems almost alive, possibly super-hardened stone,
+  magically reinforced material, or something else entirely of divine or Dungeon-related origin. Its surface is
+  generally smooth, perhaps with subtle, swirling patterns or faint runes visible only up close. The tower's design
+  might incorporate elements that seem both ancient and futuristic, with clean lines soaring upwards, possibly tapering
+  slightly or featuring occasional balconies or platforms at immense heights (often associated with specific Familia
+  headquarters located *within* the tower). Its sheer verticality is its most defining feature, seeming to scratch the
+  sky itself. The base of the tower is immense, integrating directly with the surrounding plaza and Guild Hall area,
+  featuring massive archways and structures that form the Dungeon entrance complex. It's often depicted as immune to
+  damage and potentially possessing regenerative capabilities. Sunlight and moonlight gleam off its unique surface,
+  making it a constantly shifting spectacle depending on the time of day and weather.
+* **Interior (Upper Levels - General Knowledge):** While Isaiah hasn't been inside the *upper* levels, common knowledge
+  in Orario holds that Babel isn't just a landmark; it's **prime real estate**. Many of the most powerful and
+  influential Familias maintain their luxurious **Homesteads** within the tower itself, occupying entire floors or
+  sprawling sections at staggering heights. These internal Familia bases are said to be incredibly opulent, secure, and
+  offer unparalleled views of the city. Access is strictly controlled by the resident Familias. (Examples include Loki
+  Familia, Freya Familia – though Folkvangr is described on Daedalus Street, Freya likely maintains presence/apartments
+  in Babel too – Ganesha Familia, etc.)
+* **Interior (Base Level):** The base of Babel *is* accessible, as it houses the **primary entrance to the Dungeon**.
+  This area is a vast, cavernous structure integrated with the Guild plaza. Massive staircases and ramps descend from
+  here directly into Dungeon Floor 1. This ground level is functional, built for heavy adventurer traffic, featuring
+  Guild attendant stations, possibly some basic supply vendors catering to last-minute needs, and marshalling areas.
+
+**Role & Reputation in Orario:**
+
+* Babel serves multiple critical roles:
+    * **Dungeon Seal/Gateway:** Its primary, divine purpose (built by the gods, according to legend) is to contain the
+      Dungeon and provide the sole controlled access point.
+    * **Central Landmark:** It is the geographical, political, and economic center of Orario. All navigation, power
+      structures, and wealth ultimately revolve around it and the Dungeon beneath it.
+    * **Symbol of Power & Ambition:** Reaching the upper floors of Babel (either physically or by joining a Familia
+      residing there) is a symbol of achieving significant power and status within Orario.
+    * **Vertical City:** It functions partly as a vertical city, housing thousands within the Familia complexes on its
+      upper floors.
+* Its reputation is one of **awe, mystery, and immense power**. It's seen as an immutable, perhaps divine, structure
+  inextricably linked to the city's fate and the adventurers who challenge the Dungeon below. It represents both the
+  greatest opportunities and the underlying dangers of Orario.
+
+*(End of Recap: Babel Tower)*
+
+----
+
+## **Location Card: 'The Weary Traveler' Inn**
+
+**Description & Location:**
+
+* 'The Weary Traveler' is a **modest, budget-friendly inn** located within Orario, likely serving adventurers and
+  travelers who cannot afford or do not require more upscale accommodations.
+* Its location was specified by Ryu Lion's directions: situated on a **smaller side street**, just off a main commercial
+  thoroughfare (potentially Daedalus Street or similar), specifically the **third building on the right after turning
+  left immediately past the Hephaistus Familia workshop** (the one with the large anvil sign). This places it within the
+  main city sprawl and likely in a district frequented by adventurers, but slightly removed from the prime real estate
+  near Babel or the Guild, reflecting its lower cost.
+* **Exterior (Expanded):** The inn presents a **simple and unassuming facade**. It's likely a **modest, two-story
+  structure**, perhaps constructed primarily from functional timber and plaster, possibly showing some signs of age or
+  needing minor repairs, but generally appearing sturdy enough. It's nestled between other buildings (like a closed
+  tailor shop and a small grocer's mentioned in the narrative). The main identifying feature is its **simple wooden sign
+  **, described as depicting a **backpack resting against a walking stick**, with the name "The Weary Traveler" likely
+  carved or painted plainly below. Unlike grander inns, it lacks ornate decorations or large, brightly lit windows. A
+  single sturdy wooden door, perhaps sheltered by a slight overhang, provides entry directly into the common room. It
+  gives the impression of prioritizing function over aesthetics.
+* **Interior (Expanded):** Stepping inside reveals a **simple, functional common room**. The atmosphere is generally *
+  *quiet**, especially compared to bustling taverns like the Hostess. Warmth is provided by a **decent hearth**, though
+  the fire might be banked low outside of peak hours. The air smells of basic inn scents: **drying wool, woodsmoke,
+  perhaps cheap ale, and maybe lingering hints of simple cooking (like stew)**.
+    * **Common Room:** Contains a few **rough-hewn wooden tables and chairs**, functional but lacking polish. The floor
+      is likely plain wood or stone. Lighting is provided by basic lanterns or perhaps small magic stones, creating a
+      dim but adequate illumination, especially at night. A **coarse floor mat** sits just inside the door for wiping
+      wet boots.
+    * **Counter:** A **sturdy wooden counter** serves as both the check-in desk and a rudimentary bar, likely offering
+      only basic drinks like ale. This is where the innkeeper is usually found. Behind the counter might be a simple key
+      rack and perhaps shelves with cheap bottles or mugs.
+    * **Staircase:** A **narrow wooden staircase**, likely creaky, leads from a corner of the common room up to the
+      second floor where the guest rooms are located.
+    * **Room 4 (Specifically):** The room Isaiah stayed in was described as **sparse and functional**: a narrow bed with
+      a thin mattress and rough blanket, a small wooden chair, and a rickety stand holding a wash basin and pitcher. It
+      was small, possibly slightly musty, but crucially, dry and private, with a lockable door.
+
+**Role & Reputation in Orario:**
+
+* 'The Weary Traveler' serves the essential role of providing **basic, affordable lodging**. It caters to adventurers
+  just starting out, travelers on a tight budget, or anyone needing a simple roof over their head without frills.
+* Its reputation is likely one of being **no-nonsense, cheap, and functional**. Guests probably don't expect luxury,
+  extensive services, or friendly chatter from the staff, but can generally rely on a dry bed and basic security at a
+  low price (initially 150 Valis per night in the retconned pricing). It's a place for weary travelers to rest, as the
+  name implies.
+
+**Known Staff:**
+
+* **The Innkeeper:** A **portly, bald man with shrewd eyes** and a gruff demeanor. He handles check-ins, payments, and
+  basic service. He's practical, focused on business, not overly friendly but not hostile. He accepted Isaiah's unusual
+  collateral deal (potion for partial payment) due to its value covering his risk.
+
+**Isaiah's Interaction:**
+
+* **Day 1:** Arrived late afternoon, soaked from rain, paid 150 Valis for Room 4. Slept the night.
+* **Day 2:** Woke up, potentially stole bacon from another patron (Success Roll), left the inn. Returned late evening,
+  extremely low on funds. Negotiated a deal to stay a second night (Day 2 night) by paying ~70 Valis upfront and leaving
+  his last health potion as collateral for the remaining 80 Valis, due by sundown Day 3. Slept in Room 4 again.
+* **Day 3:** Woke up, returned the key (implicitly checking out before paying the balance), and left. He missed the
+  sundown deadline for repayment while with Hestia.
+* **Current:** Isaiah has forfeited the potion to the innkeeper by missing the deadline. He currently has no lodging
+  arrangement there and likely wouldn't return unless absolutely necessary and able to pay the standard rate.
+
+*(End of Recap: 'The Weary Traveler' Inn)*
+
+----
+
+## **Location Card: Hestia's Church / Homestead**
+
+**Description & Location:**
+
+* The Hestia Familia's current "Homestead" remains a **makeshift residence within an annex of an old, largely abandoned
+  stone church** on the **eastern edge of the Daedalus district**. This area is quieter and slightly neglected compared
+  to the city center.
+* **Exterior:** The church structure is **old, weathered stone**, showing signs of neglect (crumbling facade,
+  overgrowth). A **rusty gate** leads to the grounds. The habitable **annex/side building** shows faint signs of life (
+  crude chimney, grimy window, small tended patch). The heavy wooden annex door is the only entrance.
+* **Interior (Annex Room):** The single, **small, cramped room** serves as their entire living space, feeling like a
+  repurposed **basement/cellar**.
+    * *Structure:* Rough **stone block walls** with **patchy, peeling plaster**; uneven **flagstone/packed earth floor
+      **.
+    * *Furniture:* Sparse, mismatched: A **narrow wooden bed frame** with thin mattress and **purple blanket** (primary
+      site of shared sleep and intimacy). A worn **sofa with green-and-yellow stripes** (site of earlier shared sleep
+      and Status updates). A **low wooden table** (used for meals, planning). A cluttered **workbench** under the
+      window (storage for Hestia's divine items, supplies). A simple **wooden stool**. A rickety stand with a **ceramic
+      wash basin and pitcher** (where Isaiah and Hestia wash).
+    * *Clutter & Resources:* The room is generally **cluttered** with books, Hestia's materials, potato sacks. It now
+      includes stacked supplies from the Day 5 shopping (potions, kit, rope, bandages, food). It also holds the
+      significant **Familia Valis pouches** (over 44,000 Valis total) which are likely secured here.
+    * *Hearth/Lighting:* A **small stone hearth** provides minimal heating. **One or two flickering magic stone lanterns
+      ** provide dim, warm lighting. The ambiance is usually dim and cozy in the evenings.
+* **Atmosphere:** Physically **damp, dusty, cramped, and cool**. Offers basic shelter. However, its atmosphere has
+  dramatically shifted. It is now their **established 'home base'**, filled with profound shared memories:
+    * Intense emotional vulnerability, love confessions, physical intimacy (Day 7 evening, Day 8 morning consummation,
+      Day 9 evening cuddling).
+    * Navigating relationship definitions ('Us').
+    * Panic and reassurance (Day 8 end / Day 9 beginning panic attack about divine rules, resolved through mutual
+      comfort).
+    * Celebration of success (Valis reveal, Status updates).
+    * Tender care (helping undress, washing back).
+    * Quiet, comfortable domesticity (sharing meals, planning, simply being together, restful sleep).
+* The physical limitations remain, but the space is imbued with the warmth, trust, and profound connection between
+  Isaiah and Hestia.
+
+**Role & Reputation in Orario:**
+
+* Serves as the Hestia Familia's registered but functionally inadequate Homestead, reflecting their **extreme poverty
+  and low status** (outwardly). It remains largely unknown to Orario at large.
+* For Isaiah and Hestia, it is the central hub of their life, relationship, and Familia identity, a place of safety,
+  intimacy, and shared ambition.
+
+**Isaiah's Interaction:**
+
+* Found Hestia here (Day 3), joined Familia, received Falna. It has been his **sole residence** since Day 3.
+* Experienced significant relationship milestones and physical intimacy within this space (shared bed/sofa every night,
+  confessions, consummation, intimate care, navigating fear).
+* It is the location where Familia funds are stored, Status updates are performed, and plans are made. It is his 'home'.
+
+*(End of Recap: Hestia's Church / Homestead)*
+
+----
+
+## **Location Card: Dungeon - Upper Floors (1-3)**
+
+**General Description & Nature:**
+
+* The Dungeon remains a **vast, ever-changing, multi-level labyrinth** beneath Babel Tower, Orario's primary source of
+  wealth and adventure. It is a living entity that spawns monsters and repairs itself. Difficulty increases
+  significantly with depth. Its upper floors (1-3) serve as a proving ground for new adventurers.
+
+**Floor 1:**
+
+* **Appearance:** A **massive natural cavern** system directly below the entrance stairs. Rough rock/earth walls, high
+  ceilings, wide passages, lit by dim **greenish-blue phosphorescent moss**. The **floor can show recent signs** of
+  activity like tracks.
+* **Atmosphere:** Cool, damp, earthy smell, vast and echoing. Holds a low-level tension.
+* **Monsters:** Primarily weak **Goblins**, occasionally weak **Kobolds**.
+* **Isaiah's Experience/Perception (Updated):** With H-Rank and now G-Rank stats, Floor 1 is **completely trivialized**.
+  Monsters pose no threat and are dispatched instantly. It is purely a **brief transit zone**. On Day 10, Isaiah briefly
+  noted **unusual, non-monster tracks** here (larger, heavier, possibly reptilian, out of place), which he chose to
+  ignore for the time being.
+
+**Floor 2:**
+
+* **Appearance:** Similar cavernous feel but with a **more complex layout** of intersecting tunnels and side caverns.
+  Relies on moss light, shadows can be deeper. Terrain can offer cover.
+* **Atmosphere:** Feels slightly more dangerous than Floor 1 due to complexity, but familiar.
+* **Monsters:** Primarily **Goblins** (slightly tougher) and **Kobolds** become more frequent. Kobolds here can now
+  potentially exhibit **unusual coordination**.
+* **Isaiah's Experience/Perception (Updated):** With G-Rank stats, Floor 2 standard encounters are now **easily managed
+  **, almost trivial. However, on Day 10, he encountered a **coordinated ambush** by four Kobolds using cover and
+  flanking tactics – behavior he recognized as highly unusual for this floor. This reminded him that vigilance is still
+  necessary even in seemingly safe areas. Ais Wallenstein demonstrated her immense speed and skill here by instantly
+  clearing threats while escorting him.
+
+**Floor 3:**
+
+* **Appearance:** Accessed via steeper passages. Tunnels narrow or open into different cavern types. Feels distinctly
+  deeper. Lighting is dimmer, shadows more prevalent. Can feature **different types of caverns** (large, multi-tiered,
+  chasm with bridges). May contain **resource nodes** or show signs of **unusual activity** (digging, traps, specific
+  monster habitation markers).
+* **Atmosphere:** Noticeably **colder, damper, and more oppressive**. Holds a strong sense of danger, though
+  significantly mitigated for Isaiah by his stats. The air can carry the musk of high Kobold concentration or other
+  scents.
+* **Monsters:** **Kobolds** are the dominant threat (tougher than F2, appear in larger groups), including larger,
+  armored **Elite Kobolds** and **Kobold Commanders**. Can also include **Dungeon Lizards** and potentially **Infant
+  Dragons** (though their nesting areas might be specific). **Minotaurs** are *not* native to Floor 3 but can
+  potentially appear if drawn upwards (as witnessed on Day 9). Kobolds on this floor can now exhibit **unusual
+  organization** (setting traps, digging tunnels).
+* **Isaiah's Experience/Perception (Updated):** His initial visits (Days 4, 6) confirmed Floor 3 was challenging solo.
+  After achieving G-Rank stats (Day 9), standard Floor 3 Kobold/Lizard encounters became **efficiently managed and
+  nearly trivial**. However, his Day 9 delve revealed **unusual activity**: Kobolds setting **crude traps** (tripwires,
+  pitfalls), actively **digging new tunnels** (leading to unknown chambers), exhibiting **organized behavior** beyond
+  standard patrols. He encountered a **Kobold Commander** (respawned on Day 9) and his **Elite Guards** in a large
+  cavern with a makeshift throne. He faced and **defeated a Minotaur** solo in this cavern (Day 9), a monster far
+  exceeding Floor 3's normal inhabitants, which confirmed that significant threats can appear here under unusual
+  circumstances. He blacked out from injury after the Minotaur fight. Ais Wallenstein observed his fight and escorted
+  him out, confirming Minotaurs shouldn't be on Floor 3 and the Kobold activity was unusual. He knows Floor 3 contains
+  significant threats beyond standard spawns, requiring high vigilance and strategic thinking (like bypassing the
+  mysterious tunnel).
+
+**Current State (Day 10 Evening):** Isaiah is NOT currently in the Dungeon. He completed Delve #3 on Day 9 and has spent
+Day 10 shopping and at the Hostess. The Dungeon remains a dangerous, potentially unpredictable environment where
+unexpected anomalies (organized monsters, higher-level threats like Minotaurs) can occur even on upper floors.
+
+*(End of Recap: Dungeon - Upper Floors (1-3))*
+
+----
+
+## **Location Card: Hephaestus Familia Workshop**
+
+**Description & Location:**
+
+* A **major workshop** belonging to the renowned **Hephaestus Familia**, the premier crafting Familia in Orario
+  specializing in blacksmithing and weapon/armor creation.
+* Its specific location is on a **main commercial thoroughfare** within Orario, prominent enough to be used as a
+  landmark, situated between the Hostess of Fertility and the side street leading to 'The Weary Traveler' Inn.
+
+**Exterior:**
+
+* Features a **large, sturdy anvil** hanging outside as its unmistakable sign.
+* A **large display window** showcasing high-quality weaponry and armor (swords, axes, armor, etc.), exhibiting expert
+  craftsmanship.
+* A **heavy main door** providing entrance.
+* Sturdy stone/timber construction typical of important Familia workshops, likely with visible forge chimneys. Exudes an
+  air of solidity and craft.
+
+**Interior (Showroom & Forges):**
+
+* Entering reveals a **warm, lively atmosphere** filled with the smells of woodsmoke, hot metal, quenching oil, and
+  coal. The rhythmic **clang of forge hammers** is a constant sound.
+* Features a **showroom area** (likely larger than it appears from outside) with display racks/cases for weapons and
+  armor (including high-end items like Adamantite prototypes), counters, and tools.
+* Leads to the actual **forge area** with glowing hearths visible through archways, where smiths work intensely.
+
+**Role & Reputation:**
+
+* Serves as a primary retail outlet and production center for Hephaestus Familia goods.
+* Represents the **peak of blacksmithing quality and reliability** in Orario. Their masterwork gear is highly sought
+  after but incredibly expensive.
+
+**Isaiah's Interactions (Updated):**
+
+* **(Day 1 Evening):** Passed by the exterior during rain, admired the display window, was briefly shooed away by a
+  gruff smith (Tsubaki) for loitering.
+* **(Day 3):** Saw a recruitment notice for Tsubaki needing assistants at the Guild (plot thread not pursued).
+* **(Day 7 Mid-Morning):** Briefly visited the exterior again during his 'scouting' trip, window shopped, noted the high
+  prices of the daggers he saw.
+* **(Day 10 Mid-Morning):** **Crucial Visit.** Returned with Hestia for a major shopping trip, specifically to look at
+  the high-end daggers.
+    * Admired the Adamantite prototype daggers (priced at 19,800 V *each*).
+    * Encountered **Lady Hephaestus herself**, who greeted Hestia as a friend and assessed Isaiah's potential and
+      nerve (questioning his implied disdain for Orichalcum).
+    * Isaiah handled the Adamantite prototypes, giving an honest assessment of their quality and intuitively sensing the
+      tempering flaw related to enchantment potential.
+    * Hephaestus was impressed by his discernment and nerve.
+    * She offered him the Hearthfire Blades (Adamantite prototypes) for **50,000 Valis total** on a **payment plan** (
+      10k down today, 40k installment debt), as an investment in his potential and a favor to Hestia.
+    * Isaiah, despite Hestia's initial distress over the cost, accepted the offer with overwhelming gratitude, paid the
+      **10,000 Valis down payment**, signed an agreement, and took possession of the **Hearthfire Blades**. He promised
+      to pay back the debt quickly.
+    * Hephaestus named the daggers "Hearthfire Blades," tying them to Hestia. Tsubaki Collbrande was present, handled
+      the payment and paperwork, and overheard the entire exchange.
+
+*(End of Recap: Hephaestus Familia Workshop)*
+
+----
+
+# System Cards - Rules, Meta-Information, Core Lore of Game World
+
+## **System Card: Valis Currency**
+
+**Definition and Usage:**
+
+* **Valis (ヴァリス, *Varisu*)** is the standard, universal currency used throughout the city of Orario and likely its
+  surrounding areas.
+* It is essential for all economic transactions, including lodging, food, equipment purchase and repair, supplies (
+  potions, tools), services, Familia contributions, etc.
+* The primary source of new Valis flowing into the economy is through the **Adventurer's Guild**, which purchases *
+  *magic stone crystals** and other valuable monster parts dropped by creatures defeated within the Dungeon. Adventurers
+  exchange these materials at the Guild for Valis.
+* Completing **Guild-issued quests** also provides fixed Valis rewards upon verification.
+
+**Value and Benchmarks (Based on Retcons & Canon):**
+Valis has a highly granular value, with single units being worth very little, similar perhaps to fractions of a cent or
+single yen. Establishing scale requires examples:
+
+* **Very Cheap:** A simple street food snack like a **Jagamarukun** might cost **30-40 Valis**. Basic meal *materials*
+  might be around **50 Valis**.
+* **Budget Costs (Our Story):** The very cheap breakfast offered at 'The Weary Traveler' was **60 Valis**. A night's
+  stay in that same budget inn cost **150 Valis**.
+* **Standard Costs:** A decent meal at a tavern like the Hostess of Fertility might cost **100-300 Valis** (Isaiah's
+  stew and ale likely fell in this range). The lowest rank **health potion** typically costs around **500 Valis**.
+* **Adventurer Gear:** Costs escalate rapidly. Bell Cranel's canonical **starter dagger** cost **3,600 Valis**, and his
+  first basic **armor set** cost **5,000 Valis**. Good quality or slightly enchanted gear costs tens or hundreds of
+  thousands. Masterwork items can cost millions.
+* **Income/Large Sums:** A party of five capable Level 1 adventurers might earn around **25,000 Valis** combined on a
+  *good* day of delving. A decent house in Orario might cost **800,000 Valis**. Truly massive sums (like major Familia
+  debts or high-end transactions) run into the millions or hundreds of millions.
+
+**Denominations:**
+
+* While exact canon details are sparse, the vast range of values necessitates a system of denominations.
+* **Coins:** It's logically assumed (and supported by fan consensus mentioned earlier) that Valis exists in tiered
+  coinage, likely including denominations for values like **10, 100, 1,000, and 10,000 Valis**. These would likely vary
+  in size and perhaps metal type (e.g., bronze, silver, gold analogues). A single '1 Valis' coin might exist but would
+  be practically worthless.
+* **Banknotes/Vouchers:** For very large transactions (tens of thousands, millions), it's highly probable that *
+  *banknotes, negotiable drafts, or vouchers** issued by the Guild or a financial entity like the Ganesha Familia are
+  used, rather than physically carrying enormous quantities of coin. These would be redeemable for coin or used directly
+  between major parties.
+
+**Summary:** Valis is the lifeblood of Orario's Dungeon-driven economy. Individual units have low value, requiring
+hundreds for basic daily needs and thousands or millions for significant purchases or adventurer progression. It's
+primarily earned through the dangerous work of exchanging monster drops at the Guild or completing quests. A system of
+tiered coins and likely high-value notes facilitates transactions across this wide value range. Isaiah started with very
+little, earned roughly 1800 Valis on his first delve, but lost his last potion due to a missed 80 Valis payment
+deadline.
+
+*(End of Recap: Valis Currency)*
+
+----
+
+## **(System Recap: Status Update Mechanics & Excelia)**
+
+At the core of an adventurer's progression in Orario is the system known as **Status** (能力値 *Statusu*). This is a
+numerical representation of an adventurer's potential and growth, recorded directly onto their back by their deity
+through a process called **Falna** (神の恩恵 *Kami no Onkei*), or "Divine Blessing."
+
+An adventurer's Status includes several key components:
+
+1. **Level (Lv.):** The most fundamental indicator of an adventurer's overall power. Adventurers begin at **Level 1**.
+   Reaching higher Levels signifies a major increase in capabilities and unlocks potential for abilities to grow into
+   higher ranks. Achieving **Level 2** is the first major milestone and the prerequisite for receiving an official
+   title (Alias) from the Gods.
+
+2. **Basic Abilities:** Core physical and magical attributes measured from 0 to 999 within each Rank.
+    * **Strength (力 *Chikara* / STR):** Raw physical power.
+    * **Endurance (耐久 *Taikyū* / END):** Durability and resilience, ability to withstand damage and fatigue.
+    * **Dexterity (器用 *Kiyō* / DEX):** Agility, reflexes, coordination, precision, balance.
+    * **Agility (敏捷 *Binshō* / AGI):** Movement speed and reaction speed.
+    * **Magic (魔力 *Maryoku* / MAG):** Raw magical power.
+
+3. **Ranks:** Basic Abilities are measured within specific ranks, indicated by a letter from I (lowest) to S (highest),
+   potentially extending higher. Ranks are thresholds: I (0-99), H (100-199), G (200-299), F (300-399), E (400-499), D (
+   500-599), C (600-699), B (700-799), A (800-899), S (900-999). An adventurer's ability to reach higher ranks is
+   typically capped by their Level.
+
+4. **Excelia (経験値 *Ekusueria*):** Experience gained by overcoming challenges (primarily defeating Dungeon monsters).
+   Accumulates invisibly on the adventurer's back via Falna. The amount gained relates to the monster's difficulty and
+   the nature of the challenge.
+
+5. **Status Update:** A ritual performed by the deity, typically involving contact with the adventurer's back where the
+   Falna resides. This process converts accumulated Excelia into points that increase **Basic Abilities**, reflecting
+   the adventurer's growth. Status Updates are necessary for abilities to improve and reveal Level Up readiness. They
+   can also reveal or update **Skills** and **Magic**.
+
+6. **Skills & Magic:** Unique abilities tied to an adventurer's soul and experiences, enabled by Falna.
+    * **Skills:** Passive bonuses or active abilities, manifesting based on aptitude, desire, or specific actions. Their
+      function is recorded on the Status.
+    * **Magic:** Allows spellcasting. Requires aptitude and is granted or enabled by the deity. Also recorded on the
+      Status.
+
+**In Summary:** The Status Update system is the mechanism for adventurer growth. Combat and challenges yield Excelia,
+which the deity processes via the Falna ritual to increase abilities and grant new powers. Progression is measured by
+points within Ranks and by achieving higher Levels.
+
+*(End of Recap: Status Update Mechanics & Excelia)*
 
 ----
 
