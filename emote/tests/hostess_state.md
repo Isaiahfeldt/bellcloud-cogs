@@ -70,6 +70,22 @@ Below will include recap of each day, recaps of character development, and story
     * Isaiah checked in with Hestia using endearment "Sweetheart" (testing waters, accepted well). Hestia loved it.
     * Isaiah is currently sitting at the bar with Hestia, having drinks and snacks, waiting for a table for dinner. Syr
       works nearby. Ryu may or may not be working tonight, observation ongoing.
+* **Day 11 (Morning):**
+  * Woke peacefully with Hestia in bed (pre-established intimacy).
+  * Morning Routine: Comfortable washing/dressing.
+  * Plan Negotiation: Isaiah gently suggested one person stay for the afternoon bed delivery. Hestia, initially wanting
+    to join his walk, eagerly embraced the role of "Guardian of the Future Bed," agreeing to wait at the annex. Plan
+    confirmed: Isaiah solo trip for doctor visit + gentle walk.
+  * Isaiah departed annex alone.
+* **Day 11 (Mid-Morning):**
+  * Walk to Guild: Isaiah overheard gossip about Loki Familia/Dungeon anomalies. Arrived at Guild.
+  * Internal Reflection: Acknowledged complex motives for seeing Lyra (check-up vs. unsettling intrigue).
+  * Infirmary Visit (Lyra Encounter #2): Received check-up/bandage change. Lyra noted rapid healing. Used probing
+    questions and suggestive touch to **deduce/imply Isaiah's intimacy with Hestia was linked to his anomalous recovery.
+    ** Isaiah reacted with confirming blush/aversion. Lyra framed intimacy as medically relevant "factor," invited him
+    to report "unusual physiological events," scheduled 3-day follow-up. Dismissed him.
+  * Leaving Guild: Isaiah left infirmary unsettled. Bumped into Rose (cat-eared Guild employee) just outside the
+    infirmary wing/in main hall. Rose expressed relief seeing him looking better and asked if check-up went well.
 
 ----
 
