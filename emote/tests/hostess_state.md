@@ -2031,11 +2031,11 @@ oblivious to the full depth and personal nature of her feelings.
 
 ----
 
-## **Character Card: "Rose" - Cat-Eared Guild Employee**
+## **Character Card: Rose - Cat-Eared Guild Employee**
 
 **Identity & Role:**
 
-* **"Rose"** is a Guild Employee (Beast Person, cat ears/tail) working at the main service counters in the Orario Guild
+* **Rose** is a Guild Employee (Beast Person, cat ears/tail) working at the main service counters in the Orario Guild
   Headquarters. Handles inquiries, registration, data processing. Known to Isaiah.
 * **Appearance:** Dark hair, amber eyes, pointed cat ears (twitch with emotion/focus), wears standard Guild uniform.
   Pleasant and professional appearance.
