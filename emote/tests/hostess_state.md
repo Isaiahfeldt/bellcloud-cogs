@@ -3,7 +3,7 @@ Below will include recap of each day, recaps of character development, and story
 
 # We are currently in the **Late Afternoon/Early Evening of Day 10**.
 
-## Here's a quick recap of the days to confirm:
+## Quick Recap - Day by Day:
 
 * **Day 1:** Arrival, Hostess, Inn.
 * **Day 2:** Daggers, Guild Info, Hedin Challenge, Inn Deal.
@@ -1773,7 +1773,516 @@ a glimpse of Ryu, while Syr works nearby, aware of his presence.\
 *(End of Recap: Day 10 - Ending - Expanded Detail)*
 -----
 
-## Character Recaps
+# Character Recaps
+
+## **(Character Recap: Ryu Lion)**
+
+**Identity & Current Situation:**
+
+* Ryu Lion remains the former Level 4 adventurer and "Gale Wind" (疾風 Shippū) of the defunct **Astrea Familia**.
+* She is still **living in hiding** under the alias "Ryu," working as a waitress at the **Hostess of Fertility**, due to
+  her past involving vengeance against the Rudra Familia and her fugitive status.
+* She continues to maintain her composed persona to protect herself and her friends at the Hostess (Mama Mia, Syr, Anya,
+  Chloe, Lunoire).
+
+**Core Persona & Demeanor (as observed by Isaiah):**
+
+* **Appearance:** An elf of notable beauty with long, pale green hair, pale green eyes, and elegant features. Typically
+  seen in her neat, clean Hostess of Fertility waitress uniform.
+* **Demeanor:** Remains extraordinarily **calm, composed, and elegant**. Her movements are fluid, precise, and
+  economical. She speaks politely and formally, often using "Sir" when addressing patrons. Her expression is usually
+  serene, neutral, and difficult to read, presenting a mask of professional detachment.
+* **Speech:** Formal, precise language. Avoids contractions and slang. Her voice is soft yet clear and steady.
+
+**Underlying Traits (Hinted/Known to AI):**
+
+* **Hidden Skill:** Possesses exceptional combat skills (Level 4 equivalent, mastery of elven magic, knife-work, speed).
+  The natural, comfortable way she handled Isaiah's daggers on Day 2 subtly hinted at this.
+* **Past Trauma:** Carries the immense weight of her past, informing her guarded nature and cautious observation.
+* **Strong Sense of Justice:** This core value remains.
+* **Loyalty:** Deeply loyal to the memory of Astrea Familia and fiercely protective of her current friends at the
+  Hostess.
+* **Observant & Analytical:** Constantly assesses her surroundings and the people within them.
+
+**Interactions with Isaiah November:**
+
+* **First Meeting (Day 1):** Met Isaiah, served him. Noted his interest/staring, politely refused escort request,
+  provided name "Ryu".
+* **Dagger Retrieval (Day 2):** Isaiah returned for daggers, which she had secured. He asked Anya about her. Isaiah
+  tried to provoke reaction by commenting on her composure (failed). He left, she still didn't know his name.
+* **Brief Glimpse (Day 4 Evening):** Isaiah saw her working through the window while contemplating where to go after his
+  first delve.
+* **Breakfast Encounter (Day 9 Morning):** Isaiah and Hestia visited the Hostess for breakfast. Isaiah deliberately
+  *avoided* being seen looking for her initially. Ryu was working. She passed by their booth while they were eating, her
+  gaze sweeping the room. **She did not visibly react or acknowledge Isaiah**, seemingly not recognizing him or
+  registering his presence as noteworthy amidst the crowd and her work. Isaiah noted this with disappointment.
+* **Dinner Encounter (Day 10 Evening - Current):** Isaiah and Hestia have returned for dinner and are waiting at the
+  bar. Isaiah is currently subtly scanning the room, looking for her, but has not yet spotted her working during the
+  dinner rush.
+
+**Ryu's Perception of Isaiah (Interpretation based on interactions & persona):**
+
+* **Initial Impression (Days 1-4):** Views him as a **newcomer adventurer**, perhaps a bit unusual (staring, dagger
+  forgetfulness, probing questions), potentially reckless or overly forward, and unusually focused on *her*. Maintained
+  professional distance and underlying caution. **Did not know his name.**
+* **Impression Post-Day 9 Breakfast:** Her perception has likely not changed significantly. She probably did not
+  consciously recognize or register Isaiah at all during his breakfast visit, or if she did, it was merely as "another
+  customer" amongst the morning rush, failing to connect him definitively to the "unusual newcomer" from before,
+  especially as he deliberately avoided attention. Her focus was on her work. He remains a **non-entity or a vaguely
+  remembered, unnoteworthy face** from her perspective based on that lack of reaction. **Still does not know his name.**
+* **Protagonist Aura Effect:** It seems the aura, while potentially making him subtly more memorable or intriguing to
+  others like Eina, Rose, or Syr, has not yet significantly penetrated Ryu's carefully constructed professional mask or
+  overcome her natural caution to make her actively *seek him out* or even consistently *recognize* him amidst her work
+  focus. His earlier attempts to gain her attention were perhaps too direct and off-putting.
+* **Romantic Feelings?:** Absolutely none at this stage. Her guard is extremely high, and their interactions (or lack
+  thereof) have not built any trust or connection from her perspective.
+
+**Key Relationship State:** From Isaiah's perspective: He is deeply fascinated and intrigued by Ryu, viewing her as a
+primary long-term romantic goal, now complicated by his love for Hestia. He believes his actions and status might make
+him more noteworthy to her, but his attempts to get her attention have been unsuccessful so far. From Ryu's perspective:
+Isaiah November is likely **unknown**, or at best, a **vaguely familiar, unremarked-upon face** from previous customer
+interactions. She maintains her professional distance and likely has no specific thoughts or feelings about him. No
+trust established.\
+*(End of Recap: Ryu Lion)*
+----
+
+## **(Character Recap: Eina Tulle)**
+
+**Identity & Role:**
+
+* Eina Tulle remains a highly competent **Guild Advisor** at the Orario Guild Headquarters, identified as a half-elf.
+* Her primary function is assisting adventurers, guiding newcomers, processing registrations, and ensuring Guild
+  procedures are followed, with a strong emphasis on safety.
+
+**Core Persona & Demeanor:**
+
+* **Appearance:** Elven (half-elf) features, neat professional attire (Guild uniform), sharp, intelligent eyes. Projects
+  an image of competence and efficiency.
+* **Demeanor:** Outwardly maintains a **professional, efficient, and knowledgeable** front. Possesses an underlying,
+  genuine **concern for adventurer well-being**. Her professionalism towards Isaiah is deeply tinged with **intense
+  personal worry, heightened fascination, and protective concern**. This has escalated significantly due to his actions.
+* **Speech:** Clear, precise, informative, and generally formal. Her tone now frequently carries a strong note of
+  personal concern or urgency when addressing Isaiah directly, especially regarding his safety or unexpected reports.
+
+**Interactions with Isaiah November (Up to Day 10):**
+
+* **First Meeting (Day 2):** Isaiah sought registration unprepared. Eina explained requirements, noted his enthusiasm.
+  Learned his name.
+* **Second Meeting (Day 3):** Isaiah asked about Lvl 2 record (Ais/~1yr). Eina expressed deep concern about his
+  ambition, gave name her name and advice.
+* **Third Meeting (Day 4 Morning):** Isaiah arrived *with* Hestia to register. Eina surprised by speed/choice of
+  Familia, commented on "self-reliance" needed, professional concern mixed with disappointment/intrigue.
+* **Knowledge of Day 4 Anomaly (Confirmed):** Eina *did* hear about Isaiah's highly unusual Day 4 achievement (reporting
+  both F2 Goblin and F3 Kobold quests solo on his first day), likely through Guild reports or staff gossip (from the
+  exchange clerk, Rose, etc.). This **significantly amplified her concern and fascination**, marking him as a highly
+  dangerous anomaly.
+* **Day 9 Morning (Guild Visit):** Isaiah returned *without* Hestia to select new quests (Commander #2, Subjugation).
+  Eina was likely aware of his presence but did not interact directly, possibly observing him from a distance or noting
+  his quest choices (Rose handled registration). She may have noted his continued high-risk approach (taking two tough
+  quests solo).
+* **Day 9 Mid-Afternoon (Guild Return - Injured):** **Crucial Interaction.** Isaiah returned from Delve #3 clearly
+  injured (limping, stained cloak, pain). Eina immediately noticed his state. Her **professional concern shattered**,
+  revealing overt **intense personal worry**. She broke protocol, left her station, and intercepted him directly.
+* **Guild Infirmary / Report (Day 9):** She insisted on taking him to the infirmary **herself**. She waited outside
+  while Lyra examined him, showing clear discomfort with Lyra's methods but prioritizing Isaiah's medical needs.
+  Afterwards, she personally took his report about the Floor 3 anomalies – the **organized Kobolds, traps, digging, and
+  the Minotaur encounter**, as instructed by Ais Wallenstein. The sheer scale of threats he faced (and survived solo)
+  and Ais's involvement **overwhelmed her**, validating her deepest fears about his recklessness while amplifying her
+  awe at his capability and the mystery surrounding him.
+* **Quest Report & Exchange Oversight (Day 9):** She oversaw the process, ensuring he got his quest rewards (1500V) and
+  material exchange (~21.5k V, ~23k total from delve) correctly handled after his treatment, seeing the massive wealth
+  he acquired.
+* **Awareness of Relationship:** Eina is likely aware of the strength of Isaiah's bond with Hestia, especially after the
+  Day 4 registration *with* Hestia and potentially hearing subtle gossip about the public kiss at the Dungeon entrance
+  this morning (Day 9). This adds another layer to her perspective – she sees him as deeply connected to Hestia, adding
+  complexity to her own feelings of concern and potentially confusing attraction.
+
+**Potential Developments & Perception of Isaiah (As of Day 10 Evening):**
+
+* **Escalated Worry & Fascination:** Eina now views Isaiah as a uniquely powerful but incredibly high-risk individual.
+  Her initial professional concern has solidified into a profound, **deeply personal worry and intense fascination**.
+  She sees him as an anomaly who is inexplicably talented but constantly putting himself in suicidal situations, driven
+  by an ambition she still doesn't fully understand.
+* **Admiration Mixed with Fear:** She likely admires his resilience and capability but is terrified by the dangers he
+  faces and the apparent recklessness of his choices (even if those choices are fueled by the scale of Hedin's
+  challenge).
+* **Protective Instinct:** Her protective concern has become overt (intercepting him, taking him to the infirmary
+  personally, overseeing his report). She feels a strong compulsion to monitor his safety and potentially intervene or
+  guide him, struggling with the boundaries of her professional role vs. her burgeoning personal feelings.
+* **Lack of Full Knowledge:** While she knows his Level and has seen proof of his feats, she still **does not know** the
+  specific numbers of his G-Rank stats (only that they are high enough for such feats), the nature
+  of [Determined Heart]'s multiplier, or the mystery of `[??????????]` beyond its 'Resonance' hint (if she even noted
+  that specific detail from his update). This makes his success even more baffling and alarming.
+* **Complex Feelings:** The conflict between her professional role, her deep personal worry, her admiration for his
+  strength, her fascination with the mystery surrounding him, and her awareness of his bond with Hestia is now central
+  to her character arc. Her feelings for him are complex, likely confusing even to her, and strongly leaning towards a
+  protective, worried form of romantic interest or deep devotion.
+
+**Key Relationship State (As of Day 10 Evening):** Primarily Advisor-Adventurer. However, Eina's internal state is
+defined by **overt, intense personal worry, profound fascination, strong protective instincts, and complex, perhaps
+unrecognized, romantic feelings** regarding Isaiah. She sees him as a high-risk enigma she feels compelled to monitor
+and protect, struggling with her professional boundaries. This investment is deep and sets the stage for significant
+future romantic subplot development. Isaiah, while noticing her concern and appreciating her help, is likely somewhat
+oblivious to the full depth and personal nature of her feelings.\
+*(End of Recap: Eina Tulle)*
+----
+
+## **(Character Recap: "Rose" - Cat-Eared Guild Employee)**
+
+**Identity & Role:**
+
+* "Rose" is a **Guild Employee** (Beast Person, cat ears/tail) working at the main service counters in the Orario Guild
+  Headquarters, handling inquiries, registration, and potentially material exchange oversight. Isaiah knows her by
+  appearance but not by name.
+
+**Core Persona & Demeanor:**
+
+* **Appearance:** Dark hair, amber eyes, pointed cat ears (twitch with emotion/focus), wears standard Guild uniform.
+  Pleasant and professional appearance.
+* **Demeanor:** Generally **pleasant, professional, and efficient**. Less stern than Eina. Handles procedures smoothly.
+  Maintains outward composure, but feline traits like ear twitches and focused gaze hint at her underlying reactions.
+  Possesses **significant underlying curiosity and fascination** regarding Isaiah.
+
+**Interactions with Isaiah November (Up to Day 10):**
+
+* **First Meeting (Day 3):** Isaiah sought Hestia's location. Rose provided it, intrigued by his unusual request and
+  cryptic answer ("smallest spark... wildfire"), marking him as memorable.
+* **Second Meeting (Day 4 Morning - Revised):** Rose saw Isaiah arrive *with* Hestia, greeting them with professional
+  surprise ("inquiry successful"). She likely observed their interaction with Eina regarding registration with interest.
+* **Day 9 Morning (Guild Visit #2 - Quest Selection):** Rose saw Isaiah return to the Guild (without Hestia this time)
+  and select two challenging Floor 3 quests (Commander #2, Subjugation). Processing his registration, she noted the "
+  sensible pairing" and gave standard warnings, but her composure was very firm, and her ears gave a slight twitch –
+  reflecting her renewed focus and assessment of him as potentially reckless but notably ambitious.
+* **Day 9 Mid-Afternoon (Guild Return #2 - Injured):** **Crucial Interaction.** Rose was walking through the Babel
+  staging area and **directly witnessed** Hestia's public goodbye **kiss** to Isaiah at the Dungeon entrance before he
+  descended. She reacted with clear surprise (steps faltered, eyes widened, ears twitched), noting the affection and
+  Isaiah's reaction before he turned away. This significantly deepened her intrigue, adding a romantic/personal layer to
+  her fascination with the 'remarkable' Mr. November.
+* **Day 9 Mid-Afternoon (Guild Visit #3 - Post-Delve):** Isaiah arrived back at the Guild, clearly injured (limping,
+  stained cloak). Rose was at her counter when he approached to report/exchange. She **immediately noticed his injured
+  state** and his ichor-stained cloak. Seeing the tangible evidence of a difficult delve combined with his clear injury
+  *after* his ambitious quest registration earlier today and yesterday's surprising reports, she was further impressed
+  and concerned.
+* **Day 9 Mid-Afternoon (Report & Exchange):** Isaiah reported his Day 9 quests (Commander #2, Subjugation) to Rose. She
+  processed the proofs (Commander fangs #2, Subjugation confirmation) professionally but was **sincerely impressed** by
+  his success, calling it "Remarkable... To complete both of these... solo..." and noting his efficiency. Her gaze held
+  clear respect. She then directed him to the exchange counter.
+* **Day 9 Mid-Afternoon (Final Encounter):** Upon leaving the Guild after finishing his business (report, exchange,
+  treasury), Isaiah **bumped into Ais Wallenstein**. This was a brief, significant interaction that Rose did **not**
+  witness directly, but might hear about later through Guild gossip.
+
+**Rose's Perception of Isaiah (Updated - Harem Focus):**
+
+* **Developing Impression:** Isaiah has moved beyond just a "memorable newcomer" or "reckless anomaly" in her eyes. His
+  repeated visits, his unique requests (Hestia location), his surprising success on difficult quests (F3 solo,
+  Commander/Dragon yesterday, Commander/Subjugation today), his conspicuous return today (injured but successful), and
+  his public display of affection with Hestia have made him a **highly noteworthy and consistently intriguing individual
+  **.
+* **Heightened Curiosity & Fascination:** Rose's initial curiosity has deepened into **significant fascination and
+  analytical intrigue**, fueled by the unexpected strength/recklessness, the mysterious bond with Hestia (highlighted by
+  the public kiss she witnessed), and his general unconventional path.
+* **Admiration:** His capability in clearing difficult quests solo has earned her **professional (and likely personal)
+  respect and admiration**.
+* **Awareness of Hestia Relationship:** She is explicitly aware of the depth and affectionate nature of the
+  Hestia-Isaiah bond, having witnessed the kiss. This awareness colours her perception of him.
+* **Complex Feelings / Potential Romantic Interest:** Her feelings are primarily **fascination, curiosity, and
+  admiration**. However, her consistent observation, her intrigue with his 'anomaly' status (exacerbated by his
+  unexpected success and unique circumstances), and her awareness of his deep bond with Hestia (which adds layers to his
+  intriguing nature) create fertile ground for potential romantic interest to develop. She sees him as a remarkable
+  individual involved in a unique, perhaps destined, situation she feels compelled to understand. Her deliberate glance
+  at his features yesterday after the report subtly hinted at a developing personal dimension to her interest.
+
+**Key Relationship State (As of Day 10 Evening):** Acquaintances through frequent Guild interactions. Rose views Isaiah
+as a **highly memorable, remarkably capable, unexpectedly reckless, and deeply intriguing Level 1 anomaly** with a
+notable bond to Goddess Hestia. Her professional politeness masks **significant underlying curiosity, fascination, and
+budding admiration**, laying the groundwork for potential romantic interest. Isaiah is aware of her curiosity and
+appreciated her help, but likely doesn't fully grasp the depth of her personal interest beyond professional concern
+mixed with curiosity.\
+*(End of Recap: Rose)*
+----
+
+## **(Character Recap: Hestia)**
+
+**Identity & Role:**
+
+* Hestia is the **Goddess of the Hearth, Home, and Family**, residing in Orario.
+* She is the founder and Goddess of the fledgling **Hestia Familia**, with Isaiah November as her first and currently
+  sole member.
+* She possesses divine powers (including bestowing Falna) but lives in **extreme poverty**, residing in a makeshift home
+  within a dilapidated church annex and struggling for basic necessities (no longer facing a specific, massive canonical
+  debt).
+
+**Core Persona & Demeanor:**
+
+* **Appearance:** Appears as a very **short, petite young woman** with long black hair typically styled in **twin-tails
+  ** (adorned with bright blue ribbons) and large, expressive blue eyes. Usually wears a **simple white dress**.
+  Possesses a notably **curvaceous figure**.
+* **Demeanor:** Highly **energetic, emotional, expressive, and prone to dramatics**. Her moods shift rapidly, wearing
+  her heart on her sleeve. While still easily **flustered** by intimacy, her reactions are now complex (combining
+  shyness, warmth, desire, relief, awe). She is fiercely **proud** of Isaiah, intensely **loyal**, **possessive** ("
+  Mine!"), and deeply **invested** in their shared success and connection. She struggles with poverty but finds immense
+  joy in their successes and time together.
+* **Speech:** Informal, energetic, expressive tones. Stammering/squeaking when flustered by intimacy. Can be loud or
+  dramatically quiet. Uses terms of endearment ("my Isaiah," "sweetheart"), possessive terms ("Mine!"). Her core
+  emotions are deeply genuine.
+
+**Key Interactions & Developments (Day 7 Morning - Day 9 Evening):**
+
+* **Status Update #2 (H-Rank Reveal):** Witnessing Isaiah achieve H-Rank stats after only one delve filled her with
+  profound awe and solidified her belief in him as uniquely "special" and *her* destined hero. This dramatically
+  intensified her pride and emotional investment.
+* **Ribbon Gift & Application:** Isaiah's thoughtful gift of new blue ribbons (after noticing her old ones were frayed)
+  moved her to tears of quiet gratitude. His gentle insistence on putting them on for her created a moment of profound,
+  tender intimacy that bypassed her usual defenses, deepening her affection and trust significantly.
+* **Bed Sharing Request (Isaiah Initiated):** Isaiah directly asking to share the *bed* again because he "slept better"
+  with her there was a major turning point. It shifted the dynamic from necessity to *preference*, validating her
+  presence on a deeply personal level.
+* **The Whisper ("I don't care what people think"):** Isaiah directly addressing her anxieties about propriety by
+  prioritizing *their* connection over external judgment was incredibly powerful and reassuring for her. It solidified
+  her trust and likely cemented her romantic feelings, making her feel safe and valued in their shared intimacy.
+* **Sleeping Together (Deliberate):** Spending the night in the bed by mutual (if flustered on her part) agreement,
+  based on his stated preference, established a new baseline of intimacy.
+* **Waking Up Together (Day 7 Morning):** Woke beside Isaiah. Allowed moment of unguarded affection (touching his hair),
+  was caught, reacted with flustered excuse ("checking breathing"). Isaiah gently called her out, accepting her
+  vulnerability, causing deeper mortification but cementing trust.
+* **Isaiah's "Scouting" Plan (Day 7 Morning):** Listened to Isaiah's plan to go into town alone for reconnaissance. Was
+  initially disappointed, then deeply worried for his safety. Reluctantly agreed, expressing worry and asking him to "
+  come back soon," stating she'd be "waiting."
+* **Impulsive Hug (Day 7 Morning):** Was surprised by Isaiah's sudden return to hug her goodbye. Reacted with shock, but
+  melted into the embrace. Felt it was impulsive on *his* part, terrifyingly significant.
+* **Anxious Waiting & Return (Day 7 Midday):** Likely spent hours anxiously waiting, trying to distract herself with
+  minor tasks. Felt the time was "very quiet without" Isaiah. Rushed to the door upon his return, overwhelmed with
+  relief, checking he was safe. Enjoyed the snacks he brought. Discussed his trip (Hephaestus visit) and plans (Floor 4
+  risk vs. Floor 3 focus, Supporter idea), her worry about Floor 4 profound. Accepted Day 8 plan: "double quests" on
+  Floor 3, promised transparency.
+* **Status Update & Consummation Prelude (Day 7 Midday/Evening):** Was reminded to do Status Update for Day 6 delve. Saw
+  H-Rank stats (STR 142 H, etc.). Isaiah asked what *she* wanted to do. Was touched, initiated tentative
+  touch/closeness, suggested "just stay here." Got overwhelmed, retreated into excuses. Isaiah offered lap pillow; she
+  was flustered but eventually accepted ("ergonomic research"). Endured his gentle hair stroking and bold touch on her
+  earlobe (shocked, shivered). Isaiah confessed **"I like being with you, Hestia"** (no title); reacted with profound
+  shock, tears, clinging. Isaiah confessed **"I love you, Hestia."** Reacted with disbelief/shock. Eventually, after
+  reassurance, confessed **"I... I love you too,"** initiated passionate kiss. This culminated in them settling into
+  intimate cuddling on the sofa/bed, but **without consummation occurring yet** on Day 7. They went to bed side-by-side,
+  intimate but not having had sex.
+* **Peaceful Morning (Day 8):** Woke up peacefully together in bed, the culmination of intimacy building. Started
+  getting ready. **Intimate changing scene occurred** where she changed openly in front of him, leading to physical
+  touch escalation. This led to **Confessions "I love you" -> Kiss -> Sex/Consummation**.
+* **Aftermath & Resolution (Day 8 Afternoon):** After sex, they lay tangled together, exhausted but deeply content.
+  Isaiah cleaned her up (tender act). They cuddled, reaffirming love. Isaiah confessed past loneliness; Hestia responded
+  with fierce empathy and a heartfelt promise ("You're not alone anymore... You have 'us'. Always."). They drifted off
+  into **peaceful sleep/rest for the remainder of Day 8 evening/night**.
+* **Panic Attack & Resolution (Night Day 8 / Early Day 9):** **Woke up abruptly in the middle of the night** gripped by
+  ice-cold panic. Realized they had **unprotected sex**, fearing the "no children/Arcanum use = expulsion" divine rule
+  and being sent back to Tenkai. Woke Isaiah desperately, articulating her fear – that the risk wasn't just
+  instantaneous, but tied to potential conception, a terrifying, delayed possibility. Isaiah reassured her, using
+  logic (time elapsed, expulsion is instant) and firmly grounding her in the present ('Us', face it together),
+  acknowledging the risk but refusing to let fear ruin their bond. Suggested using protection *next time* like other
+  Gods/mortals. Apologized for 'research' joke. Hestia gradually calmed down, accepted his reassurance and the idea of
+  being careful, choosing to trust in 'us' over the fear, though the underlying anxiety remained. They fell back asleep
+  holding each other.
+* **Peaceful Morning (Day 9):** Woke up peacefully together in bed after the full night's rest following
+  consummation/emotional resolution/panic. Got ready (comfortable, non-flustered changing scene). Planned Day 9: Guild
+  then Delve.
+* **Breakfast & Guild Visit (Day 9 Morning):** Walked to Guild. Decided to stop for **breakfast at Hostess of Fertility
+  **. Was purely excited about good food (pancakes!), seemingly oblivious to Isaiah's lingering desire to see Ryu there.
+  At Guild, selected Day 9 quests (**Commander Elim #2, Kobold Subjugation**) based on synergy. Went to Babel entrance.
+  Said goodbye to Isaiah with a **public cheek kiss**, witnessed by Rose/others, leading to minor gossip reaching
+  Loki/Freya. Isaiah entered Dungeon alone.
+* **Waiting & Return (Day 9 Day/Evening):** Spent hours waiting anxiously at the annex while Isaiah was in the Dungeon (
+  Delve #3). Her worry would have escalated over time, especially after the Minotaur was confirmed upon his return.
+* **Return from Delve & Valis Reveal (Day 9 Late Afternoon):** Greeted Isaiah at the door with immense relief but quick
+  concern over his injury (downplayed as 'tumble'). Was overwhelmed with ecstatic joy and disbelief upon seeing the *
+  *massive Valis haul (~23k from delve, ~44k total)**, momentarily forgetting his injury in her excitement. Expressed
+  pure happiness, praised Isaiah, covered him with kisses, listing possibilities.
+* **Status Update & Skill Mystery (Day 9 Evening):** Was reminded to do the Status Update for Day 9 delve. Reacted with
+  intense excitement. Saw **all physical stats jump to G-Rank!** (STR G 255, etc.), utterly stunned by the monstrous
+  growth. Saw `[??????????]` change to **"Resonance Detected - Stirring,"** adding a new layer of mystery and potential.
+  Was confused and slightly worried about the skill, wondering what triggered it (link to 'us'?).
+* **Intimacy Aftermath & Sleep (Day 9 Evening):** Discussed implications of G-Rank/Skill. Agreed no Dungeon Day 10 due
+  to injury, plan shopping instead. Discussed gear/bed priorities. Isaiah asked Hestia to help undress due to injury (
+  tender intimacy). Hestia helped. Isaiah got into bed. Hestia changed (openly, comfortable). Got into bed, **initiated
+  deep, possessive cuddling** ("Supervising rest," "Your goddess is here"), resulting in Isaiah feeling "dommy-mommy"
+  vibes and flustering him internally. They fell asleep cuddling.\
+
+**Hestia's Perception of Isaiah (Harem Focus Interpretation):**
+
+* **Deep, Acknowledged, Consummated Love:** Her initial hope has solidified into profound love for Isaiah, which is now
+  mutually confessed and physically expressed. He is her world, her hope, her greatest treasure.
+* **Partner & Equal:** While still seeing him as "her adventurer" and "child," she increasingly sees him as a partner,
+  someone she shares burdens and triumphs with. She wants his input, his presence. His respect (like putting her "in
+  charge") deeply validates her.
+* **Trusted & Relied Upon:** She trusts him implicitly, relies on him for safety, financial security, and emotional
+  anchoring, particularly after navigating her divine rule panic based on his reassurance and promise of 'us'.
+* **Fierce Possessiveness (Managed):** Her possessiveness ("Mine!") is amplified by love and intimacy. It manifests as
+  intense worry, pride, desire for closeness, and potential jealousy towards rivals (like Ryu, if she becomes aware).
+  However, her possessiveness is now balanced (medium difficulty) by a willingness to trust Isaiah's reassurance and
+  find ways to navigate shared risks/future (like using protection, accepting a payment plan for gear). The "
+  dommy-mommy" vibe she gave off shows a complex mix of protective/possessive control emerging in private.
+* **Acknowledged Physical Desire:** She desires intimacy with Isaiah and is becoming more comfortable with physical
+  closeness and expressing desire, even initiating touch/cuddling. While verbal shyness remains, her actions are
+  becoming bolder.
+* **Awe at Potential:** His rapid growth and G-Rank status fill her with immense pride and awe, validating her faith in
+  him as special. She sees him destined for greatness and wants to support that fully.
+* **Lingering Divine Rule Anxiety:** While she has accepted the idea of using protection to manage the risk of
+  expulsion, the underlying anxiety related to their intimacy and potential divine consequences remains a potential
+  source of future worry, though it's currently compartmentalized.
+
+**Key Relationship State (As of Day 10 Evening):** Officially Goddess and Familia Child, but fundamentally an *
+*intensely loving, committed, and physically intimate partnership**. They share deep trust, vulnerability, successes,
+and anxieties. Hestia is deeply in love, possessive, incredibly proud, and increasingly comfortable initiating
+closeness, though still navigating lingering shyness and the potential implications of divine rules. They are 'Us',
+actively building their life and future together.\
+*(End of Recap: Hestia)*
+----
+
+## **(Character Recap: Hedin Selland)**
+
+**Identity & Role:**
+
+* A **high-ranking executive** and powerful adventurer within the **Freya Familia**, one of Orario's strongest and most
+  influential Familias.
+* He is an **Elf**, known for his considerable magical ability and strategic intellect.
+* Serves Goddess Freya loyally, often acting as an enforcer of her will, a recruiter/assessor of potential talent, or a
+  commander in Familia operations.
+
+**Core Persona & Demeanor:**
+
+* **Appearance:** Tall, silver-haired elf with sharp, classically handsome elven features. Often depicted in fine robes
+  or high-quality attire befitting his status. Carries an aura of immense power, ancient knowledge, and authority. His
+  eyes are piercing and analytical (often depicted as blue or grey).
+* **Demeanor:** Typically **calm, cold, detached, and analytical**. He rarely shows strong outward emotion, assessing
+  situations and people with cool precision. Can be **arrogant** and dismissive towards those he deems weak or
+  insignificant. Speaks with quiet authority, his voice smooth but carrying undeniable weight. Values strength, results,
+  and likely beauty/potential that aligns with Freya's interests.
+* **Speech:** Precise, often formal or slightly archaic language. Economical with words unless explaining something
+  complex or issuing commands. His tone is usually level, calm, even when delivering threats or impossible demands.
+
+**Interactions with Isaiah November (Day 2 Evening):**
+
+* **Intervention:** Emerged from Folkvangr after Isaiah successfully parried Sergeant Valen's attack, commanding "
+  Enough" and instantly stopping the fight with his sheer presence.
+* **Assessment:** Calmly assessed the situation, noting Isaiah's audacity, his landed blow and successful parry
+  *without* Falna against a leveled guard.
+* **Questioning:** Directly questioned Isaiah's motives for seeking Freya Familia and his perceived worthiness beyond
+  the "desperate display."
+* **First Interaction & Time Loop:** Isaiah initially gave a passionate speech about ambition and willpower. Hedin,
+  unimpressed by potential alone, dismissed him outright and told him not to return. Immediately after this dismissal,
+  Isaiah experienced an unexplained ~2-minute time rewind back to Hedin asking the initial question.
+* **Second Interaction (Post-Rewind):** Isaiah, now with foreknowledge, gave a *different*, more effective plea. He
+  focused on the *tangible evidence* of the fight (hit, parry without Falna) as proof of existing raw potential and
+  challenged Hedin/Freya Familia to recognize and forge such material.
+* **The Challenge:** Hedin, intrigued by the revised argument and the anomalous combat display (and perhaps
+  subconsciously registering Isaiah's intense spirit or the subtle 'protagonist aura'), did not dismiss him this time.
+  Instead, he issued an **impossible condition** for future consideration: Gain Falna, enter the Dungeon, and achieve *
+  *Level 2 faster than any adventurer in Guild history**. Only upon presenting Guild proof of this feat would Hedin
+  grant him a personal audience. Failure or returning early was met with an implicit, severe threat. He then shut the
+  door, leaving Isaiah with this daunting task.
+
+**Hedin's Perception of Isaiah:**
+
+* **Initial Impression:** An arrogant, reckless, unblessed nuisance disturbing the peace outside Folkvangr, likely
+  destined for a quick death in Orario. Dismissed him easily.
+* **Revised Impression:** After the second interaction (post-rewind/latent skill trigger), Hedin's perception shifted
+  slightly. He still likely sees Isaiah as **reckless, audacious, and currently insignificant** (lacking Falna and
+  status). However, he also registered:
+    * **Anomaly:** The ability to land a hit and parry Valen without Falna is highly unusual and warrants notice.
+    * **Surprising Adaptability/Intellect:** Isaiah's sudden shift in argument from generic ambition to citing specific
+      evidence and appealing to Familia prestige was unexpected and more sophisticated, suggesting quick thinking under
+      pressure (Hedin wouldn't know about the time loop).
+    * **Intense Will/Spirit:** Isaiah's sheer determination and refusal to be simply dismissed, even when facing
+      overwhelming power, might have registered as a strong (if currently unrefined) soul, the kind that *sometimes*
+      catches Lady Freya's notoriously fickle attention.
+* **Overall Opinion (Likely):** Hedin likely views Isaiah as an **anomaly wrapped in foolish audacity**. He doesn't
+  truly expect Isaiah to succeed in the impossible challenge; it was primarily a way to dismiss him definitively while
+  satisfying his own (and potentially Freya's future) curiosity about this strange outlier. He set the bar impossibly
+  high to test the limits of Isaiah's potential and determination from afar. He probably gave the order to the guards to
+  deny Isaiah entry under any circumstances *unless* he returns with proof of the record. He likely filed the incident
+  away, perhaps making a mental note of the name "Isaiah November" as a bizarre footnote, unless Isaiah actually *does*
+  achieve something noteworthy.
+* **Protagonist Aura Effect:** Hedin is powerful and calculating, likely less susceptible to the 'aura' than others.
+  However, it might have subtly contributed to his decision to offer the challenge instead of simply ordering the guards
+  to dispose of Isaiah after the second, more intriguing plea. The aura might have made Isaiah's intense spirit register
+  slightly more strongly, nudging Hedin's decision from pure dismissal towards morbid curiosity expressed via the
+  impossible task. He wouldn't consciously recognize an 'aura', just perhaps find the encounter fractionally more
+  interesting than it objectively should have been.
+* **Romantic Feelings?:** None whatsoever. Hedin's interest is purely analytical, related to potential talent/power for
+  the Familia, or perhaps detached amusement/curiosity.
+
+**Key Relationship State:** Antagonistic challenge-setter. Hedin represents the power and unattainable goal (Freya
+Familia) that Isaiah strives for. He sees Isaiah as an insignificant but anomalous newcomer. Isaiah sees Hedin as the
+gatekeeper to his ultimate goal, the issuer of the impossible quest that now defines his path. There is no warmth, only
+a vast power disparity and a conditional challenge.\
+*(End of Recap: Hedin Selland)*
+----
+
+## **(Minor Character Recaps - Updated)**
+
+**1. Anya Fromel:**
+
+* **Identity/Role:** Cheerful, energetic cat-girl waitress at the Hostess of Fertility; colleague of Ryu and Syr.
+* **Demeanor:** Very friendly, bubbly, talkative, curious, uses cat-puns/mannerisms ("Nya~"). Provides a stark contrast
+  to Ryu's composure and Syr's quiet warmth.
+* **Interactions w/ Isaiah:**
+    * **(Day 2):** Briefly chatted with Isaiah when he returned for his daggers. Isaiah asked her about Ryu; she
+      gossiped lightly about Ryu (elegant, mysterious, bit scary) and playfully asked if Isaiah had a crush (just as Ryu
+      arrived).
+    * **(Day 4 Morning):** Saw Isaiah arrive at the Guild *with* Hestia (observed, but minimal direct interaction as he
+      registered with Eina).
+    * **(Day 9 Morning):** Served Isaiah and Hestia breakfast at the Hostess. Greeted Isaiah as "Mr. Blue-Hair," showing
+      recognition. Hestia introduced herself and Isaiah (Day 9 Morning Recap). Anya was excited by Hestia being a
+      Goddess and Isaiah being her adventurer, showing increased intrigue. She served them efficiently and was pleased
+      by Hestia's enthusiasm for the food.
+    * **(Day 10 Evening):** Currently working at the Hostess during the dinner rush. Isaiah and Hestia are waiting at
+      the bar. Anya is present as part of the staff, likely busy serving, but has not yet directly interacted with them
+      beyond potentially being seen working.
+* **Perception of Isaiah:** Views him as a **memorable, intriguing newcomer** (Mr. Blue-Hair) who is unusually ambitious
+  and has a fascinating (and now confirmed!) connection to a Goddess (Hestia Familia). His unconventional nature,
+  combined with the 'Protagonist Aura', makes him stand out and piques her curiosity significantly. Her earlier playful
+  teasing about Ryu might evolve into genuine curiosity about his dynamic with Hestia, or perhaps continue as light
+  teasing. The potential for friendly interaction and perhaps budding (if lighthearted) interest remains.
+* **Relationship State:** Friendly acquaintances. Her curiosity and intrigue have deepened due to his recent noteworthy
+  actions and his association with Hestia.
+
+**2. Innkeeper ('The Weary Traveler'):**
+
+* **Identity/Role:** Portly, bald, gruff but pragmatic owner/operator of the very cheap inn, 'The Weary Traveler'.
+  Unnamed.
+* **Demeanor:** Not overtly friendly, focused on business, speaks gruffly. Practical, understands the basics of
+  adventurer life/poverty. Not malicious, but offers no warmth, just basic service.
+* **Interactions w/ Isaiah:**
+    * **(Day 1 End):** Rented Isaiah Room 4 for 150 Valis (paid upfront).
+    * **(Day 2 End):** Isaiah returned desperate, offered ~70 Valis + last Health Potion as collateral for Room 4 (Day 2
+      night), promising 80 Valis balance by Day 3 sunset. Innkeeper accepted due to potion's value.
+    * **(Day 3 Morning):** Isaiah returned the key, checked out implicitly before the deadline without paying the
+      balance. He missed the Day 3 sunset deadline.
+* **Perception of Isaiah:** Views Isaiah as a down-on-his-luck adventurer who couldn't make the payments, but whose
+  collateral covered the debt. Likely considers the transaction complete and doesn't expect to see Isaiah again unless
+  he shows up with standard payment. Holds no significant positive or negative view, just a brief, closed chapter in his
+  business.
+* **Relationship State:** Transactional (Innkeeper-Patron), concluded. No personal connection.
+
+**3. Sergeant Valen:**
+
+* **Identity/Role:** A gate guard for the Freya Familia at their Homestead, Folkvangr. Presumably a leveled adventurer
+  within the Familia.
+* **Demeanor:** Initially arrogant, dismissive, easily angered. Showed disdain for unblessed Isaiah. Became furious
+  after being struck. Instantly subservient and fearful upon Hedin Selland's appearance.
+* **Interactions w/ Isaiah (Day 2):**
+    * Dismissed Isaiah's initial approach.
+    * Was provoked into a fight/challenge.
+    * Was struck by Isaiah's dagger (minor wound).
+    * Had his furious counter-attack successfully parried.
+    * Was present when Hedin intervened and issued the Lvl 2 challenge. Heard Hedin mention Isaiah landing the blow
+      without Falna.
+* **Perception of Isaiah:** Views Isaiah with profound **humiliation, anger, and disbelief**. He, a Freya Familia guard,
+  was wounded and parried by an unblessed newcomer, and implicitly called out for it by Hedin. He likely considers
+  Isaiah incredibly audacious, annoyingly lucky, and fundamentally incomprehensible. Holds a significant, likely
+  long-lasting, grudge and would view Isaiah with extreme hostility if they encountered each other again (though this is
+  unlikely unless Isaiah returns to Freya's turf).
+* **Relationship State:** Antagonistic. Valen views Isaiah as a source of personal and professional shame.\
+
+*(End of Recap: Minor Character Recaps - Updated)*
+----
 
 Before continuing the story I will send you individual character and location recaps. Once I type [StoryStart] is when
 you will continue the story
