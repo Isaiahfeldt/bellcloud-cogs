@@ -2988,8 +2988,8 @@ worthy by clearing the debt and growing stronger with her blades.
   commercial thoroughfare, possibly Daedalus Street or a similar major avenue, reasonably accessible from the
   Guild/Babel area but not directly adjacent to the tower itself.
 
-* **Exterior:** From the rain-slicked or sun-drenched cobblestone street, the Hostess presents a facade of **sturdy
-  respectability**. Built likely from a combination of dark, heavy timber beams and solid stonework, it rises perhaps
+* **Exterior:** From the rain-slicked or sun-drenched cobblestone street, the Hostess presents a facade of sturdy
+  respectability. Built likely from a combination of dark, heavy timber beams and solid stonework, it rises perhaps
   two or three stories high, blending seamlessly with the surrounding prosperous architecture of its district. Large, *
   *leaded glass windows** punctuate the lower level, maybe slightly bowed outwards, offering inviting glimpses of the
   warm interior and the patrons within. These windows are kept notably clean, reflecting the establishment's overall
@@ -3227,16 +3227,16 @@ in/around the Guild on Day 9.
 
 **Role & Reputation in Orario:**
 
-* 'The Weary Traveler' serves the essential role of providing **basic, affordable lodging**. It caters to adventurers
+* 'The Weary Traveler' serves the essential role of providing basic, affordable lodging. It caters to adventurers
   just starting out, travelers on a tight budget, or anyone needing a simple roof over their head without frills.
-* Its reputation is likely one of being **no-nonsense, cheap, and functional**. Guests probably don't expect luxury,
+* Its reputation is likely one of being no-nonsense, cheap, and functional. Guests probably don't expect luxury,
   extensive services, or friendly chatter from the staff, but can generally rely on a dry bed and basic security at a
   low price (initially 150 Valis per night in the retconned pricing). It's a place for weary travelers to rest, as the
   name implies.
 
 **Known Staff:**
 
-* **The Innkeeper:** A **portly, bald man with shrewd eyes** and a gruff demeanor. He handles check-ins, payments, and
+* **The Innkeeper:** A portly, bald man with shrewd eyes and a gruff demeanor. He handles check-ins, payments, and
   basic service. He's practical, focused on business, not overly friendly but not hostile. He accepted Isaiah's unusual
   collateral deal (potion for partial payment) due to its value covering his risk.
 
@@ -3259,28 +3259,28 @@ in/around the Guild on Day 9.
 
 **Description & Location:**
 
-* The Hestia Familia's current "Homestead" remains a **makeshift residence within an annex of an old, largely abandoned
-  stone church** on the **eastern edge of the Daedalus district**. This area is quieter and slightly neglected compared
+* The Hestia Familia's current "Homestead" remains a makeshift residence within an annex of an old, largely abandoned
+  stone church on the eastern edge of the Daedalus district. This area is quieter and slightly neglected compared
   to the city center.
-* **Exterior:** The church structure is **old, weathered stone**, showing signs of neglect (crumbling facade,
-  overgrowth). A **rusty gate** leads to the grounds. The habitable **annex/side building** shows faint signs of life (
+* **Exterior:** The church structure is old, weathered stone, showing signs of neglect (crumbling facade,
+  overgrowth). A rusty gate leads to the grounds. The habitable annex/side building shows faint signs of life (
   crude chimney, grimy window, small tended patch). The heavy wooden annex door is the only entrance.
-* **Interior (Annex Room):** The single, **small, cramped room** serves as their entire living space, feeling like a
-  repurposed **basement/cellar**.
-    * *Structure:* Rough **stone block walls** with **patchy, peeling plaster**; uneven **flagstone/packed earth floor
+* **Interior (Annex Room):** The single, small, cramped room serves as their entire living space, feeling like a
+  repurposed basement/cellar.
+    * *Structure:* Rough stone block walls with patchy, peeling plaster; uneven **flagstone/packed earth floor
       **.
-    * *Furniture:* Sparse, mismatched: A **narrow wooden bed frame** with thin mattress and **purple blanket** (primary
-      site of shared sleep and intimacy). A worn **sofa with green-and-yellow stripes** (site of earlier shared sleep
-      and Status updates). A **low wooden table** (used for meals, planning). A cluttered **workbench** under the
-      window (storage for Hestia's divine items, supplies). A simple **wooden stool**. A rickety stand with a **ceramic
-      wash basin and pitcher** (where Isaiah and Hestia wash).
-    * *Clutter & Resources:* The room is generally **cluttered** with books, Hestia's materials, potato sacks. It now
+    * *Furniture:* Sparse, mismatched: A narrow wooden bed frame with thin mattress and purple blanket (primary
+      site of shared sleep and intimacy). A worn sofa with green-and-yellow stripes (site of earlier shared sleep
+      and Status updates). A low wooden table (used for meals, planning). A cluttered workbench under the
+      window (storage for Hestia's divine items, supplies). A simple wooden stool. A rickety stand with a ceramic
+      wash basin and pitcher (where Isaiah and Hestia wash).
+    * *Clutter & Resources:* The room is generally cluttered with books, Hestia's materials, potato sacks. It now
       includes stacked supplies from the Day 5 shopping (potions, kit, rope, bandages, food). It also holds the
-      significant **Familia Valis pouches** (over 44,000 Valis total) which are likely secured here.
-    * *Hearth/Lighting:* A **small stone hearth** provides minimal heating. **One or two flickering magic stone lanterns
+      significant Familia Valis pouches (over 44,000 Valis total) which are likely secured here.
+    * *Hearth/Lighting:* A small stone hearth provides minimal heating. **One or two flickering magic stone lanterns
       ** provide dim, warm lighting. The ambiance is usually dim and cozy in the evenings.
-* **Atmosphere:** Physically **damp, dusty, cramped, and cool**. Offers basic shelter. However, its atmosphere has
-  dramatically shifted. It is now their **established 'home base'**, filled with profound shared memories:
+* **Atmosphere:** Physically damp, dusty, cramped, and cool. Offers basic shelter. However, its atmosphere has
+  dramatically shifted. It is now their established 'home base', filled with profound shared memories:
     * Intense emotional vulnerability, love confessions, physical intimacy (Day 7 evening, Day 8 morning consummation,
       Day 9 evening cuddling).
     * Navigating relationship definitions ('Us').
@@ -3301,7 +3301,7 @@ in/around the Guild on Day 9.
 
 **Isaiah's Interaction:**
 
-* Found Hestia here (Day 3), joined Familia, received Falna. It has been his **sole residence** since Day 3.
+* Found Hestia here (Day 3), joined Familia, received Falna. It has been his sole residence since Day 3.
 * Experienced significant relationship milestones and physical intimacy within this space (shared bed/sofa every night,
   confessions, consummation, intimate care, navigating fear).
 * It is the location where Familia funds are stored, Status updates are performed, and plans are made. It is his 'home'.
@@ -3314,31 +3314,31 @@ in/around the Guild on Day 9.
 
 **General Description & Nature:**
 
-* The Dungeon remains a **vast, ever-changing, multi-level labyrinth** beneath Babel Tower, Orario's primary source of
+* The Dungeon remains a vast, ever-changing, multi-level labyrinth beneath Babel Tower, Orario's primary source of
   wealth and adventure. It is a living entity that spawns monsters and repairs itself. Difficulty increases
   significantly with depth. Its upper floors (1-3) serve as a proving ground for new adventurers.
 
 **Floor 1:**
 
-* **Appearance:** A **massive natural cavern** system directly below the entrance stairs. Rough rock/earth walls, high
-  ceilings, wide passages, lit by dim **greenish-blue phosphorescent moss**. The **floor can show recent signs** of
+* **Appearance:** A massive natural cavern system directly below the entrance stairs. Rough rock/earth walls, high
+  ceilings, wide passages, lit by dim greenish-blue phosphorescent moss. The floor can show recent signs of
   activity like tracks.
 * **Atmosphere:** Cool, damp, earthy smell, vast and echoing. Holds a low-level tension.
-* **Monsters:** Primarily weak **Goblins**, occasionally weak **Kobolds**.
-* **Isaiah's Experience/Perception (Updated):** With H-Rank and now G-Rank stats, Floor 1 is **completely trivialized**.
-  Monsters pose no threat and are dispatched instantly. It is purely a **brief transit zone**. On Day 10, Isaiah briefly
-  noted **unusual, non-monster tracks** here (larger, heavier, possibly reptilian, out of place), which he chose to
+* **Monsters:** Primarily weak Goblins, occasionally weak Kobolds.
+* **Isaiah's Experience/Perception (Updated):** With H-Rank and now G-Rank stats, Floor 1 is completely trivialized.
+  Monsters pose no threat and are dispatched instantly. It is purely a brief transit zone. On Day 10, Isaiah briefly
+  noted unusual, non-monster tracks here (larger, heavier, possibly reptilian, out of place), which he chose to
   ignore for the time being.
 
 **Floor 2:**
 
-* **Appearance:** Similar cavernous feel but with a **more complex layout** of intersecting tunnels and side caverns.
+* **Appearance:** Similar cavernous feel but with a more complex layout of intersecting tunnels and side caverns.
   Relies on moss light, shadows can be deeper. Terrain can offer cover.
 * **Atmosphere:** Feels slightly more dangerous than Floor 1 due to complexity, but familiar.
-* **Monsters:** Primarily **Goblins** (slightly tougher) and **Kobolds** become more frequent. Kobolds here can now
-  potentially exhibit **unusual coordination**.
-* **Isaiah's Experience/Perception (Updated):** With G-Rank stats, Floor 2 standard encounters are now **easily managed
-  **, almost trivial. However, on Day 10, he encountered a **coordinated ambush** by four Kobolds using cover and
+* **Monsters:** Primarily Goblins (slightly tougher) and Kobolds become more frequent. Kobolds here can now
+  potentially exhibit unusual coordination.
+* **Isaiah's Experience/Perception (Updated):** With G-Rank stats, Floor 2 standard encounters are now easily managed,
+  almost trivial. However, on Day 10, he encountered a coordinated ambush by four Kobolds using cover and
   flanking tactics – behavior he recognized as highly unusual for this floor. This reminded him that vigilance is still
   necessary even in seemingly safe areas. Ais Wallenstein demonstrated her immense speed and skill here by instantly
   clearing threats while escorting him.
@@ -3346,23 +3346,23 @@ in/around the Guild on Day 9.
 **Floor 3:**
 
 * **Appearance:** Accessed via steeper passages. Tunnels narrow or open into different cavern types. Feels distinctly
-  deeper. Lighting is dimmer, shadows more prevalent. Can feature **different types of caverns** (large, multi-tiered,
-  chasm with bridges). May contain **resource nodes** or show signs of **unusual activity** (digging, traps, specific
+  deeper. Lighting is dimmer, shadows more prevalent. Can feature different types of caverns (large, multi-tiered,
+  chasm with bridges). May contain resource nodes or show signs of unusual activity (digging, traps, specific
   monster habitation markers).
-* **Atmosphere:** Noticeably **colder, damper, and more oppressive**. Holds a strong sense of danger, though
+* **Atmosphere:** Noticeably colder, damper, and more oppressive. Holds a strong sense of danger, though
   significantly mitigated for Isaiah by his stats. The air can carry the musk of high Kobold concentration or other
   scents.
-* **Monsters:** **Kobolds** are the dominant threat (tougher than F2, appear in larger groups), including larger,
-  armored **Elite Kobolds** and **Kobold Commanders**. Can also include **Dungeon Lizards** and potentially **Infant
-  Dragons** (though their nesting areas might be specific). **Minotaurs** are *not* native to Floor 3 but can
-  potentially appear if drawn upwards (as witnessed on Day 9). Kobolds on this floor can now exhibit **unusual
-  organization** (setting traps, digging tunnels).
+* **Monsters:** Kobolds are the dominant threat (tougher than F2, appear in larger groups), including larger,
+  armored Elite Kobolds and Kobold Commanders. Can also include Dungeon Lizards and potentially Infant
+  Dragons (though their nesting areas might be specific). Minotaurs are *not* native to Floor 3 but can
+  potentially appear if drawn upwards (as witnessed on Day 9). Kobolds on this floor can now exhibit unusual
+  organization (setting traps, digging tunnels).
 * **Isaiah's Experience/Perception (Updated):** His initial visits (Days 4, 6) confirmed Floor 3 was challenging solo.
-  After achieving G-Rank stats (Day 9), standard Floor 3 Kobold/Lizard encounters became **efficiently managed and
-  nearly trivial**. However, his Day 9 delve revealed **unusual activity**: Kobolds setting **crude traps** (tripwires,
-  pitfalls), actively **digging new tunnels** (leading to unknown chambers), exhibiting **organized behavior** beyond
-  standard patrols. He encountered a **Kobold Commander** (respawned on Day 9) and his **Elite Guards** in a large
-  cavern with a makeshift throne. He faced and **defeated a Minotaur** solo in this cavern (Day 9), a monster far
+  After achieving G-Rank stats (Day 9), standard Floor 3 Kobold/Lizard encounters became Efficiently managed and
+  nearly trivial. However, his Day 9 delve revealed unusual activity: Kobolds setting crude traps (tripwires,
+  pitfalls), actively digging new tunnels (leading to unknown chambers), exhibiting organized behavior beyond
+  standard patrols. He encountered a Kobold Commander (respawned on Day 9) and his Elite Guards in a large
+  cavern with a makeshift throne. He faced and defeated a Minotaur solo in this cavern (Day 9), a monster far
   exceeding Floor 3's normal inhabitants, which confirmed that significant threats can appear here under unusual
   circumstances. He blacked out from injury after the Minotaur fight. Ais Wallenstein observed his fight and escorted
   him out, confirming Minotaurs shouldn't be on Floor 3 and the Kobold activity was unusual. He knows Floor 3 contains
@@ -3381,32 +3381,32 @@ unexpected anomalies (organized monsters, higher-level threats like Minotaurs) c
 
 **Description & Location:**
 
-* A **major workshop** belonging to the renowned **Hephaestus Familia**, the premier crafting Familia in Orario
+* A major workshop belonging to the renowned Hephaestus Familia, the premier crafting Familia in Orario
   specializing in blacksmithing and weapon/armor creation.
-* Its specific location is on a **main commercial thoroughfare** within Orario, prominent enough to be used as a
+* Its specific location is on a main commercial thoroughfare within Orario, prominent enough to be used as a
   landmark, situated between the Hostess of Fertility and the side street leading to 'The Weary Traveler' Inn.
 
 **Exterior:**
 
-* Features a **large, sturdy anvil** hanging outside as its unmistakable sign.
-* A **large display window** showcasing high-quality weaponry and armor (swords, axes, armor, etc.), exhibiting expert
+* Features a large, sturdy anvil hanging outside as its unmistakable sign.
+* A large display window showcasing high-quality weaponry and armor (swords, axes, armor, etc.), exhibiting expert
   craftsmanship.
-* A **heavy main door** providing entrance.
+* A heavy main door providing entrance.
 * Sturdy stone/timber construction typical of important Familia workshops, likely with visible forge chimneys. Exudes an
   air of solidity and craft.
 
 **Interior (Showroom & Forges):**
 
-* Entering reveals a **warm, lively atmosphere** filled with the smells of woodsmoke, hot metal, quenching oil, and
-  coal. The rhythmic **clang of forge hammers** is a constant sound.
-* Features a **showroom area** (likely larger than it appears from outside) with display racks/cases for weapons and
+* Entering reveals a warm, lively atmosphere filled with the smells of woodsmoke, hot metal, quenching oil, and
+  coal. The rhythmic clang of forge hammers is a constant sound.
+* Features a showroom area (likely larger than it appears from outside) with display racks/cases for weapons and
   armor (including high-end items like Adamantite prototypes), counters, and tools.
-* Leads to the actual **forge area** with glowing hearths visible through archways, where smiths work intensely.
+* Leads to the actual forge area with glowing hearths visible through archways, where smiths work intensely.
 
 **Role & Reputation:**
 
 * Serves as a primary retail outlet and production center for Hephaestus Familia goods.
-* Represents the **peak of blacksmithing quality and reliability** in Orario. Their masterwork gear is highly sought
+* Represents the peak of blacksmithing quality and reliability in Orario. Their masterwork gear is highly sought
   after but incredibly expensive.
 
 **Isaiah's Interactions (Updated):**
@@ -3416,18 +3416,18 @@ unexpected anomalies (organized monsters, higher-level threats like Minotaurs) c
 * **(Day 3):** Saw a recruitment notice for Tsubaki needing assistants at the Guild (plot thread not pursued).
 * **(Day 7 Mid-Morning):** Briefly visited the exterior again during his 'scouting' trip, window shopped, noted the high
   prices of the daggers he saw.
-* **(Day 10 Mid-Morning):** **Crucial Visit.** Returned with Hestia for a major shopping trip, specifically to look at
+* **(Day 10 Mid-Morning):** Crucial Visit. Returned with Hestia for a major shopping trip, specifically to look at
   the high-end daggers.
     * Admired the Adamantite prototype daggers (priced at 19,800 V *each*).
-    * Encountered **Lady Hephaestus herself**, who greeted Hestia as a friend and assessed Isaiah's potential and
+    * Encountered Lady Hephaestus herself, who greeted Hestia as a friend and assessed Isaiah's potential and
       nerve (questioning his implied disdain for Orichalcum).
     * Isaiah handled the Adamantite prototypes, giving an honest assessment of their quality and intuitively sensing the
       tempering flaw related to enchantment potential.
     * Hephaestus was impressed by his discernment and nerve.
-    * She offered him the Hearthfire Blades (Adamantite prototypes) for **50,000 Valis total** on a **payment plan** (
+    * She offered him the Hearthfire Blades (Adamantite prototypes) for 50,000 Valis total on a payment plan (
       10k down today, 40k installment debt), as an investment in his potential and a favor to Hestia.
     * Isaiah, despite Hestia's initial distress over the cost, accepted the offer with overwhelming gratitude, paid the
-      **10,000 Valis down payment**, signed an agreement, and took possession of the **Hearthfire Blades**. He promised
+      10,000 Valis down payment, signed an agreement, and took possession of the Hearthfire Blades. He promised
       to pay back the debt quickly.
     * Hephaestus named the daggers "Hearthfire Blades," tying them to Hestia. Tsubaki Collbrande was present, handled
       the payment and paperwork, and overheard the entire exchange.
@@ -3442,37 +3442,37 @@ unexpected anomalies (organized monsters, higher-level threats like Minotaurs) c
 
 **Definition and Usage:**
 
-* **Valis (ヴァリス, *Varisu*)** is the standard, universal currency used throughout the city of Orario and likely its
+* Valis (ヴァリス, *Varisu*) is the standard, universal currency used throughout the city of Orario and likely its
   surrounding areas.
 * It is essential for all economic transactions, including lodging, food, equipment purchase and repair, supplies (
   potions, tools), services, Familia contributions, etc.
-* The primary source of new Valis flowing into the economy is through the **Adventurer's Guild**, which purchases *
+* The primary source of new Valis flowing into the economy is through the Adventurer's Guild, which purchases *
   *magic stone crystals** and other valuable monster parts dropped by creatures defeated within the Dungeon. Adventurers
   exchange these materials at the Guild for Valis.
-* Completing **Guild-issued quests** also provides fixed Valis rewards upon verification.
+* Completing Guild-issued quests also provides fixed Valis rewards upon verification.
 
 **Value and Benchmarks (Based on Retcons & Canon):**
 Valis has a highly granular value, with single units being worth very little, similar perhaps to fractions of a cent or
 single yen. Establishing scale requires examples:
 
-* **Very Cheap:** A simple street food snack like a **Jagamarukun** might cost **30-40 Valis**. Basic meal *materials*
-  might be around **50 Valis**.
-* **Budget Costs (Our Story):** The very cheap breakfast offered at 'The Weary Traveler' was **60 Valis**. A night's
-  stay in that same budget inn cost **150 Valis**.
-* **Standard Costs:** A decent meal at a tavern like the Hostess of Fertility might cost **100-300 Valis** (Isaiah's
-  stew and ale likely fell in this range). The lowest rank **health potion** typically costs around **500 Valis**.
-* **Adventurer Gear:** Costs escalate rapidly. Bell Cranel's canonical **starter dagger** cost **3,600 Valis**, and his
-  first basic **armor set** cost **5,000 Valis**. Good quality or slightly enchanted gear costs tens or hundreds of
+* **Very Cheap:** A simple street food snack like a Jagamarukun might cost 30-40 Valis. Basic meal *materials*
+  might be around 50 Valis.
+* **Budget Costs (Our Story):** The very cheap breakfast offered at 'The Weary Traveler' was 60 Valis. A night's
+  stay in that same budget inn cost 150 Valis.
+* **Standard Costs:** A decent meal at a tavern like the Hostess of Fertility might cost 100-300 Valis (Isaiah's
+  stew and ale likely fell in this range). The lowest rank health potion typically costs around 500 Valis.
+* **Adventurer Gear:** Costs escalate rapidly. Bell Cranel's canonical starter dagger cost 3,600 Valis, and his
+  first basic armor set cost 5,000 Valis. Good quality or slightly enchanted gear costs tens or hundreds of
   thousands. Masterwork items can cost millions.
-* **Income/Large Sums:** A party of five capable Level 1 adventurers might earn around **25,000 Valis** combined on a
-  *good* day of delving. A decent house in Orario might cost **800,000 Valis**. Truly massive sums (like major Familia
+* **Income/Large Sums:** A party of five capable Level 1 adventurers might earn around 25,000 Valis combined on a
+  *good* day of delving. A decent house in Orario might cost 800,000 Valis. Truly massive sums (like major Familia
   debts or high-end transactions) run into the millions or hundreds of millions.
 
 **Denominations:**
 
 * While exact canon details are sparse, the vast range of values necessitates a system of denominations.
 * **Coins:** It's logically assumed (and supported by fan consensus mentioned earlier) that Valis exists in tiered
-  coinage, likely including denominations for values like **10, 100, 1,000, and 10,000 Valis**. These would likely vary
+  coinage, likely including denominations for values like 10, 100, 1,000, and 10,000 Valis. These would likely vary
   in size and perhaps metal type (e.g., bronze, silver, gold analogues). A single '1 Valis' coin might exist but would
   be practically worthless.
 * **Banknotes/Vouchers:** For very large transactions (tens of thousands, millions), it's highly probable that *
@@ -3493,23 +3493,23 @@ deadline.
 
 ## **System Card: Status Update Mechanics & Excelia**
 
-At the core of an adventurer's progression in Orario is the system known as **Status** (能力値 *Statusu*). This is a
+At the core of an adventurer's progression in Orario is the system known as Status (能力値 *Statusu*). This is a
 numerical representation of an adventurer's potential and growth, recorded directly onto their back by their deity
-through a process called **Falna** (神の恩恵 *Kami no Onkei*), or "Divine Blessing."
+through a process called Falna (神の恩恵 *Kami no Onkei*), or "Divine Blessing."
 
 An adventurer's Status includes several key components:
 
-1. **Level (Lv.):** The most fundamental indicator of an adventurer's overall power. Adventurers begin at **Level 1**.
+1. **Level (Lv.):** The most fundamental indicator of an adventurer's overall power. Adventurers begin at Level 1.
    Reaching higher Levels signifies a major increase in capabilities and unlocks potential for abilities to grow into
-   higher ranks. Achieving **Level 2** is the first major milestone and the prerequisite for receiving an official
+   higher ranks. Achieving Level 2 is the first major milestone and the prerequisite for receiving an official
    title (Alias) from the Gods.
 
 2. **Basic Abilities:** Core physical and magical attributes measured from 0 to 999 within each Rank.
-    * **Strength (力 *Chikara* / STR):** Raw physical power.
-    * **Endurance (耐久 *Taikyū* / END):** Durability and resilience, ability to withstand damage and fatigue.
-    * **Dexterity (器用 *Kiyō* / DEX):** Agility, reflexes, coordination, precision, balance.
-    * **Agility (敏捷 *Binshō* / AGI):** Movement speed and reaction speed.
-    * **Magic (魔力 *Maryoku* / MAG):** Raw magical power.
+    * Strength (力 *Chikara* / STR): Raw physical power.
+    * Endurance (耐久 *Taikyū* / END): Durability and resilience, ability to withstand damage and fatigue.
+    * Dexterity (器用 *Kiyō* / DEX): Agility, reflexes, coordination, precision, balance.
+    * Agility (敏捷 *Binshō* / AGI): Movement speed and reaction speed.
+    * Magic (魔力 *Maryoku* / MAG): Raw magical power.
 
 3. **Ranks:** Basic Abilities are measured within specific ranks, indicated by a letter from I (lowest) to S (highest),
    potentially extending higher. Ranks are thresholds: I (0-99), H (100-199), G (200-299), F (300-399), E (400-499), D (
