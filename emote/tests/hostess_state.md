@@ -1873,6 +1873,117 @@ comfortably, wished each other goodnight, and quickly fell asleep, ending Day 10
 
 -----
 
+### **(Recap: Day 11 - Beginning - Part 1)**
+
+Day 11 dawned bright and clear over Orario. Within the dim confines of the church annex, Isaiah awoke slowly, the
+comforting weight and warmth of Hestia nestled beside him a familiar reality in their narrow bed. The night had passed
+peacefully, filled with comfortable, dreamless sleep, a welcome calm after the intensity of Day 9 and the bustling
+activity of Day 10. His ribs felt noticeably better this morning, the healing undeniably rapid, bolstering his
+confidence. Hestia stirred soon after, greeting him with a soft smile and sleepy affection before they began their
+now-familiar morning routine. Washing up and dressing unfolded with an easy intimacy, their movements comfortable in the
+shared space, reflecting the deep bond solidified over the past days.
+
+As they prepared, they reaffirmed the plan decided upon last night: due to Hestia's insistence on one more day of rest
+for his ribs, Isaiah would visit the Guild doctor for a check-up, while Hestia would remain at the annex, eagerly
+awaiting the afternoon delivery of their newly purchased bed. The excitement for the bed was palpable in Hestia's
+demeanor. However, remembering Hestia's earlier intention to join his planned walk, Isaiah gently prompted a practical
+concern – shouldn't one of them stay behind to ensure they didn't miss the delivery window?
+
+Hestia, initially disappointed at the prospect of missing Isaiah's 'gentle walk,' quickly pivoted as the immense
+importance of the bed delivery took precedence in her mind. She enthusiastically agreed with Isaiah's logic, appointing
+herself "Guardian of the Future Bed," ready to oversee its arrival and installation. With renewed purpose, she
+instructed Isaiah to go to the doctor, reminding him firmly to be exceptionally careful on his solo walk and to return
+well before the delivery timeframe.
+
+With Hestia happily embracing her vital duty, Isaiah offered a reassuring kiss and promise of caution before stepping
+out of the annex alone into the vibrant Orario morning. The walk towards the city center was pleasant under the bright
+sun, his improved physical condition allowing a steady, comfortable pace. As he navigated the increasingly crowded
+streets, merging into the flow of city life, his sharp ears caught a snippet of conversation between two older men
+discussing the Loki Familia's latest deep-floor Dungeon success, juxtaposed with sobering rumors of increasing anomalies
+and dangers even far below – a reminder of the vast, perilous world beyond his current G-Rank capabilities.
+
+He continued onward, the overheard gossip fading as the towering form of Babel and the familiar facade of the Guild
+Headquarters grew larger. Arriving at the bustling Guild plaza, he made his way inside, heading through the main hall
+towards the quieter corridor leading to the infirmary wing. As he approached the designated area, he paused for a
+moment. His stated purpose was a medical follow-up, a check on his healing ribs, something Hestia expected and approved
+of. Yet, beneath that practical surface, Isaiah acknowledged a more complex, unsettling truth. He recalled the encounter
+with Doctor Lyra Verrill yesterday – her sharp, cynical demeanor, her invasive curiosity, the way her clinical
+assessment bled into something personal and predatory, her explicit labeling of him as a 'test subject'. The memory
+sparked a familiar mix of caution and a strange, reluctant intrigue. Was he going simply for the check-up? Or was he
+drawn back, almost against his better judgment, by the allure of that dangerous, focused attention, wanting to
+understand the unsettling intensity directed solely at him? The lines blurred. Steeling himself against the conflicting
+feelings, he walked down the infirmary corridor towards the door bearing Lyra's nameplate.
+
+*(End of Recap: Day 11 - Beginning - Part 1)*
+
+----
+
+### **(Recap: Day 11 - Beginning - Part 2)**
+
+Reaching the indicated door in the quiet infirmary corridor, Isaiah knocked firmly. Lyra Verrill's cynical drawl
+summoned him inside. He entered the small, sterile examination room to find her leaning against a counter, making notes.
+Her sharp grey eyes flicked up, a flicker of knowing amusement instantly recognizing him. She greeted him with mocking
+familiarity ("Look what the cat dragged back in... Adventurer November"), feigning surprise at his quick return and
+immediately jabbing about whether he'd already disregarded her advice and sought out another high-level fight.
+
+Isaiah, meeting her gaze calmly despite the internal churn of conflicting feelings, requested the check-up, stating he
+wanted a professional opinion on his healing and perhaps new bandages. Lyra, with a predatory smirk, pushed off the
+counter, circled him slowly like assessing a prize specimen, remarked on his "responsible" nature with heavy sarcasm,
+and then commanded him with casual authority: "Cloak off, shirt off. Let's get a look at the masterpiece underneath."
+Accepting the strange power dynamic, Isaiah complied wordlessly, removing his cloak and tunic, then sitting exposed on
+the edge of the examination cot, waiting as she retrieved supplies.
+
+Lyra approached with medical shears, her proximity immediate and charged. As she carefully cut away the old bandages,
+her knuckles deliberately brushed his skin. She murmured about his "remarkable" healing rate, leaning close, her hair
+almost touching his shoulder, noting the rapid fading of bruising was well above average for a Level 1, even with potion
+use. Her fingertips, ostensibly checking for tenderness along his ribs, pressed slightly too firmly, lingered too long,
+testing his reaction. She then probed verbally, her voice a low purr near his ear, asking what *fueled* such accelerated
+mending, questioning if Hestia's blessing was unusually potent or hinting at other factors beyond standard Falna
+mechanics.
+
+Isaiah attempted a deflection, suggesting a unique resonance with Hestia's blessing or a naturally "rigorous recovery,"
+subtly playing back her 'subject' framing. Lyra saw straight through it, clearly amused. Calling his recovery "robust"
+with mocking intimacy, her fingers traced the edge of a lower rib before she retrieved antiseptic ointment. Applying it
+with slow, deliberate, circular motions that covered more area than necessary, the cool salve contrasting with her warm
+hand sent shivers down his spine. She leaned close again, murmuring about 'latent talents' hiding beneath the surface,
+her gaze piercing and analytical.
+
+The intensity, the calculated touch, the invasive probing finally cracked Isaiah's composure. He managed only a
+strained, slightly breathless request for her to "focus on the healing," a weak attempt to regain control that only
+highlighted his vulnerability. Lyra seized on his faltering response, her smirk deepening. Her fingers, slick with
+ointment, drifted fractionally lower, deliberately brushing the waistband of his trousers before returning to his ribs,
+a blatant, tactile transgression. "Oh, but the healing *is* the priority," she purred, leaning closer still until her
+warm breath ghosted his ear. "Understanding *why*... that's simply thoroughness." She then dropped the bombshell, her
+voice a conspiratorial whisper, directly implying his intimacy with Hestia was the key: "Perhaps little Goddess Hestia
+provides more… *direct* forms of encouragement...? A goddess's touch *can* work wonders, after all. Boosts stamina,
+accelerates recovery… or so the more esoteric texts suggest."
+
+The accuracy and invasiveness of the deduction – essentially outing their sexual relationship as a potential source of
+his anomalous power – shocked Isaiah profoundly. How could she know? He couldn't stop the faint blush that flooded his
+face, and his gaze instinctively broke away from hers, staring fixedly at the wall. Lyra, observing his reaction with
+predatory satisfaction, offered faux sympathy ("Did I touch a nerve?"), framing his intimacy as a fascinating variable
+in his 'condition'. "Understanding all factors contributing to your condition is vital for optimal treatment protocols,"
+she stated smoothly, the implication that his sex life was now medically relevant hanging heavy in the air. Isaiah
+remained silent, reeling, wondering what she truly thought, caught in a confusing spiral of violation, exposure, and a
+disturbing flicker of intrigue at being the focus of such intense, boundary-crossing scrutiny.
+
+Seeing him thoroughly unsettled, Lyra abruptly shifted back to clinical procedure, though her amusement remained
+palpable. She efficiently applied fresh bandages, remarking on his resilience and noting his musculature. She concluded
+the check-up, advising rest and instructing him to return in three days, or sooner if he experienced pain or "any
+other... *unusual* physiological events," a final, loaded barb reinforcing her ongoing 'medical' interest in *all*
+aspects of his anomalous state. She dismissed him, turning her back. Isaiah, feeling almost spellbound, automatically
+followed her command to get dressed, his mind foggy. He offered a subdued thanks for her time and quickly exited the
+infirmary, stepping back into the main Guild corridor needing desperately to clear his head.
+
+Almost immediately after leaving the infirmary wing and stepping back into the bustling Guild Hall's main thoroughfare,
+still processing the intense encounter, Isaiah nearly collided with Rose, the cat-eared Guild employee, who was hurrying
+in the opposite direction clutching a stack of folders. Surprised, Rose apologized, recognized him, expressed relief at
+seeing him looking better than the previous day, and asked if his check-up had gone well.
+
+*(End of Recap: Day 11 - Beginning - Part 2)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
@@ -2560,8 +2671,8 @@ and power.
 
 **Identity & Role:**
 
-* Lyra Verrill, often referred to as "Doc Lyra," is a healer/medic affiliated with the Guild Infirmary
-  in Orario.
+* Lyra Verrill, often referred to as **"Doc Lyra,"** is a **healer/medic** affiliated with the **Guild Infirmary** in
+  Orario.
 * She is a medical professional tasked with treating injured adventurers.
 
 **Core Persona & Demeanor:**
@@ -2576,16 +2687,17 @@ and power.
   boundaries *specifically with patients who capture her intense analytical interest* due to unique conditions,
   anomalies, or intriguing responses. Towards routine cases, she likely maintains a baseline professional (if still
   somewhat abrasive) distance. She shares similarities with the character Tae Takemi from Persona 5 in her:
-    * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
-    * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
-    * **Enjoyment of Testing Boundaries (Selectively):** Taking a certain pleasure in pushing social or professional
-      norms, *particularly with those she finds fascinating*, often through verbal jabs or unsettling directness.
-    * **View of Certain Clients as 'Subjects':** Seeing individuals with unique traits or needs as interesting cases for
-      observation or potentially unorthodox treatment, framed as medical inquiry or experimentation. This 'subject' view
-      is *reserved for intriguing cases*, not applied universally.
-    * **Teasing/Suggestive Dynamic (Targeted):** Engaging in playful, sometimes boundary-crossing teasing that can lean
-      into suggestive or dominant undertones, *especially when a patient responds in a way that entertains or intrigues
-      her*.
+  * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
+  * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
+  * **Enjoyment of Testing Boundaries (Selectively):** Taking a certain pleasure in pushing social or professional
+    norms, *particularly with those she finds fascinating*, often through verbal jabs, unsettling directness, and
+    calculated physical contact.
+  * **View of Certain Clients as 'Subjects':** Seeing individuals with unique traits or needs as interesting cases for
+    observation or potentially unorthodox treatment, framed as medical inquiry or experimentation. This 'subject' view
+    is *reserved for intriguing cases*, not applied universally.
+  * **Teasing/Suggestive Dynamic (Targeted):** Engaging in playful, sometimes boundary-crossing teasing that can lean
+    into suggestive or dominant undertones, *especially when a patient responds in a way that entertains or intrigues
+    her*.
 * **Speech Style:** Low, slightly husky voice with a sardonic or mocking tone. Her language can be blunt and direct. Can
   shift to a suggestive murmur *when probing sensitive topics or testing the boundaries of an interesting patient*.
 
@@ -2596,52 +2708,60 @@ and power.
   cases – adventurer physiology, rapid healing, unique abilities. Mundane injuries likely bore her.
 * **Boundary-Pusher / Teasingly Dominant (Selective):** When intrigued by a patient's case or reaction, she
   deliberately pushes social and professional boundaries, using her authority to engage in uncomfortable probing,
-  suggestive comments, and inappropriate physical contact, seemingly for her own amusement, curiosity, or a sense of
-  control over a fascinating 'specimen'. She enjoys eliciting reactions *from these specific individuals*.
+  suggestive comments, and inappropriate physical contact (e.g., lingering touch, deliberate finger drift near
+  waistband), seemingly for her own amusement, curiosity, or a sense of control over a fascinating 'specimen'. She
+  enjoys eliciting reactions *from these specific individuals*.
 * **Morally Grey (Situational):** Her ethically dubious actions (disregarding comfort/privacy, viewing patients as 'test
-  subjects') are not her standard procedure but are reserved for those 'special cases' that pique her scientific or
-  personal curiosity.
+  subjects', invasive questioning, suggestive framing of medical inquiry) are not her standard procedure but are
+  reserved for those 'special cases' that pique her scientific or personal curiosity.
 
 **Interactions with Isaiah November:**
 
 * **(Day 9 Mid-Afternoon - Guild Infirmary):** First Meeting. Eina Tulle brought Isaiah (Level 1, post-Minotaur
-  fight) to the infirmary. Lyra was assigned.
-* Lyra's interest was immediately triggered by the discrepancy (Level 1 vs. Minotaur survival, rapid initial
-  recovery). Her assessment shifted from routine to focused curiosity.
-* She took charge, ordering him to undress and lie down. Her examination, while starting professionally, became probing
-  due to his anomalous nature.
-* Her touch lingered, coupled with suggestive comments ("stamina"). The deliberate inner thigh touch was a
-  calculated test of his reaction, driven by her growing intrigue.
-* She bandaged his ribs, making another suggestive comment about restriction.
-* Isaiah's unexpected response ("Depends on who's doing the restricting") solidified her interest, marking him as
-  not just an anomaly, but a responsive and therefore more engaging 'subject'.
-* Her final inappropriate, suggestive offer ("expert attention," "advanced recovery methods," "dedicated test
-  subjects") was a direct result of him proving himself exceptionally interesting to her, both medically and personally.
+  fight) to the infirmary. Lyra's interest was immediately triggered by the discrepancy (Level 1 vs. Minotaur survival,
+  rapid initial recovery). She took charge, ordered him to undress, examined him with lingering/inappropriate touch (
+  inner thigh), made suggestive comments ("stamina," "restriction"), and explicitly labeled him a potential 'test
+  subject'. Isaiah's unexpected verbal response ("Depends on who's doing the restricting") solidified her interest.
+* **(Day 11 Mid-Morning - Guild Infirmary):** Second Meeting (Follow-up). Isaiah returned for a check-up. Lyra
+  greeted him with mocking familiarity. During the bandage change, she noted his continued rapid healing. She
+  deliberately pushed boundaries further:
+  * Used prolonged, slightly invasive touch while examining his ribs and applying ointment.
+  * Directly (though couched in pseudo-medical terms) deduced/implied his intimate relationship with Hesti was
+    linked to his accelerated recovery ("direct encouragement," "stamina boost," "transference of energy").
+  * Observed Isaiah's confirming reaction (blush, averted gaze) with predatory satisfaction.
+  * Framed his intimacy as a medically relevant "factor" she needed to understand for "optimal treatment," creating
+    justification for future probing.
+  * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
+    anomalous state.
 
 **Lyra's Perception of Isaiah (Harem Context):**
 
 * **Prime Intriguing Anomaly:** Views Isaiah as a highly fascinating medical and physiological anomaly. His Level 1
-  status combined with rapid healing, unusual speed, high-level threat survival, and potential hidden abilities makes
-  him exactly the type of case that captures her full attention.
-* **Resilient & Responsive Subject:** His resilience and, crucially, his *responsiveness* to her boundary-pushing
-  distinguish him. He didn't just react; he engaged, however uncomfortably. This makes him a prime candidate for her
-  focused, morally grey interest and psychological games.
-* **Valuable 'Test Subject':** She sees him as a uniquely valuable potential 'test subject' for her unorthodox methods
-  or research, explicitly stating this due to his rare combination of traits.
-* **Harem Context - Romance Style:** If her interest evolves, it will stem from this foundation of intense analytical
-  curiosity and amusement at his responsiveness. Her pursuit would likely be Dominant, Teasing, Morally Ambiguous, and
-  highly personalized. She would target *him* specifically with inappropriate probing, suggestive offers disguised as
-  medical advice, enjoying control and his reactions precisely *because* he is the anomaly that interests her. She
-  wouldn't treat just any adventurer this way.
+  G-Rank potential, rapid healing, unique abilities, and now confirmed linkage between his condition and intimacy with
+  his Goddess make him top-tier 'research' material.
+* **Resilient & Responsive Subject:** His resilience and, crucially, his *responsiveness* (verbal sparring on Day 9,
+  visible discomfort/confirmation on Day 11) make him a prime candidate for her focused, morally grey interest and
+  psychological games. She enjoys that he is affected but doesn't completely shut down.
+* **Valuable 'Test Subject' (Confirmed Hypothesis):** She sees him as a uniquely valuable potential 'test subject'. Her
+  hypothesis about the Hestia connection was validated by his reaction, making him even *more* valuable for
+  understanding unconventional power sources/divine influence.
+* **Intimacy as a Key Variable:** She now explicitly views his intimate relationship with Hestia as a key factor
+  influencing his anomalous state. This gives her a powerful angle for future manipulation and probing, framed as
+  medical necessity.
+* **Harem Context - Romance Style:** Her interest stems from intense analytical curiosity and amusement at his
+  responsiveness/vulnerability. Her pursuit is Dominant, Teasing, Morally Ambiguous, highly personalized, and
+  potentially exploitative (under the guise of medicine). She targets *him* specifically because he is the anomaly.
+  Her methods involve psychological games, physical boundary-pushing, and suggestive framing to gain control and elicit
+  reactions.
 
-**Key Relationship State (As of Day 10 Evening):** Patient-Healer, but crucially defined by Lyra identifying Isaiah as a
-rare and highly interesting anomaly. This has triggered her selective, targeted behavior: inappropriately
-forward actions, boundary-pushing, probing questions, and explicit interest in him as a 'test subject', driven by her
-specific analytical curiosity and cynical amusement towards *him*. Isaiah perceives her as skilled but unsettling,
-potentially dangerous, and ethically questionable *in her treatment of him*, though perhaps finding this focused,
-unconventional attention strangely intriguing.
+**Key Relationship State (As of Midday Day 11):** Patient-Healer, but now heavily defined by Lyra's *
+*confirmed hypothesis regarding Isaiah's intimacy with Hestia** and its link to his anomalous state. Lyra feels
+validated and intensely intrigued, viewing him as a prime 'subject' whose intimate life is now a justifiable area for
+her 'medical' investigation. Isaiah perceives her as skilled but deeply unsettling, ethically questionable, and
+dangerously invasive, yet is undeniably affected by her focused attention, creating a complex mix of wariness,
+vulnerability, and disturbing intrigue. The power dynamic is heavily skewed towards Lyra in the infirmary setting.
 
-*(End of Updated Recap: Lyra Verrill)*
+*(End of Recap: Lyra Verrill)*
 
 ----
 
