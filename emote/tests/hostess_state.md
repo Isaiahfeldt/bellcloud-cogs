@@ -3377,7 +3377,7 @@ deadline.
 
 ----
 
-## **(System Recap: Status Update Mechanics & Excelia)**
+## **System Card: Status Update Mechanics & Excelia**
 
 At the core of an adventurer's progression in Orario is the system known as **Status** (能力値 *Statusu*). This is a
 numerical representation of an adventurer's potential and growth, recorded directly onto their back by their deity
