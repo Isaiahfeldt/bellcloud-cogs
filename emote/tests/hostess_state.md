@@ -2486,9 +2486,9 @@ oblivious to the full depth and personal nature of her feelings.
   focus, and a matching . She has a noticeably with a slender waist. Typically seen
   wearing the professional Guild uniform (often including a white shirt, grey bow tie, and black waistcoat/vest). When
   off-duty (as observed on Day 11), she has been seen in practical civilian clothes consisting of: a layered top
-  featuring a worn over a  (sleeves rolled to the
-  elbows), , a , , and
-  sturdy with folded cuffs.
+  featuring a worn over a long-sleeved white undershirt (sleeves rolled to the elbows), tight-fitting black
+  leggings/trousers, a brown leather belt with a side pouch, black gloves, and sturdy brown leather calf-high boots with
+  folded cuffs.
 
 **Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
