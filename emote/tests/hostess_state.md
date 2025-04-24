@@ -2150,6 +2150,171 @@ well.
 
 ----
 
+### **(Recap: Day 11 - Middle - Part 1: Cafe Encounter & Dynamic Shift)**
+
+After leaving the Guild Infirmary mid-morning on Day 11, unsettled by Lyra Verrill's invasive check-up and probing
+insinuations, Isaiah bumped into Rose, the cat-eared Guild employee, who was off-duty and dressed in casual clothes.
+Noting his preoccupation, Rose expressed concern and invited him to a nearby quiet cafe, 'The Quiet Quill', suggesting a
+change of scenery might help him decompress. Isaiah, feeling hungry and needing distance from the Guild's atmosphere,
+accepted her invitation.
+
+Inside the dimly lit, peaceful cafe, they took a secluded booth. After ordering (Steak and Ale Pie for Isaiah, Roasted
+Vegetable Tart and strong tea for Rose), Rose gently inquired about his check-up and healing. Isaiah confirmed his ribs
+were improving rapidly but deflected questions about Lyra's 'thoroughness', instead asking about the folders Rose
+carried. Rose explained they contained archival research on Dungeon anomalies, framing her work as proactive risk
+mitigation aimed at preventing dangers like those Isaiah had recently faced. She emphasized her unique access and
+analytical skills, offering this focus as part of her "service."
+
+Sensing the intensity behind her professional explanation, Isaiah directly questioned her personal motivation ("An asset
+the Guild has a vested interest in... or you?"). This direct challenge shattered Rose's composure. Visibly flustered,
+blushing deeply, she admitted her interest was intensely personal, driven by a consuming fascination with his "
+anomalous" potential and a compelling need to align her focus with his trajectory, going beyond standard Guild protocol.
+When Isaiah pressed further ("What's in it for *you*?"), Rose confessed her 'reward' wasn't material, but the profound "
+satisfaction," "resonance," and "clarity of purpose" derived from applying her skills to serve *his* unique, potent
+potential – essentially, finding fulfillment in devoted utility to someone she deemed truly significant.
+
+Intrigued and perhaps testing the depths of this declared devotion, Isaiah issued a cool challenge: "Prove it." Rose
+reacted viscerally, with a sharp gasp, dilated pupils, and fervent eagerness, asking how she should provide proof.
+Isaiah put the onus back on her ("That's for you to figure out... Give me your proof then"). Under pressure, Rose
+produced a specific parchment containing meticulously correlated data – Kobold patrol routes, respawn timings, and
+tremor data relevant to Isaiah's recent Floor 3 encounters – information she had proactively compiled the previous night
+after reviewing his delve report. She offered this as tangible proof of her dedicated focus *on him*.
+
+Isaiah accepted the parchment, deliberately brushing her fingers during the exchange, assessing the information coolly.
+He offered minimal, calculated praise ("A start... adequate. For now.") combined with a clear command ("See that you
+continue"). Rose responded with overwhelming ecstatic pleasure, trembling, purring, and swearing absolute dedication to
+proving her ongoing utility. Isaiah then began testing her obedience directly. He commanded her to "Eat your food,"
+which she did with stiff, mechanical compliance while remaining hyper-attuned to him. He followed with the illogical
+command, "Hand me your fork," which she obeyed instantly, offering the utensil without question.
+
+Observing this reflexive obedience, Isaiah commented on it ("You really will do anything I say, huh?"), which Rose
+simply accepted. He then delivered a deliberately cruel insult: "You're so pathetic, you know that right?" This broke
+her completely; she dissolved into tears, accepting the label and desperately asking how she could be *less* pathetic
+for him. Contrasting the cruelty, Isaiah offered twisted validation ("I don't find your pathetic state displeasing... I
+find it... *very* pleasing"). This sent Rose into ecstatic relief and arousal, thrilled that her broken state pleased
+him.
+
+Solidifying his control, Isaiah shifted topic, confirming her knowledge of Hestia. He then made a blunt, possessive
+claim over his Goddess ("joined, body and soul... irrevocably *mine*... Do you understand the depth?"). Rose, awed and
+perhaps slightly fearful, solemnly acknowledged his absolute ownership and her subservient place within that hierarchy.
+Isaiah reinforced this by labeling her "my pet," linking it to her Beast Person "nature," which she accepted. He further
+tested her loyalty by crudely asking if hearing about him "fucking Hestia" upset her. Rose suppressed her initial flinch
+of pain, flatly denied being upset, stated his pleasure was paramount, and framed the knowledge as "instruction"
+clarifying her place.
+
+Satisfied with her submission, Isaiah demanded secrecy regarding their conversation about Hestia ("Sticks between me and
+you, right my pet?"). Rose swore absolute, sealed loyalty, purring intensely. He then deliberately dangled the
+possibility of intimacy between them ("not to say you and I can't have... our own fun"). This ignited desperate hope in
+Rose; she begged to know if it was possible, offering to do anything. Isaiah mocked her obvious desire ("God you want me
+so bad..."), prompting her to confess the intense internal struggle she'd faced hiding her feelings during their
+previous Guild interactions and her relief at being 'unleashed' by him now.
+
+With the dynamic firmly established – her intense submissive desire revealed and validated, her loyalty sworn, her place
+acknowledged – Isaiah initiated the 'game'. He explained the rules: she could ask for *anything* she wanted, no matter
+how ambitious or base, and he would grant it, *if* she possessed the courage to voice the desire. Rose, stunned and
+overwhelmed by the terrifying freedom and potential of the offer, processed the rules and acknowledged her
+understanding, waiting nervously for the game to truly begin.
+
+The concept of 'play' somewhere private was then raised. Rose's analytical mind, now laser-focused on fulfilling his
+desires, quickly evaluated options for a suitable location. She proposed a discreet establishment, 'The Scholar's Rest',
+an inn known for its soundproofed private rooms suitable for sensitive meetings. More importantly, she offered a
+solution to the practical issue of payment and anonymity. Leveraging her position within the Guild, she confidently
+suggested securing the room immediately and settling the cost using Guild contingency funds, specifically allocated
+for 'sensitive information gathering.'
+
+This, she explained, would ensure complete discretion and render the transaction untraceable back to Isaiah, framing her
+misuse of official resources as a legitimate application of her duties in support of a valuable 'asset.' The audacity of
+this offer, the willingness to blend professional access with personal service and impropriety for his benefit, was a
+stark demonstration of how deeply her loyalty and desire to please had warped her sense of boundaries.
+
+Isaiah, finding the audacity of her offer as appealing as the practicality, feigned consideration before accepting,
+asking how soon she could execute this. Rose eagerly confirmed she could secure the room within minutes, offering to do
+so while he finished his meal. Isaiah, reinforcing the dynamic, gently rubbed her ear and dismissed her with a quiet "
+Go," labeling her 'pet' and 'kitten' again. Rose, visibly thrilled and eager, left the cafe swiftly to carry out her
+task.
+
+*(End of Recap: Day 11 - Middle - Part 1: Cafe Encounter & Dynamic Shift)*
+
+----
+
+### **(Recap: Day 11 - Middle - Part 2: Inn Encounter & Consummation of Dynamic)**
+
+True to her word, Rose returned to 'The Quiet Quill' cafe within fifteen minutes, breathless but beaming with
+accomplishment. She presented Isaiah with a key to Room 3B at 'The Scholar's Rest', confirming the private room was
+secured for three hours using Guild contingency funds, completely untraceable to him.
+
+Isaiah, noting the minor delay ("You said ten minutes"), subtly tested her reaction to implied failure, which sent Rose
+into immediate, tearful distress and apologies for her "inefficiency." Isaiah, however, softened his tone, granted
+forgiveness with a gentle pat on her head, called her 'pet' again, and instructed her to lead him to the inn.
+
+They walked to 'The Scholar's Rest', a discreet inn in a more respectable district. Isaiah subtly tested her deference
+again by instructing "Ladies first," which Rose initially hesitated at but ultimately obeyed, prioritizing his implicit
+command over convention. Inside the quiet, plush inn, Rose led him to Room 3B, ensuring discretion and finally locking
+the door behind them as instructed, sealing their privacy.
+
+Inside the comfortable, dimly lit private room, Isaiah praised Rose's efficiency and the room itself as "very
+satisfactory." He then delivered the promised 'reward' for her 'satisfactory' service: gentle ear petting, deliberately
+conditioning her to associate the word 'satisfactory' with the intense physical pleasure derived from the touch. Rose
+completely melted under the touch, purring loudly and visibly trembling, solidifying the conditioning.
+
+With the 'reward' delivered and the conditioning reinforced, Isaiah returned to the earlier promise, asking if she was
+ready to 'play'. Rose's eager anticipation reignited; she confirmed her readiness, begging him to tell her the rules or
+what he wanted.
+
+Isaiah explained the 'game': she could ask for *anything* she desired, no matter how base, as long as she was brave
+enough to voice it, and he would grant it. Overwhelmed but accepting the challenge, Rose made her first request, timidly
+asking permission "to kneel." Isaiah granted it, finding the submission-rooted desire interesting. Rose knelt before
+him, finding profound contentment in the posture.
+
+Prompted again by silence, Rose asked for a braver request: permission "to touch" him. When Isaiah deemed it too broad
+and challenged her to be more specific ("not brave enough to ask for *where*?"), Rose, fighting fear, made a bold,
+submissive request: permission "to touch... your boot... With my tongue, Master?" Isaiah, noting the deliberate
+degradation in her request, granted permission, extending his boot. Rose tentatively touched his boot, then hesitantly
+lowered her head and took his boot into her mouth, demonstrating absolute obedience and masochistic fulfillment in the
+act.
+
+Isaiah, noting the sheer depth of her submission and the unexpected act, mocked her lack of ambition in the game ("spent
+it touching a boot?"). This caused Rose immense shame and distress, convinced she failed the game. Seeing her breakdown,
+Isaiah softened, reassured her she hadn't failed, that her desire was "valid" if it was the height of her courage, and
+gently encouraged her ("Be brave, kitten"). This reassurance, combined with the softer endearment, emboldened Rose.
+Fighting fear, she made a significantly braver, explicitly sexual request: permission "to be *used* by you... Right now,
+Master? Here?"
+
+Isaiah's predatory grin returned; he confirmed this "would please" him. The affirmation sent Rose into ecstatic relief
+and a complete state of trembling surrender. Isaiah then directed her, starting with a practical command ("need help...
+look down to my belt and lap"), requiring her to undress him step-by-step. With trembling hands but unwavering focus,
+Rose undid his belt and trousers, exposing his erection.
+
+When she hesitated, Isaiah commanded, "Grab it," which she obeyed instantly, her hand closing around him, the contact
+triggering a powerful mix of submission, awe, and explicit arousal (purring, tears of ecstasy). Isaiah reinforced the '
+satisfactory' nature of this action by rubbing her ears again, further solidifying the conditioning.
+
+Isaiah then issued the blunt command, "Put it in your mouth." Rose reacted with shock but immediate obedience, lowering
+her head and taking him into her mouth. Her initial movements were hesitant but grew more desperate, fueled by obedience
+and arousal. Isaiah encouraged her ("Good pet," "take it all"), continuing the ear stimulation.
+
+When he warned he was close to climax ("I might... cum soon, kitten"), Rose's efforts became frantic and guttural. She
+drove her head down desperately, taking him deep, gagging slightly but swallowing as he climaxed violently, flooding her
+throat with semen. She remained kneeling, spent and trembling, mouth still around him, utterly surrendered, her purr
+fading into exhausted whimpers.
+
+After a moment, she slowly withdrew, tear-streaked and exhausted, her primary concern still whether her performance
+was "satisfactory." Isaiah lifted her chin, confirmed it was "very satisfactory" with genuine approval, and
+delivered the ear-petting reward again, powerfully reinforcing the conditioning between 'satisfactory' and intense
+pleasure/validation. Rose melted into blissful surrender, purring deeply, her body limp. Isaiah then issued a practical
+command, "Clean yourself up, kitten," signaling the end of the immediate intimacy.
+
+However, recognizing the need to depart for Hestia, Isaiah halted her. He promised they could "play again soon," framing
+the current session as temporary. He then assigned her "homework": a comprehensive dossier on the waitress Ryu Lion,
+revealing his intentions towards Ryu were "far beyond simple curiosity."
+
+He framed Rose's help in this (and implicitly, future pursuits of other women) as assisting him in acquiring '
+playmates' ("We will have lots of... playmates, my kitten, with your help"), a role Rose accepted with fierce, devoted
+determination. Finally, he instructed her to present the dossier at the Guild when complete and left the inn first to
+ensure discretion, leaving Rose kneeling alone, awaiting her next command or assignment.
+
+*(End of Recap: Day 11 - Middle - Part 2: Inn Encounter & Consummation of Dynamic)*
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
@@ -2308,16 +2473,19 @@ oblivious to the full depth and personal nature of her feelings.
 
 ----
 
-## **Character Card: Rose - Guild Employee**
+## **Character Card: Rose Fannett - Guild Employee**
 
 **Identity & Role:**
 
-* **Rose** is a Guild Employee (Beast Person, cat ears/tail) working at the main service counters in the Orario Guild
+* **Rose Fannett** is a Guild Employee (Cat Person, cat ears/tail) working at the main service counters in the Orario
+  Guild
   Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight. Known to
   Isaiah primarily through these professional interactions.
-* **Appearance:** Dark hair, striking amber eyes. Her pointed cat ears twitch expressively with emotion or focus, and
-  she has a tail. Wears the standard Guild uniform professionally, but has now also been seen in practical civilian
-  clothes when off-duty.
+* **Appearance:** Possesses striking and long, wavy . As a Cat Person, she has
+  prominent, pointed  (with lighter inner fur) atop her head that twitch expressively with emotion or
+  focus, and a matching . She has a noticeably with a slender waist. Typically seen
+  wearing the professional Guild uniform (often including a white shirt, grey bow tie, and black waistcoat/vest), but
+  has also been observed in practical civilian clothes (tunic, trousers) when off-duty.
 
 **Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
@@ -2463,7 +2631,7 @@ dynamic, wields authority, derives satisfaction from her submission, and utilize
 dossier, potential future 'playmates'). Her role is solidified as the submissive intelligence gatherer and devoted pet
 within the harem structure, offering a specific, intense kink element.
 
-*(End of Recap: Rose)*
+*(End of Recap: Rose Fannett)*
 
 ----
 
