@@ -3941,7 +3941,8 @@ based on the context you just processed:
 Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you've provided. This includes:
 
 * The detailed Day-by-Day recap covering Days 1 through <last_day_number> (<most_recent_time_of_day>).
-* The expanded recap sections for specific days (<numbered_list_of_dall_days_seperated_by_comma>).
+* The expanded recap sections for specific days (<
+  numbered_list_of_dall_days_seperated_by_comma_not_including_time_of_day>).
 * The detailed Character Cards for <character_card_name_list_seperated_by_comma>.
 * The detailed Location Cards for <location_card_name_list_seperated_by_comma>.
 * The System Cards explaining <system_card_name_list_seperated_by_comma>.
