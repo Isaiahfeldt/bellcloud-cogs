@@ -2389,6 +2389,72 @@ more quiet affection before drifting off into a deep, peaceful sleep, side-by-si
 
 ----
 
+### **(Recap: Day 12 - Beginning)**
+
+The soft grey light of early morning filtered through the single, grimy window of the church annex, illuminating the
+new, sturdy oak bed that now dominated the small space. You surfaced slowly, Isaiah, from a deep and truly restful
+sleep, the comfort of the plush mattress a welcome novelty. The familiar warmth beside you was Hestia, curled close, her
+breathing even, her face peaceful in slumber against the pillow. A quiet affection filled you as you watched her for a
+moment, the domestic tranquility a stark contrast to the recent intensity.
+
+Gently waking her, you were met not with panic, but a soft, sleepy smile. "Morning..." she murmured, her voice husky.
+After exchanging soft greetings ("Morning, my love," "Sleep well?"), the conversation turned to the day's plans. When
+Hestia casually asked, "What's the plan today, Adventurer?", the implication she might consider you healed enough
+sparked immediate, eager hope within you. The pull of the Dungeon, the desire to test the humming potential of the
+Hearthfire Blades, surged to the forefront. "The Dungeon!" you declared, perhaps too enthusiastically, suggesting a
+Guild visit for a quest, eager to use the new daggers.
+
+Hestia reacted instantly with alarm, pulling back, her eyes wide with worry. "Isaiah, *no*!" she protested, reminding
+you forcefully of your ribs, the Minotaur fight less than two days prior, and your agreement for one more day of rest.
+Seeing her genuine fear, you tempered your excitement, acknowledging her concern. Gently taking her hand, you proposed a
+compromise: only *one* quest, something manageable like Floor 2, with promises to use potions and return immediately at
+the slightest hint of pain. To demonstrate your recovery, you carefully went through a range of motions, twisting and
+stretching, showing no signs of discomfort.
+
+Hestia watched your demonstration intently, her worry warring with your apparent wellness and earnest promises. She
+chewed her lip, considering. Finally, with a long sigh, she reluctantly agreed, but only under the strictest
+conditions: "Only *one* quest? ...Maybe just stick to Floor 2 today? Please?" she pleaded, extracting a solemn vow – "
+cross your heart" – that you would come back instantly if anything felt wrong. Beaming with relief at her cautious
+trust, you fervently agreed, promising "Absolutely yes, Hestia! Floor 2 sounds perfect... You have my word, my Goddess."
+
+Satisfied, though still visibly worried, Hestia accepted the plan. They got ready with practiced ease, Hestia
+meticulously checking your bandages. After a simple breakfast, they left the annex, Hestia taking your hand as you
+walked towards the city center. She offered frequent, anxious advice about goblin tactics and safety reminders during
+the walk.
+
+Arriving at the bustling Guild Hall mid-morning, the familiar chaos surrounded you. After taking in the scene, Hestia
+directed you towards the Quest Board. Reviewing the Floor 2 options (Goblin Patrol, Moss Collection, Ant Mandibles,
+Cache Retrieval), you felt an internal frustration at the low difficulty, deeming them beneath your G-Rank capabilities.
+
+However, mindful of your promise and seeking something slightly more engaging than simple extermination, you pointed out
+the "Lost Supply Cache Retrieval" quest, framing it as "straightforward navigation" to appeal to Hestia's caution. She
+read the slip, acknowledged the 'potential encounters' risk but deemed it safer than the War Ants, and gave her cautious
+approval.
+
+Taking the slip, you headed towards the service counters, deciding to queue for Rose Fannett. As you waited, Hestia's
+hand in yours, your mind flashed back to the intense, unsettling encounter with Rose in the inn room the previous day –
+her complete submission, the 'homework' assignment. You felt a knot of caution, wondering how she would act now, with
+Hestia present. Reaching the counter, Rose greeted you both with perfect, crisp professional politeness, her mask firmly
+in place. You presented the quest slip, deliberately holding her gaze briefly, searching for any flicker beneath the
+surface, finding none. She processed the Floor 2 quest without any outward sign of surprise or curiosity about the low
+difficulty level compared to your known feats. You were quietly amazed by her control, thinking, '*Very good, kitten*'.
+
+With the quest stamped and registered, Rose asked if there was anything else. Hestia eagerly pulled you away towards
+Babel. Before leaving the counter completely, your gaze flicked back to Rose, briefly wondering if she was already
+working on the Ryu dossier beneath her professional facade. Allowing Hestia to lead, you navigated towards the Dungeon
+entrance.
+
+At the familiar parting spot, you preempted Hestia's worried farewells by leaning down and pressing a gentle,
+lingering kiss to the crown of her head, a tender gesture meant to convey affection and reaffirm your promise of safety.
+Hestia reacted with surprised, blushing warmth, her anxiety momentarily eclipsed by the affection. "O-Okay, Isaiah...
+Just... be careful. Please," she whispered, squeezing your hand one last time before stepping back. "Come back safe.
+I'll be waiting." With her vulnerable gaze following you, you turned and descended the stairs into the familiar gloom of
+Floor 1.
+
+*(End of Recap: Day 12 - Beginning)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
