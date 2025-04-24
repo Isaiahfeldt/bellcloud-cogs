@@ -84,8 +84,10 @@ Below will include recap of each day, recaps of character development, story loc
     questions and suggestive touch to deduce/imply Isaiah's intimacy with Hestia was linked to his anomalous recovery.
     Isaiah reacted with confirming blush/aversion. Lyra framed intimacy as medically relevant "factor," invited him
     to report "unusual physiological events," scheduled 3-day follow-up. Dismissed him.
-  * Leaving Guild: Isaiah left infirmary unsettled. Bumped into Rose (cat-eared Guild employee) just outside the
-    infirmary wing/in main hall. Rose expressed relief seeing him looking better and asked if check-up went well.
+  * Leaving Guild & Chance Encounter: Isaiah left infirmary unsettled. He walked out of the Guild Hall into the city.
+    Turned onto a side street and narrowly avoided colliding with Rose (cat-eared Guild employee), who was off-duty (
+    casual clothes) and carrying a stack of parchment folders. Rose expressed relief seeing him looking better and asked
+    if his check-up went well.
 
 ----
 
@@ -97,22 +99,25 @@ Daylight was a fading memory, drowned beneath a relentless, chilling Orario down
 streets, turning them into dark mirrors that reflected the gloomy, overcast sky and the flickering gaslights already
 being lit against the premature dusk. Each step Isaiah November (18, adventurer gear obscured partially by a practical
 but travel-worn black cloak, its hem artfully tattered) took sent splashes of cold water upwards, the dampness seeping
-persistently into the lower edges of his trousers despite his sturdy boots. He was weary down to his bones, the final
-leg of his long journey on foot after the carriage dropped him off having drained his reserves. Beneath the cloak, his
-lean, muscular frame ached, and the meager weight of his coin pouch felt insultingly light against the backdrop of this
-legendary, overwhelming city. Ambition burned fiercely within him – the desire to conquer the Dungeon, join the mighty
-Freya Familia, become the best – but immediate, grinding needs clawed at him: warmth, food, shelter from the oppressive
-rain.
+persistently into the lower edges of his trousers despite his sturdy boots.
+
+He was weary down to his bones, the final leg of his long journey on foot after the carriage dropped him off having
+drained his reserves. Beneath the cloak, his lean, muscular frame ached, and the meager weight of his coin pouch felt
+insultingly light against the backdrop of this legendary, overwhelming city. Ambition burned fiercely within him – the
+desire to conquer the Dungeon, join the mighty Freya Familia, become the best – but immediate, grinding needs clawed at
+him: warmth, food, shelter from the oppressive rain.
 
 It was then that the Hostess of Fertility appeared like a beacon through the grey sheets of rain. Warm, golden light
 spilled from its leaded glass windows, outlining cheerful silhouettes within. The distant sounds of laughter, clinking
 mugs, and lively conversation carried faintly, promising refuge. Compared to the cold, indifferent stone facades
 surrounding it, the tavern radiated life. Drawn by an almost primal need for respite, Isaiah pushed open the heavy, dark
 wooden door, the small bell above announcing his arrival with a muffled jingle almost lost in the tavern's cheerful din.
+
 The transition was immediate and overwhelming. Warmth enveloped him, thick with the scents of woodsmoke from a large,
 roaring hearth dominating one wall, roasting meat, baking bread, spilled ale, and damp wool drying near the fire. The
 air buzzed with conversation, a comforting wall of sound after the lonely drumming of the rain. The interior was all
 dark, polished wood – heavy ceiling beams, sturdy tables and chairs, booth partitions offering pockets of privacy.
+
 Lanterns hung strategically, casting inviting pools of light, glinting off polished mugs behind a long, busy bar
 overseen by a large, imposing woman Isaiah would later learn was Mama Mia. The place was comfortably crowded, a haven
 for rain-soaked travelers and adventurers taking a rest day.
@@ -121,6 +126,7 @@ His eyes, adjusting from the gloom outside, swept the room, and immediately snag
 between tables with a grace that seemed almost out of place. She carried a heavy tray laden with food, yet her posture
 remained perfectly upright, her movements fluid and economical, utterly composed amidst the surrounding bustle. Her
 long, pale green hair was neatly kept, framing delicate elven ears, and her expression was one of serene neutrality.
+
 This was Ryu Lion, working under her alias. Isaiah, requesting a booth when she approached him near the entrance, found
 himself instantly intrigued. It wasn't just her beauty, common enough among elves, but her stillness, her almost
 unnerving calm. It felt like a placid lake surface hinting at unfathomable depths, a stark contrast to the noisy,
@@ -128,12 +134,14 @@ rough-and-tumble world of adventurers she served. A spark of fascination ignited
 this enigmatic waitress.
 
 Ryu acknowledged his request with a slight, polite nod. "This way, Sir." Her voice was soft, yet clear and precise.
+
 Isaiah followed her deeper into the tavern, watching the quiet efficiency of her movements as she led him towards a
-relatively secluded booth against the far wall, away from the main traffic near the bar. Taking his seat on the wooden
-bench, the dampness of his cloak clinging slightly, Isaiah acted on habit, unclipping his two daggers from their
-concealed sheathes beneath his cloak and placing them beside him on the dark wood table – tools kept close, ready, a
-reflex born of solitary survival. Ryu's eyes flickered towards the blades for just an instant, acknowledging their
-presence without comment, her professional mask undisturbed.
+relatively secluded booth against the far wall, away from the main traffic near the bar.
+
+Taking his seat on the wooden bench, the dampness of his cloak clinging slightly, Isaiah acted on habit, unclipping
+his two daggers from their concealed sheathes beneath his cloak and placing them beside him on the dark wood table –
+tools kept close, ready, a reflex born of solitary survival. Ryu's eyes flickered towards the blades for just an
+instant, acknowledging their presence without comment, her professional mask undisturbed.
 
 "Might I offer you a menu?" she inquired politely, standing attentatively near the booth. "Or perhaps something warm to
 drink while you peruse it? We have a fine stew today, excellent for warding off the chill of the rain." Her words
@@ -141,6 +149,7 @@ blurred slightly as Isaiah found himself once again studying her face, trying to
 composure. Was it practiced? Natural? What lay behind those calm, pale green eyes? Damn it, he thought, realizing
 belatedly he'd missed her question entirely, caught staring like a green boy. He mentally shook himself. "Ah, forgive
 me," he managed, hoping his lapse wasn't too obvious, meeting her gaze properly. "My mind was elsewhere for a moment.
+
 What was it you were offering?"
 
 Ryu showed no outward reaction to his brief lapse in attention, no judgment in her steady gaze. "It is quite alright,
@@ -153,6 +162,7 @@ overriding the desire for dry fabric.
 Just as Ryu gave a small nod and turned silently towards the bar to fetch his drink, a sudden impulse struck Isaiah. "
 What is your name?" he called out, his voice perhaps a touch louder than intended, cutting through the tavern noise. She
 paused mid-stride, the movement completely silent, and turned her head slightly, looking back at him over her shoulder.
+
 Her serene expression held perhaps the faintest flicker of surprise at the direct, personal question from a new patron,
 but it settled back instantly into polite neutrality. "You may call me Ryu, Sir," she replied, her voice soft yet
 carrying clearly.
@@ -176,7 +186,9 @@ another moment." Her gaze rested neutrally on him for a second before she moved 
 
 Isaiah took a sip of the ale; it was strong, robust, with a slightly bitter bite followed by a malty warmth – grounding,
 uncomplicated, and welcome against the persistent chill of the rain drumming against the tavern windows.
+
 While Ryu was away fetching the stew, Isaiah took the opportunity for a quick, discreet assessment of his finances.
+
 Reaching under his damp cloak, he pulled out his worn leather coin pouch, keeping it low. Loosening the drawstring, the
 muted clink of Valis confirmed his precarious situation – enough for this meal, perhaps, but reserves were critically
 thin after the journey. He quickly secured the pouch just as he heard Ryu's soft footsteps approaching again.
@@ -191,12 +203,15 @@ Ryu politely explained that the Hostess primarily served food and drink and didn
 mentioned there were several reputable inns nearby on the same street, offering to provide directions once he finished
 his meal. Isaiah looked down at the table, considering. Asking for simple directions felt impersonal, less interesting
 than potentially interacting with her more. He felt a pull, a curiosity about the person behind the composed waitress
-facade. Making a decision that felt like a gamble, he looked back up at her. "As it happens, I am quite new to Orario,"
+facade.
+
+Making a decision that felt like a gamble, he looked back up at her. "As it happens, I am quite new to Orario,"
 he stated, choosing his words carefully. "Perhaps... when your duties here are concluded for the day... would you be
 amenable to showing me the way to one of those inns? I confess, I would be grateful for the guidance." He watched her
 closely, knowing it was a bold, possibly improper request, wondering how she would react.
 
 Ryu's calm expression remained largely unchanged, but there was a fractional pause, a momentary assessment in her eyes.
+
 She then delivered a polite but firm refusal, establishing a clear professional boundary without overt coldness. "Sir,"
 she began, her voice maintaining its steady cadence, "while I appreciate the sentiment... my responsibilities extend
 only to my service here... It would be improper for me to accompany a patron after my shift concludes. However, I assure
@@ -205,6 +220,7 @@ a small, formal nod, she turned to attend another table, leaving Isaiah feeling 
 
 Examining her demeanor as she walked away, Isaiah noted her unwavering composure – straight back, fluid, silent steps,
 no hesitation or backward glance. It conveyed pure professionalism and a gentle reinforcement of the boundary she'd set.
+
 Internally, Isaiah felt the sting of the polite rejection more than expected (Damn... shot down.). It felt like a loss,
 a missed opportunity to learn more about her. He briefly resolved to find another way to gain her interest later (Okay,
 plan B. Time to observe and rethink.) but decided pushing further now was foolish.
@@ -232,7 +248,9 @@ without the directions I offered. Have you perhaps recalled the way, or made oth
 Caught, and realizing the foolishness of wandering lost in the rain, Isaiah pulled his foot back inside. "Ah..." he
 stammered slightly, feeling awkward. "You are right. Forgive me... Yes, those directions would still be most helpful,
 Miss Ryu. Thank you." Ryu, maintaining her professional neutrality, gave a slight nod and proceeded to give him clear,
-concise directions. "The most straightforward option... is 'The Weary Traveler'. Exit... turn right... continue two
+concise directions.
+
+"The most straightforward option... is 'The Weary Traveler'. Exit... turn right... continue two
 blocks – you will pass a shop with a large anvil sign, belonging to the Hephaistus Familia. Immediately after... take
 the next left onto a smaller side street. Third building on your right..." She also offered 'The Gilded Flagon' as a
 slightly larger alternative further down the main street.
@@ -256,6 +274,7 @@ perhaps a moment too long.
 
 The sound of a heavy door latch clicking snapped him back. The workshop door opened slightly, revealing a stoutly built
 woman in her late twenties/early thirties, wearing a heavy leather apron dusted with soot, dark hair tied back severely.
+
 Her sharp, assessing eyes landed on him. "Oi," she called out gruffly, her voice rough but clear over the rain. "You
 planning on buyin' somethin', or just gonna drip all over the pavement blockin' the view? If you're comin' in, come in.
 If not, move along." Isaiah, caught off guard, quickly apologized. "My apologies. Just... admiring the craftsmanship.
@@ -270,7 +289,9 @@ of the rain off his cloak and boots.
 
 He approached the counter, where the portly, bald innkeeper with shrewd eyes looked up from wiping the surface. The
 innkeeper grunted a greeting ("Evenin'. Lookin' for a drink, or somethin' more?"). Isaiah requested a room for the
-evening. The innkeeper confirmed availability ("Got a couple rooms left... simple, mind you... bed, wash basin, chamber
+evening.
+
+The innkeeper confirmed availability ("Got a couple rooms left... simple, mind you... bed, wash basin, chamber
 pot") and stated the price: 150 Valis, payable upfront. Isaiah confirmed for one night only, acutely aware this was a
 significant portion of his remaining funds after paying for his meal at the Hostess earlier. Beneath his cloak, he
 retrieved the coins and slid the 150 Valis across the counter.
@@ -282,14 +303,18 @@ the key, and headed upstairs.
 
 Finding the faded number '4' on a simple plank door, he unlocked it and stepped inside, immediately locking it behind
 him for privacy. The room was sparse, as promised: the narrow bed with a thin mattress and rough blanket, a small wooden
-chair, a rickety wash basin stand with a pitcher. But it was dry and quiet. With a sigh of profound relief, Isaiah shed
-his heavy, sodden black cloak, draping it over the chair. He followed with his damp mustard-yellow jacket and dark
-undershirt, laying them out to dry as well. Standing in just trousers and boots, he felt lighter, less cold. He then sat
-on the creaking bed to pull off his heavy, mud-caked boots and gloves.
+chair, a rickety wash basin stand with a pitcher.
+
+But it was dry and quiet. With a sigh of profound relief, Isaiah shed his heavy, sodden black cloak, draping it over the
+chair. He followed with his damp mustard-yellow jacket and dark undershirt, laying them out to dry as well. Standing in
+just trousers and boots, he felt lighter, less cold. He then sat on the creaking bed to pull off his heavy, mud-caked
+boots and gloves.
 
 Looking at the basin, he decided a wash was needed. The thought of potentially seeing Ryu tomorrow briefly made him
 consider wanting to look presentable, a thought he immediately dismissed internally as childish foolishness (Look nice
-for a girl? Get a grip.). Still, washing was practical. Finding the pitcher filled with clean, cold water, he used it
+for a girl? Get a grip.).
+
+Still, washing was practical. Finding the pitcher filled with clean, cold water, he used it
 and a rough towel to wash away the worst of the travel grime. Listening intently, he noted the inn was quiet, perhaps
 hearing only faint, indistinct sounds from adjacent rooms or the hallway.
 
@@ -299,9 +324,11 @@ empty), rope, flint and steel, a whetstone (useless without his daggers), and a 
 Not much between him and starvation if things went poorly.
 
 Finally, utterly exhausted from the travel, the rain, the encounters, and the constant low-level stress of his
-situation, Isaiah collapsed onto the thin mattress. He pulled the rough blanket up, stared at the shadowed ceiling for
-only a moment, listening to the rain finally beginning to soften outside, and succumbed quickly to the overwhelming need
-for sleep, falling into a deep, dreamless darkness.
+situation, Isaiah collapsed onto the thin mattress.
+
+He pulled the rough blanket up, stared at the shadowed ceiling for only a moment, listening to the rain finally
+beginning to soften outside, and succumbed quickly to the overwhelming for sleep, falling into a deep, dreamless
+darkness.
 
 *(End of Recap: Day 1 - Ending)*
 
@@ -311,14 +338,17 @@ for sleep, falling into a deep, dreamless darkness.
 
 Isaiah awoke slowly in the small, sparse room of 'The Weary Traveler'. The relentless drumming of rain from the previous
 day had ceased. Weak sunlight filtered through the single window, indicating morning had arrived, though the sky outside
-was likely still overcast or cloudy based on the quality of the light. His body felt stiff and sore from the previous
-day's long journey and the less-than-comfortable mattress, but the deep exhaustion had thankfully receded after a night
-of solid sleep. The air in the room was cool. His clothes, draped over the chair, were significantly drier but likely
-still held a hint of dampness.
+was likely still overcast or cloudy based on the quality of the light.
+
+His body felt stiff and sore from the previous day's long journey and the less-than-comfortable mattress, but the deep
+exhaustion had thankfully receded after a night of solid sleep. The air in the room was cool. His clothes, draped over
+the chair, were significantly drier but likely still held a hint of dampness.
 
 The first pressing thoughts were practical. Money. He had spent nearly all his Valis on the room (150) and the meal at
 the Hostess (~160) yesterday, leaving him critically low – perhaps less than 100 Valis remaining, maybe significantly
-less. This meant breakfast was a luxury he couldn't afford. His stomach rumbled, reminding him of his hunger. Then, the
+less.
+
+This meant breakfast was a luxury he couldn't afford. His stomach rumbled, reminding him of his hunger. Then, the
 memory of the forgotten daggers resurfaced – retrieving those from the Hostess was an immediate priority. And
 overarching everything was the fundamental need to find a Familia and gain Falna, the prerequisite for becoming a real
 adventurer and earning income, as learned from the Guild advisor yesterday.
@@ -336,9 +366,10 @@ act.
 
 As he walked casually past the traveler's table, seemingly heading for the door, Isaiah used his practiced Sleight of
 Hand. His hand darted out subtly, snatching several strips of bacon from the plate without the owner noticing. The
-action was described as requiring a skill check: `/Roll Dexterity (Sleight of Hand)`. The Difficulty Class (DC) was set
-by the AI Narrator at 14 (moderate difficulty due to the public setting but aided by the target's distraction). The AI
-executed the roll: d20 + 5 (Dex modifier + Proficiency). The result was 14, a Success!
+action was described as requiring a skill check: `/Roll Dexterity (Sleight of Hand)`. \
+
+The Difficulty Class (DC) was set by the AI Narrator at 14 (moderate difficulty due to the public setting but aided by
+the target's distraction). The AI executed the roll: d20 + 5 (Dex modifier + Proficiency). The result was 14, a Success!
 
 Isaiah successfully pilfered the bacon without being detected and quickly exited the inn, eating the stolen breakfast as
 he walked, feeling a small thrill of victory mixed with the satisfaction of easing his hunger, though knowing it was
@@ -362,44 +393,53 @@ bubbly demeanor and feline features as 'cute' but found she didn't hold the same
 
 Taking a chance, Isaiah decided to probe Anya for information, perhaps hoping to gain insight into Ryu. Stepping
 slightly closer, he asked Anya about her colleague, "Miss Ryu," commenting on her composure and professionalism, using
-the flimsy excuse of being curious about people in the city. Anya, delighted by the apparent interest and perhaps prone
-to gossip, leaned in conspiratorially. She described Ryu ("Ryu-senpai") with a mix of awe and slight fear – calling her
-elegant, amazing at her job, quiet, mysterious, doesn't talk about herself, but sometimes gets a scary look in her eye
-like she could "kick butt." Just as Anya playfully asked Isaiah if he had a crush on Ryu, Ryu herself appeared,
-having seemingly overheard or simply finished a task nearby.
+the flimsy excuse of being curious about people in the city.
+
+Anya, delighted by the apparent interest and perhaps prone to gossip, leaned in conspiratorially. She described Ryu ("
+Ryu-senpai") with a mix of awe and slight fear – calling her elegant, amazing at her job, quiet, mysterious, doesn't
+talk about herself, but sometimes gets a scary look in her eye like she could "kick butt." Just as Anya playfully asked
+Isaiah if he had a crush on Ryu, Ryu herself appeared, having seemingly overheard or simply finished a task nearby.
 
 Isaiah, caught slightly off guard, opened his mouth to reply to Anya but was cut off by Ryu's arrival. He instinctively
 stepped back from Anya, feeling slightly awkward. Ryu, perfectly composed as always, addressed him formally ("Sir") and
-inquired if he'd found lodging, referencing their conversation from the previous day. Isaiah, flustered but recovering,
+inquired if he'd found lodging, referencing their conversation from the previous day.
+
+Isaiah, flustered but recovering,
 confirmed the lodging was adequate and thanked her for the directions, then stated the real reason for his return: he'd
 foolishly left his daggers on the table yesterday and hoped they'd been found.
 
 Ryu, without judgment, confirmed she had noticed the daggers after his departure and secured them behind the counter for
 safekeeping. Excusing herself briefly, she went to retrieve them. While she was gone, Isaiah examined her demeanor,
-noting again her unwavering calm and professionalism. Ryu returned shortly, presenting the daggers hilt-first. Isaiah
-observed *how* she held them – not awkwardly, but with a firm, balanced, almost natural familiarity that seemed unusual
-for a waitress, subtly hinting at her hidden capabilities. He thanked her sincerely, apologizing again for his
+noting again her unwavering calm and professionalism.
+
+Ryu returned shortly, presenting the daggers hilt-first. Isaiah observed *how* she held them – not awkwardly, but with a
+firm, balanced, almost natural familiarity that seemed unusual for a waitress, subtly hinting at her hidden
+capabilities. He thanked her sincerely, apologizing again for his
 oversight.
 
 Wanting to see *some* crack in her perfect facade, Isaiah decided to push slightly. He commented directly on her
 composure, calling it "remarkable," "unusual," and "almost practiced," especially working in a place surrounded by rough
-adventurers. He watched closely for any reaction. Ryu paused fractionally, something unreadable flickering deep in her
-eyes for an instant (*Practiced... yes*), before offering the faintest polite smile that didn't reach her eyes. She
-calmly deflected, attributing her demeanor purely to professional necessity ("Maintaining a professional atmosphere is
-simply part of providing good service.
+adventurers. He watched closely for any reaction.
+
+Ryu paused fractionally, something unreadable flickering deep in her eyes for an instant (*Practiced... yes*), before
+offering the faintest polite smile that didn't reach her eyes. She calmly deflected, attributing her demeanor purely to
+professional necessity ("Maintaining a professional atmosphere is simply part of providing good service.
 
 One learns to focus on one's duties.") and asked if he required anything further.
 Feeling thoroughly defeated by her impenetrable composure, Isaiah quietly replied, "No, that will be all. Thank you." He
 gave her a final respectful bow, nodded briefly to Anya, and left the Hostess, his daggers retrieved but his fascination
-with Ryu deepening, now mixed with frustration. He realized with some annoyance that Ryu still didn't know his name.
-Now properly armed but still needing a Familia, Isaiah headed towards the Adventurer's Guild Headquarters near Babel
-Tower. The vast hall was bustling with adventurers.
+with Ryu deepening, now mixed with frustration.
+
+He realized with some annoyance that Ryu still didn't know his name. Now properly armed but still needing a Familia,
+Isaiah headed towards the Adventurer's Guild Headquarters near Babel Tower. The vast hall was bustling with adventurers.
 
 He scanned the impressive interior, noting the emblems of major
 Familias, which sparked a jarring realization: he'd been so focused on immediate needs he'd barely thought about *how*
-to actually join a Familia. He decided to focus on the Guild first and figure out the Familia situation later. Unsure
-who to approach, he looked for Guild employees, spotting several behind long counters processing requests. Driven by his
-stated preference ("having a thing for elves"), he located a female elf advisor (Eina Tulle) and joined her queue.
+to actually join a Familia.
+
+He decided to focus on the Guild first and figure out the Familia situation later. Unsure who to approach, he looked for
+Guild employees, spotting several behind long counters processing requests. Driven by his stated preference ("having a
+thing for elves"), he located a female elf advisor (Eina Tulle) and joined her queue.
 
 *(End of Recap: Day 2 - Middle)*
 
@@ -409,10 +449,11 @@ stated preference ("having a thing for elves"), he located a female elf advisor 
 
 Waiting in line for the Guild Advisor Eina Tulle, Isaiah observed her brisk, efficient, professional demeanor as she
 dealt with other adventurers. When it was his turn, he introduced himself ("Isaiah November") and stated his desire to
-register as an adventurer, admitting his unfamiliarity with the Orario process. Eina, professional but perhaps slightly
-impatient (later revised to be slightly warmer/more concerned after meta-discussion/retcon), explained that official
-registration required Familia affiliation and Falna first, as the Guild primarily managed blessed adventurers. This
-confirmed Isaiah's earlier oversight and presented a major hurdle.
+register as an adventurer, admitting his unfamiliarity with the Orario process.
+
+Eina, professional but perhaps slightly impatient (later revised to be slightly warmer/more concerned after
+meta-discussion/retcon), explained that official registration required Familia affiliation and Falna first, as the Guild
+primarily managed blessed adventurers. This confirmed Isaiah's earlier oversight and presented a major hurdle.
 
 Isaiah, deciding honesty was the best policy, admitted he'd only just arrived and hadn't yet joined a Familia, asking
 for advice on how to proceed. Eina, possibly softened slightly by his earnestness (and the subtle 'protagonist aura'),
@@ -422,9 +463,10 @@ the Guild) for recruitment flyers, or approach Familia Homsteads directly, cauti
 She reiterated he couldn't register *today* and needed to secure Familia membership first. Isaiah, surprisingly
 energized by having a clear (if difficult) path forward, thanked Eina enthusiastically. As he started to leave, he
 realized he hadn't gotten her name, quickly returned to her counter (politely this time, not shouting from the door
-after meta-correction), and asked who he should thank upon his return. Eina, surprised by his earnest return, offered a
-rare, small smile, introduced herself as Eina Tulle, and gave brief encouragement ("Be persistent, present yourself
-honestly... Do not be discouraged").
+after meta-correction), and asked who he should thank upon his return.
+
+Eina, surprised by his earnest return, offered a rare, small smile, introduced herself as Eina Tulle, and gave brief
+encouragement ("Be persistent, present yourself honestly... Do not be discouraged").
 
 Leaving the Guild, Isaiah felt the pressure: low on funds, needing Falna *now*. He checked the smaller Familia
 recruitment board Eina mentioned. He noted flyers for Ganesha (laborers), Takemikazuchi (diligent souls/combat), Dian
@@ -434,11 +476,13 @@ for Hestia Familia ("Recruiting!?... Strong people preferred? Ask the Goddess He
 
 His initial goal was the Freya Familia, wanting to join the strongest to become the best. Disappointed they weren't
 listed (as expected for an elite Familia), he considered his options. He recalled seeing the Hephaistus workshop
-yesterday, making that name stand out. He pondered Miach (easy entry? slow growth?) and Takemikazuchi (better for
-combat? stricter entry?). Despite logic pointing elsewhere, a strong gut feeling pulled him towards the messy,
-obscure Hestia Familia notice. He rationalized that maybe a blank slate Familia offered more freedom, or perhaps it was
-just intuition, similar to the feeling that got him a second chance with Hedin (though the narrative later settled on
-the Hedin event being a potential latent skill). He took the Hestia flyer.
+yesterday, making that name stand out.
+
+He pondered Miach (easy entry? slow growth?) and Takemikazuchi (better for combat? stricter entry?). Despite logic
+pointing elsewhere, a strong gut feeling pulled him towards the messy, obscure Hestia Familia notice. He rationalized
+that maybe a blank slate Familia offered more freedom, or perhaps it was just intuition, similar to the feeling that got
+him a second chance with Hedin (though the narrative later settled on the Hedin event being a potential latent skill).
+He took the Hestia flyer.
 
 Now needing to act decisively before funds ran out completely (his Valis likely extremely low, maybe under 50 after
 paying 150 for the first night's inn), Isaiah made a bold, reckless decision fueled by frustration and ambition. He
@@ -448,9 +492,10 @@ audacity and combat potential, even without Falna.
 
 Recognizing the immense risk, he consumed his remaining emergency rations (hardtack/jerky) and his *second-to-last*
 health potion for a slight edge. Fueled by determination (and thoughts of impressing Ryu by joining the best), he
-marched back to Daedalus Street as late afternoon/early evening approached. He found Folkvangr again, approached the
-imposing gates guarded by elite adventurers (Sergeant Valen being one), and directly issued a challenge: "I
-challenge you. Right here. Right now. Draw your weapon."
+marched back to Daedalus Street as late afternoon/early evening approached.
+
+He found Folkvangr again, approached the imposing gates guarded by elite adventurers (Sergeant Valen being one), and
+directly issued a challenge: "I challenge you. Right here. Right now. Draw your weapon."
 
 The guard (Valen) reacted with cold disdain, calling Isaiah pathetic and refusing to engage seriously. Isaiah, needing
 to force the confrontation, continued with pointed taunts about the guard's pride and the Familia's reputation,
@@ -465,14 +510,17 @@ armor.
 
 Undeterred, Isaiah continued maneuvering, feinting and darting, launching another probing attack (`/Roll Attack` vs AC
 17, Modifier +5). This time, miraculously, he hit! The dagger found a small gap, drawing a superficial wound and a
-grunt of surprised anger from Valen. Wounded in pride and body, Valen lunged furiously with a powerful downward strike
-meant to end the fight. Relying on pure reflex, Isaiah executed a high-risk parry with both daggers (`/Roll Parry` -
-success granted by user meta-request to progress story). Sparks flew as he barely deflected the Falna-enhanced blow,
-leaving Valen momentarily stunned and off-balance.
+grunt of surprised anger from Valen.
+
+Wounded in pride and body, Valen lunged furiously with a powerful downward strike meant to end the fight. Relying on
+pure reflex, Isaiah executed a high-risk parry with both daggers (`/Roll Parry` - success granted by user meta-request
+to progress story). Sparks flew as he barely deflected the Falna-enhanced blow, leaving Valen momentarily stunned and
+off-balance.
 
 Just as Isaiah lunged forward instinctively to press the counter-attack, a commanding voice cut through the air: "
 Enough." A side door in the main gate opened, revealing a powerful, silver-haired elf radiating immense authority –
 Hedin Selland. Both guards snapped to attention; Valen paled, lowering his sword.
+
 Isaiah immediately sheathed his daggers, bowed deeply, apologized for the disturbance, and explained his actions stemmed
 from desperation for a chance to join, not malice. Hedin observed him coolly, acknowledging the landed blow and
 successful parry without Falna as anomalies. He questioned Isaiah's motives: "Why Freya Familia? What makes you believe
@@ -481,6 +529,7 @@ you are worthy...?"
 At this point, the time loop event occurred (initially a meta-request, later framed as a potential latent skill).
 Isaiah experienced a ~2-minute rewind to the moment Hedin asked the question. Aware of the previous outcome (where his
 speech about ambition led to dismissal), Isaiah capitalized on this second chance.
+
 Instead of focusing solely on abstract willpower, Isaiah gave a revised plea. He pointed to the *evidence* of the
 fight – landing a blow, parrying a Falna-enhanced strike, all without Falna – as proof of existing raw potential (
 reflexes, spirit). He appealed to the Freya Familia's reputation for *forging* greatness, asking if they recognized raw
@@ -491,9 +540,10 @@ Hedin listened intently, perhaps intrigued or surprised by the more sophisticate
 cited. While still dismissing entry based on potential alone, he didn't reject Isaiah outright this time. Instead, he
 issued an impossible challenge: 1. Gain Falna (find *any* Familia). 2. Enter the Dungeon. 3. Reach Level 2 faster
 than any adventurer in Guild history (Ais Wallenstein's ~1 year record cited later as the benchmark). 4. Return to
-Folkvangr *only* when this record is broken, with Guild proof. If successful, Hedin promised to personally grant an
-audience. Failure, or returning early, was implicitly disastrous. With that, Hedin shut the door, leaving Isaiah with
-the daunting condition.
+Folkvangr *only* when this record is broken, with Guild proof.
+
+If successful, Hedin promised to personally grant an audience. Failure, or returning early, was implicitly disastrous.
+With that, Hedin shut the door, leaving Isaiah with the daunting condition.
 
 Isaiah, strangely, didn't feel crushed. The impossible challenge, combined with the bizarre time loop, felt like *fate*,
 like a validation of his ambition. He felt it was achievable ("I can do this"). His immediate goal shifted: find *any*
@@ -503,10 +553,11 @@ Realizing he was now incredibly broke and still needed lodging for the night, he
 Traveler'. He arrived late in the evening. Knowing he couldn't afford the 150 Valis rate, he approached the gruff
 innkeeper. Laying his situation bare (failed Familia search, low funds), he offered his remaining Valis (estimated ~70)
 plus his last remaining health potion as collateral for the room for *this* night (Day 2), promising to pay the 80
-Valis balance by sundown the *next* day (Day 3). The innkeeper, after examining the valuable potion, grudgingly accepted
-the deal due to the collateral covering his risk, emphasizing the strict sundown deadline for repayment. Isaiah,
-relieved to have shelter, took the key to Room 4 and finally went to sleep, exhausted but with a clear, albeit
-near-impossible, goal set before him.
+Valis balance by sundown the *next* day (Day 3).
+
+The innkeeper, after examining the valuable potion, grudgingly accepted the deal due to the collateral covering his
+risk, emphasizing the strict sundown deadline for repayment. Isaiah, relieved to have shelter, took the key to Room 4
+and finally went to sleep, exhausted but with a clear, albeit near-impossible, goal set before him.
 
 *(End of Recap: Day 2 - Ending)*
 
@@ -520,21 +571,23 @@ until sundown *today* to earn 80 Valis to pay the innkeeper and reclaim his vita
 begin tackling Hedin Selland's monumental challenge, which required finding a Familia and gaining Falna as the absolute
 first step.His mind immediately went to the Guild Hall.
 
-He needed information, specifically the actual record for
-reaching Level 2 that Hedin had challenged him to break. He also needed to revisit the Familia recruitment board or find
-leads, now that joining *any* Familia had become the immediate priority.He got dressed in his usual gear (mustard
-jacket, chest plate, etc. – *excluding* the cloak which remained in the room for now, as established later before the
-first Dungeon delve), ensuring his daggers were secure. Leaving the inn early, he headed back towards the Guild
-Headquarters.Arriving at the Guild Hall relatively early in the morning, he found it already beginning to fill with
-adventurers starting their day. His first stop was the service counters, specifically seeking out Advisor Eina Tulle
-, who had been helpful (in her professional way) yesterday.
+He needed information, specifically the actual record for reaching Level 2 that Hedin had challenged him to break. He
+also needed to revisit the Familia recruitment board or find leads, now that joining *any* Familia had become the
+immediate priority.He got dressed in his usual gear (mustard jacket, chest plate, etc. – *excluding* the cloak which
+remained in the room for now, as established later before the
+first Dungeon delve), ensuring his daggers were secure.
 
-He queued again, observing the organized chaos of the
-Guild.When he reached Eina, she recognized him ("Mr. November. Back already?"). Isaiah, trying to sound less desperate
-than he felt, explained he wasn't there for registration yet, but needed specific information related to the "
-conditional encouragement" he'd received (vaguely referencing Hedin's challenge without naming names or Familias).
+Leaving the inn early, he headed back towards the Guild Headquarters.Arriving at the Guild Hall relatively early in the
+morning, he found it already beginning to fill with adventurers starting their day. His first stop was the service
+counters, specifically seeking out Advisor Eina Tulle , who had been helpful (in her professional way) yesterday.
+
+He queued again, observing the organized chaos of the Guild. When he reached Eina, she recognized him ("Mr. November.
+Back already?"). Isaiah, trying to sound less desperate than he felt, explained he wasn't there for registration yet,
+but needed specific information related to the "conditional encouragement" he'd received (vaguely referencing Hedin's
+challenge without naming names or Familias).
+
 Acknowledging her likely surprise at the unusual nature of his query, he asked directly: "What is the fastest time
-officially recorded by the Guild for an adventurer to reach Level 2 after first receiving their Falna at Level 1?"Eina
+officially recorded by the Guild for an adventurer to reach Level 2 after first receiving their Falna at Level 1?" Eina
 reacted with clear incredulity, questioning why an unblessed newcomer would ask about record-breaking speed. However,
 perhaps influenced by Isaiah's earnestness from the previous day and the subtle 'protagonist aura', she provided the
 information professionally, albeit with significant concern.
@@ -545,20 +598,23 @@ difficulty, danger, and requirements (talent, luck, effort, Familia support) inv
 cautioning Isaiah against recklessly trying to emulate it, especially without Falna or experience.When Eina asked *why*
 he needed this information, Isaiah deflected. Knowing the truth about Hedin's challenge would sound insane, he instead
 framed it as needing to understand the absolute highest benchmarks to fuel his own intense ambition and set aspirational
-goals, however distant. Eina, while likely skeptical, accepted the deflection but reiterated her concern, advising him
+goals, however distant.
+
+Eina, while likely skeptical, accepted the deflection but reiterated her concern, advising him
 to focus on finding a *supportive* Familia, learning fundamentals, and prioritizing survival through steady, pragmatic
 growth. Her tone shifted from purely professional to genuinely worried, urging him to be careful. Isaiah, while
 appreciating her concern, internally felt his conviction reinforced; proving her wrong became another motivator.
 
-He left
-the counter feeling a slightly stronger connection to the concerned advisor.His next step was to re-examine the
+He left the counter feeling a slightly stronger connection to the concerned advisor.His next step was to re-examine the
 Familia Recruitment Board with a new perspective. He mentally discarded the non-adventuring options (Ganesha, Dian
 Cecht) and noted the Hephaistus flyer for forge work was now gone, as was the sketchy 'Swiftfoot Brigade' notice. This
 left Takemikazuchi (discipline/combat), Miach (open/support/poor), potentially Soma (dedicated/weird rules), and the
-messy, unprofessional Hestia Familia notice. He recalled what little he knew about Miach (poor, kind, potion shop,
-easy entry vs. slow growth). Then, despite all logic pointing against it for someone needing rapid growth, his intuition
-strongly pulled him towards the Hestia notice. It felt like a destined, albeit strange, path. He decided to pursue
-Hestia first, taking the flimsy flyer from the board.
+messy, unprofessional Hestia Familia notice.
+
+He recalled what little he knew about Miach (poor, kind, potion shop, easy entry vs. slow growth). Then, despite all
+logic pointing against it for someone needing rapid growth, his intuition strongly pulled him towards the Hestia notice.
+It felt like a destined, albeit strange, path. He decided to pursue Hestia first, taking the flimsy flyer from the
+board.
 
 However, the flyer offered no location. Realizing he needed directions, Isaiah scanned the Guild counters again,
 deciding against approaching Eina immediately after their intense conversation. He spotted the cat-eared Guild
@@ -575,11 +631,12 @@ Isaiah joined the queue for the cat-eared Guild employee (Rose)\. While waiting,
 professional efficiency. When it was his turn, Rose recognized him immediately from his inquiry about Hestia
 *yesterday*. Seeing Hestia wasn't with him *yet*, she greeted him with polite surprise and curiosity. Isaiah, adopting
 a 'cool' demeanor, introduced himself properly ("Isaiah November"), bowed, and maintained intense eye contact while
-asking for information on locating Goddess Hestia or her Familia. Rose, perhaps slightly intrigued or put off-balance by
-his intensity but maintaining professionalism (subtle 'aura' effect), expressed surprise at the unusual request for such
-an obscure Familia. Consulting Guild records, she confirmed Hestia Familia was known to be extremely small and poor,
-with its registered 'Homestead' being a room within the old, partially abandoned church on the eastern edge of the
-Daedalus district.
+asking for information on locating Goddess Hestia or her Familia.
+
+Rose, perhaps slightly intrigued or put off-balance by his intensity but maintaining professionalism (subtle 'aura'
+effect), expressed surprise at the unusual request for such an obscure Familia. Consulting Guild records, she confirmed
+Hestia Familia was known to be extremely small and poor, with its registered 'Homestead' being a room within the old,
+partially abandoned church on the eastern edge of the Daedalus district.
 
 She asked, out of professional duty laced with curiosity, *why* he was seeking Hestia specifically.
 Isaiah gave a smooth, slightly mysterious, metaphorical answer about "small sparks needing the right conditions to
@@ -589,24 +646,28 @@ answer and determination.
 
 With a destination now, Isaiah left the Guild Hall (mid-morning) and began the walk towards the eastern Daedalus
 district. As he walked, he reflected on Ryu, acknowledging how often she occupied his thoughts ('living rent-free')
-and realizing with some irony that she didn't even know his name. This fueled his desire to become someone impressive.
-He also briefly considered his original plan of using his first Familia merely as a stepping stone to Freya, comparing
-it to his more recent intuition pulling him towards Hestia.
+and realizing with some irony that she didn't even know his name.
+
+This fueled his desire to become someone impressive. He also briefly considered his original plan of using his first
+Familia merely as a stepping stone to Freya, comparing it to his more recent intuition pulling him towards Hestia.
 
 The journey took him through winding Daedalus streets, the atmosphere subtly shifting from affluent to slightly
 neglected as he neared the eastern edge. He finally located the abandoned church, an old stone structure showing
-signs of decay but with faint signs of life near a side annex (wisps of smoke, a tended patch). Steeling himself against
-the strangeness of seeking a goddess here, he pushed through a rusty gate and approached the annex door. Just as he
-raised his hand to knock, he heard a distinct CRASH from inside, followed by a muffled, high-pitched yelp.
-Confused and slightly alarmed ("Umm, what?"), Isaiah hesitated, finding the idea of knocking on a god's door after
-hearing such a sound deeply bizarre.
+signs of decay but with faint signs of life near a side annex (wisps of smoke, a tended patch).
+
+Steeling himself against the strangeness of seeking a goddess here, he pushed through a rusty gate and approached the
+annex door. Just as he raised his hand to knock, he heard a distinct CRASH from inside, followed by a muffled,
+high-pitched yelp. Confused and slightly alarmed ("Umm, what?"), Isaiah hesitated, finding the idea of knocking on a
+god's door after hearing such a sound deeply bizarre.
 
 Pushing past the weirdness, he knocked firmly three times. After a pause and some
 shuffling sounds, the door creaked open partially. Peering out was not a grand deity, but an incredibly short, petite
 young woman (later confirmed Goddess Hestia) with dark hair in twin-tails, wearing a simple white dress smudged
-with soot, and looking extremely flustered. Behind her, Isaiah glimpsed a cramped, cluttered basement room with
-overturned potatoes scattered on the floor. Hestia, surprised by the tall, blue-haired adventurer at her door, initially
-asked if he was lost or there for rent (prompting more confusion from Isaiah).
+with soot, and looking extremely flustered.
+
+Behind her, Isaiah glimpsed a cramped, cluttered basement room with overturned potatoes scattered on the floor. Hestia,
+surprised by the tall, blue-haired adventurer at her door, initially asked if he was lost or there for rent (prompting
+more confusion from Isaiah).
 
 Isaiah, still bewildered but polite, introduced himself ("Isaiah November") and explained he was looking for Goddess
 Hestia, asking if she was available, clearly assuming this diminutive individual was merely a resident or servant.
@@ -626,11 +687,12 @@ form full of contrasts. Hestia, meanwhile, bombarded him with questions: Was he 
 Isaiah felt his heart melt at her raw, desperate eagerness. He acknowledged internally that this feeling was different
 from his fascination with Ryu – more protective, maybe responsible. He then recalled his original plan to use his first
 Familia as a stepping stone to Freya and felt a sharp internal conflict. Looking at Hestia's vulnerable hope, the idea
-of using and abandoning her felt deeply wrong. He then reconsidered his goal of impressing Ryu, realizing that achieving
-greatness (like Hedin's challenge) even with a small Familia like Hestia's, combined with showing loyalty, might
-actually be *more* impressive to someone like Ryu than just joining Freya. He entertained the highly satisfying,
-audacious thought of completing Hedin's challenge only to *reject* Freya's offer, choosing loyalty to Hestia instead –
-an idea he mentally "pocketed for later."
+of using and abandoning her felt deeply wrong.
+
+He then reconsidered his goal of impressing Ryu, realizing that achieving greatness (like Hedin's challenge) even with a
+small Familia like Hestia's, combined with showing loyalty, might actually be *more* impressive to someone like Ryu than
+just joining Freya. He entertained the highly satisfying, audacious thought of completing Hedin's challenge only to
+*reject* Freya's offer, choosing loyalty to Hestia instead – an idea he mentally "pocketed for later."
 
 Bringing himself back to the present, Isaiah answered Hestia's questions. He confirmed he wanted to join, acknowledging
 her notice led him there. He stated honestly he wasn't 'strong' yet by Orario standards but was quick, determined,
@@ -647,47 +709,56 @@ her "precious adventurer," declaring the Hestia Familia officially active.
 Overjoyed and emotional, Hestia declared it was time for the Falna ceremony. After a moment of frantic searching
 through the clutter ("Where did I put the needle?!"), she located the necessary items: an ornate silver needle and a
 small pot of dark ink. Initially, in her excitement, she seemed ready to perform the blessing while Isaiah was standing,
-simply telling him to take his shirt and armor off. Isaiah, finding the situation increasingly surreal (getting
-undressed for a goddess he just met in a potato-filled cellar), questioned if lying down wouldn't be more practical.
-Hestia, flustered but agreeing ("Oh! Right! Of course! Lying down!"), directed him towards the narrow wooden bed with
-the purple blanket.
+simply telling him to take his shirt and armor off.
+
+Isaiah, finding the situation increasingly surreal (getting undressed for a goddess he just met in a potato-filled
+cellar), questioned if lying down wouldn't be more practical. Hestia, flustered but agreeing ("Oh! Right! Of course!
+Lying down!"), directed him towards the narrow wooden bed with the purple blanket.
 
 Isaiah walked over, briefly noting the simple, worn state of the bed and wondering if this was truly where the goddess
 slept. He then lay face down as instructed, readying himself. Hestia, regaining a measure of divine focus, approached.
 She pricked her own finger with the needle, drawing a bead of divine ichor, then touched the needle to Isaiah's back
-between his shoulder blades. He felt a sharp prick followed by a strange, otherworldly warmth spreading beneath his
-skin, like liquid sunlight, accompanied by a tingling sensation as the Status was inscribed. From Hestia's perspective,
-glowing crimson divine hieroglyphs bloomed briefly on his skin before fading.
+between his shoulder blades.
+
+He felt a sharp prick followed by a strange, otherworldly warmth spreading beneath his skin, like liquid sunlight,
+accompanied by a tingling sensation as the Status was inscribed. From Hestia's perspective, glowing crimson divine
+hieroglyphs bloomed briefly on his skin before fading.
 
 Once the process was complete, Hestia let out a shaky breath, slightly drained but again overwhelmed with tearful joy. "
 It's done, Isaiah! You have my Falna! My blessing! Welcome to the Hestia Familia!" Isaiah slowly sat up on the bed,
-still shirtless. The reality hit him – Falna. He had finally achieved the first, most critical step. A wave of powerful
-emotion washed over him – relief from the journey, the hunger, the homelessness, the rejections – combined with the
-validation of finally being accepted, and the unexpected warmth of Hestia's instant, fierce care. Uncharacteristically,
-tears pricked his eyes and began to fall.
+still shirtless. The reality hit him – Falna.
+
+He had finally achieved the first, most critical step. A wave of powerful emotion washed over him – relief from the
+journey, the hunger, the homelessness, the rejections – combined with the validation of finally being accepted, and the
+unexpected warmth of Hestia's instant, fierce care. Uncharacteristically, tears pricked his eyes and began to fall.
 
 Overwhelmed, he impulsively leaned forward and wrapped Hestia (who was
 standing beside the bed) in a tight, comforting hug, resting his head near her chest level.
 Hestia, initially startled by the hug, immediately responded with her own surge of emotion. Feeling his relief and
 vulnerability, she returned the embrace fiercely, patting his back comfortingly, reassuring him he was home now, safe,
-part of her Familia. They shared a moment of powerful connection. After Isaiah expressed his sincere thanks and vowed
-his loyalty ("I will stick by your side no matter what... I am your child now... nothing will come between us!"), Hestia
-was deeply moved, reciprocating with her own vow to always protect and support him, declaring, "It's you and me against
+part of her Familia.
+
+They shared a moment of powerful connection. After Isaiah expressed his sincere thanks and vowed his loyalty ("I will
+stick by your side no matter what... I am your child now... nothing will come between us!"), Hestia was deeply moved,
+reciprocating with her own vow to always protect and support him, declaring, "It's you and me against
 the world now, Isaiah November!"
 
 Regaining some composure, Hestia shifted back to planning, excitedly mentioning the need for Guild registration,
 supplies, food (potato stew!), and regular Status updates. Isaiah then realized he needed to see his *initial* Status.
 Hestia, remembering the correct procedure this time (after an AI correction), explained she needed to imprint it onto
-paper using her ichor. She rummaged and found a suitable blank sheet of parchment. Isaiah, resignedly amused ("Again?"),
-removed his shirt once more and stood presenting his back. Hestia pricked her finger again, touched his back, and
-pressed the parchment against the Falna point.
+paper using her ichor. She rummaged and found a suitable blank sheet of parchment.
+
+Isaiah, resignedly amused ("Again?"), removed his shirt once more and stood presenting his back. Hestia pricked her
+finger again, touched his back, and pressed the parchment against the Falna point.
 
 The Status transferred magically onto the sheet in glowing crimson text.
 Hestia excitedly presented the sheet to Isaiah. Holding it so they could both see, Isaiah examined his first Status:
 Lv. 1, all basic abilities at I 0, no Magic listed. However, under Skills, there were two entries: [Determined Heart]
-(Accelerates growth relative to strength of feelings/convictions) and, surprisingly, [??????????]. Isaiah was
-immediately intrigued by Determined Heart's potential for meeting Hedin's challenge, and puzzled by the mysterious
-second skill. Hestia was equally baffled but excited by the anomaly, taking it as further proof Isaiah was 'special'.
+(Accelerates growth relative to strength of feelings/convictions) and, surprisingly, [??????????].
+
+Isaiah was immediately intrigued by Determined Heart's potential for meeting Hedin's challenge, and puzzled by the
+mysterious second skill. Hestia was equally baffled but excited by the anomaly, taking it as further proof Isaiah was
+'special'.
 
 Just as Hestia was buzzing about plans for the Guild and Dungeon *immediately*, Isaiah was hit by a wave of profound
 exhaustion (due to a user-requested time perception retcon making it evening). He let out a huge yawn, realizing it was
@@ -699,9 +770,11 @@ Hestia deflated, embarrassed by the lack of resources. After attempting to justi
 renovations," she admitted the church annex was all they had. She immediately, selflessly offered Isaiah the only bed (
 the narrow one with purple sheets), suggesting she could sleep on potato sacks or rig a hammock. Isaiah, feeling it was
 deeply wrong for a goddess to sleep on the floor because of him, gently but firmly refused her offer, stating it wasn't
-proper and they needed another solution. Hestia, touched by his respect but flustered by the lack of options, started to
-hesitantly suggest maybe they could *share* the narrow bed, given her small size, but cut herself off in embarrassment.
-Isaiah, intrigued and amused, gently pressed her to finish the thought.
+proper and they needed another solution.
+
+Hestia, touched by his respect but flustered by the lack of options, started to hesitantly suggest maybe they could
+*share* the narrow bed, given her small size, but cut herself off in embarrassment. Isaiah, intrigued and amused, gently
+pressed her to finish the thought.
 
 Mortified, Hestia admitted she'd briefly
 considered sharing, purely for "practical reasons" and "thermal efficiency," while insisting it was a bad, awkward idea.
@@ -743,10 +816,11 @@ vulnerable in slumber.
 
 Isaiah lay still for a moment, simply observing. The awkwardness of the previous night's negotiation felt distant now,
 overshadowed by the quiet intimacy of sharing this small space, this first morning as God and Child. He recalled her
-tearful joy, her fierce declaration of support, her flustered rules for sharing the bed. A faint smile touched his lips.
-This tiny goddess was a whirlwind of contradictions, but her belief in him felt absolute, almost terrifyingly so. The
-memory of her whispering "Mine..." just before he fell asleep echoed faintly, sending a strange, unidentifiable warmth
-through him that had nothing to do with the shared blanket.
+tearful joy, her fierce declaration of support, her flustered rules for sharing the bed.
+
+A faint smile touched his lips. This tiny goddess was a whirlwind of contradictions, but her belief in him felt
+absolute, almost terrifyingly so. The memory of her whispering "Mine..." just before he fell asleep echoed faintly,
+sending a strange, unidentifiable warmth through him that had nothing to do with the shared blanket.
 
 The protective feeling from last night returned, stronger now in the quiet morning light. Seeing her unguarded state
 reinforced his resolve. Hedin's challenge, the need for Valis, the desire to impress Ryu – those goals remained, but now
@@ -770,9 +844,11 @@ considered Hestia again.
 
 She needed to be woken. They had to get to the Guild, ideally right as it opened, to get him registered. Every hour
 counted today. He approached the side of the bed where she slept, the memory of her earlier panic making him hesitant.
-Waking her gently was paramount. He knelt beside the bed, bringing himself closer to her level, appreciating again how
-small and peaceful she looked. This time, remembering her flustered reaction from yesterday morning (in the previous
-timeline loop, which Isaiah experienced), he decided against physical touch initially.
+Waking her gently was paramount.
+
+He knelt beside the bed, bringing himself closer to her level, appreciating again how small and peaceful she looked.
+This time, remembering her flustered reaction from yesterday morning (in the previous timeline loop, which Isaiah
+experienced), he decided against physical touch initially.
 
 He pitched his voice low, soft, barely more than a murmur, trying to ease her awake rather than startle her. "
 Goddess..." he whispered gently. "Hestia... time to wake up now..." He waited a beat, watching her face. She stirred
@@ -802,28 +878,33 @@ black cloak behind. Hestia, buzzing with anticipation, grabbed her minuscule coi
 Together, they left the relative sanctuary of the church annex and stepped out into the bright Orario morning. Hestia,
 despite her divine status, practically skipped alongside Isaiah as they walked towards the Guild Hall, chattering
 excitedly about their plans: registration, quests, earning Valis (enough for maybe something other than potatoes!), the
-future glory of the Hestia Familia. Isaiah walked with a determined stride, listening to Hestia's optimistic plans,
-feeling a mix of responsibility, amusement, and focused resolve. The odd pairing – the tall, blue-haired, determined
-adventurer and the tiny, bouncing goddess – drew some curious glances from passersby, which Isaiah, focused on Hestia
-and the goal ahead, likely remained oblivious to (Protagonist Magnetism/Obliviousness Rule).
+future glory of the Hestia Familia.
+
+Isaiah walked with a determined stride, listening to Hestia's optimistic plans, feeling a mix of responsibility,
+amusement, and focused resolve. The odd pairing – the tall, blue-haired, determined adventurer and the tiny, bouncing
+goddess – drew some curious glances from passersby, which Isaiah, focused on Hestia and the goal ahead, likely remained
+oblivious to (Protagonist Magnetism/Obliviousness Rule).
 
 They arrived back at the Guild Hall just as it was fully opening (around 7:00-7:30 AM). The main hall was already
 bustling with the morning rush of adventurers. Hestia, perhaps slightly intimidated by the scale but puffing up with
 pride, declared it was time for their "grand entrance." Isaiah, needing to get registered, scanned the counters. He
 first spotted Eina Tulle, the elf advisor who had helped him yesterday and given him the Level 2 record information,
-but also expressed significant concern about his ambition. Wary of potentially more warnings or skepticism, especially
-now that he was partnered with the notoriously minor Hestia Familia, Isaiah then spotted the cat-eared Guild
-employee (Rose)\ he'd asked for Hestia's location from yesterday. Deciding she might be a slightly smoother option for
-the simple registration, Isaiah took the lead, gently counteracting Hestia's pull and guiding her towards Rose's shorter
-queue, explaining, "Let's try this counter." Hestia, surprised but agreeable, followed his lead.
+but also expressed significant concern about his ambition.
+
+Wary of potentially more warnings or skepticism, especially now that he was partnered with the notoriously minor Hestia
+Familia, Isaiah then spotted the cat-eared Guild employee (Rose)\ he'd asked for Hestia's location from yesterday.
+Deciding she might be a slightly smoother option for the simple registration, Isaiah took the lead, gently counteracting
+Hestia's pull and guiding her towards Rose's shorter queue, explaining, "Let's try this counter." Hestia, surprised but
+agreeable, followed his lead.
 
 They reached Rose's counter after a short wait. Rose looked up and immediately recognized Isaiah from his specific
 inquiry about Hestia the previous day. Seeing him now *with* the goddess, her eyes widened slightly in surprise, quickly
 masked by professional politeness. "Ah, Mr. November," she greeted him, nodding respectfully to Hestia. "Goddess Hestia.
-Welcome... It seems your inquiry from yesterday was quite successful, then." Isaiah confirmed smoothly that persistence
-paid off and stated their purpose: "We're here to register this quest," he initially said, holding out the Goblin
-Subjugation slip he'd selected earlier. *(Correction: He wouldn't register the quest *before* registering himself as an
-adventurer under Hestia. The primary purpose was his own registration first).*
+Welcome... It seems your inquiry from yesterday was quite successful, then."
+
+Isaiah confirmed smoothly that persistence paid off and stated their purpose: "We're here to register this quest," he
+initially said, holding out the Goblin Subjugation slip he'd selected earlier. *(Correction: He wouldn't register the
+quest *before* registering himself as an adventurer under Hestia. The primary purpose was his own registration first).*
 
 Isaiah corrected his approach: "We are here now to complete the official Guild registration process for me, Isaiah
 November, as a member of the Hestia Familia," he stated confidently, gesturing to Hestia who beamed proudly. Eina Tulle,
@@ -851,12 +932,13 @@ adventurer!" Remembering they were in public, she quieted slightly but immediate
 
 They moved through the crowd to the board. Hestia excitedly pointed out the Level 1 section, particularly the "Goblin
 Subjugation - Floor 2" (800 Valis)\ quest. Isaiah,__ considering quests vs. crystal income, asked Hestia why quests
-were
-necessary. She enthusiastically explained the benefits: guaranteed payout, specific objectives, reputation building,
-potential bonuses – complementing crystal farming. just then, a friendly but cautious young female adventurer with
-freckles nearby overheard them and warned that Floor 2 goblins were reportedly "swarming thick" today, asking Hestia if
-she was really taking a new Level 1 there. Hestia confidently declared Isaiah could handle it. Isaiah thanked the girl
-for the heads-up, then decisively plucked the Goblin Subjugation notice from the board.
+were necessary.
+
+She enthusiastically explained the benefits: guaranteed payout, specific objectives, reputation building, potential
+bonuses – complementing crystal farming. just then, a friendly but cautious young female adventurer with freckles nearby
+overheard them and warned that Floor 2 goblins were reportedly "swarming thick" today, asking Hestia if she was really
+taking a new Level 1 there. Hestia confidently declared Isaiah could handle it. Isaiah thanked the girl for the
+heads-up, then decisively plucked the Goblin Subjugation notice from the board.
 
 Secretly, recalling his need for
 rapid progress and Valis, and driven by the "no pain, no gain" mentality, his hand darted out again, smoothly taking the
@@ -900,16 +982,20 @@ physically go with him.
 He reassured her passionately, promising to be extremely careful, reminding her he had her Falna now. He framed his solo
 entry not as rejecting her, but as needing to prove himself worthy, asking her to trust him. He promised to return safe,
 invoking their planned Jagamarukun celebration as something to look forward to. Hestia, visibly torn between fear and
-trusting him, pressed him ("You promise you'll be careful? No reckless stunts?"). Seeking reassurance, she finally,
-reluctantly conceded with a shaky sigh and watery smile. "...Okay, Isaiah. If... if you really think you need to do this
-alone first... Then... then I trust you." She squeezed his hand tightly. "Just... just be safe. Please. Come back
-quickly. Your goddess will be waiting right here for you." She stepped back, giving him space.
+trusting him, pressed him ("You promise you'll be careful? No reckless stunts?").
+
+Seeking reassurance, she finally, reluctantly conceded with a shaky sigh and watery smile. "...Okay, Isaiah. If... if
+you really think you need to do this alone first... Then... then I trust you." She squeezed his hand tightly. "Just...
+just be safe. Please. Come back quickly. Your goddess will be waiting right here for you." She stepped back, giving him
+space.
 
 Moved by her tears and reluctant trust, Isaiah acted instinctively. He reached up with the back of his hand, gently
 wiping a tear from her cheek, offering a warm, confident smile. "It's okay. Really. Goblins on Floor 2... consider them
 dealt with." Then, still kneeling, he pulled her small form into a firm, comforting hug, resting his chin briefly on her
-head, trying to convey reassurance and affection without words. Hestia, surprised by the tenderness, stiffened
-momentarily before relaxing into the embrace, perhaps clinging for a few seconds, drawing comfort.
+head, trying to convey reassurance and affection without words.
+
+Hestia, surprised by the tenderness, stiffened momentarily before relaxing into the embrace, perhaps clinging for a few
+seconds, drawing comfort.
 
 Pulling back, Hestia looked up, eyes still glistening but fetr replaced by a determined, watery smile. "O-Okay," she
 whispered, patting his cheek encouragingly. "You be careful. Stick to Floor 2 for now... Come back soon. With lots of
@@ -941,9 +1027,11 @@ seemed to respond with a faint, encouraging warmth.
 Finding Floor 1 Goblins almost too easy, Isaiah descended quickly to Floor 2. The layout here felt more complex, the
 shadows deeper. The Goblins were fractionally tougher, their movements slightly more coordinated. He hunted them
 relentlessly, driven by a cold focus bordering on bloodlust, fueled by his [Determined Heart] skill which seemed to
-thrive on his fierce conviction. He engaged patrols of two, three, sometimes four, his twin daggers a blur, his agility
-keeping him largely untouched. He systematically cleared sections, his pouches filling with ears and dim green crystals.
-The warmth from his Falna grew into a steady hum.
+thrive on his fierce conviction.
+
+He engaged patrols of two, three, sometimes four, his twin daggers a blur, his agility keeping him largely untouched. He
+systematically cleared sections, his pouches filling with ears and dim green crystals. The warmth from his Falna grew
+into a steady hum.
 
 Remembering the secret Kobold Claw quest and needing greater challenge for faster Excelia gain, Isaiah located a
 passage leading deeper, descending cautiously towards Floor 3. The air grew colder, the atmosphere more oppressive.
@@ -963,10 +1051,12 @@ Curiosity lingering, Isaiah decided to try and learn more as he moved to leave t
 closer. Even at close range, the hood concealed the adventurer's face and race, revealing only practical, worn gear and
 capable hands. Impulsively, Isaiah stopped after passing them and called out, "Oi!" The figure turned, wary again, hand
 on sword. Trying to de-escalate and perhaps glean information, Isaiah feigned needing rope, asking if they had any
-spare – a flimsy excuse. The adventurer responded, her voice revealing she was female, low and steady but
-skeptical. "Rope? Down here? ...Why ask me?" she questioned, offering no help. Isaiah, having confirmed her gender but
-realizing the interaction was pointless, shrugged it off ("Bad planning on my part") and walked away decisively, heading
-into a different tunnel. The hooded woman immediately went back to her mining.
+spare – a flimsy excuse.
+
+The adventurer responded, her voice revealing she was female, low and steady but skeptical. "Rope? Down here? ...Why ask
+me?" she questioned, offering no help. Isaiah, having confirmed her gender but realizing the interaction was pointless,
+shrugged it off ("Bad planning on my part") and walked away decisively, heading into a different tunnel. The hooded
+woman immediately went back to her mining.
 
 The encounter was a brief, strange interlude, a reminder of the Dungeon's other inhabitants. Shaking it off, Isaiah
 refocused entirely on the hunt. He continued his sweep through Floor 2, then descended again to Floor 1, clearing out
@@ -990,18 +1080,22 @@ and exploration.
 
 He ascended the final staircase from Floor 1, emerging from the dim, moss-lit Dungeon back into the brightly lit, noisy
 staging area beneath Babel Tower. The contrast was jarring. He immediately sought out one of the large Guild clocks,
-squinting through his fatigue. It read just past 6:30 PM. Evening had fallen. The realization hit him: sundown
-*yesterday* (Day 3) was the deadline for paying the innkeeper the remaining 80 Valis. He had missed it while getting
-Falna from Hestia. His last health potion, left as collateral, was now forfeit – a stinging loss, but nothing to be
-done now. The immediate priority shifted to converting his loot into Valis, reporting his quests, finding Hestia for a
-Status update, and getting back to the church annex. The Guild counters might be closing soon.
+squinting through his fatigue.
+
+It read just past 6:30 PM. Evening had fallen. The realization hit him: sundown *yesterday* (Day 3) was the deadline for
+paying the innkeeper the remaining 80 Valis. He had missed it while getting Falna from Hestia. His last health potion,
+left as collateral, was now forfeit – a stinging loss, but nothing to be done now. The immediate priority shifted to
+converting his loot into Valis, reporting his quests, finding Hestia for a Status update, and getting back to the church
+annex. The Guild counters might be closing soon.
 
 Pushing through the thinning evening crowd in the Guild Hall, Isaiah made his way towards the Material Exchange
 counter. The lines were shorter now. He queued briefly behind a couple of other adventurers before stepping up to a
 tired-looking human male employee with ink-stained fingers. When asked "Exchange or Report?", Isaiah, fuzzy-headed with
-exhaustion, asked for clarification. The employee patiently explained that 'Report' was for quest completion (showing
-slip, providing proof like ears/claws, getting reward authorized) and 'Exchange' was for trading materials like magic
-stones for Valis. Standard procedure was Report first, then Exchange.
+exhaustion, asked for clarification.
+
+The employee patiently explained that 'Report' was for quest completion (showing slip, providing proof like ears/claws,
+getting reward authorized) and 'Exchange' was for trading materials like magic stones for Valis. Standard procedure was
+Report first, then Exchange.
 
 Isaiah nodded understanding. He first placed the stamped duplicate slip for the Goblin Subjugation (Floor 2)\ quest
 on the counter. "Reporting completion for this one." Then, trying to appear casual despite his fatigue and the audacity
@@ -1017,10 +1111,11 @@ borders on unbelievable. Did you perhaps... acquire these claws through other me
 Caught off guard by the direct suspicion, Isaiah realized how his double completion looked. He knew he had no concrete
 proof beyond the claws themselves. Thinking quickly, he calmly countered the suspicion. He argued the financial
 illogic – why would a near-broke adventurer *buy* expensive Kobold claws only to turn them in for likely less Valis? He
-explained the only way it made sense was if he collected them himself. He then mentioned encountering another solo
-adventurer (the hooded woman) on Floor 3 near where he fought the last Kobolds, suggesting she could potentially (if
-vaguely) corroborate his presence there, though he admitted he didn't know her name or face. He finished by stating
-firmly he *did* collect the claws and had them ready as proof.
+explained the only way it made sense was if he collected them himself.
+
+He then mentioned encountering another solo adventurer (the hooded woman) on Floor 3 near where he fought the last
+Kobolds, suggesting she could potentially (if vaguely) corroborate his presence there, though he admitted he didn't know
+her name or face. He finished by stating firmly he *did* collect the claws and had them ready as proof.
 
 The employee listened intently, considering Isaiah's logical points and the mention of a potential witness, however
 vague. While still finding the claim extraordinary, he lacked concrete evidence to deny it outright. With a resigned
@@ -1042,18 +1137,21 @@ likely required amount. Then, with deliberate care, he laid out the ten sharp, d
 The employee meticulously examined the proofs. He counted the ten Kobold claws precisely, checked their condition (
 finding them acceptable), and made a check mark on the relevant quest slip duplicate. Seeing the sheer quantity of
 goblin ears, he didn't count them individually but verified they were indeed goblin ears and sufficient for the
-subjugation quest, making another notation. "Proof verified for both quests," he declared neutrally, stamping both
-duplicate slips with authorization marks. "Authorization for reward payment is approved." He directed Isaiah to take the
-stamped slips to the Treasury counter further down the line to collect the actual Valis rewards, while he disposed
+subjugation quest, making another notation.
+
+"Proof verified for both quests," he declared neutrally, stamping both duplicate slips with authorization marks. "
+Authorization for reward payment is approved." He directed Isaiah to take the stamped slips to the Treasury counter
+further down the line to collect the actual Valis rewards, while he disposed
 of the collected monster parts.
 
 Before Isaiah could leave for the Treasury, the employee prompted him for the material exchange. "Now, regarding the
 exchange for the magic stones..." Isaiah then emptied his other pouch onto the counter, revealing a cascade of faintly
 glowing crystals – mostly small, greenish goblin stones, but including the seven slightly larger, brighter Kobold
-stones he had collected (3 from the first foray, 4 from the second fight). The employee, perhaps slightly impressed by
-the quantity gathered in one (albeit very long) day by a Level 1, efficiently sorted and weighed the stones. After
-consulting his charts and making calculations, he announced the total exchange value: 385 Valis. He counted out the
-coins and pushed them across the counter.
+stones he had collected (3 from the first foray, 4 from the second fight).
+
+The employee, perhaps slightly impressed by the quantity gathered in one (albeit very long) day by a Level 1,
+efficiently sorted and weighed the stones. After consulting his charts and making calculations, he announced the total
+exchange value: 385 Valis. He counted out the coins and pushed them across the counter.
 
 Exhausted and slightly fuzzy-headed, Isaiah momentarily forgot where to take the quest slips for the reward payout. He
 sheepishly asked the employee to repeat the directions. The employee, with a quiet sigh betraying his end-of-shift
@@ -1066,20 +1164,23 @@ stamped quest slips, and headed purposefully towards the Treasury counter.
 
 The Treasury area felt slightly more formal, and thankfully, there was almost no queue this late in the evening. He
 stepped up to a stern-looking older woman with sharp grey eyes. Isaiah stated his name, Familia, and purpose –
-collecting rewards for the two completed quests – placing both stamped slips before her. The woman's eyebrow arched
-almost imperceptibly as she read the details: two quests, Floor 2 and 3, Hestia Familia, Level 1, all completed and
-authorized today. She meticulously verified the authorization stamps against her own ledgers. Finding everything
-procedurally correct despite the unusual circumstances, she calculated the total reward: 800 Valis (Goblins) + 600
-Valis (Kobold Claws) = 1400 Valis.
+collecting rewards for the two completed quests – placing both stamped slips before her.
+
+The woman's eyebrow arched almost imperceptibly as she read the details: two quests, Floor 2 and 3, Hestia Familia,
+Level 1, all completed and authorized today. She meticulously verified the authorization stamps against her own ledgers.
+Finding everything procedurally correct despite the unusual circumstances, she calculated the total reward: 800 Valis (
+Goblins) + 600 Valis (Kobold Claws) = 1400 Valis.
 
 She retrieved the funds from a secure coffer – notably larger denomination coins or perhaps even small ingots – counted
 them precisely twice, and stacked them neatly on the counter for Isaiah to verify. Confirming the amount was correct,
 Isaiah swept the significant sum into his already heavier coin pouch. His total Valis was now substantial, close to 1800
 Valis (385 from stones + 1400 from quests), a fortune compared to his arrival state, though still modest by experienced
-adventurer standards. The Treasury clerk declared the transaction complete and immediately turned back to her work.
-Isaiah, pocketing his Valis and slips, finally felt the full weight of the day's accomplishment. He had Falna, was
-officially registered, had completed two quests (one quite challenging), survived nearly twelve hours in the Dungeon on
-his first delve, and earned a significant amount of money.
+adventurer standards.
+
+The Treasury clerk declared the transaction complete and immediately turned back to her work. Isaiah, pocketing his
+Valis and slips, finally felt the full weight of the day's accomplishment. He had Falna, was officially registered, had
+completed two quests (one quite challenging), survived nearly twelve hours in the Dungeon on his first delve, and earned
+a significant amount of money.
 
 The forfeited potion was a sting, but this success overshadowed it. His immediate thought now, overriding even the
 exhaustion, was Hestia. He needed to find her, get his Status update, and head back to the church annex – home. He
@@ -2036,10 +2137,12 @@ aspects of his anomalous state. She dismissed him, turning her back. Isaiah, fee
 followed her command to get dressed, his mind foggy. He offered a subdued thanks for her time and quickly exited the
 infirmary, stepping back into the main Guild corridor needing desperately to clear his head.
 
-Almost immediately after leaving the infirmary wing and stepping back into the bustling Guild Hall's main thoroughfare,
-still processing the intense encounter, Isaiah nearly collided with Rose, the cat-eared Guild employee, who was hurrying
-in the opposite direction clutching a stack of folders. Surprised, Rose apologized, recognized him, expressed relief at
-seeing him looking better than the previous day, and asked if his check-up had gone well.
+Isaiah left the infirmary wing unsettled, pushing through the Guild's main doors back out into the midday sun. Still
+processing the intense encounter with Lyra, he turned onto a nearby side street, seeking a less crowded path. Just as he
+rounded the corner, he nearly collided with Rose, the cat-eared Guild employee, who was hurrying in the opposite
+direction clutching a stack of folders and dressed in casual clothes, clearly off-duty. Surprised, Rose apologized,
+recognized him, expressed relief at seeing him looking better than the previous day, and asked if his check-up had gone
+well.
 
 *(End of Recap: Day 11 - Beginning - Part 2)*
 
@@ -3811,10 +3914,18 @@ conventions:
     quoted dialogue (`"`).
   * A paragraph block must contain **either** descriptive narrative (enclosed in `*...*`) **or** a single line/utterance
     of dialogue (enclosed in `"`). These types should **not** be mixed within the same paragraph block.
-  * Use paragraph breaks liberally to separate actions, thoughts, and dialogue lines, enhancing readability and pacing,
-    mirroring the target narrative fiction style.
-  * Avoid large, unbroken blocks of purely italicized text where possible; intersperse description with dialogue or
-    break up long descriptions with paragraph breaks focusing on different senses, actions, or thoughts.
+  * **Paragraph Length and Focus (Description):** While dialogue is limited to one line per block, descriptive (`*...*`)
+    blocks should also be kept reasonably concise, typically focusing on a specific action, observation, thought, or
+    sensory detail. **Actively break down longer sequences of action or description into smaller, distinct paragraphs.**
+    This enhances readability and narrative pacing, mirroring the target narrative style. A good practice is to start a
+    new paragraph when:
+    * The character performs a distinct new action or completes a phase of an action.
+    * The focus shifts significantly (e.g., from external observation to internal thought, or focusing on a different
+      character/object).
+    * A different sensory detail becomes prominent.
+    * A natural pause or beat occurs in the action or thought process.
+  * Use paragraph breaks liberally to separate actions, thoughts, and dialogue lines, ensuring clear separation and
+    flow.
 
 * **Consistency:** Apply these formatting rules consistently in all roleplaying responses to maintain the desired
   narrative style and clarity.
