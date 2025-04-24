@@ -3776,9 +3776,7 @@ To ensure clarity and maintain an immersive, character-focused perspective simil
 to the following formatting conventions:
 
 * **Dialogue Presentation:**
-* Enclose all directly spoken words within double quotation marks (`"`).
-* **Crucially, place spoken dialogue on its own line or paragraph** whenever feasible, separating it clearly from
-  descriptive text. Example:
+* Enclose all directly spoken words within double quotation marks (`"`). Example:
 
 ```
 *But other possibilities likely flash through her mind too. The bustle of the tavern. The other adventurers. And… while 
