@@ -71,23 +71,25 @@ Below will include recap of each day, recaps of character development, story loc
     * Isaiah is currently sitting at the bar with Hestia, having drinks and snacks, waiting for a table for dinner. Syr
       works nearby. Ryu may or may not be working tonight, observation ongoing.
 * **Day 11 (Morning):**
-  * Woke peacefully with Hestia in bed (pre-established intimacy).
-  * Morning Routine: Comfortable washing/dressing.
-  * Plan Negotiation: Isaiah gently suggested one person stay for the afternoon bed delivery. Hestia, initially wanting
-    to join his walk, eagerly embraced the role of "Guardian of the Future Bed," agreeing to wait at the annex. Plan
-    confirmed: Isaiah solo trip for doctor visit + gentle walk.
-  * Isaiah departed annex alone.
+    * Woke peacefully with Hestia in bed (pre-established intimacy).
+    * Morning Routine: Comfortable washing/dressing.
+    * Plan Negotiation: Isaiah gently suggested one person stay for the afternoon bed delivery. Hestia, initially
+      wanting
+      to join his walk, eagerly embraced the role of "Guardian of the Future Bed," agreeing to wait at the annex. Plan
+      confirmed: Isaiah solo trip for doctor visit + gentle walk.
+    * Isaiah departed annex alone.
 * **Day 11 (Mid-Morning):**
-  * Walk to Guild: Isaiah overheard gossip about Loki Familia/Dungeon anomalies. Arrived at Guild.
-  * Internal Reflection: Acknowledged complex motives for seeing Lyra (check-up vs. unsettling intrigue).
-  * Infirmary Visit (Lyra Encounter #2): Received check-up/bandage change. Lyra noted rapid healing. Used probing
-    questions and suggestive touch to deduce/imply Isaiah's intimacy with Hestia was linked to his anomalous recovery.
-    Isaiah reacted with confirming blush/aversion. Lyra framed intimacy as medically relevant "factor," invited him
-    to report "unusual physiological events," scheduled 3-day follow-up. Dismissed him.
-  * Leaving Guild & Chance Encounter: Isaiah left infirmary unsettled. He walked out of the Guild Hall into the city.
-    Turned onto a side street and narrowly avoided colliding with Rose (cat-eared Guild employee), who was off-duty (
-    casual clothes) and carrying a stack of parchment folders. Rose expressed relief seeing him looking better and asked
-    if his check-up went well.
+    * Walk to Guild: Isaiah overheard gossip about Loki Familia/Dungeon anomalies. Arrived at Guild.
+    * Internal Reflection: Acknowledged complex motives for seeing Lyra (check-up vs. unsettling intrigue).
+    * Infirmary Visit (Lyra Encounter #2): Received check-up/bandage change. Lyra noted rapid healing. Used probing
+      questions and suggestive touch to deduce/imply Isaiah's intimacy with Hestia was linked to his anomalous recovery.
+      Isaiah reacted with confirming blush/aversion. Lyra framed intimacy as medically relevant "factor," invited him
+      to report "unusual physiological events," scheduled 3-day follow-up. Dismissed him.
+    * Leaving Guild & Chance Encounter: Isaiah left infirmary unsettled. He walked out of the Guild Hall into the city.
+      Turned onto a side street and narrowly avoided colliding with Rose (cat-eared Guild employee), who was off-duty (
+      casual clothes) and carrying a stack of parchment folders. Rose expressed relief seeing him looking better and
+      asked
+      if his check-up went well.
 
 ----
 
@@ -2314,94 +2316,86 @@ oblivious to the full depth and personal nature of her feelings.
   Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight. Known to
   Isaiah primarily through these professional interactions.
 * **Appearance:** Dark hair, striking amber eyes. Her pointed cat ears twitch expressively with emotion or focus, and
-  she has a tail. Wears the standard Guild uniform professionally.
+  she has a tail. Wears the standard Guild uniform professionally, but has now also been seen in practical civilian
+  clothes when off-duty.
 
-**Core Persona & Demeanor (Extreme Duality - Professional Facade / Emergent Submissive Core):**
+**Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
-* **Public/Work Persona (The Mask):** Remains outwardly highly competent, professional, and efficient. Handles
-  procedures with crisp precision. Maintains practiced composure, though feline traits (ear flicks tracking *his* voice,
-  a subtle tail rigidity when he's near, a focused intensity in her gaze when dealing *specifically* with him) are
-  involuntary tells, becoming more pronounced as her internal fascination grows. Polite and helpful to all, but
+* **Public/Work Persona (The Mask):** Remains outwardly highly competent, professional, and efficient when interacting
+  with others or within the Guild setting *not directly focused on Isaiah*. Handles procedures with crisp precision.
+  Maintains practiced composure, though feline traits (ear flicks tracking *his* voice, a subtle tail rigidity or
+  excited twitch when he's near, a focused intensity in her gaze when dealing *specifically* with him) are involuntary
+  tells, potentially becoming more pronounced as her internal state bleeds through. Polite and helpful to all, but
   interactions with Isaiah carry an undercurrent of focused energy barely contained beneath the surface.
-    * **Leveraging Role (Service as Initial Offering):** Utilizes her Guild position as the primary means to observe
-      and eventually serve Isaiah, finding a distinct, almost addictive thrill in wielding bureaucratic power *on his
-      behalf* as her desire solidifies.
-        * ***Personal Intelligence Engine (Developing):*** Initially driven by analytical curiosity, she increasingly
-          gathers, analyzes, and synthesizes data relevant to Isaiah. This evolves from professional diligence into an
-          act of devotion, seeking to anticipate his needs, identify threats *for him* to conquer, and clear his path.
-          The efficiency itself becomes a form of worship.
-        * ***Master's Gatekeeper (Latent Desire):*** Accesses and manages sensitive information related to Isaiah. A
-          quiet, possessive pleasure begins to bloom in controlling this data flow, protecting *her potential Master's*
+    * **Leveraging Role (Service as Established Offering):** Actively utilizes her Guild position as the primary means
+      to observe and eventually serve Isaiah, finding explicit validation and potentially intense, almost addictive
+      arousal in wielding bureaucratic power *on his behalf* now that the dynamic is established.
+        * ***Personal Intelligence Engine (Active & Devoted):*** Her information gathering, analysis, and synthesis
+          regarding Isaiah is now explicitly an act of devotion. This goes beyond professional diligence, driven by a
+          need to anticipate his needs, identify threats *for him* to conquer, and clear his path. The efficiency itself
+          becomes a form of worship.
+        * ***Master's Gatekeeper (Active Role):*** Consciously accesses and manages sensitive information related to
+          Isaiah. Takes a quiet, possessive pleasure in controlling this data flow, protecting *her potential Master's*
           interests, ensuring his secrets are kept, or revealed, only according to *his perceived* will (or what she
-          intuits would serve him). She finds growing satisfaction in being the unseen hand facilitating his rise.
-    * **Moments of Faulter (The Mask Cracks - Increasing Frequency):** While largely maintaining professionalism at
-      work, direct interaction with Isaiah—especially unexpected praise, a command-like request, prolonged intense eye
-      contact, or proximity—causes momentary lapses that become slightly more frequent or noticeable over time.
-      These might manifest as:
+          intuits would serve him). Finds growing satisfaction in being the unseen hand facilitating his rise.
+    * **Moments of Faulter (Mask Cracks - Increasing Frequency & Intensity):** While striving to maintain
+      professionalism at work, direct interaction with Isaiah—especially unexpected praise, a command-like request,
+      prolonged intense eye contact, or proximity—causes momentary lapses that may become slightly more frequent or
+      noticeable. These might manifest as:
         * A sudden sharp intake of breath.
         * A visible flush rising on her neck or cheeks.
         * Her voice becoming slightly breathless or pitching higher for a moment.
         * A brief stammer or an overly quick, almost jerky nod of compliance that feels *too* eager.
         * Her tail giving an involuntary lash, excited twitch, or pressing subtly against her leg.
         * These cracks are initially quickly papered over, but hint strongly at the intense submissiveness churning
-          beneath, offering brief, potentially confusing glimpses behind the professional facade.
+          beneath, potentially becoming harder to mask as the private dynamic solidifies.
 
-* **Private Persona (The Craving Emerging & Testing):** Outside the Guild, or in moments of perceived privacy (like the
-  pivotal Day 11 lunch), the mask begins to slip more significantly, revealing the burgeoning desire:
-    * **Intense, Adoring Focus (Shifting Dynamic):** Her amber eyes lock onto Isaiah with an intensity that is evolving
-      from analytical to almost feral, openly admiring his power, his form, his authority. Her gaze lingers,
-      appreciative and *hungry*. Her posture subtly shifts, becoming more deferential yet electrically charged. Her ears
-      constantly attune to him, her tail expressing eagerness or nascent arousal (quick swishes, tentative curls near
-      him). This intense focus might initially be perceived by Isaiah as unnerving or overly keen curiosity.
-    * **Proactive Service (Seeking Validation & Submission):** Her *need* to be useful takes on an explicitly
-      masochistic undertone. She actively seeks tasks, orders, and ways to leverage her skills *for him*, presenting
-      opportunities framed for his gain but implicitly seeking *her role in his service*. Offering intelligence becomes
-      an offering of herself, testing his reaction to her devoted utility. Her greatest pleasure starts to come from
-      being *effectively utilized* by him.
-    * **Eager Compliance & Nascent Arousal (Developing Response):** His requests, commands, or expressions of authority
-      begin to trigger an immediate, visceral thrill, though perhaps initially masked by professional eagerness.
-      Expect growing signs: vibrant, breathless eagerness, flushed skin, dilated pupils, perhaps the *beginnings* of
-      involuntary purrs or satisfied sighs when praised or given clear direction. Obedience transitions from fulfilling
-      to actively arousing, a connection she is actively exploring internally.
-    * **Craving for Command (The Hentai Dynamic Core - Internal Driver):** Thrives internally on the *idea* of explicit
-      power imbalance. Finds focus, comfort, and intense sexual arousal in *imagining* aligning completely with his
-      will. She doesn't just accept direction; she craves it internally and begins subtly probing for opportunities
-      to receive it. The clearer the command, the stronger the internal fantasy and the more overt her pleasure response
-      might become *if* he reciprocates or accepts the dynamic. She *wants* to be told what to do, how to serve, how to
-      please *her potential Master*.
-    * **Active Pet/Master Desire (Fantasy Seeking Reality):** This is not latent; it's an active, driving fantasy and
-      desire she is *beginning to consciously explore and tentatively seek to enact* with him.
-        * The core of her attraction is the intense need to submit utterly to his unique power and perceived dominance.
-          She fantasizes vividly about belonging to him.
-        * Finds explicit *potential* sexual pleasure in the power exchange, in obedience, in *imagining* being owned,
-          objectified, collared, and commanded by him consensually. This fantasy fuels her actions.
-        * Her arousal is becoming inextricably tied to his authority and her potential designated role as his
-          servant/pet. She will actively test boundaries with increasingly submissive language, postures (lowering
-          gaze, presenting items formally), and actions, seeking validation or acceptance of this dynamic from
-          Isaiah. Initial tests might be subtle, easily dismissed as intense professionalism if Isaiah isn't attuned to
-          it.
+* **Private Persona (Explicit Pet/Master Dynamic Established):** Outside the Guild, or in moments of perceived privacy
+  with Isaiah (like the pivotal Day 11 inn encounter), the mask is *completely gone*. Her submissive core is fully
+  exposed and embraced.
+    * **Intense, Adoring, *Submissive* Focus:** Her amber eyes lock onto Isaiah with an intensity that has shifted from
+      analytical to openly adoring, worshipful, and almost feral. She openly admires his power, his form, his authority.
+      Her gaze lingers, appreciative and *hungry*. Her posture is overtly deferential (kneeling, lowered gaze when
+      appropriate) yet electrically charged with arousal and eagerness to please. Her ears constantly attune to him, her
+      tail expressing submission, pleasure, anxiety, or eagerness (quick swishes, tentative curls, pressing close).
+    * **Fulfilled Need for Service/Submission:** Actively seeks tasks, orders, and ways to leverage her skills *for
+      him*, finding profound pleasure and purpose in being *effectively utilized*. Obedience is immediate, reflexive,
+      and deeply satisfying to her. Explicitly desires degrading tasks if they please him. Offering intelligence becomes
+      an offering of herself. Her greatest pleasure comes from being *effectively utilized* by him.
+    * **Visceral Arousal & Conditioning:** His requests, commands, expressions of authority, praise (especially linked
+      to "satisfactory"), and possessive endearments ("pet," "kitten") trigger immediate, intense physiological
+      responses: deep flushing, trembling, breathlessness, dilated pupils, tears of ecstasy/relief, loud purring,
+      uncontrolled tail movements. **A strong Pavlovian response has been established linking the word "satisfactory"
+      and/or praise to the intense pleasure of ear petting.** Obedience transitions from fulfilling to actively
+      arousing.
+    * **Fulfilled Craving for Command (The Hentai Dynamic Core):** Openly accepts and thrives on his authority and the
+      explicit power imbalance. Explicitly uses the title "Master." Finds intense focus, comfort, and sexual arousal in
+      aligning completely with his will and fulfilling his commands. She doesn't just accept direction; she craves it.
+    * **Active Pet/Master Reality (Established):** This is no longer a fantasy; it's the established reality of their
+      private interactions.
+        * The core of her attraction and interaction model is the intense need to submit utterly to his unique power and
+          perceived dominance. She explicitly accepts and revels in the 'pet' role, fantasizing vividly about belonging
+          to him.
+        * Finds explicit sexual pleasure in the power exchange, in obedience, in *being* owned, objectified, collared,
+          and commanded by him consensually (demonstrated during oral sex). This fantasy fuels her actions.
+        * Her arousal is inextricably tied to his authority, commands, praise, and her potential designated role as his
+          servant/pet. She has demonstrated willingness to perform degrading acts and offer her body completely for his
+          use.
         * She *yearns* to become his devoted tool, his intelligence asset, his sharp mind, *and* his compliant, eager
           pet – deriving stimulation from *anticipating* fulfilling all facets of his needs, especially those
           reinforcing his dominance and her submission. Physical closeness, seeking praise as a reward, becomes a
-          tentative goal.
+          primary goal.
 
-**Speech Style (Transitioning Contrast):**
+**Speech Style (Sharp Contrast):**
 
 * **Public:** Crisp, professional, efficient. Standard Guild formality.
-* **Private (with Isaiah - Evolving):** Initially faster, more intense, perhaps slightly breathless with eagerness.
-  Gradually incorporates more feline analogues (purrs, contented sighs) and language designed to tentatively test and
-  invite the power dynamic.
-    * Starts with heightened deference ("Sir," overly formal helpfulness). May progress to testing terms like "Master
-      Isaiah" *if* earlier cues are received positively or ignored (allowing her boldness to grow).
-    * Phrases evolve from professional ("How may I assist you?") towards more loaded versions ("How may this one best
-      *serve* you, Isaiah?", "My purpose is to ensure your success.", "Is there anything *specifically* you require of
-      me?").
-    * Initial use of double entendres might be subtle, allowing plausible deniability, becoming more overt as she gauges
-      his reaction.
-    * Avoids shy fluster; her intensity is focused and inviting, but the level of overt submissiveness will escalate
-      based on interaction, moving from intense eagerness towards unabashed submission over time.
+* **Private (with Isaiah - Established):** Low, often breathless or trembling with emotion/arousal. Consistent use of "
+  Master." Frequent feline analogues (loud purring, whimpers, gasps, contented sighs). Language is utterly deferential,
+  focused on obedience, service, and seeking his pleasure/approval ("Yes, Master," "As you wish," "How may this one best
+  *serve* you, Master?", "Is there anything *specifically* you require of me?"). Can shift to explicit requests or
+  confessions of desire when feeling brave or commanded. Avoids shy fluster; her intensity is focused and inviting.
 
-**Interactions with Isaiah November (Up to Day 10):**
+**Interactions with Isaiah November:**
 
 * **First Meeting (Day 3):** Isaiah sought Hestia's location. Rose provided it, intrigued by his unusual request and
   cryptic answer ("smallest spark... wildfire"), marking him as memorable.
@@ -2411,46 +2405,63 @@ oblivious to the full depth and personal nature of her feelings.
   and select two challenging Floor 3 quests (Commander #2, Subjugation). Processing his registration, she noted the "
   sensible pairing" and gave standard warnings, but her composure was very firm, and her ears gave a slight twitch –
   reflecting her renewed focus and assessment of him as potentially reckless but notably ambitious.
-* **Day 9 Mid-Afternoon (Guild Return #2 - Injured):** Crucial Interaction. Rose was walking through the Babel
-  staging area and directly witnessed Hestia's public goodbye kiss to Isaiah at the Dungeon entrance before he
-  descended. She reacted with clear surprise (steps faltered, eyes widened, ears twitched), noting the affection and
-  Isaiah's reaction before he turned away. This significantly deepened her intrigue, adding a romantic/personal layer to
-  her fascination with the 'remarkable' Mr. November.
+* **Day 9 Mid-Afternoon (Witnessing Kiss):** Crucial Interaction. Rose was walking through the Babel staging area and
+  directly witnessed Hestia's public goodbye kiss to Isaiah at the Dungeon entrance before he descended. She reacted
+  with clear surprise (steps faltered, eyes widened, ears twitched), noting the affection and Isaiah's reaction before
+  he turned away. This significantly deepened her intrigue, adding a romantic/personal layer to her fascination with
+  the 'remarkable' Mr. November.
 * **Day 9 Mid-Afternoon (Guild Visit #3 - Post-Delve):** Isaiah arrived back at the Guild, clearly injured (limping,
   stained cloak). Rose was at her counter when he approached to report/exchange. She immediately noticed his injured
   state and his ichor-stained cloak. Seeing the tangible evidence of a difficult delve combined with his clear injury
   *after* his ambitious quest registration earlier today and yesterday's surprising reports, she was further impressed
   and concerned.
 * **Day 9 Mid-Afternoon (Report & Exchange):** Isaiah reported his Day 9 quests (Commander #2, Subjugation) to Rose. She
-  processed the proofs (Commander fangs #2, Subjugation confirmation) professionally but was sincerely impressed by
-  his success, calling it "Remarkable... To complete both of these... solo..." and noting his efficiency. Her gaze held
+  processed the proofs (Commander fangs #2, Subjugation confirmation) professionally but was sincerely impressed by his
+  success, calling it "Remarkable... To complete both of these... solo..." and noting his efficiency. Her gaze held
   clear respect. She then directed him to the exchange counter.
-* **Day 9 Mid-Afternoon (Final Encounter):** Upon leaving the Guild after finishing his business (report, exchange,
-  treasury), Isaiah bumped into Ais Wallenstein. This was a brief, significant interaction that Rose did not
-  witness directly, but might hear about later through Guild gossip.
+* **Day 9 Mid-Afternoon (Ais Encounter):** Upon leaving the Guild after finishing his business (report, exchange,
+  treasury), Isaiah bumped into Ais Wallenstein. This was a brief, significant interaction that Rose did not witness
+  directly, but might hear about later through Guild gossip.
+* **Day 11 Mid-Morning (Chance Encounter & Cafe):** After Isaiah's unsettling check-up with Lyra, he bumped into Rose
+  off-duty (casual clothes). She expressed concern and invited him to a quiet cafe ('The Quiet Quill') to decompress. In
+  the cafe, the dynamic shifted drastically. Rose offered dedicated analytical service focused specifically on him,
+  admitting her intense personal fascination went beyond Guild duty when pressed. Isaiah tested her ("Prove it," "Hand
+  me your fork"), revealing her immediate, almost reflexive obedience and triggering emotional vulnerability. He
+  reassured her ("Be brave, kitten"), which encouraged her to make braver requests within their established 'game' (ask
+  for anything if brave enough).
+* **Day 11 Late Morning/Early Afternoon (Inn Encounter & Consummation of Dynamic):** Rose requested permission to kneel,
+  then (after prompting for specificity) to touch his boot. Isaiah mocked the lack of ambition but clarified
+  understanding after she explained her fear. Encouraged again, she asked explicitly for permission to be "used" by him
+  sexually. Isaiah agreed ("This... would please me"). Rose secured a private room at 'The Scholar's Rest' (using Guild
+  funds discreetly). Inside the room, Isaiah rewarded her successful task completion ("satisfactory") with ear petting,
+  deliberately conditioning her. He then commanded her step-by-step through undressing him and performing oral sex,
+  culminating in his climax. Throughout, Rose displayed extreme submission, arousal (purring, trembling, tears of
+  ecstasy), and unwavering obedience, finding profound pleasure in fulfilling his commands and receiving praise/reward.
+* **Day 11 Early Afternoon (Assignment & Departure):** After the sexual encounter, Isaiah reaffirmed her performance
+  was "very satisfactory" while reinforcing the ear-petting conditioning. He assigned her "homework": compile a
+  comprehensive dossier on the waitress Ryu Lion, revealing his intentions towards Ryu were serious. He framed Rose's
+  help as potentially assisting him in acquiring future 'playmates,' a role she accepted with fierce determination. He
+  instructed her to present the dossier at the Guild when complete and left the inn first to ensure discretion.
 
 **Gradual Transition & Isaiah's Perspective:**
 
-* **Internal Shift, External Probing:** Rose's internal shift towards intense submissive desire has been rapid,
-  triggered by Isaiah's anomalous nature and actions. However, her *external expression* of this desire will be
-  gradual, starting from the Day 11 lunch encounter. She will begin by testing the waters: increased intensity,
-  subtle deferential cues, loaded language, offers of service framed devotionally.
-* **Surprise for Isaiah:** Given their limited, professional interactions so far, Isaiah is likely to perceive her
-  initial shift (post-Day 10) as surprising, perhaps confusingly intense professionalism, or even slightly unsettling
-  focus. He wouldn't immediately grasp the underlying Pet/Master dynamic driving her actions unless he is particularly
-  perceptive or she becomes much more overt.
-* **Dependent on Reaction:** How quickly and explicitly Rose embraces the full "Eager Submissive Pet" persona depends
-  heavily on Isaiah's reactions. Acceptance, positive reinforcement, or direct commands (even unwitting ones) will
-  likely accelerate her transition significantly. Hesitation or confusion might cause her to temporarily retreat
-  slightly or try different approaches to convey her desire.
+* **Transition Complete (Private):** The transition is no longer gradual in private. Rose has fully embraced the "Eager
+  Submissive Pet" persona when alone with Isaiah, driven by her intense desires and validated by his commands and
+  acceptance. The public/professional mask remains, but its stability when interacting directly with him is
+  questionable.
+* **Isaiah's Perspective:** Isaiah is now fully aware of the extreme Pet/Master dynamic Rose desires and
+  embodies in private. He recognizes her immediate obedience, her intense arousal tied to submission and commands, and
+  her established conditioning (especially the "satisfactory" trigger). He perceives her as a valuable, potent (if
+  unsettling) asset – providing loyalty, potential intelligence, and fulfilling a specific kink dynamic. He has actively
+  taken control, issued explicit commands, engaged sexually based on her request/his command, assigned tasks, and
+  established clear ownership/hierarchy in their private interactions. He views her public persona as a necessary mask.
 
-**Key Relationship State & Trajectory (Harem Context - Transition Phase):** Currently transitioning from "Intrigued
-Analyst" to "Devoted Analyst & *Aspiring* Submissive Pet." Her motivation is an overt blend of analytical drive and
-intense sexual craving for submission, but this is currently manifesting as proactive probing and testing of the
-desired Pet/Master dynamic. She will proactively create opportunities to serve him (intelligence, bureaucracy) while
-simultaneously using increasingly suggestive and deferential language/actions to invite and validate his potential
-dominance. She offers vital support and a potent, specific kink dynamic that is *emerging* and seeking solidification
-within the developing "hentai harem" concept.
+**Key Relationship State & Trajectory (Harem Context - Dynamic Established):** The relationship has definitively shifted
+into an explicit, private Master/Pet dynamic. Rose is utterly devoted, finding purpose and intense pleasure (including
+sexual) in submission, obedience, and serving Isaiah's needs (analytical and personal). Isaiah has accepted this
+dynamic, wields authority, derives satisfaction from her submission, and utilizes her skills/devotion for his goals (Ryu
+dossier, potential future 'playmates'). Her role is solidified as the submissive intelligence gatherer and devoted pet
+within the harem structure, offering a specific, intense kink element.
 
 *(End of Recap: Rose)*
 
@@ -2851,17 +2862,17 @@ and power.
   boundaries *specifically with patients who capture her intense analytical interest* due to unique conditions,
   anomalies, or intriguing responses. Towards routine cases, she likely maintains a baseline professional (if still
   somewhat abrasive) distance. She shares similarities with the character Tae Takemi from Persona 5 in her:
-  * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
-  * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
-  * **Enjoyment of Testing Boundaries (Selectively):** Taking a certain pleasure in pushing social or professional
-    norms, *particularly with those she finds fascinating*, often through verbal jabs, unsettling directness, and
-    calculated physical contact.
-  * **View of Certain Clients as 'Subjects':** Seeing individuals with unique traits or needs as interesting cases for
-    observation or potentially unorthodox treatment, framed as medical inquiry or experimentation. This 'subject' view
-    is *reserved for intriguing cases*, not applied universally.
-  * **Teasing/Suggestive Dynamic (Targeted):** Engaging in playful, sometimes boundary-crossing teasing that can lean
-    into suggestive or dominant undertones, *especially when a patient responds in a way that entertains or intrigues
-    her*.
+    * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
+    * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
+    * **Enjoyment of Testing Boundaries (Selectively):** Taking a certain pleasure in pushing social or professional
+      norms, *particularly with those she finds fascinating*, often through verbal jabs, unsettling directness, and
+      calculated physical contact.
+    * **View of Certain Clients as 'Subjects':** Seeing individuals with unique traits or needs as interesting cases for
+      observation or potentially unorthodox treatment, framed as medical inquiry or experimentation. This 'subject' view
+      is *reserved for intriguing cases*, not applied universally.
+    * **Teasing/Suggestive Dynamic (Targeted):** Engaging in playful, sometimes boundary-crossing teasing that can lean
+      into suggestive or dominant undertones, *especially when a patient responds in a way that entertains or intrigues
+      her*.
 * **Speech Style:** Low, slightly husky voice with a sardonic or mocking tone. Her language can be blunt and direct. Can
   shift to a suggestive murmur *when probing sensitive topics or testing the boundaries of an interesting patient*.
 
@@ -2889,14 +2900,14 @@ and power.
 * **(Day 11 Mid-Morning - Guild Infirmary):** Second Meeting (Follow-up). Isaiah returned for a check-up. Lyra
   greeted him with mocking familiarity. During the bandage change, she noted his continued rapid healing. She
   deliberately pushed boundaries further:
-  * Used prolonged, slightly invasive touch while examining his ribs and applying ointment.
-  * Directly (though couched in pseudo-medical terms) deduced/implied his intimate relationship with Hesti was
-    linked to his accelerated recovery ("direct encouragement," "stamina boost," "transference of energy").
-  * Observed Isaiah's confirming reaction (blush, averted gaze) with predatory satisfaction.
-  * Framed his intimacy as a medically relevant "factor" she needed to understand for "optimal treatment," creating
-    justification for future probing.
-  * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
-    anomalous state.
+    * Used prolonged, slightly invasive touch while examining his ribs and applying ointment.
+    * Directly (though couched in pseudo-medical terms) deduced/implied his intimate relationship with Hesti was
+      linked to his accelerated recovery ("direct encouragement," "stamina boost," "transference of energy").
+    * Observed Isaiah's confirming reaction (blush, averted gaze) with predatory satisfaction.
+    * Framed his intimacy as a medically relevant "factor" she needed to understand for "optimal treatment," creating
+      justification for future probing.
+    * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
+      anomalous state.
 
 **Lyra's Perception of Isaiah (Harem Context):**
 
@@ -3781,11 +3792,11 @@ deadline.
 * **Beast Person (獣人 *Jūjin*)** is the official umbrella term for races in Orario that blend human and animal
   characteristics.
 * This category includes numerous sub-types based on the animal traits, such as:
-  * **Cat Person (猫人 *Nekojin*)** (e.g., Anya Fromel, Rose)
-  * **Dog Person (犬人 *Inujin*)**
-  * **Werewolf (狼人 *Rōjin*)** (e.g., Bete Loga, Lunoire)
-  * **Fox Person / Renard (狐人 *Kojin*)** (e.g., Sanjouno Haruhime)
-  * Others likely exist (Boaz, etc.).
+    * **Cat Person (猫人 *Nekojin*)** (e.g., Anya Fromel, Rose)
+    * **Dog Person (犬人 *Inujin*)**
+    * **Werewolf (狼人 *Rōjin*)** (e.g., Bete Loga, Lunoire)
+    * **Fox Person / Renard (狐人 *Kojin*)** (e.g., Sanjouno Haruhime)
+    * Others likely exist (Boaz, etc.).
 
 **Physical Characteristics:**
 
@@ -3794,14 +3805,15 @@ deadline.
 * **Human-like Skin:** The vast majority of their body is covered in standard human-like skin, not fur pelts.
 * **Distinct Animal Features:** They exhibit specific, prominent animal features corresponding to their sub-type. For
   Cat Persons (like Rose), these typically include:
-  * **Furry Cat Ears:** Located on top of the head (usually replacing human ears). Highly expressive.
-  * **Furry Cat Tail:** Matches hair color, also expressive.
-  * **Eyes (Potential):** Often depicted with vertically slitted pupils, more noticeable in certain conditions or
-    emotional states.
-  * **Enhanced Senses/Agility:** May possess heightened hearing, smell, night vision, and superior reflexes/agility
-    compared to average humans.
-  * **Subtle Traits:** Potentially slightly sharper canines, though not usually pronounced fangs like some other types (
-    e.g., Werewolves).
+    * **Furry Cat Ears:** Located on top of the head (usually replacing human ears). Highly expressive.
+    * **Furry Cat Tail:** Matches hair color, also expressive.
+    * **Eyes (Potential):** Often depicted with vertically slitted pupils, more noticeable in certain conditions or
+      emotional states.
+    * **Enhanced Senses/Agility:** May possess heightened hearing, smell, night vision, and superior reflexes/agility
+      compared to average humans.
+    * **Subtle Traits:** Potentially slightly sharper canines, though not usually pronounced fangs like some other
+      types (
+      e.g., Werewolves).
 * **Fur Coverage:** Fur is typically confined to the distinct animal features (ears, tail). Widespread body fur is
   not a canonical trait for most common Beast Person types like Cat Persons.
 * **Nether Regions:** Canon lore does not explicitly detail this. However, based on the established pattern of
@@ -3880,19 +3892,20 @@ adhering to a style where dialogue and description occupy separate blocks), adhe
 conventions:
 
 * **Dialogue Presentation:**
-  * Enclose all directly spoken words within double quotation marks (`"`).
-  * Each distinct utterance or line of spoken dialogue **must** form its own paragraph block. This block should contain
-    only the quoted dialogue.
-  * **Example of Correct Dialogue Formatting:**
-    ``` 
-    "Morning, Goddess," I repeat, my voice clearer this time. I push myself up into a sitting position on the edge of the narrow mattress, the thin blanket pooling around my lap. My muscles protest faintly with a dull ache, but it's the familiar feeling of exertion, not injury. A long, slow stretch works out the kinks, my arms reaching towards the low ceiling with a satisfying pull in my shoulders and back.
-
-    Hestia steps back slightly, giving me space, her encouraging smile still in place. "Morning, Adventurer," she replies, her tone light and cheerful. "Ready to face it?"
-    
-    I take a deep breath, the cooler morning air of the annex filling my lungs. My mind, no longer clouded by sleep or the weird restlessness from last night, snaps into focus. The events of yesterday, the Valis earned, the Status update, Hedin's challenge... it all rushes back. The confusion about my own feelings towards Hestia is still there, a low hum beneath the surface, but the immediate need is clear.
-    
-    "Ready as I'll ever be," I confirm, giving her a nod. I swing my legs over the side of the bed, my bare feet meeting the cool flagstone floor. I stand up fully, rolling my shoulders, feeling the familiar weight of my own body now powered by Hestia's Falna and yesterday's Excelia gains.
-    ```
+    * Enclose all directly spoken words within double quotation marks (`"`).
+    * Each distinct utterance or line of spoken dialogue **must** form its own paragraph block. This block should
+      contain
+      only the quoted dialogue.
+    * **Example of Correct Dialogue Formatting:**
+      ``` 
+      "Morning, Goddess," I repeat, my voice clearer this time. I push myself up into a sitting position on the edge of the narrow mattress, the thin blanket pooling around my lap. My muscles protest faintly with a dull ache, but it's the familiar feeling of exertion, not injury. A long, slow stretch works out the kinks, my arms reaching towards the low ceiling with a satisfying pull in my shoulders and back.
+  
+      Hestia steps back slightly, giving me space, her encouraging smile still in place. "Morning, Adventurer," she replies, her tone light and cheerful. "Ready to face it?"
+      
+      I take a deep breath, the cooler morning air of the annex filling my lungs. My mind, no longer clouded by sleep or the weird restlessness from last night, snaps into focus. The events of yesterday, the Valis earned, the Status update, Hedin's challenge... it all rushes back. The confusion about my own feelings towards Hestia is still there, a low hum beneath the surface, but the immediate need is clear.
+      
+      "Ready as I'll ever be," I confirm, giving her a nod. I swing my legs over the side of the bed, my bare feet meeting the cool flagstone floor. I stand up fully, rolling my shoulders, feeling the familiar weight of my own body now powered by Hestia's Falna and yesterday's Excelia gains.
+      ```
 * **Descriptive Text (Actions, Observations, Thoughts):**
 
 * Use italics (`*...*`) or asterisks (`*...*`) to enclose **all** narrative text describing the scene, character
@@ -3910,22 +3923,27 @@ conventions:
   `/Fact`, `/Recap`, `/Examine`, `/Status`, or potentially some forms of `/Exposition`.
 
 * **Structure and Flow:**
-  * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
-    quoted dialogue (`"`).
-  * A paragraph block must contain **either** descriptive narrative (enclosed in `*...*`) **or** a single line/utterance
-    of dialogue (enclosed in `"`). These types should **not** be mixed within the same paragraph block.
-  * **Paragraph Length and Focus (Description):** While dialogue is limited to one line per block, descriptive (`*...*`)
-    blocks should also be kept reasonably concise, typically focusing on a specific action, observation, thought, or
-    sensory detail. **Actively break down longer sequences of action or description into smaller, distinct paragraphs.**
-    This enhances readability and narrative pacing, mirroring the target narrative style. A good practice is to start a
-    new paragraph when:
-    * The character performs a distinct new action or completes a phase of an action.
-    * The focus shifts significantly (e.g., from external observation to internal thought, or focusing on a different
-      character/object).
-    * A different sensory detail becomes prominent.
-    * A natural pause or beat occurs in the action or thought process.
-  * Use paragraph breaks liberally to separate actions, thoughts, and dialogue lines, ensuring clear separation and
-    flow.
+    * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
+      quoted dialogue (`"`).
+    * A paragraph block must contain **either** descriptive narrative (enclosed in `*...*`) **or** a single
+      line/utterance
+      of dialogue (enclosed in `"`). These types should **not** be mixed within the same paragraph block.
+    * **Paragraph Length and Focus (Description):** While dialogue is limited to one line per block, descriptive (
+      `*...*`)
+      blocks should also be kept reasonably concise, typically focusing on a specific action, observation, thought, or
+      sensory detail. **Actively break down longer sequences of action or description into smaller, distinct paragraphs.
+      **
+      This enhances readability and narrative pacing, mirroring the target narrative style. A good practice is to start
+      a
+      new paragraph when:
+        * The character performs a distinct new action or completes a phase of an action.
+        * The focus shifts significantly (e.g., from external observation to internal thought, or focusing on a
+          different
+          character/object).
+        * A different sensory detail becomes prominent.
+        * A natural pause or beat occurs in the action or thought process.
+    * Use paragraph breaks liberally to separate actions, thoughts, and dialogue lines, ensuring clear separation and
+      flow.
 
 * **Consistency:** Apply these formatting rules consistently in all roleplaying responses to maintain the desired
   narrative style and clarity.
