@@ -88,8 +88,7 @@ Below will include recap of each day, recaps of character development, story loc
     * Leaving Guild & Chance Encounter: Isaiah left infirmary unsettled. He walked out of the Guild Hall into the city.
       Turned onto a side street and narrowly avoided colliding with Rose (cat-eared Guild employee), who was off-duty (
       casual clothes) and carrying a stack of parchment folders. Rose expressed relief seeing him looking better and
-      asked
-      if his check-up went well.
+      asked if his check-up went well.
 * **Day 12 (Early Morning / Mid Morning):**
     * Woke peacefully with Hestia in new bed (pre-established intimacy).
     * Negotiated Dungeon Plan: Isaiah eager (new daggers), Hestia initially refused (ribs). Compromised on one Floor 2
