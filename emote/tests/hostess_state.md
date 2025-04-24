@@ -2478,17 +2478,16 @@ oblivious to the full depth and personal nature of her feelings.
 **Identity & Role:**
 
 * **Rose Fannett** is a Guild Employee (Cat Person, cat ears/tail) working at the main service counters in the Orario
-  Guild
-  Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight. Known to
-  Isaiah primarily through these professional interactions.
-* **Appearance:** Possesses striking and long, wavy . As a Cat Person, she has
-  prominent, pointed  (with lighter inner fur) atop her head that twitch expressively with emotion or
-  focus, and a matching . She has a noticeably with a slender waist. Typically seen
+  Guild Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight.
+  Known to Isaiah primarily through these professional interactions.
+* **Appearance:** Possesses striking golden-amber eyes and long, wavy vibrant red hair. As a Cat Person, she has
+  prominent, pointed red cat ears (with lighter inner fur) atop her head that twitch expressively with emotion or
+  focus, and a matching red tail. She has a noticeably well-endowed figure with a slender waist. Typically seen
   wearing the professional Guild uniform (often including a white shirt, grey bow tie, and black waistcoat/vest). When
   off-duty (as observed on Day 11), she has been seen in practical civilian clothes consisting of: a layered top
-  featuring a worn over a long-sleeved white undershirt (sleeves rolled to the elbows), tight-fitting black
-  leggings/trousers, a brown leather belt with a side pouch, black gloves, and sturdy brown leather calf-high boots with
-  folded cuffs.
+  featuring a sleeveless, dark green tunic worn over a long-sleeved white undershirt (sleeves rolled to the
+  elbows), tight-fitting black leggings/trousers, a brown leather belt with a side pouch, black gloves, and
+  sturdy brown leather calf-high boots with folded cuffs.
 
 **Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
