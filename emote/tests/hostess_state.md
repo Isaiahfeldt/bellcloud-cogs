@@ -1,5 +1,5 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
-Below will include recap of each day, recaps of character development, and story locations.
+Below will include recap of each day, recaps of character development, story locations, and game systems.
 
 # We are currently in the Mid-Morning of Day 11.
 
@@ -3770,7 +3770,57 @@ points within Ranks and by achieving higher Levels.
 
 ----
 
-# AI Processing Complete - Acknowledgment
+### **Conversation Formatting for Immersive Roleplay:** T
+
+To ensure clarity and maintain an immersive, character-focused perspective similar to narrative fiction, adhere strictly
+to the following formatting conventions:
+
+* **Dialogue Presentation:**
+* Enclose all directly spoken words within double quotation marks (`"`).
+* **Crucially, place spoken dialogue on its own line or paragraph** whenever feasible, separating it clearly from
+  descriptive text. Example:
+
+```
+*But other possibilities likely flash through her mind too. The bustle of the tavern. The other adventurers. And… while 
+she might not consciously know about my fascination with Ryu, the place holds multiple individuals who capture 
+attention – Ryu, with her striking composure, Anya, with her cheerful energy, and even the seemingly 
+simple Syr, who manages the front-of-house with quiet warmth.*
+
+*Her expression becomes a complex mix of desire (for the food), maybe apprehension (about the crowd?), and perhaps a subtle flicker of that possessive instinct I've come to recognize.*
+
+*"The Hostess... for dinner?"* *she repeats softly, testing the idea.* *"It was good for breakfast..."*
+
+*She hesitates for a beat. Is she debating the cost? The crowd? Or is something else giving her pause?*
+
+*Then, her eyes light up with renewed enthusiasm, her desire for a delicious, stress-free meal winning out. She pushes
+any potential hesitation aside.* *"Yes! Oh, Isaiah, yes!"* *she declares brightly, grabbing my arm.* *"A
+proper dinner! Not just potatoes! We can afford it!"*
+```
+
+* **Descriptive Text (Actions, Observations, Thoughts):**
+* **Use italics (`*...*`) or asterisks (`*...*`) to enclose *all* narrative text describing the scene, character
+  actions, non-verbal cues, internal thoughts, feelings, and observations presented as part of the ongoing roleplay
+  flow.
+  ** This applies whether it's describing the protagonist's actions/thoughts (following a `/write` command) or an NPC's
+  actions/state.
+* Example:
+  `*The scent of roasting meat fills the air as you step inside the bustling tavern. Hestia tugs excitedly at your sleeve, her eyes wide.*`
+* This broad use of italics/asterisks helps maintain a consistent narrative voice and clearly distinguishes descriptive
+  elements from spoken words.
+* **Standard Prose (Limited Use):** Reserve standard, non-italicized prose primarily for AI responses to specific
+  commands that deliver objective information outside the immediate character perspective or scene flow, such as
+  `/Fact`,
+  `/Recap`, `/Examine`, `/Status`, or potentially some forms of `/Exposition`.
+* **Structure and Flow:** Use paragraph breaks effectively to separate dialogue lines from their associated
+  descriptive lines, and to structure longer passages of description or action, enhancing readability. Avoid large,
+  unbroken blocks of purely italicized text where possible by integrating actions or brief scene details between lines
+  or
+  paragraphs.
+* **Consistency:** Apply these formatting rules consistently in all roleplaying responses.
+
+----
+
+## AI Processing Complete - Acknowledgment
 
 Okay, AI. After processing all the preceding information (Info Cards, Recaps, etc.), your required response is to output
 the following confirmation block exactly. Fill in the placeholders (like <last_day_number>, <character_cards>, etc.)
@@ -3783,6 +3833,7 @@ Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you'
 * The detailed Character Cards for <character_card_name_list_seperated_by_comma>.
 * The detailed Location Cards for <location_card_name_list_seperated_by_comma>.
 * The System Cards explaining <system_card_name_list_seperated_by_comma>.
+* The Conversation Formatting explaining <one_sentence_summary_off_formatting_rules>.
 
 I understand this information forms the established history, character states, relationships, locations, and world rules
 for our story.
