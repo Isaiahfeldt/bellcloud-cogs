@@ -4183,6 +4183,11 @@ conventions:
   commands that deliver objective information outside the immediate character perspective or scene flow, such as
   `/Fact`, `/Recap`, `/Examine`, `/Status`, or potentially some forms of `/Exposition`.
 
+* **Combined `/Write` & `/Continue` Input:** If the user provides `/Write [prompt] /Continue` in a single
+  message, the AI response should first contain the narrative paragraph generated from the `/Write` command (
+  Isaiah's perspective), immediately followed by the NPC's reaction paragraph(s) as would normally be generated
+  by `/Continue`, presenting both parts seamlessly within one AI turn.
+
 * **Structure and Flow:**
     * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
       quoted dialogue (`"`).
@@ -4211,7 +4216,7 @@ conventions:
 
 ---
 
-## AI Processing Complete - Acknowledgment
+# AI Processing Complete - Acknowledgment
 
 Okay, AI. After processing all the preceding information (Info Cards, Recaps, etc.), your required response is to output
 the following confirmation block exactly. Fill in the placeholders (like <last_day_number>, <character_cards>, etc.)
@@ -4224,7 +4229,7 @@ Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you'
   numbered_list_of_dall_days_seperated_by_comma_not_including_time_of_day>).
 * The detailed Character Cards for <character_card_name_list_seperated_by_comma>.
 * The detailed Location Cards for <location_card_name_list_seperated_by_comma>.
-* The System Cards explaining <system_card_name_list_seperated_by_comma>.
+* The detailed System Cards explaining <system_card_name_list_seperated_by_comma>.
 * The Conversation Formatting explaining <one_sentence_summary_off_formatting_rules>.
 
 I understand this information forms the established history, character states, relationships, locations, and world rules
