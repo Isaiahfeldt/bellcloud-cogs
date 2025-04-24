@@ -2484,8 +2484,11 @@ oblivious to the full depth and personal nature of her feelings.
 * **Appearance:** Possesses striking and long, wavy . As a Cat Person, she has
   prominent, pointed  (with lighter inner fur) atop her head that twitch expressively with emotion or
   focus, and a matching . She has a noticeably with a slender waist. Typically seen
-  wearing the professional Guild uniform (often including a white shirt, grey bow tie, and black waistcoat/vest), but
-  has also been observed in practical civilian clothes (tunic, trousers) when off-duty.
+  wearing the professional Guild uniform (often including a white shirt, grey bow tie, and black waistcoat/vest). When
+  off-duty (as observed on Day 11), she has been seen in practical civilian clothes consisting of: a layered top
+  featuring a worn over a  (sleeves rolled to the
+  elbows), , a , , and
+  sturdy with folded cuffs.
 
 **Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
