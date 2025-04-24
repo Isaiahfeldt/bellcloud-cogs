@@ -91,7 +91,7 @@ Below will include recap of each day, recaps of character development, story loc
       asked
       if his check-up went well.
 * **Day 12 (Early Morning / Mid Morning):**
-    * Woke peacefully with Hestia in new bed (established intimacy).
+    * Woke peacefully with Hestia in new bed (pre-established intimacy).
     * Negotiated Dungeon Plan: Isaiah eager (new daggers), Hestia initially refused (ribs). Compromised on one Floor 2
       quest only, with strict promise to return immediately if any pain felt.
     * Morning Routine: Prepared, simple breakfast at annex. Walked to Guild, holding hands.
