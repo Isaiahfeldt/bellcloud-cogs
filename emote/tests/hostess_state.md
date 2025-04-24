@@ -90,6 +90,24 @@ Below will include recap of each day, recaps of character development, story loc
       casual clothes) and carrying a stack of parchment folders. Rose expressed relief seeing him looking better and
       asked
       if his check-up went well.
+* **Day 12 (Early Morning / Mid Morning):**
+    * Woke peacefully with Hestia in new bed (established intimacy).
+    * Negotiated Dungeon Plan: Isaiah eager (new daggers), Hestia initially refused (ribs). Compromised on one Floor 2
+      quest only, with strict promise to return immediately if any pain felt.
+    * Morning Routine: Prepared, simple breakfast at annex. Walked to Guild, holding hands.
+    * Guild Visit: Hall bustling. Selected "Lost Supply Cache Retrieval" (Floor 2) quest from board.
+    * Registered Quest with Rose: Isaiah noted her perfect professional facade (masking 'pet' dynamic). Rose processed
+      quest efficiently, showing no outward reaction to the low difficulty choice.
+    * Farewell at Babel: Isaiah initiated gentle goodbye kiss on Hestia's head. Hestia accepted, gave final warnings.
+* **Day 12 (Late Morning / Early Afteroon):**
+    * Dungeon Delve (Floor 2): Entered Dungeon. Moved easily through Floor 1/2 (ribs fine). Located & secured Lost
+      Supply Cache relatively quickly (~1.5 hrs). Contents confirmed (potions, rope, etc.).
+    * Lingering & Observation: Felt retrieving cache was too simple/quick ('errand boy' annoyance). Decided to linger
+      near Floor 1 stairs for 'alone time'. Observed other adventurers (party fighting Kobolds, Porters, hooded figure).
+      Encountered/dismissed strange crystalline fungi in side chamber.
+    * Departure Decision: Realized extended delay might make Hestia suspicious. Decided to head up, actively killing
+      minor monsters encountered on the direct route back to the stairs.
+    * Emerged from Dungeon: Returned to Babel staging area with the retrieved cache.
 
 ----
 
