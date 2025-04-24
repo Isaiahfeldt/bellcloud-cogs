@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Mid-Morning of Day 11.
+# We are currently in the Morning of Day 12.
 
 ## Quick Recap - Day by Day:
 
@@ -1820,10 +1820,11 @@ about his well-being above immediate procedure.
 In the infirmary, Isaiah was examined by Lyra Verrill, a Guild healer with a distinctively cynical, probing, and
 inappropriately forward demeanor. Lyra confirmed his likely cracked ribs and bandaged him tightly for support.
 Throughout the examination, she made suggestive comments and conducted boundary-crossing 'tests' (touching his inner
-thigh), showing a dangerous curiosity about his unusual physique and fast healing. Isaiah, though uncomfortable,
-navigated the interaction without completely shutting down, and even offered a subtle, ambiguous comeback ("Depends on
-who's doing the restricting"), piquing Lyra's intrigue. Lyra made a final unsettling comment about appreciating '
-dedicated test subjects' before releasing him to Eina.
+thigh), showing a dangerous curiosity about his unusual physique and fast healing.
+
+Isaiah, though uncomfortable, navigated the interaction without completely shutting down, and even offered a subtle,
+ambiguous comeback ("Depends on who's doing the restricting"), piquing Lyra's intrigue. Lyra made a final unsettling
+comment about appreciating 'dedicated test subjects' before releasing him to Eina.
 
 Returning to Eina's advisory station, still heavily bandaged and somewhat disoriented, Isaiah proceeded with his Guild
 business. Since he was injured, Eina handled retrieving his quest rewards from the Treasury for him. His Day 9
@@ -1832,11 +1833,12 @@ fixed quest rewards totaled 1500 Valis.
 
 Next, he moved to the Material Exchange counter. He turned in all his drops from the Day 9 delve, including numerous
 standard magic stones and monster parts, the Commander's Magic Shard and Fangs, and crucially, the Minotaur Magic
-Stone and Horn/Hide fragment. The exchange employee was visibly surprised by the Minotaur loot. The total exchange
-value for his materials was a staggering 21,500 Valis, significantly higher than previous delves due to the high
-value of the Minotaur drops. Adding the quest rewards, his total earnings from the Day 9 delve were 23,000 Valis.
-Combined with previous funds (~21,305 Valis after Day 10 breakfast cost), the Hestia Familia's total funds were now a
-massive ~44,305 Valis.
+Stone and Horn/Hide fragment.
+
+The exchange employee was visibly surprised by the Minotaur loot. The total exchange value for his materials was a
+staggering 21,500 Valis, significantly higher than previous delves due to the high value of the Minotaur drops. Adding
+the quest rewards, his total earnings from the Day 9 delve were 23,000 Valis. Combined with previous funds (~21,305
+Valis after Day 10 breakfast cost), the Hestia Familia's total funds were now a massive ~44,305 Valis.
 
 After concluding all Guild business, pocketing his massive Valis haul, Isaiah (injured but exhilarated by his success
 and wealth) left the Guild Hall. He had a brief, final encounter with Ais Wallenstein upon leaving the Guild,
@@ -1849,19 +1851,22 @@ upon noticing his injury, despite his attempt to downplay it as a mere 'tumble f
 Isaiah then revealed the true extent of his success by showing her the massive Valis haul (~23k Valis from today's
 delve, ~44k total). Hestia's reaction was one of overwhelming, ecstatic joy and disbelief. She was completely consumed
 by the sheer amount of money, bouncing, laughing, crying, and covering Isaiah with tearful, joyful kisses, listing all
-the things they could now afford. Isaiah felt a deep sense of fulfillment in being able to provide for her and 'us'.
-In the midst of her excitement, Isaiah remembered the Status Update for today's delve. They performed the ritual on
-the sofa. The results were staggering: all his physical stats (STR, END, AGI, DEX) had reached G-Rank! The
-[??????????] skill also changed from "Dormant" to "Resonance Detected - Stirring," adding a new layer of mystery
-and potential.
+the things they could now afford.
+
+He felt a deep sense of fulfillment in being able to provide for her and 'us'. In the midst of her excitement, Isaiah
+remembered the Status Update for today's delve. They performed the ritual on the sofa. The results were staggering: all
+his physical stats (STR, END, AGI, DEX) had reached G-Rank! The[??????????] skill also changed from "Dormant" to "
+Resonance Detected - Stirring," adding a new layer of mystery and potential.
 
 Following the update, they had a vulnerable conversation about the skill's possible resonance (linked to 'us'?), which
 led to Isaiah's (clumsy) suggestion of repeating intimacy for 'research'. This triggered Hestia's panic about the
 divine "no children/Arcanum" rule and potential expulsion (a fear stemming from their unprotected sex the previous
-morning - Day 8). Isaiah reassured her, emphasizing that the risk wasn't necessarily instantaneous and that they would
-face anything together ('Us'), while suggesting they use protection next time like other Gods and mortals do. He also
-apologized for his insensitive 'research' comment, reaffirming the specialness of their bond. Hestia accepted his
-reassurance, the panic subsided, and she agreed they could be careful.
+morning - Day 8).
+
+Isaiah reassured her, emphasizing that the risk wasn't necessarily instantaneous and that they would face anything
+together ('Us'), while suggesting they use protection next time like other Gods and mortals do. He also apologized for
+his insensitive 'research' comment, reaffirming the specialness of their bond. Hestia accepted his reassurance, the
+panic subsided, and she agreed they could be careful.
 
 The conversation then shifted to planning for Day 10. Due to Isaiah's injury, they decided no Dungeon delve tomorrow
 . Instead, they would use their wealth for a major shopping trip, prioritizing getting better gear (aiming for
@@ -2042,10 +2047,12 @@ comfortably, wished each other goodnight, and quickly fell asleep, ending Day 10
 Day 11 dawned bright and clear over Orario. Within the dim confines of the church annex, Isaiah awoke slowly, the
 comforting weight and warmth of Hestia nestled beside him a familiar reality in their narrow bed. The night had passed
 peacefully, filled with comfortable, dreamless sleep, a welcome calm after the intensity of Day 9 and the bustling
-activity of Day 10. His ribs felt noticeably better this morning, the healing undeniably rapid, bolstering his
-confidence. Hestia stirred soon after, greeting him with a soft smile and sleepy affection before they began their
-now-familiar morning routine. Washing up and dressing unfolded with an easy intimacy, their movements comfortable in the
-shared space, reflecting the deep bond solidified over the past days.
+activity of Day 10.
+
+His ribs felt noticeably better this morning, the healing undeniably rapid, bolstering his confidence. Hestia stirred
+soon after, greeting him with a soft smile and sleepy affection before they began their now-familiar morning routine.
+Washing up and dressing unfolded with an easy intimacy, their movements comfortable in the shared space, reflecting the
+deep bond solidified over the past days.
 
 As they prepared, they reaffirmed the plan decided upon last night: due to Hestia's insistence on one more day of rest
 for his ribs, Isaiah would visit the Guild doctor for a check-up, while Hestia would remain at the annex, eagerly
@@ -2061,20 +2068,25 @@ well before the delivery timeframe.
 
 With Hestia happily embracing her vital duty, Isaiah offered a reassuring kiss and promise of caution before stepping
 out of the annex alone into the vibrant Orario morning. The walk towards the city center was pleasant under the bright
-sun, his improved physical condition allowing a steady, comfortable pace. As he navigated the increasingly crowded
-streets, merging into the flow of city life, his sharp ears caught a snippet of conversation between two older men
-discussing the Loki Familia's latest deep-floor Dungeon success, juxtaposed with sobering rumors of increasing anomalies
-and dangers even far below – a reminder of the vast, perilous world beyond his current G-Rank capabilities.
+sun, his improved physical condition allowing a steady, comfortable pace.
+
+As he navigated the increasingly crowded streets, merging into the flow of city life, his sharp ears caught a snippet of
+conversation between two older men discussing the Loki Familia's latest deep-floor Dungeon success, juxtaposed with
+sobering rumors of increasing anomalies and dangers even far below – a reminder of the vast, perilous world beyond his
+current G-Rank capabilities.
 
 He continued onward, the overheard gossip fading as the towering form of Babel and the familiar facade of the Guild
 Headquarters grew larger. Arriving at the bustling Guild plaza, he made his way inside, heading through the main hall
 towards the quieter corridor leading to the infirmary wing. As he approached the designated area, he paused for a
 moment. His stated purpose was a medical follow-up, a check on his healing ribs, something Hestia expected and approved
-of. Yet, beneath that practical surface, Isaiah acknowledged a more complex, unsettling truth. He recalled the encounter
-with Doctor Lyra Verrill yesterday – her sharp, cynical demeanor, her invasive curiosity, the way her clinical
-assessment bled into something personal and predatory, her explicit labeling of him as a 'test subject'. The memory
-sparked a familiar mix of caution and a strange, reluctant intrigue. Was he going simply for the check-up? Or was he
-drawn back, almost against his better judgment, by the allure of that dangerous, focused attention, wanting to
+of. Yet, beneath that practical surface, Isaiah acknowledged a more complex, unsettling truth.
+
+He recalled the encounter with Doctor Lyra Verrill yesterday – her sharp, cynical demeanor, her invasive curiosity, the
+way her clinical assessment bled into something personal and predatory, her explicit labeling of him as a 'test
+subject'.
+
+The memory sparked a familiar mix of caution and a strange, reluctant intrigue. Was he going simply for the check-up? Or
+was he drawn back, almost against his better judgment, by the allure of that dangerous, focused attention, wanting to
 understand the unsettling intensity directed solely at him? The lines blurred. Steeling himself against the conflicting
 feelings, he walked down the infirmary corridor towards the door bearing Lyra's nameplate.
 
@@ -2314,6 +2326,68 @@ determination. Finally, he instructed her to present the dossier at the Guild wh
 ensure discretion, leaving Rose kneeling alone, awaiting her next command or assignment.
 
 *(End of Recap: Day 11 - Middle - Part 2: Inn Encounter & Consummation of Dynamic)*
+
+----
+
+### **(Recap: Day 11 - Ending)**
+
+The walk back from the unsettling discretion of 'The Scholar's Rest' took Isaiah through the bustling early afternoon
+streets of Orario (around 12:15 PM). His mind wrestled with the intense encounter with Rose – her complete submission,
+the disturbing power dynamic he'd established, the 'homework' assignment regarding Ryu, and the undeniable utility of
+such a devoted, if potentially unstable, asset. The cold calculation of that interaction felt worlds away as his
+thoughts shifted towards home, towards Hestia, and towards the much-anticipated arrival of their new bed. The annex,
+despite its flaws, represented warmth, connection, 'us'.
+
+As he approached the familiar, weathered wooden door, ready to knock, it was flung open. Hestia burst out, a whirlwind
+of relieved energy, immediately launching into a barrage of questions about his well-being, the doctor, his ribs, and
+the tardiness of the bed delivery crew, all while wrapping him in a fierce, possessive hug.
+
+Isaiah reassured her, downplaying the morning's events and confirming he was fine. The dynamic shifted instantly when he
+confessed the real reason he'd returned sooner than planned: "I came home early because I missed you." Hestia reacted
+with pure, unadulterated joy, her earlier anxieties forgotten as she clung to him, ecstatic at the simple, heartfelt
+admission.
+
+Their reunion was soon interrupted by loud, insistent knocking – the "Bed People!" had arrived. Two burly deliverymen
+from Gareth & Sons stood outside with a handcart bearing the large, flat-packed oak frame pieces and the rolled
+mattress. After a moment of doubt about the narrow doorway, Isaiah assured them it would fit and offered assistance.
+Maneuvering the heavy headboard through the entrance proved challenging, requiring coordinated effort, but they
+succeeded. The remaining pieces and the mattress followed more easily.
+
+With the delivery confirmed and signed for (assembly not included), the deliverymen departed, leaving Isaiah and Hestia
+surrounded by the components of their future comfort in the now very crowded annex (estimated mid-afternoon, 2:30 PM -
+3:30 PM).
+
+Filled with shared purpose, they tackled the assembly. Hestia directed enthusiastically while Isaiah handled the heavy
+lifting and bolting. They worked together seamlessly, fitting the sturdy oak pieces, tightening bolts, laying the
+support slats. Finally, they wrestled the heavy mattress onto the completed frame.
+
+Standing back, they admired their handiwork – a solid, handsome bed that transformed the small room. In a moment of
+shared accomplishment, Isaiah impulsively pulled Hestia close by the waist. She leaned against him comfortably, agreeing
+it was "perfect."
+
+He then playfully suggested they "try it out," clarifying he meant testing the mattress after Hestia's initial
+flustered reaction. They both lay down on the plush, supportive surface, a world away from their previous sleeping
+arrangements.
+
+Isaiah confirmed its comfort (accidentally using the word "satisfactory" in his relief, a subconscious echo he likely
+noted and mentally corrected himself not to repeat with her). Hestia expressed her delight with the purchase. They
+shared a quiet moment of affection, culminating in Hestia initiating a soft, tender kiss, a reflection of their
+deepening trust and ease.
+
+As the afternoon wore on, they talked while relaxing on the bed. Hestia voiced a slight overwhelm at the speed of their
+progress, asking if Isaiah ever felt scared. He answered honestly (corrected dialogue), explaining it felt powerful and
+validating, like potential unleashed, assuring her it wasn't fear but capability he felt, driven by wanting to build
+their life together. His confidence reassured Hestia, who snuggled closer, reminding him she was there to keep him
+grounded.
+
+The remainder of the day passed in comfortable domesticity. They worked together to dismantle the old, creaky bed frame,
+setting the pieces aside. They prepared and shared a simple dinner in the annex. As night fell, the new bed beckoned.
+They retired together, the act feeling deliberate and natural. They settled into the comfortable space, perhaps sharing
+more quiet affection before drifting off into a deep, peaceful sleep, side-by-side in their new bed, concluding Day 11.
+
+*(End of Recap: Day 11 - Ending)*
+
+----
 
 # Character Cards
 
@@ -2662,7 +2736,7 @@ within the harem structure, offering a specific, intense kink element.
   dramatically quiet. Uses terms of endearment ("my Isaiah," "sweetheart"), possessive terms ("Mine!"). Her core
   emotions are deeply genuine.
 
-**Key Interactions & Developments (Day 7 Morning - Day 9 Evening):**
+**Key Interactions & Developments (Day 7 Morning - Day 11 Evening):**
 
 * **Status Update #2 (H-Rank Reveal):** Witnessing Isaiah achieve H-Rank stats after only one delve filled her with
   profound awe and solidified her belief in him as uniquely "special" and *her* destined hero. This dramatically
@@ -2738,7 +2812,24 @@ within the harem structure, offering a specific, intense kink element.
   to injury, plan shopping instead. Discussed gear/bed priorities. Isaiah asked Hestia to help undress due to injury (
   tender intimacy). Hestia helped. Isaiah got into bed. Hestia changed (openly, comfortable). Got into bed, initiated
   deep, possessive cuddling ("Supervising rest," "Your goddess is here"), resulting in Isaiah feeling "dommy-mommy"
-  vibes and flustering him internally. They fell asleep cuddling.\
+  vibes and flustering him internally. They fell asleep cuddling.
+* **Morning Routine & Bed Duty (Day 11 Morning):** Woke peacefully, comfortable routine. Negotiated plans: Isaiah solo
+  trip for Doctor/walk, Hestia enthusiastically embraced role of "Guardian of the Future Bed" awaiting afternoon
+  delivery at the annex. Said goodbye with firm instructions for his caution.
+* **Anxious Waiting & Reunion (Day 11 Early Afternoon):** Likely spent the morning anxiously waiting, tidying, perhaps
+  pacing. Greeted Isaiah's return (around 12:15 PM) with intense relief and rapid-fire questions. Was momentarily
+  silenced then overwhelmed with pure joy when Isaiah confessed he came home early *because he missed her*. Clung to him
+  happily, her primary focus shifting from the bed delivery to his affection.
+* **Bed Delivery & Assembly (Day 11 Mid-Afternoon):** Greeted deliverymen with excitement. Enthusiastically (if
+  impractically) directed the difficult process of maneuvering pieces inside. Worked alongside Isaiah with surprising
+  vigor to assemble the sturdy oak bedframe and place the mattress, celebrating their shared accomplishment.
+* **Testing the Bed & Intimacy (Day 11 Mid/Late Afternoon):** Eagerly tested the new mattress ('quality assurance'). Lay
+  down beside Isaiah, initiating a conversation about the speed of their progress, voicing slight overwhelm ('scary?').
+  Listened intently to Isaiah's reassurance that he felt powerful and capable, not scared, driven by building their life
+  together. Accepted his perspective, felt reassured, snuggled closer. Initiated a soft, tender kiss, reflecting their
+  established comfort and trust. Shared a quiet, contented moment simply being together on their new bed.
+* **Evening & Sleep (Day 11 Evening):** Likely prepared a simple meal together, dismantled the old bed. Retired together
+  to the new bed, sharing comfortable intimacy before falling into a deep, peaceful sleep.
 
 **Hestia's Perception of Isaiah (Harem Focus Interpretation):**
 
