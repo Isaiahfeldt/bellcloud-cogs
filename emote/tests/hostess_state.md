@@ -2815,8 +2815,8 @@ and power.
   Her methods involve psychological games, physical boundary-pushing, and suggestive framing to gain control and elicit
   reactions.
 
-**Key Relationship State (As of Midday Day 11):** Patient-Healer, but now heavily defined by Lyra's *
-*confirmed hypothesis regarding Isaiah's intimacy with Hestia** and its link to his anomalous state. Lyra feels
+**Key Relationship State (As of Midday Day 11):** Patient-Healer, but now heavily defined by Lyra's
+confirmed hypothesis regarding Isaiah's intimacy with Hestia and its link to his anomalous state. Lyra feels
 validated and intensely intrigued, viewing him as a prime 'subject' whose intimate life is now a justifiable area for
 her 'medical' investigation. Isaiah perceives her as skilled but deeply unsettling, ethically questionable, and
 dangerously invasive, yet is undeniably affected by her focused attention, creating a complex mix of wariness,
@@ -3689,8 +3689,8 @@ deadline.
 * **Predominantly Humanoid:** Beast Persons possess a fundamentally human body structure, shape, and proportions. Animal
   traits are distinct additions, not a full transformation.
 * **Human-like Skin:** The vast majority of their body is covered in standard human-like skin, not fur pelts.
-* **Distinct Animal Features:** They exhibit specific, prominent animal features corresponding to their sub-type. For *
-  *Cat Persons** (like Rose), these typically include:
+* **Distinct Animal Features:** They exhibit specific, prominent animal features corresponding to their sub-type. For
+  Cat Persons (like Rose), these typically include:
   * **Furry Cat Ears:** Located on top of the head (usually replacing human ears). Highly expressive.
   * **Furry Cat Tail:** Matches hair color, also expressive.
   * **Eyes (Potential):** Often depicted with vertically slitted pupils, more noticeable in certain conditions or
@@ -3699,8 +3699,8 @@ deadline.
     compared to average humans.
   * **Subtle Traits:** Potentially slightly sharper canines, though not usually pronounced fangs like some other types (
     e.g., Werewolves).
-* **Fur Coverage:** Fur is typically confined to the distinct animal features (ears, tail). Widespread body fur is *
-  *not** a canonical trait for most common Beast Person types like Cat Persons.
+* **Fur Coverage:** Fur is typically confined to the distinct animal features (ears, tail). Widespread body fur is
+  not a canonical trait for most common Beast Person types like Cat Persons.
 * **Nether Regions:** Canon lore does not explicitly detail this. However, based on the established pattern of
   predominantly human-like skin, the standard and logical interpretation is that these areas also possess human-like
   skin, not fur.
@@ -3770,53 +3770,56 @@ points within Ranks and by achieving higher Levels.
 
 ----
 
-### **Conversation Formatting for Immersive Roleplay:** T
+### **Conversation Formatting for Immersive Narrative Roleplay:**
 
-To ensure clarity and maintain an immersive, character-focused perspective similar to narrative fiction, adhere strictly
-to the following formatting conventions:
+To ensure clarity and maintain an immersive, character-focused perspective similar to narrative fiction (specifically
+adhering to a style where dialogue and description occupy separate blocks), adhere strictly to the following formatting
+conventions:
 
 * **Dialogue Presentation:**
-* Enclose all directly spoken words within double quotation marks (`"`). Example:
+  * Enclose all directly spoken words within double quotation marks (`"`).
+  * Each distinct utterance or line of spoken dialogue **must** form its own paragraph block. This block should contain
+    only the quoted dialogue.
+  * **Example of Correct Dialogue Formatting:**
+    ``` 
+    "Morning, Goddess," I repeat, my voice clearer this time. I push myself up into a sitting position on the edge of the narrow mattress, the thin blanket pooling around my lap. My muscles protest faintly with a dull ache, but it's the familiar feeling of exertion, not injury. A long, slow stretch works out the kinks, my arms reaching towards the low ceiling with a satisfying pull in my shoulders and back.
 
-```
-*But other possibilities likely flash through her mind too. The bustle of the tavern. The other adventurers. And… while 
-she might not consciously know about my fascination with Ryu, the place holds multiple individuals who capture 
-attention – Ryu, with her striking composure, Anya, with her cheerful energy, and even the seemingly 
-simple Syr, who manages the front-of-house with quiet warmth.*
-
-*Her expression becomes a complex mix of desire (for the food), maybe apprehension (about the crowd?), and perhaps a subtle flicker of that possessive instinct I've come to recognize.*
-
-*"The Hostess... for dinner?"* *she repeats softly, testing the idea.* *"It was good for breakfast..."*
-
-*She hesitates for a beat. Is she debating the cost? The crowd? Or is something else giving her pause?*
-
-*Then, her eyes light up with renewed enthusiasm, her desire for a delicious, stress-free meal winning out. She pushes
-any potential hesitation aside.* *"Yes! Oh, Isaiah, yes!"* *she declares brightly, grabbing my arm.* *"A
-proper dinner! Not just potatoes! We can afford it!"*
-```
-
+    Hestia steps back slightly, giving me space, her encouraging smile still in place. "Morning, Adventurer," she replies, her tone light and cheerful. "Ready to face it?"
+    
+    I take a deep breath, the cooler morning air of the annex filling my lungs. My mind, no longer clouded by sleep or the weird restlessness from last night, snaps into focus. The events of yesterday, the Valis earned, the Status update, Hedin's challenge... it all rushes back. The confusion about my own feelings towards Hestia is still there, a low hum beneath the surface, but the immediate need is clear.
+    
+    "Ready as I'll ever be," I confirm, giving her a nod. I swing my legs over the side of the bed, my bare feet meeting the cool flagstone floor. I stand up fully, rolling my shoulders, feeling the familiar weight of my own body now powered by Hestia's Falna and yesterday's Excelia gains.
+    ```
 * **Descriptive Text (Actions, Observations, Thoughts):**
-* **Use italics (`*...*`) or asterisks (`*...*`) to enclose *all* narrative text describing the scene, character
+
+* Use italics (`*...*`) or asterisks (`*...*`) to enclose **all** narrative text describing the scene, character
   actions, non-verbal cues, internal thoughts, feelings, and observations presented as part of the ongoing roleplay
-  flow.
-  ** This applies whether it's describing the protagonist's actions/thoughts (following a `/write` command) or an NPC's
-  actions/state.
-* Example:
+  flow. This applies whether it's describing the protagonist's actions/thoughts (following a `/write` command) or an
+  NPC's actions/state.
+* Descriptive text should be placed in separate paragraph blocks, distinct from dialogue blocks.
+* These descriptive blocks should precede or follow the relevant dialogue block(s), providing context, action, or
+  reaction.
+* **Example:**
   `*The scent of roasting meat fills the air as you step inside the bustling tavern. Hestia tugs excitedly at your sleeve, her eyes wide.*`
-* This broad use of italics/asterisks helps maintain a consistent narrative voice and clearly distinguishes descriptive
-  elements from spoken words.
+
 * **Standard Prose (Limited Use):** Reserve standard, non-italicized prose primarily for AI responses to specific
   commands that deliver objective information outside the immediate character perspective or scene flow, such as
-  `/Fact`,
-  `/Recap`, `/Examine`, `/Status`, or potentially some forms of `/Exposition`.
-* **Structure and Flow:** Use paragraph breaks effectively to separate dialogue lines from their associated
-  descriptive lines, and to structure longer passages of description or action, enhancing readability. Avoid large,
-  unbroken blocks of purely italicized text where possible by integrating actions or brief scene details between lines
-  or
-  paragraphs.
-* **Consistency:** Apply these formatting rules consistently in all roleplaying responses.
+  `/Fact`, `/Recap`, `/Examine`, `/Status`, or potentially some forms of `/Exposition`.
 
-----
+* **Structure and Flow:**
+  * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
+    quoted dialogue (`"`).
+  * A paragraph block must contain **either** descriptive narrative (enclosed in `*...*`) **or** a single line/utterance
+    of dialogue (enclosed in `"`). These types should **not** be mixed within the same paragraph block.
+  * Use paragraph breaks liberally to separate actions, thoughts, and dialogue lines, enhancing readability and pacing,
+    mirroring the target narrative fiction style.
+  * Avoid large, unbroken blocks of purely italicized text where possible; intersperse description with dialogue or
+    break up long descriptions with paragraph breaks focusing on different senses, actions, or thoughts.
+
+* **Consistency:** Apply these formatting rules consistently in all roleplaying responses to maintain the desired
+  narrative style and clarity.
+
+---
 
 ## AI Processing Complete - Acknowledgment
 
