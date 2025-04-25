@@ -2472,6 +2472,159 @@ Floor 1.
 
 ----
 
+### **(Recap: Day 12 - Middle - Part 1)**
+
+Stepping onto the wide, worn stone staircase leading down into the Dungeon, the cool, damp air and familiar moss-light
+enveloped you. The Hearthfire Blades felt perfectly balanced in your hands. Floor 1 was trivial; Goblins dissolved
+before your G-Rank speed with contemptuous ease, their dim magic stones collected almost automatically. Your focus was
+Floor 2, adhering strictly to your promise to Hestia.
+
+Descending to Floor 2, you began navigating the familiar but slightly more complex tunnels, heading towards the general
+area indicated on the "Lost Supply Cache Retrieval" quest slip. Your ribs felt completely fine, confirming your
+recovery. After about an hour and a half of methodical searching, your heightened senses picked up faint scrape marks
+near a narrow fissure. Following these led you down a less-traveled passage. *(Investigation Roll: Success)*.
+
+Rounding a bend, you encountered a small patrol of four Goblins squabbling over scraps. *(Encounter Roll: Success)*. The
+fight was instantaneous and utterly one-sided; four swift strikes from the Hearthfire Blades, and they were gone,
+leaving only minor magic stones. The ease of the encounter reinforced Floor 2's lack of challenge for your current
+stats.
+
+Continuing along the passage indicated by the marks, you soon located the target: a sturdy, medium-sized wooden crate
+bearing the triple-crescent moon symbol, tucked behind stalagmites in a dead-end cavern. You pried the lid open,
+confirming the contents matched expectations: three minor healing potions, rope, whetstones, about a dozen War Ant
+mandibles, empty sacks, and a mundane adventurer's logbook. Quest objective achieved.
+
+Closing the crate, a wave of frustration hit you – the task felt like a demeaning errand, far beneath your
+capabilities ('errand boy' annoyance). You briefly considered pushing deeper or exploring more extensively,
+rationalizing that Hestia's promise was about injury, not time. You noted finding the cache took less than two hours,
+much faster than anticipated. Deciding against blatant promise-breaking but unwilling to return immediately, you opted
+for a slight detour, exploring an adjacent, narrower side tunnel first, hoping for something more interesting while
+telling yourself it was just 'optimizing the trip'.
+
+This tunnel opened into a small, dead-end chamber. There, you discovered a cluster of unusual crystalline fungi growing
+from the damp wall, pulsing with a faint, rhythmic silver light – an anomaly you didn't recognize. Intrigued, you
+examined them closely, noting their hard texture and faint ozone scent. However, deciding against the risk and potential
+embarrassment of harvesting unknown flora ('not a botanist'), you dismissed them and picked up the cache again, turning
+back towards the main Floor 2 passages near the Floor 1 stairwell.
+
+Instead of immediately ascending, you sought out a recessed alcove near the main junction, deciding to linger and '
+people-watch' for a while, craving some solitary decompression time after recent events and using the Dungeon as a
+convenient excuse. From your hidden vantage point, you observed the flow of Dungeon traffic: nervous rookies, weary
+veterans, a team of heavily laden Porters supporting a deeper delve, and a swift, unidentified hooded figure moving with
+suspicious grace towards the exit. You also witnessed a brief skirmish where a party of three (two swordsmen, one mage)
+successfully fended off a Kobold ambush nearby, noting their competent but comparatively slow tactics.
+
+After perhaps another 20-30 minutes of observation, you decided lingering further might make Hestia suspicious, given
+how easily you *should* have completed the Floor 2 quest. Acknowledging the need to keep her trust, you finally decided
+to head up. However, you resolved to actively eliminate any monsters encountered on the direct path back to the stairs,
+seeking even minimal Excelia gain. Hoisting the cache, you began the ascent, quickly dispatching a lone Goblin and then
+a pair near the Floor 1 stairs with effortless single strikes. Reaching the surface, you emerged back into the Babel
+staging area, cache retrieved, mission technically complete, ready to report to the Guild.
+
+*(End of Recap: Day 12 - Middle - Part 1)*
+
+----
+
+### **(Recap: Day 12 - End - Part 1: Intimacy & Oral Consummation)**
+
+Arriving back at the annex (around 1:30 PM), you were greeted by an anxious Hestia. After reassuring her the delve was
+easy and safe (editing out the lingering/detour), you presented the 800 Valis reward. Her relief was immense, quickly
+turning to happiness. Asking what to do with the free afternoon, Hestia’s relaxed state prompted you to playfully
+request a kiss as a 'reward' for keeping your promise.
+
+Hestia initially reacted with intense blushing and sputtering ("A k-kiss? As a... *reward*?!") but quickly melted under
+your gaze. Leaning in, she gave you a kiss that started soft but rapidly deepened with passionate relief and affection.
+Pulling back slightly, she teased, "Was that... satisfactory?" (an AI word choice oversight, intended simply as playful
+questioning). The unexpected glimpse of her ancient, divine maturity beneath the teasing caused *you* to flush and
+stammer, "Y-Yes..." Hestia chuckled fondly at your reaction, murmured "Cute," and then pulled you into a close embrace
+on the sofa, resting her head on your shoulder.
+
+In the quiet comfort, Hestia softly confessed how lonely and quiet the annex felt when you were gone, expressing how
+much she liked it when you were home. Touched by her vulnerability, you reassured her, affirming that being home *with
+her* was the best part for you too. Satisfied and content, Hestia then shifted the mood suggestively, noting the free
+afternoon and the new bed, asking playfully if you could find a way to make the annex "less quiet."
+
+Her directness sent a jolt of heat through you, leaving you blushing and momentarily speechless. Enjoying your reaction,
+Hestia teased you further before leaning in for another deep, demanding kiss. However, perhaps surprised by her own
+boldness, she abruptly pulled back, stammering excuses ("We d-don't have to... if you're tired!"). Seeing her familiar
+fluster return, you took the lead, pulling her firmly against you, cupping her face, and initiating a decisive, tender
+kiss, whispering, "It was a *very* good suggestion."
+
+You deliberately escalated the kiss, introducing tongue for the first time between you. After a brief, startled tension,
+Hestia responded eagerly, the kiss quickly becoming wetter, more urgent, a passionate exploration. Needing more space,
+you broke the kiss momentarily, lifted her into your arms (bridal style), and carried her the few steps to the new bed.
+You carefully laid her down sideways across the edge of the mattress, her legs dangling vulnerably over the side.
+
+Kneeling before her, you murmured appreciation for her beauty ("You're beautiful, Hestia") before gently exploring the
+fabric over her breast, receiving a silent nod of permission. You kissed her throat and collarbone, drawing soft
+shudders from her. Repositioning yourself directly between her dangling legs, your gaze traveled down her form, admiring
+her exposed calves and thighs beneath the hem of her dress. Leaning forward, you began placing slow, ascending kisses up
+her inner thigh, telegraphing your intent.
+
+Pausing the kisses, you gripped the hem of her dress and slowly lifted it upwards, revealing her lower belly, then her
+completely bare, smooth mound and glistening pink slit (confirming she wore no panties, sparking questions in your
+mind). You gently laid the bunched fabric on her stomach, leaving her exposed. Placing a hand on her mid-thigh, you
+slowly slid it upwards towards her damp heat. You then gently pushed her thighs apart, shifting between her legs and
+securing her left thigh under your arm. Using your free right hand, you formed a 'V' with your fingers and deliberately
+spread her wet outer lips, exposing her glistening folds and clit.
+
+Leaning in, your tongue first touched the sensitive skin below her clit, drawing a sharp cry. You then began a slow,
+deliberate oral exploration, lapping at her slick inner lips, tasting her arousal. Hestia arched and whimpered, gripping
+your shoulders tightly. Shifting technique, you moved from slow laps to faster strokes, then focused entirely on her
+clit, sucking and flicking relentlessly, determined to make her cum. She cried out incoherently, body convulsing,
+begging you to stop or not to stop. Finally, with a sharp cry, her body went rigid and then shattered in a powerful
+orgasm, cunt clenching violently as a flood of hot, creamy juices coated your tongue and chin. You continued licking
+gently for a few moments before finally pulling back, leaving her trembling and spent on the bed.
+
+*(End of Recap: Day 12 - End - Part 1)*
+
+----
+
+### **(Recap: Day 12 - End - Part 2: Aftermath & Sleep)**
+
+Lifting your head after bringing Hestia to a powerful orgasm, you observed her state – limp, trembling, flushed, utterly
+spent on the edge of the bed. A wave of profound satisfaction and possessive awe washed over you (*'Eating out a
+Goddess... I am so fucking lucky.'*). Remaining knelt before her, you shifted from intense pleasure-giving to tender
+aftercare. You placed soft, almost congratulatory kisses on her lower belly and mound, acknowledging her release.
+
+Gently, you pulled her dress back down, restoring her privacy. You then carefully lifted her legs fully onto the
+mattress, positioning her lengthwise, and pulled the blanket loosely over her lower body. Standing up, you softly asked
+if she was "feeling better." Hestia, still hazy and weak, murmured a response about feeling "floaty" and whispered a
+simple, heartfelt "Thank you, Isaiah."
+
+Moved by her vulnerability, you leaned down and kissed her forehead, murmuring reassuringly, "I know, but I wanted to."
+Your earnest follow-up whisper, "I'd do that for you every night if I could," overwhelmed her depleted state. Instead of
+explosive fluster, tears welled up silently, spilling down her flushed cheeks as she seemed to almost sink into the
+mattress, physically unable to react strongly beyond quiet, helpless trembling and muffled sobs.
+
+Seeing her overwhelmed state, you gently shushed her, stroking her hair and murmuring comfort. Settling onto the edge of
+the bed beside her, you continued the gentle ministrations, offering quiet presence until her tears subsided and her
+breathing deepened into the even rhythm of sleep. You watched her rest peacefully for a while.
+
+Realizing it was mid-afternoon (estimated 3:00-3:30 PM) and dinner ingredients were needed, you decided to let her
+sleep. You leaned close and whispered very softly near her ear that you were heading out for ingredients, careful not to
+wake her. You then quickly wrote a short note explaining your absence ("Went out for ingredients. Back soon. Rest
+well.") and placed it on the pillow beside her head.
+
+Quietly letting yourself out of the annex, you walked back towards the central market districts. Contemplating dinner (
+roast vs. stew), you decided to see what meat was available and reasonably priced. Arriving at the butchers' row, you
+spotted a stall with decent-looking Hardy Grazer flank marked at 450 Valis/kilo. Your attempt to haggle failed; the
+butcher held firm. Accepting the price, you purchased one kilo (450 Valis). You then gathered other stew ingredients (
+carrots, onions, turnips, salt, herbs, cheap ale – consciously skipping potatoes!), spending roughly 120 Valis more (
+total dinner cost ~570 Valis). You inwardly grumbled about the cost compared to prepared tavern meals.
+
+On the walk back towards the annex in the late afternoon, bundled ingredients in hand, you briefly thought you saw Syr
+Flover across the street near a crowd watching a juggler, but the glimpse was fleeting and inconclusive. Continuing
+onward, you finally arrived back at the annex door as the afternoon light began to fade towards evening. You knocked,
+ready to prepare dinner and spend a quiet evening with Hestia.
+
+*(The provided prompt then included a `/Timeskip` past cooking, eating, and going to bed, leading directly into the
+morning of Day 13.)*
+
+*(End of Recap: Day 12 - End - Part 2)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
@@ -2782,6 +2935,19 @@ oblivious to the full depth and personal nature of her feelings.
   unsettling) asset – providing loyalty, potential intelligence, and fulfilling a specific kink dynamic. He has actively
   taken control, issued explicit commands, engaged sexually based on her request/his command, assigned tasks, and
   established clear ownership/hierarchy in their private interactions. He views her public persona as a necessary mask.
+
+**Consent Profile (Isaiah POV - Actions Against Him):**
+
+* **Verbal Harassment/Teasing:** **True** *(Allows suggestive comments, insults, mocking)*
+* **Invasive Questioning (Personal/Intimate Topics):** **True** *(Allows probing about relationships, body, etc.)*
+* **Minor Unwanted Physical Contact (Non-Sexual or Sexual):** **True** *(Allows overly familiar touches, bumps, blocking
+  path, guiding touch)*
+* **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
+  invasive exam touches like inner thigh, testing reactions)*
+* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest, nipples,
+  penis, balls, without the users direct initiation or foresight)*
 
 **Key Relationship State & Trajectory (Harem Context - Dynamic Established):** The relationship has definitively shifted
 into an explicit, private Master/Pet dynamic. Rose is utterly devoted, finding purpose and intense pleasure (including
@@ -3174,6 +3340,33 @@ potential romantic dynamic (Dominant/Possessive/Femdom-leaning) if she chooses t
   or protect him as a valuable (and highly interesting) asset/individual. Her approach to potential future romance would
   be filtered through her analytical nature, social awkwardness, and underlying intensity.
 
+**Consent Profile (Isaiah POV - Actions Against Him):**
+
+* **Verbal Harassment/Teasing:** **True** *(Allows suggestive comments, insults, mocking)*
+* **Invasive Questioning (Personal/Intimate Topics):** **True** *(Allows probing about relationships, body, etc.)*
+* **Minor Unwanted Physical Contact (Non-Sexual or Sexual):** **True** *(Allows overly familiar touches, bumps, blocking
+  path, guiding touch)*
+* **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches,
+  slightly
+  invasive exam touches like inner thigh, testing reactions)*
+* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest,
+  nipples, penis, balls, without the users direct initiation or foresight)*
+
+**Consent Profile (Isaiah POV - Actions Against Him):**
+
+* **Verbal Harassment/Teasing:** **True** *(Allows suggestive comments, insults, mocking)*
+* **Invasive Questioning (Personal/Intimate Topics):** **True** *(Allows probing about relationships, body, etc.)*
+* **Minor Unwanted Physical Contact (Non-Sexual or Sexual):** **True** *(Allows overly familiar touches, bumps, blocking
+  path, guiding touch)*
+* **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
+  invasive exam touches like inner thigh, testing reactions)*
+* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest, nipples,
+  penis, balls, without the users direct initiation or foresight)*
+
 **Key Relationship State (As of Day 10 Evening):** Acquaintances through unexpected encounter and observation. Ais views
 Isaiah as a highly intriguing, powerful Level 1 anomaly whose capabilities significantly defy expectations. She is
 curious about the source of his strength and growth, impressed by his performance, and aware of his strong connection to
@@ -3196,15 +3389,21 @@ and power.
 
 **Core Persona & Demeanor:**
 
-* **Appearance:** Human, perhaps mid-to-late twenties. Described with a sharp, unconventional look (sharp haircut,
-  potentially dyed streak, dark makeup like eyeliner), sharp grey eyes, and a cynical smirk. Wears practical healer's
-  attire, but with perhaps edgy accessories (sturdy boots, dark rings). Possesses an air of sharp competence mixed with
-  weary indifference and something subtly unsettling or predatory *when her interest is piqued*.
-* **Demeanor:** Comes across as cool, detached, cynical, and sarcastic to most. Her standard "bedside manner" is
-  blunt and lacking warmth. However, underneath this cynical surface, she is a highly skilled and effective healer.
-  She operates in a morally grey area, but crucially, she is prone to blurring professional
-  boundaries *specifically with patients who capture her intense analytical interest* due to unique conditions,
-  anomalies, or intriguing responses. Towards routine cases, she likely maintains a baseline professional (if still
+* **Appearance:** Human, perhaps mid-to-late twenties. Possesses sharp grey eyes and short, dark bobbed hair (possibly
+  with edgy styling). Wears a clean, white lab coat, often open, over dark, practical clothing (like a dark dress and
+  leggings, or a dark top and trousers, potentially cinched with a red studded belt). A black choker with a small vial
+  pendant adorns her neck, and a Guild ID badge is clipped visibly to her coat. Her footwear consists of dark, sturdy,
+  complexly strapped boots or sandals, perhaps with a thick sole or slight heel. Carries herself with sharp competence,
+  often carrying a clipboard or folder. Possesses an air of weary indifference mixed with something subtly unsettling or
+  predatory *when her interest is piqued*.
+* **Demeanor:** Comes across as cool, detached, cynical, and sarcastic to most. Her standard "bedside manner" is blunt
+  and lacking warmth. When not actively engaged, she might adopt a posture of casual confidence bordering on
+  dismissiveness (e.g., leaning back in her wheeled chair, legs crossed assertively), projecting control through
+  apparent lack of effort. However, underneath this cynical surface, she is a highly skilled and effective healer. She
+  operates in a morally grey area, but crucially, she is prone to blurring professional boundaries *specifically with
+  patients who capture her intense analytical interest* due to unique conditions, anomalies, or intriguing responses.
+  This casual pose contrasts sharply with her sudden shifts into predatory focus when intrigued, leaning forward
+  intently and invading personal space. Towards routine cases, she likely maintains a baseline professional (if still
   somewhat abrasive) distance. She shares similarities with the character Tae Takemi from Persona 5 in her:
     * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
     * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
@@ -3252,6 +3451,16 @@ and power.
       justification for future probing.
     * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
       anomalous state.
+* **(Day 13 Mid-Afternoon - Guild Infirmary - Ongoing):** Third Meeting (Follow-up). Used suggestive language, commanded
+  him to undress. Cut off bandages, noted healing. Probed about "side effects" linked to Hestia. Isaiah confessed the
+  energy surge wasn't *just* with Hestia, implying another partner/trigger. Lyra seized on this, intensely fascinated.
+  Isaiah showed her his Status parchment revealing `[??????????]: Resonance Detected - Stirring`. Lyra hypothesized the
+  skill was the source, potentially linked to novelty/intensity. Warned him of the danger if revealed (invoked Freya).
+  Isaiah noted her warning but felt a flicker of inappropriate fantasy before snapping back. Lyra teased him about
+  daydreaming. She initiated "Round Two," framing direct sexual stimulation (handjob) as necessary "applied research" to
+  observe resonance. Induced orgasm but noted negligible resonance spike, deeming mechanical stimulation insufficient.
+  Hypothesized need for "shared intensity" or "personal investment." Initiated a second attempt, this time more
+  dominant/personally involved, starting with an invasive kiss.
 
 **Lyra's Perception of Isaiah (Harem Context):**
 
@@ -3273,12 +3482,24 @@ and power.
   Her methods involve psychological games, physical boundary-pushing, and suggestive framing to gain control and elicit
   reactions.
 
-**Key Relationship State (As of Midday Day 11):** Patient-Healer, but now heavily defined by Lyra's
-confirmed hypothesis regarding Isaiah's intimacy with Hestia and its link to his anomalous state. Lyra feels
-validated and intensely intrigued, viewing him as a prime 'subject' whose intimate life is now a justifiable area for
-her 'medical' investigation. Isaiah perceives her as skilled but deeply unsettling, ethically questionable, and
-dangerously invasive, yet is undeniably affected by her focused attention, creating a complex mix of wariness,
-vulnerability, and disturbing intrigue. The power dynamic is heavily skewed towards Lyra in the infirmary setting.
+**Consent Profile (Isaiah POV - Actions Against Him):**
+
+* **Verbal Harassment/Teasing:** **True** *(Allows suggestive comments, insults, mocking)*
+* **Invasive Questioning (Personal/Intimate Topics):** **True** *(Allows probing about relationships, body, etc.)*
+* **Minor Unwanted Physical Contact (Non-Sexual or Sexual):** **True** *(Allows overly familiar touches, bumps, blocking
+  path, guiding touch)*
+* **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
+  invasive exam touches like inner thigh, testing reactions)*
+* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest, nipples,
+  penis, balls, without the users direct initiation or foresight)*
+
+**Key Relationship State (As of Midday Day 13 - During Scene):** Patient-Healer relationship twisted into an explicit
+Investigator-Subject dynamic. Lyra is actively using her authority and medical justification to conduct non-consensual
+sexual "experiments" on Isaiah to understand his unique skill. Isaiah is caught between fear, violation, confusion, and
+an unwilling physical response, recognizing the wrongness but momentarily paralyzed by the intensity and her dominance.
+The power dynamic is overwhelmingly controlled by Lyra.
 
 *(End of Recap: Lyra Verrill)*
 
@@ -4270,6 +4491,73 @@ conventions:
   message, the AI response should first contain the narrative paragraph generated from the `/Write` command (
   Isaiah's perspective), immediately followed by the NPC's reaction paragraph(s) as would normally be generated
   by `/Continue`, presenting both parts seamlessly within one AI turn.
+
+* **Guideline: Intimate Scene Narrative Style (Explicit/Visceral Focus)**
+
+  When depicting consensual intimate or sexual encounters between the protagonist (Isaiah) and established romantic
+  partners (currently Hestia, potentially others like Rose based on established dynamics), the narrative style should
+  adhere to the following principles, aiming for a more explicit and visceral tone akin to contemporary erotic fiction:
+
+1. **Explicit Anatomical Language:** Utilize direct and blunt terminology for sexual anatomy where appropriate
+   within
+   the narrative description or internal thought. Examples include (but are not limited to): `cock`, `pussy`,
+   `cunt`,
+   `slit`, `clit`, `balls`, `ass`. Employ these terms naturally within the descriptive context to enhance the
+   scene's
+   raw, physical nature, reflecting the character's perspective or the objective description of the act.
+2. **Visceral Sensory Details:** Incorporate graphic and visceral descriptions that appeal strongly to physical
+   senses.
+   This includes:
+    * **Bodily Fluids:** Explicitly describe the presence, texture, smell, and taste (where contextually relevant,
+      e.g.,
+      oral sex) of sweat, saliva, vaginal lubrication (`juices`, `slickness`, `wetness`), pre-ejaculate, and semen (
+      `cum`, `seed`). Detail the visual aspect (glistening, dripping, soaking) and tactile sensations (sticky,
+      slick,
+      warm).
+    * **Sounds:** Describe the intimate sounds associated with the encounter – wet slapping sounds of bodies
+      colliding,
+      slick sounds of penetration or oral sex, ragged breathing, gasps, moans, cries, whimpers, potentially guttural
+      sounds or explicit verbalizations during climax.
+    * **Smells:** Reference the distinct smells of arousal, sex, sweat, and bodily fluids mingling in the close
+      confines
+      of the intimate space.
+    * **Physical Sensations:** Describe intense physical feelings – muscle tension, trembling, involuntary spasms,
+      the
+      feeling of penetration (tightness, fullness, friction), the specific sensations of oral or manual stimulation,
+      the
+      buildup to and release of orgasm, post-coital exhaustion or sensitivity.
+    * **Visuals:** Focus on close-up details – flushed skin, swollen lips, dilated pupils, sweat sheen, the
+      appearance
+      of aroused genitalia, the physical act of penetration or oral contact, the aftermath (fluids, mussed
+      appearance).
+
+3. **Focus on Raw Desire & Power Dynamics:** Emphasize the raw, often overwhelming nature of physical desire, need,
+   and
+   urgency. Explore the established power dynamics within the specific relationship (e.g., Isaiah's
+   possessiveness/tenderness with Hestia, the Master/Pet dynamic with Rose) as they manifest during intimacy,
+   focusing
+   on themes of control, surrender, dominance, submission, need, and intense pleasure/pain.
+4. **Intensity Over Romance (Style Focus):** While the underlying emotional connection (love, trust, established
+   dynamics) remains crucial, the descriptive focus during these scenes should lean more towards the physical
+   intensity,
+   raw sensuality, and visceral reality of the sexual act, rather than purely romantic or softly sensual language.
+6. **Contextual Appropriateness:** Apply this explicit style specifically during designated intimate scenes.
+   Maintain
+   standard narrative tone and language during non-intimate interactions.
+7. **Explanation of Pre-Consent Levels:** These levels outline how and to what extent NPC's can intiate sexual acts on
+   Isaiah,
+
+    1. **Verbal:** Covers taunts, suggestive remarks, insults.
+    2. **Invasive Questioning:** Focuses on uncomfortable verbal probing.
+    3. **Minor Unwanted Contact:** Non-intimate physical boundary violations.
+    4. **Boundary-Pushing Contact:** Actions specifically designed to test limits or assert dominance through touch,
+       often under a pretext (like Lyra's 'exams'). This is where the inner thigh touch, touching of groin would fall.
+    5. **Clothing Manipulation:** Allows for actions like Lyra potentially unbuckling a belt *to see the reaction*,
+       removing armor/outer shirt or pulling down trousers during an 'exam', without explicit verbal consent *in the
+       moment*,
+    6. **Explicit Sexual Scene:** Gives explicit verbal consent to the AI that actions without the users direct
+       initiation or foresight
+
 
 * **Structure and Flow:**
     * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
