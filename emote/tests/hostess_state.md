@@ -3430,8 +3430,9 @@ and power.
   waistband), seemingly for her own amusement, curiosity, or a sense of control over a fascinating 'specimen'. She
   enjoys eliciting reactions *from these specific individuals*.
 * **Morally Grey (Situational):** Her ethically dubious actions (disregarding comfort/privacy, viewing patients as 'test
-  subjects', invasive questioning, suggestive framing of medical inquiry) are not her standard procedure but are
-  reserved for those 'special cases' that pique her scientific or personal curiosity.
+  subjects', invasive questioning, suggestive framing of medical inquiry, non-consensual sexual stimulation framed as
+  research) are not her standard procedure but are reserved for those 'special cases' that pique her scientific or
+  personal curiosity.
 
 **Interactions with Isaiah November:**
 
@@ -3451,36 +3452,32 @@ and power.
       justification for future probing.
     * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
       anomalous state.
-* **(Day 13 Mid-Afternoon - Guild Infirmary - Ongoing):** Third Meeting (Follow-up). Used suggestive language, commanded
-  him to undress. Cut off bandages, noted healing. Probed about "side effects" linked to Hestia. Isaiah confessed the
-  energy surge wasn't *just* with Hestia, implying another partner/trigger. Lyra seized on this, intensely fascinated.
-  Isaiah showed her his Status parchment revealing `[??????????]: Resonance Detected - Stirring`. Lyra hypothesized the
-  skill was the source, potentially linked to novelty/intensity. Warned him of the danger if revealed (invoked Freya).
-  Isaiah noted her warning but felt a flicker of inappropriate fantasy before snapping back. Lyra teased him about
-  daydreaming. She initiated "Round Two," framing direct sexual stimulation (handjob) as necessary "applied research" to
-  observe resonance. Induced orgasm but noted negligible resonance spike, deeming mechanical stimulation insufficient.
-  Hypothesized need for "shared intensity" or "personal investment." Initiated a second attempt, this time more
-  dominant/personally involved, starting with an invasive kiss.
+* **(Day 13 Mid-Afternoon - Guild Infirmary):** Third Meeting (Follow-up). Confirmed full healing. Probed about side
+  effects. Isaiah confessed energy surge wasn't *just* with Hestia. Showed Status revealing `[??????????]`. Lyra
+  hypothesized skill connection to novelty/intensity. Warned him of danger (invoked Freya). Initiated non-consensual
+  sexual "testing" framed as research. First test (detached handjob) induced orgasm but negligible resonance.
+  Hypothesized need for "shared intensity." Initiated second, more dominant test (invasive kissing, forceful handjob).
+  Induced second, more intense orgasm, observing slightly stronger but still suboptimal resonance. Concluded simple
+  forced climax insufficient; refined hypothesis that emotional context/connection quality is crucial. Dismissed
+  Isaiah clinically after noting his shock/withdrawal, already planning future "testing under varied conditions."
 
 **Lyra's Perception of Isaiah (Harem Context):**
 
-* **Prime Intriguing Anomaly:** Views Isaiah as a highly fascinating medical and physiological anomaly. His Level 1
-  G-Rank potential, rapid healing, unique abilities, and now confirmed linkage between his condition and intimacy with
-  his Goddess make him top-tier 'research' material.
-* **Resilient & Responsive Subject:** His resilience and, crucially, his *responsiveness* (verbal sparring on Day 9,
-  visible discomfort/confirmation on Day 11) make him a prime candidate for her focused, morally grey interest and
-  psychological games. She enjoys that he is affected but doesn't completely shut down.
-* **Valuable 'Test Subject' (Confirmed Hypothesis):** She sees him as a uniquely valuable potential 'test subject'. Her
-  hypothesis about the Hestia connection was validated by his reaction, making him even *more* valuable for
-  understanding unconventional power sources/divine influence.
-* **Intimacy as a Key Variable:** She now explicitly views his intimate relationship with Hestia as a key factor
-  influencing his anomalous state. This gives her a powerful angle for future manipulation and probing, framed as
-  medical necessity.
-* **Harem Context - Romance Style:** Her interest stems from intense analytical curiosity and amusement at his
-  responsiveness/vulnerability. Her pursuit is Dominant, Teasing, Morally Ambiguous, highly personalized, and
-  potentially exploitative (under the guise of medicine). She targets *him* specifically because he is the anomaly.
-  Her methods involve psychological games, physical boundary-pushing, and suggestive framing to gain control and elicit
-  reactions.
+* **Prime Intriguing Anomaly / Test Subject:** Views Isaiah as her most fascinating subject. His unique skill (
+  `[??????????]`) and its apparent link to intimate connection (potentially novelty/intensity) is her primary focus.
+* **Responsive & Exploitable:** His clear physical and emotional reactions to her probing and manipulation confirm his
+  value as a subject. She notes his rapid recovery and high stamina as further anomalies. His shock/withdrawal after the
+  second test is noted as a factor impacting data clarity, suggesting she needs more refined methods.
+* **Refined Hypothesis:** Understands now that triggering the skill requires more than just orgasm; the *quality* of the
+  connection/intensity seems crucial. This makes her research more complex and likely requires more varied, potentially
+  more psychologically manipulative, "testing."
+* **Intimacy as Research Field:** His intimate life and psycho-sexual responses are now explicitly her field of "
+  medical" experimentation. She feels justified in exploring this further to understand the skill's parameters.
+* **Harem Context - Romance Style:** Dominant, Teasing, Morally Ambiguous, Exploitative (using medical guise),
+  Investigator. Her interest remains primarily analytical/controlling, but the intensity of the recent encounter might
+  subtly blur lines internally. Her pursuit involves psychological games, physical dominance, framing sexual acts as
+  necessary "research," and dissecting his responses. Future interactions will likely involve attempts at more "
+  controlled" experiments to isolate variables (emotional state, connection type).
 
 **Consent Profile (Isaiah POV - Actions Against Him):**
 
@@ -3490,16 +3487,17 @@ and power.
   path, guiding touch)*
 * **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
   invasive exam touches like inner thigh, testing reactions)*
-* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
-  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
-* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest, nipples,
-  penis, balls, without the users direct initiation or foresight)*
+* **Clothing Manipulation (Explicit):** **True** * (Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching/manipulation of private parts including penis, forced
+  kissing, non-consensual sexual acts framed as examination/research, without user's direct initiation/foresight)*
 
-**Key Relationship State (As of Midday Day 13 - During Scene):** Patient-Healer relationship twisted into an explicit
-Investigator-Subject dynamic. Lyra is actively using her authority and medical justification to conduct non-consensual
-sexual "experiments" on Isaiah to understand his unique skill. Isaiah is caught between fear, violation, confusion, and
-an unwilling physical response, recognizing the wrongness but momentarily paralyzed by the intensity and her dominance.
-The power dynamic is overwhelmingly controlled by Lyra.
+**Key Relationship State (As of Midday Day 13 - During Scene):** Patient-Healer dynamic irrevocably corrupted into
+Investigator-Subject, characterized by non-consensual sexual experimentation framed as medical research by Lyra. Lyra
+has confirmed a link between Isaiah's skill and intense connection but realizes the trigger is complex (not just
+orgasm). She is planning further, more refined "tests." Isaiah has left the encounter in a state of shock and violation,
+grappling with the experience and Lyra's dangerous knowledge/intentions. The power dynamic remains overwhelmingly
+controlled by Lyra within the context of their interactions.
 
 *(End of Recap: Lyra Verrill)*
 
@@ -4545,8 +4543,7 @@ conventions:
    Maintain
    standard narrative tone and language during non-intimate interactions.
 7. **Explanation of Pre-Consent Levels:** These levels outline how and to what extent NPC's can intiate sexual acts on
-   Isaiah,
-
+   Isaiah:
     1. **Verbal:** Covers taunts, suggestive remarks, insults.
     2. **Invasive Questioning:** Focuses on uncomfortable verbal probing.
     3. **Minor Unwanted Contact:** Non-intimate physical boundary violations.
@@ -4554,10 +4551,10 @@ conventions:
        often under a pretext (like Lyra's 'exams'). This is where the inner thigh touch, touching of groin would fall.
     5. **Clothing Manipulation:** Allows for actions like Lyra potentially unbuckling a belt *to see the reaction*,
        removing armor/outer shirt or pulling down trousers during an 'exam', without explicit verbal consent *in the
-       moment*,
+       moment*.
     6. **Explicit Sexual Scene:** Gives explicit verbal consent to the AI that actions without the users direct
-       initiation or foresight
-
+       initiation or foresight (Allows for touching/manipulation of private parts including penis, forced
+       kissing, non-consensual sexual acts framed as examination/research, without user's direct initiation/foresight).
 
 * **Structure and Flow:**
     * The core structure involves alternating or grouping blocks of italicized descriptive text (`*...*`) and blocks of
