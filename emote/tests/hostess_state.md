@@ -2625,6 +2625,73 @@ morning of Day 13.)*
 
 ----
 
+**(Recap: Day 13 - Beginning - Morning & Delve)**
+
+The first light of Day 13 filtered softly through the single, grimy window of the church annex, casting gentle stripes
+across the sturdy oak bedframe. You surfaced slowly from a deep, profoundly restful sleep. Beside you, Hestia slept
+soundly, curled against your side. A quiet warmth spread through you, observing her peaceful state.
+
+Carefully, not wanting to disturb her yet, you stretched. Your ribs felt strong, the last vestiges of pain seemingly
+vanished. Eventually, you gently woke Hestia. Her initial sleepy affection shifted to alertness as you discussed the
+day's plan.
+
+Her question about the plan was the opening you needed. You expressed your desire to return to the Dungeon, feeling
+healed and eager to test the Hearthfire Blades, emphasizing the need for continued progress and earnings for 'us'. As
+expected, Hestia reacted with instant worry, reminding you of your recent injury and their agreement for rest.
+
+Through gentle reassurance, demonstrating your recovered state, and proposing a compromise (Floor 3 only, familiar
+routes, standard quests, immediate return if any pain), you managed to sway her. Her protective instincts warred with
+your logic and apparent wellness. She reluctantly agreed, extracting a solemn promise of extreme caution. Seeing her
+worry, Hestia then reframed her staying behind as a vital mission: undertaking the "Goddess's work" of thoroughly
+organizing and decorating their annex now that they had the new bed, a task she embraced with determined enthusiasm.
+
+With the plan renegotiated ("Floor 3 only, extra careful, back immediately if needed"), the comfortable routine of
+getting ready resumed. Hestia fussed over your gear, extracting final promises of safety. You reassured her, sharing a
+final, tender kiss goodbye at the annex door before stepping out into the bright Orario morning, leaving Hestia to her
+nesting.
+
+The familiar walk towards the city center felt purposeful, your hand resting on the hilt of the Hearthfire Blades. You
+arrived at the Guild Hall, the noise and bustle a familiar wave. You scanned the counters, spotting Rose Fannett at her
+station. After a brief wait, you approached her, requesting Floor 3 quests. You selected Kobold Subjugation (30 kills)
+and Dungeon Lizard Hide Collection (x15). Rose processed the requests with impeccable professional composure, though you
+noted subtle signs of underlying tension and awareness (a fractional pause, slight tremor upon accidental finger brush).
+
+Testing her further, you deliberately used the trigger word "satisfactory" when asking her assessment of the quest
+pairing. This elicited a clear, though instantly suppressed, physical reaction (hitch breath, dilated pupils, ear
+twitch, flush), confirming the conditioning held but so did her public control. Feigning ignorance when she stammered a
+request for clarification ("play?"), you dismissed the interaction and turned away.
+
+However, before you could leave, Rose called you back under the plausible guise of needing to share pertinent patrol
+data. She led you to a quiet administrative corridor. Once alone, her professional mask dissolved completely. Trembling,
+she presented a slim folder – the dossier on Ryu Lion you had assigned as 'homework', completed with startling speed and
+diligence. You accepted it, offering minimal but effective praise ("Diligent, kitten. Very good."), deliberately
+withholding the trigger word 'satisfactory' for now. You instructed her to maintain secrecy and return to her duties,
+which she obeyed instantly, scurrying back to the main hall.
+
+Alone briefly, you stepped into a deserted nearby alleyway. Leaning against a recessed doorway, you quickly skimmed the
+dossier. It was meticulously organized, containing publicly observable details: Ryu's alias, race, estimated age,
+employment at the Hostess, known associates there, lack of Guild registration or financial footprint, shift patterns,
+observed demeanor (calm, professional, reserved), and Rose's analytical summary noting the incongruity of her poise and
+the lack of an official footprint. Satisfied with this baseline intelligence, you tucked the folder securely away and
+headed decisively towards Babel Tower.
+
+Presenting your plate and quest slips at the Dungeon entrance was routine. You descended into the cool, moss-lit
+expanse. The Hearthfire Blades felt alive in your hands. Floors 1 and 2 were trivial transit zones, Goblins and stray
+Kobolds dispatched effortlessly. Reaching Floor 3, the hunt began. For the next several hours, you moved with deadly
+efficiency, the Adamantite blades shearing through Kobolds and Dungeon Lizards with ease. Your G-Rank stats combined
+with the superior weapons made the standard encounters almost routine. You relentlessly gathered hides and racked up
+Kobold kills, easily surpassing quest requirements while feeling the potent hum of Excelia accumulate via Hestia's
+Falna.
+
+The delve felt successful, a good test of the blades, but relatively brief and straightforward compared to recent
+challenges. Deciding you'd gathered sufficient resources and wanting to return to Hestia before evening, you began the
+ascent. Moving back through the familiar passages of Floor 3 and 2, you finally reached the base of the main staircase
+leading out of Floor 1, ready to emerge back into the Babel staging area.
+
+*(End of Combined Recap: Day 13 - Beginning - Morning & Delve)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
