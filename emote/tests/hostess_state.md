@@ -2625,70 +2625,149 @@ morning of Day 13.)*
 
 ----
 
-**(Recap: Day 13 - Beginning - Morning & Delve)**
+**(Recap: Day 13 - Beginning - Part 1)**
 
 The first light of Day 13 filtered softly through the single, grimy window of the church annex, casting gentle stripes
-across the sturdy oak bedframe. You surfaced slowly from a deep, profoundly restful sleep. Beside you, Hestia slept
-soundly, curled against your side. A quiet warmth spread through you, observing her peaceful state.
+across the sturdy oak bedframe. You surfaced slowly from a deep, profoundly restful sleep, the kind only possible on a
+truly comfortable mattress after days of hardship. The constant low-level aches from the previous nights on the narrow
+cot or lumpy sofa were completely absent. Beside you, Hestia slept soundly, curled against your side, her breathing
+even, a picture of peaceful contentment framed by her dark hair and the blue ribbons.
 
-Carefully, not wanting to disturb her yet, you stretched. Your ribs felt strong, the last vestiges of pain seemingly
-vanished. Eventually, you gently woke Hestia. Her initial sleepy affection shifted to alertness as you discussed the
-day's plan.
+A quiet warmth spread through you, observing her. The frantic energy, the worry, the possessiveness – all seemed
+softened by the simple luxury of a proper bed, by the security of their established intimacy and recent successes. The
+memory of yesterday afternoon's intense encounter, her subsequent exhaustion and vulnerability, mingled with the
+peaceful domesticity of the night, creating a complex tapestry of connection. She felt undeniably like *home*.
 
-Her question about the plan was the opening you needed. You expressed your desire to return to the Dungeon, feeling
-healed and eager to test the Hearthfire Blades, emphasizing the need for continued progress and earnings for 'us'. As
-expected, Hestia reacted with instant worry, reminding you of your recent injury and their agreement for rest.
+Carefully, not wanting to disturb her yet, you shifted slightly, stretching under the surprisingly soft blanket they
+must have acquired with the bed purchase. Your ribs felt strong, the last vestiges of pain seemingly vanished overnight
+thanks to the continued rapid healing amplified by rest and, perhaps, as Lyra had unsettlingly suggested, the potent
+connection with Hestia.
 
-Through gentle reassurance, demonstrating your recovered state, and proposing a compromise (Floor 3 only, familiar
-routes, standard quests, immediate return if any pain), you managed to sway her. Her protective instincts warred with
-your logic and apparent wellness. She reluctantly agreed, extracting a solemn promise of extreme caution. Seeing her
-worry, Hestia then reframed her staying behind as a vital mission: undertaking the "Goddess's work" of thoroughly
-organizing and decorating their annex now that they had the new bed, a task she embraced with determined enthusiasm.
+After a few more moments simply appreciating the quiet, you decided it was time to start the day. Leaning closer, you
+brushed a stray lock of hair from Hestia's forehead, your touch feather-light. "Morning, my love," you whispered softly
+near her ear. Hestia stirred, nuzzling slightly against the pillow before her eyes fluttered open. They focused on you,
+clear and warm, a soft, sleepy smile gracing her lips immediately. There was no startle, no fluster, just comfortable
+recognition.
 
-With the plan renegotiated ("Floor 3 only, extra careful, back immediately if needed"), the comfortable routine of
-getting ready resumed. Hestia fussed over your gear, extracting final promises of safety. You reassured her, sharing a
-final, tender kiss goodbye at the annex door before stepping out into the bright Orario morning, leaving Hestia to her
-nesting.
+"Mmm... morning, Isaiah..." she murmured, her voice thick with sleep. She stretched languidly, like a cat waking in a
+sunbeam, arching her back slightly against the mattress. "Ooooh, this bed is *amazing*."
 
-The familiar walk towards the city center felt purposeful, your hand resting on the hilt of the Hearthfire Blades. You
-arrived at the Guild Hall, the noise and bustle a familiar wave. You scanned the counters, spotting Rose Fannett at her
-station. After a brief wait, you approached her, requesting Floor 3 quests. You selected Kobold Subjugation (30 kills)
-and Dungeon Lizard Hide Collection (x15). Rose processed the requests with impeccable professional composure, though you
-noted subtle signs of underlying tension and awareness (a fractional pause, slight tremor upon accidental finger brush).
+You chuckled softly, agreeing completely. "Best sleep I've had since... well, ever, probably."
 
-Testing her further, you deliberately used the trigger word "satisfactory" when asking her assessment of the quest
-pairing. This elicited a clear, though instantly suppressed, physical reaction (hitch breath, dilated pupils, ear
-twitch, flush), confirming the conditioning held but so did her public control. Feigning ignorance when she stammered a
-request for clarification ("play?"), you dismissed the interaction and turned away.
+She giggled, snuggling back towards you for a moment. "Me too." Then, her mind likely catching up, she shifted into a
+more alert state, though still relaxed. "So, what's the plan for today? Guild? More shopping? We still have lots of
+Valis!" Her question was the opening you needed. You knew you had to be careful, but the pull of the Dungeon, the hum of
+the Hearthfire Blades, was strong.
 
-However, before you could leave, Rose called you back under the plausible guise of needing to share pertinent patrol
-data. She led you to a quiet administrative corridor. Once alone, her professional mask dissolved completely. Trembling,
-she presented a slim folder – the dossier on Ryu Lion you had assigned as 'homework', completed with startling speed and
-diligence. You accepted it, offering minimal but effective praise ("Diligent, kitten. Very good."), deliberately
-withholding the trigger word 'satisfactory' for now. You instructed her to maintain secrecy and return to her duties,
-which she obeyed instantly, scurrying back to the main hall.
+"Definitely the Guild first," you started, keeping your tone light. "I need to pick up a quest. I'm feeling completely
+healed, Hestia, honestly. And we need to keep earning, keep building momentum." You gestured around the room,
+encompassing the new bed and their improving situation. "Plus, I really want to properly test these blades."
 
-Alone briefly, you stepped into a deserted nearby alleyway. Leaning against a recessed doorway, you quickly skimmed the
-dossier. It was meticulously organized, containing publicly observable details: Ryu's alias, race, estimated age,
-employment at the Hostess, known associates there, lack of Guild registration or financial footprint, shift patterns,
-observed demeanor (calm, professional, reserved), and Rose's analytical summary noting the incongruity of her poise and
-the lack of an official footprint. Satisfied with this baseline intelligence, you tucked the folder securely away and
-headed decisively towards Babel Tower.
+As expected, Hestia's relaxed mood evaporated instantly. She sat bolt upright, pulling the blanket defensively around
+her shoulders, her eyes wide with renewed worry. "Isaiah, *no*! We agreed! Your ribs just healed! Going straight back
+into the Dungeon... what if something happens? What if you push too hard again?" Her voice held the familiar edge of
+fear.
 
-Presenting your plate and quest slips at the Dungeon entrance was routine. You descended into the cool, moss-lit
-expanse. The Hearthfire Blades felt alive in your hands. Floors 1 and 2 were trivial transit zones, Goblins and stray
-Kobolds dispatched effortlessly. Reaching Floor 3, the hunt began. For the next several hours, you moved with deadly
-efficiency, the Adamantite blades shearing through Kobolds and Dungeon Lizards with ease. Your G-Rank stats combined
-with the superior weapons made the standard encounters almost routine. You relentlessly gathered hides and racked up
-Kobold kills, easily surpassing quest requirements while feeling the potent hum of Excelia accumulate via Hestia's
-Falna.
+You shifted to sit facing her, taking her hand gently. "Hey, listen," you said softly but firmly. "I know you're
+worried, and I appreciate it, more than you know. But I *do* feel fine. Completely. And I won't be reckless." You
+squeezed her hand. "Think about it – steady progress. Maybe just Floor 3 again, somewhere familiar? A solid quest,
+gather some resources, build our funds even more. We need to keep moving forward, for *us*."
 
-The delve felt successful, a good test of the blades, but relatively brief and straightforward compared to recent
-challenges. Deciding you'd gathered sufficient resources and wanting to return to Hestia before evening, you began the
-ascent. Moving back through the familiar passages of Floor 3 and 2, you finally reached the base of the main staircase
-leading out of Floor 1, ready to emerge back into the Babel staging area.
+Hestia chewed on her lower lip, clearly torn. Your reassurance, combined with the logic of needing funds and the
+undeniable evidence of your rapid recovery, warred with her protective instincts. "Floor 3...?" she repeated
+hesitantly. "Are you *sure* you're ready? No strange monsters popping up?"
 
-*(End of Combined Recap: Day 13 - Beginning - Morning & Delve)*
+"I'll be careful," you promised earnestly. "Stick to known routes, standard Kobold or Lizard quests. Nothing crazy. And
+I'll use potions proactively. I learned my lesson from the Minotaur."She sighed, a long, slow exhale. Then, her gaze
+shifted around the small annex, landing on the remaining clutter, the
+bags of supplies, the general lack of organization now highlighted by the beautiful new bed.
+
+"Okay..." she said slowly, a new thought forming. "Okay, if you *have* to go... then maybe... maybe it's a good time for
+me to *really* tackle this room." Her energy shifted, a hint of determination replacing the worry. "It's going to take
+hours to sort everything, find proper places, make it feel less like... well, this. And I can't do that properly with
+you underfoot." She puffed out her chest slightly. "It's a big job! A Goddess's work! Organizing our home!"
+
+You saw the opening and seized it, relief washing over you. "That's a fantastic idea, Hestia! Seriously. While I'm gone,
+you can focus completely on making this place perfect. Our proper home base." You framed it as a vital contribution,
+validating her plan.
+
+She nodded, fully embracing the new mission. "Exactly! So you go. Floor 3 *only*, be *extra* careful, come back the
+*moment* anything feels wrong, understand?" She fixed you with a stern look, extracting the promise. "Floor 3, extra
+careful, back immediately if needed. Got it," you confirmed solemnly. Satisfied with the conditions, she relaxed
+slightly. "Good. Now, get ready. Your Goddess has important interior decorating duties to attend to."
+
+With the plan renegotiated, the comfortable routine of getting ready resumed, Hestia now occasionally glancing around
+the room, muttering plans for rearranging sacks and tidying corners.
+
+*(End of Recap: Day 13 - Beginning - Part 1)*
+
+----
+
+**(Recap: Day 13 - Beginning - Part 2)**
+
+The morning routine completed, gear checked, and the day's compromised Dungeon plan firmly established (Floor 3 only,
+caution promised), you stood ready by the annex door. After a brief, tender farewell kiss initiated by you to reassure
+Hestia, receiving her final blessings and warnings ("Be safe," "Make the Familia proud"), you stepped out into the
+bright Orario morning, leaving Hestia to her self-appointed 'decorating duties'.
+
+The walk towards the city center felt purposeful. Your hand rested on the hilt of a Hearthfire Blade, anticipating
+testing them properly. Your thoughts focused on selecting a suitable Floor 3 quest (Kobolds/Lizards) and, more
+immediately, checking in with Rose Fannett at the Guild about the Ryu dossier assigned as 'homework' the previous day.
+You felt a complex mix of satisfaction at her obedience, detached appreciation for her utility, and unsettling awareness
+of the power dynamic, wondering how well she'd maintain her professional facade today, especially given the specific
+task.
+
+Arriving at the bustling Guild Hall, you scanned the service counters, bypassing Eina Tulle (spotted busy with other
+adventurers) and locating Rose at her station, engrossed in paperwork, her professional mask seemingly intact. You
+joined her queue deliberately.
+
+When your turn came, Rose greeted you with perfect professional courtesy ("Adventurer November. Good morning."). You
+stated your need for a Floor 3 quest. She efficiently presented options. You selected the Kobold Subjugation (Kill 30)
+and Dungeon Lizard Hide Collection (x15) quests, noting the synergy. Rose processed them with flawless efficiency ("An
+excellent pairing..."), though you noted subtle signs of tension (a fractionally too-quick agreement, tight knuckles on
+the stamp) beneath her composed surface.
+
+During the exchange of slips, you deliberately brushed her fingers, eliciting an almost imperceptible shiver from her,
+though her expression remained impassive. After confirming the registration, you tested her further, asking if she
+deemed the quest combination "*satisfactory*," deliberately using the trigger word.
+
+Her reaction was immediate but contained: a hitched breath, dilated pupils, a twitching ear, a faint flush quickly
+suppressed. She expertly deflected, providing a standard Guild assessment without using the word back, demonstrating
+impressive public control despite the clear internal jolt. Satisfied with her restraint, you thanked her and turned to
+leave for Babel.
+
+However, before you could get far, Rose called you back ("Adventurer November! One moment!"). Moving quickly out from
+behind her counter, she intercepted you, using the plausible excuse of needing to clarify a pertinent detail about Floor
+3 patrol deviations in a less public space. Intrigued, you agreed.
+
+She led you to a quiet, deserted administrative corridor off the main hall. Once privacy was confirmed, her professional
+demeanor shattered instantly. Shoulders slumping in deference, breath shallow, eyes fixed on you with fervent eagerness
+and anxiety, she whispered, "Master." Trembling violently, she presented a slim, unmarked folder. "The... the
+information you requested. Regarding the waitress, Ryu Lion... I compiled it immediately..." She extended the folder
+with shaking hands, gaze lowered.
+
+You took the folder, noting her reaction and praising her diligence ("Immediate? Diligent, kitten. Very good."). Her
+relief was palpable; she almost swayed, tears of gratitude welling. You deliberately withheld the full "satisfactory"
+validation, stating you'd assess its quality later but acknowledging her speed. You commanded her to return to her
+duties, maintain composure, and ensure absolute secrecy. She choked out fervent agreement ("Y-Yes, Master! Absolute
+discretion!") before practically fleeing back towards the main hall.
+
+Alone in the dim corridor, you briefly examined the dossier. It was meticulously organized: **Subject Alias:** Ryu Lion,
+**Race:** Elf, **Employment:** Hostess of Fertility, **Observed Tenure:** ~18+ Months, **Associates:** Hostess Staff (
+Mia, Syr, Anya, Chloe, Lunoire), **Residence:** Assumed Staff Dorm (Unverified), **Incidents/Records:** None found under
+alias in Guild/Public databases. **Workplace Dynamics:** Detailed observations of professional interactions, shift
+patterns, break habits – all indicating extreme reserve and efficiency. **Analyst Summary:** Noted meticulously
+controlled low profile, lack of official footprint, incongruous composure suggesting masking/discipline, potential
+unverified skills. **Recommended:** Continued passive observation, potential active surveillance (req. authorization),
+historical cross-referencing (req. clearance). The profile highlighted her success at remaining an enigma, built on
+verifiable routine and a lack of traceable history.
+
+Satisfied with the thoroughness of this initial intelligence, you secured the dossier and exited the corridor, observing
+Rose briefly from a distance. She was back at her counter, handling another adventurer with flawless professional
+composure, the mask perfectly reapplied. Impressed by her control, you turned and headed definitively towards Babel
+Tower and the Dungeon entrance.
+
+*(End of Recap: Day 13 - Beginning - Part 2)*
 
 ----
 
