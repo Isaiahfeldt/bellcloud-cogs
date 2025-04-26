@@ -5249,10 +5249,9 @@ conventions:
    senses.
    This includes:
 
-* **Bodily Fluids:** Explicitly describe the presence, texture, smell, and taste (where contextually relevant, e.g.,
-      oral sex) of sweat, saliva, vaginal lubrication (`juices`, `slickness`, `wetness`), pre-ejaculate, and semen (
-      `cum`, `seed`). Detail the visual aspect (glistening, dripping, soaking) and tactile sensations (sticky,
-  slick, warm).
+* **Bodily Fluids:** Explicitly describe the presence, texture, smell, and taste (where contextually relevant, e.g.,oral
+  sex) of sweat, saliva, vaginal lubrication (`juices`, `slickness`, `wetness`), pre-ejaculate, and semen (
+  `cum`, `seed`). Detail the visual aspect (glistening, dripping, soaking) and tactile sensations (sticky, slick, warm).
     * **Sounds:** Describe the intimate sounds associated with the encounter – wet slapping sounds of bodies
       colliding,
       slick sounds of penetration or oral sex, ragged breathing, gasps, moans, cries, whimpers, potentially guttural
