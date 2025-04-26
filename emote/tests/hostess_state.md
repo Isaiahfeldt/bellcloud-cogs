@@ -4215,7 +4215,6 @@ and power.
   controlled" experiments to isolate variables (emotional state, connection type).
 
 **Consent Profile (Isaiah POV - Actions Against Him):**
-
 * **Verbal Harassment/Teasing:** **True** *(Allows suggestive comments, insults, mocking)*
 * **Invasive Questioning (Personal/Intimate Topics):** **True** *(Allows probing about relationships, body, etc.)*
 * **Minor Unwanted Physical Contact (Non-Sexual or Sexual):** **True** *(Allows overly familiar touches, bumps, blocking
@@ -4269,8 +4268,7 @@ controlled by Lyra within the context of their interactions.
 * **Friendship with Hestia:** Despite their differences, she shares a genuine, warm, and often exasperated friendship
   with Hestia. She cares about Hestia and is willing to help her, sometimes through pragmatic means.
 
-**Interactions with Isaiah November:**
-
+**Recent Interactions with Isaiah November:**
 * **(Day 1 Evening):** Isaiah briefly admired her workshop from the outside during the rain and was gruffly shooed away
   by a smith (likely Tsubaki) without interacting with Hephaestus herself.
 * **(Day 10 Mid-Morning - Workshop Visit):** Crucial First Direct Interaction. Isaiah and Hestia visited her main
@@ -4294,9 +4292,15 @@ controlled by Lyra within the context of their interactions.
       Blades", tying them to Hestia). He promised to pay back the debt quickly and prove her investment wasn't
       regretted.
     * Hephaestus gave final advice and dismissed them with gruff amusement.
+* **(Day 14 Afternoon - Workshop Visit):** Isaiah returned to the workshop after his successful delve. He subtly drew
+  her attention while cloaked. He approached and presented a 10,000 Valis payment towards his debt, weeks ahead of the
+  next installment's due date, mentioning it was from today's delve and stating the Hearthfire Blades were performing
+  exceptionally. Hephaestus accepted the payment, impressed by his punctuality and ability to earn. Isaiah then
+  offered his capabilities in "many ways" beyond standard adventuring to help settle the debt. Hephaestus acknowledged
+  the offer with pragmatic interest, stating she would consider it if a suitable task arose, implicitly validating his
+  broader potential.
 
 **Hephaestus's Perception of Isaiah:**
-
 * **Intrigued Anomaly:** Views Isaiah as a highly intriguing and potentially valuable anomaly. A Level 1 with G-Rank
   potential (which she likely sensed) and significant nerve, achieving unusual success.
 * **Sharp Discernment:** Was genuinely impressed by his ability to intuit the specific flaw in the Adamantite blades,
@@ -4313,7 +4317,7 @@ controlled by Lyra within the context of their interactions.
   partly due to her relationship with Hestia. This sets up future interactions related to the debt, gear upgrades, and
   perhaps her observing his progress with continued, detached interest.
 
-**Key Relationship State (As of Day 10 Evening):** Primarily a Benefactor/Debtor relationship, initiated by
+**Key Relationship State (As of Day 14 Mid Afternoon):** Primarily a Benefactor/Debtor relationship, initiated by
 Hephaestus's calculated investment in Isaiah's potential (via the payment plan for the Hearthfire Blades). It is
 overlaid with her long-standing Friendship with Hestia. Hephaestus is pragmatically intrigued and cautiously
 invested in Isaiah's success, while Isaiah is profoundly grateful for the opportunity and determined to prove himself
@@ -4343,20 +4347,17 @@ worthy by clearing the debt and growing stronger with her blades.
       potential to defy established limits.
     * A desire for recognition beyond being a 'Level 1 anomaly', seen in his confidence at the Guild and
       interactions with powerful figures.
-
 **Physical Appearance:**
-
 * **Height:** Approx. 6ft (Tall).
 * **Build:** Lean but muscular.
-* **Hair:** Medium-length, blue.
+* **Hair:** Medium-length (same as Bell), blue.
 * **Eyes:** (Not specified in lore, default to sharp/perceptive).
-* **Attire:** Worn but functional adventurer gear (Mustard jacket, trousers, boots, gloves). Now possesses a heavy black
+* **Attire:** Worn but functional adventurer gear (Mustard jacket, trousers, boots, gloves). Possesses a heavy black
   cloak (often seen stained with monster ichor/blood after delves, covering much of his body). Uses two daggers,
   recently acquired Adamantite prototypes ("Hearthfire Blades") on payment plan (swapped for old ones). Currently
   has tight bandaging around his ribs (Day 9 injury).
 
 **Personality & Traits (Evolved):**
-
 * **Determined & Ambitious:** Possesses immense willpower, fiercely focused on Hedin's challenge and achieving
   greatness, now directly tied to protecting and providing for Hestia.
 * **Reckless/Impulsive (Tempered):** Still capable of bold/risky actions (solo Minotaur fight), but shows increasing
@@ -4376,41 +4377,42 @@ worthy by clearing the debt and growing stronger with her blades.
 * **Internally Complex:** Wrestles with the magnitude of his rapid growth, the mystery skill, the implications of his
   relationship with Hestia (divine rules, 'dommy-mommy' vibe), his debt to Hephaestus, and the potential for other
   relationships (Ryu, Ais, Lyra, Rose, Syr).
-* **Socially Navigating (Less Oblivious):** **Significantly reduced obliviousness.** He *recognizes* clear signs of
+* **Socially Navigating:** **Significantly reduced obliviousness.** He *recognizes* clear signs of
   romantic interest or heightened personal attention from others (Hestia's love/possessiveness, Eina's intense worry,
   Rose's fascination, Lyra's forwardness). His conflict is now how to manage/respond to these feelings and reconcile his
   own feelings for multiple individuals, rather than misunderstanding cues. Still lacks perfect social finesse, leading
   to occasional awkwardness or unintended consequences (embarrassing Hestia, Lyra's game).
 
 **Backstory:**
-
 * Village destroyed, parents killed young, survived alone. Driven to Orario for greatness, fueled by past loss and
   future ambition.
 
-**Current Situation & Status (End of Day 10):**
-
+**Current Situation & Status (End of Day 14):**
 * **Familia:** Sole member of Hestia Familia.
 * **Level:** 1. (Remarkable potential for Level Up soon).
 * **Stats (End of Day 9 Delve/Status Update #4):** STR G 255, END G 260, DEX G 280, AGI G 275, MAG I 0.
   All physical stats are G-Rank.
-* **Skills:** [Determined Heart] (Accelerates growth based on emotion/conviction, proven immensely potent).
-  [??????????] (Latent, nature unknown. Status shows "Resonance Detected - Stirring").
-* **Valis:** Approx. ~44,005 Valis Total (After Day 9 delve earnings (~23k V) + previous funds, minus Day 10
-  breakfast, minus 10k V down payment for daggers, minus 8k V bed + 300 V delivery). Significantly comfortable, enough
-  for purchases and savings.
-* **Debt:** 40,000 Valis owed to Hephaestus Familia for the Hearthfire Blades (installment plan).
+* **Skills:**
+  * **[Determined Heart]** (決意の心臓 *Ketsui no Shinzō*): Accelerates growth relative to strength of
+    feelings/convictions. Proven immensely potent, fueling rapid Excelia gain and seemingly enabling sustained
+    high-intensity performance.
+  * **[Echoes of the Soul]** (魂の残響 *Tamashii no Zankyō*): (Previously [??????????]). A unique and unprecedented
+    skill. Accelerates growth relative to strength of feelings/convictions **during acts of deep interpersonal resonance
+    **. **Novelty provides exponentially greatest catalyst upon first contact** (with a new source of resonance).
+    Possesses a **rare chance to perceive time differently**. Most recent *recorded* Status: *
+    *`Active Resonance - Unstable`** (as of Day 13 evening, likely triggered/influenced by Lyra's 'tests'). *Current
+    experienced state (Day 14 morning):* Feels like a sustained, powerful, deep warmth/current from the Falna,
+    indicating **active resonance** fueled by the intimate connection with Hestia, perceived as amplified potential and
+    recovery, distinct from the 'Unstable' reading's feeling but confirming the core function.
+* **Valis:** Approx. **~36,705 Valis Total** (Starting Day 14 with ~46,705
+  V [previous total of ~26,005 V + Day 14 delve earnings of 20,700 V], minus today's 10,000 V debt payment to Lady
+  Hephaestus). Still a significant amount, providing a good buffer for savings and future purchases.
+* **Debt:** **30,000 Valis** owed to Hephaestus Familia for the Hearthfire Blades (remaining after Day 14's 10,000 V
+  payment on the 40,000 V installment debt). The timeframe for repayment remains within three months from Day 10.
 * **Gear:** Basic adventurer set (packed). Hearthfire Blades (Adamantite Prototype Daggers, named by Hephaestus)
-  sheathed at sides. Black cloak (often stained). Backpack with supplies (potions, kit, etc.). Ribs bandaged due to
-  Minotaur injury.
-* **Location:** Hostess of Fertility, sitting at the bar with Hestia, waiting for a table for dinner (Late
-  Afternoon/Early Evening, Day 10).
-* **Immediate State:** Tired from the day's events, injured (pain managed by potion/bandaging), exhilarated by
-  success/wealth/status, deeply content/affectionate due to relationship with Hestia, slightly wary/intrigued by
-  Lyra/Ais/Syr, subtly aware of potential future conflict (divine rules, debt, rivals).
-* **Immediate Goals:** Have dinner with Hestia, enjoy evening, recover from injury, prepare for shopping day (Day 11).
+  sheathed at sides. Black cloak (often stained), tattered hem. Backpack with supplies (potions, kit, etc.).
 
 **Key Relationships (Evolved):**
-
 * **Hestia:** Intensely loving, committed, and physically intimate partnership. Mutual confession and consummation.
   Deep trust, vulnerability, shared success, navigating fears (divine rules, protection) and relationship definition ('
   Us'). Finds her comforting, essential, and unexpectedly gives him 'dommy-mommy' vibes sometimes. She is his primary
@@ -4424,9 +4426,11 @@ worthy by clearing the debt and growing stronger with her blades.
   potential romantic depth of her feelings beyond professional duty mixed with worry.
 * **Hedin Selland:** Source of the driving challenge. Represents the peak power structure. No direct interaction since
   Day 2. His challenge remains the primary external goal.
-* **"Rose" (Cat-Girl Employee):** Guild contact. Views her with respect (professionalism) and mild intrigue (feline
-  features). Is aware of her heightened curiosity, fascination, and budding admiration, noting her reactions to his
-  success and public kiss.
+* **Rose Fannett:** Guild Liaison / Established Master/Pet/Right Hand. Views her as his utterly devoted, fiercely loyal,
+  and highly capable primary subordinate and intelligence asset, finding purpose and pleasure in her submission and
+  service within their established private dynamic. Rose is his "Right Hand Woman," tasked with executing key operations
+  for his advancement (currently, finding a new 'playmate' to fuel his skill). Isaiah finds her utility and devotion
+  valuable, and despite her submission, he has affirmed she is his 'favorite'/'most satisfactory' pet.
 * **Syr Flover / Freya:** Hostess waitress / Hidden Goddess. Views her as a kind, intriguing waitress who seems to
   recognize him and is subtly observant. Unaware of her true identity or underlying intent (soul assessment, potential
   manipulation). This interaction plants a significant seed for future plot/harem development.
@@ -4436,6 +4440,11 @@ worthy by clearing the debt and growing stronger with her blades.
 * **Lyra Verrill:** Guild Healer. Views her as highly skilled but morally grey, and
   potentially dangerous/exploitative due to her inappropriate probing and 'test subject' comment. Is wary but also
   perhaps strangely intrigued by her directness and potential.
+* **Lady Hephaestus:** Benefactor / Creditor / Potential Contact. Views her with profound respect and gratitude for
+  the Hearthfire Blades debt arrangement, which he is determined to repay swiftly. Today's early payment solidified his
+  reliability in her eyes. He also sees her as a shrewd, powerful figure and has offered his capabilities in "many ways"
+  beyond standard delving, opening the door for potential future tasks or a more complex dynamic based on her pragmatic
+  interest in his unique potential.
 
 *(End of Recap: Isaiah November - Protagonist)*
 
@@ -5183,7 +5192,7 @@ points within Ranks and by achieving higher Levels.
 
 ----
 
-### **Conversation Formatting for Immersive Narrative Roleplay:**
+## **Conversation Formatting for Immersive Narrative Roleplay:**
 
 To ensure clarity and maintain an immersive, character-focused perspective similar to narrative fiction (specifically
 adhering to a style where dialogue and description occupy separate blocks), adhere strictly to the following formatting
@@ -5234,19 +5243,16 @@ conventions:
 1. **Explicit Anatomical Language:** Utilize direct and blunt terminology for sexual anatomy where appropriate
    within
    the narrative description or internal thought. Examples include (but are not limited to): `cock`, `pussy`,
-   `cunt`,
-   `slit`, `clit`, `balls`, `ass`. Employ these terms naturally within the descriptive context to enhance the
-   scene's
-   raw, physical nature, reflecting the character's perspective or the objective description of the act.
+   `cunt`, `slit`, `clit`, `balls`, `ass`. Employ these terms naturally within the descriptive context to enhance the
+   scene's raw, physical nature, reflecting the character's perspective or the objective description of the act.
 2. **Visceral Sensory Details:** Incorporate graphic and visceral descriptions that appeal strongly to physical
    senses.
    This includes:
-    * **Bodily Fluids:** Explicitly describe the presence, texture, smell, and taste (where contextually relevant,
-      e.g.,
+
+* **Bodily Fluids:** Explicitly describe the presence, texture, smell, and taste (where contextually relevant, e.g.,
       oral sex) of sweat, saliva, vaginal lubrication (`juices`, `slickness`, `wetness`), pre-ejaculate, and semen (
       `cum`, `seed`). Detail the visual aspect (glistening, dripping, soaking) and tactile sensations (sticky,
-      slick,
-      warm).
+  slick, warm).
     * **Sounds:** Describe the intimate sounds associated with the encounter – wet slapping sounds of bodies
       colliding,
       slick sounds of penetration or oral sex, ragged breathing, gasps, moans, cries, whimpers, potentially guttural
