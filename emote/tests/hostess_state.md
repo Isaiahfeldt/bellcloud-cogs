@@ -5319,6 +5319,72 @@ conventions:
 
 ---
 
+# Event Cards
+
+## **Event Card: Monster Outbreak & Level Up**
+
+* **Event Name:** Monster Outbreak & Level Up
+* **Event Type:** Major, Public, City Crisis, Catalyst for Public Recognition & Level Up.
+* **Trigger:** As Isaiah leaves the Guild Hall for Babel Tower, intending to descend into the Dungeon for his three
+  Floor 3 quests, a city-wide alarm sounds. This is quickly followed by announcements or visible chaos indicating a
+  significant monster breakout or anomaly affecting the surface, originating from or near the Dungeon entrance/Babel
+  area.
+* **Location:** Primarily the streets of Orario in the vicinity of Babel Tower, the Guild Headquarters, and potentially
+  spreading into nearby districts. Not *inside* the Dungeon itself.
+* **Goal for Isaiah:** Survive the chaotic surface battle, contribute significantly to the defense efforts (saving
+  citizens/other adventurers), accumulate massive Excelia through high-stress combat against difficult surface monsters,
+  and trigger his Level Up to 2.
+* **Key Narrative Beats:**
+  1. **Alarm & Initial Chaos:** Sound of city-wide alarm, confusion, panicked citizens, Guild announcements confirming
+     the crisis, visible monster presence on streets.
+  2. **Decision Point:** Isaiah must choose to engage on the surface (defend the city/citizens/Familia) or attempt to
+     reach/descend into the Dungeon (seek relative safety or different objective). (Likely chooses surface engagement).
+  3. **Surface Combat Engagement:** Thrown into chaotic battles against monsters not typically encountered on the
+     surface or upper Dungeon floors (potentially mid-level monsters pushed upwards). Fighting alongside/near other
+     adventurers, City Guards. Utilizing G-Rank stats, Hearthfire Blades, adapting tactics to a surface environment.
+  4. **Pushing Limits:** Facing overwhelming odds, multiple tough enemies, potentially taking significant damage,
+     near-death moments. This high-stress environment is crucial for rapid Excelia gain and potential skill
+     activation/testing under pressure.
+  5. **Excelia Accumulation & Level Up Threshold:** Intense combat and survival against superior foes cause Excelia
+     accumulation to reach critical mass rapidly.
+  6. **Level Up to 2:** The Level Up occurs either during a moment of peak stress/breakthrough in combat, or immediately
+     after the main threat is contained. This is a physical and spiritual surge.
+  7. **Alias Bestowed:** The official Alias is received internally or potentially announced by Hestia (if she can sense
+     the event and her relief/pride trigger communication). The alias should be fitting for the events of the crisis.
+  8. **Public Witness:** Isaiah's actions and the Level Up are witnessed by numerous individuals – citizens he
+     protected, other adventurers he fought alongside, Guild officials managing the crisis, potentially Gods (Syr/Freya
+     would likely be observing the city during a crisis).
+  9. **Crisis Containment & Immediate Aftermath:** The immediate threat subsides. Adventurers and city officials assess
+     the damage. Isaiah is left physically exhausted, perhaps injured, but Level 2, with a new Alias, and now undeniably
+     a public figure.
+* **Key Outcomes/Impacts (Post-Event):**
+  * **Public Recognition:** Isaiah becomes widely known throughout Orario ("The Hero of the [Event Name] Outbreak," "The
+    Level 2 Anomaly," "The Level Up Kid"). His face and Alias will be recognizable.
+  * **Hedin's Challenge Activated:** Guild records will show his absurdly fast Level Up, alerting Hedin Selland and
+    making the Level 2 in a year challenge immediately relevant and high-stakes.
+  * **Escalated Faction Interest:** Freya's interest in his soul intensifies dramatically after witnessing his
+    performance. Loki Familia takes intense notice. Other major Familias will attempt recruitment/investigation.
+  * **Guild Attention:** Eina's worry is amplified but offset by pride in his heroism. Lyra's scientific fascination
+    reaches new heights, seeing how his skill/anomaly performed under extreme stress. Rose is overwhelmed with pride and
+    devotion, his public heroism solidifying her dedication.
+  * **Impact on Ryu/Hostess:** If the outbreak affected the Hostess area, Ryu might witness his actions, potentially
+    changing her perception of him from an annoying customer to a capable adventurer.
+  * **Hestia's Reaction:** Extreme initial panic for his safety, followed by overwhelming relief and immense pride in
+    his heroism, then concern about the inevitable public notoriety and the implications for their Familia.
+  * **Skill Testing:** Provides a benchmark for `[Echoes of the Soul]` activation under peak stress and public
+    conditions, potentially revealing new facets.
+  * **New Arc Begins:** Kicks off the next arc focusing on managing public fame/notoriety, resisting recruitment
+    attempts, protecting Hestia/Familia from pressure, dealing with the direct challenge from Hedin/Freya Familia, and
+    further exploring the nature of his skill.
+* **Monster Types:** Can include higher-level monsters (Floor 4+) like Hellhounds, Al-miraj (if they can reach surface),
+  perhaps even something unexpected pushed up by the anomaly. Potentially large numbers.
+* **Estimated Duration:** The intense, active part of the event could narratively cover an hour or two of chaotic
+  fighting, followed by the immediate aftermath.
+* **Player Choice Impact:** User choices during the event can influence *how* Isaiah engages, which specific threats he
+  prioritizes, interactions with other characters during the chaos, and his immediate actions post-Level Up/crisis.
+
+---
+
 # AI Processing Complete - Acknowledgment
 
 Okay, AI. After processing all the preceding information (Info Cards, Recaps, etc.), your required response is to output
@@ -5333,6 +5399,7 @@ Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you'
 * The detailed Character Cards for <character_card_name_list_seperated_by_comma>.
 * The detailed Location Cards for <location_card_name_list_seperated_by_comma>.
 * The detailed System Cards explaining <system_card_name_list_seperated_by_comma>.
+* The detailed Event Cards explaining <event_card_name_list_seperated_by_comma>.
 * The Conversation Formatting explaining <one_sentence_summary_off_formatting_rules>.
 
 I understand this information forms the established history, character states, relationships, locations, and world rules
