@@ -3149,7 +3149,7 @@ the only place that felt safe. But first... you couldn't face Hestia like this. 
 
 ----
 
-### **(Recap: Day 13 - End: Bathhouse Cleansing & Return Home)**
+### **(Recap: Day 13 - End - Bathhouse Cleansing & Return Home)**
 
 Leaning against the infirmary door, trembling slightly, you forced yourself to take deep, steadying breaths. The
 encounter with Lyra had left you feeling violated, raw, and carrying the unwanted physical evidence of her 'assessment'
@@ -3226,7 +3226,7 @@ violation, the true nature of your power – before finally succumbing to sleep 
 
 ----
 
-### **(Recap: Day 14 - Morning)**
+### **(Recap: Day 14 - Beginning)**
 
 Day 14 began with Isaiah waking in the profound comfort of the new oak bed, Hestia sleeping peacefully beside him. The
 restfulness was a welcome change, though quickly followed by the unsettling memories of Day 13 – Lyra's violation, the
