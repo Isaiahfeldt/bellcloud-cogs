@@ -2625,7 +2625,7 @@ morning of Day 13.)*
 
 ----
 
-**(Recap: Day 13 - Beginning - Part 1)**
+### **(Recap: Day 13 - Beginning - Part 1)**
 
 The first light of Day 13 filtered softly through the single, grimy window of the church annex, casting gentle stripes
 across the sturdy oak bedframe. You surfaced slowly from a deep, profoundly restful sleep, the kind only possible on a
@@ -2703,7 +2703,7 @@ the room, muttering plans for rearranging sacks and tidying corners.
 
 ----
 
-**(Recap: Day 13 - Beginning - Part 2)**
+### **(Recap: Day 13 - Beginning - Part 2)**
 
 The morning routine completed, gear checked, and the day's compromised Dungeon plan firmly established (Floor 3 only,
 caution promised), you stood ready by the annex door. After a brief, tender farewell kiss initiated by you to reassure
@@ -2752,13 +2752,13 @@ validation, stating you'd assess its quality later but acknowledging her speed. 
 duties, maintain composure, and ensure absolute secrecy. She choked out fervent agreement ("Y-Yes, Master! Absolute
 discretion!") before practically fleeing back towards the main hall.
 
-Alone in the dim corridor, you briefly examined the dossier. It was meticulously organized: **Subject Alias:** Ryu Lion,
-**Race:** Elf, **Employment:** Hostess of Fertility, **Observed Tenure:** ~18+ Months, **Associates:** Hostess Staff (
-Mia, Syr, Anya, Chloe, Lunoire), **Residence:** Assumed Staff Dorm (Unverified), **Incidents/Records:** None found under
-alias in Guild/Public databases. **Workplace Dynamics:** Detailed observations of professional interactions, shift
-patterns, break habits – all indicating extreme reserve and efficiency. **Analyst Summary:** Noted meticulously
+Alone in the dim alley way outside the Guild, you briefly examined the dossier. It was meticulously organized: Subject
+Alias: Ryu Lion, Race: Elf, Employment: Hostess of Fertility, Observed Tenure: ~18+ Months, Associates: Hostess Staff (
+Mia, Syr, Anya, Chloe, Lunoire), Residence: Assumed Staff Dorm (Unverified), Incidents/Records: None found under
+alias in Guild/Public databases. Workplace Dynamics: Detailed observations of professional interactions, shift
+patterns, break habits – all indicating extreme reserve and efficiency. Analyst Summary: Noted meticulously
 controlled low profile, lack of official footprint, incongruous composure suggesting masking/discipline, potential
-unverified skills. **Recommended:** Continued passive observation, potential active surveillance (req. authorization),
+unverified skills. Recommended: Continued passive observation, potential active surveillance (req. authorization),
 historical cross-referencing (req. clearance). The profile highlighted her success at remaining an enigma, built on
 verifiable routine and a lack of traceable history.
 
@@ -2768,6 +2768,401 @@ composure, the mask perfectly reapplied. Impressed by her control, you turned an
 Tower and the Dungeon entrance.
 
 *(End of Recap: Day 13 - Beginning - Part 2)*
+
+----
+
+Okay, retrieving the detailed recap for the middle part of Day 13, focusing on the return from the Dungeon and the Guild
+interactions.
+
+### **(Recap: Day 13 - Middle - Part 1: Post-Dungeon Guild Visit)**
+
+After descending into the Dungeon from Babel Tower, armed with your two Floor 3 quests (Kobold Subjugation, Lizard
+Hides) and the newly acquired Ryu dossier tucked away, you began your delve. The hours spent within the familiar caverns
+and tunnels of Floor 3 were marked by brutal efficiency. Your G-Rank stats, combined with the superior performance of
+the Hearthfire Blades, turned standard Kobold patrols and Dungeon Lizards into trivial obstacles. You moved
+relentlessly, maximizing kills and collecting materials, the hum of Hestia's Falna and the potential stirring of
+`[??????????]` fueling your progress. The delve was focused, successful, and devoid of major incidents or
+anomalies, allowing you to easily meet and exceed both quest requirements within several hours.
+
+Feeling the familiar fatigue setting in but satisfied with the day's work and the performance of your new blades, you
+began the ascent. Emerging from the Dungeon's gloom back into the Babel staging area, likely mid-afternoon, you headed
+straight for the Guild Hall.
+
+The main hall was still busy with returning adventurers. Your pouches felt heavy with magic stones and the collected
+Lizard hides. Your first stop was the service counters, and deliberately seeking her out again, you found yourself back
+in Rose Fannett's queue.
+
+When your turn arrived, Rose greeted you with the same crisp professionalism as earlier that morning ("Adventurer
+November. Welcome back."). You reported completion for both the Kobold Subjugation and Lizard Hide Collection quests,
+presenting the requisite hides and implicitly confirming the kill count through the volume of other monster parts
+collected. Rose efficiently verified the proofs, stamped the authorization slips, and directed you towards the Treasury
+after handling the material exchange.
+
+During the exchange, you emptied your pouches, revealing a significantly larger haul of magic stones than your Day 12
+delve, reflecting your G-Rank efficiency. Rose noted the quantity with perhaps a flicker of professional respect behind
+her mask, calculating the exchange value. It came to a substantial 6,870 Valis. After you secured the coins, she
+asked if there was anything further.
+
+Testing her again, you held her gaze and murmured softly, referencing their private dynamic, "Let's play again soon."
+Her reaction was immediate and visceral: a sharp gasp, dilated pupils, a violent flush, and a nearly uttered "M-Mast—"
+cut off instantly. She stammered a confused denial ("I... I don't understand... 'play'?") before you smoothly dismissed
+the topic, thanked her, and turned away, leaving her trembling and struggling to regain composure behind the counter.
+
+You proceeded to the Treasury counter, collected the combined quest rewards (1,500 Valis) from the stern clerk,
+bringing your total earnings for the delve to 8,370 Valis and boosting the Familia's total funds to approximately
+52,605 Valis.
+
+With Guild business concluded, you considered heading straight back to the annex. However, you recalled Lyra Verrill's
+instruction for a three-day follow-up check-up. Today was the day. Despite your reluctance and the unsettling nature of
+the previous encounters, a mix of obligation (not wanting to disregard a Guild directive), the practical need to confirm
+your ribs were fully healed, and a sliver of morbid curiosity about her reaction and potential further probing led you
+to decide to attend the appointment.
+
+Steeling yourself, you bypassed the main Guild exit and turned down the quieter corridor leading towards the Guild
+Infirmary wing, heading towards the inevitable and unsettling encounter with Doc Lyra.
+
+*(End of Recap: Day 13 - Middle - Part 1)*
+
+----
+
+### **(Recap: Day 13 - Middle - Part 2: Lyra Encounter - Initial Probing & Confession)**
+
+Walking down the quiet infirmary corridor, the unsettling memories of your previous encounters with Lyra Verrill
+resurfaced – her cynical smirk, invasive 'tests', predatory curiosity, and accurate deduction about your intimacy with
+Hestia being linked to your recovery. You braced yourself, determined to maintain composure, as you arrived at her door
+and knocked. Summoned by her cool drawl ("Enter"), you stepped inside the small, sterile examination room.
+
+Lyra was initially seated at her desk, wearing her white lab coat open over dark clothing, spectacles perched on her
+nose as she read a medical tome. She greeted you with sarcastic familiarity ("Ah, Adventurer November... Punctual...")
+and immediately made a pointed, suggestive remark about whether you'd been applying the "direct encouragement" recovery
+methods involving Hestia. She then commanded you to strip off your armor and shirt for the check-up, gesturing towards
+the examination cot with a knowing smirk.
+
+Complying wordlessly, you removed your chest plate and tunic, sitting exposed on the edge of the cot while she
+approached with medical shears. As she cut away the old bandages, her touch was deliberately close, knuckles brushing
+skin, murmuring about your "remarkable" healing – the bruising practically gone. Her fingertips traced your ribs,
+ostensibly checking for tenderness but lingering, drifting slightly lower towards your abdomen, testing your reaction
+while verbally probing about the *mechanism* of your recovery, questioning if Hestia's blessing was unusually potent or
+if other factors were involved.
+
+You attempted to deflect, attributing it vaguely to "good morale" and "quality rest," hoping to avoid confirming her
+suspicions directly. Lyra saw through the deflection instantly, her smirk widening. "'Supported'," she echoed your word
+choice mockingly. Her fingers deliberately brushed the bare skin of your hip just above your trouser waistband, a clear
+boundary transgression. She purred suggestively about divine energy transference being most potent during "heightened
+emotional and physical connection," directly linking it to intimacy. She then pressed you further, asking if this "
+energetic transference" occurred every time you engaged in such "supportive activities" with Hestia, questioning if
+there was a cumulative effect or if it depended on the "intensity" of the interaction, her gaze pointedly dropping
+towards your lap.
+
+Her directness, combined with the invasive touch, finally broke through your guardedness. A new thought process began,
+recalling not only the warmth felt after intimacy with Hestia but also a colder, sharper surge of energy felt after the
+dominant encounter with Rose the day before. The realization struck you: the effect wasn't exclusive to Hestia. It
+seemed linked to *intensity* or perhaps *novelty* itself, suggesting the anomaly originated within *you*, potentially
+tied to the `[??????????]` skill.
+
+Deciding a carefully curated partial truth might be necessary to gain understanding, you first sought confirmation of
+confidentiality. "There's... doctor-patient privilege... right?" you asked seriously. Lyra confirmed it, acknowledging
+Guild policy for valuable 'assets' like you, but framed her own discretion as being tied to how 'fascinating' the
+subject matter was, declaring the room a 'sanctuary' for candid discussion where your secrets were safe *with her*.
+
+Taking a deep breath, feeling you'd already crossed a threshold, you hesitantly confessed. You admitted you'd initially
+assumed the effect was tied solely to Hestia and your connection. "But..." you continued, looking down, blushing
+slightly, "...something happened. Recently. With... someone else." You explained that the circumstances and dynamic were
+very different, but afterwards, you felt the energy surge again – "Not as warm," maybe "colder," "sharper," like "static
+electricity" – but definitely a powerful response from your Falna, a sense of recovery and unlocked potential. You
+concluded by voicing your confusion: "Maybe it's *not* just Hestia's specific divinity? Maybe it's... the intensity
+itself? Or... or maybe it's something about *me*? Some... latent ability triggered by..." You left the trigger vague,
+watching her reaction closely.
+
+*(End of Recap: Day 13 - Middle - Part 2)*
+
+----
+
+### **(Recap: Day 13 - Middle - Part 3: Lyra Encounter - First Forced 'Test')**
+
+Lyra absorbed your hesitant confession about the second, 'colder' energy surge with intense, almost feverish
+fascination. Her predatory amusement shifted to sharp, analytical focus. Discarding your attempts at vagueness, she
+declared it "truly fascinating," confirming her hypothesis that the anomaly originated *within you*, activated by "peak
+emotional and physiological resonance" – not solely Hestia's divinity. She zeroed in on the qualitative difference you
+described ('colder', 'sharper'), probing relentlessly: Was the energy *itself* different, or just the emotional context?
+Did the 'donor' or dynamic modulate the signature? Understanding this variability, she insisted, was diagnostically
+crucial. Amidst this intense questioning, she stressed the sensitivity of this revelation and reaffirmed the need for
+absolute discretion regarding your unique condition.
+
+Feeling you'd already revealed the core functional secret, you made the gamble to provide concrete data. You retrieved
+your Day 9 Status Update parchment and presented it, contingent on her promise of privilege. Lyra took it, scanned the
+G-Ranks, then froze upon seeing the Skills. "`[??????????]: Resonance Detected - Stirring`," she whispered, tapping the
+line, awe mixing with fierce excitement. "This has to be it. The source... The *mechanism*." She immediately connected
+it to your described experiences and the 'stirring' state, firing off questions about its appearance timing and
+potential change after the *second* incident. She explicitly hypothesized about *novelty* being key – "Is the initial
+resonance with a new source... more potent?" Handing the parchment back, she delivered a stark warning about the extreme
+danger if this skill, potentially fueled by 'liaisons', became known, specifically invoking the perilous attention of
+Freya.
+
+As you processed the chilling warning, your mind briefly conjured an absurd, inappropriate fantasy of Freya herself
+initiating dominant 'research', a fleeting mental escape quickly crushed by the terrifying reality Lyra presented. Lyra,
+noticing your momentary lapse, dryly cautioned against such hazardous daydreams. Stepping closer, leaning against the
+cot, she summarized her findings: a skill stirring with resonance, triggered by intense connection, likely amplified by
+novelty. "It suggests," she purred, her gaze pointed, "that your... *social activities*... are now intrinsically linked
+to your power progression." Her calculating smile returned. "Makes one wonder... how many 'data points' would be
+necessary... Purely for diagnostic purposes, of course."
+
+Before you could formulate a response, she declared the necessity of "direct physiological assessment" to observe the
+resonance during heightened arousal. Her cool fingertips deliberately brushed the noticeable bulge forming beneath your
+loosened trousers. "Relax," she commanded softly, her hand moving decisively to unfasten your trousers with unnerving,
+practiced ease. "Standard procedure." Her fingers then slid beneath the loosened waistband, making direct, cool contact
+with the hot skin of your lower abdomen before moving lower still with clinical purpose. "Let's begin the assessment."
+
+Her fingers closed around the base of your already thick, rapidly hardening cock. The direct, uninvited grasp sent a
+jolt of pure shock through you, mingled instantly with a traitorous wave of heat. "Relax," she murmured again, her grip
+firm, analytical. "Establishing baseline physiological response... Note the immediate tumescence..." Her thumb began a
+slow, deliberate exploration along the underside vein, mapping texture, assessing rigidity. "Heart rate elevated...
+respiration shallowing... skin flushing..." Her clinical commentary was a bizarre counterpoint to the intimate
+violation. Her sharp eyes flicked between your flushed face and her hand enclosing your straining flesh. "Now," she
+announced, her tone sharp with command, "Let's observe the effect of sustained, rhythmic pressure." Her hand began to
+move, a firm, steady, methodical stroking motion. Up and down. Measured. Clinical. Utterly detached, yet generating
+waves of raw, unwanted pleasure that made you groan involuntarily. "Vocalization noted," she commented dryly,
+maintaining the pace. "Pupil dilation significant... Muscle tension increasing..." Her touch was cold calculation
+manipulating raw biology, the power imbalance stark and absolute.
+
+Her touch was cold calculation manipulating raw biology, the power imbalance stark and absolute. The methodical,
+rhythmic friction continued, each steady stroke sending unwanted waves of heat coiling tighter in your gut. You tried to
+brace yourself, to mentally detach, but your body was a traitor, responding with undeniable physical arousal. Your
+breath came in ragged gasps, your muscles bunching involuntarily under her clinical touch. The head of your cock pulsed
+hotly against her enclosing fingers, slick now with pre-ejaculate that made her strokes smoother, faster, despite her
+controlled pace.
+
+"Subject approaching physiological threshold..." Lyra murmured, her grey eyes narrowed in observation, tracking the
+flush deepening on your chest, the sweat beading on your forehead, the frantic rhythm of your pulse likely visible at
+your neck. Her grip remained relentlessly steady, offering no comfort, only efficient stimulation aimed at triggering a
+measurable event.
+
+The pressure built beyond endurance. The line between unwanted pleasure and sheer physical overload blurred. You felt
+the inevitable climax surging upwards, an unstoppable force overriding any semblance of control. With a choked cry that
+was ripped from your throat, your back arched violently off the cot, hips thrusting forward in a desperate, involuntary
+spasm against her hand.
+
+Thick ropes of hot semen erupted from your cock, pulsing forcefully against her fingers, splattering onto her hand and
+your own lower abdomen in sticky, pearlescent streams. The release was intense, almost painful in its force, leaving you
+gasping and trembling uncontrollably, collapsing back onto the vinyl mattress utterly spent, spots dancing in your
+vision. The sharp, musky scent of your climax filled the small, sterile room.
+
+Lyra barely reacted to the physical culmination itself, her hand remaining around your now softening shaft for only a
+clinical second longer. Almost instantly, as the final pulses subsided, she released you and swiftly pressed the cool
+palm of her other hand flat against the center of your bare back, directly over your Falna point. Her eyes closed
+briefly, her expression intensely focused, searching for the anticipated surge, the energetic 'stirring' that should
+accompany such a peak physiological event according to her revised hypothesis.
+
+Silence hung heavy, broken only by your continued ragged breathing. After several tense seconds, a distinct frown
+creased Lyra's brow. She pressed harder, concentrating, then slowly withdrew her hand, her expression shifting to one of
+sharp annoyance and confusion.
+
+"No..." she muttered, the sound tight with frustration. "Insignificant variance... Baseline energetic signature barely
+perturbed..." She looked back at you, her grey eyes narrowed, not with predatory amusement now, but with genuine
+scientific irritation. "That... was not the expected result," she stated flatly, wiping your semen from her hand onto a
+disposable cloth with a curt, dismissive flick of her wrist. "The physiological climax occurred, undeniably. Yet the
+corresponding energetic resonance from the Falna... the 'stirring' you described... was minimal. Negligible."
+
+She crossed her arms, tapping an impatient finger against her bicep. "Hypothesis requires refinement. Simple physical
+culmination, even induced... appears insufficient as a standalone trigger." Her gaze swept over your still-trembling
+form, analytical once more, recalculating. "It seems the... *quality* of the stimulus, or perhaps the *shared emotional
+intensity*... is a more critical variable than initially predicted." The failure of her direct, mechanical approach
+clearly vexed her, forcing an immediate reassessment of the skill's trigger mechanism.
+
+*(End of Recap: Day 13 - Middle - Part 3)*
+
+----
+
+### **(Recap: Day 13 - Middle - Part 4: Lyra Encounter - Second Forced 'Test')**
+
+Lyra's frustration at the failed first test – the negligible resonance despite the induced orgasm – was palpable.
+Muttering about "confounding variables" and "insufficient stimulus," she paced briefly before turning back to you, her
+eyes alight with renewed calculation. She noted your surprisingly rapid physiological recovery and enhanced stamina as
+further data points. "Alright, Subject November," she declared, her tone sharp with irritation and determination. "
+Clearly, detached mechanical stimulation fails... The conclusion is obvious. The *quality* of the stimulus requires
+adjustment... We need... active participation. Shared intensity." A dangerous glint entered her eyes. "If the resonance
+requires *connection*... then perhaps the researcher needs to become... more *involved*."
+
+Kicking the wheeled stool closer, she sat directly facing you, knees almost touching yours, dominating your space. "
+Round two," she announced, her voice a low, demanding purr. "And this time... *we* generate some proper resonance." Her
+hand shot out, fingers splaying hotly against your lower abdomen, while her other hand tangled aggressively in your
+hair, tilting your head back. "Let's try a different variable," she murmured, thumb brushing your lip. "Let's see if
+adding a degree of... *personal investment*... changes the outcome."
+
+Her hand slid down decisively, pushing past your loosened trousers and undergarments, closing around your semi-erect
+cock with a hotter, firmer, possessive grip. Simultaneously, her face lowered, grey eyes locked onto yours, and her lips
+captured yours in a demanding, invasive kiss. Her tongue thrust past your teeth, plundering your mouth with aggressive
+confidence, while her hand began a slow, demanding rhythm, milking responses. You gasped into the kiss, hands
+instinctively gripping her shoulders as confusing signals – fear, violation, intense physical pleasure – warred within
+you. *"So susceptible,"* she murmured against your lips. *"Just like a finely tuned instrument..."* Her free hand slid
+down your chest, fingers digging slightly near your ribs, a proprietary touch.
+
+The combined assault overloaded your senses. Your hips gave an involuntary twitch. *"There,"* Lyra breathed. *"That's
+the kind of feedback we need... This is just... data collection."* She broke the kiss, eyes gleaming with possessive
+intensity. "Almost there," she declared. Her hand moved faster, harder, strokes becoming shorter, almost punishing. You
+let out a choked sound, head thrown back. It was in this moment of overwhelming sensation, the line between fear and
+pleasure utterly blurred, that her name escaped your lips, unbidden, a hushed, euphoric whisper torn from your
+overwhelmed state: *"Lyra..."*
+
+Hearing it, her hand paused fractionally. A slow, deeply satisfied, predatory smirk spread across her face. *"So,"* she
+purred, leaning close, lips near your ear. *"The subject vocalizes the researcher's designation... Acknowledgment of the
+source?"* Her hand resumed its work, but faster, harder, bordering on rough. *"Let's amplify that resonance, shall we?"*
+Her thumb pressed brutally against the sensitive frenulum, eliciting a sharp gasp and making you buck against her grip.
+*"More data required,"* she hissed, eyes fixed on your face, watching, searching for the resonance spike.
+
+Your body was completely consumed. Your cock felt like it was burning, throbbing violently within her relentless hand.
+Your back arched and fell spasming against the cot, a frantic, involuntary rhythm. A low, guttural sound ripped from
+your throat as the second climax surged, unstoppable. With a final, choked roar, your body convulsed violently, arching
+hard against her pinning hand on your chest. Your vision exploded into white static as thick, hot ropes of semen erupted
+with desperate, pulsing force, jetting against her fingers, splattering your lower abdomen. Spasm after spasm wracked
+your frame, leaving you collapsed on the cot, trembling violently, gasping, utterly spent and raw.
+
+Lyra held you pinned for a moment longer, her hand slick with your release, her own breathing slightly harder. Then,
+almost immediately, she pressed her palm flat against your back, concentrating intently on your Falna. This time, a
+distinct, palpable warmth bloomed beneath her hand – a clear, vibrant pulse of energy, significantly stronger than after
+the first, detached climax. The resonance was active, amplified.
+
+A slow, cold, satisfied smirk touched Lyra's lips. She withdrew her hand. "There," she murmured, more to herself. "
+Observable resonance amplification... Approximately 40-50% increase..." She straightened up, moving back, efficiently
+cleaning the thick semen from her hand with a disposable cloth. "Partial validation," she declared clinically, though
+her eyes held a gleam of discovery. "Intensity and direct engagement are key variables. However..." Her brow furrowed
+slightly. "The resonance, while present, was still... muted. Suboptimal yield." She picked up her clipboard, making
+rapid notes. "Conclusion: Forced intensity triggers resonance, but modulating factors – emotional state, connection
+quality, partner type – require further testing under varied conditions."
+
+Turning back to you as you lay trembling and exposed, her professional mask almost fully restored, she commanded
+coolly, "Alright, Adventurer November. Data acquired. You may redress yourself." She returned to her desk, already
+absorbed in her notes. "Absolute discretion regarding this... *diagnostic session*... is mandatory. For both our sakes."
+She left you alone on the cot to grapple with the physical and psychological aftermath.
+
+She left you alone on the cot to grapple with the physical and psychological aftermath. You lay there, flat on your back
+against the cool vinyl, staring blankly at the ceiling tiles. Your body felt heavy, boneless, every muscle trembling
+with residual overload from the second, forcefully induced orgasm. The sticky, cooling wetness of semen on your lower
+abdomen was a stark, uncomfortable reminder of the violation. Your mind felt foggy, stunned into a temporary, protective
+numbness by the sheer intensity and wrongness of the encounter.
+
+Across the small room, Lyra sat at her desk, her white lab coat pristine despite the recent events, stylus scratching
+rapidly across her notes. Her complete absorption in the 'data', her utter disregard for your current state, felt
+profoundly dehumanizing. The clinical detachment, fully restored after her brief flash of intense engagement, felt
+colder and more alienating than ever.
+
+For a long minute, you simply remained motionless, breathing shallowly, letting the world slowly swim back into focus.
+The sterile scent of antiseptic felt suffocating. The bright overhead lights seemed harsh, invasive. You focused on the
+simple act of breathing, trying to push down the rising waves of shame, anger, and confusion.
+
+Eventually, the most severe physical tremors began to subside. Your breathing deepened slightly, though it still felt
+ragged. A dull ache pulsed deep within your muscles, and the profound sense of violation remained, sharp and undiluted,
+but the initial shock-induced paralysis started to fade. With considerable, conscious effort, summoning strength you
+barely felt you possessed, you pushed yourself up into a sitting position on the edge of the cot.
+
+Your movements felt sluggish, heavy, weighed down by more than just physical exhaustion. You looked down at yourself –
+the loosened trousers pushed down slightly, the glistening, drying streaks of semen on your skin. A fresh wave of
+nauseating shame washed over you. Quickly, awkwardly, desperate to cover yourself, you pulled your trousers back up,
+fumbling with the button and fastener with fingers that still felt unsteady and numb.
+
+Standing on shaky legs, feeling unsteady, you retrieved your folded tunic from the stool beside the cot. Pulling it over
+your head felt like dragging rough sackcloth over raw skin. Lastly, you picked up the chest plate, settling its familiar
+weight back onto your shoulders, securing the straps with mechanical, jerky movements. Fully clothed again felt like
+donning armor, a desperately needed, albeit inadequate, shield against the lingering rawness of the encounter and the
+memory of her touch.
+
+You didn't look at Lyra as you dressed. You couldn't. You kept your eyes averted, fixed on the door, focused solely on
+the task of restoring some semblance of physical normalcy, of reclaiming the boundaries that had been so brutally
+transgressed.
+
+The final buckle clicked into place. A cold resolve, born of shock and a desperate need for escape, settled over you.
+There was nothing to say to her. Nothing she would understand or care about beyond her 'data'.
+
+Without a word, without a backward glance, you turned sharply on your heel and walked directly, stiffly, towards the
+door. Your footsteps, usually confident, echoed hollowly, perhaps slightly unevenly, on the tiled floor. You didn't
+pause, didn't hesitate. Your hand reached out, grasped the cool metal handle – maybe flinching slightly at the
+unexpected coldness – turned it, and pulled the door open.
+
+You stepped out into the relative dimness and blessed quiet of the infirmary corridor, pulling the door shut firmly
+behind you. The solid click of the latch felt like sealing a tomb. You stood there for a shaky moment, leaning your
+forehead against the cool wood of the door, eyes squeezed shut, taking deep, shuddering breaths, trying desperately to
+regain your equilibrium, to push back the rising tide of delayed reaction – the anger, the fear, the humiliation. The
+silence of the hallway felt like a fragile sanctuary. You needed to get away. Far away from her, from the Guild, back to
+the only place that felt safe. But first... you couldn't face Hestia like this. Not yet.
+
+*(End of Recap: Day 13 - Middle - Part 4)*
+
+----
+
+### **(Recap: Day 13 - End: Bathhouse Cleansing & Return Home)**
+
+Leaning against the infirmary door, trembling slightly, you forced yourself to take deep, steadying breaths. The
+encounter with Lyra had left you feeling violated, raw, and carrying the unwanted physical evidence of her 'assessment'
+beneath your clothes. The thought of returning to the annex, to Hestia, in this state was intolerable. The need to
+cleanse yourself, both physically and mentally, was overwhelming. A bathhouse was the only viable option.
+
+Pushing off the door, forcing a mask of normalcy onto your face despite the internal turmoil, you walked quickly out of
+the infirmary corridor and back towards the main Guild Hall exit. You avoided making eye contact with anyone, ignoring
+the bustle around you. Once outside in the Orario afternoon, you quickly got directions from a city guard to the nearest
+reputable adventurer bathhouse, 'The Soothing Suds'.
+
+The bathhouse was a steamy haven filled with the scent of soap and clean water. You paid the fee, rented a towel, and
+quickly shed your clothes and armor in the changing area, grimly noting the sticky discomfort beneath your trousers.
+Under the hot, pounding water spouts, you scrubbed yourself with almost frantic intensity, washing away every trace of
+Lyra's touch, every lingering scent, trying to erase the physical reminder of the violation. The heat began to soothe
+your frayed nerves and aching muscles. Soaking briefly in the large communal bath afterwards, surrounded by the mundane
+chatter of other adventurers, provided a small measure of grounding, though the disturbing memories lingered just
+beneath the surface.
+
+Feeling physically clean but internally still shaken, you dried off and redressed. It was likely early evening by the
+time you left the bathhouse, the daylight beginning to fade. The walk back to the eastern Daedalus district felt long,
+your mind occupied with rehearsing a casual demeanor, constructing the necessary facade before facing Hestia. You
+couldn't let her see, couldn't let her worry.
+
+Finally reaching the familiar annex door, you took a final deep breath and pushed it open. Hestia looked up from her
+ongoing, enthusiastic (if slightly chaotic) attempts at tidying, specifically trying to fold blankets on the new bed.
+Relief flooded her face upon seeing you, quickly followed by concern at the lateness of your return.
+
+"Isaiah! You're back!" she exclaimed, rushing towards you but stopping short, perhaps sensing something slightly off in
+your demeanor. "I was starting to worry! The Guild took longer than usual? Did something happen? Are you okay?"
+
+Summoning a reassuring smile, you leaned casually against the doorframe, delivering the pre-planned lie about getting
+held up helping some struggling rookie adventurers on Floor 1, losing track of time. You emphasized it was nothing
+serious, hoping your confidence appeared genuine.
+
+Hestia seemed to accept your explanation, her relief palpable. Your question about the Status Update followed. Despite
+her initial surprise at the request after such a seemingly light day, your expressed curiosity about the new blades and
+your general eagerness persuaded her. Using the new bed, she performed the update.
+
+The results were startling. Minor stat bumps were noted first, consistent with a short delve. But then came the Skills
+section. `[Echoes of the Soul]` was revealed by name for the first time, followed by its complex, powerful description
+detailing accelerated growth, unlocking potential via "peak interpersonal resonance," novelty providing the strongest
+catalyst ("exponentially greatest upon first contact"), and the rare potential for reality-altering perception shifts.
+Hestia was stunned, overwhelmed with awe and confusion. More critically, the skill's status read: "
+`Active Resonance - Unstable.`" This, combined with slightly higher-than-expected stat gains (STR G 260, END G 265, DEX
+G 285, AGI G 280), immediately triggered her alarm. "Unstable?! What does that mean? What happened?!"
+
+Thinking quickly, you deflected, subtly guiding her suspicion away from the truth (Lyra) towards the *only* other recent
+event of suitable 'intensity' she knew about: the oral sex encounter with Hestia from the previous afternoon (Day 12).
+Feigning thoughtful realization and blushing appropriately, you wondered aloud if *that* novel, intense experience
+between *them*could have been the "peak resonance" needed to activate the skill and cause the 'unstable' reading and
+boosted stats.
+
+Hestia readily seized upon this explanation, her awe and pride surging back. The idea that *their* unique, deepening
+bond was the sole key to unlocking such an unprecedented, powerful skill resonated deeply with her. She declared the
+skill proof of how special *they* were together. You asked if she'd ever heard of such a skill, tied so directly to
+intimacy. She confirmed, after accessing her divine knowledge, that `[Echoes of the Soul]` was utterly unique,
+unprecedented, further solidifying her belief in *your* bond as its singular source. Having successfully misdirected her
+and reinforced the idea that *your* intimacy fueled the skill, you expressed commitment to becoming stronger for *her*
+and the Familia.
+
+Hestia, thrilled and energized, playfully prescribed "regular, intensive resonance sessions" for the good of the
+Familia, clearly linking it to more intimacy between you two. You played along, agreeing to the 'treatment'. The
+immediate crisis passed, the mood shifted back towards comfortable domesticity as Hestia excitedly suggested making
+lunch (despite it being evening).
+
+The remainder of the evening passed peacefully. You likely ate a simple meal together. Perhaps you spent time cleaning
+your blades again, or Hestia continued her tidying. Eventually, drawn by the comfort of the new bed, you both retired.
+After exchanging soft goodnights and whispered "I love yous," Hestia quickly fell asleep beside you. You lay awake
+slightly longer, holding her close, the warmth and safety of the annex a stark contrast to the day's secrets – Lyra's
+violation, the true nature of your power – before finally succumbing to sleep yourself.
+
+*(End of Recap: Day 13 - End)*
 
 ----
 
