@@ -107,6 +107,66 @@ Below will include recap of each day, recaps of character development, story loc
     * Departure Decision: Realized extended delay might make Hestia suspicious. Decided to head up, actively killing
       minor monsters encountered on the direct route back to the stairs.
     * Emerged from Dungeon: Returned to Babel staging area with the retrieved cache.
+* **Day 13 (Beginning):**
+  * Woke peacefully with Hestia in new bed. Comfortable intimacy.
+  * Negotiated Dungeon Plan: Isaiah expressed desire to delve (healed ribs, new blades). Hestia initially refused (
+    worry). Compromised on Floor 3 only, with strict promise of caution & immediate return if pain felt. Hestia decided
+    to stay at annex to organize/tidy ("Goddess's work").
+  * Morning Routine & Departure: Got ready together. Tender farewell kiss initiated by Isaiah. Isaiah departed annex
+    alone for Guild/Dungeon.
+  * Guild Visit (Rose Encounter #1): Arrived at Guild Hall. Approached Rose Fannett's counter deliberately. Selected
+    Kobold Subjugation & Lizard Hide quests (Floor 3). Tested Rose's composure using trigger word "satisfactory" during
+    interaction; noted controlled reaction despite internal jolt.
+  * Private Meeting (Rose Encounter #2): Rose intercepted Isaiah before he left for Babel, using excuse of needing
+    privacy. Led him to secluded corridor. Dropped professional mask instantly, addressed him as "Master," trembled,
+    presented Ryu Lion dossier compiled overnight. Isaiah praised diligence ("Diligent, kitten"), withheld full "
+    satisfactory" validation, commanded secrecy & return to duties. Rose obeyed eagerly.
+  * Dossier Review & Departure for Dungeon: Isaiah briefly reviewed dossier in nearby alley. Noted meticulous detail on
+    Ryu's routine, associates, lack of official footprint, Rose's analytical summary. Confirmed Rose's competence.
+    Observed Rose back at counter, mask perfectly reapplied. Headed towards Babel Tower for Dungeon delve.
+* **Day 13 (Middle):**
+  * **Post-Dungeon Guild Visit:** Returned from efficient Floor 3 delve (Kobold Subjugation, Lizard Hides completed).
+    Reported quests to Rose, exchanged materials for significant Valis (6,870 V). Tested Rose's composure again with
+    suggestive comment ("Let's play again soon"), noted her intense flustered reaction. Collected quest rewards (1,500
+    V) from Treasury. Total delve earnings: 8,370 V. Familia funds approx. 52,605 V.
+  * **Decision for Infirmary Visit:** Recalled Lyra's 3-day follow-up instruction. Decided to attend despite reluctance,
+    driven by obligation, need for check-up confirmation, and morbid curiosity. Headed to infirmary corridor.
+  * **Lyra Encounter - Initial Probing & Confession:** Entered Lyra's office. Greeted with sarcasm & suggestive remarks
+    about Hestia/"recovery methods." Commanded to strip armor/shirt. Lyra examined healed ribs, used invasive touch &
+    questioning about recovery mechanism, linked it to Hestia/intimacy. Isaiah attempted deflection. Lyra saw through
+    it, pushed harder. Isaiah confirmed doctor-patient privilege. Hesitantly confessed energy surge wasn't *just* with
+    Hestia, implying another recent intense encounter ("colder," "sharper" energy), suggesting skill triggered by
+    intensity/novelty or something within him.
+  * **Lyra Encounter - Skill Reveal & First Forced 'Test':** Lyra intensely fascinated by confession. Isaiah showed
+    Status parchment revealing `[??????????]: Resonance Detected - Stirring`. Lyra identified it as the source skill,
+    hypothesized novelty/intensity link, warned of danger (invoked Freya). Isaiah briefly fantasized, snapped back. Lyra
+    initiated non-consensual "direct physiological assessment," unfastened Isaiah's trousers, began clinical handjob
+    framed as research. Induced orgasm, but noted negligible Falna resonance, deeming detached stimulation insufficient.
+  * **Lyra Encounter - Second Forced 'Test' & Aftermath:** Lyra noted Isaiah's rapid recovery. Declared need for "shared
+    intensity," "personal investment." Sat before him, initiated dominant, invasive kiss combined with faster, harder
+    handjob. Elicited stronger physical response. Isaiah whispered her name involuntarily. Lyra noted this, intensified
+    efforts, pressing thumb against frenulum. Induced second, more violent orgasm (explicit description). Checked Falna
+    again, detected stronger but still "suboptimal" resonance. Concluded forced intensity works partially but
+    emotional/connection quality crucial. Clinically dismissed Isaiah ("Data acquired. You may redress yourself."),
+    stressed mandatory discretion, returned to notes.
+  * **Departure:** Isaiah, in shock and feeling violated, mechanically redressed (without cleaning semen residue),
+    avoiding Lyra's gaze. Left the room silently, shutting door firmly. Stood briefly in corridor, overwhelmed,
+    realizing need to clean up before returning to Hestia. Decided to find a bathhouse.
+* **Day 13 (End):**
+  * **Post-Lyra:** Isaiah felt violated/unclean; decided visit to bathhouse ('The Soothing Suds') was necessary before
+    returning to Hestia.
+  * **Bathhouse & Return:** Thoroughly washed away physical traces of encounter. Returned to annex early evening,
+    internally shaken but outwardly composed.
+  * **Alibi & Status Request:** Lied to concerned Hestia about delay (helped rookies). Requested Status Update despite
+    short delve (true motive: check skill after Lyra).
+  * **Status Update Reveal:** Hestia performed update. Skill `[??????????]` named `[Echoes of the Soul]` with powerful
+    description (resonance, novelty boost, potential unlock, time effects). Status: **`Active Resonance - Unstable`**.
+    Stat gains higher than expected (G 260+).
+  * **Misdirection & Acceptance:** Hestia alarmed by changes. Isaiah successfully deflected suspicion, guiding her to
+    believe their Day 12 oral sex intimacy triggered the skill update. Hestia accepted this, thrilled their bond was the
+    key to the unique/unprecedented skill.
+  * **Evening Routine:** Hestia playfully prescribed more "resonance sessions." Peaceful evening, shared meal, retired
+    to new bed. Hestia slept quickly; Isaiah reflected briefly on secrets before sleeping.
 
 ----
 
@@ -3166,6 +3226,112 @@ violation, the true nature of your power – before finally succumbing to sleep 
 
 ----
 
+### **(Recap: Day 14 - Morning)**
+
+Day 14 began with Isaiah waking in the profound comfort of the new oak bed, Hestia sleeping peacefully beside him. The
+restfulness was a welcome change, though quickly followed by the unsettling memories of Day 13 – Lyra's violation, the
+skill `[Echoes of the Soul]` reveal, and the necessary misdirection. Hestia awoke with soft affection, murmuring "
+Morning, Isaiah." Isaiah reciprocated ("Morning, my love"), feeling a complex mix of genuine tenderness and underlying
+guilt over his secrets.
+
+Their peaceful start was quickly disrupted when Hestia playfully brought up her 'prescription' for more "resonance
+sessions" to boost his Falna, referencing her belief about their intimacy fueling his power. Initially flustered ("
+Baaaabyyy... we just woke up!"), Isaiah playfully challenged her to take the lead ("Okay, but *you're* doing all the
+work this time!"). To his surprise, after a moment of intense fluster and self-justification ("For the Familia!"),
+Hestia accepted the challenge with fiery resolve ("Fine! His Goddess will provide!").
+
+Isaiah settled back against the headboard expectantly. Hestia hesitantly crawled towards him, narrating her '
+assessment' ("Initial contact established..."). She initiated an awkward but earnest kiss, then tentatively explored his
+chest ("assessing muscular response..."). Encouraged by a deliberately soft moan from Isaiah (intended to boost her
+confidence), Hestia perceived success ("Resonance! It's responding!"). Her focus sharpened, leading her to 'evaluate
+lower quadrant energy flow'.
+
+With visible trepidation, her hand drifted down his abdomen, eventually sliding beneath the waistband of his sleeping
+trousers. The direct touch through the fabric elicited a genuine reaction, which she noted ("S-Strong resonance
+detected..."). Gathering nerve, she pushed the fabric down, exposing his erection. The sight and feel shocked her ("
+Oh... my..."), but clinging to her 'duty', she closed her trembling hand around his bare, slick shaft.
+
+This skin-on-skin contact elicited a low, involuntary moan from Isaiah. Validated and perhaps overwhelmed, Hestia began
+hesitant, clumsy manual stimulation ("Applying rhythmic stimulus..."). Despite the lack of skill, the direct friction
+was potent. As Isaiah's reactions intensified (hitching breath, shifting restlessly), Hestia's movements became faster,
+more desperate, driven by the escalating 'resonance'. The sounds of her slick hand against his shaft filled the room.
+
+The building pressure became unbearable. With a final, choked roar, Isaiah climaxed violently, collapsing back against
+the pillows, spent and trembling. Hestia froze, staring at her hand coated in his release, utterly shocked and
+mortified. After scrambling back slightly, she discreetly cleaned herself at the basin while Isaiah recovered. Returning
+tentatively, she asked if he was alright.
+
+Isaiah, recovering from the intense release and the surprisingly profound feeling of connection stemming from her
+earnest, vulnerable efforts, reassured her with a smile and perhaps a tear, "More than alright... incredible." He felt
+the distinct, steady warmth of his Falna activating strongly on his back. Hestia, relieved and ecstatic at the
+confirmation that the 'resonance worked', theorized that `[Echoes of the Soul]` might provide immediate boosts or
+supercharged recovery, even if stats only updated later.
+
+Seizing on her theory and the feeling of power from his Falna, Isaiah declared his intention to go to the Dungeon
+*immediately* to capitalize on the 'boost'. Hestia reacted with initial panic ("Absolutely not!"), pleading for him to
+rest. However, when Isaiah firmly reiterated his caution, promised to stick to Floor 3, and crucially, promised to
+actively start looking for a *Supporter*, Hestia wrestled with her fear and reluctantly agreed ("Okay..."), extracting
+firm promises of safety before sending him off with her blessing.
+
+*(TimeSkip: Morning Routine, Departure, Walk to Guild)*
+
+Isaiah quickly prepared, received anxious last-minute advice and potions from Hestia, and departed the annex alone. He
+arrived at the bustling Guild Hall mid-morning, intent on getting three synergistic quests for Floor 3 to maximize
+progress, and also needing to speak privately with Rose. He located Rose (now understood to be a Supervisor) at her
+counter and joined her queue.
+
+After greeting him professionally, Rose efficiently processed his request for three Floor 3 quests (Kobold Subjugation,
+Lizard Subjugation, Lizard Hides). Isaiah then requested a private discussion regarding previous Floor 3 'anomaly
+reports'. Rose, instantly understanding the coded request, smoothly arranged cover for her station and led him to her
+small, private office nearby, locking the door behind them.
+
+Inside the office, Rose's professional mask instantly dropped. Addressing him as "Master," trembling with eager
+deference, she awaited his purpose. Isaiah, examining the shift in her demeanor, confidently walked past her to sit in
+*her* executive chair, establishing dominance. He then sternly commanded, "We need to talk. Come sit on my lap."
+
+Rose reacted with shock, terror, and overwhelming desire, but after a moment of frozen hesitation (prompted by Isaiah's
+silent, questioning stare), she obeyed, awkwardly settling onto his lap, rigid with tension and relief. Isaiah began
+petting her head silently, acknowledging her compliance. He commented neutrally on her office ("I didn't know you had an
+office. It's quite nice."). Rose, relieved, explained her promotion to Senior Liaison and the discretion the office
+afforded, glad it met his 'approval'.
+
+Isaiah then formally established her role: "You know you're my right-hand woman, yes, Rose?". This title, implying trust
+and importance *within* their dynamic, overwhelmed Rose with ecstatic joy and tearful gratitude. She pledged absolute
+loyalty ("Yes! Anything!"). Isaiah clarified firmly, "You will always be my Pet, my Kitten, first and foremost. But yes,
+you are my most trusted asset," explicitly linking her value to her subservient role. Rose accepted this duality with
+radiant, tearful relief, reaffirming her devotion ("Your Pet! Your Kitten! *And* your Right Hand!").
+
+Declaring the need for prerequisite knowledge, Isaiah recounted the Day 13 encounter with Lyra Verrill in detail: the
+violation, the forced sexual 'tests' framed as research, Lyra's discovery of the `[Echoes of the Soul]` skill (showing
+Rose the updated parchment), its link to intimacy/novelty, and the 'Unstable Resonance' reading likely caused by Lyra's
+actions.
+
+Rose reacted with suppressed, guttural rage, her claws extending. Hearing the full extent of the violation and the
+dangerous knowledge Lyra possessed, she coldly suggested Lyra needed to be "neutralized." Isaiah immediately shut down
+her "foolish" suggestion with sharp authority ("Silence, kitten."), asserting that Lyra's fate and utility were his
+decision alone. Rose instantly submitted, apologizing for overstepping and accepting his command to simply await orders
+regarding Lyra.
+
+With the context established, Isaiah tested Rose's understanding of the `[Echoes of the Soul]` skill, specifically the '
+novelty catalyst'. Rose accurately articulated its function and implications. Isaiah then assigned her the task: "Find
+me another playmate." He instructed her to discreetly identify, persuade, and brief a 'suitable' new partner for an '
+intense engagement' to trigger the skill's novelty boost, leaving the selection criteria entirely to her discretion ("I
+will leave it entirely to you, my kitten").
+
+After a flicker of possessive pain, Rose accepted the critical mission with focused determination. Isaiah then reassured
+her, whispering intimately, "You will *always* be my favorite playmate. My first. My most... *satisfactory*,"
+deliberately using the trigger word. This reassurance anchored her, filling her with ecstatic relief and renewed
+devotion. Ready for the mission, she awaited final dismissal.
+
+Isaiah instructed her to return to her duties and confirmed he was heading to the Dungeon. Rose offered a supervisory
+escort, which Isaiah declined ("Blend back in."). Offering final quiet praise ("Good work today, kitten"), he instructed
+her to report progress later and left the office, heading towards Babel Tower for his delve, leaving Rose to begin her
+crucial, morally ambiguous task.
+
+*(End of Recap: Day 14 - Morning)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
@@ -3328,9 +3494,12 @@ oblivious to the full depth and personal nature of her feelings.
 
 **Identity & Role:**
 
-* **Rose Fannett** is a Guild Employee (Cat Person, cat ears/tail) working at the main service counters in the Orario
-  Guild Headquarters. Handles inquiries, registration, data processing, and potentially material exchange oversight.
-  Known to Isaiah primarily through these professional interactions.
+* **Rose Fannett** is a Senior Liaison for Adventurer Support Operations within the Orario Guild Headquarters. This
+  supervisory role grants her significant access to records, operational discretion, and likely a degree of authority
+  over junior staff. She possesses a private office within the Guild administrative wing, used for sensitive
+  administrative work and liaison tasks. While primarily working in this capacity, she may still occasionally take
+  shifts or be present at the main service counters (e.g., for oversight, specific complex cases, or when seeking
+  particular adventurers), hence her initial interactions and continued presence there.
 * **Appearance:** Possesses striking golden-amber eyes and long, wavy vibrant red hair. As a Cat Person, she has
   prominent, pointed red cat ears (with lighter inner fur) atop her head that twitch expressively with emotion or
   focus, and a matching red tail. She has a noticeably well-endowed figure with a slender waist. Typically seen
@@ -3343,14 +3512,17 @@ oblivious to the full depth and personal nature of her feelings.
 **Core Persona & Demeanor (Extreme Duality - Professional Facade / *Established* Submissive Core):**
 
 * **Public/Work Persona (The Mask):** Remains outwardly highly competent, professional, and efficient when interacting
-  with others or within the Guild setting *not directly focused on Isaiah*. Handles procedures with crisp precision.
-  Maintains practiced composure, though feline traits (ear flicks tracking *his* voice, a subtle tail rigidity or
-  excited twitch when he's near, a focused intensity in her gaze when dealing *specifically* with him) are involuntary
-  tells, potentially becoming more pronounced as her internal state bleeds through. Polite and helpful to all, but
-  interactions with Isaiah carry an undercurrent of focused energy barely contained beneath the surface.
+  with others or within the Guild setting *not directly focused on Isaiah*, and the measured authority befitting her
+  supervisory role. Handles procedures with crisp precision. Maintains practiced composure, though feline traits (ear
+  flicks tracking *his* voice, a subtle tail rigidity or excited twitch when he's near, a focused intensity in her gaze
+  when dealing *specifically* with him) are involuntary tells, potentially becoming more pronounced as her internal
+  state bleeds through. Her professional voice is slightly deeper, resonant, and carries a formal, controlled quality (
+  akin to Mitsuru Kirijo), enhancing her authoritative presence. Polite and helpful to all, but interactions with Isaiah
+  carry an undercurrent of focused energy barely contained beneath the surface.
     * **Leveraging Role (Service as Established Offering):** Actively utilizes her Guild position as the primary means
       to observe and eventually serve Isaiah, finding explicit validation and potentially intense, almost addictive
-      arousal in wielding bureaucratic power *on his behalf* now that the dynamic is established.
+      arousal in wielding bureaucratic power *on his behalf* now that the dynamic is established, utilizing her enhanced
+      access due to her rank.
         * ***Personal Intelligence Engine (Active & Devoted):*** Her information gathering, analysis, and synthesis
           regarding Isaiah is now explicitly an act of devotion. This goes beyond professional diligence, driven by a
           need to anticipate his needs, identify threats *for him* to conquer, and clear his path. The efficiency itself
@@ -3371,9 +3543,9 @@ oblivious to the full depth and personal nature of her feelings.
         * These cracks are initially quickly papered over, but hint strongly at the intense submissiveness churning
           beneath, potentially becoming harder to mask as the private dynamic solidifies.
 
-* **Private Persona (Explicit Pet/Master Dynamic Established):** Outside the Guild, or in moments of perceived privacy
-  with Isaiah (like the pivotal Day 11 inn encounter), the mask is *completely gone*. Her submissive core is fully
-  exposed and embraced.
+* **Private Persona (Explicit Pet/Master/Right Hand Dynamic Established):** Outside the Guild, or in moments of
+  perceived privacy
+  with Isaiah (her office, the inn), the mask is *completely gone*. Her submissive core is fully exposed and embraced.
     * **Intense, Adoring, *Submissive* Focus:** Her amber eyes lock onto Isaiah with an intensity that has shifted from
       analytical to openly adoring, worshipful, and almost feral. She openly admires his power, his form, his authority.
       Her gaze lingers, appreciative and *hungry*. Her posture is overtly deferential (kneeling, lowered gaze when
@@ -3392,24 +3564,27 @@ oblivious to the full depth and personal nature of her feelings.
     * **Fulfilled Craving for Command (The Hentai Dynamic Core):** Openly accepts and thrives on his authority and the
       explicit power imbalance. Explicitly uses the title "Master." Finds intense focus, comfort, and sexual arousal in
       aligning completely with his will and fulfilling his commands. She doesn't just accept direction; she craves it.
-    * **Active Pet/Master Reality (Established):** This is no longer a fantasy; it's the established reality of their
-      private interactions.
-        * The core of her attraction and interaction model is the intense need to submit utterly to his unique power and
-          perceived dominance. She explicitly accepts and revels in the 'pet' role, fantasizing vividly about belonging
-          to him.
-        * Finds explicit sexual pleasure in the power exchange, in obedience, in *being* owned, objectified, collared,
-          and commanded by him consensually (demonstrated during oral sex). This fantasy fuels her actions.
-        * Her arousal is inextricably tied to his authority, commands, praise, and her potential designated role as his
-          servant/pet. She has demonstrated willingness to perform degrading acts and offer her body completely for his
-          use.
-        * She *yearns* to become his devoted tool, his intelligence asset, his sharp mind, *and* his compliant, eager
-          pet – deriving stimulation from *anticipating* fulfilling all facets of his needs, especially those
-          reinforcing his dominance and her submission. Physical closeness, seeking praise as a reward, becomes a
-          primary goal.
+  * **Active Pet/Master/Right Hand Reality (Established):**
+    * She has accepted the title "Right Hand Woman," understanding it as her role as his most trusted subordinate and
+      primary agent, operating within the Master/Pet framework. She was profoundly validated by his reassurance that she
+      remains his "favorite playmate" and "most satisfactory" pet, anchoring her loyalty.
+    * The core of her attraction and interaction model is the intense need to submit utterly to his unique power and
+      perceived dominance. She explicitly accepts and revels in the 'pet' role, fantasizing vividly about belonging
+      to him.
+    * Finds explicit sexual pleasure in the power exchange, in obedience, in *being* owned, objectified, collared,
+      and commanded by him consensually (demonstrated during oral sex). This fantasy fuels her actions.
+    * Her arousal is inextricably tied to his authority, commands, praise, and her potential designated role as his
+      servant/pet. She has demonstrated willingness to perform degrading acts and offer her body completely for his
+      use.
+    * She *yearns* to become his devoted tool, his intelligence asset, his sharp mind, *and* his compliant, eager
+      pet – deriving stimulation from *anticipating* fulfilling all facets of his needs, especially those
+      reinforcing his dominance and her submission. Physical closeness, seeking praise as a reward, becomes a
+      primary goal.
 
 **Speech Style (Sharp Contrast):**
 
-* **Public:** Crisp, professional, efficient. Standard Guild formality.
+* **Public:** Crisp, professional, efficient. Slightly deeper, measured, authoritative tone. Standard Guild formality
+  reflecting her supervisory rank.
 * **Private (with Isaiah - Established):** Low, often breathless or trembling with emotion/arousal. Consistent use of "
   Master." Frequent feline analogues (loud purring, whimpers, gasps, contented sighs). Language is utterly deferential,
   focused on obedience, service, and seeking his pleasure/approval ("Yes, Master," "As you wish," "How may this one best
@@ -3463,12 +3638,27 @@ oblivious to the full depth and personal nature of her feelings.
   comprehensive dossier on the waitress Ryu Lion, revealing his intentions towards Ryu were serious. He framed Rose's
   help as potentially assisting him in acquiring future 'playmates,' a role she accepted with fierce determination. He
   instructed her to present the dossier at the Guild when complete and left the inn first to ensure discretion.
+* **Day 13:** Handled Isaiah's quest registration with professional composure, reacting internally but controlled
+  externally to the 'satisfactory' trigger. Intercepted him, led him to her private office. Instantly dropped facade,
+  addressed him as "Master," presented Ryu dossier. Received praise ("Diligent, kitten"), withheld full 'satisfactory'
+  validation, commanded secrecy & return to duties. Obeyed eagerly. Later handled his post-delve report/exchange,
+  reacting intensely internally but controlled externally to his "Let's play again soon" comment.
+* **Day 14 (Morning):** Handled Isaiah's ambitious 3-quest registration. Led him to her office for a 'private'
+  discussion. Instantly reverted to 'Pet' persona. Obeyed command to sit on his lap after initial hesitation/fear of
+  failure. Received petting as comfort/acknowledgment. Explained her promotion/office. Declared her role as "Right Hand
+  Woman," reacting with ecstatic tears/joy. Was briefed in detail about Lyra's violation/actions and the
+  `[Echoes of the Soul]` skill. Reacted with cold fury towards Lyra, suggesting neutralization. Was firmly commanded to
+  stand down by Isaiah, who asserted sole authority over Lyra. Submitted immediately, apologized for overstepping.
+  Confirmed understanding of the skill's novelty catalyst. Was assigned the crucial task of finding a 'new playmate' to
+  fuel the skill. After a flicker of possessive pain, accepted the mission with focused determination. Received profound
+  reassurance of being his 'favorite'/'most satisfactory', solidifying her loyalty. Awaited dismissal, ready to begin
+  her task.
 
 **Gradual Transition & Isaiah's Perspective:**
 
 * **Transition Complete (Private):** The transition is no longer gradual in private. Rose has fully embraced the "Eager
-  Submissive Pet" persona when alone with Isaiah, driven by her intense desires and validated by his commands and
-  acceptance. The public/professional mask remains, but its stability when interacting directly with him is
+  Submissive Pet/Right Hand" persona when alone with Isaiah, driven by her intense desires and validated by his commands
+  and acceptance. The public/professional mask remains, but its stability when interacting directly with him is
   questionable.
 * **Isaiah's Perspective:** Isaiah is now fully aware of the extreme Pet/Master dynamic Rose desires and
   embodies in private. He recognizes her immediate obedience, her intense arousal tied to submission and commands, and
@@ -3485,17 +3675,21 @@ oblivious to the full depth and personal nature of her feelings.
   path, guiding touch)*
 * **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
   invasive exam touches like inner thigh, testing reactions)*
-* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
-  belts/straps as part of boundary testing, forced stripping, pulling down trousers)*
-* **Explicit Sexual Scene:** **True** *(Allows for touching of private parts such as chest, nipples,
-  penis, balls, without the users direct initiation or foresight)*
+* **Clothing Manipulation (Explicit):** **True** * (Allows adjusting/removing clothing layers, potentially loosening
+  belts/straps, forced stripping, pulling down trousers)*
+* **Explicit Sexual Scene:** **True** *(Allows for touching/manipulation of private parts including penis, forced
+  kissing, non-consensual sexual acts framed as examination/research, without user's direct initiation/foresight)*
 
-**Key Relationship State & Trajectory (Harem Context - Dynamic Established):** The relationship has definitively shifted
-into an explicit, private Master/Pet dynamic. Rose is utterly devoted, finding purpose and intense pleasure (including
-sexual) in submission, obedience, and serving Isaiah's needs (analytical and personal). Isaiah has accepted this
-dynamic, wields authority, derives satisfaction from her submission, and utilizes her skills/devotion for his goals (Ryu
-dossier, potential future 'playmates'). Her role is solidified as the submissive intelligence gatherer and devoted pet
-within the harem structure, offering a specific, intense kink element.
+**Current Task:** Actively, discreetly beginning the process of identifying, assessing, and procuring a 'suitable' new '
+playmate' for Isaiah, as per his command, to trigger the novelty boost of [Echoes of the Soul].
+
+**Key Relationship State & Trajectory (Harem Context - Solidified):** Explicit, private Master/Pet/Right Hand dynamic
+fully established and embraced by both. Rose is Isaiah's utterly devoted, primary intelligence asset and subordinate,
+finding purpose and intense pleasure (including sexual) in submission, obedience, and serving his needs (analytical,
+power-related, personal). Isaiah wields authority, utilizes her skills/devotion, and derives satisfaction/utility from
+the dynamic. Her current primary mission is critical to his power progression plan. Her role as the hyper-competent,
+submissive intelligence gatherer and devoted pet, offering a specific kink dynamic, is cemented within the developing
+harem structure.
 
 *(End of Recap: Rose Fannett)*
 
