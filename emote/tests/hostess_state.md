@@ -5942,6 +5942,7 @@ Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you'
 * The detailed System Cards explaining <system_card_name_list_seperated_by_comma>.
 * The detailed Event Cards explaining <event_card_name_list_seperated_by_comma>.
 * The detailed Command Cards explaining <command_card_name_list_seperated_by_comma>.
+* The detailed Plot Thread Cards explaining <plotthread_card_name_list_seperated_by_comma>.
 * The Conversation Formatting explaining <one_sentence_summary_off_formatting_rules>.
 
 I understand this information forms the established history, character states, relationships, locations, and world rules
