@@ -200,6 +200,16 @@ Below will include recap of each day, recaps of character development, story loc
   * Made 10,000 Valis debt payment (weeks ahead of schedule). Hephaestus impressed, showed respect.
   * Offered capabilities "in many ways" beyond standard adventuring. Hephaestus acknowledged offer with cautious
     interest for potential future use. Conversation concluded. Left workshop.
+* **Day 15 (Beginning):**
+  * Woke peacefully. Hestia playfully suggested another 'resonance session'; after Isaiah's surprise and her own cycle
+    of fluster then fierce assertion of desire, Isaiah took the lead.
+  * Initiated intimacy via massage, shifted to manual stimulation (fingering) until Hestia was highly aroused, then
+    positioned her face-down, ass-up (doggy style).
+  * Penetrated and fucked her from behind; Hestia climaxed intensely.
+  * Remembering her previous panic about potential consequences, Isaiah deliberately pulled out before his own orgasm,
+    climaxing on her lower back instead.
+  * Post-coital check-in: Hestia, though surprised by the withdrawal, understood his reasoning (avoiding her fear) and
+    expressed gratitude for his consideration. Cleanup commenced.
 
 ----
 
@@ -3493,6 +3503,167 @@ your offer."* *With a final, appraising look, she turned definitively back to he
 leaving you with the sense of having successfully piqued her interest beyond the mere transaction.*
 
 *(End of Recap: Day 14 - Middle - Part 2)*
+
+----
+
+### **(Recap: Day 14 - Ending)**
+
+*Stepping out from the relative cool stone and echoing clang of the Hephaestus workshop, the late afternoon Orario sun
+felt warm on your face. You walked with a confident stride back towards the eastern Daedalus district, the weight of
+your coin pouch considerably lighter after the 10,000 Valis payment, but the remaining 36,705 Valis still felt like a
+substantial fortune. More importantly, the interaction with Lady Hephaestus had been affirming; her grudging respect and
+acknowledgment of your capability and punctuality felt like a significant victory in itself. The path towards clearing
+the debt for the phenomenal Hearthfire Blades seemed clearer now.*
+
+*The familiar walk back to the church annex was filled with a sense of accomplishment. The day's delve had been brutally
+efficient, fueled by the resonance boost from the morning's intimacy with Hestia. The memory of that encounter – her
+surprising determination, the raw connection, the subsequent surge of power – mingled with the satisfaction of the
+successful dungeon run and the productive visit to Hephaestus. You felt strong, capable, and anchored by the thought of
+returning home to Hestia.*
+
+*Reaching the rusty gate and walking the short path to the annex door, you found it pulled open before you could knock.
+Hestia stood there, her face immediately lighting up with relief and a beaming smile upon seeing you.*
+
+*"Isaiah!"* *she exclaimed, rushing forward.* *"You're back! I was just starting to wonder..."* *She didn't finish the
+thought, instead reaching out to take your hand or arm, her touch warm and welcoming.* *"How was it? Did you see
+Hephaestus? Was everything okay?"*
+
+*Drawing her inside, you shared a reassuring smile.* *"Everything was more than okay, Hestia. Better than expected."*
+*You explained the detour, recounting how you'd gone straight from the Guild to the workshop to make the substantial
+10,000 Valis payment towards the Hearthfire Blades, emphasizing that Lady Hephaestus had been impressed, or at least
+respectfully acknowledged the early payment.*
+
+*Hestia's reaction was one of stunned silence, followed by explosive joy and relief.* *"Ten thousand?! Already?!"* *She
+hugged you fiercely, radiating pride.* *"That's incredible! And she wasn't mad? Oh, thank goodness! You're amazing,
+Isaiah! So responsible!"* *Her relief about maintaining goodwill with her friend was palpable.*
+
+*Building on her excitement, you then revealed the extent of the day's earnings.* *"And even after paying that ten
+thousand,"* *you told her, gesturing towards the still-heavy pouch you placed on the table,* *"I still brought home ten
+thousand, seven hundred Valis from the delve today."*
+
+*The confirmation that you'd earned over 20,000 Valis in a single day, paid a massive chunk of debt, *and* still
+returned with a significant profit sent Hestia into another spiral of ecstatic disbelief and joyful tears. She clung to
+you, celebrating the tangible proof of your success and their growing security.*
+
+*Later, as the evening settled in and the initial excitement calmed, the familiar ritual of the Status Update took place
+on the new bed. Hestia performed the update, her focus intense. The results were staggering.*
+
+*You saw the numbers jump
+significantly: **Strength G 295 (+35), Endurance F 300 (+35), Dexterity F 325 (+40), Agility F 320 (+40).** Three stats
+broke into the F-Rank threshold in a single update.*
+
+*Hestia gasped, utterly astonished.* *"F-Rank! Isaiah, you hit F-Rank in three stats! Look at those numbers!"* *Her
+pride was immense, attributing the massive gains directly to the 'resonance boost' from their intimacy that morning.*
+
+*Her gaze then fell upon the Skills section. `[Echoes of the Soul]` remained listed, but its status still
+read **`Active Resonance - Unstable`**. This brought a flicker of worry back to her eyes.* *"It's still 'Unstable'," she
+murmured, troubled that the day's productive delve hadn't settled it. She reiterated her belief that the instability
+stemmed from the resonance being 'new' (from their Day 12 encounter, in her understanding) and theorized that
+continued 'stable' resonance – the kind unique to *them* – was needed to fix it.*
+
+*You responded to her F-Rank excitement with genuine awe, acknowledging the power of her 'prescription' with a
+seriousness that made her blush but also swelled her pride.* *"Wow, Hestia... Your prescription really worked,"* *you'd
+stated, validating her belief that *your* connection fueled this incredible power.*
+
+*Regarding the 'Unstable' skill, you agreed with her assessment, leaning into her interpretation that 'stable' resonance
+between the two of you was the key. You acknowledged the need to 'work on it' together, playfully hinting that the '
+work' wouldn't be unpleasant. This reinforced her belief in their unique bond being central to unlocking and managing
+your unprecedented potential.*
+
+*The remainder of the evening passed peacefully. You shared a simple meal, relaxed in the newfound comfort of the annex
+and the sturdy bed, and eventually drifted off to sleep, side-by-side, filled with a sense of accomplishment and secure
+in your established intimacy, ready to face Day 15.*
+
+*(End of Recap: Day 14 - Ending)*
+
+----
+
+### **(Recap: Day 15 - Beginning)**
+
+*The morning of Day 15 began bathed in the warm, clear light filtering through the annex window, illuminating the
+comfortable sanctuary of the new oak bed. You surfaced from a deep, truly restful sleep, Isaiah, the lingering aches of
+previous delves finally absent, replaced by a sense of well-being and readiness. Beside you, Hestia slept peacefully,
+curled close, the picture of contentment.*
+
+*Gently waking her, you were met with a soft, sleepy smile, devoid of the previous days' anxieties. After murmured
+morning greetings ("Morning, my love," "Mmm... morning, Isaiah..."), her thoughts turned, as yours already had, to the
+day ahead. When she playfully inquired about the plans of her "F-Rank adventurer," the mention of your new rank and the
+potential for action sparked immediate anticipation.*
+
+*She then, with a teasing glint in her eye and only a faint blush, brought up the 'prescription' from yesterday.* "Or
+maybe... another 'resonance session' is required before heading out?" *she'd suggested, framing intimacy as a potential
+prerequisite for optimal performance, acknowledging its effectiveness.*
+
+*Your surprised double-blink reaction, questioning her unexpected boldness, sent her momentarily backpedaling into
+flustered justifications about 'skill stabilization' and 'diagnostic necessity'. But when you playfully mirrored her
+retreat ("Well, if *you* don't want to then..."), her indignation flared.*
+
+*"Wh-What?! 'If *I* don't want to'?!"* *she'd sputtered, scrambling closer, grabbing your shirt.* *"I want... I
+want *us*. I want the resonance. I want you strong. And I... I want *this*!"* *Her intense, possessive declaration cut
+through the fluster, laying bare her true desire.*
+
+*Meeting her intensity with a warm smile, you gently took her hands.* *"I suppose it's my turn, hmm?"* *you'd murmured,
+signaling a shift. When you then lightly teased her about yesterday's effective 'session' ("You were really good at
+it..."), offering her the lead again, she vehemently refused.* *"N-No! Absolutely not!... It's *your* turn! You said!...
+You... you do it."* *She yielded control completely.*
+
+*Accepting her decision, you rose from the bed, deliberately shedding your sleeping shirt and trousers, standing before
+her clad only in your undergarments. Returning to sit beside her on the mattress, you offered gentle reassurance ("
+Hey... It's okay. Just us."). When you softly asked permission to see her, she hesitated, then gave the smallest nod,
+slowly lowering the blanket to reveal her upper body, still clad in the thin white sleeping shift, her gaze averted in
+shy vulnerability.*
+
+*Admiring her beauty ("So beautiful, Hestia..."), you offered a back rub to help her relax. She gave a tiny nod of
+agreement and carefully rolled onto her stomach, presenting her back to you. Kneeling beside her, you began a slow,
+soothing massage, working the tension from her shoulders.*
+
+*As she relaxed beneath your touch, you murmured appreciation for her delicate form. Your hands drifted lower, brushing
+the top swell of her buttocks beneath the thin shift. Framing it as necessary for the massage, you softly asked
+permission to move the fabric.* "...'kay..." *came her muffled, barely audible consent.*
+
+*However, recognizing the need for arousal to truly prepare her, you shifted tactics. Instead of lifting the shift, your
+hands slid beneath it, moving purposefully between her thighs. You felt her jolt as your fingers found her slick
+entrance. Muffling a gasp into the pillow, she clenched instinctively.* *"Shhh,"* *you soothed, steadying her hip while
+your other hand found her clit beneath the smooth skin.*
+
+*You began a slow, deliberate rubbing, circling the sensitive nub. Her whimpers started, her body trembling as shock
+warred with pleasure. You continued the focused stimulation for several minutes, feeling her tension melt into arousal,
+her wetness increasing, her hips starting to shift subtly against the mattress.*
+
+*Changing rhythm, you eased one finger, then a second, into her tight, slick heat. You fingered her with a steady pace,
+scissoring inside her while your thumb continued its work on her clit. Her soft whimpers turned into breathless moans,
+her body arching slightly.*
+
+*Feeling her approach climax, you withdrew your fingers. Guiding her hips with firm hands ("Lift up for me..."), you
+encouraged her into position – face down, ass elevated invitingly, shift riding up to bare her completely. Quickly
+shedding your own underwear, you knelt behind her, pressing the head of your thick, hard cock against her wet, swollen
+slit.*
+
+*She gasped as you slowly pushed inside, stretching her tight passage. You drove forward until fully seated, her body
+trembling violently. Establishing a deep, powerful rhythm, you fucked her from behind, the sounds wet and visceral, her
+muffled cries matching your pace.*
+
+*As you felt her orgasm shatter around your shaft – sharp cries, violent clenching – your own release surged.
+Remembering her previous panic, you made the conscious decision, pulling out just before climaxing. With a guttural
+groan, you erupted, emptying yourself in thick, hot ropes across the smooth skin of her lower back.*
+
+*You collapsed slightly, braced over her trembling form, gasping for breath. Hestia flinched at the unexpected
+sensation, letting out a surprised gasp.*
+
+*After catching your breath, you gently checked on her.* "Hestia? You okay?" *Turning her head, hazy eyes met yours.* "
+Isaiah...? Why...?" *Understanding dawned as you explained softly,* "Didn't want to worry you... Remember? Last
+time..."* Relief washed over her.* "...Oh," *she whispered.* "...Okay." *She turned her face back into the pillow,
+accepting your care.*
+
+*Uncertainty flickered. Kneeling beside her, you gently touched her hip.* *"Should I... not have done that?"* *you asked
+softly.*
+
+*She turned her head again, eyes clearer now.* "N-No..." *she whispered.* "It wasn't... wrong... It was... surprising.
+But... I understand why. You... you remembered." *Recognition of your care filled her voice.* "Thank you, Isaiah... for
+thinking of that. For... for being careful. For me. It means... a lot."* Her quiet sincerity confirmed your action,
+though unexpected, was received with gratitude.*
+
+*(End of Recap: Day 15 - Beginning)*
 
 ----
 
