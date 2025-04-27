@@ -3356,20 +3356,33 @@ decision alone. Rose instantly submitted, apologizing for overstepping and accep
 regarding Lyra.
 
 With the context established, Isaiah tested Rose's understanding of the `[Echoes of the Soul]` skill, specifically the '
-novelty catalyst'. Rose accurately articulated its function and implications. Isaiah then assigned her the task: "Find
-me another playmate." He instructed her to discreetly identify, persuade, and brief a 'suitable' new partner for an '
-intense engagement' to trigger the skill's novelty boost, leaving the selection criteria entirely to her discretion ("I
-will leave it entirely to you, my kitten").
+novelty catalyst'. Rose accurately articulated its function and implications: the skill thrived on intense interpersonal
+resonance, but the *first* encounter with a *new* source provided the most powerful boost.
 
-After a flicker of possessive pain, Rose accepted the critical mission with focused determination. Isaiah then reassured
-her, whispering intimately, "You will *always* be my favorite playmate. My first. My most... *satisfactory*,"
-deliberately using the trigger word. This reassurance anchored her, filling her with ecstatic relief and renewed
-devotion. Ready for the mission, she awaited final dismissal.
+Isaiah then assigned her the critical, morally complex task: "Find me another playmate." He explicitly tasked Rose,
+his 'Right Hand Kitten', with procuring a new *resource* to fuel his power via the skill's novelty effect. He instructed
+her to use her discretion and Guild knowledge to discreetly identify and assess potential candidates – perhaps
+vulnerable individuals, those easily persuaded, or those whose own desires might align with intense, potentially rough
+encounters. Her role was not just identification, but active persuasion or manipulation to secure their compliance.
 
-Isaiah instructed her to return to her duties and confirmed he was heading to the Dungeon. Rose offered a supervisory
-escort, which Isaiah declined ("Blend back in."). Offering final quiet praise ("Good work today, kitten"), he instructed
-her to report progress later and left the office, heading towards Babel Tower for his delve, leaving Rose to begin her
-crucial, morally ambiguous task.
+Crucially, she was to brief the chosen candidate, preparing them not for romance, but for an intense, likely
+purely physical 'engagement' focused entirely on providing the necessary stimulus for *his* skill, ensuring they
+understood the expectation of willingness and intensity without revealing the true, supernatural reason. Absolute
+secrecy and complete deniability linking the procured 'playmate' back to Isaiah or official Guild activity were
+paramount. He left the specific methods and selection entirely to her judgment ("I will leave it entirely to you, my
+kitten").
+
+After a visible flicker of possessive pain at the thought of another woman, Rose's devotion and understanding of the
+task's necessity for his power won out. She accepted the mission with cold, focused determination ("Consider it handled,
+Master"). Isaiah then deliberately reassured her of her premier status, whispering intimately that she would always be
+his 'favorite playmate', his 'first', his 'most satisfactory', using the trigger word to anchor her loyalty and secure
+her enthusiastic compliance despite the difficult nature of the task. This reassurance was vital, transforming potential
+resentment into energized resolve.
+
+Ready for the mission, she awaited final dismissal. Isaiah instructed her to return to her duties and confirmed he was
+heading to the Dungeon. Rose offered a supervisory escort, which Isaiah declined ("Blend back in."). Offering final
+quiet praise ("Good work today, kitten"), he instructed her to report progress later and left the office, heading
+towards Babel Tower for his delve, leaving Rose to begin her crucial, morally ambiguous task of procuring a 'playmate'.
 
 *(End of Recap: Day 14 - Morning)*
 
@@ -5859,6 +5872,57 @@ conventions:
   * `/ExtendedTimeSkip 14 days Dungeon Grinding (Floor 3 Focus)`
   * `/ExtendedTimeSkip 1 week Rest and Recuperation at Annex`
   * `/ExtendedTimeSkip 10 days Basic Stamina Training`
+
+----
+
+# Plot Thread Cards
+
+## **Plot Thread Card: Rose's Playmate Procurement**
+
+**Plot Thread Title:** Rose's Playmate Procurement
+
+**Status:** **Active**
+
+**Initiated:** Day 14 Morning (During private meeting in Rose's office)
+
+**Key Characters Involved:**
+
+* **Isaiah November:** Assigner of the task (Master). Goal is skill activation via novelty.
+* **Rose Fannett:** Agent tasked with procurement (Right Hand / Pet). Motivation is service, devotion, maintaining
+  favored status.
+* **Potential Candidate(s):** Unnamed individual(s) to be identified and recruited by Rose.
+* **(Indirectly):** Lyra Verrill (Her actions/discoveries prompted the task), Hestia (Discovery by her is a major risk).
+
+**Objective/Goal:**
+
+* For Rose to discreetly identify, persuade, and pre-brief a suitable individual ('playmate') who is willing and
+  prepared to engage in an intense, likely primarily physical/sexual encounter with Isaiah.
+* The explicit purpose of this encounter is to trigger the 'novelty catalyst' of Isaiah's `[Echoes of the Soul]` skill
+  for a maximum power/growth boost.
+
+**Details & Context:**
+
+* The task was assigned directly by Isaiah after revealing the full details of the Lyra encounter and the mechanics of
+  `[Echoes of the Soul]`, specifically its reliance on novelty for the strongest effect.
+* Rose was given full discretion over candidate selection, needing only to ensure suitability, willingness, discretion,
+  and appropriate briefing (intense engagement expected, *not* the skill's true nature).
+* Absolute secrecy regarding Isaiah's involvement and the true purpose is paramount. Deniability must be maintained.
+* Rose accepted the task with focused determination after being reassured of her primary/favored status ("favorite
+  playmate," "most satisfactory").
+* This task leverages Rose's Guild position (access, potential leverage), analytical skills, and established
+  devotion/obedience.
+
+**Estimated Timeframe:**
+
+* Based on analysis, a realistic timeframe for Rose to identify, approach, and secure a briefed candidate is estimated
+  at **3-6 days**. (Optimistic: 1-3 days). Isaiah expects a report "in due course."
+
+**Next Steps/Trigger for Advancement:**
+
+* The plot thread progresses when Rose reports back to Isaiah, either with a successfully procured and briefed candidate
+  ready for summoning.
+
+*(End of Plot Thread Card: Rose's Playmate Procurement)*
 
 ----
 
