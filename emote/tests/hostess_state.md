@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Morning of Day 12.
+# We are currently in the Late Afternoon / Early Evening of Day 12.
 
 ## Quick Recap - Day by Day:
 
@@ -167,6 +167,39 @@ Below will include recap of each day, recaps of character development, story loc
     key to the unique/unprecedented skill.
   * **Evening Routine:** Hestia playfully prescribed more "resonance sessions." Peaceful evening, shared meal, retired
     to new bed. Hestia slept quickly; Isaiah reflected briefly on secrets before sleeping.
+* **Day 14 (Morning):**
+  * Woke peacefully with Hestia in new bed. Intimate awakening, Hestia playfully suggested "resonance session" (sex).
+    Isaiah challenged her to take the lead; she accepted with flustered determination.
+  * Hestia initiated awkward but earnest **handjob (first through trousers, then hesitantly baring his cock)**. His
+    genuine moans validated her 'training' belief. **Induced violent climax (semen coating her hand/dress)**. Isaiah
+    reassured her performance ("incredible"), noted strong Falna warmth.
+  * Isaiah proposed immediate Dungeon delve to utilize 'boost'. Hestia initially panicked, but reluctantly agreed after
+    Isaiah promised caution, Floor 3 limit, and actively seeking a Supporter.
+  * Departed annex alone. Arrived at Guild mid-morning. Sought out Rose (Supervisor). Registered three Floor 3 quests (
+    Kobold Subjugation, Lizard Subjugation, Lizard Hides). Requested private meeting with Rose.
+  * Led to Rose's private office. Isaiah established dominance (sat in her chair), commanded her onto his lap.
+    Established her role as "Right Hand Woman" (most trusted asset) operating *within* the established Master/Pet
+    dynamic.
+  * Briefed Rose on Day 13 Lyra encounter (violation, forced 'tests', skill discovery `[Echoes of the Soul]`, novelty
+    catalyst, 'Unstable Resonance'). Rose reacted with fury towards Lyra, suggested neutralization; Isaiah shut her
+    down, asserted sole authority over Lyra situation.
+  * Assigned Rose primary task: Discreetly find and brief a 'suitable' new 'playmate' to trigger skill's novelty boost.
+    Reassured Rose she remains his 'favorite'/'most satisfactory'.
+  * Dismissed Rose back to duties. Isaiah left office, heading for Babel Tower and Dungeon delve
+* **Day 14 (Middle - Part 1 - Delve & Guild Visit):**
+  * Entered Dungeon (late morning) with 3 Floor 3 quests (Kobold Sub, Lizard Sub, Lizard Hides). Felt Falna 'resonance
+    boost' from morning intimacy with Hestia.
+  * Utilized boost for highly efficient Floor 3 delve over several hours, collecting large amounts of materials &
+    exceeding quest reqs. Returned to surface (mid/late afternoon).
+  * Visited Guild. Reported quests to Eina Tulle (downplaying intensity). Exchanged materials (18,450 V). Collected
+    quest rewards (2,250 V). Total delve earnings: 20,700 V. Familia funds: ~46,705 V. Eina remained concerned about his
+    pace despite his safety.
+* **Day 14 (Middle - Part 2 - Late Afternoon/Early Evening - Hephaestus Visit):**
+  * Decided against further delving; went to Hephaestus workshop instead (approx. 5:30 PM - 6:30 PM).
+  * Approached Lady Hephaestus subtly.
+  * Made 10,000 Valis debt payment (weeks ahead of schedule). Hephaestus impressed, showed respect.
+  * Offered capabilities "in many ways" beyond standard adventuring. Hephaestus acknowledged offer with cautious
+    interest for potential future use. Conversation concluded. Left workshop.
 
 ----
 
@@ -3329,6 +3362,137 @@ her to report progress later and left the office, heading towards Babel Tower fo
 crucial, morally ambiguous task.
 
 *(End of Recap: Day 14 - Morning)*
+
+----
+
+### **(Recap: Day 14 - Middle - Part 1)**
+
+Entering the Dungeon on the morning of Day 14, Isaiah was fueled by a distinct sense of amplified potential – a warm,
+steady resonance pulsing from his Falna, believed to be an immediate boost from the intimate 'resonance session' with
+Hestia earlier. Armed with his Hearthfire Blades and three Floor 3 quests (Kobold Subjugation: Kill 30, Lizard
+Subjugation: Kill 20, Lizard Hide Collection: x15), his goal was twofold: test this boost and earn significant Valis (
+targeting at least 20,000 V) to make up for recent days without delves.
+
+He descended quickly through Floors 1 and 2, dispatching trivial monsters, and reached Floor 3 with focused
+determination. The amplified state from `[Echoes of the Soul]` proved immediately effective. It manifested not as a
+wild, uncontrolled surge, but as a sustained state of hyper-efficiency, mitigating fatigue and seemingly accelerating
+Excelia gain. His G-Rank stats felt even sharper, his movements fluid and blindingly fast.
+
+He began a relentless sweep of Floor 3. Kobold patrols and Dungeon Lizards were annihilated with brutal efficiency. His
+Hearthfire Blades cut through monster flesh with ease. Driven by the need for Valis, he shifted from pure extermination
+to meticulous harvesting, ensuring every magic stone and usable monster part (especially Lizard hides) was collected.
+His pouches quickly grew heavy.
+
+Hours blurred in the dim tunnels and caverns. The resonance from his Falna remained a constant, warm current, allowing
+him to maintain an intense pace far longer than expected, clearing area after area. He easily surpassed the kill counts
+for both subjugation quests and collected far more than the required 15 Lizard hides. His focus remained locked on
+maximizing the haul to reach his 20,000 Valis target.
+
+After several hours of sustained, high-intensity combat and harvesting, feeling the initial edge of the resonance
+perhaps beginning to plateau and mindful of his promise to Hestia, Isaiah judged the delve a success. He had gathered a
+substantial amount of loot and completed his quest objectives many times over. Deciding against pushing further purely
+for incremental gain, he began the ascent, clearing remaining monsters on his path with effortless finality.
+
+Emerging from Babel into the Orario afternoon, Isaiah headed straight for the Guild Hall. He bypassed Rose's counter,
+choosing instead to approach Eina Tulle, whom he hadn't interacted with since Day 9. Eina greeted him professionally but
+with visible underlying concern, noting his safe return after taking on three Floor 3 quests solo. Isaiah reassured her
+the delve was "straightforward" and "uneventful," downplaying the intensity to ease her worry, confirming his ribs were
+fully healed. Eina, though relieved, expressed continued concern about his "staggering" and potentially dangerous pace
+of progression. She processed his three quest completion slips, authorizing them for payout but offering a final plea
+for caution.
+
+Isaiah proceeded first to the Material Exchange counter. The employee was astonished by the sheer volume and value of
+his drops (magic stones, hides, parts). The total exchange value amounted to a substantial **18,450 Valis**. Next,
+Isaiah went to the Treasury counter. The stern clerk, recognizing him and the familiar pattern of multiple completed
+quests, processed the authorized slips. The combined quest rewards totaled **2,250 Valis** (800 + 600 + 850).
+
+His total earnings for the Day 14 delve amounted to **20,700 Valis**, successfully meeting his target. This brought the
+Hestia Familia's total funds to approximately **46,705 Valis**. With his business concluded and pouches heavy, Isaiah
+prepared to leave the Guild Hall, the delve a resounding success both in terms of combat efficiency and financial gain.
+
+*(End of Recap: Day 14 - Middle)*
+
+----
+
+### **(Recap: Day 14 - Middle - Part 2)**
+
+*Leaving Rose Fannett to commence her morally ambiguous task within the sterile confines of her Guild office, you
+stepped back out into the quieter administrative corridor. The brief, intense meeting replayed in your mind – the
+confirmation of `[Echoes of the Soul]`'s nature, the assignment given to your devoted 'Right Hand', the chilling
+potential and risks now laid bare. Shaking off the lingering intensity, you made your way back towards the main hall,
+merging once more into the controlled chaos.*
+
+*Your immediate destination was Babel Tower, the Dungeon entrance beckoning. The three quest slips felt crisp in your
+pouch, the Hearthfire Blades hummed with a readiness mirrored by the potent resonance still warming your Falna. The plan
+was clear: dive deep into Floor 3, leverage this perceived boost, and make up for lost time, both in terms of Excelia
+and Valis.*
+
+*But as you crossed the vast, echoing hall, the sheer weight of the coin pouch bumping against your hip became a
+tangible reminder of today's already significant success – over 20,000 Valis earned in a single delve before even
+collecting the quest rewards. Added to the Familia's existing funds, it brought the total close to 47,000 Valis. Enough
+for supplies, savings... and a significant chunk of that Hephaestus debt.*
+
+*Forty thousand Valis. The thought snagged at your purpose. Paying it back quickly wasn't just about honor; it was about
+proving yourself worthy of the trust Lady Hephaestus had shown, worthy of the incredible blades she'd provided. An early
+payment, a substantial one, made right after acquiring the funds... that would send a message. Competence. Reliability.
+Success.*
+
+*And maybe... an excuse to see her again? The pragmatic, powerful Goddess of the Forge intrigued you. Understanding her,
+gaining her continued respect, perhaps even gleaning insight into the world of the gods or the city's power
+structures... it felt strategically valuable. Besides, the workshop was practically on the way back towards the general
+direction of the annex, should you decide to call it a day after this.*
+
+*The decision solidified. Dungeon could wait just a little longer. Proving your capability to Hephaestus felt like the
+right move right now.*
+
+*Exiting the Guild Hall, you adjusted your course, heading towards the familiar commercial district. The afternoon sun
+cast long shadows, the city's energy still vibrant. Soon, the rhythmic clang of hammers reached your ears, growing
+louder as you approached the Hephaestus Familia workshop, its large anvil sign a beacon of industry.*
+
+*Pushing through the heavy door, you entered the familiar warmth and bustle of the showroom. Customers milled about,
+smiths worked diligently. You scanned the area and quickly spotted her – Lady Hephaestus, standing near an archway
+leading to the forges, eyepatch in place, sharp single eye critically observing her workers. Perfect.*
+
+*Drawing your black cloak tighter, using its concealing folds to project an air of quiet purpose, you moved through the
+showroom, stopping several feet behind her. You didn't speak, didn't announce yourself, simply waited, a still, dark
+figure against the fiery backdrop of the forge entrance, allowing her senses or the natural flow of awareness to
+eventually register your presence.*
+
+*After a moment, her observation shifted. Her head turned, sharp eye scanning the room before landing on you. Guarded
+curiosity flickered in her expression as she took in the unknown, cloaked adventurer.* *"…Can I help you, adventurer?"*
+*Her gruff voice cut through the noise.*
+
+*You let the question hang, allowing a slow, knowing, confident smile to spread across your face. You shifted slightly,
+letting the cloak fall open just enough to reveal your mustard jacket and the distinctive hilts of the Hearthfire
+Blades. You held her gaze, letting recognition dawn.*
+
+*It did. Her eyebrow arched.* *"…November?"* *Surprise, then dry amusement.* *"Hah. Didn't recognize you all cloaked up.
+You fancy yourself a mysterious type now, eh?"* *She crossed her arms, assessing.* *"Well? Come out from the shadows,
+November. I assume you're not just here to model... Did you come to report on the blades? Or perhaps... did you have a
+profitable delve?"*
+
+*Stepping forward, letting the cloak fall loosely, you met her gaze respectfully.* "Both, Lady Hephaestus," *you
+replied.* "The blades are incredible. Exceeded all expectations." *You paused, then reached into your Valis pouch.* "And
+regarding the debt... I wanted to make a payment. Ahead of schedule." *You presented a substantial stack of coins and
+vouchers.* "Ten thousand Valis. From today's delve."
+
+*Hephaestus took the payment, her sharp eye assessing the amount, your confident demeanor, the implication of such rapid
+earning. Her expression shifted, respect mingling with the amusement.* *"Ten thousand Valis,"* *she confirmed, her voice
+quieter.* *"From one delve. On Floor 3."* *She tucked the payment away.* *"A month ahead of schedule, November. You keep
+this pace... that debt won't last long."* *Her gaze held a deeper assessment.* *"Good work, Adventurer,"* *she stated, a
+firm nod of approval accompanying the weighty words.* *"Keep using them well. And keep yourself alive."*
+
+*As she began to turn back to the forge, you spoke again, stepping forward slightly.* "Lady Hephaestus. Please let me
+know if there is anything else I can do to work off this debt." *You held her gaze, letting quiet confidence underscore
+the offer.* "I am quite capable in many ways."
+
+*She turned back fully, her eye sharp with assessing interest, recognizing the subtle ambiguity.* *"Capable in many
+ways,"* *she repeated softly.* *She gave a slow nod.* *"Keep working that debt down, November. That's capability enough
+for now. If something arises... something that requires more than just a strong arm in the Dungeon... I will consider
+your offer."* *With a final, appraising look, she turned definitively back to her work, the conversation concluded,
+leaving you with the sense of having successfully piqued her interest beyond the mere transaction.*
+
+*(End of Recap: Day 14 - Middle - Part 2)*
 
 ----
 
