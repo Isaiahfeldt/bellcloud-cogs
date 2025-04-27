@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Late Afternoon / Early Evening of Day 12.
+# We are currently in the Early Morning of Day 15.
 
 ## Quick Recap - Day by Day:
 
@@ -5823,6 +5823,45 @@ conventions:
 
 ---
 
+# Command Cards
+
+## **Command: `/ExtendedTimeSkip`**
+
+* **Usage:** `/ExtendedTimeSkip [Duration] [Primary Focus/Activity (Optional but Recommended)]`
+* **Functionality:** This command advances the narrative clock by a significant duration, typically multiple days or
+  weeks (e.g., "10 days," "3 weeks"). It is designed to bypass extended periods focused on routine activities like
+  grinding, healing, basic training, or working off debts, where detailed day-by-day roleplay is not desired.
+  * **Simulation:** Based on the specified `[Duration]` and optional `[Primary Focus/Activity]`, the AI will simulate
+    the expected outcomes of that period.
+    * If **Dungeon Grinding** is the focus, it will estimate daily delves, calculate approximate Valis earned (factoring
+      in typical expenses for supplies/repairs), and calculate estimated Stat point gains based on current level,
+      skills (`[Determined Heart]`, `[Echoes of the Soul]` if applicable triggers are assumed routine), and typical
+      progression patterns (acknowledging potential diminishing returns over very long skips). Minor, routine encounters
+      will be assumed, but major plot events or highly unusual anomalies will *not* be initiated by the skip itself.
+    * If **Rest/Healing** is the focus, it will simulate recovery progress based on injury severity and known healing
+      rates, deduct estimated basic living expenses, and potentially summarize brief domestic routines.
+    * If **Training/Other Routine Work** is the focus, it will simulate the activity and estimate minor progress or
+      relevant outcomes (e.g., debt reduction if working), deducting expenses.
+  * **Output:** The AI response will provide a brief narrative summary describing the passage of time and the general
+    activities undertaken. It will then present the key results: the updated approximate Valia total, the updated
+    Character Stats reflecting simulated gains, and the character's current general condition (e.g., "Fully Healed," "
+    Well-Rested," "Slightly Fatigued from Grinding"). Finally, it will set the scene for the new present moment.
+* **Limitations:**
+  * This command is intended for periods of **routine activity** and **will not** proactively trigger major new plot
+    developments, significant character interactions, or resolve complex narrative threads on its own.
+  * The simulation provides **estimated** progress based on established patterns.
+  * If a pre-scheduled event (like Lyra's follow-up) or a logical consequence of previous actions falls within the
+    skipped duration, the AI **may stop the timeskip** just before that event occurs to allow it to be played out,
+    narrating up to that point.
+* **Purpose:** To efficiently progress the character through periods of grinding, recovery, or other extended routines
+  without requiring repetitive daily roleplay, allowing the story to move towards more significant events.
+* **Example Usage:**
+  * `/ExtendedTimeSkip 14 days Dungeon Grinding (Floor 3 Focus)`
+  * `/ExtendedTimeSkip 1 week Rest and Recuperation at Annex`
+  * `/ExtendedTimeSkip 10 days Basic Stamina Training`
+
+----
+
 # AI Processing Complete - Acknowledgment
 
 Okay, AI. After processing all the preceding information (Info Cards, Recaps, etc.), your required response is to output
@@ -5838,6 +5877,7 @@ Okay, I have thoroughly reviewed and processed the comprehensive Info Cards you'
 * The detailed Location Cards for <location_card_name_list_seperated_by_comma>.
 * The detailed System Cards explaining <system_card_name_list_seperated_by_comma>.
 * The detailed Event Cards explaining <event_card_name_list_seperated_by_comma>.
+* The detailed Command Cards explaining <command_card_name_list_seperated_by_comma>.
 * The Conversation Formatting explaining <one_sentence_summary_off_formatting_rules>.
 
 I understand this information forms the established history, character states, relationships, locations, and world rules
