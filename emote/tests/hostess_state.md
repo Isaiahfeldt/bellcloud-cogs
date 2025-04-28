@@ -215,7 +215,7 @@ Below will include recap of each day, recaps of character development, story loc
 
 ## Expanded Recap - Day by Day:
 
-### **(Recap: Day 1 - Beginning)**
+### **Recap: Day 1 - Beginning**
 
 Daylight was a fading memory, drowned beneath a relentless, chilling Orario downpour. Rain slicked the cobblestone
 streets, turning them into dark mirrors that reflected the gloomy, overcast sky and the flickering gaslights already
@@ -299,7 +299,7 @@ his ale.
 
 -----
 
-### **(Recap: Day 1 - Middle)**
+### **Recap: Day 1 - Middle**
 
 Ryu returned promptly from the bar, moving with that same quiet grace that Isaiah found so captivating. She placed a
 sturdy mug filled with dark, foaming ale on the table before him, ensuring it was within easy reach but clear of the
@@ -358,7 +358,7 @@ personal request.
 
 -----
 
-### **(Recap: Day 1 - Ending)**
+### **Recap: Day 1 - Ending**
 
 Isaiah stood at the heavy wooden door of the Hostess of Fertility, one foot halfway out into the driving rain, ready to
 leave his awkward interactions with Ryu behind and find lodging on his own. Pride, perhaps, or the sting of her earlier
@@ -456,7 +456,7 @@ darkness.
 
 -----
 
-### **(Recap: Day 2 - Beginning)**
+### **Recap: Day 2 - Beginning**
 
 Isaiah awoke slowly in the small, sparse room of 'The Weary Traveler'. The relentless drumming of rain from the previous
 day had ceased. Weak sunlight filtered through the single window, indicating morning had arrived, though the sky outside
@@ -502,7 +502,7 @@ catch another glimpse of Ryu.
 
 -----
 
-### **(Recap: Day 2 - Middle)**
+### **Recap: Day 2 - Middle**
 
 Walking through the brighter, post-rain morning streets of Orario, Isaiah finished the last of the stolen bacon. His
 thoughts turned back to the Hostess of Fertility and the task at hand: retrieving his daggers. He arrived at the
@@ -567,7 +567,7 @@ thing for elves"), he located a female elf advisor (Eina Tulle) and joined her q
 
 -----
 
-### **(Recap: Day 2 - Ending)**
+### **Recap: Day 2 - Ending**
 
 Waiting in line for the Guild Advisor Eina Tulle, Isaiah observed her brisk, efficient, professional demeanor as she
 dealt with other adventurers. When it was his turn, he introduced himself ("Isaiah November") and stated his desire to
@@ -685,7 +685,7 @@ and finally went to sleep, exhausted but with a clear, albeit near-impossible, g
 
 -----
 
-### **(Recap: Day 3 - Beginning)**
+### **Recap: Day 3 - Beginning**
 
 Isaiah awoke on Day 3 in the familiar, sparse room (#4) at 'The Weary Traveler', having secured the night's lodging
 through the desperate bargain involving his last health potion as collateral. He felt the pressure immediately: he had
@@ -747,7 +747,7 @@ approachable, he headed to her slightly shorter queue.
 
 -----
 
-### **(Recap: Day 3 - Middle)**
+### **Recap: Day 3 - Middle**
 
 Isaiah joined the queue for the cat-eared Guild employee (Rose)\. While waiting, he observed her pleasant but
 professional efficiency. When it was his turn, Rose recognized him immediately from his inquiry about Hestia
@@ -788,7 +788,8 @@ young woman (later confirmed Goddess Hestia) with dark hair in twin-tails, weari
 with soot, and looking extremely flustered.
 
 Behind her, Isaiah glimpsed a cramped, cluttered basement room with overturned potatoes scattered on the floor. Hestia,
-surprised by the tall, blue-haired adventurer at her door, initially asked if he was lost or there for rent (prompting
+surprised by the tall, pale teal-haired adventurer at her door, initially asked if he was lost or there for rent (
+prompting
 more confusion from Isaiah).
 
 Isaiah, still bewildered but polite, introduced himself ("Isaiah November") and explained he was looking for Goddess
@@ -826,7 +827,7 @@ her "precious adventurer," declaring the Hestia Familia officially active.
 
 -----
 
-### **(Recap: Day 3 - Ending)**
+### **Recap: Day 3 - Ending**
 
 Overjoyed and emotional, Hestia declared it was time for the Falna ceremony. After a moment of frantic searching
 through the clutter ("Where did I put the needle?!"), she located the necessary items: an ornate silver needle and a
@@ -920,7 +921,7 @@ whispered breath near his ear: *"Mine..."*
 
 -----
 
-### **(Recap: Day 4 - Beginning)**
+### **Recap: Day 4 - Beginning**
 
 The first hints of grey dawn light were just beginning to seep through the grime on the single basement window when
 Isaiah surfaced from a deep, relatively restful sleep. The exhaustion from the previous days' trials – the journey, the
@@ -982,7 +983,7 @@ soon. Time to make the Hestia Familia official."
 
 ----
 
-### **(Recap: Day 4 - Middle - Part 1)**
+### **Recap: Day 4 - Middle - Part 1**
 
 Hestia eventually stirred awake at Isaiah's gentle prompting. Waking up to find him kneeling beside the bed might have
 caused a brief flicker of renewed awkwardness or a blush, but having slept through the night beside him seemed to have
@@ -1003,7 +1004,8 @@ excitedly about their plans: registration, quests, earning Valis (enough for may
 future glory of the Hestia Familia.
 
 Isaiah walked with a determined stride, listening to Hestia's optimistic plans, feeling a mix of responsibility,
-amusement, and focused resolve. The odd pairing – the tall, blue-haired, determined adventurer and the tiny, bouncing
+amusement, and focused resolve. The odd pairing – the tall, pale teal-haired, determined adventurer and the tiny,
+bouncing
 goddess – drew some curious glances from passersby, which Isaiah, focused on Hestia and the goal ahead, likely remained
 oblivious to (Protagonist Magnetism/Obliviousness Rule).
 
@@ -1070,7 +1072,7 @@ rapid progress and Valis, and driven by the "no pain, no gain" mentality, his ha
 
 -----
 
-### **(Recap: Day 4 - Middle - Part 2: Pre-Dungeon Interaction)**
+### **Recap: Day 4 - Middle - Part 2: Pre-Dungeon Interaction**
 
 With the Goblin Subjugation quest slip officially in hand (and the Kobold Claw slip secretly pocketed), Isaiah felt the
 reality of the next step pressing in. Hestia, oblivious to the second quest, was buzzing with excitement about the first
@@ -1127,7 +1129,7 @@ magic stones!" She gave a final nod, stepping back fully. "Go on," she said soft
 
 -----
 
-### **(Recap: Day 4 - Middle - Part 3: First Dungeon Delve)**
+### **Recap: Day 4 - Middle - Part 3: First Dungeon Delve**
 
 Responding to Hestia's emotional blessing ("Go make the Hestia Familia proud"), Isaiah declared "Yes, Goddess!", spun
 around sharply, and ran towards the Dungeon entrance beneath Babel Tower. After quickly presenting his newly issued
@@ -1190,7 +1192,7 @@ constant hum of power from his Falna and the burning desire to meet Hedin's chal
 
 -----
 
-### **(Recap: Day 4 - Ending - Part 1: Exit & Guild Exchange/Report)**
+### **Recap: Day 4 - Ending - Part 1: Exit & Guild Exchange/Report**
 
 After what felt like an eternity spent relentlessly hunting through Floors 1, 2, and briefly 3, pushing his physical
 limits far beyond anything he'd experienced before, Isaiah finally allowed himself to head towards the surface. The
@@ -1248,7 +1250,7 @@ claws... And the ears for the goblin quest."
 
 -----
 
-### **(Recap: Day 4 - Ending - Part 2: Guild Transactions & Departure)**
+### **Recap: Day 4 - Ending - Part 2: Guild Transactions & Departure**
 
 Isaiah, prompted by the skeptical but procedurally bound Guild exchange employee, presented the proof for his completed
 quests. He first emptied a pouch containing a large number of dried goblin ears onto the counter – far more than the
@@ -1313,7 +1315,7 @@ satisfying validation of the grueling day.
 
 -----
 
-### **(Recap: Day 4 - Ending - Part 3: Return to Hestia & Exhaustion)**
+### **Recap: Day 4 - Ending - Part 3: Return to Hestia & Exhaustion**
 
 Leaving the Guild Hall as evening deepened into night (around 7:00 PM or later), Isaiah was driven by one primary
 thought: get back to Hestia and rest. The nearly 1800 Valis heavy in his pouch was a significant achievement, but the
@@ -1369,7 +1371,7 @@ she remained tensely aware until Isaiah finally fell deeply asleep beside her on
 
 -----
 
-### **(Recap: Day 5 - Beginning)**
+### **Recap: Day 5 - Beginning**
 
 Isaiah surfaced from sleep slowly on the morning of Day 5, the dim grey light of early dawn filtering through the dusty
 window of the church annex. His first sensation was one of surprising comfort and warmth, followed by the realization
@@ -1419,7 +1421,7 @@ embarrassed and unsure how to proceed.
 
 -----
 
-### **(Recap: Day 6 - Beginning)**
+### **Recap: Day 6 - Beginning**
 
 Dawn's pale light filtered through the single grimy window of the church annex, illuminating dust motes dancing in the
 still air. Having fallen asleep side-by-side in the narrow wooden bed the night before – an arrangement born from
@@ -1432,7 +1434,8 @@ Memories of the previous night – the astonishing H-Rank Status reveal, the emo
 share the bed because *he slept better* with her there, his bold whisper brushing against her ear – likely caused a
 flush to rise even before she was fully conscious. Turning carefully, she found him facing her, asleep, his expression
 peaceful. A wave of quiet, fierce tenderness washed over her. Driven by this unguarded affection, she reached out
-hesitantly, gently brushing a lock of blue hair from his temple, her fingers lingering for a precious, private moment.
+hesitantly, gently brushing a lock of pale teal hair from his temple, her fingers lingering for a precious, private
+moment.
 
 It was this feather-light touch that drew Isaiah from sleep. His eyes fluttered open, focusing instantly on Hestia's
 face, so close, her fingers still resting against his temple, her expression soft and unguarded. Their eyes met. Hestia
@@ -1468,7 +1471,7 @@ agreed upon, they prepared to leave the annex together to start Day 6.
 
 -----
 
-### **(Recap: Day 6 - Middle)**
+### **Recap: Day 6 - Middle**
 
 Leaving the quiet sanctuary of the church annex, Isaiah and Hestia stepped out into the brighter light and bustling
 activity of Orario mid-morning. Hestia, brimming with energy and purpose now that they had a plan and she was
@@ -1517,7 +1520,7 @@ stepped into the familiar greenish-blue gloom of the Dungeon to begin his second
 
 -----
 
-### **(Recap: Day 6 - Ending)**
+### **Recap: Day 6 - Ending**
 
 Descending into the Dungeon's upper levels, Isaiah immediately felt the dramatic difference his H-Rank stats made.
 Bolstered by DEX 95 I, AGI 92 I, STR 78 I, and END 81 I (his Status *before* the Day 5 evening update which pushed him
@@ -1600,7 +1603,7 @@ intimacy of the narrow bed, concluding Day 6.
 
 -----
 
-### **(Recap: Day 7 - Beginning)**
+### **Recap: Day 7 - Beginning**
 
 The first rays of the Orario sun slanted through the dusty annex window, painting stripes of light across the cluttered
 floor and illuminating the small space where Isaiah and Hestia lay tangled together in the narrow wooden bed. They had
@@ -1617,7 +1620,7 @@ in sleep, ending up intertwined. Instead of the usual jolt of panic, a wave of q
 
 Memories of yesterday warmed her: his incredible growth, his thoughtfulness with the ribbons, his protective reassurance
 whispered in her ear. Lying here, safe and warm beside *her* adventurer, felt undeniably right. Carefully, barely daring
-to breathe, she shifted her head just enough to look at him. He was facing her, asleep, his blue hair mussed, his
+to breathe, she shifted her head just enough to look at him. He was facing her, asleep, his pale teal hair mussed, his
 expression unguarded and peaceful. A fierce, possessive tenderness swelled in her chest. He was hers. This incredible
 potential, this surprising gentleness, it was all hers. Acting on that overwhelming affection, her hand came up
 hesitantly, fingers feather-light as she brushed a stray lock of hair from his forehead, then let her touch linger
@@ -1650,7 +1653,7 @@ they prepared to face Day 7 and the inevitable Status update.
 
 -----
 
-### **(Recap: Day 8 - Beginning)**
+### **Recap: Day 8 - Beginning**
 
 Day 8 began with Isaiah waking slowly in the narrow wooden bed in the church annex, the morning light starting to
 fill the small space. He felt a profound sense of peace and contentment, a significant shift after the emotional
@@ -1740,7 +1743,7 @@ first time filling the small annex.
 
 ----
 
-### **(Recap: Day 8 - Middle)**
+### **Recap: Day 8 - Middle**
 
 Following the intense emotional and physical culmination of their relationship on the morning of Day 8, Isaiah and
 Hestia lay tangled together in the narrow bed within the church annex. They were physically spent, slick with sweat,
@@ -1785,7 +1788,7 @@ afternoon of Day 8.
 
 -----
 
-### **(Recap: Day 9 - Beginning)**
+### **Recap: Day 9 - Beginning**
 
 Day 9 dawned over Orario. Isaiah and Hestia awoke peacefully together in the narrow bed within the church annex,
 having slept deeply through the night following the emotional and physical culmination of their relationship the
@@ -1847,7 +1850,7 @@ stairs.
 
 -----
 
-### **(Recap: Day 9 - Middle)**
+### **Recap: Day 9 - Middle**
 
 Following the public farewell and Hestia's kiss at the Babel entrance, Isaiah descended into the Dungeon alone for
 his third delve on Day 9. His objective: complete the Kobold Commander Elimination and Kobold Subjugation (30
@@ -1922,7 +1925,7 @@ Dungeon.
 
 -----
 
-### **(Recap: Day 9 - Ending)**
+### **Recap: Day 9 - Ending**
 
 Emerging from the Dungeon into the bustling base of Babel Tower, Day 9 was far from over for Isaiah. Exhausted and
 injured from his solo Minotaur fight (cracked ribs), he was immediately met by Ais Wallenstein, who confirmed she
@@ -2005,7 +2008,7 @@ exhausted but secure in their acknowledged love and shared future.
 
 -----
 
-### **(Recap: Day 10 - Beginning)**
+### **Recap: Day 10 - Beginning**
 
 The Sun dawned over Orario. Isaiah awoke peacefully in the narrow bed within the church annex, feeling well-rested
 and comfortable. He was still curled tightly against Hestia, his arm around her, hand resting on her hip, reflecting
@@ -2043,7 +2046,7 @@ to begin their shopping expedition.
 
 -----
 
-### **(Recap: Day 10 - Middle)**
+### **Recap: Day 10 - Middle**
 
 After leaving the annex in the morning of Day 10, Isaiah and Hestia began their shopping expedition. They walked
 from the eastern Daedalus district towards the city center, Hestia chatting excitedly about their plans and anticipated
@@ -2105,7 +2108,7 @@ to ~26,005 Valis). They received a receipt and confirmation.
 
 -----
 
-### **(Recap: Day 10 - Ending)**
+### **Recap: Day 10 - Ending**
 
 After successfully purchasing the new bed (to be delivered Day 11) and securing the Hearthfire Blades (on payment plan),
 Isaiah and Hestia left the furniture shop in the late afternoon of Day 10. With significant funds remaining (~26,005
@@ -2162,7 +2165,7 @@ comfortably, wished each other goodnight, and quickly fell asleep, ending Day 10
 
 -----
 
-### **(Recap: Day 11 - Beginning - Part 1)**
+### **Recap: Day 11 - Beginning - Part 1**
 
 Day 11 dawned bright and clear over Orario. Within the dim confines of the church annex, Isaiah awoke slowly, the
 comforting weight and warmth of Hestia nestled beside him a familiar reality in their narrow bed. The night had passed
@@ -2214,7 +2217,7 @@ feelings, he walked down the infirmary corridor towards the door bearing Lyra's 
 
 ----
 
-### **(Recap: Day 11 - Beginning - Part 2)**
+### **Recap: Day 11 - Beginning - Part 2**
 
 Reaching the indicated door in the quiet infirmary corridor, Isaiah knocked firmly. Lyra Verrill's cynical drawl
 summoned him inside. He entered the small, sterile examination room to find her leaning against a counter, making notes.
@@ -2282,7 +2285,7 @@ well.
 
 ----
 
-### **(Recap: Day 11 - Middle - Part 1: Cafe Encounter & Dynamic Shift)**
+### **Recap: Day 11 - Middle - Part 1: Cafe Encounter & Dynamic Shift**
 
 After leaving the Guild Infirmary mid-morning on Day 11, unsettled by Lyra Verrill's invasive check-up and probing
 insinuations, Isaiah bumped into Rose, the cat-eared Guild employee, who was off-duty and dressed in casual clothes.
@@ -2369,7 +2372,7 @@ task.
 
 ----
 
-### **(Recap: Day 11 - Middle - Part 2: Inn Encounter & Consummation of Dynamic)**
+### **Recap: Day 11 - Middle - Part 2: Inn Encounter & Consummation of Dynamic**
 
 True to her word, Rose returned to 'The Quiet Quill' cafe within fifteen minutes, breathless but beaming with
 accomplishment. She presented Isaiah with a key to Room 3B at 'The Scholar's Rest', confirming the private room was
@@ -2449,7 +2452,7 @@ ensure discretion, leaving Rose kneeling alone, awaiting her next command or ass
 
 ----
 
-### **(Recap: Day 11 - Ending)**
+### **Recap: Day 11 - Ending**
 
 The walk back from the unsettling discretion of 'The Scholar's Rest' took Isaiah through the bustling early afternoon
 streets of Orario (around 12:15 PM). His mind wrestled with the intense encounter with Rose – her complete submission,
@@ -2509,7 +2512,7 @@ more quiet affection before drifting off into a deep, peaceful sleep, side-by-si
 
 ----
 
-### **(Recap: Day 12 - Beginning)**
+### **Recap: Day 12 - Beginning**
 
 The soft grey light of early morning filtered through the single, grimy window of the church annex, illuminating the
 new, sturdy oak bed that now dominated the small space. You surfaced slowly, Isaiah, from a deep and truly restful
@@ -2575,7 +2578,7 @@ Floor 1.
 
 ----
 
-### **(Recap: Day 12 - Middle - Part 1)**
+### **Recap: Day 12 - Middle - Part 1**
 
 Stepping onto the wide, worn stone staircase leading down into the Dungeon, the cool, damp air and familiar moss-light
 enveloped you. The Hearthfire Blades felt perfectly balanced in your hands. Floor 1 was trivial; Goblins dissolved
@@ -2628,7 +2631,7 @@ staging area, cache retrieved, mission technically complete, ready to report to 
 
 ----
 
-### **(Recap: Day 12 - End - Part 1: Intimacy & Oral Consummation)**
+### **Recap: Day 12 - End - Part 1: Intimacy & Oral Consummation**
 
 Arriving back at the annex (around 1:30 PM), you were greeted by an anxious Hestia. After reassuring her the delve was
 easy and safe (editing out the lingering/detour), you presented the 800 Valis reward. Her relief was immense, quickly
@@ -2683,7 +2686,7 @@ gently for a few moments before finally pulling back, leaving her trembling and 
 
 ----
 
-### **(Recap: Day 12 - End - Part 2: Aftermath & Sleep)**
+### **Recap: Day 12 - End - Part 2: Aftermath & Sleep**
 
 Lifting your head after bringing Hestia to a powerful orgasm, you observed her state – limp, trembling, flushed, utterly
 spent on the edge of the bed. A wave of profound satisfaction and possessive awe washed over you (*'Eating out a
@@ -2728,7 +2731,7 @@ morning of Day 13.)*
 
 ----
 
-### **(Recap: Day 13 - Beginning - Part 1)**
+### **Recap: Day 13 - Beginning - Part 1**
 
 The first light of Day 13 filtered softly through the single, grimy window of the church annex, casting gentle stripes
 across the sturdy oak bedframe. You surfaced slowly from a deep, profoundly restful sleep, the kind only possible on a
@@ -2806,7 +2809,7 @@ the room, muttering plans for rearranging sacks and tidying corners.
 
 ----
 
-### **(Recap: Day 13 - Beginning - Part 2)**
+### **Recap: Day 13 - Beginning - Part 2**
 
 The morning routine completed, gear checked, and the day's compromised Dungeon plan firmly established (Floor 3 only,
 caution promised), you stood ready by the annex door. After a brief, tender farewell kiss initiated by you to reassure
@@ -2877,7 +2880,7 @@ Tower and the Dungeon entrance.
 Okay, retrieving the detailed recap for the middle part of Day 13, focusing on the return from the Dungeon and the Guild
 interactions.
 
-### **(Recap: Day 13 - Middle - Part 1: Post-Dungeon Guild Visit)**
+### **Recap: Day 13 - Middle - Part 1: Post-Dungeon Guild Visit**
 
 After descending into the Dungeon from Babel Tower, armed with your two Floor 3 quests (Kobold Subjugation, Lizard
 Hides) and the newly acquired Ryu dossier tucked away, you began your delve. The hours spent within the familiar caverns
@@ -2928,7 +2931,7 @@ Infirmary wing, heading towards the inevitable and unsettling encounter with Doc
 
 ----
 
-### **(Recap: Day 13 - Middle - Part 2: Lyra Encounter - Initial Probing & Confession)**
+### **Recap: Day 13 - Middle - Part 2: Lyra Encounter - Initial Probing & Confession**
 
 Walking down the quiet infirmary corridor, the unsettling memories of your previous encounters with Lyra Verrill
 resurfaced – her cynical smirk, invasive 'tests', predatory curiosity, and accurate deduction about your intimacy with
@@ -2981,7 +2984,7 @@ watching her reaction closely.
 
 ----
 
-### **(Recap: Day 13 - Middle - Part 3: Lyra Encounter - First Forced 'Test')**
+### **Recap: Day 13 - Middle - Part 3: Lyra Encounter - First Forced 'Test'**
 
 Lyra absorbed your hesitant confession about the second, 'colder' energy surge with intense, almost feverish
 fascination. Her predatory amusement shifted to sharp, analytical focus. Discarding your attempts at vagueness, she
@@ -3076,7 +3079,7 @@ clearly vexed her, forcing an immediate reassessment of the skill's trigger mech
 
 ----
 
-### **(Recap: Day 13 - Middle - Part 4: Lyra Encounter - Second Forced 'Test')**
+### **Recap: Day 13 - Middle - Part 4: Lyra Encounter - Second Forced 'Test'**
 
 Lyra's frustration at the failed first test – the negligible resonance despite the induced orgasm – was palpable.
 Muttering about "confounding variables" and "insufficient stimulus," she paced briefly before turning back to you, her
@@ -3192,7 +3195,7 @@ the only place that felt safe. But first... you couldn't face Hestia like this. 
 
 ----
 
-### **(Recap: Day 13 - End - Bathhouse Cleansing & Return Home)**
+### **Recap: Day 13 - End - Bathhouse Cleansing & Return Home**
 
 Leaning against the infirmary door, trembling slightly, you forced yourself to take deep, steadying breaths. The
 encounter with Lyra had left you feeling violated, raw, and carrying the unwanted physical evidence of her 'assessment'
@@ -3269,7 +3272,7 @@ violation, the true nature of your power – before finally succumbing to sleep 
 
 ----
 
-### **(Recap: Day 14 - Beginning)**
+### **Recap: Day 14 - Beginning**
 
 Day 14 began with Isaiah waking in the profound comfort of the new oak bed, Hestia sleeping peacefully beside him. The
 restfulness was a welcome change, though quickly followed by the unsettling memories of Day 13 – Lyra's violation, the
@@ -3388,7 +3391,7 @@ towards Babel Tower for his delve, leaving Rose to begin her crucial, morally am
 
 ----
 
-### **(Recap: Day 14 - Middle - Part 1)**
+### **Recap: Day 14 - Middle - Part 1**
 
 Entering the Dungeon on the morning of Day 14, Isaiah was fueled by a distinct sense of amplified potential – a warm,
 steady resonance pulsing from his Falna, believed to be an immediate boost from the intimate 'resonance session' with
@@ -3437,7 +3440,7 @@ prepared to leave the Guild Hall, the delve a resounding success both in terms o
 
 ----
 
-### **(Recap: Day 14 - Middle - Part 2)**
+### **Recap: Day 14 - Middle - Part 2**
 
 *Leaving Rose Fannett to commence her morally ambiguous task within the sterile confines of her Guild office, you
 stepped back out into the quieter administrative corridor. The brief, intense meeting replayed in your mind – the
@@ -3519,7 +3522,7 @@ leaving you with the sense of having successfully piqued her interest beyond the
 
 ----
 
-### **(Recap: Day 14 - Ending)**
+### **Recap: Day 14 - Ending**
 
 *Stepping out from the relative cool stone and echoing clang of the Hephaestus workshop, the late afternoon Orario sun
 felt warm on your face. You walked with a confident stride back towards the eastern Daedalus district, the weight of
@@ -3591,7 +3594,7 @@ in your established intimacy, ready to face Day 15.*
 
 ----
 
-### **(Recap: Day 15 - Beginning)**
+### **Recap: Day 15 - Beginning**
 
 *The morning of Day 15 began bathed in the warm, clear light filtering through the annex window, illuminating the
 comfortable sanctuary of the new oak bed. You surfaced from a deep, truly restful sleep, Isaiah, the lingering aches of
@@ -3677,6 +3680,96 @@ thinking of that. For... for being careful. For me. It means... a lot."* Her qui
 though unexpected, was received with gratitude.*
 
 *(End of Recap: Day 15 - Beginning)*
+
+----
+
+### **Recap: Day 15 - Middle - End**
+
+*Following the intimate morning encounter on Day 15, where you deliberately avoided climaxing inside Hestia, and her
+subsequent understanding and gratitude, the day settled into a pattern dictated by your shared goals and burgeoning
+routine. After cleaning up and sharing a simple breakfast prepared together in the annex, the inevitable discussion
+about the Dungeon arose.*
+
+*You, feeling the familiar hum of the Falna resonance (though perhaps less potent than after the first time with Rose,
+reinforcing the novelty theory internally) and eager to translate it into progress, argued for another delve. Hestia,
+predictably, countered with worry, citing the need for rest and the 'Unstable' skill reading. However, your reassurances
+of caution, sticking primarily to the familiar grounds of Floor 3, and the undeniable evidence of your rapidly growing
+power (now deep into F-Rank) eventually swayed her. Her pride in your capability warred with her fear, but the desire to
+see the Familia grow, fueled by the massive influx of Valis and your shared ambition, won out. She extracted promises of
+extreme care and agreed, deciding to use the time for more organizing and perhaps studying texts related to Familia
+management.*
+
+*Leaving Hestia with a reassuring kiss and a final reminder to be safe, you headed to the Guild Hall mid-morning. The
+hall was busy as usual. You bypassed the advisory counters, heading straight for the Quest Board. Selecting a
+combination of high-yield Floor 3 quests (perhaps another Kobold Subjugation and a hunt for rarer monster parts), you
+registered them quickly at a generic counter, deliberately avoiding seeking out Rose unless absolutely necessary,
+wanting to maintain the facade of routine activity.*
+
+*Descending into the Dungeon, the familiar cool air greeted you. The Hearthfire Blades felt eager in your grip. Floor 3
+became your domain. Leveraging your F-Rank speed and dexterity, and fueled by the steady, warm resonance
+from `[Echoes of the Soul]`, you carved through Kobold patrols and Dungeon Lizards with ruthless efficiency. You pushed
+yourself, driven by the need for Excelia and Valis, focusing on maximizing kills and material collection. The hours
+blurred into a cycle of intense combat, harvesting, and moving to the next encounter.*
+
+*You returned to the surface in the late afternoon, weary but successful. The Guild visit was brief and transactional.
+You exchanged a substantial amount of monster parts and magic stones, adding significantly to the Familia's coffers (
+consistent with the high earning rate established). Reporting the quests was a formality.*
+
+*The walk back to the annex felt routine. Hestia greeted you with her usual mixture of relief and pride. Sharing the
+day's earnings sparked her familiar joyful reaction. The evening followed the established pattern: sharing a simple
+meal, discussing the day, and eventually performing the Status Update.*
+
+*Hestia noted the solid gains in your stats, pushing them further into F-Rank, but her brow furrowed slightly
+as `[Echoes of the Soul]` remained stubbornly `Active Resonance - Unstable`. This likely led to another brief
+discussion, reinforcing her belief that continued 'stable' resonance (i.e., intimacy between you two) was the key to
+resolving it. You likely agreed, playing along with her interpretation while internally knowing the true trigger
+remained elusive.*
+
+*Retiring to the new bed felt comforting and familiar. You held Hestia close, sharing quiet affection before exhaustion
+claimed you both, falling asleep side-by-side, the rhythm of your shared life solidifying.*
+
+*(End of Recap: Day 15)*
+
+----
+
+### **Recap: Day 16 - Full Day**
+
+*Day 16 dawned much like the previous day. You awoke beside Hestia in the comfort of the oak bed, the morning routine
+unfolding with familiar ease. Perhaps Hestia initiated another 'resonance session', framed by her as necessary for '
+stabilization', or perhaps the focus shifted immediately to the day's plans. Regardless, the underlying affection and
+established intimacy were constant.*
+
+*After breakfast, the decision was made to delve again. Your F-Rank stats demanded challenge, the Familia needed funds,
+and the `[Echoes of the Soul]` skill remained 'Unstable'. Hestia's anxieties were likely still present but perhaps
+slightly lessened by the previous day's safe return and continued success. The promises of caution were reiterated.*
+
+*Your visit to the Guild was again purely functional – select synergistic Floor 3 quests (maybe focusing on different
+monster types or material drops for variety), register quickly, and head straight for Babel. You kept an eye out for
+Rose, a low-level anticipation simmering beneath the surface, but saw no sign of her approaching you or any unusual
+activity.*
+
+*The delve itself was another exercise in high-level efficiency. You might have pushed slightly further into Floor 3's
+deeper zones or perhaps made another very brief, controlled foray into the absolute upper edge of Floor 4, constantly
+testing your limits and the performance of the Hearthfire Blades. Combat was intense but manageable with your F-Rank
+abilities and the skill's resonance providing sustained stamina. You focused meticulously on harvesting, aiming to
+replicate or exceed Day 15's impressive earnings.*
+
+*Emerging in the late afternoon, the Guild exchange yielded another significant haul of Valis, pushing the Familia's
+total funds to 77,705 Valis. The Status Update that evening showed continued strong growth across your F-Rank stats.
+Hestia read out the numbers with awe: Strength F 339, Endurance F 340, Dexterity F 371, Agility F 364.* The steady
+climb was impressive, edging you ever closer to the potential Level Up threshold. The `[Echoes of the Soul]` skill,
+however, remained unchanged: `Active Resonance - Unstable`.*
+
+*The persistence of the 'Unstable' reading likely caused Hestia some frustration, solidifying her belief that
+only *novelty* (as you'd subtly guided her to believe regarding the Day 12 trigger) or perhaps prolonged, specific types
+of 'stable' resonance between you two could fix it. You would have continued to outwardly agree while inwardly awaiting
+Rose's report, knowing the true key likely lay elsewhere.*
+
+*The evening concluded with the familiar comforts – a shared meal, quiet conversation, the security of holding Hestia
+close in the new bed – but underscored by the mounting anticipation for news from Rose and the ticking clock of your own
+rapidly developing potential.*
+
+*(End of Recap: Day 16)*
 
 ----
 
@@ -4796,8 +4889,8 @@ worthy by clearing the debt and growing stronger with her blades.
 **Physical Appearance:**
 * **Height:** Approx. 6ft (Tall).
 * **Build:** Lean but muscular.
-* **Hair:** Medium-length (same as Bell), blue.
-* **Eyes:** (Not specified in lore, default to sharp/perceptive).
+* **Hair:** Medium-length (same as Bell), Pale Teal.
+* **Eyes:** (Pale Teal, default to sharp/perceptive).
 * **Attire:** Worn but functional adventurer gear (Mustard jacket, trousers, boots, gloves). Possesses a heavy black
   cloak (often seen stained with monster ichor/blood after delves, covering much of his body). Uses two daggers,
   recently acquired Adamantite prototypes ("Hearthfire Blades") on payment plan (swapped for old ones). Currently
@@ -4969,7 +5062,8 @@ worthy by clearing the debt and growing stronger with her blades.
     * (Day 4): Approached Isaiah cheerfully while he waited for Ryu to retrieve his daggers (retconned interaction).
       Isaiah asked her about Ryu again, seeking info. Anya gossiped lightly about Ryu (elegant, mysterious, hard worker,
       bit scary) and playfully asked Isaiah if he had a crush just as Ryu returned.
-* **Perception of Isaiah:** Likely sees him as an interesting, slightly intense, maybe handsome (blue hair) newcomer who
+* **Perception of Isaiah:** Likely sees him as an interesting, slightly intense, maybe handsome (pale teal hair)
+  newcomer who
   is unusually fixated on her mysterious colleague, Ryu. Finds his interest amusing and is probably very willing to chat
   or gossip further if given the chance. The 'Protagonist Aura' likely makes her find him easily approachable and
   intriguing/memorable. Potential for easy friendship or possibly developing a crush herself due to the aura + his focus
