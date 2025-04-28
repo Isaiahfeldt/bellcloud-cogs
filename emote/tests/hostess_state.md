@@ -5440,6 +5440,44 @@ dawning sense of awe/curiosity. Hestia's hostility and the probationary status r
 
 ----
 
+## **Character Card: "Rivia's Friend" (Codename/Identifier)**
+
+**Identity & Role:**
+
+* **Actual Name:** Unknown (Referred to via codename/signal identifier)
+* **Race:** Human
+* **Age:** Young (Estimated 16-17 years old)
+* **Level:** 1
+* **Role:** Adventurer (New/Rookie). Identified and manipulated by Rose Fannett to serve as the 'novelty catalyst' for
+  Isaiah's `[Echoes of the Soul]` skill.
+
+**Core Persona & Demeanor (Based on Rose's Assessment):**
+
+* **Appearance:** Described as unremarkable and plain. Short, practical brown hair; brown eyes (potentially wide/naive).
+  Average height, slender build, still possessing some youthful 'softness'. Wears simple, worn, likely mismatched
+  leather armor, indicating limited funds.
+* **Demeanor:** Comes across as earnest, hopeful, but also nervous and potentially lost or overwhelmed by Orario.
+  Perceived by Rose as easily impressed and highly malleable or suggestible, with a strong desire for purpose or to
+  contribute to something significant.
+
+**Current Situation:**
+
+* Has been successfully manipulated by Rose Fannett into believing that participating in an intense, purely physical
+  encounter with an unnamed 'important figure' (Isaiah) is a vital test of her spirit and a meaningful contribution.
+* She expects no payment, viewing the act as a demonstration of dedication.
+* She is currently awaiting a signal – a sealed message addressed to "Rivia's Friend" to be left at "The Drunken Satyr"
+  tavern – which will provide a time and room number for the meeting at "The Silent Loom Inn".
+* She is prepared to arrive promptly, engage intensely as instructed (without knowing the true purpose relates to a
+  skill), and depart silently afterward, maintaining absolute discretion.
+
+**Key Relationship State:** Unwitting pawn manipulated by Rose Fannett. Believes she is willingly participating in a
+significant, secret test or act of service. Completely unaware of Isaiah, the `[Echoes of the Soul]` skill, or the true
+nature of the arrangement beyond the expectation of an intense physical encounter.
+
+*(End of Character Card: "Rivia's Friend")*
+
+---
+
 ## **Character Card: Isaiah November - Protagonist**
 
 **Identity & Core Goal:**
@@ -5858,6 +5896,90 @@ figure within the Guild administration. He also encountered the notable healer L
 in/around the Guild on Day 9.
 
 *(End of Recap: Orario Guild Headquarters)*
+
+----
+
+## **Location Card: Rose Fannett's Private Office (Guild HQ)**
+
+**Location:** Within the administrative wing of the Orario Guild Headquarters, accessible via a quiet corridor branching
+off the main hall.
+
+**1. Corridor Approach:**
+
+* **Description:** Stepping away from the vast, echoing chaos of the Guild's main hall, the corridor leading to Rose's
+  office offers an immediate contrast. It's significantly quieter, the roar of adventurer traffic muted to a distant
+  murmur. The wide stone flags of the main hall give way to narrower, perhaps slightly less polished stone or sturdy
+  wooden flooring. The lighting here is dimmer, provided by fewer, more spaced-out magic stone lamps set into wall
+  sconces, casting longer shadows. Doors line the corridor at intervals, likely leading to other administrative offices,
+  storage rooms, or small meeting spaces – most appear closed, reinforcing a sense of bureaucratic privacy.
+* **Atmosphere:** Functional, quiet, almost sterile. There's a low hum of administrative work happening behind closed
+  doors, but foot traffic is minimal compared to the public areas. It feels like a place of focused work and contained
+  information, removed from the raw energy of the Dungeon-facing sections of the Guild.
+
+**2. Office Exterior (Door):**
+
+* **Description:** The door to Rose's office is unremarkable but solid, likely made of dark, sturdy wood, fitting the
+  Guild's functional aesthetic. It features a simple, clear nameplate: **"R. Fannett - Senior Liaison"**. Below the
+  nameplate is a noticeable, sturdy-looking lock mechanism, likely requiring a specific Guild key or possibly an
+  enchanted passkey, emphasizing security and controlled access appropriate for her rank and the sensitive nature of
+  administrative work.
+
+**3. Office Interior:**
+
+* **Layout & Size:** The office itself is small and functional, perhaps only 10x12 feet. It prioritizes efficiency over
+  spaciousness or comfort.
+* **Furniture:**
+    * **Desk:** A solid, dark wood desk dominates the space, positioned against the far wall, likely under the window.
+      Its surface is generally kept neat, holding a data crystal reader console, styluses, inkwell, and neatly stacked
+      folders or official Guild forms.
+    * **Chair (Executive):** Behind the desk sits a single, high-backed executive chair, upholstered in durable dark
+      material (likely leather or high-quality vinyl). It appears more comfortable than standard Guild chairs,
+      signifying Rose's supervisory rank. This is the chair Isaiah habitually commandeers.
+    * **Visitor Chairs:** Two simple, upright wooden chairs with minimal padding face the desk, intended for brief
+      consultations or meetings.
+    * **Filing Cabinets:** Against one side wall stand two tall, imposing metal filing cabinets, clearly secured with
+      heavy locks. They likely contain physical records, reports, or sensitive personnel files under Rose's purview.
+* **Walls & Floor:** The walls are painted a plain, institutional color (drab grey or beige), undecorated except for a
+  large, detailed map of Orario pinned to one wall and perhaps a laminated chart outlining Guild quest processing
+  procedures or Familia liaison protocols. The floor is covered with the same durable, functional material as the
+  corridor (stone or wood).
+* **Lighting:** Primarily lit by a single overhead magic stone lamp fixture providing steady, neutral light.
+  Supplemented by natural light from the single window during the day.
+* **Notable Objects:** The data crystal reader console on the desk is key, indicating her access to Guild networks and
+  digital records. The locked filing cabinets signify her responsibility over sensitive information. The lack of *any*
+  personal items (photos, trinkets, plants) is striking, emphasizing the purely professional facade of the space *when
+  viewed objectively*.
+
+**4. Courtyard View:**
+
+* **Description:** The office's single window does not overlook the bustling city streets but rather a small, enclosed
+  internal courtyard within the Guild complex. The view is limited: mostly grey flagstones, perhaps the facing wall of
+  another Guild building wing, maybe a single, somewhat neglected potted shrub or tree in the center. It offers minimal
+  visual interest but guarantees privacy, ensuring no casual passersby can peer directly into the office from outside
+  the Guild. The sense is one of isolation and self-containment.
+
+**5. Sensory Details & Atmosphere:**
+
+* **Smell:** Primarily smells of old parchment, ink, slightly dusty files, and the faint, sterile scent common to Guild
+  administrative areas. After Isaiah's meetings with Rose, a lingering sharp, musky scent of intense arousal might
+  subtly hang in the air for a short time.
+* **Sound:** Generally very quiet. The main sounds are the distant murmur from the Guild hall (if the door is ajar), the
+  soft scratch of a stylus on parchment, the hum of the data console, or the clicks of the door lock. During private
+  meetings, the dominant sounds become Rose's purrs, whimpers, gasps, and the low tones of Isaiah's voice.
+* **Feel:** The atmosphere is officially sterile, functional, and bureaucratic. However, due to the events that have
+  transpired within, it also holds a heavy undercurrent of secrecy, intense emotion, submission, dominance, and charged
+  intimacy *for Isaiah and Rose*. It's a space of extreme duality – mundane Guild office and intensely private '
+  playroom'.
+
+**Role & Function:**
+
+* **Official:** Serves as Rose Fannett's designated workspace for her duties as Senior Liaison – managing reports,
+  coordinating with adventurers/Familias, accessing records, potentially holding brief, official meetings.
+* **Unofficial:** Has become the primary, secure location for Isaiah's private meetings, debriefings, and intense
+  intimate/power-dynamic encounters with Rose, leveraging its privacy and her control over access. It's the place where
+  her professional mask dissolves completely.
+
+*(End of Recap: Rose Fannett's Private Office (Guild HQ))*
 
 ----
 
