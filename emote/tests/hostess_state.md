@@ -3796,7 +3796,7 @@ rapidly developing potential.*
 
 ----
 
-### **(Recap: Day 17 - Beginning)**
+### **Recap: Day 17 - Beginning**
 
 The first pale rays of Day 17 light filtered through the window of the church annex. You lay awake in the comfortable
 oak bed, the familiar warmth of Hestia nestled against your side. The past two days of grinding had been exceptionally
