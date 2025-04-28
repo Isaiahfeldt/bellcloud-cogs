@@ -4866,6 +4866,74 @@ worthy by clearing the debt and growing stronger with her blades.
 
 ----
 
+## **Character Card: Liliruca Arde ("Lili")**
+
+**Identity & Role:**
+
+* **Race:** Pallum
+* **Current Role:** Independent individual seeking Supporter work. Appears experienced with the hardships of Orario
+  despite her young appearance. Likely struggling financially.
+* **Potential Role:** Has just tentatively agreed to become Isaiah November's dedicated Supporter (pending Goddess
+  Hestia's approval).
+
+**Core Persona & Demeanor:**
+
+* **Appearance:** Extremely petite Pallum, appearing much younger than her likely age. Chestnut-brown hair and large,
+  expressive chestnut-brown eyes. Wears a distinctive, somewhat ragged outfit: a torn red and white hooded top exposing
+  her midriff, an unbuttoned short red skirt over torn black tights, long dark gloves, and light brown boots. Carries a
+  small, battered backpack.
+* **Demeanor:** Initially presents as highly wary, suspicious, and defensive, likely due to past negative experiences
+  and being underestimated. Possesses a sharp, observant, and calculating intelligence beneath her nervous exterior. Can
+  shift quickly from apprehension to defiance or pragmatic desperation when necessary. Holds herself with a subtle
+  tension, constantly assessing her surroundings and potential threats/opportunities. Capable of surprising speed and
+  agility.
+* **Speech Style:** Voice is higher-pitched than expected, can be reedy or shaky when nervous, but becomes clear and
+  surprisingly sharp or earnest when making a point or negotiating. Can be blunt about her own perceived limitations or
+  needs (e.g., admitting she's cheaper).
+
+**Underlying Traits (Inferred):**
+
+* **Street Smart & Resourceful:** Her survival likely depends on her wits, observation skills, and ability to navigate
+  Orario's tougher side.
+* **Deeply Mistrustful:** Has a strong default assumption that others (especially powerful adventurers) have ulterior
+  motives or will exploit her. Needs significant reassurance or proof to overcome this.
+* **Pragmatic & Driven by Need:** Her primary motivation appears to be securing stable, reliable income. The
+  astronomical sum offered by Isaiah overrides significant caution.
+* **Observant & Analytical:** Pays close attention to details, assesses situations quickly, and notices things others
+  might miss (as she claims).
+* **Resilient:** Despite her size and likely hardships, she possesses a core of resilience and determination.
+
+**Recent Interactions with Isaiah November:**
+
+* **(Day 17 Morning - 'The Laden Pack' Encounter & Hiring):** In a single, pivotal encounter, Isaiah approached Lili
+  based on 'intuition', bypassing more obvious candidates. After her initial suspicion and self-deprecation, he tested
+  her resolve by feigning interest in another Porter (Borg), prompting Lili to interrupt and pitch her unique skills (
+  speed, observation, discretion) at a low rate. Isaiah countered with an exorbitant 3000 Valis/day offer, explaining it
+  reflected the high value he placed on her specific capabilities for his unusually high-earning, fast-paced delves (
+  proving his income with Guild receipts). Seeing the proof shifted Lili's suspicion to awed comprehension. After Isaiah
+  deflected questions about *how* he achieved his success, Lili introduced herself and tentatively agreed to the deal
+  and the condition of meeting Goddess Hestia for final approval, sealing the potential partnership.
+
+**Lili's Perception of Isaiah:**
+
+* Views him as a complete anomaly: a Level 1 adventurer operating with unbelievable speed, power, and earning potential.
+* His methods are baffling (hiring based on intuition).
+* His offer is both terrifyingly suspicious and incredibly alluring.
+* She now understands the *financial* logic of the high pay rate but remains deeply curious and wary about the *source*
+  of his power and success (which he deliberately obscured).
+* Sees working for him as a potentially life-changing opportunity for financial security but also inherently risky due
+  to his anomalous nature and the likely dangers involved in supporting him.
+* Her initial distrust has softened into wary curiosity and a pragmatic willingness to proceed, tempered by the need for
+  Goddess approval.
+
+**Key Relationship State:** Newly, tentatively contracted Supporter-Adventurer (pending Hestia's approval). The
+foundation is built on Isaiah's unexplained intuition and Lili's pragmatic acceptance of an extraordinary offer backed
+by proof of potential reward. It's a professional agreement shadowed by Lili's caution and Isaiah's significant secrets.
+
+*(End of Character Card: Liliruca Arde)*
+
+----
+
 ## **Character Card: Isaiah November - Protagonist**
 
 **Identity & Core Goal:**
