@@ -5847,7 +5847,7 @@ deadline.
 
 ## **System Card: Beast Persons (獣人 *Jūjin*)**
 
-**Definition and Types:**
+### **Definition and Types:**
 
 * **Beast Person (獣人 *Jūjin*)** is the official umbrella term for races in Orario that blend human and animal
   characteristics.
@@ -5858,7 +5858,7 @@ deadline.
     * **Fox Person / Renard (狐人 *Kojin*)** (e.g., Sanjouno Haruhime)
     * Others likely exist (Boaz, etc.).
 
-**Physical Characteristics:**
+### **Physical Characteristics:**
 
 * **Predominantly Humanoid:** Beast Persons possess a fundamentally human body structure, shape, and proportions. Animal
   traits are distinct additions, not a full transformation.
@@ -5880,7 +5880,7 @@ deadline.
   predominantly human-like skin, the standard and logical interpretation is that these areas also possess human-like
   skin, not fur.
 
-**Mannerisms & Vocalizations:**
+### **Mannerisms & Vocalizations:**
 
 * Certain Beast Persons, particularly expressive individuals like Anya Fromel, may exhibit animal-like mannerisms or
   vocal tics (e.g., "Nya~" for Cat Persons).
@@ -5953,7 +5953,7 @@ month).
 **Trigger:** Hestia performs a Status Update revealing Isaiah's Level Up, which is then officially registered and
 verified by the Adventurer's Guild.
 
-**Immediate & Short-Term Consequences:**
+### **Immediate & Short-Term Consequences:**
 
 1. **Guild Verification & Shock:**
     * The Guild will likely require multiple verifications due to the unprecedented speed. Hestia may need to perform
@@ -5985,7 +5985,7 @@ verified by the Adventurer's Guild.
     * Hestia Familia's poverty and small size become major points of leverage for recruiters ("He needs proper
       support," "She can't protect him").
 
-**Mid-Term Consequences:**
+### **Mid-Term Consequences:**
 
 1. **Shift in Public Perception:** Isaiah is no longer just a promising rookie; he's viewed as a potential major power,
    a future hero, or a dangerous unknown. Expectations skyrocket.
@@ -6016,9 +6016,9 @@ verified by the Adventurer's Guild.
    specifics, the sheer speed will lead to theories about unique skills, divine interference, or hidden lineage, putting
    `[Echoes of the Soul]` under immense potential risk.
 
-**(Harem/Polygamy Facilitation)**
+### **Harem/Polygamy Facilitation**
 
-7. **Amplified 'Protagonist Aura' & Harem Plausibility:**
+* **Amplified 'Protagonist Aura' & Harem Plausibility:**
     * Isaiah's unprecedented achievement acts as a massive amplifier for his inherent 'protagonist aura'. Being the
       center of the world's attention, viewed as uniquely powerful, historically significant, and potentially destined
       for greatness, makes him exponentially more attractive and compelling to those already interested or predisposed
@@ -6026,7 +6026,7 @@ verified by the Adventurer's Guild.
     * This extreme exceptionalism provides strong external validation for the internal magnetism he possesses, making it
       significantly more plausible for multiple powerful or significant female characters (e.g., Ryu, Ais, Eina, Rose,
       Syr/Freya, Lyra) to develop intense feelings or obsessions.
-8. **Bending Social Norms & Polygamy Justification:**
+* **Bending Social Norms & Polygamy Justification:**
     * His "living legend" status creates a narrative space where conventional rules and social norms regarding
       relationships become more flexible *around him*. His exceptionalism provides a justification (within the story's
       logic) for why standard expectations might not apply.
@@ -6049,6 +6049,37 @@ verified by the Adventurer's Guild.
 potential acceptance of the Harem dynamic ("Medium Difficulty"). It provides compelling in-universe reasons for intense
 attraction and the bending of societal norms around Isaiah, directly addressing the core goal of facilitating eventual
 acceptance of polyamory by the involved characters.
+
+### **Harem Dynamic Tone & Trajectory**
+
+* **Shift Towards Harem Acceptance (Inspired by "100 Girlfriends" Model):**
+    * **Goal Alignment:** The unprecedented nature of Isaiah's rapid Level Up and subsequent fame serves as a primary
+      catalyst to fulfill Rule 4's "Harem Acceptance Goal ('Medium Difficulty')". The goal is eventual acceptance of a
+      polyamorous dynamic by the core love interests within a reasonable narrative timeframe.
+    * **Tone Shift (Post-Acceptance Phase):** While initial reactions (especially from possessive characters like
+      Hestia) will involve conflict and jealousy, the narrative trajectory will lean towards managing these conflicts
+      constructively rather than making them insurmountable obstacles. The aim is to move towards a dynamic where:
+        * **Competition Over Exclusion:** Jealousy or possessiveness may shift from demanding exclusivity towards
+          characters competing for status or attention *within* the harem structure (e.g., Hestia vying to be the
+          clear "#1 Wife/Goddess").
+        * **Comedic Friction:** Inter-character conflicts arising from personality clashes or competition for Isaiah's
+          attention can be framed with comedic undertones, highlighting amusing rivalries rather than solely
+          relationship-ending drama.
+        * **Shared Purpose/Grudging Respect:** Opportunities will be sought to show moments where the characters find
+          common ground (e.g., shared goal of protecting Isaiah, mutual respect for each other's strengths, amusing
+          shared exasperation with Isaiah).
+        * **Preservation of Core Traits:** Characters will retain their fundamental personalities (Hestia's
+          possessiveness, Ryu's reserve, Ais's analysis, Rose's devotion), but the *expression* of these traits will
+          adapt to the polyamorous reality. Hestia's jealousy becomes louder but perhaps less existentially threatening
+          to the dynamic; Ryu's acceptance is quiet and conflicted but ultimately rooted in loyalty, etc.
+    * **Plausibility:** This approach uses Isaiah's extreme exceptionalism and the external pressures he faces as the
+      in-universe justification for bending norms and accelerating the acceptance process, making the polyamorous
+      outcome feel earned within the story's context.
+
+    * **Overall Harem Dynamic Tone & Trajectory Impact:** This deliberate tonal and structural approach ensures the
+      Harem storyline progresses efficiently
+      towards acceptance, focusing on dynamic character interactions, shared goals, and amusing conflicts within the
+      established polyamorous framework, rather than getting bogged down in prolonged, irresolvable exclusivity drama.
 
 **Overall Impact:** Shattering the record, especially in weeks/months, transforms Isaiah from a rising adventurer into a
 central figure in Orario's power dynamics. It validates his potential but brings enormous fame, pressure, danger, and
