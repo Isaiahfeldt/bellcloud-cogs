@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Early Morning of Day 15.
+# We are currently in the Early/Mid Afternoon  of Day 17.
 
 ## Quick Recap - Day by Day:
 
