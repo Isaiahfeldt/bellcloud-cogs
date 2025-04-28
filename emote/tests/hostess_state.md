@@ -3745,37 +3745,37 @@ claimed you both, falling asleep side-by-side, the rhythm of your shared life so
 *Day 16 dawned much like the previous day. You awoke beside Hestia in the comfort of the oak bed, the morning routine
 unfolding with familiar ease. Perhaps Hestia initiated another 'resonance session', framed by her as necessary for '
 stabilization', or perhaps the focus shifted immediately to the day's plans. Regardless, the underlying affection and
-established intimacy were constant.
+established intimacy were constant.*
 
-After breakfast, the decision was made to delve again. Your F-Rank stats demanded challenge, the Familia needed funds,
+*After breakfast, the decision was made to delve again. Your F-Rank stats demanded challenge, the Familia needed funds,
 and the `[Echoes of the Soul]` skill remained 'Unstable'. Hestia's anxieties were likely still present but perhaps
-slightly lessened by the previous day's safe return and continued success. The promises of caution were reiterated.
+slightly lessened by the previous day's safe return and continued success. The promises of caution were reiterated.*
 
-Your visit to the Guild was again purely functional – select synergistic Floor 3 quests (maybe focusing on different
+*Your visit to the Guild was again purely functional – select synergistic Floor 3 quests (maybe focusing on different
 monster types or material drops for variety), register quickly, and head straight for Babel. You kept an eye out for
 Rose, a low-level anticipation simmering beneath the surface, but saw no sign of her approaching you or any unusual
-activity.
+activity.*
 
-The delve itself was another exercise in high-level efficiency. You might have pushed slightly further into Floor 3's
+*The delve itself was another exercise in high-level efficiency. You might have pushed slightly further into Floor 3's
 deeper zones or perhaps made another very brief, controlled foray into the absolute upper edge of Floor 4, constantly
 testing your limits and the performance of the Hearthfire Blades. Combat was intense but manageable with your F-Rank
 abilities and the skill's resonance providing sustained stamina. You focused meticulously on harvesting, aiming to
-replicate or exceed Day 15's impressive earnings.
+replicate or exceed Day 15's impressive earnings.*
 
-Emerging in the late afternoon, the Guild exchange yielded another significant haul of Valis, pushing the Familia's
+*Emerging in the late afternoon, the Guild exchange yielded another significant haul of Valis, pushing the Familia's
 total funds to 77,705 Valis. The Status Update that evening showed continued strong growth across your F-Rank stats.
-Hestia read out the numbers with awe: Strength F 339, Endurance F 340, Dexterity F 371, Agility F 364. The steady
+Hestia read out the numbers with awe: Strength F 339, Endurance F 340, Dexterity F 371, Agility F 364.* The steady
 climb was impressive, edging you ever closer to the potential Level Up threshold. The `[Echoes of the Soul]` skill,
-however, remained unchanged: `Active Resonance - Unstable`.
+however, remained unchanged: `Active Resonance - Unstable`.*
 
-The persistence of the 'Unstable' reading likely caused Hestia some frustration, solidifying her belief that
-only novelty (as you'd subtly guided her to believe regarding the Day 12 trigger) or perhaps prolonged, specific types
+*The persistence of the 'Unstable' reading likely caused Hestia some frustration, solidifying her belief that
+only *novelty* (as you'd subtly guided her to believe regarding the Day 12 trigger) or perhaps prolonged, specific types
 of 'stable' resonance between you two could fix it. You would have continued to outwardly agree while inwardly awaiting
-Rose's report, knowing the true key likely lay elsewhere.
+Rose's report, knowing the true key likely lay elsewhere.*
 
-The evening concluded with the familiar comforts – a shared meal, quiet conversation, the security of holding Hestia
+*The evening concluded with the familiar comforts – a shared meal, quiet conversation, the security of holding Hestia
 close in the new bed – but underscored by the mounting anticipation for news from Rose and the ticking clock of your own
-rapidly developing potential.
+rapidly developing potential.*
 
 *(End of Recap: Day 16)*
 
