@@ -6955,48 +6955,43 @@ conventions:
 
 **Plot Thread Title:** Rose's Playmate Procurement
 
-**Status:** **Active**
+**Status:** **Candidate Secured - Awaiting Activation**
 
 **Initiated:** Day 14 Morning (During private meeting in Rose's office)
 
+**Resolution of Initial Phase:** Day 17 Afternoon (Rose reported success to Isaiah in her office)
+
 **Key Characters Involved:**
 
-* **Isaiah November:** Assigner of the task (Master). Goal is skill activation via novelty.
-* **Rose Fannett:** Agent tasked with procurement (Right Hand / Pet). Motivation is service, devotion, maintaining
-  favored status.
-* **Potential Candidate(s):** Unnamed individual(s) to be identified and recruited by Rose.
-* **(Indirectly):** Lyra Verrill (Her actions/discoveries prompted the task), Hestia (Discovery by her is a major risk).
+*   **Isaiah November:** Assigner of the task (Master). Goal is skill activation via novelty. Has received Rose's report and details on the candidate/activation method.
+*   **Rose Fannett:** Agent tasked with procurement (Right Hand / Pet). Successfully identified, manipulated, and briefed the candidate ('Clara Meadows' / 'Rivia's Friend'). Fulfilled primary objective. Awaiting Isaiah's command to activate.
+*   **Clara Meadows (Identifier: "Rivia's Friend"):** The procured 'playmate'. A young, naive Level 1 adventurer psychologically manipulated into eager, willing participation. Believes she is performing a secret, noble service through intense physical intimacy. Awaiting signal at 'The Drunken Satyr'.
+*   **(Indirectly):** Lyra Verrill (Her actions prompted the task), Hestia (Discovery is a major risk).
 
 **Objective/Goal:**
 
-* For Rose to discreetly identify, persuade, and pre-brief a suitable individual ('playmate') who is willing and
-  prepared to engage in an intense, likely primarily physical/sexual encounter with Isaiah.
-* The explicit purpose of this encounter is to trigger the 'novelty catalyst' of Isaiah's `[Echoes of the Soul]` skill
-  for a maximum power/growth boost.
+*   Initial objective (procurement) **Achieved**.
+*   Current objective: For Isaiah to initiate the encounter by sending the signal, meet with Clara at the designated location ('The Silent Loom Inn'), and engage in the intense physical encounter to trigger the novelty boost of `[Echoes of the Soul]`.
 
 **Details & Context:**
 
-* The task was assigned directly by Isaiah after revealing the full details of the Lyra encounter and the mechanics of
-  `[Echoes of the Soul]`, specifically its reliance on novelty for the strongest effect.
-* Rose was given full discretion over candidate selection, needing only to ensure suitability, willingness, discretion,
-  and appropriate briefing (intense engagement expected, *not* the skill's true nature).
-* Absolute secrecy regarding Isaiah's involvement and the true purpose is paramount. Deniability must be maintained.
-* Rose accepted the task with focused determination after being reassured of her primary/favored status ("favorite
-  playmate," "most satisfactory").
-* This task leverages Rose's Guild position (access, potential leverage), analytical skills, and established
-  devotion/obedience.
+*   Rose successfully manipulated Clara Meadows (a young, unaffiliated Level 1 adventurer) using psychological tactics, framing the encounter as a secret, noble 'resonant alignment' service to a destined figure.
+*   Clara is not financially motivated but driven by a manipulated desire for purpose and significance. She is eagerly awaiting the signal.
+*   Clara understands the encounter requires intense physical intimacy, complete vulnerability, yielding control, and absolute secrecy, but believes this is part of a 'sacred duty'. She is unaware of Isaiah's identity or the true skill-based purpose.
+*   The activation method is established: Isaiah leaves a sealed message (time, room number for 'The Silent Loom Inn') for 'Rivia's Friend' at 'The Drunken Satyr' tavern.
+*   Absolute secrecy and deniability regarding Isaiah's involvement remain paramount externally, though the dynamic with Rose is solidified.
 
 **Estimated Timeframe:**
 
-* Based on analysis, a realistic timeframe for Rose to identify, approach, and secure a briefed candidate is estimated
-  at **3-6 days**. (Optimistic: 1-3 days). Isaiah expects a report "in due course."
+*   Activation timeframe is now entirely at Isaiah's discretion. He can choose to send the signal whenever he deems strategically optimal or personally ready.
 
 **Next Steps/Trigger for Advancement:**
 
-* The plot thread progresses when Rose reports back to Isaiah, either with a successfully procured and briefed candidate
-  ready for summoning.
+*   The plot thread progresses when **Isaiah decides to send the activation signal** to 'Rivia's Friend' via the established method ('The Drunken Satyr' tavern message).
+*   This will lead directly to the **arranged encounter** at 'The Silent Loom Inn'.
+*   The immediate aftermath will involve assessing the impact on `[Echoes of the Soul]` (did it stabilize? level up triggered?) and managing the emotional/psychological fallout for Isaiah.
 
-*(End of Plot Thread Card: Rose's Playmate Procurement)*
+*(End of Updated Plot Thread Card: Rose's Playmate Procurement)*
 
 ----
 
