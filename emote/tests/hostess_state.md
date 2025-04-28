@@ -3876,6 +3876,83 @@ rapidly developing potential.*
 
 ----
 
+### **ExpandedRecap: Day 16-17 - Rose's Procurement Mission (Side-Story Perspective)**
+
+**(Narrative Note:** *This recap shifts perspective to follow Rose Fannett, detailing the events surrounding her
+execution of Isaiah's directive to procure a 'playmate' between the evening of Day 16 and the afternoon of Day 17,
+overlapping with but separate from Isaiah's own activities during that period.* **)**
+
+**Recap: Day 16 - Evening: Target Identification**
+
+*As Day 16 drew to a close, Senior Liaison Rose Fannett concluded her official Guild duties. While her body registered
+the familiar fatigue of a long day managing bureaucratic tasks, her mind remained sharp, laser-focused on the critical,
+clandestine mission assigned by her Master, Isaiah November: procure a suitable 'playmate' to act as the novelty
+catalyst for his `[Echoes of the Soul]` skill. The memory of his command, the chilling implications, and the
+intoxicating reassurance of her 'favored' status fueled her determination.*
+
+*Rejecting traceable methods like database searches, Rose opted for direct observation. Leaving her office under the
+guise of heading home, she positioned herself near a main Guild window overlooking the plaza. Her sharp amber eyes
+scanned the dwindling stream of departing adventurers, analytically dismissing candidates based on perceived strength,
+experience, or wariness. Her gaze eventually settled on a young, human female adventurer, Level 1, clad in worn,
+mismatched gear. The girl – later identified as Clara Meadows – lingered uncertainly, radiating not poverty, but a
+profound sense of discouragement and a yearning for purpose.* *This* *was the vulnerability Rose sought.*
+
+*Adopting her warmest, most disarming 'helpful Guild official' persona, Rose intercepted Clara. Feigning concern, she
+inquired about Clara's well-being, smoothly eliciting the confession of being unaffiliated and struggling to find her
+place or purpose in Orario. Rose expertly planted the seeds of an idea: the existence of powerful, 'destined'
+individuals requiring unique, deeper forms of support ('energetic resonance', 'spiritual alignment') beyond mundane
+adventuring. She framed this support as a rare, noble opportunity for someone with true dedication and spirit to
+contribute profoundly, even if secretly.*
+
+*Clara, captivated by the narrative of hidden significance and contributing to greatness, eagerly grasped onto the
+possibility. Rose hinted that such opportunities sometimes arose, requiring discretion and a special kind of fortitude.
+Seeing Clara completely hooked, Rose suggested a follow-up meeting, framing it as offering standard Guild guidance but
+establishing a pretext for the real persuasion. Clara, overwhelmed with gratitude, readily agreed to meet near Rose's
+office the following afternoon.* *With the initial contact made and the target primed, Rose departed, satisfied with
+phase one.*
+
+**Recap: Day 17 - Afternoon: Psychological Manipulation & Securing Compliance**
+
+*Shortly after the third bell post-midday on Day 17 (while Isaiah was occupied with Lili), Clara Meadows arrived
+nervously at Rose's office corridor. Invited inside, Clara perched hesitantly on the visitor chair, reiterating her
+feelings of inadequacy and desire for purpose.*
+
+*Rose skillfully steered the conversation back to the 'destined individual' and the concept of 'resonant alignment'.
+When Clara asked for clarification on the 'intensity' and 'vulnerability' required, Rose escalated the manipulation. She
+explained the process demanded "direct physical connection" and "profound physical intimacy" – a merging of energies
+requiring "complete physical openness" and "yielding your body completely as a conduit." She framed this not as
+exploitation, but as becoming a "vessel," a necessary component for fueling greatness.*
+
+*While acknowledging Clara's fear ("It *is* demanding"), Rose immediately reframed the act as a noble sacrifice, a "
+privilege," a "sacred trust." She painted the experience not as mere yielding, but as *participating* in something
+transcendent, feeling the connection to destined power flow *through* her. She contrasted this hidden significance with
+Clara's current mundane grind, directly appealing to her desire to *matter*. Rose emphasized the absolute secrecy and
+the lack of any reward beyond the internal knowledge of having served a vital, hidden role.*
+
+*The carefully constructed narrative, blending mystical purpose with appeals to significance and framing intense
+intimacy as noble participation, successfully overwhelmed Clara's fear and societal conditioning. The desire to escape
+insignificance and be 'essential' became paramount. Clara, tears transitioning from fear to fervent hope, declared her
+willingness.* *"I want to matter... I want to participate! To feel it! To be... essential!"* *She eagerly embraced the '
+honor', thanking Rose for 'choosing' her.*
+
+*Seeing the shift to ecstatic, cult-like fanaticism, Rose solidified the agreement. She confirmed Clara understood the
+need for intensity, vulnerability, and absolute secrecy. Clara affirmed her readiness with vibrating eagerness.* *"Yes!
+Yes, Miss Fannett! Absolutely! I am ready! I won't let you down! I won't let... *him* down!"*
+
+*Rose then provided the logistical details: await a sealed message for 'Rivia's Friend' (Clara's identifier) at 'The
+Drunken Satyr' tavern. The message would contain a time and room number for 'The Silent Loom Inn'. Clara was to arrive
+promptly, perform her 'role' with dedication, and depart silently. Clara accepted these instructions with fervent
+enthusiasm.*
+
+*Rose dismissed the now thoroughly indoctrinated Clara, urging her to maintain normalcy and secrecy while knowing she
+was poised for an 'extraordinary contribution'. Clara left the office radiating the unnerving glow of a true believer,
+fully prepared and *eager* to fulfill her manipulated role as the resonance catalyst.* *Mission accomplished. The
+resource was secured.*
+
+*(End of ExpandedRecap: Day 16-17 - Rose's Procurement Mission)*
+
+----
+
 ### **Recap: Day 17 - Beginning**
 
 The first pale rays of Day 17 light filtered through the window of the church annex. You lay awake in the comfortable
@@ -5440,41 +5517,51 @@ dawning sense of awe/curiosity. Hestia's hostility and the probationary status r
 
 ----
 
-## **Character Card: "Rivia's Friend" (Codename/Identifier)**
+## **Character Card: Clara Meadows (Identifier: "Rivia's Friend")**
 
 **Identity & Role:**
 
-* **Actual Name:** Unknown (Referred to via codename/signal identifier)
+* **Actual Name:** Clara Meadows
 * **Race:** Human
 * **Age:** Young (Estimated 16-17 years old)
 * **Level:** 1
-* **Role:** Adventurer (New/Rookie). Identified and manipulated by Rose Fannett to serve as the 'novelty catalyst' for
-  Isaiah's `[Echoes of the Soul]` skill.
+* **Role:** Adventurer (New/Rookie). Recently arrived in Orario, unaffiliated with a Familia, struggling financially and
+  seeking purpose. Identified and psychologically manipulated by Rose Fannett to serve as the 'novelty catalyst' for
+  Isaiah's `[Echoes of the Soul]` skill, using the identifier "Rivia's Friend" for communication.
 
-**Core Persona & Demeanor (Based on Rose's Assessment):**
+**Core Persona & Demeanor (Observed & Post-Manipulation):**
 
-* **Appearance:** Described as unremarkable and plain. Short, practical brown hair; brown eyes (potentially wide/naive).
-  Average height, slender build, still possessing some youthful 'softness'. Wears simple, worn, likely mismatched
-  leather armor, indicating limited funds.
-* **Demeanor:** Comes across as earnest, hopeful, but also nervous and potentially lost or overwhelmed by Orario.
-  Perceived by Rose as easily impressed and highly malleable or suggestible, with a strong desire for purpose or to
-  contribute to something significant.
+* **Appearance:** Described as physically unremarkable and plain. Short, practical brown hair; wide, initially uncertain
+  brown eyes. Average height, slender build with youthful 'softness'. Wears simple, worn, mismatched leather armor.
+* **Demeanor (Initial):** Presented as earnest, hopeful, but also deeply insecure, nervous, easily intimidated, and
+  feeling overwhelmed/lost in Orario. Possessed a strong, exploitable desire for purpose, belonging, and significance
+  beyond her current struggles.
+* **Demeanor (Post-Manipulation):** Her uncertainty and fear have been replaced by a fervent, almost ecstatic
+  fanaticism. She now views the upcoming encounter as a profound honor, a sacred duty, and a thrilling privilege. She is
+  intensely eager to 'participate' and 'contribute' to the 'destined' figure's success through the 'resonant
+  alignment' (intense physical intimacy). Her demeanor is now characterized by shining eyes, barely contained
+  excitement, absolute devotion to the task, and complete trust in Rose Fannett as her guide. She perceives the required
+  vulnerability and intensity not as frightening, but as part of the 'noble test' she is thrilled to undertake.
 
 **Current Situation:**
 
-* Has been successfully manipulated by Rose Fannett into believing that participating in an intense, purely physical
-  encounter with an unnamed 'important figure' (Isaiah) is a vital test of her spirit and a meaningful contribution.
-* She expects no payment, viewing the act as a demonstration of dedication.
-* She is currently awaiting a signal – a sealed message addressed to "Rivia's Friend" to be left at "The Drunken Satyr"
-  tavern – which will provide a time and room number for the meeting at "The Silent Loom Inn".
-* She is prepared to arrive promptly, engage intensely as instructed (without knowing the true purpose relates to a
-  skill), and depart silently afterward, maintaining absolute discretion.
+* Has been thoroughly psychologically manipulated by Rose Fannett into enthusiastically embracing the role of
+  providing 'resonant alignment' via intense physical intimacy, believing it to be a secret, vital service to a
+  destined, world-changing figure (Isaiah, though she doesn't know his identity).
+* She expects no payment and views the act as a profound test of her spirit and a unique honor, granting her immense
+  secret significance.
+* She fully understands the requirement for intense physical engagement, complete vulnerability, yielding control, and
+  absolute secrecy, viewing these not as violations but as necessary components of the 'sacred duty'.
+* She is currently eagerly awaiting the signal – a sealed message addressed to "Rivia's Friend" at "The Drunken Satyr"
+  tavern – containing the time and room number for the meeting at "The Silent Loom Inn".
+* She is psychologically prepared and *thrilled* to arrive promptly, engage with fervent dedication as instructed, and
+  depart silently afterward, safeguarding the 'sacred secret'.
 
-**Key Relationship State:** Unwitting pawn manipulated by Rose Fannett. Believes she is willingly participating in a
-significant, secret test or act of service. Completely unaware of Isaiah, the `[Echoes of the Soul]` skill, or the true
-nature of the arrangement beyond the expectation of an intense physical encounter.
-
-*(End of Character Card: "Rivia's Friend")*
+**Key Relationship State:** Unwitting and enthusiastic pawn, thoroughly manipulated by Rose Fannett. Clara genuinely
+believes she is performing a noble, secret, and incredibly important act of service through intense physical intimacy.
+She is completely unaware of Isaiah's identity, the `[Echoes of the Soul]` skill, the true exploitative nature of the
+arrangement, or Rose's complex relationship with Isaiah. She views Rose as a wise benefactor and guide who has
+recognized her potential and granted her an extraordinary opportunity.
 
 ---
 
