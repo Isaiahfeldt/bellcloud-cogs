@@ -185,11 +185,9 @@ Below will include recap of each day, recaps of character development, story loc
       genuine moans validated her 'training' belief. **Induced violent climax (semen coating her hand/dress)**. Isaiah
       reassured her performance ("incredible"), noted strong Falna warmth.
     * Isaiah proposed immediate Dungeon delve to utilize 'boost'. Hestia initially panicked, but reluctantly agreed
-      after
-      Isaiah promised caution, Floor 3 limit, and actively seeking a Supporter.
+      after Isaiah promised caution, Floor 3 limit, and actively seeking a Supporter.
     * Departed annex alone. Arrived at Guild mid-morning. Sought out Rose (Supervisor). Registered three Floor 3
-      quests (
-      Kobold Subjugation, Lizard Subjugation, Lizard Hides). Requested private meeting with Rose.
+      quests (Kobold Subjugation, Lizard Subjugation, Lizard Hides). Requested private meeting with Rose.
     * Led to Rose's private office. Isaiah established dominance (sat in her chair), commanded her onto his lap.
       Established her role as "Right Hand Woman" (most trusted asset) operating *within* the established Master/Pet
       dynamic.
@@ -197,8 +195,7 @@ Below will include recap of each day, recaps of character development, story loc
       catalyst, 'Unstable Resonance'). Rose reacted with fury towards Lyra, suggested neutralization; Isaiah shut her
       down, asserted sole authority over Lyra situation.
     * Assigned Rose primary task: Discreetly find and brief a 'suitable' new 'playmate' to trigger skill's novelty
-      boost.
-      Reassured Rose she remains his 'favorite'/'most satisfactory'.
+      boost. Reassured Rose she remains his 'favorite'/'most satisfactory'.
     * Dismissed Rose back to duties. Isaiah left office, heading for Babel Tower and Dungeon delve
 * **Day 14 (Middle - Part 1 - Delve & Guild Visit):**
     * Entered Dungeon (late morning) with 3 Floor 3 quests (Kobold Sub, Lizard Sub, Lizard Hides). Felt Falna 'resonance
@@ -280,6 +277,42 @@ Below will include recap of each day, recaps of character development, story loc
       to his power.
     * Isaiah reassured her, linking the intensity to his "fastest Level 2" goal and framing his power as their
       protection. Lili pragmatically reaffirmed commitment to the high-risk/high-reward contract.
+* **Day 17 (Mid Afternoon - Guild Hall /w Lili):**
+    * Isaiah and Lili returned from the Dungeon (Floors 1-3) to the Guild Hall after completing Orc/Lizardman quests.
+    * Approached **Rose Fannett's counter** for quest report/exchange.
+    * Isaiah **introduced Lili** as the new Supporter (trial basis) to Rose, noting Rose's likely internal
+      surprise/resentment at not being involved. Rose maintained professional composure.
+    * Lili unloaded a **large amount of loot** (Orc tusks, Lizard hides/parts, magic stones).
+    * Rose processed the quests, acknowledging the **exceptional yield** for Floor 3. Material exchange resulted in *
+      *19,750 Valis**.
+    * Isaiah **requested a private meeting** with Rose ("follow-up consultation... operational efficiencies") before
+      leaving the Guild. Rose acknowledged.
+    * Collected **quest rewards (2,000 Valis)** from Treasury. Total Delve Earnings: **21,750 Valis**. Familia Funds
+      approx. **58,505 Valis**.
+    * Moved to a quieter area. Praised Lili's performance.
+    * Instructed **Lili to return to the annex alone** and report to Hestia. Gave her **500 Valis** partial payment.
+      Lili accepted and departed.
+    * Isaiah prepared to approach Rose for their **private meeting**.
+* **Day 17 (Mid Afternoon - Office):**
+    * Rose led Isaiah to her **private Guild office** (locked). She dropped her mask ("Master"); Isaiah **asserted
+      dominance** (took her chair), prompting Rose to **hesitantly sit on his lap**.
+    * Isaiah **rewarded compliance** (head petting, "Very good, pet") then demanded status on **procurement task**. Rose
+      reported **successful manipulation of 'Rivia's Friend'** (naive adventurer) and detailed the signal method.
+    * Isaiah **rewarded task completion intensely** (bite/licked Rose's neck, used trigger word "**very**
+      satisfactory"), then **denied further stimulus** (held inner thigh firmly), demanding description of the candidate
+      amidst the suspense.
+    * Rose **broke down under pressure**, provided the description, then **begged for resolution** (even punishment).
+    * Isaiah gave **friction-based reward** (grinding fingers against mound through tights) combined with the trigger
+      word ("**very** satisfactory") again, inducing an **intense climax**. He then **tasted her release** from his
+      fingers, framing it as reward ("You taste very good... sufficient reward").
+    * Commanded **honesty about her feelings**. Rose confessed the complex mix of **degradation, fear, shame, intense
+      pleasure, and validation**, reaffirming her ultimate desire was to serve him.
+    * Isaiah responded with a **passionate but soothing kiss**, acknowledging her personhood and confirming her place.
+    * Isaiah briefed Rose on his **imminent Level 2 trajectory**, the expected **fame/danger/pressure**, and promised
+      her an **acknowledged public place** in his future 'family' structure (alongside Hestia/others).
+    * Rose swore **fanatical loyalty** and commitment; Isaiah approved ("That's my girl").
+    * Commanded Rose to **keep spare clothes in her office** for future encounters, implying expectation of recurrence.
+    * **Dismissed Rose** back to her duties; she departed obediently. Isaiah remained **alone in Rose's office**.
 
 ----
 
@@ -3946,7 +3979,7 @@ You then suggested going to meet Hestia immediately.
 
 ----
 
-### **Recap: Day 17 - Middle**
+### **Recap: Day 17 - Middle - Part 1**
 
 *Standing in the functional dimness of 'The Laden Pack' tavern mid-morning on Day 17, you extended your hand towards the
 diminutive Pallum, Liliruca Arde, sealing the tentative agreement: 3000 Valis per day for her services as your dedicated
@@ -4031,6 +4064,185 @@ her ability to function after witnessing your power was part of the job.*
 *(End of Recap: Day 17 - Middle - Part 1)*
 
 ----
+
+### **Recap: Day 17 - Middle - Part 2**
+
+*Emerging from the relative cool and quiet of Babel's base back into the bustling Orario afternoon, the weight of the
+successful delve settled upon you – not just the physical weight of the loot Lili carried, but the weight of expectation
+you'd set. The brief, intense debriefing with Lili near the entrance concluded with her pragmatic reaffirmation of the
+contract, her fear momentarily eclipsed by the lure of consistent, high pay. The next step was clear: convert spoils
+into Valis.*
+
+*The walk back to the Guild Hall was different this time. Lili, though still watchful, seemed slightly less overtly
+terrified, perhaps steeling herself for the routine part of the job. The sheer volume of hides, stones, and parts
+bulging in her pack drew some curious glances from passing adventurers, glances you ignored. Your focus was already
+shifting towards the Guild, specifically towards Rose. Had she made progress on the dossier? Would she signal anything?*
+
+*Pushing through the familiar heavy doors into the main hall, the usual cacophony enveloped you. You scanned the service
+counters, bypassing others, your gaze locking onto Rose Fannett. She was at her station, handling paperwork, the picture
+of professional composure. Perfect.*
+
+*You led Lili towards her queue, murmuring, "This way." As you waited the short time for the adventurer ahead to finish,
+you observed Rose. Immaculate uniform, focused demeanor. Only the slight, almost imperceptible forward angle of her ears
+betrayed a heightened awareness, perhaps catching the sound of your approach.*
+
+*When your turn came, her amber eyes met yours. "Adventurer November," she greeted smoothly, the professional mask
+firmly in place. Her gaze flicked briefly to Lili. "And... your new associate? Welcome back. Successful delve, I
+trust?"*
+
+*You felt a pang of annoyance – you hadn't told her about recruiting a Supporter. This was unplanned. You internally
+noted her likely surprise, maybe even slight resentment at being bypassed.*
+
+*"Indeed,"* *you replied, matching her tone.* *"A very successful delve. We're here to report completion and exchange
+materials."* *You gestured towards Lili.* *"Rose Fannett, allow me to introduce Liliruca Arde. She's agreed to take on
+the role of Supporter for the Hestia Familia on a trial basis, starting today."* *You turned slightly.* *"Lili, this is
+Miss Rose Fannett, a Senior Liaison here at the Guild. She handles many of our administrative needs."*
+
+*Rose offered Lili a polite, assessing nod.* *"Miss Arde. Welcome. Having reliable support is indeed crucial for
+efficient delving, especially given Adventurer November's... notable pace."* *Her gaze returned to you.* *"Thank you for
+the introduction, Adventurer November. Now, regarding your report?"*
+
+*You placed the Orc Patrol and Lizardman Subjugation slips on the counter. At your nod, Lili stepped forward and
+unloaded the impressive haul – tusks, a large quantity of hides, parts, and a cascade of magic stones. Rose's eyes
+widened almost imperceptibly at the sheer volume.*
+
+*She meticulously verified the proofs, stamping the slips.* *"Proofs verified for both quests. Authorization for reward
+payment approved. You may collect from the Treasury."* *She turned to the exchange.* *"The quantity and quality are...
+exceptional for a Floor 3 expedition."* *After calculating, she announced,* *"Total exchange value for materials is...
+19,750 Valis."*
+
+*She pushed the substantial sum across the counter. You swept it into your pouch, Lili gasping quietly beside you.*
+
+*"Thank you, Miss Fannett,"* *you said.* *"Your efficiency is always appreciated."*
+
+*"Of course, Adventurer November,"* *she replied smoothly.* *"The Treasury counter is that way..."*
+
+*As you turned, you leaned back slightly.* *"Miss Fannett,"* *you murmured, voice low,* *"Before I depart the Guild
+today, I'll require a brief follow-up consultation. Regarding... operational efficiencies."*
+
+*You gave a minute nod and turned definitively towards the Treasury, gesturing for Lili to follow, catching Rose's sharp
+nod of acknowledgment out of the corner of your eye.*
+
+*At the Treasury, the stern clerk processed the slips, granting the 2,000 Valis reward (900 Orcs + 1,100 Lizards),
+bringing the Familia's total funds to approximately 58,505 Valis. Lili watched, awestruck.*
+
+*With business concluded, you led Lili away from the counters towards a quieter edge of the main hall.*
+
+*"Good work today, Lili,"* *you stated, acknowledging her performance.* *"You handled the delve and the load well."*
+
+*"Th-Thank you, Sir,"* *she stammered.*
+
+*"We're finished here,"* *you continued.* *"However, there's one last administrative matter I need to attend to before
+heading back. I want you to head back to the annex now. Report to Goddess Hestia, let her know the delve was successful
+and we're back safe. I'll handle this last task and catch up with you there shortly."* *You handed her 500 Valis.* *"For
+your trouble today, and for any immediate needs. We'll settle the full day's contract payment later. Go straight there,
+report in. I won't be long."*
+
+*Lili looked surprised, then wary, but the tangible Valis and the logical instruction seemed to convince her.* *"Y-Yes,
+Sir. Understood. I will report to Lady Hestia immediately. I will await your return at the church, Sir."*
+
+*With a final, quick bow, she turned and hurried towards the Guild exit, navigating the crowd efficiently.*
+
+*You watched her go, then turned your gaze back towards the administrative corridors, towards Rose's station, ready for
+the debrief.*
+
+*(End of Recap: Day 17 - Middle - Part 2)*
+
+----
+
+### **Recap: Day 17 - Middle - Part 3**
+
+*Standing near the edge of the bustling Guild Hall, you watched Lili's small form disappear through the main entrance
+doors, the practical necessity of her departure handled. With privacy secured, your attention snapped back to the
+primary objective: the debrief with Rose. Your gaze scanned the hall, finding her near her station. A subtle exchange of
+nods confirmed readiness, and she smoothly disengaged, meeting you near the administrative corridor.*
+
+*"Adventurer November,"* *she murmured professionally, though her eyes held a focused intensity.* *"This way, please. We
+can discuss... operational matters... more privately."*
+
+*You followed her down the quiet corridor to her office. The *click* of the lock behind you signaled the immediate
+shift. Rose turned, the professional mask dissolving instantly into deferential eagerness.* *"Master,"* *she breathed,
+awaiting your purpose.*
+
+*Reasserting the established dynamic, you ignored her question and walked past her to sit in *her* executive chair. You
+waited silently, letting the tension build, watching her process the familiar power play. After a moment of hesitation,
+recognizing the cue, she nervously approached and, trembling, lowered herself onto your lap.*
+
+*Breaking the silence, you began petting the soft fur between her ears, eliciting an immediate, deep purr.* *"Very good,
+pet,"* *you murmured.* *"You remember."*
+
+*Allowing her a moment of blissful surrender, you then shifted tone, demanding,* *"What is the status of your
+assessment? The... resource procurement."*
+
+*Pulled from the haze, Rose reported her success. The candidate, using the designation 'Silke' (later corrected to an
+unnamed naive adventurer using code 'Rivia's Friend' after user revision), was secured. Rose detailed the candidate's
+profile (young, human, Level 1, earnest, malleable) and the method of persuasion (psychological manipulation framing
+participation as service to a significant cause, no payment involved). She confirmed the candidate's willingness,
+understanding of the need for intense physical engagement and absolute discretion, and the established signal method (
+message to 'Rivia's Friend' at 'The Drunken Satyr' tavern, directing to 'The Silent Loom Inn').* *"She is prepared,
+Master. The signal is all that is required."*
+
+*To reward her success, you leaned forward, delivering a sharp, possessive bite to her neck followed immediately by a
+wet lick, murmuring,* *"Your results... are **very** satisfactory, my kitten."* *The combined physical stimulus and
+trigger word sent Rose into complete sensory overload, collapsing against you, purring violently, sobbing with ecstatic
+release.*
+
+*After allowing her to succumb, you then withheld further direct stimulus. Your hand slid beneath her skirt, pressing
+firmly high on her inner thigh, holding the pressure without moving, creating agonizing suspense. You demanded a
+description of the candidate ('Rivia's Friend'). Rose, fighting through the overwhelming sensation and suspense,
+provided a fragmented, clinical description (young, plain, brown hair/eyes, average, worn gear, nervous hopefulness).*
+
+*Her composure finally broke completely under the sustained pressure and denial.* *"M-Master... Please..."* *she sobbed,
+begging for resolution, even punishment.* *"If... if I failed... punish me... Just... please..."*
+
+*You relented, shifting tactics. Your fingers pressed firmly against her mound through her tights, grinding in slow,
+tight circles. The unexpected, clinical friction elicited sharp cries and violent shudders.* *Leaning close, you
+reinforced the reward linkage:* *"Finding the candidate... arranging the signal... ensuring discretion... Your execution
+of the task, kitten... it was **very** satisfactory."* *The trigger word combined with the intense grinding sent her
+spiraling again, body convulsing, reduced to choked whimpers and ragged purrs.*
+
+*Assuming she climaxed, you withdrew your fingers, noting the dampness. Holding her shocked, glazed gaze, you
+deliberately brought your fingers to your mouth, tasting her release.* *"You taste very good, Pet,"* *you stated
+bluntly, adding,* *"I hope that served as a sufficient reward for completing your assigned task."* *The act of
+possessive tasting and framing it as earned reward solidified the dynamic, leaving Rose overwhelmed with shame, ecstasy,
+and validation.*
+
+*As she clung to you, purring brokenly, you commanded her to compose herself. Granting her permission to speak freely,
+you asked her to honestly describe her feelings. Rose, stunned by the request for her *own* perspective, confessed the
+experience was terrifying, overwhelming, and profoundly degrading, yet also incredibly validating and fulfilling ("more
+alive, more *real*"). She reaffirmed her ultimate desire was simply to serve you, accepting even the painful aspects if
+they pleased you.*
+
+*Touched by her raw, contradictory honesty, you responded not with further commands, but with a slow, passionate kiss –
+meant to soothe, accept, and reassure. It communicated your acknowledgment of her pain, acceptance of her broken
+devotion, and confirmation of her place. Rose received the kiss passively at first, then melted into it, finding a
+strange solace and quiet peace.*
+
+*After giving her a moment to collect herself, you gently eased her off your lap. Standing before her, you revealed your
+next report: your imminent Level 2 trajectory. You outlined the rapid acceleration fueled by your skills, predicting the
+Level Up was weeks away, maybe less, triggered by the next successful 'resonance' (implicitly via the procured
+candidate). You warned of the chaos, fame, and danger that would follow breaking Ais's record, thrusting the Hestia
+Familia into the spotlight and attracting intense pressure from major powers like Freya and Loki.*
+
+*Crucially, you promised that this upheaval would also bring the power to set your own terms. *"You won't *have* to be
+kept a secret anymore,"* *you declared.* *"Your loyalty... it will be recognized. Publicly."* *You clarified 'family'
+meant Hestia Familia, with Hestia at the core, but with acknowledged places for other loyal members.* *"You will have
+your recognized place beside us... An acknowledged part of the whole."*
+
+*This promise ignited fierce, fanatical devotion in Rose. Wiping away her tears, she swore absolute loyalty, ready to
+pave the way for that future.* *"The Hestia Familia will rise,"* *she declared.* *"And I will be there, at your side...
+I swear it."*
+
+*Pleased by her transformation back into your focused Right Hand, you offered final approval:* *"That's my girl."* *You
+then issued a practical command: keep a change of clothes in her office going forward, explicitly preparing for future
+encounters intense enough to require it. Rose accepted with fervent understanding.* *"Y-Yes, Master! Understood!
+Absolutely! ... It will be done, Master. Without fail."*
+
+*Finally, you dismissed her.* *"That will be all for now, Rose. Return to your duties. Maintain appearances."* *She
+bowed deeply and exited the office, pulling the door quietly shut, leaving you alone amidst the lingering echoes of
+intense intimacy and strategic planning.*
+
+*(End of Recap: Day 17 - Middle - Part 3)*
 
 # Character Cards
 
@@ -6446,7 +6658,9 @@ conventions:
 * **Player Choice Impact:** User choices during the event can influence *how* Isaiah engages, which specific threats he
   prioritizes, interactions with other characters during the chaos, and his immediate actions post-Level Up/crisis.
 
----
+*(End of Event Card: Monster Outbreak & Level Up)*
+
+----
 
 # Command Cards
 
@@ -6487,6 +6701,39 @@ conventions:
     * `/ExtendedTimeSkip 14 days Dungeon Grinding (Floor 3 Focus)`
     * `/ExtendedTimeSkip 1 week Rest and Recuperation at Annex`
     * `/ExtendedTimeSkip 10 days Basic Stamina Training`
+
+*(End of Command Card: `/ExtendedTimeSkip`)*
+
+----
+
+## **Command: `/QuickRecap`**
+
+* **Usage:** `/QuickRecap [Time Period]`
+    * `[Time Period]` specifies the segment you want summarized (e.g., `Day 14 Morning`, `Day 9 Middle`,
+      `Day 17 Beginning`). It can cover a part of a day or a full day. Specificity (like Morning, Middle, End) is
+      recommended for clarity.
+
+* **Functionality:** Retrieves key narrative events, character interactions, decisions, and significant outcomes during
+  the specified `[Time Period]`. Condenses this information into a concise, hierarchical bulleted list for easy review.
+
+* **Output Format:**
+    * Uses a hierarchical bulleted list structure.
+    * **Top-Level Bullet:** `* **[Day #] ([Part of Day]):**` (e.g., `* **Day 14 (Morning):**`)
+    * **Nested Bullets:** `    *` detail the sequence of specific events/actions.
+    * **Bold Highlighting:** **Key actions**, **plot points**, **decisions**, **intimate acts**, or **major outcomes**
+      are bolded for emphasis.
+    * **Conciseness:** Summarizes events briefly rather than using detailed narrative prose.
+
+* **Purpose:** Provides a quick, scannable summary of events for a specific past period. Offers more chronological
+  detail than `/Recap` but is more condensed than `/ExpandedRecap`. Ideal for refreshing memory on key happenings within
+  a specific timeframe.
+
+* **Example Usage:**
+    * `/QuickRecap Day 14 Morning`
+    * `/QuickRecap Day 9 Middle`
+    * `/QuickRecap Day 17 Beginning`
+
+*(End of Command Card: `/QuickRecap`)*
 
 ----
 
