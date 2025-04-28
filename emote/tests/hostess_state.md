@@ -5166,16 +5166,19 @@ worthy by clearing the debt and growing stronger with her blades.
 **Underlying Traits (Inferred):**
 
 * **Street Smart & Resourceful:** Her survival likely depends on her wits, observation skills, and ability to navigate
-  Orario's tougher side.
-* **Deeply Mistrustful:** Has a strong default assumption that others (especially powerful adventurers) have ulterior
-  motives or will exploit her. Needs significant reassurance or proof to overcome this.
-* **Pragmatic & Driven by Need:** Her primary motivation appears to be securing stable, reliable income. The
-  astronomical sum offered by Isaiah overrides significant caution.
-* **Observant & Analytical:** Pays close attention to details, assesses situations quickly, and notices things others
-  might miss (as she claims).
-* **Resilient:** Despite her size and likely hardships, she possesses a core of resilience and determination.
-
-**Recent Interactions with Isaiah November:**
+  Orario's tougher side. Demonstrated tactical awareness (stealth approach suggestion, tripping fleeing Orc).
+* **Deeply Mistrustful:** Has a strong default assumption that others have ulterior motives. Needs significant
+  reassurance or proof. Initial intense suspicion of Isaiah's offer and motives was clear.
+* **Pragmatic & Driven by Need:** Her primary motivation appears to be securing stable, reliable income. The 3000
+  Valis/day overrides significant fear and caution.
+* **Observant & Analytical:** Pays close attention to details, assesses situations quickly (Orc patrol analysis).
+  Notices environmental details and potential threats.
+* **Resilient & High Endurance (Relative):** Despite her size, she kept pace with Isaiah's F-Rank speed during a long,
+  intense delve and managed a heavy pack without collapsing, showing surprising toughness. Capable of functioning under
+  extreme stress/fear.
+* **Surprising Combat Utility (Minor):** Demonstrated the ability and willingness to take decisive action in combat (
+  tripping the Orc), going beyond passive support when necessary.
+  **Recent Interactions with Isaiah November:**
 
 * **(Day 17 Morning - 'The Laden Pack' Encounter & Hiring):** In a single, pivotal encounter, Isaiah approached Lili
   based on 'intuition', bypassing more obvious candidates. After her initial suspicion and self-deprecation, he tested
@@ -5185,22 +5188,38 @@ worthy by clearing the debt and growing stronger with her blades.
   proving his income with Guild receipts). Seeing the proof shifted Lili's suspicion to awed comprehension. After Isaiah
   deflected questions about *how* he achieved his success, Lili introduced herself and tentatively agreed to the deal
   and the condition of meeting Goddess Hestia for final approval, sealing the potential partnership.
+* **(Day 17 Afternoon - First Delve):** Walked to Babel, receiving reassurance about Hestia and briefly discussing
+  attire. Received quest briefing (Floor 3 Orcs/Lizards); successfully suggested a 'quiet' signal, earning validation as
+  a 'partner', and confirmed prior Floor 5/6 experience. Witnessed Isaiah's terrifying speed annihilating a Kobold
+  patrol and learned of his goal (fastest Level 2), accepting his framing of power for ambition. In Orc territory (
+  Sector Gamma), provided tactical input (stealth approach) before Isaiah slaughtered an encampment (6 Orcs). Provided a
+  crucial assist by tripping a fleeing Orc, receiving direct praise reinforcing the 'partner' dynamic, while efficiently
+  collecting loot. After completing quests (~4-5 hours), emerged and confirmed she kept pace despite the intensity and
+  load. Honestly admitted the delve was "terrifying" due to Isaiah's abnormal power, but accepted his reassurance
+  framing it as necessary protection for his goals, reaffirming her commitment to the contract.
 
 **Lili's Perception of Isaiah:**
 
-* Views him as a complete anomaly: a Level 1 adventurer operating with unbelievable speed, power, and earning potential.
-* His methods are baffling (hiring based on intuition).
-* His offer is both terrifyingly suspicious and incredibly alluring.
-* She now understands the *financial* logic of the high pay rate but remains deeply curious and wary about the *source*
-  of his power and success (which he deliberately obscured).
-* Sees working for him as a potentially life-changing opportunity for financial security but also inherently risky due
-  to his anomalous nature and the likely dangers involved in supporting him.
-* Her initial distrust has softened into wary curiosity and a pragmatic willingness to proceed, tempered by the need for
-  Goddess approval.
+* Views him as an overwhelming anomaly whose power and speed defy all known conventions for his Level. Source
+  remains unknown but terrifyingly effective.
+* His ambition (fastest Level 2) is insane but possibly achievable given his demonstrated power, shifting her
+  perception from impossible boast to terrifying potential reality.
+* Recognizes working for him involves extreme intensity and risk, far beyond standard delves, but also potentially
+  historic significance and unparalleled financial reward.
+* Her deep suspicion has lessened, replaced by a mixture of profound fear, awe, and wary respect. She understands
+  the power but not its limits or source.
+* Feels valued for her specific skills (speed, observation, tactical input) beyond just carrying capacity,
+  reinforced by his acceptance of her suggestion and praise for her combat assist. The 'partner' framing creates a
+  confusing but potentially positive counterpoint to Hestia's hostility.
+* Remains pragmatically focused on fulfilling her duties to maintain the lucrative contract, accepting the danger as
+  part of the extraordinary price/reward balance.
 
-**Key Relationship State:** Newly, tentatively contracted Supporter-Adventurer (pending Hestia's approval). The
-foundation is built on Isaiah's unexplained intuition and Lili's pragmatic acceptance of an extraordinary offer backed
-by proof of potential reward. It's a professional agreement shadowed by Lili's caution and Isaiah's significant secrets.
+**Key Relationship State (Updated):** **Probationary Supporter / Adventurer.** The contract is active, initiated by the
+first successful (if terrifying) delve. Lili has proven her core competence (speed, observation, loot management, minor
+combat assist) under extreme conditions. Isaiah has demonstrated his overwhelming power and validated her specific
+skills, framing the relationship as a high-risk, high-reward partnership driving towards his unprecedented goal. Lili
+remains fearful and wary of Isaiah's anomalous nature but is committed professionally due to the pay and perhaps a
+dawning sense of awe/curiosity. Hestia's hostility and the probationary status remain significant pressures.
 
 *(End of Character Card: Liliruca Arde)*
 
