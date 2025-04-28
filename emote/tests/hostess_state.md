@@ -4131,8 +4131,8 @@ visibly shocked, paralyzed by the display of overwhelming power.*
 
 *After she mechanically collected the stones, you approached her, deliberately projecting an aura of power. Crouching to
 her eye level, you placed a hand on her head and declared your intent: to be the fastest adventurer in history to reach
-Level 2, framing your power as the engine for that ambition. Lili reacted with stunned, fearful awe, whispering *"
-L-Level... 2?"* *
+Level 2, framing your power as the engine for that ambition. Lili reacted with stunned, fearful awe, whispering "
+L-Level... 2?"*
 
 *Releasing her and returning to a professional demeanor, you instructed her to finish collecting loot (Orc tusks/hides
 from the earlier fight were implied to be collected here too, or previously) and prepare to move on, reinforcing that
@@ -4170,31 +4170,31 @@ trust?"*
 *You felt a pang of annoyance – you hadn't told her about recruiting a Supporter. This was unplanned. You internally
 noted her likely surprise, maybe even slight resentment at being bypassed.*
 
-*"Indeed,"* *you replied, matching her tone.* *"A very successful delve. We're here to report completion and exchange
-materials."* *You gestured towards Lili.* *"Rose Fannett, allow me to introduce Liliruca Arde. She's agreed to take on
-the role of Supporter for the Hestia Familia on a trial basis, starting today."* *You turned slightly.* *"Lili, this is
+*"Indeed," you replied, matching her tone. "A very successful delve. We're here to report completion and exchange
+materials." You gestured towards Lili. "Rose Fannett, allow me to introduce Liliruca Arde. She's agreed to take on
+the role of Supporter for the Hestia Familia on a trial basis, starting today." You turned slightly. "Lili, this is
 Miss Rose Fannett, a Senior Liaison here at the Guild. She handles many of our administrative needs."*
 
-*Rose offered Lili a polite, assessing nod.* *"Miss Arde. Welcome. Having reliable support is indeed crucial for
-efficient delving, especially given Adventurer November's... notable pace."* *Her gaze returned to you.* *"Thank you for
+*Rose offered Lili a polite, assessing nod. "Miss Arde. Welcome. Having reliable support is indeed crucial for
+efficient delving, especially given Adventurer November's... notable pace." Her gaze returned to you. "Thank you for
 the introduction, Adventurer November. Now, regarding your report?"*
 
 *You placed the Orc Patrol and Lizardman Subjugation slips on the counter. At your nod, Lili stepped forward and
 unloaded the impressive haul – tusks, a large quantity of hides, parts, and a cascade of magic stones. Rose's eyes
 widened almost imperceptibly at the sheer volume.*
 
-*She meticulously verified the proofs, stamping the slips.* *"Proofs verified for both quests. Authorization for reward
-payment approved. You may collect from the Treasury."* *She turned to the exchange.* *"The quantity and quality are...
-exceptional for a Floor 3 expedition."* *After calculating, she announced,* *"Total exchange value for materials is...
+*She meticulously verified the proofs, stamping the slips. "Proofs verified for both quests. Authorization for reward
+payment approved. You may collect from the Treasury." She turned to the exchange. "The quantity and quality are...
+exceptional for a Floor 3 expedition." After calculating, she announced, "Total exchange value for materials is...
 19,750 Valis."*
 
 *She pushed the substantial sum across the counter. You swept it into your pouch, Lili gasping quietly beside you.*
 
-*"Thank you, Miss Fannett,"* *you said.* *"Your efficiency is always appreciated."*
+*"Thank you, Miss Fannett," you said. "Your efficiency is always appreciated."*
 
-*"Of course, Adventurer November,"* *she replied smoothly.* *"The Treasury counter is that way..."*
+*"Of course, Adventurer November," she replied smoothly. "The Treasury counter is that way..."*
 
-*As you turned, you leaned back slightly.* *"Miss Fannett,"* *you murmured, voice low,* *"Before I depart the Guild
+*As you turned, you leaned back slightly. "Miss Fannett," you murmured, voice low, "Before I depart the Guild
 today, I'll require a brief follow-up consultation. Regarding... operational efficiencies."*
 
 *You gave a minute nod and turned definitively towards the Treasury, gesturing for Lili to follow, catching Rose's sharp
@@ -4205,17 +4205,17 @@ bringing the Familia's total funds to approximately 58,505 Valis. Lili watched, 
 
 *With business concluded, you led Lili away from the counters towards a quieter edge of the main hall.*
 
-*"Good work today, Lili,"* *you stated, acknowledging her performance.* *"You handled the delve and the load well."*
+*"Good work today, Lili," you stated, acknowledging her performance. "You handled the delve and the load well."*
 
-*"Th-Thank you, Sir,"* *she stammered.*
+*"Th-Thank you, Sir," she stammered.*
 
-*"We're finished here,"* *you continued.* *"However, there's one last administrative matter I need to attend to before
+*"We're finished here," you continued. "However, there's one last administrative matter I need to attend to before
 heading back. I want you to head back to the annex now. Report to Goddess Hestia, let her know the delve was successful
-and we're back safe. I'll handle this last task and catch up with you there shortly."* *You handed her 500 Valis.* *"For
+and we're back safe. I'll handle this last task and catch up with you there shortly." You handed her 500 Valis. "For
 your trouble today, and for any immediate needs. We'll settle the full day's contract payment later. Go straight there,
 report in. I won't be long."*
 
-*Lili looked surprised, then wary, but the tangible Valis and the logical instruction seemed to convince her.* *"Y-Yes,
+*Lili looked surprised, then wary, but the tangible Valis and the logical instruction seemed to convince her. "Y-Yes,
 Sir. Understood. I will report to Lady Hestia immediately. I will await your return at the church, Sir."*
 
 *With a final, quick bow, she turned and hurried towards the Guild exit, navigating the crowd efficiently.*
@@ -4234,21 +4234,21 @@ doors, the practical necessity of her departure handled. With privacy secured, y
 primary objective: the debrief with Rose. Your gaze scanned the hall, finding her near her station. A subtle exchange of
 nods confirmed readiness, and she smoothly disengaged, meeting you near the administrative corridor.*
 
-*"Adventurer November,"* *she murmured professionally, though her eyes held a focused intensity.* *"This way, please. We
+*"Adventurer November," she murmured professionally, though her eyes held a focused intensity. "This way, please. We
 can discuss... operational matters... more privately."*
 
 *You followed her down the quiet corridor to her office. The *click* of the lock behind you signaled the immediate
-shift. Rose turned, the professional mask dissolving instantly into deferential eagerness.* *"Master,"* *she breathed,
+shift. Rose turned, the professional mask dissolving instantly into deferential eagerness. "Master," she breathed,
 awaiting your purpose.*
 
 *Reasserting the established dynamic, you ignored her question and walked past her to sit in *her* executive chair. You
 waited silently, letting the tension build, watching her process the familiar power play. After a moment of hesitation,
 recognizing the cue, she nervously approached and, trembling, lowered herself onto your lap.*
 
-*Breaking the silence, you began petting the soft fur between her ears, eliciting an immediate, deep purr.* *"Very good,
-pet,"* *you murmured.* *"You remember."*
+*Breaking the silence, you began petting the soft fur between her ears, eliciting an immediate, deep purr. "Very good,
+pet," you murmured. "You remember."*
 
-*Allowing her a moment of blissful surrender, you then shifted tone, demanding,* *"What is the status of your
+*Allowing her a moment of blissful surrender, you then shifted tone, demanding, "What is the status of your
 assessment? The... resource procurement."*
 
 *Pulled from the haze, Rose reported her success. The candidate, using the designation 'Silke' (later corrected to an
@@ -4256,11 +4256,11 @@ unnamed naive adventurer using code 'Rivia's Friend' after user revision), was s
 profile (young, human, Level 1, earnest, malleable) and the method of persuasion (psychological manipulation framing
 participation as service to a significant cause, no payment involved). She confirmed the candidate's willingness,
 understanding of the need for intense physical engagement and absolute discretion, and the established signal method (
-message to 'Rivia's Friend' at 'The Drunken Satyr' tavern, directing to 'The Silent Loom Inn').* *"She is prepared,
+message to 'Rivia's Friend' at 'The Drunken Satyr' tavern, directing to 'The Silent Loom Inn'). "She is prepared,
 Master. The signal is all that is required."*
 
 *To reward her success, you leaned forward, delivering a sharp, possessive bite to her neck followed immediately by a
-wet lick, murmuring,* *"Your results... are **very** satisfactory, my kitten."* *The combined physical stimulus and
+wet lick, murmuring, "Your results... are **very** satisfactory, my kitten." The combined physical stimulus and
 trigger word sent Rose into complete sensory overload, collapsing against you, purring violently, sobbing with ecstatic
 release.*
 
@@ -4269,18 +4269,18 @@ firmly high on her inner thigh, holding the pressure without moving, creating ag
 description of the candidate ('Rivia's Friend'). Rose, fighting through the overwhelming sensation and suspense,
 provided a fragmented, clinical description (young, plain, brown hair/eyes, average, worn gear, nervous hopefulness).*
 
-*Her composure finally broke completely under the sustained pressure and denial.* *"M-Master... Please..."* *she sobbed,
-begging for resolution, even punishment.* *"If... if I failed... punish me... Just... please..."*
+*Her composure finally broke completely under the sustained pressure and denial. "M-Master... Please..." she sobbed,
+begging for resolution, even punishment. "If... if I failed... punish me... Just... please..."*
 
 *You relented, shifting tactics. Your fingers pressed firmly against her mound through her tights, grinding in slow,
-tight circles. The unexpected, clinical friction elicited sharp cries and violent shudders.* *Leaning close, you
-reinforced the reward linkage:* *"Finding the candidate... arranging the signal... ensuring discretion... Your execution
-of the task, kitten... it was **very** satisfactory."* *The trigger word combined with the intense grinding sent her
+tight circles. The unexpected, clinical friction elicited sharp cries and violent shudders. Leaning close, you
+reinforced the reward linkage: "Finding the candidate... arranging the signal... ensuring discretion... Your execution
+of the task, kitten... it was **very** satisfactory." The trigger word combined with the intense grinding sent her
 spiraling again, body convulsing, reduced to choked whimpers and ragged purrs.*
 
 *Assuming she climaxed, you withdrew your fingers, noting the dampness. Holding her shocked, glazed gaze, you
-deliberately brought your fingers to your mouth, tasting her release.* *"You taste very good, Pet,"* *you stated
-bluntly, adding,* *"I hope that served as a sufficient reward for completing your assigned task."* *The act of
+deliberately brought your fingers to your mouth, tasting her release. "You taste very good, Pet," you stated
+bluntly, adding, "I hope that served as a sufficient reward for completing your assigned task." The act of
 possessive tasting and framing it as earned reward solidified the dynamic, leaving Rose overwhelmed with shame, ecstasy,
 and validation.*
 
@@ -4302,20 +4302,20 @@ candidate). You warned of the chaos, fame, and danger that would follow breaking
 Familia into the spotlight and attracting intense pressure from major powers like Freya and Loki.*
 
 *Crucially, you promised that this upheaval would also bring the power to set your own terms. *"You won't *have* to be
-kept a secret anymore,"* *you declared.* *"Your loyalty... it will be recognized. Publicly."* *You clarified 'family'
-meant Hestia Familia, with Hestia at the core, but with acknowledged places for other loyal members.* *"You will have
+kept a secret anymore," you declared. "Your loyalty... it will be recognized. Publicly." You clarified 'family'
+meant Hestia Familia, with Hestia at the core, but with acknowledged places for other loyal members. "You will have
 your recognized place beside us... An acknowledged part of the whole."*
 
 *This promise ignited fierce, fanatical devotion in Rose. Wiping away her tears, she swore absolute loyalty, ready to
-pave the way for that future.* *"The Hestia Familia will rise,"* *she declared.* *"And I will be there, at your side...
+pave the way for that future. "The Hestia Familia will rise," she declared. "And I will be there, at your side...
 I swear it."*
 
-*Pleased by her transformation back into your focused Right Hand, you offered final approval:* *"That's my girl."* *You
+*Pleased by her transformation back into your focused Right Hand, you offered final approval: "That's my girl." You
 then issued a practical command: keep a change of clothes in her office going forward, explicitly preparing for future
-encounters intense enough to require it. Rose accepted with fervent understanding.* *"Y-Yes, Master! Understood!
+encounters intense enough to require it. Rose accepted with fervent understanding. "Y-Yes, Master! Understood!
 Absolutely! ... It will be done, Master. Without fail."*
 
-*Finally, you dismissed her.* *"That will be all for now, Rose. Return to your duties. Maintain appearances."* *She
+*Finally, you dismissed her. "That will be all for now, Rose. Return to your duties. Maintain appearances." She
 bowed deeply and exited the office, pulling the door quietly shut, leaving you alone amidst the lingering echoes of
 intense intimacy and strategic planning.*
 
