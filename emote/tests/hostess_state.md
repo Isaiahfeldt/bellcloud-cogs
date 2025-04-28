@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Early/Mid Afternoon  of Day 17.
+# We are currently in the Mid Afternoon of Day 17.
 
 ## Quick Recap - Day by Day:
 
@@ -233,6 +233,53 @@ Below will include recap of each day, recaps of character development, story loc
     * Returned from Dungeon, exchanged materials for significant Valis yield at Guild.
     * Evening Status Update confirmed strong F-Rank gains (**STR F 339, END F 340, DEX F 371, AGI F 364**).
       `[Echoes of the Soul]` remained **`Active Resonance - Unstable`**.
+* **Day 17 (Morning):**
+    * Woke beside Hestia. Discussed plans; Isaiah decided to seek a Supporter today instead of delving immediately,
+      honoring promise to Hestia. Funds approx. 77,705 V; Stats high F-Rank (STR 339, END 340, DEX 371, AGI 364);
+      `[Echoes]` skill 'Unstable'.
+    * Departed annex alone for Guild.
+    * At Guild, spotted Rose; received silent signal to wait ('Later') for her report/task update.
+    * Approached Eina Tulle seeking advice on hiring a Supporter. Eina reacted with relief at his responsible decision,
+      detailed hiring options (Guild registry, agencies, direct recruitment), cautioned heavily against risks of
+      direct/cheap hires, advised on approach/assessment tactics.
+    * Isaiah confirmed preference for direct recruitment (seeking daily commitment, lower cost, growth potential),
+      thanked Eina for detailed advice.
+    * Left Guild, headed to market district hiring tavern 'The Laden Pack'.
+    * In 'The Laden Pack', assessed potential Porters. Was drawn by intuition to a diminutive Pallum (Liliruca Arde "
+      Lili") despite her unconventional appearance/gear.
+    * Approached Lili; she reacted with suspicion. Tested her by feigning interest in another Porter (Borg). Lili
+      interrupted, pitched her own skills (speed, observation, low cost - 800 V).
+    * Isaiah countered with 3000 V/day offer, triggering shock/suspicion. Explained rationale (valuing her specific
+      skills for his high-speed/high-earning style), proved income with Guild receipts.
+    * Lili's suspicion shifted to awe/comprehension. Accepted deal tentatively (pending Hestia's approval), introduced
+      herself.
+* **Day 17 (Mid-Morning / Early Afternoon):**
+    * Left 'The Laden Pack' with Lili after sealing the Supporter deal (3000 V/day, pending Hestia's approval).
+    * Walked to church annex. Hestia reacted to Lili with intense suspicion and hostility.
+    * Mediated introduction; Lili pitched skills nervously. Hestia grudgingly approved a strict trial basis, demanding
+      loyalty and warning Lili away from Isaiah ("Keep your hands off what belongs to *me*"). Lili accepted terms.
+      Hestia privately warned Isaiah about Lili.
+    * Walked towards Babel with Lili. Reassured Lili about Hestia's initial hostility. Briefly inquired about Lili's
+      unbuttoned belt (received evasive answer).
+    * Realized quests forgotten; quick detour to Guild, grabbed Floor 3 Orc Patrol & Lizardman Subjugation quests.
+    * At Babel entrance, briefed Lili on quests, plan (Orcs first), signals (added Lili's 'quiet' signal suggestion),
+      and fallback procedure. Reinforced 'partner' dynamic. Lili confirmed Floor 5/6 experience. Set expectation of
+      hitting Floor 4 soon.
+    * Detected Kobolds. To demonstrate power/set precedent, annihilated patrol (4 Kobolds) in seconds with F-Rank speed.
+      Lili shocked/paralyzed.
+    * Approached Lili, placed hand on head, declared goal (fastest Level 2), framing power as engine for ambition. Lili
+      reacted with stunned, fearful awe. Instructed her to collect loot and proceed.
+* **Day 17 (Mid Afternoon - Dungeon Delve):**
+    * After Level 2 declaration/Kobold kill demo shocked Lili, Isaiah had her collect loot, then proceeded into Floor 3
+      Sector Gamma for Orc quest, adopting Lili's stealth approach suggestion.
+    * Attacked Orc encampment (6 Orcs) with extreme speed/lethality; Lili provided key assist tripping a fleeing Orc.
+      Isaiah thanked her, reinforcing 'partner' value.
+    * Completed Orc Patrol quest, then shifted to Lizardman Subjugation, efficiently killing >25 Lizardmen over several
+      hours while Lili managed substantial loot.
+    * Emerged from Dungeon (late afternoon). Debriefed Lili near Babel; she admitted the intensity was "terrifying" due
+      to his power.
+    * Isaiah reassured her, linking the intensity to his "fastest Level 2" goal and framing his power as their
+      protection. Lili pragmatically reaffirmed commitment to the high-risk/high-reward contract.
 
 ----
 
@@ -3896,6 +3943,92 @@ After a tense internal debate, Lili tentatively accepted, shaking your hand. You
 You then suggested going to meet Hestia immediately.
 
 *(End of Recap: Day 17 - Beginning)*
+
+----
+
+### **Recap: Day 17 - Middle**
+
+*Standing in the functional dimness of 'The Laden Pack' tavern mid-morning on Day 17, you extended your hand towards the
+diminutive Pallum, Liliruca Arde, sealing the tentative agreement: 3000 Valis per day for her services as your dedicated
+Supporter, conditional on Goddess Hestia's approval. Lili, after a moment of visible internal conflict weighing the
+immense opportunity against the inherent risks and strangeness of the offer, hesitantly accepted, her small, calloused
+hand briefly clasping yours.*
+
+*Deciding to proceed immediately, you suggested heading straight to the annex to meet Hestia. Lili, though visibly
+apprehensive at the prospect of facing divine judgment, agreed, stating she was ready. You left the tavern, Lili
+following nervously behind, her unconventional attire (torn top, exposed midriff, unbuttoned skirt over tights) adding
+to her vulnerability.*
+
+*The walk back to the eastern Daedalus district was largely silent. Lili remained watchful and quiet, while your mind
+processed the successful recruitment and anticipated Hestia's reaction. Arriving at the dilapidated church annex, you
+knocked. Hestia opened the door, her initial pleased surprise at seeing you turning instantly to sharp, possessive
+suspicion upon spotting the unfamiliar Pallum.*
+
+*"And... who's *this*?"* *Hestia demanded, her gaze locking onto Lili.*
+
+*You quickly intervened, introducing Lili and explaining your need for a reliable Supporter, highlighting Lili's claimed
+skills (speed, observation, discretion) as fitting your requirements, while reaffirming Hestia's final authority. Hestia
+remained deeply skeptical, openly questioning Lili's size, attire, and trustworthiness ("Looks like she might run off
+with the earnings... or lure you into an alleyway"). She directly challenged Lili, demanding to know why the Pallum
+thought herself worthy.*
+
+*Stepping in again to mediate, you gently reminded Hestia of the value of observation and speed, referenced your
+intuition, and urged her to give Lili a chance, while reiterating the decision was ultimately hers. Prompted by you,
+Lili nervously but sincerely pitched her abilities, emphasizing speed, observation, discretion, and her desperate need
+for reliable work, promising absolute loyalty to the contract in exchange for the generous rate.*
+
+*Hestia, still unconvinced but perhaps swayed slightly by Lili's desperation and your implicit trust, grudgingly agreed
+to a trial basis.* *"Fine,"* *she declared.* *"Probation begins now. One mistake... and you are *out*."* *She asserted
+her authority, demanding loyalty to the *Hestia Familia* and issuing a clear, possessive warning: "Keep your hands off
+what belongs to *me*."*
+
+*Lili, trembling but relieved to have the chance, fervently accepted all conditions, bowing low in submission. Hestia
+curtly ordered her inside to wait by the door while she spoke privately with you.*
+
+*Inside, Hestia whispered her fears about Lili ("shifty," "untrustworthy"), extracting a promise from you to watch her
+closely. You reassured Hestia, promising vigilance but emphasizing the need for support. Reluctantly, Hestia conceded.*
+
+*Ready to depart, you instructed Lili to follow. On the walk back towards Babel, you casually remarked that the
+meeting "went pretty well," prompting Lili's disbelieving "*Sir?*". You acknowledged Hestia's hostility but framed the
+outcome positively – approval granted, trial begun. You reassured Lili that Hestia's attitude would likely soften once
+trust was earned, describing her usual "bubbly" and kind nature beneath the protective fierceness. Lili accepted this
+explanation with professional neutrality.*
+
+*Curious about her unconventional attire, you asked why her belt was undone. Lili offered a brief, evasive answer
+about "easier movement," clearly signaling reluctance to discuss it further. Respecting the boundary, you dropped the
+subject.*
+
+*Approaching Babel, you realized you'd forgotten to pick up quests. Making a quick detour back to the Guild Hall, you
+grabbed two synergistic Floor 3 quests (Lizardman Subjugation, Orc Patrol Elimination) before rejoining Lili.*
+
+*At the Babel entrance, you briefed Lili on the quests, established a game plan (Sector Gamma Orcs first, then
+Lizardmen), and set simple communication signals (fist=stop/danger, point=threat direction, thigh tap=loot, throat
+slice=retreat). You also established an emergency fallback procedure if separated. Crucially, you solicited her input,
+asking for suggestions. Lili tentatively offered adding a 'quiet' signal (hand over mouth), which you immediately
+accepted with genuine approval, reinforcing her role as a 'partner' in navigation.*
+
+*This validation surprised Lili, momentarily breaking her composure before she reverted to professionalism. Descending
+into the Dungeon, you asked about her deepest floor experience. She confirmed Floor 5/6 supporting parties, framing her
+expertise as upper/mid-floor navigation and observation rather than deep delving.*
+
+*You acknowledged her experience, then set high expectations by stating your intention to hit Floor 4 "perhaps even
+tomorrow" and Floors 5/6 soon after, linking this aggressive pace to now having reliable support. Before she could
+react, you detected Kobolds ahead.*
+
+*Deciding to demonstrate your capability and set the precedent, you unleashed your F-Rank speed and power (boosted
+by `[Echoes of the Soul]` resonance), annihilating a patrol of four Kobolds in seconds with brutal efficiency. Lili was
+visibly shocked, paralyzed by the display of overwhelming power.*
+
+*After she mechanically collected the stones, you approached her, deliberately projecting an aura of power. Crouching to
+her eye level, you placed a hand on her head and declared your intent: to be the fastest adventurer in history to reach
+Level 2, framing your power as the engine for that ambition. Lili reacted with stunned, fearful awe, whispering *"
+L-Level... 2?"* *
+
+*Releasing her and returning to a professional demeanor, you instructed her to finish collecting loot (Orc tusks/hides
+from the earlier fight were implied to be collected here too, or previously) and prepare to move on, reinforcing that
+her ability to function after witnessing your power was part of the job.*
+
+*(End of Recap: Day 17 - Middle - Part 1)*
 
 ----
 
