@@ -3745,39 +3745,142 @@ claimed you both, falling asleep side-by-side, the rhythm of your shared life so
 *Day 16 dawned much like the previous day. You awoke beside Hestia in the comfort of the oak bed, the morning routine
 unfolding with familiar ease. Perhaps Hestia initiated another 'resonance session', framed by her as necessary for '
 stabilization', or perhaps the focus shifted immediately to the day's plans. Regardless, the underlying affection and
-established intimacy were constant.*
+established intimacy were constant.
 
-*After breakfast, the decision was made to delve again. Your F-Rank stats demanded challenge, the Familia needed funds,
+After breakfast, the decision was made to delve again. Your F-Rank stats demanded challenge, the Familia needed funds,
 and the `[Echoes of the Soul]` skill remained 'Unstable'. Hestia's anxieties were likely still present but perhaps
-slightly lessened by the previous day's safe return and continued success. The promises of caution were reiterated.*
+slightly lessened by the previous day's safe return and continued success. The promises of caution were reiterated.
 
-*Your visit to the Guild was again purely functional – select synergistic Floor 3 quests (maybe focusing on different
+Your visit to the Guild was again purely functional – select synergistic Floor 3 quests (maybe focusing on different
 monster types or material drops for variety), register quickly, and head straight for Babel. You kept an eye out for
 Rose, a low-level anticipation simmering beneath the surface, but saw no sign of her approaching you or any unusual
-activity.*
+activity.
 
-*The delve itself was another exercise in high-level efficiency. You might have pushed slightly further into Floor 3's
+The delve itself was another exercise in high-level efficiency. You might have pushed slightly further into Floor 3's
 deeper zones or perhaps made another very brief, controlled foray into the absolute upper edge of Floor 4, constantly
 testing your limits and the performance of the Hearthfire Blades. Combat was intense but manageable with your F-Rank
 abilities and the skill's resonance providing sustained stamina. You focused meticulously on harvesting, aiming to
-replicate or exceed Day 15's impressive earnings.*
+replicate or exceed Day 15's impressive earnings.
 
-*Emerging in the late afternoon, the Guild exchange yielded another significant haul of Valis, pushing the Familia's
+Emerging in the late afternoon, the Guild exchange yielded another significant haul of Valis, pushing the Familia's
 total funds to 77,705 Valis. The Status Update that evening showed continued strong growth across your F-Rank stats.
-Hestia read out the numbers with awe: Strength F 339, Endurance F 340, Dexterity F 371, Agility F 364.* The steady
+Hestia read out the numbers with awe: Strength F 339, Endurance F 340, Dexterity F 371, Agility F 364. The steady
 climb was impressive, edging you ever closer to the potential Level Up threshold. The `[Echoes of the Soul]` skill,
-however, remained unchanged: `Active Resonance - Unstable`.*
+however, remained unchanged: `Active Resonance - Unstable`.
 
-*The persistence of the 'Unstable' reading likely caused Hestia some frustration, solidifying her belief that
-only *novelty* (as you'd subtly guided her to believe regarding the Day 12 trigger) or perhaps prolonged, specific types
+The persistence of the 'Unstable' reading likely caused Hestia some frustration, solidifying her belief that
+only novelty (as you'd subtly guided her to believe regarding the Day 12 trigger) or perhaps prolonged, specific types
 of 'stable' resonance between you two could fix it. You would have continued to outwardly agree while inwardly awaiting
-Rose's report, knowing the true key likely lay elsewhere.*
+Rose's report, knowing the true key likely lay elsewhere.
 
-*The evening concluded with the familiar comforts – a shared meal, quiet conversation, the security of holding Hestia
+The evening concluded with the familiar comforts – a shared meal, quiet conversation, the security of holding Hestia
 close in the new bed – but underscored by the mounting anticipation for news from Rose and the ticking clock of your own
-rapidly developing potential.*
+rapidly developing potential.
 
 *(End of Recap: Day 16)*
+
+----
+
+### **(Recap: Day 17 - Beginning)**
+
+The first pale rays of Day 17 light filtered through the window of the church annex. You lay awake in the comfortable
+oak bed, the familiar warmth of Hestia nestled against your side. The past two days of grinding had been exceptionally
+productive, your stats climbing deep into the F-Rank range (STR F 339, END F 340, DEX F 371, AGI F 364), nearly doubling
+the Familia's already impressive funds to approximately 77,705 Valis. Yet, the `[Echoes of the Soul]` skill remained
+stubbornly 'Unstable', a constant reminder of the need for Rose's success.
+
+Hestia stirred beside you, mumbling softly before her eyes fluttered open, meeting yours with sleepy affection. The
+routine of the morning awaited – perhaps another 'session' focused on stability (in her eyes), breakfast, planning the
+day's delve. But beneath the surface of the routine, the anticipation built. Today marked the third day since you gave
+Rose her assignment. Would today be the day she reports back? The thought added a layer of charged expectation to the
+quiet dawn.
+
+The early morning routine unfolded with practiced ease. A soft kiss goodbye for Hestia, who, after extracting the usual
+promises of caution for the day's planned delve, turned her attention back to meticulously organizing the small space of
+the annex. This departure – you heading out alone towards the Guild and the Dungeon, her remaining as the anchor at home
+base – had quickly become the established rhythm of your mornings.
+
+Stepping out of the church annex, you began the walk towards the Guild Hall. Your mind was focused. The routine delve
+awaited, but beneath that, the sharper anticipation simmered – the possibility of news from Rose.
+
+Arriving at the bustling Guild Hall, your eyes scanned the floor. Instead of heading straight for the Quest Board, your
+gaze made a deliberate sweep of the service counters, searching for Rose. You spotted her near the administrative
+corridors, speaking with junior clerks. She noticed you, offered a crisp professional nod, but her lingering gaze and
+subtle cues conveyed a silent message: Report ready. Later.
+
+Accepting the delay, your mind shifted. The memory of your promise to Hestia
+surfaced – Floor 3 only until you find a Supporter. The practical need for support, given your high performance and
+loot potential, felt increasingly urgent. You decided today's priority wasn't delving, but securing that Supporter.
+
+Your gaze drifted towards Eina Tulle's advisory station. She had just finished with another adventurer. Approaching
+her, you explained your shift in plans – prioritizing finding a reliable, discreet, fast Supporter before delving
+further, honoring your promise to Hestia and addressing the inefficiency of managing large solo hauls.
+
+Eina reacted with palpable relief and sincere approval at your responsible decision. She outlined the three main
+avenues: the official Guild registry (safe but slow), reputable independent Porter Guilds (requires research, vetting),
+and direct recruitment at Babel or hiring taverns (fastest potential, highest risk). She strongly cautioned against the
+dangers of direct recruitment, especially seeking someone 'newer' or 'cheaper', emphasizing the risk of incompetence or
+betrayal.
+
+Despite her warnings, you confirmed that direct recruitment felt like the best fit for your needs – requiring daily
+commitment, flexibility, and manageable costs, aiming for someone who could grow with the Familia. You asked for
+specific advice on locations and approach.
+
+Eina, accepting your determination but arming you with caution, advised on hiring tavern locations ('The Laden Pack', '
+The Porter's Respite' near the market district), approach tactics (project confidence, state needs clearly, assess
+gear/demeanor, ask specific questions), payment terms (negotiate daily rate, payment on successful return standard for
+newer Porters), and the paramount importance of trust and clear agreements. She stressed the need to interview multiple
+candidates and trust your gut, ending with a plea for extreme care.
+
+Thanking Eina sincerely for her invaluable, detailed guidance, you reaffirmed your intention to proceed cautiously with
+direct recruitment. You scanned the hall one last time, confirming Rose was still occupied and not signaling you, then
+exited the Guild Hall, heading towards the market district and the hiring taverns.
+
+During the walk, you mentally wrestled with the ambiguity of Rose's 'Later', accepting the need for patience while
+focusing on the immediate task. Navigating the bustling market streets, you located 'The Laden Pack', a
+functional-looking establishment.
+
+Inside, the atmosphere was utilitarian. You scanned the patrons, noting several potential Porters. Your attention,
+however, was drawn by intuition to a diminutive Pallum – Liliruca Arde – huddled in a corner booth, looking wary and out
+of place in her torn red and white hooded top, exposed midriff, unbuttoned skirt, and black tights. Despite initially
+dismissing her due to her size and unconventional attire, a persistent feeling prompted you to approach her first.
+
+Your direct inquiry about Supporter work startled her. She questioned your motives, highlighting her own perceived
+limitations and expressing deep suspicion. When you offered the unconventional explanation of 'intuition', her disbelief
+intensified.
+
+Testing her defiance, you called her bluff, calmly accepting her self-assessment and turning away to approach a burly,
+eager Dog Person Porter (Borg) at the bar, initiating a standard hiring conversation.
+
+Lili, watching this unfold, experienced a wave of regret and pragmatic urgency. Overcoming her fear, she darted over
+and interrupted your conversation with Borg, calling out "Wait!". Turning back to her, you held her gaze silently.
+
+She made a desperate pitch, emphasizing her speed, observation skills, discretion, and offering a low rate (800
+Valis/day). You closed the distance, stating simply, "I need fast." Then, you countered her offer with an exorbitant
+3000 Valis per day, explaining it reflected the high value you placed on the specific combination of speed, observation,
+daily reliability, and discretion you required.
+
+Your seemingly ludicrous offer triggered intense shock and suspicion in Lili. She demanded to know the 'catch'. You
+calmly reassured her, explaining your rationale – your high earnings (proven by showing recent Guild receipts totaling
+tens of thousands from solo delves), the demanding pace, and viewing the high rate as a necessary investment in
+the right kind of dedicated support for a growing Familia. You offered to sit and explain fully, giving her the option
+to walk away.
+
+Hesitantly, she agreed to talk, returning to the booth but remaining wary. You sat down, explaining your need for her
+specific skills over raw strength, emphasizing the daily commitment and the concept of her being part of the Familia's
+foundation. You revealed the Guild receipts as proof of your earning potential, contextualizing the 3000 Valis offer.
+
+Seeing the proof, Lili's suspicion shifted to stunned comprehension and awe. She understood the rate now but
+questioned how you achieved such solo success. You deflected carefully, citing speed, gear, and luck, steering back to
+the importance of support. You then formally asked for her name.
+
+She cautiously introduced herself as "Liliruca Arde." You acknowledged her name, reiterated the offer (3000 Valis/day),
+stated the final condition – meeting Goddess Hestia for approval – and extended your hand to seal the deal.
+
+After a tense internal debate, Lili tentatively accepted, shaking your hand. You noted the striking size difference.
+You then suggested going to meet Hestia immediately.
+
+*(End of Recap: Day 17 - Beginning)*
 
 ----
 
