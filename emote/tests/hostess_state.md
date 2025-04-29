@@ -313,7 +313,22 @@ Below will include recap of each day, recaps of character development, story loc
     * Rose swore **fanatical loyalty** and commitment; Isaiah approved ("That's my girl").
     * Commanded Rose to **keep spare clothes in her office** for future encounters, implying expectation of recurrence.
     * **Dismissed Rose** back to her duties; she departed obediently. Isaiah remained **alone in Rose's office**.
-
+* **Day 17 (End):**
+    * Isaiah returned to the annex after meeting with **Rose (who confirmed 'Rivia's Friend' was secured)**.
+    * Found **Hestia overseeing Lili sorting loot**. Hestia was initially suspicious of Isaiah's delay.
+    * Isaiah confirmed the day's earnings (**21,750 V**), thrilling Hestia.
+    * Isaiah **paid Lili the remaining 2500 V** of her 3000 V day-rate.
+    * Isaiah suggested Lili join them for dinner; **Hestia reacted with angry, possessive refusal**, dismissing Lili's
+      contribution.
+    * Isaiah became **coldly angry with Hestia** for her unfairness/classism.
+    * Confronted by Isaiah's anger and disappointment, Hestia broke down, tearfully apologized to Isaiah.
+    * Isaiah directed her that **the apology was owed to Lili**.
+    * Hestia, struggling with pride, **awkwardly apologized to Lili** for dismissing her work.
+    * Lili accepted nervously. Isaiah **comforted Hestia**, validating her apology.
+    * Isaiah **dismissed Lili** for the day.
+    * Isaiah playfully told Hestia she'd **need to get used to Lili**. Hestia reluctantly agreed Lili could stay on **"
+      strict probation"**.
+    * The evening concluded with reconciliation, a shared meal, and retiring to the new bed.
 ----
 
 ## Expanded Recap - Day by Day:
@@ -4320,6 +4335,117 @@ bowed deeply and exited the office, pulling the door quietly shut, leaving you a
 intense intimacy and strategic planning.*
 
 *(End of Recap: Day 17 - Middle - Part 3)*
+
+----
+
+### **Recap: Day 17 - End**
+
+*Alone in the quiet, sterile space of Rose's private office, the faint scent of ozone and her lingering presence seemed
+to cling to the air after she departed obediently. You remained seated in her chair for another moment, letting the
+echoes of the intense encounter settle – the chilling practicality of procuring a 'playmate', the confirmation of Rose's
+fanatical loyalty, the promise of an acknowledged future place for her, the weight of secrets piling up.*
+
+*Pushing yourself up, you straightened your tunic and cloak, restoring a semblance of normalcy. You walked to the door,
+checked the corridor, and finding it clear, let yourself out, locking the door securely behind you. Merging back into
+the administrative corridors and then the main Guild Hall felt like re-entering a different reality, the mundane bustle
+a stark contrast to the charged intimacy just moments before.*
+
+*You exited the Guild Hall into the late afternoon sun, the air beginning to cool. The walk back towards the eastern
+Daedalus district felt purposeful. The successful delve with Lili, the confirmation of the plan to
+activate `[Echoes of the Soul]` via Rose's procured candidate, the substantial boost to the Familia funds – it was a day
+of significant progress on multiple fronts. Your thoughts turned towards the annex, towards Hestia, anticipating the
+familiar comfort of home base.*
+
+*Reaching the weathered church and the annex door, you pushed it open. Inside, the scene was one of industrious activity
+under tense observation. Hestia stood near the new bed, arms crossed, watching as Lili knelt on the floor, meticulously
+sorting the large pile of Lizardman hides. The diminutive Pallum worked with focused energy, her small frame radiating
+tension under the Goddess's stern gaze.*
+
+*Hestia turned sharply as you entered, her stern expression melting instantly into warm relief. "Isaiah! You're
+back!" She rushed over, taking your arm possessively. "Everything took longer than expected? Was the...
+consultation... difficult?" Her question held an undercurrent of suspicion about your delay.*
+
+*Lili glanced up nervously, offered a quick bow, then immediately focused back on the hides.*
+
+*"Nothing difficult," you reassured Hestia calmly, keeping your explanation vague. "Just necessary Guild
+bureaucracy. Tedious stuff. Everything handled now. How did things go here? Did our new Supporter report in properly?"*
+
+*Hestia sniffed. "Hmph. She arrived, delivered the message... Said all the right things." Her gaze flickered towards
+Lili. "Seems capable enough at sorting loot, I suppose. Still looks shifty, though."*
+
+*Acknowledging Lili's work with a nod ("Good work organizing that, Lili. Efficiency is appreciated"), you watched the
+Pallum flinch but continue her task. You then confirmed the day's earnings to Hestia, "Between the materials and the
+quest rewards... we added another twenty-one thousand, seven hundred fifty Valis to the Familia funds today."*
+
+*Hestia gasped, overjoyed. "Twenty-one *thousand*?! Again?! Isaiah! That's... incredible!" She beamed, momentarily
+forgetting her distrust in her excitement. "We're getting rich!"*
+
+*Lili looked up again, awe evident in her wide eyes at the confirmed sum.*
+
+*Seeing Lili's reaction, and feeling a sense of fairness, you paused Hestia's celebration. "Hold on a moment,
+Hestia." You walked over to Lili, crouched down, and presented the remainder of her payment. "Lili. This is the
+remainder of the agreed-upon payment for today's delve. Three thousand Valis total, as contracted."*
+
+*Lili stared at the significant sum in her hand, overwhelmed, stammering her thanks.*
+
+*Standing up, you turned back to Hestia. "Hestia," you began gently, "Since it was a shared victory today... what
+do you think about inviting her to share dinner with us tonight? As part of the team for the day?"*
+
+*Hestia reacted with sputtering disbelief and sharp refusal. "Invite *her*?! To *dinner*?! With *us*?!
+Absolutely *not*, Isaiah! ... She's just... she's the *Supporter*! You paid her! ... It's *our* victory, Isaiah! Not...
+not *hers*!" She crossed her arms defiantly, dismissing Lili entirely.*
+
+*Her words, the casual disregard, sparked a cold flicker of anger within you, the first time you'd felt it directed at
+Hestia. Your expression hardened, the warmth retracting. "Yes, Hestia. You did [say something wrong]," you stated
+quietly, your voice lacking its usual affection. "What you just said... how you dismissed Lili... it made me angry."*
+*You explained Lili's contribution – keeping pace, hauling the load, the combat assist. "Treating her like she's
+nothing more than baggage we paid for... it felt unfair. Unkind. It's not who I thought you were."*
+
+*Your cold disapproval shattered Hestia. Tears welled instantly. "Angry...? You're... angry? At... at me?" She
+sobbed, trying to justify herself. "I just... I wanted it to be *us*... I didn't mean..." Your final sentence, the
+implied disappointment in her character, broke her. "I'm sorry," she whispered tearfully. "I'm so sorry, Isaiah.
+Please... don't be angry..."*
+
+*Your gaze shifted pointedly towards Lili. "It's not me you need to apologize to."*
+
+*Hestia, after a visible internal struggle, reluctantly turned towards the terrified Pallum. "L-Lili... ruca...
+Arde...?" she stammered, avoiding eye contact. "I... I was... unfair. Earlier. You... you did help today...
+Dismissing that... wasn't right. It... It wasn't kind. So... I... I apologize." The apology was awkward, costing her
+visible pride.*
+
+*Lili bowed deeply, stammering, "N-No need... Goddess Hestia... Th-Thank you..."*
+
+*Seeing Hestia's genuine effort, your anger dissolved. "Thank you, Hestia," you said softly, placing a hand on her
+shoulder. "That took courage... that was the right thing to do. That's the Goddess I know." Hestia leaned into your
+touch, relief flooding her. "You did perfectly," you confirmed.*
+
+*You dismissed Lili ("Alright, Lili, thank you again for your work today. You're dismissed. Get some rest."). The Pallum
+practically bolted, thanking you both nervously before escaping.*
+
+*The door clicked shut. Hestia collapsed against you, wrapping her arms around your waist. "Oh, Isaiah... I really
+messed that up... I'm sorry I made you angry..."*
+
+*Holding her close, stroking her hair, you reassured her. "It's okay, Hestia. We talked about it. You apologized. It's
+done." You then added playfully, looking down at her, "I think you're gonna have to get used to Lili being around,
+y'know."*
+
+*Hestia pulled back slightly, pouting. "Hmph. Get *used* to her? ... She's still on probation! Very strict
+probation!" She poked your chest. "And she better remember what I said... contract is for *support*, nothing more."*
+*Despite the lingering possessiveness, she sighed dramatically. "Fine. Maybe... maybe she can stick around. *If* she
+behaves."*
+
+*With the tension eased and the Lili situation reluctantly settled for now, you smiled. "Alright, alright. Probation
+it is. Now, about that celebratory dinner... What are you in the mood for?"*
+
+*The remainder of the evening passed in comfortable reconciliation. You and Hestia prepared and shared dinner together,
+the earlier conflict resolved, replaced by the familiar warmth and intimacy of your shared space. Plans were likely made
+for Day 18 – perhaps another delve, maybe testing Lili again, or focusing on consolidating gains. Eventually, retiring
+to the sturdy oak bed, the comfort and security felt profound. Side-by-side, sharing quiet affection, sleep came easily,
+concluding Day 17.*
+
+*(End of Recap: Day 17 - End)*
+
+----
 
 # Character Cards
 
