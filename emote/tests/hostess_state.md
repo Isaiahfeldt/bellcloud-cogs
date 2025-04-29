@@ -374,11 +374,11 @@ Below will include recap of each day, recaps of character development, story loc
     * **Detailed Report:** Recounted entire Lyra encounter (violations, mutual climax, resonance shift, lack of
       precautions confirmed, Lyra's confession, setting next meeting).
     * **Rose's Reaction:** Intense fury towards Lyra, offered to "eliminate" her.
-    * **Counter-Strategy Proposed:** Isaiah rejected assassination, proposed **Rose attend next 'checkup' with him** to
+    * **Counter-Strategy Proposed:** Isaiah rejected assassination, proposed Rose attend next 'checkup' with him to
       observe/protect/disrupt Lyra's control, leveraging mutual blackmail potential.
     * **Rose Accepts:** Rose agreed to the risky plan, embracing role as protector/Right Hand.
     * **Validation & Promise:** Isaiah affirmed Rose's vital role ("entrust my life," "Right Hand," "most precious
-      asset"). Promised **acknowledged public place** beside him after inevitable Level 2 upheaval.
+      asset"). Promised acknowledged public place beside him after inevitable Level 2 upheaval.
     * **Solidified Loyalty:** Rose swore fanatical loyalty, ready for future chaos.
     * **Dual Acknowledgment:** Isaiah acknowledged value of strategic talks, then whispered promise not to forget her '
       cravings' (Pet dynamic).
