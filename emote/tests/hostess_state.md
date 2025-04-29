@@ -4727,9 +4727,50 @@ soft words, gentle touches, or simply the shared warmth and security of the embr
 both. You fell asleep side-by-side, the rhythm of your shared life solidifying further, though the secret of the
 morning's encounter with Lyra and the persistent heat from your Falna remained your hidden burden.*
 
-*(End of ExpandedRecap: Day 18 - End - [TimeSkipped])*
+*(End of Recap: Day 18 - End - [TimeSkipped])*
 
 ---
+
+### **Recap: Day 19 - Beginning / Middle [TimeSkipped]**
+
+*Day 19 began with the now-familiar comfort of waking beside Hestia in the sturdy oak bed. The morning routine unfolded
+with easy intimacy – shared greetings, washing up, dressing. The primary plan was clear: another Dungeon delve with Lili
+to continue capitalizing on your rapid growth and accumulating funds. The persistent heat from your Falna, a residue
+from the Day 18 Lyra encounter, remained a low-level physical reality beneath your gear, though perhaps slightly less
+intense than the previous day.*
+
+*After a simple breakfast and reassuring Hestia with promises of caution (her anxieties likely present but tempered by
+consecutive days of success), you departed the annex alone.*
+
+*You met Lili at the Guild Hall around mid-morning as arranged. Her demeanor seemed slightly more relaxed, buoyed by the
+consistent pay and successful integration into the delve routine, though a baseline wariness likely remained. Together,
+you approached the Quest Board.*
+
+*Drawing on the previous day's collaborative approach, you likely discussed options for Floor 3, settling
+on two quests designed for high yield and perhaps targeting different monster types or materials than Day 18 (e.g.,
+maybe focusing on Orc variants or collecting specific magical reagents dropped by certain Lizards). You registered the
+quests quickly at a generic counter.*
+
+*Proceeding to Babel, you descended into the Dungeon. The delve itself followed the established pattern of high
+efficiency. Your E-Rank Agility and Dexterity, combined with the potent (if still 'Elevated') resonance
+from `[Echoes of the Soul]` and the effectiveness of the Hearthfire Blades, allowed for swift and decisive combat on
+Floor 3. Lili kept pace, diligently managing the increasing load of magic stones, monster parts, and quest items.*
+
+*You spent several hours systematically clearing designated areas or hunting specific targets according to the quests,
+pushing yourselves but avoiding unnecessary risks or anomalies. The focus remained squarely on efficient grinding and
+resource accumulation.*
+
+*Emerging from the Dungeon in the late afternoon, weary but successful, you returned to the Guild Hall. At the exchange
+counter, the significant haul of materials from the day's delve netted 24,100 Valis. Collecting the fixed rewards
+for the two completed quests at the Treasury added approximately 2,100 Valis.*
+
+*The total earnings for the Day 19 delve were 26,200 Valis.*
+
+*(Updated Familia Funds approximately 100,305 Valis, crossing the 100k threshold).*
+
+*With Guild business concluded, you led Lili away from the counters near the Guild entrance.*
+
+*(End of Recap: Day 19 - Beginning / Middle [TimeSkipped])*
 
 # Character Cards
 
