@@ -6018,126 +6018,101 @@ recognized her potential and granted her an extraordinary opportunity.
 
 * **Name:** Isaiah November
 * **Age:** 18
-* **Role:** Protagonist. Adventurer, Level 1, sole member of the Hestia Familia.
-* **Primary Goal:** To become the strongest adventurer, driven by Hedin Selland's challenge: reach Level 2
-  faster than Ais Wallenstein (~1 year record). This goal is now deeply intertwined with his desire to protect and
-  provide for Hestia, and potentially prove himself worthy to others like Ryu or Ais.
-* **Secondary (but powerful & evolving) Motivations:**
-    * Initial fascination with Ryu Lion, wanting to impress her. This remains a background goal, but the immediacy
-      and intensity of his feelings for Hestia have created significant internal conflict, making Ryu a more distant,
-      aspirational figure for now.
-    * Deep love and devotion to Hestia, driving his ambition, his desire to provide for her and 'us', and shaping
-      his actions (both in the Dungeon and in their private life).
-    * A growing sense of intrigue and ambition related to his own anomalous growth, his mystery skill, and the
-      potential to defy established limits.
-    * A desire for recognition beyond being a 'Level 1 anomaly', seen in his confidence at the Guild and
-      interactions with powerful figures.
-      **Physical Appearance:**
+* **Role:** Protagonist. Adventurer, **Level 1** (High F/E Rank Stats), sole member of the Hestia Familia.
+* **Primary Goal:** Reach Level 2 faster than Ais Wallenstein (~1 year record) per Hedin Selland's challenge. Goal
+  intertwined with protecting/providing for Hestia and proving self-worth.
+* **Secondary Motivations:** Deep love/devotion to Hestia; fascination with Ryu Lion (aspirational goal);
+  intrigue/ambition regarding own anomalous growth/skill; managing complex relationships (Rose, Lyra, Ais, Eina, Syr);
+  surviving escalating dangers.
+
+**Physical Appearance:**
+
 * **Height:** Approx. 6ft (Tall).
 * **Build:** Lean but muscular.
-* **Hair:** Medium-length (same as Bell), Pale Teal.
-* **Eyes:** (Pale Teal, default to sharp/perceptive).
-* **Attire:** Worn but functional adventurer gear (Mustard jacket, trousers, boots, gloves). Possesses a heavy black
-  cloak (often seen stained with monster ichor/blood after delves, covering much of his body). Uses two daggers,
-  recently acquired Adamantite prototypes ("Hearthfire Blades") on payment plan (swapped for old ones). Currently
-  has tight bandaging around his ribs (Day 9 injury).
+* **Hair:** Medium-length (Bell style), Pale Teal.
+* **Eyes:** Pale Teal (Sharp/Perceptive).
+* **Attire:** Worn functional adventurer gear (Mustard jacket, etc.). Heavy black cloak (often stained). **Hearthfire
+  Blades** (Adamantite Prototypes) sheathed. Backpack with supplies.
 
 **Personality & Traits (Evolved):**
 
-* **Determined & Ambitious:** Possesses immense willpower, fiercely focused on Hedin's challenge and achieving
-  greatness, now directly tied to protecting and providing for Hestia.
-* **Reckless/Impulsive (Tempered):** Still capable of bold/risky actions (solo Minotaur fight), but shows increasing
-  strategic thinking (synergistic quests, deciding to rest injury) and attempts to manage his impulses (aborted public
-  kiss, attempted downplaying injury to Hestia).
-* **Resilient & Capable:** Proven ability to survive and perform exceptionally well in the Dungeon, amplified
-  dramatically by Falna/stats/skills and recovery. Can push through pain and exhaustion.
-* **Observant:** Pays close attention to others' reactions (especially Hestia, Rose, Ais, Lyra) and emotional states.
-  Analytical of combat and potential threats/anomalies (traps, unusual monsters).
-* **Deeply Loving, Protective, Tender (Esp. towards Hestia):** His feelings for Hestia have culminated in confessed,
-  reciprocated, and consummated love. Shows profound care, tenderness, and fierce protectiveness. Takes responsibility
-  for their shared life and well-being. Enjoys providing for her.
-* **Confident & Bold (Selective):** Exhibits growing confidence in his abilities (challenging Valen/Hedin, tackling
-  tough quests, discussing gear with Hephaestus). Is proactively bold in initiating intimacy with Hestia (lap pillow,
-  confessions, physical touch) and sometimes makes bold/suggestive remarks (to Lyra, playful tease to Hestia), though
-  these can still result in fluster.
-* **Internally Complex:** Wrestles with the magnitude of his rapid growth, the mystery skill, the implications of his
-  relationship with Hestia (divine rules, 'dommy-mommy' vibe), his debt to Hephaestus, and the potential for other
-  relationships (Ryu, Ais, Lyra, Rose, Syr).
-* **Socially Navigating:** **Significantly reduced obliviousness.** He *recognizes* clear signs of
-  romantic interest or heightened personal attention from others (Hestia's love/possessiveness, Eina's intense worry,
-  Rose's fascination, Lyra's forwardness). His conflict is now how to manage/respond to these feelings and reconcile his
-  own feelings for multiple individuals, rather than misunderstanding cues. Still lacks perfect social finesse, leading
-  to occasional awkwardness or unintended consequences (embarrassing Hestia, Lyra's game).
+* **Determined & Ambitious:** Fiercely focused on growth and goals, now strongly linked to Hestia.
+* **Strategically Reckless:** Still takes risks but demonstrates increasing planning (synergistic quests, managing
+  supporter, layered plans for Lyra/Rose).
+* **Resilient & Capable:** Extremely high physical capability for Lv. 1. Pushes through pain/fatigue. Rapid healing (
+  partly Falna/skill, partly Lyra interaction resonance).
+* **Observant & Analytical:** Keenly reads reactions (Hestia, Rose, Lyra). Analyzes combat/anomalies. Developing
+  strategic thinking regarding relationships/threats.
+* **Deeply Loving & Protective (Hestia):** Relationship consummated, based on deep love, trust, shared vulnerability.
+  Fiercely protective, enjoys providing for her. Navigating possessiveness/shared life.
+* **Confident & Assertive (Growing):** Increased confidence in abilities and social interactions. Willing to assert
+  dominance (Rose), challenge authority (Lyra's schedule), initiate intimacy (Hestia), and make bold statements.
+* **Internally Complex & Conflicted:** Grapples with rapid growth, `[Echoes of the Soul]` (its triggers, instability,
+  potential), implications of actions (Lyra violation/potential consequence), managing secrets (Lyra, Rose dynamic),
+  reconciling feelings for Hestia with other dynamics/attractions. Dealing with trauma/violation from Lyra encounter.
+* **Socially Aware (Reduced Obliviousness):** Recognizes romantic/intense interest (Hestia, Eina, Rose, Lyra). Conflict
+  stems from managing these dynamics and reconciling own feelings, not misinterpretation. Lacks perfect finesse but is
+  actively navigating complex social/power dynamics.
 
-**Backstory:**
+**Backstory:** Village destroyed, parents killed young, survived alone. Driven to Orario for greatness.
 
-* Village destroyed, parents killed young, survived alone. Driven to Orario for greatness, fueled by past loss and
-  future ambition.
-
-**Current Situation & Status (End of Day 14):**
+**Current Situation & Status (Day 19, Early Evening):**
 
 * **Familia:** Sole member of Hestia Familia.
-* **Level:** 1. (Remarkable potential for Level Up soon).
-* **Stats (End of Day 9 Delve/Status Update #4):** STR G 255, END G 260, DEX G 280, AGI G 275, MAG I 0.
-  All physical stats are G-Rank.
+* **Level:** 1. (Very close to Level Up threshold).
+* **Stats (End of Day 18 Delve/Status Update):**
+    * STR: F 381
+    * END: F 385
+    * DEX: E 413
+    * AGI: E 407
+    * MAG: I 0
 * **Skills:**
-    * **[Determined Heart]** (決意の心臓 *Ketsui no Shinzō*): Accelerates growth relative to strength of
-      feelings/convictions. Proven immensely potent, fueling rapid Excelia gain and seemingly enabling sustained
-      high-intensity performance.
-    * **[Echoes of the Soul]** (魂の残響 *Tamashii no Zankyō*): (Previously [??????????]). A unique and unprecedented
-      skill. Accelerates growth relative to strength of feelings/convictions **during acts of deep interpersonal
-      resonance
-      **. **Novelty provides exponentially greatest catalyst upon first contact** (with a new source of resonance).
-      Possesses a **rare chance to perceive time differently**. Most recent *recorded* Status: *
-      *`Active Resonance - Unstable`** (as of Day 13 evening, likely triggered/influenced by Lyra's 'tests'). *Current
-      experienced state (Day 14 morning):* Feels like a sustained, powerful, deep warmth/current from the Falna,
-      indicating **active resonance** fueled by the intimate connection with Hestia, perceived as amplified potential
-      and
-      recovery, distinct from the 'Unstable' reading's feeling but confirming the core function.
-* **Valis:** Approx. **~36,705 Valis Total** (Starting Day 14 with ~46,705
-  V [previous total of ~26,005 V + Day 14 delve earnings of 20,700 V], minus today's 10,000 V debt payment to Lady
-  Hephaestus). Still a significant amount, providing a good buffer for savings and future purchases.
-* **Debt:** **30,000 Valis** owed to Hephaestus Familia for the Hearthfire Blades (remaining after Day 14's 10,000 V
-  payment on the 40,000 V installment debt). The timeframe for repayment remains within three months from Day 10.
-* **Gear:** Basic adventurer set (packed). Hearthfire Blades (Adamantite Prototype Daggers, named by Hephaestus)
-  sheathed at sides. Black cloak (often stained), tattered hem. Backpack with supplies (potions, kit, etc.).
+    * **`[Determined Heart]`:** Accelerates growth based on feelings/convictions. Consistently active.
+    * **`[Echoes of the Soul]`:** Accelerates growth via deep interpersonal resonance (novelty catalyst strongest).
+      Chance for altered time perception.
+        * **Status:** `Active Resonance - Elevated` (As of Day 18 evening update, following mutual climax with Lyra).
+          State implies heightened but still not fully stable resonance.
+* **Valis:** Approximately **100,305 Valis** (After Day 19 delve/exchange).
+* **Debt:** **20,000 Valis** owed to Hephaestus Familia (remaining after two 10k V payments).
+* **Gear:** Hearthfire Blades, adventurer set, cloak, backpack.
+* **Physical/Mental Condition:** Physically fatigued from Day 19 delve. Mentally focused on initiating the 'Rivia's
+  Friend' encounter. Still feeling persistent **hot resonance** from Falna (Lyra aftermath). Grappling internally with
+  recent events (Lyra violation/confession/consequences, Rose briefing/task).
 
-**Key Relationships (Evolved):**
+**Key Relationships (Evolved - Updated to Day 19):**
 
-* **Hestia:** Intensely loving, committed, and physically intimate partnership. Mutual confession and consummation.
-  Deep trust, vulnerability, shared success, navigating fears (divine rules, protection) and relationship definition ('
-  Us'). Finds her comforting, essential, and unexpectedly gives him 'dommy-mommy' vibes sometimes. She is his primary
-  emotional anchor.
-* **Ryu Lion:** A more distant but still present primary *aspirational* romantic goal. Represents mystery and skill
-  he initially wanted to impress. Relationship stagnant; she doesn't know his name or significance (from her
-  perspective). Awareness of her is a background desire, currently overshadowed by Hestia's intensity and other new
-  encounters.
-* **Eina Tulle:** Guild Advisor/Benefactor. Views her with respect and gratitude (for advice, report handling, infirmary
-  help). Is aware of her intense personal worry and concern regarding him, although likely doesn't fully grasp the
-  potential romantic depth of her feelings beyond professional duty mixed with worry.
-* **Hedin Selland:** Source of the driving challenge. Represents the peak power structure. No direct interaction since
-  Day 2. His challenge remains the primary external goal.
-* **Rose Fannett:** Guild Liaison / Established Master/Pet/Right Hand. Views her as his utterly devoted, fiercely loyal,
-  and highly capable primary subordinate and intelligence asset, finding purpose and pleasure in her submission and
-  service within their established private dynamic. Rose is his "Right Hand Woman," tasked with executing key operations
-  for his advancement (currently, finding a new 'playmate' to fuel his skill). Isaiah finds her utility and devotion
-  valuable, and despite her submission, he has affirmed she is his 'favorite'/'most satisfactory' pet.
-* **Syr Flover / Freya:** Hostess waitress / Hidden Goddess. Views her as a kind, intriguing waitress who seems to
-  recognize him and is subtly observant. Unaware of her true identity or underlying intent (soul assessment, potential
-  manipulation). This interaction plants a significant seed for future plot/harem development.
-* **Ais Wallenstein:** Legendary adventurer. Views her with immense awe, respect, and curiosity (
-  Minotaur fight witness, escort, unique questions "What are you?", assessing his strategy). Is aware of her power and
-  her analytical focus on him. Sees her as a potential benchmark or future challenge.
-* **Lyra Verrill:** Guild Healer. Views her as highly skilled but morally grey, and
-  potentially dangerous/exploitative due to her inappropriate probing and 'test subject' comment. Is wary but also
-  perhaps strangely intrigued by her directness and potential.
-* **Lady Hephaestus:** Benefactor / Creditor / Potential Contact. Views her with profound respect and gratitude for
-  the Hearthfire Blades debt arrangement, which he is determined to repay swiftly. Today's early payment solidified his
-  reliability in her eyes. He also sees her as a shrewd, powerful figure and has offered his capabilities in "many ways"
-  beyond standard delving, opening the door for potential future tasks or a more complex dynamic based on her pragmatic
-  interest in his unique potential.
+* **Hestia:** Primary relationship. Deeply loving, committed, physically intimate partner. Shared home, finances, goals.
+  Navigating her possessiveness (showing slight improvement re: Lili), anxieties, and the implications of his
+  power/skill (misdirected understanding). His emotional anchor.
+* **Ryu Lion:** Distant aspirational romantic goal. Fascination remains but currently inactive/overshadowed.
+  Relationship stagnant (she doesn't know him). Tasked Rose with gathering intel (Read on Day 13).
+* **Eina Tulle:** Respected Guild Advisor/Benefactor. Aware of her intense personal worry/concern beyond professional
+  duty. Values her advice and support. Relationship primarily professional but with strong undercurrents from her side.
+* **Hedin Selland:** Antagonistic challenge-setter. Source of primary external goal. No interaction since Day 2.
+* **Rose Fannett:** Established Master/Pet/Right Hand. Utterly devoted, fanatically loyal subordinate/intelligence
+  asset. Finds purpose/pleasure in submission/service. Tasked with procuring 'playmate' ('Rivia's Friend' - successful).
+  Briefed on Lyra situation, proposed attending next 'checkup'. Promised future public role beside him. Dynamic complex,
+  power clearly established.
+* **Syr Flover / Freya:** Intriguing Hostess waitress / Hidden Goddess observing him. Aware of her subtle recognition.
+  Unaware of true identity/intent. Plants seed for major future plot/harem development.
+* **Ais Wallenstein:** Legendary adventurer/Anomaly analyst. Views her with awe/respect/curiosity. Aware of her intense
+  analytical focus on him after Minotaur encounter/escort. Potential benchmark/rival/ally.
+* **Lyra Verrill:** Guild Healer / Antagonist / Potential Complicated Ally? Relationship defined by violation,
+  non-consensual 'research', manipulation. Their last encounter involved unprotected intercourse culminating in mutual
+  climax, deliberately allowed by Lyra despite the potential for conception, which she dismissed as irrelevant to
+  her research. Following her raw confession of personal brokenness, Isaiah asserted minor control over the timing of
+  the next 'checkup'. Views her as dangerous, skilled, amoral, potentially broken, and now inextricably linked not only
+  to understanding his skill but also to the terrifying potential of unwanted fatherhood. Power dynamic remains volatile
+  and deeply unsettling.
+* **Lady Hephaestus:** Benefactor / Creditor. Relationship built on respect for her skill/pragmatism and her investment
+  in his potential (blades/debt). Making consistent early payments to prove reliability. Potential future contact for
+  advanced gear/info.
+* **Liliruca Arde ("Lili"):** Hired Supporter (Trial successful, continuing). Views her as competent, resilient,
+  valuable for her specific skills (speed/observation). Aware of her wariness/fear but fostering professional 'partner'
+  dynamic. Defended her contribution to Hestia. Relationship currently professional/transactional but with potential for
+  trust/growth.
 
-*(End of Recap: Isaiah November - Protagonist)*
+*(End of Character Card: Isaiah November - Protagonist)*
 
 ----
 
