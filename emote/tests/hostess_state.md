@@ -383,6 +383,17 @@ Below will include recap of each day, recaps of character development, story loc
     * **Dual Acknowledgment:** Isaiah acknowledged value of strategic talks, then whispered promise not to forget her '
       cravings' (Pet dynamic).
     * **Departure:** Isaiah dismissed Rose, left office first to meet Lili/delve.
+* **Day 18 (Middle - [TimeSkipped] - Delve & Guild Visit):**
+    * **Quest Selection:** Collaboratively chose 2 synergistic Floor 3 quests with Lili at Guild.
+    * **Enter Dungeon:** Descended into Dungeon, Isaiah feeling persistent uncomfortable heat from Falna (Lyra
+      aftermath).
+    * **Efficient Delve:** Conducted multi-hour Floor 3 delve. Isaiah utilized F-Rank stats & `[Echoes]` resonance for
+      high efficiency. Lili kept pace, managed large loot volume. Focused on quest targets (e.g., War Ants, rare
+      insects). No major incidents.
+    * **Return to Guild:** Emerged late afternoon. Exchanged materials (+23,500 Valis). Collected quest rewards (
+      +2,100 Valis).
+    * **Total Delve Earnings:** 25,600 Valis. (Updated Familia Funds ~74,105 Valis).
+    * **Depart Guild:** Left Guild Hall with Lili to return to the annex.
 
 ----
 
@@ -4631,6 +4642,43 @@ few days.*
 and the dual acknowledgment of her roles as Right Hand and Pet.*
 
 *(End of Recap: Day 18 - Beginning - Part 2)*
+
+----
+
+### **Recap: Day 18 - Middle**
+
+*After confirming the plan with Lili at the Guild Hall mid-morning, you proceeded together to the Quest Board.
+Collaboratively reviewing the Floor 3 options, you selected two quests designed for high yield and synergy (e.g.,
+War Ant Subjugation and Rare Insect Part Collection). Registering these quickly at a generic counter, you and Lili
+headed for Babel Tower.*
+
+*Descending into the Dungeon, you immediately felt the lingering effects of the morning's encounter with Lyra – not just
+physical fatigue, but a distinct, persistent, uncomfortable *heat* radiating from the Falna mark on your back, a
+reminder of the uncontrolled resonance shift. Despite this internal distraction, you focused on the delve.*
+
+*Leveraging your F-Rank stats and the `[Echoes of the Soul]` resonance (still active, though perhaps subtly altered by
+the morning's event), you moved through Floor 3 with brutal efficiency. Lili, demonstrating improved anticipation and
+resilience, kept pace remarkably well, managing the rapidly accumulating loot (magic stones, valuable War Ant parts,
+rare insect carapaces, etc.) in her oversized pack.*
+
+*You pushed deeper into Floor 3 than on previous delves with Lili, targeting the specific monster types required by the
+quests. The combat was intense but manageable, your Hearthfire Blades proving highly effective. You worked seamlessly as
+a team, maximizing kills and harvesting efficiently over several hours. The delve proceeded without significant incident
+or anomaly, focused entirely on fulfilling the quests and accumulating wealth.*
+
+*Emerging from Babel in the late afternoon, physically weary and still contending with the distracting heat from your
+Falna, you proceeded directly to the Guild Hall with Lili. At the exchange counter, the large haul of valuable materials
+netted 23,500 Valis. At the Treasury, the combined rewards for the two completed quests amounted
+to 2,100 Valis. The total earnings for the Day 18 delve were 25,600 Valis, successfully meeting your target
+range.*
+
+*(Updated Familia Funds approximately 74,105 Valis).*
+
+*With Guild business concluded, you instructed Lili to accompany you back to the annex.*
+
+*(End of Recap: Day 18 - Middle)*
+
+----
 
 # Character Cards
 
