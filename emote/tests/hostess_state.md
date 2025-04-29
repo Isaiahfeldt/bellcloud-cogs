@@ -394,7 +394,7 @@ Below will include recap of each day, recaps of character development, story loc
       +2,100 Valis).
     * **Total Delve Earnings:** 25,600 Valis. (Updated Familia Funds ~74,105 Valis).
     * **Depart Guild:** Left Guild Hall with Lili to return to the annex.
-* **Day 18 (Ending - Post-Guild - Mostly Timeskipped):**
+* **Day 18 (Ending - Post-Guild):** [Mostly Timeskipped]
     * **Dismiss Lili:** Paid Lili remaining 2,500 V (3k total), praised work, confirmed meeting for Day 19 (ending
       trial). Dismissed her for the day.
     * **Return to Annex:** Arrived back alone early evening. Greeted warmly by Hestia.
@@ -407,6 +407,21 @@ Below will include recap of each day, recaps of character development, story loc
       positively. Hestia accepted explanation, relieved/awed.
     * **Evening Routine:** Shared meal, comfortable domesticity. Retired to new bed, shared affection, slept. (Isaiah
       still feeling Falna heat privately).
+* **Day 19 (Beginning):** [Timeskipped]
+    * **Woke with Hestia:** Comfortable morning routine in annex.
+    * **Plan:** Agreed on another Dungeon delve with Lili (Floor 3 focus).
+    * **Departed Annex:** Isaiah left alone after breakfast and reassuring Hestia.
+    * **Met Lili:** Rendezvoused with Lili at Guild Hall mid-morning.
+* **Day 19 (Middle - Delve & Guild Visit):** [Timeskipped]
+    * **Quest Selection:** Collaboratively chose **2 high-yield Floor 3 quests** with Lili. Registered quests.
+    * **Enter Dungeon:** Descended into Dungeon. Isaiah likely still feeling residual Falna heat.
+    * **Efficient Delve:** Conducted multi-hour Floor 3 delve. Leveraged E-Rank stats & `[Echoes]` resonance. Lili kept
+      pace, managed loot. Focused on quests/efficiency. No major incidents reported.
+    * **Return to Guild:** Emerged late afternoon. Exchanged materials (**+24,100 Valis**). Collected quest rewards (*
+      *+2,100 Valis**).
+    * **Total Delve Earnings:** **26,100 Valis**. *(Calculation Correction: 24100+2100=26200)* **26,200 Valis**.
+    * **(Updated Familia Funds ~100,305 Valis)** *(Calculation Correction: 74105+26200=100305)*.
+    * **Concluded Business:** Finished transactions at Guild Hall with Lili.
 
 ----
 
@@ -568,7 +583,7 @@ Caught, and realizing the foolishness of wandering lost in the rain, Isaiah pull
 stammered slightly, feeling awkward. "You are right. Forgive me... Yes, those directions would still be most helpful,
 Miss Ryu. Thank you." Ryu, maintaining her professional neutrality, gave a slight nod and proceeded to give him clear,
 concise directions.
-
+adw
 "The most straightforward option... is 'The Weary Traveler'. Exit... turn right... continue two
 blocks – you will pass a shop with a large anvil sign, belonging to the Hephaistus Familia. Immediately after... take
 the next left onto a smaller side street. Third building on your right..." She also offered 'The Gilded Flagon' as a
