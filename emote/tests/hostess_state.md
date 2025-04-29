@@ -329,7 +329,7 @@ Below will include recap of each day, recaps of character development, story loc
     * Isaiah playfully told Hestia she'd need to get used to Lili. Hestia reluctantly agreed Lili could stay on "
       strict probation".
     * The evening concluded with reconciliation, a shared meal, and retiring to the new bed.
-* **Day 18 (Beginning):**
+* **Day 18 (Beginning - Part 1 - Morning / Third Lyra Check-in):**
     * **Woke with Hestia:** Peaceful morning in new bed, established intimacy.
     * **Planned Day:** Isaiah proposed early departure for Hephaestus debt payment, then Guild/Dungeon (secretly
       intending to visit Lyra first). Hestia agreed, planned tidying/study at annex.
@@ -355,6 +355,34 @@ Below will include recap of each day, recaps of character development, story loc
           she gave complex answer. Isaiah boldly stated he would return in days for next 'checkup', setting terms.
           Lyra accepted, framing it as 'subject-initiated assessment'.
         * **Departure:** Isaiah left infirmary, shaken but having asserted minor control over next meeting.
+          Day 18 (Beginning - Part 2 - Post-Lyra):
+          Debrief Rose: Immediately sought private meeting with Rose in her office after leaving Lyra.
+          Detailed Report: Recounted entire Lyra encounter (violations, mutual climax, resonance shift, lack of
+          precautions confirmed, Lyra's confession, setting next meeting).
+          Rose's Reaction: Intense fury towards Lyra, offered to "eliminate" her.
+          Counter-Strategy Proposed: Isaiah rejected assassination, proposed Rose attend next 'checkup' with him to
+          observe/protect/disrupt Lyra's control, leveraging mutual blackmail potential.
+          Rose Accepts: Rose agreed to the risky plan, embracing role as protector/Right Hand.
+          Validation & Promise: Isaiah affirmed Rose's vital role ("entrust my life," "Right Hand," "most precious
+          asset"). Promised acknowledged public place beside him after inevitable Level 2 upheaval.
+          Solidified Loyalty: Rose swore fanatical loyalty, ready for future chaos.
+          Dual Acknowledgment: Isaiah acknowledged value of strategic talks, then whispered promise not to forget her '
+          cravings' (Pet dynamic).
+          Departure: Isaiah dismissed Rose, left office first to meet Lili/delve.
+* **Day 18 (Beginning - Part 2 - Post-Lyra):**
+    * **Debrief Rose:** Immediately sought private meeting with Rose in her office after leaving Lyra.
+    * **Detailed Report:** Recounted entire Lyra encounter (violations, mutual climax, resonance shift, lack of
+      precautions confirmed, Lyra's confession, setting next meeting).
+    * **Rose's Reaction:** Intense fury towards Lyra, offered to "eliminate" her.
+    * **Counter-Strategy Proposed:** Isaiah rejected assassination, proposed **Rose attend next 'checkup' with him** to
+      observe/protect/disrupt Lyra's control, leveraging mutual blackmail potential.
+    * **Rose Accepts:** Rose agreed to the risky plan, embracing role as protector/Right Hand.
+    * **Validation & Promise:** Isaiah affirmed Rose's vital role ("entrust my life," "Right Hand," "most precious
+      asset"). Promised **acknowledged public place** beside him after inevitable Level 2 upheaval.
+    * **Solidified Loyalty:** Rose swore fanatical loyalty, ready for future chaos.
+    * **Dual Acknowledgment:** Isaiah acknowledged value of strategic talks, then whispered promise not to forget her '
+      cravings' (Pet dynamic).
+    * **Departure:** Isaiah dismissed Rose, left office first to meet Lili/delve.
 
 ----
 
@@ -3918,7 +3946,7 @@ rapidly developing potential.*
 
 ----
 
-### **ExpandedRecap: Day 16-17 - Rose's Procurement Mission (Side-Story Perspective)**
+### **Recap: Day 16-17 - Rose's Procurement Mission (Side-Story Perspective)**
 
 **(Narrative Note:** *This recap shifts perspective to follow Rose Fannett, detailing the events surrounding her
 execution of Isaiah's directive to procure a 'playmate' between the evening of Day 16 and the afternoon of Day 17,
@@ -4474,7 +4502,7 @@ concluding Day 17.*
 
 ----
 
-### **Recap: Day 18 - Beginning**
+### **Recap: Day 18 - Beginning - Part 1**
 
 *The soft light of early morning, Day 18, filtered into the church annex, finding you awake in the new oak bed, Hestia
 sleeping peacefully beside you. The profound rest offered by the comfortable mattress was a welcome reality. After
@@ -4553,9 +4581,56 @@ meeting: "I will be back in a few days time... for another... checkup. Does this
 of processing this reclaiming of agency, accepted your terms, framing it as testing 'subject-initiated assessment'. She
 then dismissed you coolly, promising to await your return.*
 
-*(End of ExpandedRecap: Day 18 - Beginning)*
+*(End of Recap: Day 18 - Beginning - Part 1)*
 
 ----
+
+### **Recap: Day 18 - Beginning - Part 2**
+
+*Emerging from Lyra Verrill's infirmary office mid-morning on Day 18, you were profoundly shaken by the encounter – the
+forced intimacy culminating in a mutual climax, her chilling confirmation of disregarding precautions for 'data purity',
+her raw confession of personal brokenness, and your own disturbing prediction about future claims on your potential. The
+need to process this and brief your Right Hand felt immediate.*
+
+*Walking back towards the main Guild Hall, you located Rose Fannett at her Senior Liaison station. Signaling the urgency
+regarding "Doctor Verrill" and "anomaly reports," you requested a private consultation. Rose, instantly understanding
+the coded message, smoothly arranged cover and led you to her private office, locking the door behind you.*
+
+*Inside, Rose immediately dropped her professional facade, addressing you as "Master" with anxious deference. Dispensing
+with the usual dominance ritual of taking her chair, you leaned against her desk and recounted the entire horrifying
+encounter with Lyra in stark, unsparing detail – the violations, the mutual climax, the resonance shift, Lyra's
+confirmation about neglecting precautions, her confession, and your subsequent exchange, including your assertion about
+dictating the next 'checkup'.*
+
+*Rose reacted with visceral, barely contained rage towards Lyra, her loyalty manifesting as a chilling offer to "
+eliminate the problem" permanently. Recognizing the danger but needing a more strategic approach, you addressed Rose as
+your "Right Hand," appreciating her readiness but rejecting assassination.*
+
+*Instead, you proposed a risky counter-strategy: Rose would attend the next 'checkup' *with* you. You reasoned that
+while this exposed your connection, Lyra couldn't risk leaking the information without revealing her own violations.
+Rose, after processing the tactical angles, accepted the plan with focused determination, seeing it as a way to protect
+you, observe Lyra directly, and potentially gather evidence, neutralizing Lyra's ability to isolate you.*
+
+*Deeply moved by her loyalty and strategic acceptance, you approached Rose, placing hands on her shoulders and affirming
+her vital
+role: *"You are one of the few people I would entirely entrust my life with... my Right Hand... my most precious
+asset."* This profound validation overwhelmed Rose, bringing tears of absolute devotion. She pledged unwavering
+loyalty.*
+
+*You then prepared her for the future, referencing the coming upheaval when your Level 2 shatters records ("unlike
+anything in history," "immense danger"). You promised her an acknowledged place beside
+you *"once we sit at the throne of it all."* This promise solidified her fanatical loyalty, and she vowed to be ready.*
+
+*Concluding the meeting, you acknowledged the value of your strategic "one-on-one talks" (distinct from the Pet
+dynamic), but then leaned in, gently catching her chin, and whispered
+intimately, *"I promise... I won't forget what you crave,"* acknowledging her submissive desires. You then dismissed
+her, stating you were heading for your delve with Lili and confirming she should await your call for the 'checkup' in a
+few days.*
+
+*You left the office first, leaving Rose to collect herself, her mind filled with strategic purpose, fanatical devotion,
+and the dual acknowledgment of her roles as Right Hand and Pet.*
+
+*(End of Recap: Day 18 - Beginning - Part 2)*
 
 # Character Cards
 
