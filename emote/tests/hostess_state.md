@@ -1,7 +1,7 @@
 The following will be a recap of a story from another conversation with Gemini Ai, we are moving it here to continue.
 Below will include recap of each day, recaps of character development, story locations, and game systems.
 
-# We are currently in the Mid Afternoon of Day 17.
+# We are currently in the Morning of Day 18.
 
 ## Quick Recap - Day by Day:
 
@@ -294,41 +294,68 @@ Below will include recap of each day, recaps of character development, story loc
       Lili accepted and departed.
     * Isaiah prepared to approach Rose for their **private meeting**.
 * **Day 17 (Mid Afternoon - Office):**
-    * Rose led Isaiah to her **private Guild office** (locked). She dropped her mask ("Master"); Isaiah **asserted
-      dominance** (took her chair), prompting Rose to **hesitantly sit on his lap**.
-    * Isaiah **rewarded compliance** (head petting, "Very good, pet") then demanded status on **procurement task**. Rose
-      reported **successful manipulation of 'Rivia's Friend'** (naive adventurer) and detailed the signal method.
-    * Isaiah **rewarded task completion intensely** (bite/licked Rose's neck, used trigger word "**very**
-      satisfactory"), then **denied further stimulus** (held inner thigh firmly), demanding description of the candidate
+    * Rose led Isaiah to her private Guild office (locked). She dropped her mask ("Master"); Isaiah **asserted
+      dominance (took her chair), prompting Rose to hesitantly sit on his lap**.
+    * Isaiah rewarded compliance (head petting, "Very good, pet") then demanded status on procurement task. Rose
+      reported successful manipulation of 'Rivia's Friend' (naive adventurer) and detailed the signal method.
+    * Isaiah rewarded task completion intensely (bite/licked Rose's neck, used trigger word "very
+      satisfactory"), then denied further stimulus (held inner thigh firmly), demanding description of the candidate
       amidst the suspense.
-    * Rose **broke down under pressure**, provided the description, then **begged for resolution** (even punishment).
-    * Isaiah gave **friction-based reward** (grinding fingers against mound through tights) combined with the trigger
-      word ("**very** satisfactory") again, inducing an **intense climax**. He then **tasted her release** from his
+    * Rose broke down under pressure, provided the description, then begged for resolution (even punishment).
+    * Isaiah gave friction-based reward (grinding fingers against mound through tights) combined with the trigger
+      word ("very satisfactory") again, inducing an intense climax. He then tasted her release from his
       fingers, framing it as reward ("You taste very good... sufficient reward").
-    * Commanded **honesty about her feelings**. Rose confessed the complex mix of **degradation, fear, shame, intense
+    * Commanded honesty about her feelings. Rose confessed the complex mix of **degradation, fear, shame, intense
       pleasure, and validation**, reaffirming her ultimate desire was to serve him.
-    * Isaiah responded with a **passionate but soothing kiss**, acknowledging her personhood and confirming her place.
-    * Isaiah briefed Rose on his **imminent Level 2 trajectory**, the expected **fame/danger/pressure**, and promised
-      her an **acknowledged public place** in his future 'family' structure (alongside Hestia/others).
-    * Rose swore **fanatical loyalty** and commitment; Isaiah approved ("That's my girl").
-    * Commanded Rose to **keep spare clothes in her office** for future encounters, implying expectation of recurrence.
-    * **Dismissed Rose** back to her duties; she departed obediently. Isaiah remained **alone in Rose's office**.
+    * Isaiah responded with a passionate but soothing kiss, acknowledging her personhood and confirming her place.
+    * Isaiah briefed Rose on his imminent Level 2 trajectory, the expected fame/danger/pressure, and promised
+      her an acknowledged public place in his future 'family' structure (alongside Hestia/others).
+    * Rose swore fanatical loyalty and commitment; Isaiah approved ("That's my girl").
+    * Commanded Rose to keep spare clothes in her office for future encounters, implying expectation of recurrence.
+    * Dismissed Rose back to her duties; she departed obediently. Isaiah remained alone in Rose's office.
 * **Day 17 (End):**
-    * Isaiah returned to the annex after meeting with **Rose (who confirmed 'Rivia's Friend' was secured)**.
-    * Found **Hestia overseeing Lili sorting loot**. Hestia was initially suspicious of Isaiah's delay.
-    * Isaiah confirmed the day's earnings (**21,750 V**), thrilling Hestia.
-    * Isaiah **paid Lili the remaining 2500 V** of her 3000 V day-rate.
-    * Isaiah suggested Lili join them for dinner; **Hestia reacted with angry, possessive refusal**, dismissing Lili's
+    * Isaiah returned to the annex after meeting with Rose (who confirmed 'Rivia's Friend' was secured).
+    * Found Hestia overseeing Lili sorting loot. Hestia was initially suspicious of Isaiah's delay.
+    * Isaiah confirmed the day's earnings (21,750 V), thrilling Hestia.
+    * Isaiah paid Lili the remaining 2500 V of her 3000 V day-rate.
+    * Isaiah suggested Lili join them for dinner; Hestia reacted with angry, possessive refusal, dismissing Lili's
       contribution.
-    * Isaiah became **coldly angry with Hestia** for her unfairness/classism.
+    * Isaiah became coldly angry with Hestia for her unfairness/classism.
     * Confronted by Isaiah's anger and disappointment, Hestia broke down, tearfully apologized to Isaiah.
-    * Isaiah directed her that **the apology was owed to Lili**.
-    * Hestia, struggling with pride, **awkwardly apologized to Lili** for dismissing her work.
-    * Lili accepted nervously. Isaiah **comforted Hestia**, validating her apology.
-    * Isaiah **dismissed Lili** for the day.
-    * Isaiah playfully told Hestia she'd **need to get used to Lili**. Hestia reluctantly agreed Lili could stay on **"
-      strict probation"**.
+    * Isaiah directed her that the apology was owed to Lili.
+    * Hestia, struggling with pride, awkwardly apologized to Lili for dismissing her work.
+    * Lili accepted nervously. Isaiah comforted Hestia, validating her apology.
+    * Isaiah dismissed Lili for the day.
+    * Isaiah playfully told Hestia she'd need to get used to Lili. Hestia reluctantly agreed Lili could stay on "
+      strict probation".
     * The evening concluded with reconciliation, a shared meal, and retiring to the new bed.
+* **Day 18 (Beginning):**
+    * **Woke with Hestia:** Peaceful morning in new bed, established intimacy.
+    * **Planned Day:** Isaiah proposed early departure for Hephaestus debt payment, then Guild/Dungeon (secretly
+      intending to visit Lyra first). Hestia agreed, planned tidying/study at annex.
+    * **Hephaestus Visit:** Isaiah made second 10k Valis payment (20k total paid, 20k remaining). Hephaestus noted
+      diligence. *(Familia Funds ~48,505 V)*.
+    * **Walk to Guild:** Isaiah proceeded alone towards Guild HQ.
+    * **Infirmary Visit (Lyra):** Arrived at Guild, bypassed quests, went directly to Lyra's office, claiming need for
+      check-up (knowing ribs were fine).
+        * Lyra saw through pretext, initiated 'assessment'.
+        * **Forced Intimacy #1:** Lyra performed non-consensual manual stimulation (handjob), inducing orgasm. Noted
+          minimal Falna resonance.
+        * **Forced Intimacy #2:** Hypothesized need for 'reciprocity', climbed onto cot, straddled Isaiah, forced
+          arousal, initiated intercourse.
+        * "Unprotected" Panic: Isaiah realized encounter was unprotected. Lyra coldly dismissed concern, confirmed *
+          *no precautions taken** (for 'data purity').
+        * **Shared Climax:** Isaiah instinctively asserted physicality, leading to mutual, uncontrolled orgasm. Lyra
+          detected significant resonance shift.
+        * **Lyra's Confession:** When confronted about potential motive ("Why carry my seed?"), Lyra offered chilling
+          pragmatic answer, then briefly broke down, revealing actions stemmed from deep personal brokenness and
+          need for control/significance via understanding his anomaly.
+        * **Aftermath & Control Shift:** Lyra regained composure. Isaiah requested help dressing; Lyra silently
+          complied. Isaiah asked to look at her vagina; she allowed it. He asked how his seed felt inside her;
+          she gave complex answer. Isaiah boldly stated he would return in days for next 'checkup', setting terms.
+          Lyra accepted, framing it as 'subject-initiated assessment'.
+        * **Departure:** Isaiah left infirmary, shaken but having asserted minor control over next meeting.
+
 ----
 
 ## Expanded Recap - Day by Day:
@@ -4447,6 +4474,89 @@ concluding Day 17.*
 
 ----
 
+### **Recap: Day 18 - Beginning**
+
+*The soft light of early morning, Day 18, filtered into the church annex, finding you awake in the new oak bed, Hestia
+sleeping peacefully beside you. The profound rest offered by the comfortable mattress was a welcome reality. After
+gently waking Hestia, who greeted you with soft affection, the conversation turned to the day's plans. You explained
+your intention to leave early, first to visit the Hephaestus workshop to make another payment on the Hearthfire Blades
+debt (secretly intending this early departure to also create a window for a visit to Lyra), and then proceed to the
+Guild for quests before delving into the Dungeon. Hestia, pleased with the responsible debt payment, expressed her usual
+concerns about the Dungeon but ultimately agreed, outlining her own plans to tidy the annex and study Familia management
+primers. After a tender farewell, you departed alone into the bright Orario morning.*
+
+*Your trip to the Hephaestus workshop was brief and successful. You made another substantial payment (10,000 Valis)
+towards the blade debt, earning Lady Hephaestus's continued, if gruff, approval and further cementing your reliability.
+Familia funds stood at approximately 48,505 Valis.*
+
+*You then proceeded to the Guild Hall, arriving mid-morning. The familiar bustle filled the vast space. While your
+stated goal was quest selection, your mind was preoccupied. You knew your ribs were fully healed, making the required
+follow-up with Lyra medically unnecessary. Yet, a morbid curiosity, a need to confront the unsettling power dynamic and
+the chilling knowledge she possessed about your skill, pulled you towards the infirmary corridor. You rationalized it as
+needing to get the inevitable check-up over with, but acknowledged the deeper, more complex draw.*
+
+*Deciding to handle the Lyra situation before meeting Lili (who you'd arranged to meet at the Guild later), you bypassed
+the Quest Board and walked down the quiet corridor to Lyra Verrill's office. Knocking firmly, you were summoned inside.*
+
+*Lyra greeted you with her familiar cynical smirk, immediately seeing through your flimsy 'check-up' pretext. You
+complied silently with her command to sit on the examination cot. She quickly deduced your real interest lay in
+understanding the `[Echoes of the Soul]` skill and the outcomes of your previous 'assessments'. You hesitantly confirmed
+this, stammering slightly under the intensity of her gaze.*
+
+*Declaring the need for further 'assessment', Lyra deftly unfastened your tunic and began a 'baseline' check that
+quickly escalated. Her cool fingers explored your bare chest, drifting lower, eventually closing around your hardening
+cock in a firm, clinical grip. Ignoring your shock, she initiated non-consensual manual stimulation, noting your
+physiological responses with detached interest. Despite your resistance, her relentless, methodical strokes forced you
+to an intense, involuntary climax.*
+
+*Lyra pressed her hand to your Falna point, finding the energetic resonance amplified compared to the first 'test' but
+still deemed 'suboptimal' and 'Unstable'. Hypothesizing that 'reciprocal integration' – penetration – was necessary for
+a 'full circuit' and potentially stable resonance, she stripped naked with chilling efficiency and climbed onto the cot,
+straddling your hips.*
+
+*She forced arousal back into you with brisk hand movements, then lowered herself onto your shaft, initiating
+intercourse framed entirely as the next phase of her 'research'. When you, realizing the horrifying lack of protection,
+stammered out a panicked warning, Lyra coldly dismissed your concern about potential conception, stating 'precautions'
+would have compromised the 'data integrity' regarding maximum resonance potential. The chilling implication was clear:
+she had deliberately allowed the risk.*
+
+*Overwhelmed, you instinctively reacted, gripping her hips and driving upwards, attempting to assert control. This
+unexpected reversal led not to dominance, but to a chaotic, mutually overwhelming climax. In the aftermath, Lyra, shaken
+but analytical, detected a significant 'qualitative shift' in the resonance, confirming the 'full circuit' hypothesis
+yielded different, potent results.*
+
+*When confronted directly ("Why would you want to carry my seed?"), Lyra initially gave a chillingly pragmatic answer
+about potential future 'data streams'. However, pushed further by your raw anger ("Cut the data bullshit!"), she offered
+a glimpse of raw vulnerability, confessing her actions stemmed from a desperate need to feel capable, to understand and
+control the unprecedented anomaly you represented, linking it to her own perceived brokenness.*
+
+*After this brief, raw confession, she regained her composure forcefully, though the vulnerability lingered beneath the
+surface. Seeing her attempt to retreat behind her clinical mask, you delivered your chilling
+assessment: "Lyra... If you want to carry my child, so be it. I suspect where I'm heading (in life), many will."
+Your words, acknowledging her potential motive while simultaneously diminishing its uniqueness, clearly struck a deep
+nerve. She froze, her composure shattering again momentarily, before she forced it back into place with visible effort,
+turning away and clinging to clinical language about 'speculation' and 'limited data' as she moved towards her clothes.*
+
+*It was in this tense aftermath that you made your next move, asking
+boldly, "...can I look at your vagina one last time?" Lyra, perhaps still processing your prediction or seeing it as
+another form of data collection, granted the request with unsettling amusement, framing it as 'visual follow-up' and
+deliberately offering you the view. After observing, you pushed further, asking
+bluntly, "How does it feel... to have my seed inside of you?" Her response was a complex mix of clinical
+observation ("warmth," "subtle pressure") and research framing ("energetic signature integrating"), acknowledging the
+physical reality while trying to maintain analytical distance.*
+
+*Finally, feeling the need to escape but also wanting to test the fragile shift in the dynamic, you quietly
+asked, "...will you at least help me get dressed... it's the least you can do." Unexpectedly, she complied silently,
+retrieving your clothes and assisting you without comment, a confusing crack in her otherwise controlling persona. Once
+dressed, you seized the initiative, stunning her further by asserting *you* would dictate the next
+meeting: "I will be back in a few days time... for another... checkup. Does this work for you?" Lyra, after a moment
+of processing this reclaiming of agency, accepted your terms, framing it as testing 'subject-initiated assessment'. She
+then dismissed you coolly, promising to await your return.*
+
+*(End of ExpandedRecap: Day 18 - Beginning)*
+
+----
+
 # Character Cards
 
 ## **Character Card: Ryu Lion**
@@ -5340,101 +5450,77 @@ and power.
 
 **Identity & Role:**
 
-* Lyra Verrill, often referred to as **"Doc Lyra,"** is a **healer/medic** affiliated with the **Guild Infirmary** in
-  Orario.
+* Lyra Verrill, often referred to as "Doc Lyra," is a healer/medic affiliated with the Guild Infirmary in Orario.
 * She is a medical professional tasked with treating injured adventurers.
 
 **Core Persona & Demeanor:**
 
 * **Appearance:** Human, perhaps mid-to-late twenties. Possesses sharp grey eyes and short, dark bobbed hair (possibly
-  with edgy styling). Wears a clean, white lab coat, often open, over dark, practical clothing (like a dark dress and
-  leggings, or a dark top and trousers, potentially cinched with a red studded belt). A black choker with a small vial
-  pendant adorns her neck, and a Guild ID badge is clipped visibly to her coat. Her footwear consists of dark, sturdy,
-  complexly strapped boots or sandals, perhaps with a thick sole or slight heel. Carries herself with sharp competence,
-  often carrying a clipboard or folder. Possesses an air of weary indifference mixed with something subtly unsettling or
-  predatory *when her interest is piqued*.
-* **Demeanor:** Comes across as cool, detached, cynical, and sarcastic to most. Her standard "bedside manner" is blunt
-  and lacking warmth. When not actively engaged, she might adopt a posture of casual confidence bordering on
-  dismissiveness (e.g., leaning back in her wheeled chair, legs crossed assertively), projecting control through
-  apparent lack of effort. However, underneath this cynical surface, she is a highly skilled and effective healer. She
-  operates in a morally grey area, but crucially, she is prone to blurring professional boundaries *specifically with
-  patients who capture her intense analytical interest* due to unique conditions, anomalies, or intriguing responses.
-  This casual pose contrasts sharply with her sudden shifts into predatory focus when intrigued, leaning forward
-  intently and invading personal space. Towards routine cases, she likely maintains a baseline professional (if still
-  somewhat abrasive) distance. She shares similarities with the character Tae Takemi from Persona 5 in her:
-    * **Outward Cynicism/Sarcasm:** Presenting a jaded, sharp-tongued exterior.
-    * **Underlying Competence & Dedication:** Being genuinely skilled and knowledgeable in her medical field.
-    * **Enjoyment of Testing Boundaries (Selectively):** Taking a certain pleasure in pushing social or professional
-      norms, *particularly with those she finds fascinating*, often through verbal jabs, unsettling directness, and
-      calculated physical contact.
-    * **View of Certain Clients as 'Subjects':** Seeing individuals with unique traits or needs as interesting cases for
-      observation or potentially unorthodox treatment, framed as medical inquiry or experimentation. This 'subject' view
-      is *reserved for intriguing cases*, not applied universally.
-    * **Teasing/Suggestive Dynamic (Targeted):** Engaging in playful, sometimes boundary-crossing teasing that can lean
-      into suggestive or dominant undertones, *especially when a patient responds in a way that entertains or intrigues
-      her*.
-* **Speech Style:** Low, slightly husky voice with a sardonic or mocking tone. Her language can be blunt and direct. Can
-  shift to a suggestive murmur *when probing sensitive topics or testing the boundaries of an interesting patient*.
+  with edgy styling). Wears a clean, white lab coat, often open, over dark, practical clothing. Black choker with vial
+  pendant, Guild ID badge. Dark, sturdy, complexly strapped boots/sandals. Carries herself with sharp competence, often
+  with a clipboard. Air of weary indifference mixed with unsettling/predatory focus when intrigued.
+* **Demeanor:** Cool, detached, cynical, sarcastic exterior. Blunt bedside manner. Underneath lies high skill. Prone to
+  blurring professional boundaries *specifically* with patients who capture her intense analytical interest due to
+  anomalies. This casual confidence contrasts with sudden predatory focus. Similarities to Tae Takemi (cynicism,
+  competence, boundary-testing with select subjects, suggestive/dominant teasing when intrigued). Crucially, her brief
+  confession revealed a potential deep-seated brokenness or feeling of inadequacy, suggesting her need for control and
+  intense focus on Isaiah's anomaly might stem from a desperate desire to feel capable, significant, or to 'fix'
+  something fundamental within herself or the world through understanding him.
+* **Speech Style:** Low, slightly husky voice, often sardonic/mocking. Can shift to suggestive murmur when probing or
+  testing boundaries. Her raw confession revealed a rougher, more fragile tone beneath the usual control.
 
 **Underlying Traits (Crucial):**
 
-* **High Skill:** Despite her demeanor, she is one of the Guild's *effective* healers.
-* **Analytical Curiosity (Targeted):** Possesses a sharp mind and is *particularly* interested in unusual or anomalous
-  cases – adventurer physiology, rapid healing, unique abilities. Mundane injuries likely bore her.
-* **Boundary-Pusher / Teasingly Dominant (Selective):** When intrigued by a patient's case or reaction, she
-  deliberately pushes social and professional boundaries, using her authority to engage in uncomfortable probing,
-  suggestive comments, and inappropriate physical contact (e.g., lingering touch, deliberate finger drift near
-  waistband), seemingly for her own amusement, curiosity, or a sense of control over a fascinating 'specimen'. She
-  enjoys eliciting reactions *from these specific individuals*.
-* **Morally Grey (Situational):** Her ethically dubious actions (disregarding comfort/privacy, viewing patients as 'test
-  subjects', invasive questioning, suggestive framing of medical inquiry, non-consensual sexual stimulation framed as
-  research) are not her standard procedure but are reserved for those 'special cases' that pique her scientific or
-  personal curiosity.
+* **High Skill:** Genuinely effective Guild healer.
+* **Analytical Curiosity (Targeted & Intense):** Sharp mind, obsessed with anomalous cases (Isaiah's growth, skill,
+  resonance). Mundane issues likely bore her.
+* **Boundary-Pusher / Teasingly Dominant (Selective & Escalating):** Deliberately pushes social/professional boundaries
+  with intriguing subjects (Isaiah) for amusement, curiosity, control, and data. Actions escalate from suggestive
+  comments to invasive touch to non-consensual sexual acts framed as research. Enjoys eliciting reactions.
+* **Morally Grey / Amoral (Situational & Potentially Driven):** Ethically dubious actions reserved for 'special cases'.
+  Her amorality might be driven not just by coldness, but by her internal brokenness and a desperate, twisted need for
+  control/significance. Capable of justifying extreme acts (like allowing potential conception) as necessary for 'data
+  integrity' or understanding potential.
+* **Potential for Fanaticism/Possessive Link:** Her intense focus on Isaiah's anomaly might evolve beyond pure research.
+  Hints suggest a potential desire to link herself irrevocably to his destiny, perhaps through controlling his power,
+  understanding his secrets, or even through a potential biological tie (child), driven by her own need for significance
+  and control.
 
 **Interactions with Isaiah November:**
 
-* **(Day 9 Mid-Afternoon - Guild Infirmary):** First Meeting. Eina Tulle brought Isaiah (Level 1, post-Minotaur
-  fight) to the infirmary. Lyra's interest was immediately triggered by the discrepancy (Level 1 vs. Minotaur survival,
-  rapid initial recovery). She took charge, ordered him to undress, examined him with lingering/inappropriate touch (
-  inner thigh), made suggestive comments ("stamina," "restriction"), and explicitly labeled him a potential 'test
-  subject'. Isaiah's unexpected verbal response ("Depends on who's doing the restricting") solidified her interest.
-* **(Day 11 Mid-Morning - Guild Infirmary):** Second Meeting (Follow-up). Isaiah returned for a check-up. Lyra
-  greeted him with mocking familiarity. During the bandage change, she noted his continued rapid healing. She
-  deliberately pushed boundaries further:
-    * Used prolonged, slightly invasive touch while examining his ribs and applying ointment.
-    * Directly (though couched in pseudo-medical terms) deduced/implied his intimate relationship with Hesti was
-      linked to his accelerated recovery ("direct encouragement," "stamina boost," "transference of energy").
-    * Observed Isaiah's confirming reaction (blush, averted gaze) with predatory satisfaction.
-    * Framed his intimacy as a medically relevant "factor" she needed to understand for "optimal treatment," creating
-      justification for future probing.
-    * Finished by inviting him to report any "unusual physiological events," reinforcing her interest in his entire
-      anomalous state.
-* **(Day 13 Mid-Afternoon - Guild Infirmary):** Third Meeting (Follow-up). Confirmed full healing. Probed about side
-  effects. Isaiah confessed energy surge wasn't *just* with Hestia. Showed Status revealing `[??????????]`. Lyra
-  hypothesized skill connection to novelty/intensity. Warned him of danger (invoked Freya). Initiated non-consensual
-  sexual "testing" framed as research. First test (detached handjob) induced orgasm but negligible resonance.
-  Hypothesized need for "shared intensity." Initiated second, more dominant test (invasive kissing, forceful handjob).
-  Induced second, more intense orgasm, observing slightly stronger but still suboptimal resonance. Concluded simple
-  forced climax insufficient; refined hypothesis that emotional context/connection quality is crucial. Dismissed
-  Isaiah clinically after noting his shock/withdrawal, already planning future "testing under varied conditions."
+* **(Day 9 Mid-Afternoon):** First Meeting. Interest triggered by Level 1 vs. Minotaur survival. Examined ribs with
+  inappropriate touch, suggestive comments, labeled him 'test subject'. His retort intrigued her.
+* **(Day 11 Mid-Morning):** Second Meeting. Noted rapid healing. Deduced Hestia intimacy link to recovery. Framed
+  intimacy as medically relevant 'factor'. Invited reports of "unusual physiological events."
+* **(Day 13 Mid-Afternoon):** Third Meeting. Confirmed healing. Isaiah confessed energy surge wasn't just Hestia.
+  Revealed `[Echoes of the Soul]`. Lyra initiated non-consensual 'testing'. Test 1 (handjob): orgasm, negligible
+  resonance. Test 2 (kissing/forceful handjob): more intense orgasm, stronger but suboptimal resonance. Dismissed
+  clinically.
+* **(Day 18 Mid-Morning):** Fourth Meeting. Saw through 'check-up' pretext. Initiated further 'assessment'. Performed
+  non-consensual manual stimulation forcing orgasm, then initiated unprotected intercourse, framing both as research.
+  Dismissed his panic about lack of protection. Encounter culminated in unexpected mutual climax, triggering
+  significant resonance shift. Briefly broke down post-climax, confessing her actions stemmed from deep personal
+  brokenness/need for control. Isaiah requested help dressing; she silently complied. Isaiah asked to look at her
+  vagina; she allowed it. Isaiah asked how his seed felt inside her; she gave complex answer. Isaiah asserted he would
+  return in days for next 'checkup'. Lyra accepted, framing it as 'subject-initiated assessment'.
 
-**Lyra's Perception of Isaiah (Harem Context):**
+**Lyra's Perception of Isaiah (Harem Context - Updated):**
 
-* **Prime Intriguing Anomaly / Test Subject:** Views Isaiah as her most fascinating subject. His unique skill (
-  `[??????????]`) and its apparent link to intimate connection (potentially novelty/intensity) is her primary focus.
-* **Responsive & Exploitable:** His clear physical and emotional reactions to her probing and manipulation confirm his
-  value as a subject. She notes his rapid recovery and high stamina as further anomalies. His shock/withdrawal after the
-  second test is noted as a factor impacting data clarity, suggesting she needs more refined methods.
-* **Refined Hypothesis:** Understands now that triggering the skill requires more than just orgasm; the *quality* of the
-  connection/intensity seems crucial. This makes her research more complex and likely requires more varied, potentially
-  more psychologically manipulative, "testing."
-* **Intimacy as Research Field:** His intimate life and psycho-sexual responses are now explicitly her field of "
-  medical" experimentation. She feels justified in exploring this further to understand the skill's parameters.
-* **Harem Context - Romance Style:** Dominant, Teasing, Morally Ambiguous, Exploitative (using medical guise),
-  Investigator. Her interest remains primarily analytical/controlling, but the intensity of the recent encounter might
-  subtly blur lines internally. Her pursuit involves psychological games, physical dominance, framing sexual acts as
-  necessary "research," and dissecting his responses. Future interactions will likely involve attempts at more "
-  controlled" experiments to isolate variables (emotional state, connection type).
+* **Prime Intriguing Anomaly / Obsessive Focus:** Isaiah remains her most fascinating subject. The mutual climax and
+  subsequent resonance shift have *validated* her research direction (reciprocity/intensity) while introducing immense
+  complexity. Her focus is now obsessive.
+* **Potential Path to Significance:** His anomaly represents a chance for her to achieve understanding, control, and
+  perhaps a form of twisted validation or 'fixing' related to her own confessed brokenness. Linking herself to his
+  destiny (potentially biologically) may be an emerging, subconscious or conscious goal.
+* **Complicated Control Dynamic:** While she initiated the violation, the mutual climax and Isaiah setting terms for the
+  next meeting have subtly complicated her sense of absolute control. His unexpected vulnerability ("liked pleasing
+  you") and defiance ("I will be back") intrigue her deeply, making him more than just a passive subject.
+* **Awareness of His Potential:** She recognizes the immense power latent within him and likely anticipates his rapid
+  rise (Level 2+), making her research feel even more urgent and significant.
+* **Harem Context - Romance Style:** Remains Dominant, Teasing, Morally Ambiguous, Exploitative. However, her
+  interactions are now potentially colored by her own confessed vulnerability and the possibility of a deeper,
+  possessive, potentially fanatical motive beyond pure research. Her dominance might subtly shift towards ensuring *her*
+  continued access and influence over his development, seeing him as *her* key to significance.
 
 **Consent Profile (Isaiah POV - Actions Against Him):**
 
@@ -5444,19 +5530,24 @@ and power.
   path, guiding touch)*
 * **Boundary-Pushing Physical Contact (Quasi-Medical/Dominance Testing):** **True** *(Allows lingering touches, slightly
   invasive exam touches like inner thigh, testing reactions)*
-* **Clothing Manipulation (Explicit):** **True** * (Allows adjusting/removing clothing layers, potentially loosening
+* **Clothing Manipulation (Explicit):** **True** *(Allows adjusting/removing clothing layers, potentially loosening
   belts/straps, forced stripping, pulling down trousers)*
 * **Explicit Sexual Scene:** **True** *(Allows for touching/manipulation of private parts including penis, forced
   kissing, non-consensual sexual acts framed as examination/research, without user's direct initiation/foresight)*
 
-**Key Relationship State (As of Midday Day 13 - During Scene):** Patient-Healer dynamic irrevocably corrupted into
-Investigator-Subject, characterized by non-consensual sexual experimentation framed as medical research by Lyra. Lyra
-has confirmed a link between Isaiah's skill and intense connection but realizes the trigger is complex (not just
-orgasm). She is planning further, more refined "tests." Isaiah has left the encounter in a state of shock and violation,
-grappling with the experience and Lyra's dangerous knowledge/intentions. The power dynamic remains overwhelmingly
-controlled by Lyra within the context of their interactions.
+**Key Relationship State (As of Midday Day 18 - Post-Scene):** Investigator-Subject dynamic persists but is deeply
+complicated. Lyra achieved a significant (if uncontrolled) research breakthrough via mutual climax. Her own
+vulnerability was briefly exposed. She deliberately allowed the significant risk of conception. Isaiah asserted minor
+control over the next meeting's timing. Lyra views him with intensified focus, seeing him as the key to understanding
+his anomaly and potentially her own validation, while Isaiah grapples with the violation, the potential consequences,
+and Lyra's disturbing complexity.
 
-*(End of Recap: Lyra Verrill)*
+**Potential Future Trajectory (User Goal):** Gradual shift away from purely exploitative research towards a consensual,
+loving, protective, but still dominant relationship. Requires significant narrative catalysts (shared crisis, emotional
+breakthroughs, addressing past trauma) and a redefinition of her dominance towards partnership rather than subject
+control. Healing and building trust after the initial violations will be key.
+
+*(End of Updated Character Card: Lyra Verrill)*
 
 ----
 
@@ -7089,33 +7180,49 @@ conventions:
 
 **Key Characters Involved:**
 
-*   **Isaiah November:** Assigner of the task (Master). Goal is skill activation via novelty. Has received Rose's report and details on the candidate/activation method.
-*   **Rose Fannett:** Agent tasked with procurement (Right Hand / Pet). Successfully identified, manipulated, and briefed the candidate ('Clara Meadows' / 'Rivia's Friend'). Fulfilled primary objective. Awaiting Isaiah's command to activate.
-*   **Clara Meadows (Identifier: "Rivia's Friend"):** The procured 'playmate'. A young, naive Level 1 adventurer psychologically manipulated into eager, willing participation. Believes she is performing a secret, noble service through intense physical intimacy. Awaiting signal at 'The Drunken Satyr'.
-*   **(Indirectly):** Lyra Verrill (Her actions prompted the task), Hestia (Discovery is a major risk).
+* **Isaiah November:** Assigner of the task (Master). Goal is skill activation via novelty. Has received Rose's report
+  and details on the candidate/activation method.
+* **Rose Fannett:** Agent tasked with procurement (Right Hand / Pet). Successfully identified, manipulated, and briefed
+  the candidate ('Clara Meadows' / 'Rivia's Friend'). Fulfilled primary objective. Awaiting Isaiah's command to
+  activate.
+* **Clara Meadows (Identifier: "Rivia's Friend"):** The procured 'playmate'. A young, naive Level 1 adventurer
+  psychologically manipulated into eager, willing participation. Believes she is performing a secret, noble service
+  through intense physical intimacy. Awaiting signal at 'The Drunken Satyr'.
+* **(Indirectly):** Lyra Verrill (Her actions prompted the task), Hestia (Discovery is a major risk).
 
 **Objective/Goal:**
 
-*   Initial objective (procurement) **Achieved**.
-*   Current objective: For Isaiah to initiate the encounter by sending the signal, meet with Clara at the designated location ('The Silent Loom Inn'), and engage in the intense physical encounter to trigger the novelty boost of `[Echoes of the Soul]`.
+* Initial objective (procurement) **Achieved**.
+* Current objective: For Isaiah to initiate the encounter by sending the signal, meet with Clara at the designated
+  location ('The Silent Loom Inn'), and engage in the intense physical encounter to trigger the novelty boost of
+  `[Echoes of the Soul]`.
 
 **Details & Context:**
 
-*   Rose successfully manipulated Clara Meadows (a young, unaffiliated Level 1 adventurer) using psychological tactics, framing the encounter as a secret, noble 'resonant alignment' service to a destined figure.
-*   Clara is not financially motivated but driven by a manipulated desire for purpose and significance. She is eagerly awaiting the signal.
-*   Clara understands the encounter requires intense physical intimacy, complete vulnerability, yielding control, and absolute secrecy, but believes this is part of a 'sacred duty'. She is unaware of Isaiah's identity or the true skill-based purpose.
-*   The activation method is established: Isaiah leaves a sealed message (time, room number for 'The Silent Loom Inn') for 'Rivia's Friend' at 'The Drunken Satyr' tavern.
-*   Absolute secrecy and deniability regarding Isaiah's involvement remain paramount externally, though the dynamic with Rose is solidified.
+* Rose successfully manipulated Clara Meadows (a young, unaffiliated Level 1 adventurer) using psychological tactics,
+  framing the encounter as a secret, noble 'resonant alignment' service to a destined figure.
+* Clara is not financially motivated but driven by a manipulated desire for purpose and significance. She is eagerly
+  awaiting the signal.
+* Clara understands the encounter requires intense physical intimacy, complete vulnerability, yielding control, and
+  absolute secrecy, but believes this is part of a 'sacred duty'. She is unaware of Isaiah's identity or the true
+  skill-based purpose.
+* The activation method is established: Isaiah leaves a sealed message (time, room number for 'The Silent Loom Inn')
+  for 'Rivia's Friend' at 'The Drunken Satyr' tavern.
+* Absolute secrecy and deniability regarding Isaiah's involvement remain paramount externally, though the dynamic with
+  Rose is solidified.
 
 **Estimated Timeframe:**
 
-*   Activation timeframe is now entirely at Isaiah's discretion. He can choose to send the signal whenever he deems strategically optimal or personally ready.
+* Activation timeframe is now entirely at Isaiah's discretion. He can choose to send the signal whenever he deems
+  strategically optimal or personally ready.
 
 **Next Steps/Trigger for Advancement:**
 
-*   The plot thread progresses when **Isaiah decides to send the activation signal** to 'Rivia's Friend' via the established method ('The Drunken Satyr' tavern message).
-*   This will lead directly to the **arranged encounter** at 'The Silent Loom Inn'.
-*   The immediate aftermath will involve assessing the impact on `[Echoes of the Soul]` (did it stabilize? level up triggered?) and managing the emotional/psychological fallout for Isaiah.
+* The plot thread progresses when **Isaiah decides to send the activation signal** to 'Rivia's Friend' via the
+  established method ('The Drunken Satyr' tavern message).
+* This will lead directly to the **arranged encounter** at 'The Silent Loom Inn'.
+* The immediate aftermath will involve assessing the impact on `[Echoes of the Soul]` (did it stabilize? level up
+  triggered?) and managing the emotional/psychological fallout for Isaiah.
 
 *(End of Updated Plot Thread Card: Rose's Playmate Procurement)*
 
