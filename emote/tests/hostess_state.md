@@ -394,6 +394,19 @@ Below will include recap of each day, recaps of character development, story loc
       +2,100 Valis).
     * **Total Delve Earnings:** 25,600 Valis. (Updated Familia Funds ~74,105 Valis).
     * **Depart Guild:** Left Guild Hall with Lili to return to the annex.
+* **Day 18 (Ending - Post-Guild - Mostly Timeskipped):**
+    * **Dismiss Lili:** Paid Lili remaining 2,500 V (3k total), praised work, confirmed meeting for Day 19 (ending
+      trial). Dismissed her for the day.
+    * **Return to Annex:** Arrived back alone early evening. Greeted warmly by Hestia.
+    * **Report Earnings:** Revealed day's haul (+25,600 Valis total). Hestia ecstatic. *(Updated Familia Funds ~
+      74,105 V)*.
+    * **Status Update:** Performed update on bed. Results: Two Rank Ups! (DEX E 413, AGI E 407), STR/END near E-Rank
+      threshold. Massive gains.
+    * **Skill Change:** `[Echoes of the Soul]` status changed from 'Unstable' to `Active Resonance - Elevated`.
+    * **Reassurance:** Isaiah attributed gains & 'Elevated' status to intense delve/focused resonance, framing it
+      positively. Hestia accepted explanation, relieved/awed.
+    * **Evening Routine:** Shared meal, comfortable domesticity. Retired to new bed, shared affection, slept. (Isaiah
+      still feeling Falna heat privately).
 
 ----
 
@@ -3706,7 +3719,7 @@ leaving you with the sense of having successfully piqued her interest beyond the
 
 ----
 
-### **Recap: Day 14 - Ending**
+### **Recap: Day 14 - End**
 
 *Stepping out from the relative cool stone and echoing clang of the Hephaestus workshop, the late afternoon Orario sun
 felt warm on your face. You walked with a confident stride back towards the eastern Daedalus district, the weight of
@@ -3774,7 +3787,7 @@ your unprecedented potential.*
 and the sturdy bed, and eventually drifted off to sleep, side-by-side, filled with a sense of accomplishment and secure
 in your established intimacy, ready to face Day 15.*
 
-*(End of Recap: Day 14 - Ending)*
+*(End of Recap: Day 14 - End)*
 
 ----
 
@@ -4679,6 +4692,44 @@ range.*
 *(End of Recap: Day 18 - Middle)*
 
 ----
+
+### **Recap: Day 18 - End - [TimeSkipped]**
+
+*After successfully turning in the day's loot and quest items at the Guild Hall with Lili, securing approximately 25,600
+Valis and bringing the Familia funds to roughly 74,105 Valis, you addressed your Supporter. You paid Lili the remaining
+2,500 Valis for her day's work (3,000 V total), praising her efficiency. Confirming the trial was going well, you
+arranged to meet her again the following morning ("Same time tomorrow?"), effectively solidifying her continued
+employment. You then dismissed her for the day, allowing her to head off while you remained briefly at the Guild.*
+
+*Returning to the church annex alone in the early evening, you were greeted warmly by Hestia. You shared the day's
+impressive earnings (over 25k V), sparking her usual ecstatic joy and pride. The persistent, uncomfortable heat
+radiating from your Falna mark (a lingering effect from the intense encounter with Lyra) remained a subtle physical
+reminder of the morning's violation, but you continued to mask any outward discomfort.*
+
+*The evening proceeded with the now-familiar ritual of the Status Update, conducted on the new oak bed. Hestia was
+utterly stunned by the
+results: **Strength F 381 (+42), Endurance F 385 (+45), Dexterity E 413 (+42 - Rank Up!), Agility E 407 (+43 - Rank Up!)
+**. Two Rank Ups into E-Rank in a single day, with the other stats nearing the threshold, showcased astonishing growth.*
+
+*Equally significant was the change in your unique skill: `[Echoes of the Soul]`'s status shifted from 'Unstable'
+to **`Active Resonance - Elevated`**. Hestia, while relieved it wasn't 'Unstable', was confused by the new descriptor.
+You offered a plausible, reassuring explanation, attributing the massive gains and the 'Elevated' status to the intense
+focus and limit-pushing during the day's delve, suggesting it was a positive step towards stability powered by *your*
+shared resonance. Hestia, relieved and eager to believe in the power of your bond, accepted this interpretation, her awe
+at your potential overriding her immediate concern about the skill's exact meaning.*
+
+*The remainder of the evening unfolded with comfortable domesticity. You likely shared a simple meal prepared together
+in the annex. Conversation might have revolved around your incredible progress, plans for utilizing the growing funds (
+perhaps discussing armor upgrades again), or simply enjoying the quiet intimacy of being home.*
+
+*Retiring to the new bed felt natural and deeply comforting. You held Hestia close, sharing quiet affection – perhaps
+soft words, gentle touches, or simply the shared warmth and security of the embrace – before exhaustion claimed you
+both. You fell asleep side-by-side, the rhythm of your shared life solidifying further, though the secret of the
+morning's encounter with Lyra and the persistent heat from your Falna remained your hidden burden.*
+
+*(End of ExpandedRecap: Day 18 - End - [TimeSkipped])*
+
+---
 
 # Character Cards
 
