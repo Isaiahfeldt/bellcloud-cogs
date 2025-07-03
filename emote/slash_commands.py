@@ -338,19 +338,15 @@ class SlashCommands(commands.Cog):
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
         masked_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
-        await interaction.response.send_message(f"Here is your secure link: {masked_url}")
+        embed = discord.Embed(
+            title=f"Emote Gallery - {interaction.guild.name}",
+            description=f"Here is your link:\n{masked_url}",
+            color=EmbedColor.DEFAULT.value
+        )
+        embed.set_footer(text="For privacy purposes, this link is only valid for 24 hours.")
+        embed.timestamp = discord.utils.utcnow()
 
-    # Deprecated
-    # @emote.command(name="show_cache", description="Show current cache state")
-    # @commands.is_owner()
-    # async def emote_show_cache(self, interaction: discord.Interaction):
-    #     if not interaction.user.guild_permissions.manage_messages:
-    #         await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-    #         return
-    #
-    #     cache_info = get_cache_info()
-    #     await interaction.response.send_message(cache_info)
-
+        await interaction.response.send_message(embed=embed)
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
