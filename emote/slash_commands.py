@@ -63,77 +63,6 @@ def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
 
-async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
-    """Analyzes text/image for UwU-style content using OpenAI"""
-    client = OpenAI(
-        api_key=os.getenv('OPENAI_KEY'),
-    )
-
-    messages = [{
-        "role": "system",
-        "content":
-            "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-            "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-            "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-            "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-            f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-            "Write your reason in uWu speak in 1-2 sentences. "
-            "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-            "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
-    }]
-
-    # messages = [{
-    #     "role": "system",
-    #     "content": (
-    #         "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-    #         "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-    #         "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-    #         "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-    #         f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-    #         "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
-    #         "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
-    #         "The variation should reflect how many strikes the user has left, for instance, if the user has "
-    #         "onl my one try left theessage could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
-    #         "Ensure there is a line break between the reason and the warning. "
-    #         "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-    #         "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
-    #     )
-    # }]
-
-    if content:
-        messages.append({
-            "role": "user",
-            "content": f"Message: {content}\nIs this UwU-style? Respond with JSON."
-        })
-
-    if image_url:
-        messages.append({
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Analyze this image for UwU-style text/content"
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": image_url,
-                        "detail": "auto"
-                    },
-                }
-            ]
-        })
-
-    response = client.chat.completions.create(
-        model="gpt-4o-mini-2024-07-18",
-        messages=messages,
-        max_tokens=300
-    )
-
-    try:
-        return json.loads(response.choices[0].message.content)
-    except json.JSONDecodeError:
-        return {"isUwU": False, "reason": "Invalid response from API"}
 
 
 async def get_emote_and_verify(emote_name_str: str, channel):
@@ -344,7 +273,6 @@ class SlashCommands(commands.Cog):
             color=EmbedColor.DEFAULT.value
         )
         embed.set_footer(text="For privacy purposes, this link is only valid for 24 hours.")
-        embed.timestamp = discord.utils.utcnow()
 
         await interaction.response.send_message(embed=embed)
     @emote.command(name="clear_cache", description="Manually clear the cache")
@@ -456,64 +384,6 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
-    @emote.command(name="remove_a_strike", description="Remove a single strike from a user")
-    @app_commands.describe(user="User to remove a strike from")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
-        new_count = await db.decrease_strike(user.id, interaction.guild_id)
-
-        if new_count < 3:
-            channel_names = ["general-3-uwu", "general-3"]
-            channel = next(
-                (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-                 discord.utils.get(interaction.guild.channels, name=name)),
-                None
-            )
-
-            if channel:
-                await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
-
-        await interaction.response.send_message(
-            f"Aww, {user.mention}-chan had a stwike wemoved! ✨ UwU~ They now have {new_count}/3 stwikes. 🐾",
-            ephemeral=False
-        )
-
-    @emote.command(name="forgive", description="Forgive all strikes for a user")
-    @app_commands.describe(user="User to forgive strikes for")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
-
-        channel_names = ["general-3-uwu", "general-3"]
-
-        # Find the first matching channel
-        channel = next(
-            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-             discord.utils.get(interaction.guild.channels, name=name)),
-            None
-        )
-
-        if channel:
-            # Reset user permissions for the channel
-            await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
-
-        await interaction.response.send_message(
-            f"All of {user.mention}-chan's stwikes have been fuwgiven, nya~! ✨ UwU~",
-            ephemeral=False
-        )
-
-    @emote.command(name="view_strikes", description="View current strikes for a user")
-    @app_commands.describe(user="User to check strikes for")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
-        strikes = await db.get_strikes(user.id, interaction.guild_id)
-        await interaction.response.send_message(
-            f"{user.mention}-chan has {strikes}/3 stwikes, nya~! Pwease be cawefuw! ⚠️",
-            ephemeral=False
-        )
 
     @commands.Cog.listener()
     @commands.guild_only()
@@ -521,13 +391,7 @@ class SlashCommands(commands.Cog):
         if message.author.bot:
             return
 
-        # Check if message is in the 'general-3-uwu' channel
-        if message.channel.name.lower() == "general-3-uwu" or message.channel.name.lower() == "general-3":
-            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
-                if not is_enclosed_in_colon(message):  # Ignore :emotes:
-                    await self.handle_april_fools(message)
-
-        elif is_enclosed_in_colon(message):
+        if is_enclosed_in_colon(message):
             async with message.channel.typing():
                 await self.process_emote_pipeline(message)
             reset_flags()
@@ -606,88 +470,6 @@ class SlashCommands(commands.Cog):
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
         await send_emote(message, emote, *extra_args)
 
-    async def handle_april_fools(self, message: discord.Message):
-        content = message.clean_content
-        image_data = None
-        guild_id = message.guild.id
-        user_id = message.author.id
-
-        image_url = None
-        valid_formats = ["png", "webm", "jpg", "jpeg", "gif"]
-        for attachment in message.attachments:
-            if any(attachment.filename.lower().endswith(ext) for ext in valid_formats):
-                image_url = attachment.url
-                break
-
-        # try:
-        strikes = await db.get_strikes(user_id, guild_id)
-        analysis = await analyze_uwu(content, image_url, strikes)
-
-        if analysis.get("isUwU", False):
-            # await message.add_reaction("✅")  # UwU approved
-            pass
-        else:
-            await message.channel.typing()
-            # Increment strike count
-            current_strikes = await db.increment_strike(user_id, guild_id)
-            # current_strikes = 0
-
-            if current_strikes >= 3:
-                # Revoke posting privileges
-                channel_names = ["general-3-uwu", "general-3"]
-
-                channel = next(
-                    (discord.utils.get(message.guild.channels, name=name) for name in channel_names if
-                     discord.utils.get(message.guild.channels, name=name)),
-                    None
-                )
-
-                await channel.set_permissions(
-                    message.author,
-                    send_messages=False,
-                    reason="3 strikes reached"
-                )
-                await db.reset_strikes(user_id, guild_id)
-                await message.add_reaction("❌")
-                first_lines = [
-                    "**Oopsie!**",
-                    "**ZOMG!!**",
-                    "**UwU, nuuu!**",
-                    "**Oh noes!**",
-                    "**Sowwy!**",
-                    "**Nyaa!**",
-                    "**Hewwo?**",
-                    "**Eep!**"
-                ]
-                first_line = random.choice(first_lines)
-                await message.reply(
-                    f"{first_line} 🚨🚨🚨\n"
-                    f"{message.author.mention}-chan, you've hit 3 stwikes! No mowe posting fow you... 🚫 (✿◕︿◕)\n"
-                    f"B-bettew wuck next time, nya~! ✨"
-                )
-            else:
-                alert_lines = [
-                    "**Non-UwU Alert!**",
-                    "**Oops, no UwU!**",
-                    "**Aw-aw missing!**",
-                    "**Nyoo! Not UwU!**",
-                    "**Alert! No UwU!**"
-                ]
-                alert_line = random.choice(alert_lines)
-                strikes_left = 3 - current_strikes
-                await message.reply(
-                    f"{alert_line} 🚨\n"
-                    f"{analysis['reason']}\n\n"
-                    f"Stwike {current_strikes}/3 - "
-                    f"You have {strikes_left} {'twies' if strikes_left > 1 else 'twie'} wemaining! ⚠️\n\n",
-                    mention_author=True
-                )
-                await message.add_reaction("❌")  # Non-UwU reaction
-
-        # except Exception as e:
-        #     print(f"Error processing April Fools message: {e}")
-        #     await message.reply(f"Error processing April Fools message. Please try again later. \n {(str(e))}")
-        #     await message.add_reaction("⚠️")
 
 
 def reset_flags():
