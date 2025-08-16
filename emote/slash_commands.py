@@ -62,77 +62,6 @@ def encode_image(image_data):
     return base64.b64encode(image_data).decode('utf-8')
 
 
-async def analyze_uwu(content=None, image_url=None, current_strikes: int = 0):
-    """Analyzes text/image for UwU-style content using OpenAI"""
-    client = OpenAI(
-        api_key=os.getenv('OPENAI_KEY'),
-    )
-
-    messages = [{
-        "role": "system",
-        "content":
-            "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-            "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-            "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-            "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-            f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-            "Write your reason in uWu speak in 1-2 sentences. "
-            "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-            "Respond with JSON: {\"isUwU\": bool, \"reason\": str}"
-    }]
-
-    # messages = [{
-    #     "role": "system",
-    #     "content": (
-    #         "You are a discord bot that analyzes messages for UwU-style content in the general-3 channel. "
-    #         "Analyze for *any* ( UwU-style elements (cute text, emoticons, playful misspellings). "
-    #         "Messages don't necessarily have to be 'happy', they can be angry, mean, etc as long as they follow the other rules. "
-    #         "Examples: 'i fwucking hate dis server', 'wat da hell...'. "
-    #         f"Keep in mind that the user is currently on warning {current_strikes + 1}/3; each message that lacks these creative touches "
-    #         "brings them a step closer to posting restrictions. Write your reason in uWu speak in 1-2 sentences. "
-    #         "End your reason with a line break and a variation of: 'Stwike x/3. You have x tries wemaining! ⚠️' "
-    #         "The variation should reflect how many strikes the user has left, for instance, if the user has "
-    #         "onl my one try left theessage could be something like 'Stwike x/3! Ahhh! You only have 1 stwike left! ⚠️'. "
-    #         "Ensure there is a line break between the reason and the warning. "
-    #         "Try to avoid reiterating the rules verbatim. Do not say 'uwu-style' or anything similar. "
-    #         "with JSON in the format: {\"isUwU\": bool, \"reason\": str}."
-    #     )
-    # }]
-
-    if content:
-        messages.append({
-            "role": "user",
-            "content": f"Message: {content}\nIs this UwU-style? Respond with JSON."
-        })
-
-    if image_url:
-        messages.append({
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "Analyze this image for UwU-style text/content"
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": image_url,
-                        "detail": "auto"
-                    },
-                }
-            ]
-        })
-
-    response = client.chat.completions.create(
-        model="gpt-4o-mini-2024-07-18",
-        messages=messages,
-        max_tokens=300
-    )
-
-    try:
-        return json.loads(response.choices[0].message.content)
-    except json.JSONDecodeError:
-        return {"isUwU": False, "reason": "Invalid response from API"}
 
 
 async def get_emote_and_verify(emote_name_str: str, channel):
@@ -334,8 +263,15 @@ class SlashCommands(commands.Cog):
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
         masked_url = f"[bellbot.xyz/emote/{server_id}]({url})"
 
-        await interaction.response.send_message(f"Here is your secure link: {masked_url}")
+        embed = discord.Embed(
+            title=f"Emote Gallery - {interaction.guild.name}",
+            description=f"Here is your link:\n{masked_url}",
+            color=EmbedColor.DEFAULT.value
+        )
+        embed.set_footer(text="For privacy purposes, this link is only valid for 24 hours.")
 
+        await interaction.response.send_message(embed=embed)
+        
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
@@ -448,7 +384,7 @@ class SlashCommands(commands.Cog):
         if message.author.bot:
             return
 
-        elif is_enclosed_in_colon(message):
+        if is_enclosed_in_colon(message):
             async with message.channel.typing():
                 await self.process_emote_pipeline(message)
 
@@ -527,7 +463,6 @@ class SlashCommands(commands.Cog):
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
         await send_emote(message, emote, *extra_args)
-
 
 def reset_flags():
     SlashCommands.latency_enabled = False
