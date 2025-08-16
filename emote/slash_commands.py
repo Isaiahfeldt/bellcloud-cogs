@@ -15,7 +15,6 @@
 import base64
 import json
 import os
-import random
 import time
 from textwrap import wrap
 
@@ -150,10 +149,7 @@ class SlashCommands(commands.Cog):
     train_count = 1
 
     @emote.command(name="add", description="Add an emote to the server")
-    @app_commands.describe(
-        name="The name of the new emote",
-        url="The URL of a supported file type to add as an emote"
-    )
+    @app_commands.describe(name="The name of the new emote", url="The URL of a supported file type to add as an emote")
     async def emote_add(self, interaction: discord.Interaction, name: str, url: str):
         # Can only be used by users with the "Manage Messages" permission
         if not interaction.user.guild_permissions.manage_messages:
@@ -275,6 +271,7 @@ class SlashCommands(commands.Cog):
         embed.set_footer(text="For privacy purposes, this link is only valid for 24 hours.")
 
         await interaction.response.send_message(embed=embed)
+        
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
@@ -291,10 +288,7 @@ class SlashCommands(commands.Cog):
         # Retrieve effect information from EFFECTS_LIST
         effect_info = self.EFFECTS_LIST.get(effect_name.lower())
         if not effect_info:
-            await interaction.response.send_message(
-                f"Effect '{effect_name}' not found.",
-                ephemeral=True
-            )
+            await interaction.response.send_message(f"Effect '{effect_name}' not found.", ephemeral=True)
             return
 
         # Check user's permission for the effect
@@ -384,7 +378,6 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
-
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message: discord.Message):
@@ -394,6 +387,7 @@ class SlashCommands(commands.Cog):
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
                 await self.process_emote_pipeline(message)
+
             reset_flags()
 
     @commands.Cog.listener()
@@ -469,8 +463,6 @@ class SlashCommands(commands.Cog):
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
         await send_emote(message, emote, *extra_args)
-
-
 
 def reset_flags():
     SlashCommands.latency_enabled = False

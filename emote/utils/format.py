@@ -27,7 +27,9 @@ def clean_emote_name(emote_name: str):
     :param emote_name: The name of the emote to be cleaned.
     :return: The cleaned emote name where the prefix and postfix character sequence is removed, if it exists.
     """
-    return emote_name[2:-1] if emote_name.startswith(":~") else emote_name[1:-1]
+    return (
+        emote_name[2:-1] if emote_name.startswith(":~") else emote_name[1:-1]
+    ).strip()
 
 
 def extract_emote_details(message: discord.Message):

@@ -818,7 +818,7 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
                 return emote
 
             output_buffer = io.BytesIO()
-            # Determine save format based on original, default to GIF
+            # Determine save format based on original, default to gif
             save_format = 'webp' if file_ext == 'webp' else 'gif'
 
             output_frames_pil[0].save(

@@ -1,4 +1,4 @@
-#  Copyright (c) 2023, Isaiah Feldt
+﻿#  Copyright (c) 2023, Isaiah Feldt
 #  ͏
 #     - This program is free software: you can redistribute it and/or modify it
 #     - under the terms of the GNU Affero General Public License (AGPL) as published by
@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import discord
+from discord import app_commands
 from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
@@ -56,12 +57,15 @@ class Emotes(
             type=discord.AppCommandType.message,
             extras={"red_force_enable": True},
         )
-        self.bot.tree.add_command(self.add_as_emote)
 
-    # Add to the Emotes class
-    async def add_as_emote_context(self, interaction: discord.Interaction, message: discord.Message):
-        """Add an attachment from this message as an emote"""
-        await self.handle_add_emote(interaction, message)
+        self.apply_effect = discord.app_commands.ContextMenu(
+            name="Apply Effect",
+            callback=self.apply_effect_context,
+            type=discord.AppCommandType.message,
+        )
+
+        self.bot.tree.add_command(self.add_as_emote)
+        self.bot.tree.add_command(self.apply_effect)
 
     async def cog_load(self):
         from emote.slash_commands import db
@@ -73,5 +77,15 @@ class Emotes(
         await db.close_pool()
         print("Pool closed")
 
-    # async def cog_unload(self) -> None:
-    #     self.bot.tree.remove_command(self.add_as_emote, type=AppCommandType.message)
+    # -- Command related functions --#
+
+    async def add_as_emote_context(self, interaction: discord.Interaction, message: discord.Message):
+        """Add an attachment from this message as an emote"""
+        await self.handle_add_emote(interaction, message)
+
+    @app_commands.user_install()
+    @app_commands.guild_install()
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    async def apply_effect_context(self, interaction: discord.Interaction, message: discord.Message):
+        """Apply an effect to an emote"""
+        await self.handle_apply_effect(interaction, message)
