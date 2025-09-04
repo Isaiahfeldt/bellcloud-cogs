@@ -44,12 +44,17 @@ class Emotes(
     def __init__(self, bot: Red):
         super().__init__()
         self.bot = bot
-        self.config = Config.get_conf(self, identifier=4150111391)
         self.config = Config.get_conf(
             self,
             identifier=4150111391,
             force_registration=True,
         )
+
+        # Add default configuration for channel blacklists
+        default_guild = {
+            "blacklisted_channels": []
+        }
+        self.config.register_guild(**default_guild)
 
         self.add_as_emote = discord.app_commands.ContextMenu(
             name=_("Add as emote"),

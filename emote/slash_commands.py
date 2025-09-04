@@ -271,7 +271,7 @@ class SlashCommands(commands.Cog):
         embed.set_footer(text="For privacy purposes, this link is only valid for 24 hours.")
 
         await interaction.response.send_message(embed=embed)
-        
+
     @emote.command(name="clear_cache", description="Manually clear the cache")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
@@ -281,6 +281,27 @@ class SlashCommands(commands.Cog):
 
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
+
+    @emote.command(name="toggle", description="Toggle emotes on/off for a specific channel")
+    @app_commands.describe(channel="The channel to toggle emotes for")
+    @commands.guild_only()
+    @commands.admin_or_permissions(manage_guild=True)
+    async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel):
+        """Toggle emotes on/off for a specific channel"""
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+            return
+
+        emotes_cog = self.bot.get_cog("Emotes")
+        async with emotes_cog.config.guild(interaction.guild).blacklisted_channels() as blacklisted_channels:
+            if channel.id in blacklisted_channels:
+                # Channel is blacklisted, remove it (enable emotes)
+                blacklisted_channels.remove(channel.id)
+                await interaction.response.send_message(f"Emotes have been enabled again in {channel.mention} ✅", ephemeral=False)
+            else:
+                # Channel is not blacklisted, add it (disable emotes)
+                blacklisted_channels.append(channel.id)
+                await interaction.response.send_message(f"Emotes have been disabled in {channel.mention} 🚫", ephemeral=False)
 
     @emote.command(name="effect", description="Learn more about an effect")
     @app_commands.describe(effect_name="Name of the effect to get details about")
@@ -383,6 +404,12 @@ class SlashCommands(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author.bot:
             return
+
+        # Skip processing if channel is blacklisted
+        if message.guild:
+            blacklisted_channels = await self.bot.get_cog("Emotes").config.guild(message.guild).blacklisted_channels()
+            if message.channel.id in blacklisted_channels:
+                return
 
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
