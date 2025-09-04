@@ -13,15 +13,12 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import base64
-import json
-import os
 import time
 from textwrap import wrap
 
 import discord
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
-from openai import OpenAI
 from redbot.core import commands
 # from discord.app_commands import Choice, commands
 # from discord.ext.commands import HybridCommand
@@ -408,7 +405,12 @@ class SlashCommands(commands.Cog):
         # Skip processing if channel is blacklisted
         if message.guild:
             blacklisted_channels = await self.bot.get_cog("Emotes").config.guild(message.guild).blacklisted_channels()
-            if message.channel.id in blacklisted_channels:
+            if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
+                # Check if this is the special channel
+                if message.channel.id == 1412970503475429477:
+                    await message.channel.send("No images allowed in gen-free!!! 🚫")
+                else:
+                    await message.channel.send("Emotes are not allowed in this channel 🚫")
                 return
 
         if is_enclosed_in_colon(message):
