@@ -67,29 +67,6 @@ async def send_embed_followup(interaction, title, description):
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
-async def send_embed_followup_modal(interaction, title, description):
-    """
-    :param interaction: The interaction object representing the user's interaction with a command in Discord.
-    :param title: The title of the embedded message.
-    :param description: The description of the embedded message.
-    :return: None
-
-    This method is used to send an embedded follow-up message in response to a user's interaction with a command in Discord. The method takes three parameters: `interaction`, `title`, and
-    * `description`.
-    """
-    embed = discord.Embed(title=title,
-                          description=description,
-                          colour=EmbedColor.GREEN.value)
-    embed.set_author(name="Emote Help Menu",
-                     icon_url=interaction.client.user.display_avatar.url)
-    try:
-        await interaction.delete_original_response()
-    except (discord.NotFound, discord.HTTPException):
-        pass
-
-    await interaction.response.send_message(embed=embed, ephemeral=True)
-
-
 async def send_error_embed(interaction, error_message):
     """
     @param interaction: The interaction object representing the user command to respond to.
@@ -136,6 +113,38 @@ async def send_error_followup(interaction, error_message, emote=None):
 
     await interaction.followup.send(embed=embed, ephemeral=True)
 
+
+async def send_embed_followup_modal(interaction, title, description):
+    """
+    ... (docstring) ...
+    """
+    embed = discord.Embed(title=title,
+                          description=description,
+                          colour=EmbedColor.GREEN.value)
+    embed.set_author(name="Emote Help Menu",
+                     icon_url=interaction.client.user.display_avatar.url)
+    # Correctly uses followup.send without deleting
+    await interaction.followup.send(embed=embed, ephemeral=True)
+
+
+# ADD THIS NEW FUNCTION
+async def send_error_followup_modal(interaction, error_message):
+    """Sends an error embed as a followup for a modal interaction."""
+    if not hasattr(error_message, 'value'):
+        raise ValueError("Invalid error message object, must have a value attribute.")
+
+    embed = discord.Embed(title="Hmm, something went wrong.",
+                          description=error_message.value,
+                          colour=EmbedColor.RED.value)
+    embed.set_author(name="Emote Help Menu",
+                     icon_url=interaction.client.user.display_avatar.url)
+
+    # Check if a response has already been sent (e.g., defer())
+    if interaction.response.is_done():
+        await interaction.followup.send(embed=embed, ephemeral=True)
+    else:
+        # If not, send the initial response
+        await interaction.response.send_message(embed=embed, ephemeral=True)
 
 async def send_debug_embed(message, emote):
     debug_embed = discord.Embed(

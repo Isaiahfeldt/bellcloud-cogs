@@ -159,7 +159,7 @@ class SlashCommands(commands.Cog):
         )
 
         rules = [
-            (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: alphanumeric_name(name), EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
             (lambda: is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),

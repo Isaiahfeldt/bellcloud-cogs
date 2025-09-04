@@ -3,7 +3,7 @@ from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import valid_formats, db
-from .utils.chat import send_error_embed, send_error_followup, send_embed_followup_modal
+from .utils.chat import send_error_embed, send_embed_followup_modal, send_error_followup_modal
 from .utils.enums import EmoteAddError
 from .utils.modals import EmoteNameModal
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
@@ -49,7 +49,7 @@ class ContextMenu(commands.Cog):
             return
 
         rules = [
-            (lambda: alphanumeric_name, EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: alphanumeric_name(name), EmoteAddError.INVALID_NAME_CHAR),
             (lambda: len(name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
             (lambda: is_url_reachable(url), EmoteAddError.UNREACHABLE_URL),
             (lambda: not blacklisted_url(url), EmoteAddError.BLACKLISTED_URL),
@@ -61,12 +61,12 @@ class ContextMenu(commands.Cog):
 
         for condition, error in rules:
             if not condition():
-                await send_error_followup(interaction, error)
+                await send_error_followup_modal(interaction, error)
                 return
 
         print(f"Name: {name}, Guild: {interaction.guild_id}, URL: {url}")
         if await db.check_emote_exists(name, interaction.guild_id):
-            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            await send_error_followup_modal(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 
         print("Point B")
@@ -76,7 +76,7 @@ class ContextMenu(commands.Cog):
         success, error = await db.add_emote_to_database(interaction, name, url, file_type)
 
         if not success:
-            await send_error_followup(interaction, error)
+            await send_error_followup_modal(interaction, error)
             return
 
         print("Point C")
