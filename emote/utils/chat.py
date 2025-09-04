@@ -59,11 +59,7 @@ async def send_embed_followup(interaction, title, description):
                           colour=EmbedColor.GREEN.value)
     embed.set_author(name="Emote Help Menu",
                      icon_url=interaction.client.user.display_avatar.url)
-    try:
-        await interaction.delete_original_response()
-    except discord.errors.NotFound:
-        # No original response to delete (e.g., when called from a modal)
-        pass
+    await interaction.delete_original_response()
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
@@ -106,11 +102,7 @@ async def send_error_followup(interaction, error_message, emote=None):
                           colour=EmbedColor.RED.value)  # Changed usage of Enum
     embed.set_author(name="Emote Help Menu",
                      icon_url=interaction.client.user.display_avatar.url)
-    try:
-        await interaction.delete_original_response()
-    except discord.errors.NotFound:
-        # No original response to delete (e.g., when called from a modal)
-        pass
+    await interaction.delete_original_response()
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
