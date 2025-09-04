@@ -2,15 +2,13 @@ import discord
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
-from emote.slash_commands import valid_formats
+from emote.slash_commands import valid_formats, db
 from .utils.chat import send_error_embed, send_error_followup, send_embed_followup
-from .utils.database import Database
 from .utils.enums import EmoteAddError
 from .utils.modals import EmoteNameModal
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
 _ = Translator("Emote", __file__)
-db = Database()
 
 
 @cog_i18n(_)
