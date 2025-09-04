@@ -43,6 +43,9 @@ class ContextMenu(commands.Cog):
     async def modal_callback(self, interaction: discord.Interaction, name: str):
         print("Modal Callback")
         print(f"Name: {name}")
+
+        await interaction.response.defer()
+
         url = self.temp_attachments.pop(interaction.user.id, None)
         if not url:
             await send_error_embed(interaction, EmoteAddError.UNREACHABLE_URL)
