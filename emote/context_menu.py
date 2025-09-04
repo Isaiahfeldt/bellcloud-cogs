@@ -57,6 +57,8 @@ class ContextMenu(commands.Cog):
             (lambda: is_media_size_valid(url, 52428800), EmoteAddError.EXCEED_FILE_SIZE),
         ]
 
+        print("Point A")
+
         for condition, error in rules:
             if not condition():
                 await send_error_followup(interaction, error)
@@ -67,6 +69,8 @@ class ContextMenu(commands.Cog):
             await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
             return
 
+        print("Point B")
+
         # Upload to bucket
         file_type = str(is_media_format_valid(url, valid_formats)[1])
         success, error = await db.add_emote_to_database(interaction, name, url, file_type)
@@ -74,6 +78,8 @@ class ContextMenu(commands.Cog):
         if not success:
             await send_error_followup(interaction, error)
             return
+
+        print("Point C")
 
         await send_embed_followup(
             interaction, "Success!", f"Added **{name}** as an emote."
