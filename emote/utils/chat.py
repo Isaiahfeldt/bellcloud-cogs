@@ -67,6 +67,29 @@ async def send_embed_followup(interaction, title, description):
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 
+async def send_embed_followup_modal(interaction, title, description):
+    """
+    :param interaction: The interaction object representing the user's interaction with a command in Discord.
+    :param title: The title of the embedded message.
+    :param description: The description of the embedded message.
+    :return: None
+
+    This method is used to send an embedded follow-up message in response to a user's interaction with a command in Discord. The method takes three parameters: `interaction`, `title`, and
+    * `description`.
+    """
+    embed = discord.Embed(title=title,
+                          description=description,
+                          colour=EmbedColor.GREEN.value)
+    embed.set_author(name="Emote Help Menu",
+                     icon_url=interaction.client.user.display_avatar.url)
+    try:
+        await interaction.delete_original_response()
+    except (discord.NotFound, discord.HTTPException):
+        pass
+
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
 async def send_error_embed(interaction, error_message):
     """
     @param interaction: The interaction object representing the user command to respond to.

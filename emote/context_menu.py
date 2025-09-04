@@ -3,7 +3,7 @@ from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
 from emote.slash_commands import valid_formats, db
-from .utils.chat import send_error_embed, send_error_followup, send_embed_followup
+from .utils.chat import send_error_embed, send_error_followup, send_embed_followup_modal
 from .utils.enums import EmoteAddError
 from .utils.modals import EmoteNameModal
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
@@ -81,6 +81,6 @@ class ContextMenu(commands.Cog):
 
         print("Point C")
 
-        await send_embed_followup(
+        await send_embed_followup_modal(
             interaction, "Success!", f"Added **{name}** as an emote."
         )
