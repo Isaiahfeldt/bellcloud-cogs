@@ -44,7 +44,7 @@ class ContextMenu(commands.Cog):
         print("Modal Callback")
         print(f"Name: {name}")
 
-        await interaction.response.defer()
+        await interaction.response.defer(ephemeral=True, thinking=True)
 
         url = self.temp_attachments.pop(interaction.user.id, None)
         if not url:
