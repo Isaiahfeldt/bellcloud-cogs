@@ -13,6 +13,7 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import base64
+import re
 import time
 from textwrap import wrap
 
@@ -32,6 +33,29 @@ from .utils.enums import EmoteAddError, EmoteRemoveError, EmoteError, EmbedColor
 from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
+
+
+def contains_emoji(text: str) -> bool:
+    """Check if the text contains any emojis (Unicode emojis or Discord custom emojis)."""
+    # Unicode emoji pattern - covers most standard emojis
+    unicode_emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        "\U0001F680-\U0001F6FF"  # transport & map
+        "\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        "\U00002702-\U000027B0"  # dingbats
+        "\U000024C2-\U0001F251"
+        "\U0001F900-\U0001F9FF"  # supplemental symbols
+        "\U0001FA70-\U0001FAFF"  # symbols and pictographs extended-A
+        "]+", 
+        flags=re.UNICODE
+    )
+    
+    # Discord custom emoji pattern <:name:id> or <a:name:id> for animated
+    discord_emoji_pattern = re.compile(r'<a?:\w+:\d+>')
+    
+    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text))
 
 _ = Translator("Emote", __file__)
 
@@ -279,26 +303,50 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    @emote.command(name="toggle", description="Toggle emotes on/off for a specific channel")
-    @app_commands.describe(channel="The channel to toggle emotes for")
+    @emote.command(name="toggle", description="Toggle emotes on/off for a specific channel, optionally also ban emojis")
+    @app_commands.describe(channel="The channel to toggle emotes for", ban_emojis="Also ban regular emojis in addition to emotes")
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
-    async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel):
+    async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel, ban_emojis: bool = False):
         """Toggle emotes on/off for a specific channel"""
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
         emotes_cog = self.bot.get_cog("Emotes")
+        
+        # Handle emote blacklisting
         async with emotes_cog.config.guild(interaction.guild).blacklisted_channels() as blacklisted_channels:
-            if channel.id in blacklisted_channels:
+            emotes_currently_disabled = channel.id in blacklisted_channels
+            
+            if emotes_currently_disabled:
                 # Channel is blacklisted, remove it (enable emotes)
                 blacklisted_channels.remove(channel.id)
-                await interaction.response.send_message(f"Emotes have been enabled again in {channel.mention} ✅", ephemeral=False)
             else:
                 # Channel is not blacklisted, add it (disable emotes)
                 blacklisted_channels.append(channel.id)
-                await interaction.response.send_message(f"Emotes have been disabled in {channel.mention} 🚫", ephemeral=False)
+        
+        # Handle emoji blacklisting if requested
+        async with emotes_cog.config.guild(interaction.guild).emoji_blacklisted_channels() as emoji_blacklisted_channels:
+            emojis_currently_disabled = channel.id in emoji_blacklisted_channels
+            
+            if ban_emojis:
+                if emotes_currently_disabled:
+                    # Emotes were disabled, now also disable emojis
+                    if not emojis_currently_disabled:
+                        emoji_blacklisted_channels.append(channel.id)
+                    await interaction.response.send_message(f"Emotes and emojis have been disabled in {channel.mention} 🚫", ephemeral=False)
+                else:
+                    # Emotes were enabled, now also enable emojis
+                    if emojis_currently_disabled:
+                        emoji_blacklisted_channels.remove(channel.id)
+                    await interaction.response.send_message(f"Emotes and emojis have been enabled again in {channel.mention} ✅", ephemeral=False)
+            else:
+                # Only handle emotes, don't touch emoji settings
+                if emotes_currently_disabled:
+                    await interaction.response.send_message(f"Emotes have been enabled again in {channel.mention} ✅", ephemeral=False)
+                else:
+                    await interaction.response.send_message(f"Emotes have been disabled in {channel.mention} 🚫", ephemeral=False)
 
     @emote.command(name="effect", description="Learn more about an effect")
     @app_commands.describe(effect_name="Name of the effect to get details about")
@@ -404,13 +452,22 @@ class SlashCommands(commands.Cog):
 
         # Skip processing if channel is blacklisted
         if message.guild:
-            blacklisted_channels = await self.bot.get_cog("Emotes").config.guild(message.guild).blacklisted_channels()
+            emotes_cog = self.bot.get_cog("Emotes")
+            blacklisted_channels = await emotes_cog.config.guild(message.guild).blacklisted_channels()
+            emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
+            
+            # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 # Check if this is the special channel
                 if message.channel.id == 1412970503475429477:
                     await message.channel.send("No images allowed in gen-free!!! 🚫")
                 else:
                     await message.channel.send("Emotes are not allowed in this channel 🚫")
+                return
+            
+            # Check for emoji blacklisting
+            if message.channel.id in emoji_blacklisted_channels and contains_emoji(message.content):
+                await message.channel.send("Emojis are not allowed in this channel 🚫")
                 return
 
         if is_enclosed_in_colon(message):

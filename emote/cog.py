@@ -52,7 +52,8 @@ class Emotes(
 
         # Add default configuration for channel blacklists
         default_guild = {
-            "blacklisted_channels": []
+            "blacklisted_channels": [],
+            "emoji_blacklisted_channels": []
         }
         self.config.register_guild(**default_guild)
 
