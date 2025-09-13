@@ -464,7 +464,7 @@ class SlashCommands(commands.Cog):
             emotes_cog = self.bot.get_cog("Emotes")
             blacklisted_channels = await emotes_cog.config.guild(message.guild).blacklisted_channels()
             emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
-            print(message.content)
+
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 if message.channel.id == 1412970503475429477:  # pisscord
@@ -479,7 +479,7 @@ class SlashCommands(commands.Cog):
                 if message.channel.id == 1412970503475429477:  # pisscord
                     await message.channel.send("No emojis allowed in gen-free!!!")
                 else:
-                    await message.channel.send("Emojis are not allowed in this channel 🚫")
+                    await message.channel.send("Emojis are not allowed in this channel!")
                 return
 
         if is_enclosed_in_colon(message):
