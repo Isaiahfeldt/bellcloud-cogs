@@ -338,13 +338,13 @@ class SlashCommands(commands.Cog):
                     if not emojis_currently_disabled:
                         emoji_blacklisted_channels.append(channel.id)
                     await interaction.response.send_message(
-                        f"Emotes and emojis have been disabled in {channel.mention} 🚫", ephemeral=False)
+                        f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False)
                 else:
                     # Emotes were enabled, now also enable emojis
                     if emojis_currently_disabled:
                         emoji_blacklisted_channels.remove(channel.id)
                     await interaction.response.send_message(
-                        f"Emotes and emojis have been enabled again in {channel.mention} ✅", ephemeral=False)
+                        f"Emotes and emojis have been enabled again in {channel.mention}!", ephemeral=False)
             else:
                 # Only handle emotes, but remove emoji blacklist entry when enabling emotes
                 if emotes_currently_disabled:
