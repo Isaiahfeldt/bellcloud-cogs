@@ -468,18 +468,18 @@ class SlashCommands(commands.Cog):
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 if message.channel.id == 1412970503475429477:  # pisscord
-                    await message.channel.send("No images allowed in gen-free!!!")
+                    await message.channel.send(f"No images allowed in gen-free, {message.author.mention}!!!")
                 else:
-                    await message.channel.send("Emotes are not allowed in this channel 🚫")
+                    await message.channel.send(f"Emotes are not allowed in this channel, {message.author.mention} 🚫")
                 return
 
             # Check for emoji blacklisting
             if message.channel.id in emoji_blacklisted_channels and contains_emoji(message.content):
                 await message.delete()
                 if message.channel.id == 1412970503475429477:  # pisscord
-                    await message.channel.send("No emojis allowed in gen-free!!!")
+                    await message.channel.send(f"No emojis allowed in gen-free, {message.author.mention}!!!")
                 else:
-                    await message.channel.send("Emojis are not allowed in this channel!")
+                    await message.channel.send(f"Emojis are not allowed in this channel, {message.author.mention}!")
                 return
 
         if is_enclosed_in_colon(message):
