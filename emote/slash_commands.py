@@ -453,55 +453,6 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
-    @emote.command(name="rename", description="Rename an existing emote")
-    @app_commands.describe(old_name="The current name of the emote", new_name="The new name for the emote")
-    async def emote_rename(self, interaction: discord.Interaction, old_name: str, new_name: str):
-        # Can only be used by users with the "Manage Messages" permission
-        if not interaction.user.guild_permissions.manage_messages:
-            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
-            return
-
-        await send_help_embed(
-            interaction, "Renaming emote...",
-            "Please wait while the emote is being renamed."
-        )
-
-        # Validate new name
-        rules = [
-            (lambda: alphanumeric_name(new_name), EmoteAddError.INVALID_NAME_CHAR),
-            (lambda: len(new_name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
-        ]
-
-        for condition, error in rules:
-            if not condition():
-                await send_error_followup(interaction, error)
-                return
-
-        # Check if old emote exists
-        if not await db.check_emote_exists(old_name, interaction.guild_id):
-            await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
-            return
-
-        # Check if new name already exists
-        if await db.check_emote_exists(new_name, interaction.guild_id):
-            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
-            return
-
-        # Rename emote
-        success, error = await db.rename_emote(interaction, old_name, new_name)
-
-        if not success:
-            # Map string errors to appropriate enums
-            if error == "Emote not found":
-                await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
-            else:
-                # For database or S3 errors, use a generic error
-                await send_error_followup(interaction, EmoteAddError.GENERIC_ERROR)
-            return
-
-        await send_embed_followup(
-            interaction, "Success!", f"Renamed **{old_name}** to **{new_name}**."
-        )
 
     @emote.command(name="info", description="Display detailed information about an emote")
     @app_commands.describe(name="The name of the emote to get information about")

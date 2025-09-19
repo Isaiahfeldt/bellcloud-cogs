@@ -202,48 +202,6 @@ class Database:
 
         return Emote(**fix_emote_dict(emote_rows))
 
-    async def rename_emote(self, interaction: discord.Interaction, old_name: str, new_name: str):
-        """Rename an emote in both database and S3 bucket."""
-        # First get the emote to access its file info
-        emote: Optional[Emote] = await self.get_emote(old_name, interaction.guild.id, False)
-        if emote is None:
-            return False, "Emote not found"
-
-        # Extract file extension from file_path
-        file_extension = emote.file_path.split('.')[-1]
-        
-        # Update database record
-        query = (
-            "UPDATE emote.media SET emote_name = $1, file_path = $2 "
-            "WHERE emote_name = $3 AND guild_id = $4"
-        )
-        new_file_path = f"{interaction.guild.id}/{new_name.lower()}.{file_extension}"
-        values = (new_name, new_file_path, old_name, interaction.guild.id)
-
-        result = await self.execute_query(query, *values)
-        if result is None:
-            return False, "Database update failed"
-
-        # Copy file in S3 bucket to new key and delete old one
-        try:
-            # Copy to new key
-            copy_source = {'Bucket': 'emote', 'Key': emote.file_path}
-            self.s3_client.copy(copy_source, 'emote', new_file_path)
-            
-            # Delete old key
-            self.s3_client.delete_object(Bucket='emote', Key=emote.file_path)
-            
-            # Clear cache entries for both old and new names
-            old_key = (old_name, interaction.guild.id)
-            new_key = (new_name, interaction.guild.id)
-            if old_key in self.cache:
-                del self.cache[old_key]
-            if new_key in self.cache:
-                del self.cache[new_key]
-            
-            return True, None
-        except Exception as e:
-            return False, f"S3 operation failed: {str(e)}"
 
     async def get_top_emotes_by_usage(self, guild_id, limit: int = 10):
         """Get top emotes by usage count for leaderboard."""
