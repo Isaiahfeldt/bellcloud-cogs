@@ -453,6 +453,145 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
+    @emote.command(name="rename", description="Rename an existing emote")
+    @app_commands.describe(old_name="The current name of the emote", new_name="The new name for the emote")
+    async def emote_rename(self, interaction: discord.Interaction, old_name: str, new_name: str):
+        # Can only be used by users with the "Manage Messages" permission
+        if not interaction.user.guild_permissions.manage_messages:
+            await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
+            return
+
+        await send_help_embed(
+            interaction, "Renaming emote...",
+            "Please wait while the emote is being renamed."
+        )
+
+        # Validate new name
+        rules = [
+            (lambda: alphanumeric_name(new_name), EmoteAddError.INVALID_NAME_CHAR),
+            (lambda: len(new_name) <= 32, EmoteAddError.EXCEED_NAME_LEN),
+        ]
+
+        for condition, error in rules:
+            if not condition():
+                await send_error_followup(interaction, error)
+                return
+
+        # Check if old emote exists
+        if not await db.check_emote_exists(old_name, interaction.guild_id):
+            await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
+            return
+
+        # Check if new name already exists
+        if await db.check_emote_exists(new_name, interaction.guild_id):
+            await send_error_followup(interaction, EmoteAddError.DUPLICATE_EMOTE_NAME)
+            return
+
+        # Rename emote
+        success, error = await db.rename_emote(interaction, old_name, new_name)
+
+        if not success:
+            await send_error_followup(interaction, error)
+            return
+
+        await send_embed_followup(
+            interaction, "Success!", f"Renamed **{old_name}** to **{new_name}**."
+        )
+
+    @emote.command(name="info", description="Display detailed information about an emote")
+    @app_commands.describe(name="The name of the emote to get information about")
+    async def emote_info(self, interaction: discord.Interaction, name: str):
+        emote = await db.get_emote(name, interaction.guild_id, False)
+        
+        if emote is None:
+            await send_error_embed(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
+            return
+
+        # Format timestamp
+        timestamp_formatted = emote.timestamp.strftime("%Y-%m-%d %H:%M:%S UTC")
+        
+        # Get author information
+        try:
+            author = await self.bot.fetch_user(emote.author_id)
+            author_name = f"{author.display_name} ({author.name})"
+        except:
+            author_name = f"Unknown User (ID: {emote.author_id})"
+
+        embed = discord.Embed(
+            title=f"Emote Info: {emote.name}",
+            color=EmbedColor.DEFAULT.value
+        )
+        
+        # Add emote image if available
+        emote_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
+        embed.set_thumbnail(url=emote_url)
+        
+        embed.add_field(name="Author", value=author_name, inline=True)
+        embed.add_field(name="Created", value=timestamp_formatted, inline=True)
+        embed.add_field(name="Usage Count", value=str(emote.usage_count), inline=True)
+        embed.add_field(name="File Path", value=emote.file_path, inline=False)
+        embed.add_field(name="Original URL", value=emote.original_url if emote.original_url else "N/A", inline=False)
+        
+        if emote.errors:
+            error_text = "\n".join([f"**{k}**: {v}" for k, v in emote.errors.items()])
+            embed.add_field(name="Errors", value=error_text, inline=False)
+            
+        if emote.notes:
+            notes_text = "\n".join([f"**{k}**: {v}" for k, v in emote.notes.items()])
+            embed.add_field(name="Notes", value=notes_text, inline=False)
+
+        embed.set_footer(text=f"Guild ID: {emote.guild_id} | Emote ID: {emote.id}")
+
+        await interaction.response.send_message(embed=embed)
+
+    @emote.command(name="top", description="Display the most used emotes in this server")
+    @app_commands.describe(limit="Number of top emotes to display (default: 10, max: 25)")
+    async def emote_top(self, interaction: discord.Interaction, limit: int = 10):
+        # Validate limit
+        if limit < 1:
+            limit = 10
+        elif limit > 25:
+            limit = 25
+
+        top_emotes = await db.get_top_emotes_by_usage(interaction.guild_id, limit)
+        
+        if not top_emotes:
+            await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
+            return
+
+        embed = discord.Embed(
+            title=f"🏆 Top {len(top_emotes)} Most Used Emotes",
+            color=EmbedColor.DEFAULT.value
+        )
+        embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url if interaction.guild.icon else None)
+
+        description_lines = []
+        medals = ["🥇", "🥈", "🥉"]
+        
+        for i, (emote_name, usage_count, author_id) in enumerate(top_emotes, 1):
+            # Get medal or number
+            if i <= 3:
+                position = medals[i-1]
+            else:
+                position = f"**{i}.**"
+            
+            # Try to get author name
+            try:
+                author = await self.bot.fetch_user(author_id)
+                author_display = author.display_name
+            except:
+                author_display = f"Unknown User"
+            
+            # Format the line
+            usage_text = "use" if usage_count == 1 else "uses"
+            line = f"{position} **{emote_name}** - {usage_count} {usage_text} (by {author_display})"
+            description_lines.append(line)
+
+        embed.description = "\n".join(description_lines)
+        embed.set_footer(text=f"Showing top {len(top_emotes)} emotes out of all server emotes")
+
+        await interaction.response.send_message(embed=embed)
+
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message: discord.Message):
