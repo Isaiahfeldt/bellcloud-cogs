@@ -491,7 +491,12 @@ class SlashCommands(commands.Cog):
         success, error = await db.rename_emote(interaction, old_name, new_name)
 
         if not success:
-            await send_error_followup(interaction, error)
+            # Map string errors to appropriate enums
+            if error == "Emote not found":
+                await send_error_followup(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
+            else:
+                # For database or S3 errors, use a generic error
+                await send_error_followup(interaction, EmoteAddError.GENERIC_ERROR)
             return
 
         await send_embed_followup(
