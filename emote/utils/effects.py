@@ -230,7 +230,7 @@ def train(emote: Emote, amount: int = 3) -> Emote:
             amount = min(max(amount, 1), 6)
             emote.errors["train"] = "Train amount must be between values of 1 and 6."
             emote.followup["Train"] = (
-                "This effect is capped at 6 to avoid Discord rate limits and to"
+                "This effect is capped at 6 to avoid Discord rate limits and to "
                 "prevent spamming, which can lead to Bell being blacklisted. Sorry!"
             )
 
@@ -710,7 +710,6 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
                 emote.issues[
                     "shake_res_frame_limit"] = f"Frame count limited to {max_frames}, output duration adjusted to {OUTPUT_FRAME_DURATION_MS}ms"
 
-
             # --- Calculate Shake Parameters ---
             img_width, img_height = input_frames_data[0][0].size
             scale = max(img_width, img_height) / 540.0
@@ -1102,7 +1101,6 @@ def rainbow(emote: Emote, speed: float = 1.0) -> Emote:
 
                 frame_durations_to_save = static_frame_delay_ms  # Use single duration for static
 
-
             # --- Animated Input Processing ---
             if is_animated_input:
 
@@ -1297,7 +1295,6 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
                     input_frames_data.append((current_frame_pil, duration_ms))
                     total_input_duration_ms += duration_ms
                     last_duration = duration_ms
-
 
                 if total_input_duration_ms <= 0:
                     emote.errors["spin"] = "Input animation has zero or negative total duration."
