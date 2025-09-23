@@ -34,6 +34,26 @@ from .utils.format import is_enclosed_in_colon, extract_emote_details
 from .utils.pipeline import create_pipeline, execute_pipeline
 from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid, is_media_size_valid, alphanumeric_name
 
+# Channel constants
+PISSCORD_CHANNEL_ID = 1412970503475429477  # gen-free channel
+CREATOR_NOVEMBER_USER_ID = "138148168360656896"
+
+
+def get_violation_message(channel_id: int, violation_type: str, user_mention: str) -> str:
+    """Generate the appropriate violation message based on channel and violation type."""
+    if channel_id == PISSCORD_CHANNEL_ID:
+        if violation_type == "images":
+            return f"No images allowed in gen-free, {user_mention}!!!"
+        elif violation_type == "emojis":
+            return f"No emojis allowed in gen-free, {user_mention}!!!"
+    else:
+        if violation_type == "images":
+            return f"Images are not allowed in this channel, {user_mention} 🚫"
+        elif violation_type == "emojis":
+            return f"Emojis are not allowed in this channel, {user_mention}!"
+
+    return f"Content not allowed in this channel, {user_mention}!"
+
 
 def contains_emoji(text: str) -> bool:
     """Check if the text contains any emojis (Unicode emojis or Discord custom emojis)."""
@@ -562,26 +582,23 @@ class SlashCommands(commands.Cog):
 
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
-                if message.channel.id == 1412970503475429477:  # pisscord
-                    await message.channel.send(f"No images allowed in gen-free, {message.author.mention}!!!")
-                else:
-                    await message.channel.send(f"Emotes are not allowed in this channel, {message.author.mention} 🚫")
+                violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
+                await message.channel.send(violation_msg)
                 return
 
             # Check for emoji blacklisting
             if message.channel.id in emoji_blacklisted_channels:
-                # Special check for Creator Novemeber to delete messages with attachments in blacklisted channels
-                if str(message.author.id) == "138148168360656896" and message.attachments:
+                # Special check for Creator November user with attachments
+                if str(message.author.id) == CREATOR_NOVEMBER_USER_ID and message.attachments:
                     await message.delete()
-                    await message.channel.send(f"No images allowed in gen-free, {message.author.mention}!!!")
+                    violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
+                    await message.channel.send(violation_msg)
                     return
 
                 if contains_emoji(message.content):
                     await message.delete()
-                    if message.channel.id == 1412970503475429477:  # pisscord
-                        await message.channel.send(f"No emojis allowed in gen-free, {message.author.mention}!!!")
-                    else:
-                        await message.channel.send(f"Emojis are not allowed in this channel, {message.author.mention}!")
+                    violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
+                    await message.channel.send(violation_msg)
                     return
 
         if is_enclosed_in_colon(message):
