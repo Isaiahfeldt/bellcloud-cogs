@@ -453,19 +453,18 @@ class SlashCommands(commands.Cog):
                 suggestions.append(app_commands.Choice(name=display_name, value=name))
         return suggestions
 
-
     @emote.command(name="info", description="Display detailed information about an emote")
     @app_commands.describe(name="The name of the emote to get information about")
     async def emote_info(self, interaction: discord.Interaction, name: str):
         emote = await db.get_emote(name, interaction.guild_id, False)
-        
+
         if emote is None:
             await send_error_embed(interaction, EmoteRemoveError.NOTFOUND_EMOTE_NAME)
             return
 
         # Format timestamp
         timestamp_formatted = emote.timestamp.strftime("%Y-%m-%d %H:%M:%S UTC")
-        
+
         # Get author information
         try:
             author = await self.bot.fetch_user(emote.author_id)
@@ -477,21 +476,21 @@ class SlashCommands(commands.Cog):
             title=f"Emote Info: {emote.name}",
             color=EmbedColor.DEFAULT.value
         )
-        
+
         # Add emote image if available
         emote_url = f"https://media.bellbot.xyz/emote/{emote.file_path}"
         embed.set_thumbnail(url=emote_url)
-        
+
         embed.add_field(name="Author", value=author_name, inline=True)
         embed.add_field(name="Created", value=timestamp_formatted, inline=True)
         embed.add_field(name="Usage Count", value=str(emote.usage_count), inline=True)
         embed.add_field(name="File Path", value=emote.file_path, inline=False)
         embed.add_field(name="Original URL", value=emote.original_url if emote.original_url else "N/A", inline=False)
-        
+
         if emote.errors:
             error_text = "\n".join([f"**{k}**: {v}" for k, v in emote.errors.items()])
             embed.add_field(name="Errors", value=error_text, inline=False)
-            
+
         if emote.notes:
             notes_text = "\n".join([f"**{k}**: {v}" for k, v in emote.notes.items()])
             embed.add_field(name="Notes", value=notes_text, inline=False)
@@ -510,7 +509,7 @@ class SlashCommands(commands.Cog):
             limit = 25
 
         top_emotes = await db.get_top_emotes_by_usage(interaction.guild_id, limit)
-        
+
         if not top_emotes:
             await send_error_embed(interaction, EmoteError.EMPTY_SERVER)
             return
@@ -519,25 +518,26 @@ class SlashCommands(commands.Cog):
             title=f"🏆 Top {len(top_emotes)} Most Used Emotes",
             color=EmbedColor.DEFAULT.value
         )
-        embed.set_author(name=f"{interaction.guild.name}", icon_url=interaction.guild.icon.url if interaction.guild.icon else None)
+        embed.set_author(name=f"{interaction.guild.name}",
+                         icon_url=interaction.guild.icon.url if interaction.guild.icon else None)
 
         description_lines = []
         medals = ["🥇", "🥈", "🥉"]
-        
+
         for i, (emote_name, usage_count, author_id) in enumerate(top_emotes, 1):
             # Get medal or number
             if i <= 3:
-                position = medals[i-1]
+                position = medals[i - 1]
             else:
                 position = f"**{i}.**"
-            
+
             # Try to get author name
             try:
                 author = await self.bot.fetch_user(author_id)
                 author_display = author.display_name
             except:
                 author_display = f"Unknown User"
-            
+
             # Format the line
             usage_text = "use" if usage_count == 1 else "uses"
             line = f"{position} **{emote_name}** - {usage_count} {usage_text} (by {author_display})"
@@ -569,13 +569,20 @@ class SlashCommands(commands.Cog):
                 return
 
             # Check for emoji blacklisting
-            if message.channel.id in emoji_blacklisted_channels and contains_emoji(message.content):
-                await message.delete()
-                if message.channel.id == 1412970503475429477:  # pisscord
-                    await message.channel.send(f"No emojis allowed in gen-free, {message.author.mention}!!!")
-                else:
-                    await message.channel.send(f"Emojis are not allowed in this channel, {message.author.mention}!")
-                return
+            if message.channel.id in emoji_blacklisted_channels:
+                # Special check for Creator Novemeber to delete messages with attachments in blacklisted channels
+                if str(message.author.id) == "138148168360656896" and message.attachments:
+                    await message.delete()
+                    await message.channel.send(f"No images allowed in gen-free, {message.author.mention}!!!")
+                    return
+
+                if contains_emoji(message.content):
+                    await message.delete()
+                    if message.channel.id == 1412970503475429477:  # pisscord
+                        await message.channel.send(f"No emojis allowed in gen-free, {message.author.mention}!!!")
+                    else:
+                        await message.channel.send(f"Emojis are not allowed in this channel, {message.author.mention}!")
+                    return
 
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
