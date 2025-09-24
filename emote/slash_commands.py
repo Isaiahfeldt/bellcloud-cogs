@@ -584,6 +584,9 @@ class SlashCommands(commands.Cog):
             blacklisted_channels = await emotes_cog.config.guild(message.guild).blacklisted_channels()
             emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
 
+            print("Is blacklisted: ", message.channel.id in blacklisted_channels)
+            print("Is emoji blacklisted: ", message.channel.id in emoji_blacklisted_channels)
+
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
@@ -625,7 +628,7 @@ class SlashCommands(commands.Cog):
         if message.guild:
             emotes_cog = self.bot.get_cog("Emotes")
             emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
-            
+
             if message.channel.id in emoji_blacklisted_channels:
                 await reaction.remove(user)
                 violation_msg = get_violation_message(message.channel.id, "reactions", user.mention)
