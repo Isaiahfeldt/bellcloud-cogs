@@ -326,56 +326,55 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    @emote.command(name="toggle", description="Toggle emotes on/off for a specific channel, optionally also ban emojis")
-    @app_commands.describe(channel="The channel to toggle emotes for",
+    @emote.command(name="toggle", description="Enable or disable emotes for a specific channel, optionally also ban emojis")
+    @app_commands.describe(channel="The channel to configure emotes for",
+                           enabled="True to enable emotes, False to disable emotes",
                            ban_emojis="Also ban regular emojis in addition to emotes")
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
     async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel,
-                           ban_emojis: bool = False):
-        """Toggle emotes on/off for a specific channel"""
+                           enabled: bool, ban_emojis: bool = False):
+        """Enable or disable emotes for a specific channel"""
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
         emotes_cog = self.bot.get_cog("Emotes")
 
-        # Handle emote blacklisting
+        # Handle emote blacklisting based on enabled parameter
         async with emotes_cog.config.guild(interaction.guild).blacklisted_channels() as blacklisted_channels:
-            emotes_currently_disabled = channel.id in blacklisted_channels
-
-            if emotes_currently_disabled:
-                # Channel is blacklisted, remove it (enable emotes)
-                blacklisted_channels.remove(channel.id)
+            if enabled:
+                # Enable emotes - remove from blacklist if present
+                if channel.id in blacklisted_channels:
+                    blacklisted_channels.remove(channel.id)
             else:
-                # Channel is not blacklisted, add it (disable emotes)
-                blacklisted_channels.append(channel.id)
+                # Disable emotes - add to blacklist if not present
+                if channel.id not in blacklisted_channels:
+                    blacklisted_channels.append(channel.id)
 
         # Handle emoji blacklisting if requested
         async with emotes_cog.config.guild(
                 interaction.guild).emoji_blacklisted_channels() as emoji_blacklisted_channels:
-            emojis_currently_disabled = channel.id in emoji_blacklisted_channels
-
             if ban_emojis:
-                if emotes_currently_disabled:
-                    # Emotes were disabled, now also disable emojis
-                    if not emojis_currently_disabled:
+                if not enabled:
+                    # Disable emojis - add to blacklist if not present
+                    if channel.id not in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.append(channel.id)
                     await interaction.response.send_message(
                         f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False)
                 else:
-                    # Emotes were enabled, now also enable emojis
-                    if emojis_currently_disabled:
+                    # Enable emojis - remove from blacklist if present
+                    if channel.id in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.remove(channel.id)
                     await interaction.response.send_message(
-                        f"Emotes and emojis have been enabled again in {channel.mention}!", ephemeral=False)
+                        f"Emotes and emojis have been enabled in {channel.mention}!", ephemeral=False)
             else:
                 # Only handle emotes, but remove emoji blacklist entry when enabling emotes
-                if emotes_currently_disabled:
+                if enabled:
                     # Also remove from emoji blacklist when enabling emotes to keep lists synchronized
-                    if emojis_currently_disabled:
+                    if channel.id in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.remove(channel.id)
-                    await interaction.response.send_message(f"Emotes have been enabled again in {channel.mention} ✅",
+                    await interaction.response.send_message(f"Emotes have been enabled in {channel.mention} ✅",
                                                             ephemeral=False)
                 else:
                     await interaction.response.send_message(f"Emotes have been disabled in {channel.mention} 🚫",
