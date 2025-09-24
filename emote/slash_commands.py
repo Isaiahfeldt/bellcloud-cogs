@@ -78,11 +78,12 @@ def contains_emoji(text: str) -> bool:
 
     # Discord custom emoji pattern <:name:id> or <a:name:id> for animated
     discord_emoji_pattern = re.compile(r'<a?:\w+:\d+>')
-    
+
     # Emoji shortcode pattern :name: (like :green_circle:, :thinking:, etc.)
     emoji_shortcode_pattern = re.compile(r':[a-zA-Z0-9_+-]+:')
 
-    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(emoji_shortcode_pattern.search(text))
+    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(
+        emoji_shortcode_pattern.search(text))
 
 
 _ = Translator("Emote", __file__)
@@ -627,6 +628,7 @@ class SlashCommands(commands.Cog):
                     print("Contained emoji")
                     return
 
+                print(message.content)
                 print("Did nothing")
 
         if is_enclosed_in_colon(message):
