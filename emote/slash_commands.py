@@ -60,7 +60,7 @@ def get_violation_message(channel_id: int, violation_type: str, user_mention: st
 
 
 def contains_emoji(text: str) -> bool:
-    """Check if the text contains any emojis (Unicode emojis or Discord custom emojis)."""
+    """Check if the text contains any emojis (Unicode emojis, Discord custom emojis, or emoji shortcodes)."""
     # Unicode emoji pattern - covers most standard emojis
     unicode_emoji_pattern = re.compile(
         "["
@@ -78,8 +78,11 @@ def contains_emoji(text: str) -> bool:
 
     # Discord custom emoji pattern <:name:id> or <a:name:id> for animated
     discord_emoji_pattern = re.compile(r'<a?:\w+:\d+>')
+    
+    # Emoji shortcode pattern :name: (like :green_circle:, :thinking:, etc.)
+    emoji_shortcode_pattern = re.compile(r':[a-zA-Z0-9_+-]+:')
 
-    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text))
+    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(emoji_shortcode_pattern.search(text))
 
 
 _ = Translator("Emote", __file__)
