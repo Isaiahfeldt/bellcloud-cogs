@@ -46,11 +46,15 @@ def get_violation_message(channel_id: int, violation_type: str, user_mention: st
             return f"No images allowed in gen-free, {user_mention}!!!"
         elif violation_type == "emojis":
             return f"No emojis allowed in gen-free, {user_mention}!!!"
+        elif violation_type == "reactions":
+            return f"No reactions allowed in gen-free, {user_mention}!!!"
     else:
         if violation_type == "images":
             return f"Images are not allowed in this channel, {user_mention} 🚫"
         elif violation_type == "emojis":
             return f"Emojis are not allowed in this channel, {user_mention}!"
+        elif violation_type == "reactions":
+            return f"Reactions are not allowed in this channel, {user_mention}!"
 
     return f"Content not allowed in this channel, {user_mention}!"
 
@@ -613,7 +617,20 @@ class SlashCommands(commands.Cog):
         if reaction.me:
             return
 
+        if user.bot:
+            return
+
+        # Check for emoji blacklisting in reactions
         message = reaction.message
+        if message.guild:
+            emotes_cog = self.bot.get_cog("Emotes")
+            emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
+            
+            if message.channel.id in emoji_blacklisted_channels:
+                await reaction.remove(user)
+                violation_msg = get_violation_message(message.channel.id, "reactions", user.mention)
+                await message.channel.send(violation_msg)
+                return
         image_attachment = None
         for attachment in message.attachments:
             if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4')):
