@@ -70,6 +70,7 @@ def contains_emoji(text: str) -> bool:
         "\U0001F1E0-\U0001F1FF"  # flags (iOS)
         "\U00002702-\U000027B0"  # dingbats
         "\U000024C2-\U0001F251"
+        "\U0001F7E0-\U0001F7EB"  # geometric shapes
         "\U0001F900-\U0001F9FF"  # supplemental symbols
         "\U0001FA70-\U0001FAFF"  # symbols and pictographs extended-A
         "]+",
