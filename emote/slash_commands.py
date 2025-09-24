@@ -326,14 +326,15 @@ class SlashCommands(commands.Cog):
         db.cache.clear()
         await interaction.response.send_message("Cache cleared successfully.")
 
-    @emote.command(name="toggle", description="Enable or disable emotes for a specific channel, optionally also ban emojis")
+    @emote.command(name="toggle",
+                   description="Enable or disable emotes for a specific channel, optionally also configure emojis")
     @app_commands.describe(channel="The channel to configure emotes for",
                            enabled="True to enable emotes, False to disable emotes",
-                           ban_emojis="Also ban regular emojis in addition to emotes")
+                           enable_emojis="True to enable emojis, False to disable emojis, None to leave unchanged")
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
     async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel,
-                           enabled: bool, ban_emojis: bool = False):
+                           enabled: bool, enable_emojis: bool = None):
         """Enable or disable emotes for a specific channel"""
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
@@ -355,19 +356,29 @@ class SlashCommands(commands.Cog):
         # Handle emoji blacklisting if requested
         async with emotes_cog.config.guild(
                 interaction.guild).emoji_blacklisted_channels() as emoji_blacklisted_channels:
-            if ban_emojis:
-                if not enabled:
-                    # Disable emojis - add to blacklist if not present
-                    if channel.id not in emoji_blacklisted_channels:
-                        emoji_blacklisted_channels.append(channel.id)
-                    await interaction.response.send_message(
-                        f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False)
-                else:
+            if enable_emojis is not None:
+                if enable_emojis:
                     # Enable emojis - remove from blacklist if present
                     if channel.id in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.remove(channel.id)
-                    await interaction.response.send_message(
-                        f"Emotes and emojis have been enabled in {channel.mention}!", ephemeral=False)
+                    if enabled:
+                        await interaction.response.send_message(
+                            f"Emotes and emojis have been enabled in {channel.mention}!", ephemeral=False)
+                    else:
+                        await interaction.response.send_message(
+                            f"Emotes have been disabled but emojis have been enabled in {channel.mention}!",
+                            ephemeral=False)
+                else:
+                    # Disable emojis - add to blacklist if not present
+                    if channel.id not in emoji_blacklisted_channels:
+                        emoji_blacklisted_channels.append(channel.id)
+                    if not enabled:
+                        await interaction.response.send_message(
+                            f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False)
+                    else:
+                        await interaction.response.send_message(
+                            f"Emotes have been enabled but emojis have been disabled in {channel.mention}!",
+                            ephemeral=False)
             else:
                 # Only handle emotes, but remove emoji blacklist entry when enabling emotes
                 if enabled:
@@ -590,6 +601,8 @@ class SlashCommands(commands.Cog):
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                 await message.channel.send(violation_msg)
+
+                print("Contained emote")
                 return
 
             # Check for emoji blacklisting
@@ -599,13 +612,19 @@ class SlashCommands(commands.Cog):
                     await message.delete()
                     violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                     await message.channel.send(violation_msg)
+
+                    print("Contained November image attachments")
                     return
 
                 if contains_emoji(message.content):
                     await message.delete()
                     violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
                     await message.channel.send(violation_msg)
+
+                    print("Contained emoji")
                     return
+
+                print("Did nothing")
 
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
