@@ -83,8 +83,13 @@ async def debug_output(message: discord.Message, debug_text: str):
 async def check_image_matches_code(attachment_bytes: bytes) -> int:
     """
     Check if an image attachment matches the code.png template using ORB feature matching.
+    Downloads images to temporary files for more reliable OpenCV processing.
     Returns the number of matches found, or 0 if no match or error.
     """
+    import tempfile
+    import uuid
+    
+    temp_candidate_path = None
     try:
         # Path to template image
         template_path = os.path.join('emote', 'res', 'code.png')
@@ -99,11 +104,19 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
             print("Could not load template image")
             return 0
         
-        # Convert attachment bytes to image
-        nparr = np.frombuffer(attachment_bytes, np.uint8)
-        candidate_img = cv2.imdecode(nparr, cv2.IMREAD_GRAYSCALE)
+        # Create temporary directory if it doesn't exist
+        temp_dir = tempfile.gettempdir()
+        
+        # Save attachment bytes to temporary file for more reliable OpenCV processing
+        temp_candidate_path = os.path.join(temp_dir, f"candidate_{uuid.uuid4().hex}.png")
+        
+        with open(temp_candidate_path, 'wb') as temp_file:
+            temp_file.write(attachment_bytes)
+        
+        # Load candidate image from temporary file
+        candidate_img = cv2.imread(temp_candidate_path, cv2.IMREAD_GRAYSCALE)
         if candidate_img is None:
-            print("Could not decode attachment image")
+            print("Could not load candidate image from temporary file")
             return 0
         
         # ORB detector
@@ -130,6 +143,14 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
     except Exception as e:
         print(f"Error in check_image_matches_code: {e}")
         return 0
+    finally:
+        # Clean up temporary file
+        if temp_candidate_path and os.path.exists(temp_candidate_path):
+            try:
+                os.remove(temp_candidate_path)
+                print(f"Cleaned up temporary file: {temp_candidate_path}")
+            except Exception as cleanup_error:
+                print(f"Warning: Could not clean up temporary file {temp_candidate_path}: {cleanup_error}")
 
 
 def contains_emoji(text: str) -> bool:
