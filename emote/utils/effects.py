@@ -4,11 +4,12 @@ import random
 import traceback
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, Dict
+from pathlib import Path
+from typing import Optional, Dict, List
 
 import aiohttp
 import numpy as np
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageDraw
 from skimage import color
 
 
@@ -61,6 +62,88 @@ class Emote:
     followup: Dict[str, str] = field(default_factory=dict)
     effect_chain: Dict[str, bool] = field(default_factory=dict)
     img_data: Optional[bytes] = None
+
+
+RESOURCES_DIR = Path(__file__).resolve().parent.parent / "res"
+
+
+def _load_explosion_frames(explosion_type: str) -> List[Image.Image]:
+    """Load cached explosion overlay frames for the requested type."""
+    folder = RESOURCES_DIR / explosion_type
+    if not folder.exists() or not folder.is_dir():
+        raise FileNotFoundError(f"Explosion resources missing for type '{explosion_type}'.")
+
+    frames: List[Image.Image] = []
+    for gif_path in sorted(folder.glob("*.gif")):
+        with Image.open(gif_path) as frame:
+            frames.append(frame.convert("RGBA"))
+
+    if not frames:
+        raise FileNotFoundError(f"No frames found for explosion type '{explosion_type}'.")
+
+    return frames
+
+
+def _apply_radial_explode(base_frame: Image.Image, amount: float, quality: float = 0.5) -> Image.Image:
+    """Replicate the radial explode effect from explode.moth.monster using PIL."""
+    w, h = base_frame.size
+    if w == 0 or h == 0:
+        return base_frame.copy()
+
+    if amount == 0:
+        return base_frame.copy()
+
+    result = base_frame.copy()
+
+    ease_w = (amount / float(w)) * 4.0
+    half_w = w / 2.0
+    half_h = h / 2.0
+    step_unit = (0.5 / max(half_w, 1.0)) * max(min(quality, 1.0), 0.05)
+
+    i = 0.0
+    while i < 0.5:
+        r = i * 2.0
+        x = r * half_w
+        y = r * half_h
+        xw = w - (x * 2.0)
+        rx = x * ease_w
+        ry = y * ease_w
+        rw = w - (rx * 2.0)
+        rh = h - (ry * 2.0)
+
+        left = max(0.0, min(float(w), rx))
+        top = max(0.0, min(float(h), ry))
+        right = max(left, min(float(w), rx + rw))
+        bottom = max(top, min(float(h), ry + rh))
+
+        if right - left < 1 or bottom - top < 1:
+            i += step_unit
+            continue
+
+        crop = base_frame.crop((int(left), int(top), int(math.ceil(right)), int(math.ceil(bottom))))
+        scaled = crop.resize((w, h), resample=Image.LANCZOS)
+
+        radius = max(0.0, min(half_w, xw / 2.0))
+        if radius <= 0:
+            i += step_unit
+            continue
+
+        mask = Image.new("L", (w, h), 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse(
+            (
+                half_w - radius,
+                half_h - radius,
+                half_w + radius,
+                half_h + radius,
+            ),
+            fill=255,
+        )
+
+        result = Image.composite(scaled, result, mask)
+        i += step_unit
+
+    return result
 
 
 def get_emote_duration(emote: Emote) -> Optional[int]:
@@ -842,6 +925,126 @@ def shake(emote: Emote, intensity: float = 1, classic: bool = False) -> Emote:
         # Clean up potentially large lists
         input_frames_data.clear()
         output_frames_pil.clear()
+
+    return emote
+
+
+def explode(emote: Emote, explosion: str = "nuke") -> Emote:
+    """
+    Applies a radial blast effect and appends a themed explosion sequence.
+
+    User:
+        Blows up the emote with a flash and then plays an explosion animation.
+        Use `:emote_explode:` for the default nuclear blast.
+        Use `:emote_explode(earth):` or `:emote_explode(house):` for the other variants.
+        Works with static images and animated GIF/WebP files (uses the first frame).
+
+    Parameters:
+        emote (Emote): The emote to explode.
+        explosion (str): Which explosion overlay to use. Defaults to "nuke".
+
+    Returns:
+        Emote: The emote updated with the explosion animation or with an error logged.
+    """
+    if emote.img_data is None:
+        emote.errors["explode"] = "No image data available."
+        return emote
+
+    available_types = {"nuke": "nuke", "earth": "earth", "house": "house"}
+    requested_type = "nuke"
+    if explosion is not None:
+        try:
+            normalized = str(explosion).strip().lower()
+            if normalized:
+                requested_type = normalized
+        except Exception:
+            emote.issues["explode_type_parse"] = "Failed to parse explosion type, using default."
+
+    if requested_type not in available_types:
+        emote.issues["explode_type_unknown"] = f"Unknown explosion '{requested_type}', defaulting to nuke."
+        requested_type = "nuke"
+
+    try:
+        overlay_frames = _load_explosion_frames(available_types[requested_type])
+    except FileNotFoundError as exc:
+        emote.errors["explode"] = str(exc)
+        return emote
+    except Exception as exc:
+        tb = traceback.format_exc()
+        emote.errors["explode"] = f"Error loading explosion resources: {exc}\n```\n{tb}\n```"
+        return emote
+
+    target_size = overlay_frames[0].size if overlay_frames else (512, 512)
+
+    try:
+        with Image.open(io.BytesIO(emote.img_data)) as img:
+            img.seek(0)
+            base_rgba = img.convert("RGBA")
+            fitted = ImageOps.contain(base_rgba, target_size, Image.LANCZOS)
+            canvas = Image.new("RGBA", target_size, (255, 255, 255, 255))
+            offset = (
+                (target_size[0] - fitted.width) // 2,
+                (target_size[1] - fitted.height) // 2,
+            )
+            canvas.paste(fitted, offset, fitted)
+            prepared_frames = [canvas]
+    except Exception as exc:
+        tb = traceback.format_exc()
+        emote.errors["explode"] = f"Error preparing emote for explosion: {exc}\n```\n{tb}\n```"
+        return emote
+
+    blast_amounts = [0, 10, 20, 50, 100]
+    output_frames_rgba: List[Image.Image] = []
+    for base_frame in prepared_frames:
+        for amount in blast_amounts:
+            if amount == 0:
+                output_frames_rgba.append(base_frame.copy())
+            else:
+                output_frames_rgba.append(_apply_radial_explode(base_frame, amount))
+
+    for overlay in overlay_frames:
+        if overlay.size != target_size:
+            adjusted = ImageOps.contain(overlay, target_size, Image.LANCZOS)
+            overlay_canvas = Image.new("RGBA", target_size, (0, 0, 0, 0))
+            overlay_offset = (
+                (target_size[0] - adjusted.width) // 2,
+                (target_size[1] - adjusted.height) // 2,
+            )
+            overlay_canvas.paste(adjusted, overlay_offset, adjusted)
+            output_frames_rgba.append(overlay_canvas)
+        else:
+            output_frames_rgba.append(overlay.copy())
+
+    if not output_frames_rgba:
+        emote.errors["explode"] = "Failed to build explosion frames."
+        return emote
+
+    durations = [40] * len(output_frames_rgba)
+
+    paletted_frames = [frame.convert("P", palette=Image.ADAPTIVE) for frame in output_frames_rgba]
+
+    output_buffer = io.BytesIO()
+    try:
+        paletted_frames[0].save(
+            output_buffer,
+            format="GIF",
+            save_all=True,
+            append_images=paletted_frames[1:],
+            duration=durations,
+            loop=0,
+            disposal=2,
+            optimize=True,
+        )
+    except Exception as exc:
+        tb = traceback.format_exc()
+        emote.errors["explode"] = f"Error saving explosion GIF: {exc}\n```\n{tb}\n```"
+        return emote
+
+    emote.img_data = output_buffer.getvalue()
+    base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
+    emote.file_path = f"{base_name}_explode.gif"
+    emote.notes["explode_type"] = requested_type
+    emote.notes["explode_frame_count"] = str(len(paletted_frames))
 
     return emote
 
