@@ -16,7 +16,11 @@ import base64
 import re
 import time
 from textwrap import wrap
+import os
+import io
 
+import cv2
+import numpy as np
 import discord
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
@@ -37,6 +41,7 @@ from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid,
 # Channel constants
 PISSCORD_CHANNEL_ID = 1412970503475429477  # gen-free channel
 CREATOR_NOVEMBER_USER_ID = "138148168360656896"
+BITTER_USER_ID = "401924420471619584"  # bitter - check for code image matches
 
 
 def get_violation_message(channel_id: int, violation_type: str, user_mention: str) -> str:
@@ -57,6 +62,58 @@ def get_violation_message(channel_id: int, violation_type: str, user_mention: st
             return f"Reactions are not allowed in this channel, {user_mention}!"
 
     return f"Content not allowed in this channel, {user_mention}!"
+
+
+async def check_image_matches_code(attachment_bytes: bytes) -> int:
+    """
+    Check if an image attachment matches the code.png template using ORB feature matching.
+    Returns the number of matches found, or 0 if no match or error.
+    """
+    try:
+        # Path to template image
+        template_path = os.path.join('emote', 'res', 'code.png')
+        
+        if not os.path.exists(template_path):
+            print(f"Template image not found: {template_path}")
+            return 0
+        
+        # Load template image
+        template_img = cv2.imread(template_path, 0)
+        if template_img is None:
+            print("Could not load template image")
+            return 0
+        
+        # Convert attachment bytes to image
+        nparr = np.frombuffer(attachment_bytes, np.uint8)
+        candidate_img = cv2.imdecode(nparr, cv2.IMREAD_GRAYSCALE)
+        if candidate_img is None:
+            print("Could not decode attachment image")
+            return 0
+        
+        # ORB detector
+        orb = cv2.ORB_create(1000)
+        
+        # Find keypoints and descriptors
+        k1, d1 = orb.detectAndCompute(template_img, None)
+        k2, d2 = orb.detectAndCompute(candidate_img, None)
+        
+        if d1 is None or d2 is None or len(k1) == 0 or len(k2) == 0:
+            print("No features detected in one or both images")
+            return 0
+        
+        # Brute Force Matcher
+        bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+        matches = bf.match(d1, d2)
+        matches = sorted(matches, key=lambda x: x.distance)
+        
+        match_count = len(matches)
+        print(f"Image matching result: {match_count} matches found")
+        
+        return match_count
+        
+    except Exception as e:
+        print(f"Error in check_image_matches_code: {e}")
+        return 0
 
 
 def contains_emoji(text: str) -> bool:
@@ -623,6 +680,34 @@ class SlashCommands(commands.Cog):
                     print("Contained November image attachments")
                     return
 
+            # Special check for bitter user with image attachments (check for code.png matches)
+            if (str(message.author.id) == BITTER_USER_ID or str(message.author.id) == CREATOR_NOVEMBER_USER_ID) and message.attachments:
+                for attachment in message.attachments:
+                    # Check if attachment is an image
+                    if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
+                        try:
+                            # Read attachment bytes
+                            image_bytes = await attachment.read()
+                            
+                            # Check for image matches
+                            match_count = await check_image_matches_code(image_bytes)
+                            
+                            if match_count > 250:
+                                # Delete the message and send reply
+                                await message.delete()
+                                reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
+                                await message.channel.send(reply_msg)
+                                
+                                print(f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
+                                return
+                            else:
+                                print(f"Bitter's image checked - {match_count} matches (under threshold)")
+                        except Exception as e:
+                            print(f"Error processing bitter's attachment: {e}")
+                        break  # Only check first image attachment
+
+            # Check for emoji blacklisting
+            if message.channel.id in emoji_blacklisted_channels:
                 if contains_emoji(message.content):
                     await message.delete()
                     violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
