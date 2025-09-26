@@ -124,11 +124,12 @@ async def send_bitter_match_info(bot, match_count: int, threshold: int, attachme
 async def check_image_matches_code(attachment_bytes: bytes) -> int:
     """
     Check if an image attachment matches the code.png template using ORB feature matching.
-    Downloads images to temporary files for more reliable OpenCV processing.
+    Converts all images to PNG format before comparison to eliminate file type matching errors.
     Returns the number of matches found, or 0 if no match or error.
     """
     import tempfile
     import uuid
+    import numpy as np
 
     temp_candidate_path = None
     try:
@@ -146,19 +147,36 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
             print("Could not load template image")
             return 0
 
-        # Create temporary directory if it doesn't exist
+        # Convert attachment bytes to OpenCV image format
+        print("Converting attachment bytes to image format...")
+        np_array = np.frombuffer(attachment_bytes, np.uint8)
+        candidate_img_color = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+        
+        if candidate_img_color is None:
+            print("Could not decode candidate image from bytes")
+            return 0
+            
+        print(f"Successfully decoded image with shape: {candidate_img_color.shape}")
+        
+        # Convert to PNG format and save to temporary file for consistent processing
         temp_dir = tempfile.gettempdir()
-
-        # Save attachment bytes to temporary file for more reliable OpenCV processing
         temp_candidate_path = os.path.join(temp_dir, f"candidate_{uuid.uuid4().hex}.png")
-
+        
+        # Encode as PNG and save to ensure consistent format
+        success, png_encoded = cv2.imencode('.png', candidate_img_color)
+        if not success:
+            print("Could not encode candidate image to PNG format")
+            return 0
+            
+        print("Successfully converted image to PNG format")
+        
         with open(temp_candidate_path, 'wb') as temp_file:
-            temp_file.write(attachment_bytes)
+            temp_file.write(png_encoded.tobytes())
 
-        # Load candidate image from temporary file
+        # Load candidate image from PNG file in grayscale for matching
         candidate_img = cv2.imread(temp_candidate_path, cv2.IMREAD_GRAYSCALE)
         if candidate_img is None:
-            print("Could not load candidate image from temporary file")
+            print("Could not load converted PNG candidate image from temporary file")
             return 0
 
         # ORB detector
