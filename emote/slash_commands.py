@@ -191,7 +191,7 @@ class SlashCommands(commands.Cog):
         "🫨": effect.shake,
         "🔃": effect.flip,
         "🌈": effect.rainbow,
-        "💥": effect.explode,
+        "💣": effect.explode,
     }
 
     latency_enabled = False
