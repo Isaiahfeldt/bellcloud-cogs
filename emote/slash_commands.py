@@ -13,14 +13,12 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 import base64
+import os
 import re
 import time
 from textwrap import wrap
-import os
-import io
 
 import cv2
-import numpy as np
 import discord
 from discord import app_commands
 from fuzzywuzzy import fuzz, process
@@ -88,59 +86,59 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
     """
     import tempfile
     import uuid
-    
+
     temp_candidate_path = None
     try:
         # Path to template image - use absolute path based on current file location
         current_dir = os.path.dirname(os.path.abspath(__file__))
         template_path = os.path.join(current_dir, 'res', 'code.png')
-        
+
         if not os.path.exists(template_path):
             print(f"Template image not found: {template_path}")
             return 0
-        
+
         # Load template image
         template_img = cv2.imread(template_path, 0)
         if template_img is None:
             print("Could not load template image")
             return 0
-        
+
         # Create temporary directory if it doesn't exist
         temp_dir = tempfile.gettempdir()
-        
+
         # Save attachment bytes to temporary file for more reliable OpenCV processing
         temp_candidate_path = os.path.join(temp_dir, f"candidate_{uuid.uuid4().hex}.png")
-        
+
         with open(temp_candidate_path, 'wb') as temp_file:
             temp_file.write(attachment_bytes)
-        
+
         # Load candidate image from temporary file
         candidate_img = cv2.imread(temp_candidate_path, cv2.IMREAD_GRAYSCALE)
         if candidate_img is None:
             print("Could not load candidate image from temporary file")
             return 0
-        
+
         # ORB detector
         orb = cv2.ORB_create(1000)
-        
+
         # Find keypoints and descriptors
         k1, d1 = orb.detectAndCompute(template_img, None)
         k2, d2 = orb.detectAndCompute(candidate_img, None)
-        
+
         if d1 is None or d2 is None or len(k1) == 0 or len(k2) == 0:
             print("No features detected in one or both images")
             return 0
-        
+
         # Brute Force Matcher
         bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
         matches = bf.match(d1, d2)
         matches = sorted(matches, key=lambda x: x.distance)
-        
+
         match_count = len(matches)
         print(f"Image matching result: {match_count} matches found")
-        
+
         return match_count
-        
+
     except Exception as e:
         print(f"Error in check_image_matches_code: {e}")
         return 0
@@ -726,20 +724,22 @@ class SlashCommands(commands.Cog):
                         try:
                             # Read attachment bytes
                             image_bytes = await attachment.read()
-                            
+
                             # Check for image matches
                             match_count = await check_image_matches_code(image_bytes)
-                            
-                            if match_count > 250:
+
+                            if match_count > 240:
                                 # Delete the message and send reply
                                 await message.delete()
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
                                 await message.channel.send(reply_msg)
-                                
-                                await debug_output(message, f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
+
+                                await debug_output(message,
+                                                   f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
                                 return
                             else:
-                                await debug_output(message, f"Bitter's image checked - {match_count} matches (under threshold)")
+                                await debug_output(message,
+                                                   f"Bitter's image checked - {match_count} matches (under threshold)")
                         except Exception as e:
                             await debug_output(message, f"Error processing bitter's attachment: {e}")
                         break  # Only check first image attachment
