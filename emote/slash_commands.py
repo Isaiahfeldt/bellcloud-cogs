@@ -40,6 +40,7 @@ from .utils.url import is_url_reachable, blacklisted_url, is_media_format_valid,
 
 # Channel constants
 PISSCORD_CHANNEL_ID = 1412970503475429477  # gen-free channel
+DEBUG_CHANNEL_ID = 1355981630484774932  # debug output channel
 CREATOR_NOVEMBER_USER_ID = "138148168360656896"
 BITTER_USER_ID = "401924420471619584"  # bitter - check for code image matches
 
@@ -62,6 +63,21 @@ def get_violation_message(channel_id: int, violation_type: str, user_mention: st
             return f"Reactions are not allowed in this channel, {user_mention}!"
 
     return f"Content not allowed in this channel, {user_mention}!"
+
+
+async def debug_output(message: discord.Message, debug_text: str):
+    """
+    Send debug output to debug channel if message is in DEBUG_CHANNEL_ID, otherwise print to console.
+    """
+    if message.channel.id == DEBUG_CHANNEL_ID:
+        try:
+            await message.channel.send(f"🐛 **DEBUG:** {debug_text}")
+        except Exception as e:
+            # Fallback to console if sending to channel fails
+            print(f"Failed to send debug to channel: {e}")
+            print(debug_text)
+    else:
+        print(debug_text)
 
 
 async def check_image_matches_code(attachment_bytes: bytes) -> int:
@@ -658,15 +674,15 @@ class SlashCommands(commands.Cog):
             blacklisted_channels = await emotes_cog.config.guild(message.guild).blacklisted_channels()
             emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
 
-            print("Is blacklisted: ", message.channel.id in blacklisted_channels)
-            print("Is emoji blacklisted: ", message.channel.id in emoji_blacklisted_channels)
+            await debug_output(message, f"Is blacklisted: {message.channel.id in blacklisted_channels}")
+            await debug_output(message, f"Is emoji blacklisted: {message.channel.id in emoji_blacklisted_channels}")
 
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
                 violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                 await message.channel.send(violation_msg)
 
-                print("Contained emote")
+                await debug_output(message, "Contained emote")
                 return
 
             # Check for emoji blacklisting
@@ -677,7 +693,7 @@ class SlashCommands(commands.Cog):
                     violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                     await message.channel.send(violation_msg)
 
-                    print("Contained November image attachments")
+                    await debug_output(message, "Contained November image attachments")
                     return
 
             # Special check for bitter user with image attachments (check for code.png matches)
@@ -698,12 +714,12 @@ class SlashCommands(commands.Cog):
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
                                 await message.channel.send(reply_msg)
                                 
-                                print(f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
+                                await debug_output(message, f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
                                 return
                             else:
-                                print(f"Bitter's image checked - {match_count} matches (under threshold)")
+                                await debug_output(message, f"Bitter's image checked - {match_count} matches (under threshold)")
                         except Exception as e:
-                            print(f"Error processing bitter's attachment: {e}")
+                            await debug_output(message, f"Error processing bitter's attachment: {e}")
                         break  # Only check first image attachment
 
             # Check for emoji blacklisting
@@ -713,11 +729,11 @@ class SlashCommands(commands.Cog):
                     violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
                     await message.channel.send(violation_msg)
 
-                    print("Contained emoji")
+                    await debug_output(message, "Contained emoji")
                     return
 
-                print(message.content)
-                print("Did nothing")
+                await debug_output(message, f"Message content: {message.content}")
+                await debug_output(message, "Did nothing")
 
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
@@ -765,7 +781,7 @@ class SlashCommands(commands.Cog):
         try:
             image_bytes = await image_attachment.read()
         except Exception as e:
-            print(f"Error reading image data: {e}")
+            await debug_output(message, f"Error reading image data: {e}")
             return
 
         await message.channel.typing()
