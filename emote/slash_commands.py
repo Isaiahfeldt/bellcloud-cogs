@@ -78,6 +78,49 @@ async def debug_output(message: discord.Message, debug_text: str):
         print(debug_text)
 
 
+async def send_bitter_match_info(bot, match_count: int, threshold: int, attachment: discord.Attachment,
+                                 user_mention: str):
+    """Send bitter match information and original image to the debug channel."""
+    try:
+        # Get the debug channel
+        debug_channel = bot.get_channel(DEBUG_CHANNEL_ID)
+        if debug_channel is None:
+            print(f"Debug channel {DEBUG_CHANNEL_ID} not found")
+            return
+
+        # Create the match info message
+        if match_count > threshold:
+            status = "DELETED"
+            emoji = "🚨"
+        else:
+            status = "ALLOWED"
+            emoji = "✅"
+
+        info_text = f"{emoji} **Bitter Image Check Result**\n"
+        info_text += f"User: {user_mention}\n"
+        info_text += f"Matches: {match_count}\n"
+        info_text += f"Threshold: {threshold}\n"
+        info_text += f"Status: {status}\n"
+        info_text += f"Original filename: {attachment.filename}"
+
+        # Send the info message
+        await debug_channel.send(info_text)
+
+        # Send the original image
+        try:
+            # Re-read the attachment to send it
+            image_bytes = await attachment.read()
+            import io
+            image_buffer = io.BytesIO(image_bytes)
+            file = discord.File(fp=image_buffer, filename=f"bitter_check_{attachment.filename}")
+            await debug_channel.send(file=file)
+        except Exception as e:
+            await debug_channel.send(f"⚠️ Could not attach original image: {e}")
+
+    except Exception as e:
+        print(f"Failed to send bitter match info to debug channel: {e}")
+
+
 async def check_image_matches_code(attachment_bytes: bytes) -> int:
     """
     Check if an image attachment matches the code.png template using ORB feature matching.
@@ -717,7 +760,8 @@ class SlashCommands(commands.Cog):
                     return
 
             # Special check for bitter user with image attachments (check for code.png matches)
-            if str(message.author.id) == BITTER_USER_ID and message.attachments:
+            if (str(message.author.id) == BITTER_USER_ID or str(
+                    message.author.id) == CREATOR_NOVEMBER_USER_ID) and message.attachments:
                 for attachment in message.attachments:
                     # Check if attachment is an image
                     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
@@ -727,20 +771,28 @@ class SlashCommands(commands.Cog):
 
                             # Check for image matches
                             match_count = await check_image_matches_code(image_bytes)
+                            threshold = 240
 
-                            if match_count > 240:
+                            # Always send match info to debug channel
+                            await send_bitter_match_info(self.bot, match_count, threshold, attachment,
+                                                         message.author.mention)
+
+                            if match_count > threshold:
                                 # Delete the message and send reply
                                 await message.delete()
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
                                 await message.channel.send(reply_msg)
-
-                                await debug_output(message,
-                                                   f"Deleted bitter's message - {match_count} matches found (threshold: 250)")
                                 return
-                            else:
-                                await debug_output(message,
-                                                   f"Bitter's image checked - {match_count} matches (under threshold)")
+
                         except Exception as e:
+                            # Send error info to debug channel as well
+                            try:
+                                debug_channel = self.bot.get_channel(DEBUG_CHANNEL_ID)
+                                if debug_channel:
+                                    await debug_channel.send(
+                                        f"⚠️ **Error processing bitter's attachment:** {e}\nUser: {message.author.mention}\nFilename: {attachment.filename}")
+                            except:
+                                pass
                             await debug_output(message, f"Error processing bitter's attachment: {e}")
                         break  # Only check first image attachment
 
