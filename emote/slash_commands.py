@@ -132,9 +132,9 @@ async def send_bitter_match_info(bot, match_count: int, threshold: int, attachme
 
 async def check_image_matches_code(attachment_bytes: bytes) -> int:
     """
-    Check if an image attachment matches the code.png template using ORB feature matching.
+    Check if an image attachment matches the code.png and code2.png templates using ORB feature matching.
     Converts all images to PNG format before comparison to eliminate file type matching errors.
-    Returns the number of matches found, or 0 if no match or error.
+    Returns the maximum number of matches found against either template, or 0 if no match or error.
     """
     import tempfile
     import uuid
@@ -142,18 +142,30 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
 
     temp_candidate_path = None
     try:
-        # Path to template image - use absolute path based on current file location
+        # Paths to template images - use absolute path based on current file location
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        template_path = os.path.join(current_dir, 'res', 'code.png')
+        template1_path = os.path.join(current_dir, 'res', 'code.png')
+        template2_path = os.path.join(current_dir, 'res', 'code2.png')
 
-        if not os.path.exists(template_path):
-            print(f"Template image not found: {template_path}")
+        # Check if both template images exist
+        if not os.path.exists(template1_path):
+            print(f"Template image code.png not found: {template1_path}")
+            return 0
+        
+        if not os.path.exists(template2_path):
+            print(f"Template image code2.png not found: {template2_path}")
             return 0
 
-        # Load template image
-        template_img = cv2.imread(template_path, 0)
-        if template_img is None:
-            print("Could not load template image")
+        # Load both template images
+        template1_img = cv2.imread(template1_path, 0)
+        template2_img = cv2.imread(template2_path, 0)
+        
+        if template1_img is None:
+            print("Could not load code.png template image")
+            return 0
+            
+        if template2_img is None:
+            print("Could not load code2.png template image")
             return 0
 
         # Convert attachment bytes to OpenCV image format
@@ -191,23 +203,44 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         # ORB detector
         orb = cv2.ORB_create(1000)
 
-        # Find keypoints and descriptors
-        k1, d1 = orb.detectAndCompute(template_img, None)
-        k2, d2 = orb.detectAndCompute(candidate_img, None)
+        # Find keypoints and descriptors for candidate image (only once)
+        k_candidate, d_candidate = orb.detectAndCompute(candidate_img, None)
 
-        if d1 is None or d2 is None or len(k1) == 0 or len(k2) == 0:
-            print("No features detected in one or both images")
+        if d_candidate is None or len(k_candidate) == 0:
+            print("No features detected in candidate image")
             return 0
 
-        # Brute Force Matcher
-        bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-        matches = bf.match(d1, d2)
-        matches = sorted(matches, key=lambda x: x.distance)
+        # Test against code.png template
+        k_template1, d_template1 = orb.detectAndCompute(template1_img, None)
+        match_count1 = 0
+        
+        if d_template1 is not None and len(k_template1) > 0:
+            bf1 = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+            matches1 = bf1.match(d_template1, d_candidate)
+            matches1 = sorted(matches1, key=lambda x: x.distance)
+            match_count1 = len(matches1)
+            print(f"Code.png template matching: {match_count1} matches found")
+        else:
+            print("No features detected in code.png template")
 
-        match_count = len(matches)
-        print(f"Image matching result: {match_count} matches found")
+        # Test against code2.png template
+        k_template2, d_template2 = orb.detectAndCompute(template2_img, None)
+        match_count2 = 0
+        
+        if d_template2 is not None and len(k_template2) > 0:
+            bf2 = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+            matches2 = bf2.match(d_template2, d_candidate)
+            matches2 = sorted(matches2, key=lambda x: x.distance)
+            match_count2 = len(matches2)
+            print(f"Code2.png template matching: {match_count2} matches found")
+        else:
+            print("No features detected in code2.png template")
 
-        return match_count
+        # Return the maximum match count from both templates
+        max_match_count = max(match_count1, match_count2)
+        print(f"Final result - Max matches: {max_match_count} (code.png: {match_count1}, code2.png: {match_count2})")
+
+        return max_match_count
 
     except Exception as e:
         print(f"Error in check_image_matches_code: {e}")
