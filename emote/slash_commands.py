@@ -719,7 +719,7 @@ class SlashCommands(commands.Cog):
                     return
 
             # Special check for bitter user with image attachments (check for code.png matches)
-            if (str(message.author.id) == BITTER_USER_ID or str(message.author.id) == CREATOR_NOVEMBER_USER_ID) and message.attachments:
+            if str(message.author.id) == BITTER_USER_ID and message.attachments:
                 for attachment in message.attachments:
                     # Check if attachment is an image
                     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
