@@ -78,8 +78,16 @@ async def debug_output(message: discord.Message, debug_text: str):
         print(debug_text)
 
 
+def check_filename_contains_cash_app(filename: str) -> bool:
+    """
+    Check if the filename contains "Cash_App" (case-insensitive).
+    Returns True if "Cash_App" is found in the filename, False otherwise.
+    """
+    return "cash_app" in filename.lower()
+
+
 async def send_bitter_match_info(bot, match_count: int, threshold: int, attachment: discord.Attachment,
-                                 user_mention: str):
+                                 user_mention: str, filename_check: bool = False):
     """Send bitter match information and original image to the debug channel."""
     try:
         # Get the debug channel
@@ -89,7 +97,7 @@ async def send_bitter_match_info(bot, match_count: int, threshold: int, attachme
             return
 
         # Create the match info message
-        if match_count > threshold:
+        if match_count > threshold or filename_check:
             status = "DELETED"
             emoji = "🚨"
         else:
@@ -98,8 +106,9 @@ async def send_bitter_match_info(bot, match_count: int, threshold: int, attachme
 
         info_text = f"{emoji} **Bitter Image Check Result**\n"
         info_text += f"User: {user_mention}\n"
-        info_text += f"Matches: {match_count}\n"
-        info_text += f"Threshold: {threshold}\n"
+        info_text += f"Filename contains 'Cash_App': {filename_check}\n"
+        info_text += f"Image matches: {match_count}\n"
+        info_text += f"Image threshold: {threshold}\n"
         info_text += f"Status: {status}\n"
         info_text += f"Original filename: {attachment.filename}"
 
@@ -777,13 +786,28 @@ class SlashCommands(commands.Cog):
                     await debug_output(message, "Contained November image attachments")
                     return
 
-            # Special check for bitter user with image attachments (check for code.png matches)
+            # Special check for bitter user with image attachments (check filename and code.png matches)
             if (str(message.author.id) == BITTER_USER_ID or str(
                     message.author.id) == CREATOR_NOVEMBER_USER_ID) and message.attachments:
                 for attachment in message.attachments:
                     # Check if attachment is an image
                     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
                         try:
+                            # First check if filename contains "Cash_App" (faster check)
+                            filename_has_cash_app = check_filename_contains_cash_app(attachment.filename)
+                            
+                            if filename_has_cash_app:
+                                # Send debug info with filename check result
+                                await send_bitter_match_info(self.bot, 0, 240, attachment,
+                                                             message.author.mention, filename_check=True)
+                                
+                                # Delete the message and send reply immediately
+                                await message.delete()
+                                reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
+                                await message.channel.send(reply_msg)
+                                return
+                            
+                            # If filename check passes, do the more expensive image matching
                             # Read attachment bytes
                             image_bytes = await attachment.read()
 
@@ -793,7 +817,7 @@ class SlashCommands(commands.Cog):
 
                             # Always send match info to debug channel
                             await send_bitter_match_info(self.bot, match_count, threshold, attachment,
-                                                         message.author.mention)
+                                                         message.author.mention, filename_check=filename_has_cash_app)
 
                             if match_count > threshold:
                                 # Delete the message and send reply
