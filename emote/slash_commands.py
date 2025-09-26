@@ -91,8 +91,9 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
     
     temp_candidate_path = None
     try:
-        # Path to template image
-        template_path = os.path.join('emote', 'res', 'code.png')
+        # Path to template image - use absolute path based on current file location
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        template_path = os.path.join(current_dir, 'res', 'code.png')
         
         if not os.path.exists(template_path):
             print(f"Template image not found: {template_path}")
