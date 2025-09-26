@@ -1408,3 +1408,203 @@ def spin(emote: Emote, speed: int = 1.0) -> Emote:
         if 'final_output_frames' in locals(): final_output_frames.clear()
 
     return emote
+
+
+def explode(emote: Emote, explosion_type: str = "nuke") -> Emote:
+    """
+    Applies an explosion effect to the emote image data by creating an animated explosion GIF.
+    
+    User:
+        Explodes the emote with various explosion types.
+        Works with static and animated images.
+        
+        Default is nuclear explosion if no argument is provided.
+        This effect can only be used once per emote.
+        
+        Usage:
+            :aspire_explode:           - Applies default nuclear explosion.
+            :aspire_explode(nuke):     - Applies nuclear explosion (same as default).
+            :aspire_explode(earth):    - Applies earth/planet destruction explosion.
+            :aspire_explode(house):    - Applies house destruction explosion.
+            :aspire_explode(supernova): - Applies supernova implosion effect.
+    
+    Parameters:
+        emote (Emote): The emote object containing the image data.
+        explosion_type (str): Type of explosion ("nuke", "earth", "house", "supernova"). Default is "nuke".
+    
+    Returns:
+        Emote: The updated emote object with the explosion animated GIF.
+    
+    Notes:
+        This effect creates a 5-frame distortion sequence followed by explosion frames.
+        The supernova type uses implosion (negative distortion) instead of explosion.
+        Explosion frames are loaded from emote/res/{explosion_type}/ directory.
+    """
+    if emote.img_data is None:
+        emote.errors["explode"] = "No image data available."
+        return emote
+    
+    # Validate explosion type
+    valid_types = {"nuke", "earth", "house", "supernova"}
+    if explosion_type not in valid_types:
+        emote.issues["explode_type"] = f"Invalid explosion type '{explosion_type}', using 'nuke'"
+        explosion_type = "nuke"
+    
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    file_ext = emote.file_path.lower().split('.')[-1] if '.' in emote.file_path else ''
+    if file_ext not in allowed_extensions:
+        emote.errors["explode"] = f"Unsupported file type: {file_ext}. Allowed: {', '.join(allowed_extensions)}"
+        return emote
+    
+    try:
+        # Load the source image
+        with Image.open(io.BytesIO(emote.img_data)) as source_img:
+            # Resize to 512x512 to match the original JS implementation
+            source_img = source_img.convert("RGBA").resize((512, 512), Image.LANCZOS)
+            
+            output_frames = []
+            frame_duration = 40  # 40ms per frame like in the JS code
+            
+            # Add original frame first (160ms delay like in JS)
+            output_frames.append((source_img.copy(), 160))
+            
+            # Create explosion distortion frames
+            is_implosion = explosion_type == "supernova"
+            explosion_amounts = [-25, -50, -100, -200] if is_implosion else [10, 20, 50, 100]
+            
+            for amount in explosion_amounts:
+                exploded_frame = _apply_explosion_distortion(source_img, amount)
+                output_frames.append((exploded_frame, frame_duration))
+            
+            # Load and add explosion frames from resources
+            explosion_frames = _load_explosion_frames(explosion_type)
+            for explosion_frame in explosion_frames:
+                output_frames.append((explosion_frame, frame_duration))
+            
+            if not output_frames:
+                emote.errors["explode"] = "No output frames generated."
+                return emote
+            
+            # Save as GIF
+            output_buffer = io.BytesIO()
+            frames = [frame[0] for frame in output_frames]
+            durations = [frame[1] for frame in output_frames]
+            
+            if frames:
+                frames[0].save(
+                    output_buffer, format='GIF', save_all=True,
+                    append_images=frames[1:], duration=durations,
+                    loop=0, disposal=2, optimize=True
+                )
+                emote.img_data = output_buffer.getvalue()
+            else:
+                emote.errors["explode"] = "No final frames generated after processing."
+                return emote
+            
+            # Update file path to indicate explosion effect
+            base_name = emote.file_path.rsplit('.', 1)[0] if '.' in emote.file_path else emote.file_path
+            emote.file_path = f"{base_name}_explode_{explosion_type}.gif"
+            
+    except MemoryError:
+        emote.errors["explode"] = "MemoryError: Input image too large or complex to process."
+    except Exception as e:
+        tb = traceback.format_exc()
+        emote.errors["explode"] = f"Error applying explosion effect: {e}\n```\n{tb}\n```"
+    
+    return emote
+
+
+def _apply_explosion_distortion(source_img: Image.Image, amount_x: float) -> Image.Image:
+    """
+    Applies explosion distortion effect to an image based on the JavaScript algorithm.
+    
+    Args:
+        source_img: PIL Image in RGBA mode
+        amount_x: Explosion amount (positive for explosion, negative for implosion)
+    
+    Returns:
+        PIL Image with explosion distortion applied
+    """
+    w, h = source_img.size
+    ease_w = (amount_x / w) * 4  # down unit 0 to 4 top to bottom
+    wh, hh = w / 2, h / 2  # half sizes
+    quality = 0.5  # Quality parameter from JS
+    step_unit = (0.5 / wh) * quality
+    
+    # Create result image
+    result = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    
+    # Apply the explosion algorithm from fx.js
+    i = 0.0
+    while i < 0.5:
+        r = i * 2  # normalize i
+        x = r * wh  # get the clip x destination pos relative to center
+        y = r * hh  # get the clip y destination pos relative to center
+        xw = w - (x * 2)  # get the clip destination width
+        rx = x * ease_w  # get the image source pos
+        ry = y * ease_w
+        rw = w - (rx * 2)  # get the image source size
+        rh = h - (ry * 2)
+        
+        if rw > 0 and rh > 0 and xw > 0:
+            # Create circular mask
+            mask = Image.new("L", (w, h), 0)
+            import PIL.ImageDraw as ImageDraw
+            draw = ImageDraw.Draw(mask)
+            draw.ellipse([wh - xw/2, hh - xw/2, wh + xw/2, hh + xw/2], fill=255)
+            
+            # Extract and resize the source region
+            source_region = source_img.crop((rx, ry, rx + rw, ry + rh))
+            resized_region = source_region.resize((w, h), Image.LANCZOS)
+            
+            # Apply mask and composite
+            result.paste(resized_region, (0, 0), mask)
+        
+        i += step_unit
+    
+    return result
+
+
+def _load_explosion_frames(explosion_type: str) -> list[Image.Image]:
+    """
+    Load explosion frames from the resources directory.
+    
+    Args:
+        explosion_type: Type of explosion ("nuke", "earth", "house", "supernova")
+    
+    Returns:
+        List of PIL Images for the explosion animation
+    """
+    import os
+    
+    frames = []
+    
+    # Map explosion types to their frame ranges (based on JS code)
+    frame_configs = {
+        "nuke": (0, 22),      # boom: 0-21 (22 frames)
+        "earth": (0, 29),     # earth: 0-28 (29 frames)  
+        "house": (8, 35),     # house: 8-34 (27 frames starting from 8)
+        "supernova": (0, 29)  # supernova: 0-28 (29 frames, same as earth)
+    }
+    
+    if explosion_type not in frame_configs:
+        return frames
+    
+    start_frame, end_frame = frame_configs[explosion_type]
+    
+    # Determine resource directory - use earth frames for supernova
+    resource_type = "earth" if explosion_type == "supernova" else explosion_type
+    resource_dir = f"emote/res/{resource_type}"
+    
+    try:
+        for i in range(start_frame, end_frame):
+            frame_path = os.path.join(resource_dir, f"{i:02d}.gif")
+            if os.path.exists(frame_path):
+                with Image.open(frame_path) as img:
+                    # Resize to 512x512 to match the distorted frames
+                    frame = img.convert("RGBA").resize((512, 512), Image.LANCZOS)
+                    frames.append(frame.copy())
+    except Exception as e:
+        print(f"Error loading explosion frames for {explosion_type}: {e}")
+    
+    return frames
