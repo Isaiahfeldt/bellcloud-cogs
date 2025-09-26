@@ -23,7 +23,7 @@
     "fuzzywuzzy",
     "PyJWT",
     "scikit-image",
-    "opencv-python"
+    "opencv-python-headless"
   ],
   "type": "COG",
   "end_user_data_statement": "This cog stores user IDs for the purpose of tracking emotes uploaded by a user."
