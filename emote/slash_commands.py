@@ -178,6 +178,7 @@ class SlashCommands(commands.Cog):
         "fast": {'func': effect.fast, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
         "slow": {'func': effect.slow, 'perm': 'everyone', 'single_use': True, 'blocking': True},  # Alias for speed
         "shake": {'func': effect.shake, 'perm': 'everyone', 'single_use': True, 'blocking': True},
+        "explode": {'func': effect.explode, 'perm': 'everyone', 'single_use': True, 'blocking': True},
         "rainbow": {'func': effect.rainbow, 'perm': 'everyone', 'single_use': True, 'blocking': True},
         "spin": {'func': effect.spin, 'perm': 'everyone', 'single_use': True, 'blocking': True}
     }
@@ -190,6 +191,7 @@ class SlashCommands(commands.Cog):
         "🫨": effect.shake,
         "🔃": effect.flip,
         "🌈": effect.rainbow,
+        "💥": effect.explode,
     }
 
     latency_enabled = False
