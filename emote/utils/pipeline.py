@@ -356,16 +356,39 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
         emote_state.img_data and not emote_state.errors and 
         "cache_hit" not in emote_state.notes):
         
-        try:
-            # Store in cache for future use
-            cache_success = await store_effects_cache(cog_instance, emote_state, queued_effects, emote_state.img_data)
-            if cache_success:
-                emote_state.notes["cache_stored"] = "Result processed and cached successfully"
-            else:
-                emote_state.notes["cache_failed"] = "Result processed but caching failed"
-        except Exception as e:
-            print(f"Failed to cache result: {e}")
-            emote_state.notes["cache_error"] = f"Result processed but caching error: {str(e)}"
-            # Don't fail the whole operation if caching fails
+        # Check if there are any validation issues (misspelled effects, etc.)
+        has_validation_issues = bool(emote_state.issues) if hasattr(emote_state, 'issues') else False
+        
+        # Define non-visual effects that shouldn't be cached
+        NON_VISUAL_EFFECTS = {"train", "debug"}
+        
+        # Check if we only have non-visual effects
+        effect_names = [effect[0] for effect in queued_effects]
+        only_non_visual = all(name in NON_VISUAL_EFFECTS for name in effect_names)
+        
+        # Skip caching if we have validation issues
+        if has_validation_issues:
+            issue_keys = list(emote_state.issues.keys())
+            emote_state.notes["cache_skipped"] = f"Caching skipped due to validation issues: {', '.join(issue_keys)}"
+            print(f"Caching skipped due to validation issues: {issue_keys}")
+        
+        # Skip caching if we only have non-visual effects
+        elif only_non_visual:
+            emote_state.notes["cache_skipped"] = f"Caching skipped - only non-visual effects applied: {', '.join(effect_names)}"
+            print(f"Caching skipped - only non-visual effects: {effect_names}")
+        
+        # Cache the result if it passes all checks
+        else:
+            try:
+                # Store in cache for future use
+                cache_success = await store_effects_cache(cog_instance, emote_state, queued_effects, emote_state.img_data)
+                if cache_success:
+                    emote_state.notes["cache_stored"] = "Result processed and cached successfully"
+                else:
+                    emote_state.notes["cache_failed"] = "Result processed but caching failed"
+            except Exception as e:
+                print(f"Failed to cache result: {e}")
+                emote_state.notes["cache_error"] = f"Result processed but caching error: {str(e)}"
+                # Don't fail the whole operation if caching fails
     
     return emote_state
