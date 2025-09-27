@@ -385,3 +385,63 @@ class Database:
                 'avg_size': result[0]['avg_size'] or 0
             }
         return {'total_entries': 0, 'total_size': 0, 'avg_size': 0}
+
+    async def wipe_all_cache(self) -> dict:
+        """
+        Completely wipe all cache data from both database and S3 storage.
+        
+        Returns:
+            dict: Statistics about what was deleted
+        """
+        stats = {'db_entries_deleted': 0, 's3_files_deleted': 0, 'errors': []}
+        
+        try:
+            # Get stats before deletion
+            pre_stats = await self.get_cache_stats()
+            stats['total_size_freed'] = pre_stats['total_size']
+            
+            # Get all cache file paths for S3 deletion
+            query = "SELECT cached_file_path FROM emote.effects_cache"
+            cache_files = await self.fetch_query(query)
+            
+            # Delete all cache entries from database
+            delete_query = "DELETE FROM emote.effects_cache"
+            result = await self.execute_query(delete_query)
+            stats['db_entries_deleted'] = pre_stats['total_entries']
+            
+            # Delete all cache files from S3
+            if cache_files:
+                for file_record in cache_files:
+                    try:
+                        file_path = file_record['cached_file_path']
+                        self.s3_client.delete_object(Bucket='emote', Key=file_path)
+                        stats['s3_files_deleted'] += 1
+                    except Exception as e:
+                        stats['errors'].append(f"Failed to delete S3 file {file_path}: {str(e)}")
+            
+            # Also try to delete any remaining cache files with prefix (in case of orphaned files)
+            try:
+                # List all objects with cache/ prefix
+                response = self.s3_client.list_objects_v2(Bucket='emote', Prefix='cache/')
+                if 'Contents' in response:
+                    for obj in response['Contents']:
+                        try:
+                            self.s3_client.delete_object(Bucket='emote', Key=obj['Key'])
+                            # Only increment if this wasn't already counted above
+                            if obj['Key'] not in [f['cached_file_path'] for f in cache_files]:
+                                stats['s3_files_deleted'] += 1
+                        except Exception as e:
+                            stats['errors'].append(f"Failed to delete orphaned S3 file {obj['Key']}: {str(e)}")
+            except Exception as e:
+                stats['errors'].append(f"Failed to list S3 cache objects: {str(e)}")
+                
+        except Exception as e:
+            stats['errors'].append(f"Database operation failed: {str(e)}")
+            
+        return stats
+    
+    async def get_cache_file_paths(self) -> list:
+        """Get all cache file paths from database for S3 cleanup."""
+        query = "SELECT cached_file_path FROM emote.effects_cache"
+        result = await self.fetch_query(query)
+        return [row['cached_file_path'] for row in result] if result else []

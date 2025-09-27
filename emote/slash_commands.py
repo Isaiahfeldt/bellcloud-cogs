@@ -519,15 +519,57 @@ class SlashCommands(commands.Cog):
 
         await interaction.response.send_message(embed=embed)
 
-    @emote.command(name="clear_cache", description="Manually clear the cache")
+    @emote.command(name="clear_cache", description="Completely wipe all emote effects cache (database + storage)")
     @commands.is_owner()
     async def emote_clear_cache(self, interaction: discord.Interaction):
-        if not interaction.user.guild_permissions.manage_messages:
+        """Completely wipe all emote effects cache from database and S3 storage."""
+        # Only bot owner can use this command
+        if not await self.bot.is_owner(interaction.user):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
             return
 
-        db.cache.clear()
-        await interaction.response.send_message("Cache cleared successfully.")
+        # Get cache statistics before deletion
+        try:
+            cache_stats = await db.get_cache_stats()
+            total_entries = cache_stats['total_entries']
+            total_size = cache_stats['total_size']
+            
+            if total_entries == 0:
+                await interaction.response.send_message("❌ Cache is already empty - nothing to clear.", ephemeral=True)
+                return
+            
+            # Format size for display
+            if total_size >= 1024 * 1024 * 1024:  # GB
+                size_str = f"{total_size / (1024 * 1024 * 1024):.2f} GB"
+            elif total_size >= 1024 * 1024:  # MB
+                size_str = f"{total_size / (1024 * 1024):.2f} MB"
+            elif total_size >= 1024:  # KB
+                size_str = f"{total_size / 1024:.2f} KB"
+            else:
+                size_str = f"{total_size} bytes"
+            
+            # Create confirmation embed
+            embed = discord.Embed(
+                title="⚠️ Cache Wipe Confirmation",
+                description=(
+                    f"You are about to **permanently delete** all emote effects cache data:\n\n"
+                    f"📊 **Database entries:** {total_entries:,}\n"
+                    f"💾 **Storage space:** {size_str}\n"
+                    f"🗃️ **Affected systems:** Database + S3 Storage\n\n"
+                    f"⚡ This will force all future effect requests to be reprocessed.\n"
+                    f"🔄 Cache will rebuild automatically as effects are used.\n\n"
+                    f"**This action cannot be undone!**"
+                ),
+                color=discord.Color.red()
+            )
+            embed.set_footer(text="Click 'Confirm Wipe' to proceed or wait 30 seconds to cancel.")
+            
+            # Create confirmation view
+            view = CacheWipeConfirmationView(interaction.user, db)
+            await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+            
+        except Exception as e:
+            await interaction.response.send_message(f"❌ Error checking cache status: {str(e)}", ephemeral=True)
 
     @emote.command(name="toggle",
                    description="Enable or disable emotes for a specific channel, optionally also configure emojis")
@@ -975,6 +1017,124 @@ class SlashCommands(commands.Cog):
         # Get elapsed time after timer has stopped
         extra_args = calculate_extra_args(timer.elapsedTime, emote)
         await send_emote(message, emote, *extra_args)
+
+
+class CacheWipeConfirmationView(discord.ui.View):
+    """Confirmation view for cache wipe operations."""
+    
+    def __init__(self, user: discord.User, database: Database):
+        super().__init__(timeout=30.0)
+        self.user = user
+        self.database = database
+        
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        """Ensure only the command user can interact with the view."""
+        return interaction.user.id == self.user.id
+    
+    async def on_timeout(self):
+        """Called when the view times out."""
+        # Disable all buttons
+        for item in self.children:
+            item.disabled = True
+    
+    @discord.ui.button(label="Confirm Wipe", style=discord.ButtonStyle.red, emoji="🗑️")
+    async def confirm_wipe(self, interaction: discord.Interaction, button: discord.ui.Button):
+        """Execute the cache wipe operation."""
+        # Disable the view immediately
+        for item in self.children:
+            item.disabled = True
+        
+        # Update message to show processing
+        processing_embed = discord.Embed(
+            title="🔄 Cache Wipe in Progress",
+            description="Deleting cache entries and files... Please wait.",
+            color=discord.Color.yellow()
+        )
+        await interaction.response.edit_message(embed=processing_embed, view=self)
+        
+        try:
+            # Clear in-memory cache first
+            self.database.cache.clear()
+            
+            # Perform the comprehensive wipe
+            wipe_stats = await self.database.wipe_all_cache()
+            
+            # Create success embed with results
+            success_embed = discord.Embed(
+                title="✅ Cache Wipe Completed",
+                color=discord.Color.green()
+            )
+            
+            # Add statistics fields
+            success_embed.add_field(
+                name="📊 Database Entries Deleted",
+                value=f"{wipe_stats['db_entries_deleted']:,}",
+                inline=True
+            )
+            success_embed.add_field(
+                name="🗃️ S3 Files Deleted", 
+                value=f"{wipe_stats['s3_files_deleted']:,}",
+                inline=True
+            )
+            
+            # Format size freed
+            size_freed = wipe_stats.get('total_size_freed', 0)
+            if size_freed >= 1024 * 1024 * 1024:  # GB
+                size_str = f"{size_freed / (1024 * 1024 * 1024):.2f} GB"
+            elif size_freed >= 1024 * 1024:  # MB
+                size_str = f"{size_freed / (1024 * 1024):.2f} MB"
+            elif size_freed >= 1024:  # KB
+                size_str = f"{size_freed / 1024:.2f} KB"
+            else:
+                size_str = f"{size_freed} bytes"
+                
+            success_embed.add_field(
+                name="💾 Storage Freed",
+                value=size_str,
+                inline=True
+            )
+            
+            # Add errors if any
+            if wipe_stats['errors']:
+                error_text = "\n".join(wipe_stats['errors'][:5])  # Limit to first 5 errors
+                if len(wipe_stats['errors']) > 5:
+                    error_text += f"\n... and {len(wipe_stats['errors']) - 5} more errors"
+                success_embed.add_field(
+                    name="⚠️ Errors Encountered",
+                    value=f"```{error_text}```",
+                    inline=False
+                )
+            
+            success_embed.set_footer(text="Cache will rebuild automatically as effects are used.")
+            
+            await interaction.edit_original_response(embed=success_embed, view=self)
+            
+        except Exception as e:
+            # Create error embed
+            error_embed = discord.Embed(
+                title="❌ Cache Wipe Failed",
+                description=f"An error occurred during cache wipe:\n```{str(e)}```",
+                color=discord.Color.red()
+            )
+            error_embed.set_footer(text="Cache may be in an inconsistent state. Contact admin.")
+            
+            await interaction.edit_original_response(embed=error_embed, view=self)
+    
+    @discord.ui.button(label="Cancel", style=discord.ButtonStyle.gray, emoji="❌")
+    async def cancel_wipe(self, interaction: discord.Interaction, button: discord.ui.Button):
+        """Cancel the cache wipe operation."""
+        # Disable all buttons
+        for item in self.children:
+            item.disabled = True
+            
+        # Create cancellation embed
+        cancel_embed = discord.Embed(
+            title="❌ Cache Wipe Cancelled",
+            description="Cache wipe operation was cancelled. No data was deleted.",
+            color=discord.Color.green()
+        )
+        
+        await interaction.response.edit_message(embed=cancel_embed, view=self)
 
 
 def reset_flags():
