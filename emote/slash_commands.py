@@ -151,7 +151,7 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         if not os.path.exists(template1_path):
             print(f"Template image code.png not found: {template1_path}")
             return 0
-        
+
         if not os.path.exists(template2_path):
             print(f"Template image code2.png not found: {template2_path}")
             return 0
@@ -159,11 +159,11 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         # Load both template images
         template1_img = cv2.imread(template1_path, 0)
         template2_img = cv2.imread(template2_path, 0)
-        
+
         if template1_img is None:
             print("Could not load code.png template image")
             return 0
-            
+
         if template2_img is None:
             print("Could not load code2.png template image")
             return 0
@@ -172,25 +172,25 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         print("Converting attachment bytes to image format...")
         np_array = np.frombuffer(attachment_bytes, np.uint8)
         candidate_img_color = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
-        
+
         if candidate_img_color is None:
             print("Could not decode candidate image from bytes")
             return 0
-            
+
         print(f"Successfully decoded image with shape: {candidate_img_color.shape}")
-        
+
         # Convert to PNG format and save to temporary file for consistent processing
         temp_dir = tempfile.gettempdir()
         temp_candidate_path = os.path.join(temp_dir, f"candidate_{uuid.uuid4().hex}.png")
-        
+
         # Encode as PNG and save to ensure consistent format
         success, png_encoded = cv2.imencode('.png', candidate_img_color)
         if not success:
             print("Could not encode candidate image to PNG format")
             return 0
-            
+
         print("Successfully converted image to PNG format")
-        
+
         with open(temp_candidate_path, 'wb') as temp_file:
             temp_file.write(png_encoded.tobytes())
 
@@ -213,7 +213,7 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         # Test against code.png template
         k_template1, d_template1 = orb.detectAndCompute(template1_img, None)
         match_count1 = 0
-        
+
         if d_template1 is not None and len(k_template1) > 0:
             bf1 = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
             matches1 = bf1.match(d_template1, d_candidate)
@@ -226,7 +226,7 @@ async def check_image_matches_code(attachment_bytes: bytes) -> int:
         # Test against code2.png template
         k_template2, d_template2 = orb.detectAndCompute(template2_img, None)
         match_count2 = 0
-        
+
         if d_template2 is not None and len(k_template2) > 0:
             bf2 = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
             matches2 = bf2.match(d_template2, d_candidate)
@@ -820,26 +820,25 @@ class SlashCommands(commands.Cog):
                     return
 
             # Special check for bitter user with image attachments (check filename and code.png matches)
-            if (str(message.author.id) == BITTER_USER_ID or str(
-                    message.author.id) == CREATOR_NOVEMBER_USER_ID) and message.attachments:
+            if str(message.author.id) == BITTER_USER_ID and message.attachments:
                 for attachment in message.attachments:
                     # Check if attachment is an image
                     if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
                         try:
                             # First check if filename contains "Cash_App" (faster check)
                             filename_has_cash_app = check_filename_contains_cash_app(attachment.filename)
-                            
+
                             if filename_has_cash_app:
                                 # Send debug info with filename check result
                                 await send_bitter_match_info(self.bot, 0, 240, attachment,
                                                              message.author.mention, filename_check=True)
-                                
+
                                 # Delete the message and send reply immediately
                                 await message.delete()
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
                                 await message.channel.send(reply_msg)
                                 return
-                            
+
                             # If filename check passes, do the more expensive image matching
                             # Read attachment bytes
                             image_bytes = await attachment.read()
