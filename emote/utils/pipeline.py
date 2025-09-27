@@ -26,8 +26,9 @@ def filter_visual_effects(queued_effects: list) -> list:
     Returns:
         list: Filtered list containing only visual effects
     """
-    NON_VISUAL_EFFECTS = {"train", "debug"}
+    NON_VISUAL_EFFECTS = {"train", "debug", "latency"}
     return [effect for effect in queued_effects if effect[0] not in NON_VISUAL_EFFECTS]
+
 
 def has_visual_effects(queued_effects: list) -> bool:
     """
@@ -41,6 +42,7 @@ def has_visual_effects(queued_effects: list) -> bool:
     """
     visual_effects = filter_visual_effects(queued_effects)
     return len(visual_effects) > 0
+
 
 async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) -> Optional[bytes]:
     """
@@ -59,7 +61,7 @@ async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) 
 
         # Filter out non-visual effects for cache operations
         visual_effects = filter_visual_effects(queued_effects)
-        
+
         # If no visual effects remain, skip cache check
         if not visual_effects:
             non_visual_names = [effect[0] for effect in queued_effects]
@@ -191,7 +193,12 @@ async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: l
         if cache_result:
             # Return cached result immediately
             emote.img_data = cache_result
-            emote.notes["cache_hit"] = "Effects loaded from cache"
+            # Filter out non-visual effects for clearer cache messaging
+            visual_effects = filter_visual_effects(queued_effects)
+            visual_effect_names = [effect[0] for effect in visual_effects]
+            emote.notes["cache_retrieved"] = f"Effects loaded from cache for visual effects: {visual_effect_names}"
+            emote.notes["cache_hit"] = "Effects loaded from cache"  # Keep for internal tracking
+            print(f"Cache hit - effects loaded from cache for visual effects: {visual_effect_names}")
             return [(lambda _: emote)]  # Return emote with cached data
 
     pipeline = [(lambda _: initialize(emote))]
@@ -407,7 +414,7 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
         else:
             # Filter out non-visual effects for caching
             visual_effects = filter_visual_effects(queued_effects)
-            
+
             # Only cache if there are visual effects
             if visual_effects:
                 try:
@@ -416,7 +423,8 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
                                                               emote_state.img_data)
                     if cache_success:
                         visual_effect_names = [effect[0] for effect in visual_effects]
-                        emote_state.notes["cache_stored"] = f"Result processed and cached for visual effects: {visual_effect_names}"
+                        emote_state.notes[
+                            "cache_stored"] = f"Result processed and cached for visual effects: {visual_effect_names}"
                         print(f"Result cached successfully for visual effects: {visual_effect_names}")
                     else:
                         emote_state.notes["cache_failed"] = "Result processed but caching failed"
