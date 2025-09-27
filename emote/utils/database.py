@@ -220,6 +220,7 @@ class Database:
 
     async def init_cache_schema(self):
         """Initialize the emote effects cache table."""
+        # Create the main table first
         create_table_query = """
         CREATE TABLE IF NOT EXISTS emote.effects_cache (
             cache_key VARCHAR(64) PRIMARY KEY,
@@ -234,14 +235,22 @@ class Database:
             FOREIGN KEY (source_emote_name, source_guild_id) 
                 REFERENCES emote.media(emote_name, guild_id) 
                 ON DELETE CASCADE
-        );
-        
-        CREATE INDEX IF NOT EXISTS idx_effects_cache_source 
-            ON emote.effects_cache(source_emote_name, source_guild_id);
-        CREATE INDEX IF NOT EXISTS idx_effects_cache_accessed 
-            ON emote.effects_cache(last_accessed);
+        )
         """
         await self.execute_query(create_table_query)
+        
+        # Create the indexes separately
+        create_index_source_query = """
+        CREATE INDEX IF NOT EXISTS idx_effects_cache_source 
+            ON emote.effects_cache(source_emote_name, source_guild_id)
+        """
+        await self.execute_query(create_index_source_query)
+        
+        create_index_accessed_query = """
+        CREATE INDEX IF NOT EXISTS idx_effects_cache_accessed 
+            ON emote.effects_cache(last_accessed)
+        """
+        await self.execute_query(create_index_accessed_query)
 
     def generate_cache_key(self, source_image_data: bytes, effect_combination: str) -> str:
         """Generate a unique cache key from source image and effect combination."""
