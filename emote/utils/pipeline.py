@@ -31,6 +31,20 @@ async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) 
     try:
         from ..slash_commands import db
         
+        # Apply the same filtering logic as cache storage
+        # Define non-visual effects that aren't cached (must match execute_pipeline logic)
+        NON_VISUAL_EFFECTS = {"train", "debug"}
+        
+        # Check if any effects are non-visual - if so, skip cache check entirely
+        effect_names = [effect[0] for effect in queued_effects]
+        has_non_visual = any(name in NON_VISUAL_EFFECTS for name in effect_names)
+        
+        if has_non_visual:
+            # Don't check cache for combinations with non-visual effects
+            # This prevents false cache misses for combinations that are never stored
+            print(f"Cache check skipped - contains non-visual effects: {[name for name in effect_names if name in NON_VISUAL_EFFECTS]}")
+            return None
+        
         # Initialize emote to get source image data
         initialized_emote = await initialize(emote)
         if not initialized_emote.img_data:
@@ -51,8 +65,10 @@ async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) 
             async with aiohttp.ClientSession() as session:
                 async with session.get(cached_url) as response:
                     if response.status == 200:
+                        print(f"Cache hit found for effects: {effect_names}")
                         return await response.read()
         
+        print(f"Cache miss for effects: {effect_names}")
         return None
     except Exception as e:
         print(f"Cache check error: {e}")
@@ -359,12 +375,12 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
         # Check if there are any validation issues (misspelled effects, etc.)
         has_validation_issues = bool(emote_state.issues) if hasattr(emote_state, 'issues') else False
         
-        # Define non-visual effects that shouldn't be cached
+        # Define non-visual effects that shouldn't be cached (must match check_effects_cache logic)
         NON_VISUAL_EFFECTS = {"train", "debug"}
         
-        # Check if we only have non-visual effects
+        # Check if any effects are non-visual (consistent with cache check logic)
         effect_names = [effect[0] for effect in queued_effects]
-        only_non_visual = all(name in NON_VISUAL_EFFECTS for name in effect_names)
+        has_non_visual = any(name in NON_VISUAL_EFFECTS for name in effect_names)
         
         # Skip caching if we have validation issues
         if has_validation_issues:
@@ -372,10 +388,11 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
             emote_state.notes["cache_skipped"] = f"Caching skipped due to validation issues: {', '.join(issue_keys)}"
             print(f"Caching skipped due to validation issues: {issue_keys}")
         
-        # Skip caching if we only have non-visual effects
-        elif only_non_visual:
-            emote_state.notes["cache_skipped"] = f"Caching skipped - only non-visual effects applied: {', '.join(effect_names)}"
-            print(f"Caching skipped - only non-visual effects: {effect_names}")
+        # Skip caching if any effects are non-visual (consistent with cache check logic)
+        elif has_non_visual:
+            non_visual_effects = [name for name in effect_names if name in NON_VISUAL_EFFECTS]
+            emote_state.notes["cache_skipped"] = f"Caching skipped - contains non-visual effects: {non_visual_effects}"
+            print(f"Caching skipped - contains non-visual effects: {non_visual_effects}")
         
         # Cache the result if it passes all checks
         else:
