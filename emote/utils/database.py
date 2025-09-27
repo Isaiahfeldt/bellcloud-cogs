@@ -219,39 +219,74 @@ class Database:
     # === EMOTE EFFECTS CACHE SYSTEM ===
 
     async def init_cache_schema(self):
-        """Initialize the emote effects cache table."""
-        # Create the main table first
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS emote.effects_cache (
-            cache_key VARCHAR(64) PRIMARY KEY,
-            source_emote_name VARCHAR(255) NOT NULL,
-            source_guild_id BIGINT NOT NULL,
-            source_image_hash VARCHAR(64) NOT NULL,
-            effect_combination VARCHAR(512) NOT NULL,
-            cached_file_path VARCHAR(512) NOT NULL,
-            created_timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-            last_accessed TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-            file_size BIGINT NOT NULL,
-            CONSTRAINT fk_effects_cache_source 
-                FOREIGN KEY (source_emote_name, source_guild_id) 
-                REFERENCES emote.media(emote_name, guild_id) 
-                ON DELETE CASCADE
-        )
-        """
-        await self.execute_query(create_table_query)
-        
-        # Create the indexes separately
-        create_index_source_query = """
-        CREATE INDEX IF NOT EXISTS idx_effects_cache_source 
-            ON emote.effects_cache(source_emote_name, source_guild_id)
-        """
-        await self.execute_query(create_index_source_query)
-        
-        create_index_accessed_query = """
-        CREATE INDEX IF NOT EXISTS idx_effects_cache_accessed 
-            ON emote.effects_cache(last_accessed)
-        """
-        await self.execute_query(create_index_accessed_query)
+        """Initialize the emote effects cache table with graceful error handling."""
+        try:
+            # Step 1: Create the main table WITHOUT foreign key constraint first
+            create_table_query = """
+            CREATE TABLE IF NOT EXISTS emote.effects_cache (
+                cache_key VARCHAR(64) PRIMARY KEY,
+                source_emote_name VARCHAR(255) NOT NULL,
+                source_guild_id BIGINT NOT NULL,
+                source_image_hash VARCHAR(64) NOT NULL,
+                effect_combination VARCHAR(512) NOT NULL,
+                cached_file_path VARCHAR(512) NOT NULL,
+                created_timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+                last_accessed TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+                file_size BIGINT NOT NULL
+            )
+            """
+            await self.execute_query(create_table_query)
+            print("✅ Cache table created successfully")
+            
+            # Step 2: Try to add foreign key constraint (this might fail if emote.media doesn't exist)
+            try:
+                # First check if constraint already exists
+                check_constraint_query = """
+                SELECT constraint_name 
+                FROM information_schema.table_constraints 
+                WHERE table_schema = 'emote' 
+                AND table_name = 'effects_cache' 
+                AND constraint_name = 'fk_effects_cache_source'
+                """
+                existing_constraint = await self.fetch_query(check_constraint_query)
+                
+                if not existing_constraint:
+                    # Add the foreign key constraint
+                    add_constraint_query = """
+                    ALTER TABLE emote.effects_cache 
+                    ADD CONSTRAINT fk_effects_cache_source 
+                        FOREIGN KEY (source_emote_name, source_guild_id) 
+                        REFERENCES emote.media(emote_name, guild_id) 
+                        ON DELETE CASCADE
+                    """
+                    await self.execute_query(add_constraint_query)
+                    print("✅ Foreign key constraint added successfully")
+                else:
+                    print("✅ Foreign key constraint already exists")
+                    
+            except Exception as fk_error:
+                print(f"⚠️  Warning: Could not add foreign key constraint: {fk_error}")
+                print("📝 Cache will function without automatic cleanup when emotes are deleted")
+                print("💡 This usually means the emote.media table doesn't exist or lacks proper constraints")
+            
+            # Step 3: Create the indexes (these should always work)
+            create_index_source_query = """
+            CREATE INDEX IF NOT EXISTS idx_effects_cache_source 
+                ON emote.effects_cache(source_emote_name, source_guild_id)
+            """
+            await self.execute_query(create_index_source_query)
+            
+            create_index_accessed_query = """
+            CREATE INDEX IF NOT EXISTS idx_effects_cache_accessed 
+                ON emote.effects_cache(last_accessed)
+            """
+            await self.execute_query(create_index_accessed_query)
+            print("✅ Cache indexes created successfully")
+            
+        except Exception as e:
+            print(f"❌ Critical error in cache schema initialization: {e}")
+            # Re-raise the error if we can't even create the basic table
+            raise
 
     def generate_cache_key(self, source_image_data: bytes, effect_combination: str) -> str:
         """Generate a unique cache key from source image and effect combination."""
