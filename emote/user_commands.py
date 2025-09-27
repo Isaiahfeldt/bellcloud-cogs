@@ -88,7 +88,7 @@ class EffectSelect(discord.ui.Select):
         )
 
         pipeline = await create_pipeline(self, interaction.message, emote_instance, queued_effects)
-        emote = await execute_pipeline(pipeline, cog_instance=self, queued_effects=queued_effects)
+        emote = await execute_pipeline(pipeline)
 
         if emote.img_data:
             image_buffer = io.BytesIO(emote.img_data)
