@@ -14,10 +14,126 @@ CONFLICT_GROUPS = [
 ]
 
 
+# === EFFECTS CACHE INTEGRATION ===
+
+async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) -> Optional[bytes]:
+    """
+    Check if we have a cached result for this emote + effect combination.
+    
+    Args:
+        cog_instance: The cog instance (for database access)
+        emote: The emote object
+        queued_effects: List of (effect_name, effect_args) tuples
+        
+    Returns:
+        Optional[bytes]: Cached image data if found, None otherwise
+    """
+    try:
+        from ..slash_commands import db
+        
+        # Initialize emote to get source image data
+        initialized_emote = await initialize(emote)
+        if not initialized_emote.img_data:
+            return None
+            
+        # Create effect combination string
+        effect_combination = ','.join([effect[0] for effect in queued_effects])
+        
+        # Generate cache key
+        cache_key = db.generate_cache_key(initialized_emote.img_data, effect_combination)
+        
+        # Check cache
+        cached_result = await db.get_cached_effect(cache_key)
+        if cached_result:
+            # Load cached image data from S3
+            cached_url = f"https://media.bellbot.xyz/cache/{cached_result['cached_file_path']}"
+            import aiohttp
+            async with aiohttp.ClientSession() as session:
+                async with session.get(cached_url) as response:
+                    if response.status == 200:
+                        return await response.read()
+        
+        return None
+    except Exception as e:
+        print(f"Cache check error: {e}")
+        return None
+
+
+async def store_effects_cache(cog_instance, emote: Emote, queued_effects: list, 
+                            result_image_data: bytes) -> bool:
+    """
+    Store the processed effect result in cache.
+    
+    Args:
+        cog_instance: The cog instance (for database access)
+        emote: The original emote object
+        queued_effects: List of (effect_name, effect_args) tuples that were applied
+        result_image_data: The processed image data to cache
+        
+    Returns:
+        bool: True if successfully cached, False otherwise
+    """
+    try:
+        from ..slash_commands import db
+        import hashlib
+        import tempfile
+        import os
+        
+        # Create effect combination string
+        effect_combination = ','.join([effect[0] for effect in queued_effects])
+        
+        # Generate cache key and paths
+        cache_key = db.generate_cache_key(emote.img_data, effect_combination)
+        source_hash = hashlib.sha256(emote.img_data).hexdigest()[:16]
+        
+        # Determine file extension from original
+        file_ext = emote.file_path.split('.')[-1] if emote.file_path else 'png'
+        cached_file_path = f"cache/{source_hash[:2]}/{cache_key}.{file_ext}"
+        
+        # Upload to S3
+        with tempfile.NamedTemporaryFile(suffix=f'.{file_ext}', delete=False) as temp_file:
+            temp_file.write(result_image_data)
+            temp_file.flush()
+            
+            try:
+                db.s3_client.upload_file(
+                    temp_file.name,
+                    'emote',
+                    cached_file_path,
+                    ExtraArgs={'ACL': 'public-read', 'ContentType': f'image/{file_ext}'}
+                )
+                
+                # Store cache entry in database
+                success = await db.store_cached_effect(
+                    cache_key=cache_key,
+                    source_emote_name=emote.name,
+                    source_guild_id=emote.guild_id,
+                    source_image_hash=source_hash,
+                    effect_combination=effect_combination,
+                    cached_file_path=cached_file_path,
+                    file_size=len(result_image_data)
+                )
+                
+                return success
+                
+            finally:
+                # Clean up temp file
+                try:
+                    os.unlink(temp_file.name)
+                except:
+                    pass
+        
+        return False
+    except Exception as e:
+        print(f"Cache storage error: {e}")
+        return False
+
+
 async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: list):
     """
     Constructs a processing pipeline for an emote based on queued effects.
     Validates effects, checks permissions, and handles conflicts.
+    Includes cache checking to avoid reprocessing identical effect combinations.
 
     Args:
         cog_instance: The cog instance (for permissions).
@@ -29,6 +145,15 @@ async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: l
         list: A list of awaitable functions representing the pipeline steps.
     """
     from ..slash_commands import SlashCommands  # Local import
+
+    # Check cache first if we have effects to apply
+    if queued_effects:
+        cache_result = await check_effects_cache(cog_instance, emote, queued_effects)
+        if cache_result:
+            # Return cached result immediately
+            emote.img_data = cache_result
+            emote.notes["cache_hit"] = "Effects loaded from cache"
+            return [(lambda _: emote)]  # Return emote with cached data
 
     pipeline = [(lambda _: initialize(emote))]
     effects_list = SlashCommands.EFFECTS_LIST
@@ -153,12 +278,14 @@ async def create_pipeline(cog_instance, message, emote: Emote, queued_effects: l
     return pipeline
 
 
-async def execute_pipeline(pipeline: list) -> Optional[Emote]:
+async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: list = None) -> Optional[Emote]:
     """
-    Executes the pipeline steps sequentially.
+    Executes the pipeline steps sequentially and caches successful results.
 
     Args:
         pipeline (list): The list of awaitable functions (steps).
+        cog_instance: The cog instance (for cache operations).
+        queued_effects (list): List of (effect_name, effect_args) tuples for caching.
 
     Returns:
         Optional[Emote]: The final Emote state, or None on critical failure.
@@ -224,4 +351,17 @@ async def execute_pipeline(pipeline: list) -> Optional[Emote]:
                 return None
             break  # Stop pipeline on general error
 
+    # Store successful results in cache (if we have the required parameters)
+    if (emote_state and cog_instance and queued_effects and 
+        emote_state.img_data and not emote_state.errors and 
+        "cache_hit" not in emote_state.notes):
+        
+        try:
+            # Store in cache for future use
+            await store_effects_cache(cog_instance, emote_state, queued_effects, emote_state.img_data)
+            emote_state.notes["cache_stored"] = "Result cached for future use"
+        except Exception as e:
+            print(f"Failed to cache result: {e}")
+            # Don't fail the whole operation if caching fails
+    
     return emote_state

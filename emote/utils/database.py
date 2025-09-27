@@ -1,4 +1,5 @@
 # File: emote/utils/database.py
+import hashlib
 import os
 import tempfile
 from datetime import datetime, timezone
@@ -47,6 +48,7 @@ class Database:
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
+        await self.init_cache_schema()
 
     async def close_pool(self):
         """Close the asyncpg connection pool."""
@@ -213,3 +215,128 @@ class Database:
         if result is None:
             return []
         return [(row[0], row[1], row[2]) for row in result]  # (name, usage_count, author_id)
+
+    # === EMOTE EFFECTS CACHE SYSTEM ===
+
+    async def init_cache_schema(self):
+        """Initialize the emote effects cache table."""
+        create_table_query = """
+        CREATE TABLE IF NOT EXISTS emote.effects_cache (
+            cache_key VARCHAR(64) PRIMARY KEY,
+            source_emote_name VARCHAR(255) NOT NULL,
+            source_guild_id BIGINT NOT NULL,
+            source_image_hash VARCHAR(64) NOT NULL,
+            effect_combination VARCHAR(512) NOT NULL,
+            cached_file_path VARCHAR(512) NOT NULL,
+            created_timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            last_accessed TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+            file_size BIGINT NOT NULL,
+            FOREIGN KEY (source_emote_name, source_guild_id) 
+                REFERENCES emote.media(emote_name, guild_id) 
+                ON DELETE CASCADE
+        );
+        
+        CREATE INDEX IF NOT EXISTS idx_effects_cache_source 
+            ON emote.effects_cache(source_emote_name, source_guild_id);
+        CREATE INDEX IF NOT EXISTS idx_effects_cache_accessed 
+            ON emote.effects_cache(last_accessed);
+        """
+        await self.execute_query(create_table_query)
+
+    def generate_cache_key(self, source_image_data: bytes, effect_combination: str) -> str:
+        """Generate a unique cache key from source image and effect combination."""
+        # Hash the source image data
+        source_hash = hashlib.sha256(source_image_data).hexdigest()[:16]
+        
+        # Normalize and hash the effect combination
+        effects_normalized = self._normalize_effect_combination(effect_combination)
+        effects_hash = hashlib.md5(effects_normalized.encode()).hexdigest()[:16]
+        
+        # Combine to create cache key
+        cache_key = f"{source_hash}_{effects_hash}"
+        return cache_key
+
+    def _normalize_effect_combination(self, effect_combination: str) -> str:
+        """Normalize effect combination string for consistent caching."""
+        if not effect_combination:
+            return "none"
+        
+        # Split effects, sort them alphabetically for consistency
+        effects = [effect.strip().lower() for effect in effect_combination.split(',')]
+        effects.sort()
+        return ','.join(effects)
+
+    async def get_cached_effect(self, cache_key: str) -> Optional[dict]:
+        """Get cached effect result by cache key."""
+        query = """
+        SELECT cached_file_path, created_timestamp, file_size 
+        FROM emote.effects_cache 
+        WHERE cache_key = $1
+        """
+        result = await self.fetch_query(query, cache_key)
+        if result:
+            # Update last accessed time
+            await self.execute_query(
+                "UPDATE emote.effects_cache SET last_accessed = $1 WHERE cache_key = $2",
+                datetime.now(timezone.utc).replace(tzinfo=None), cache_key
+            )
+            return {
+                'cached_file_path': result[0]['cached_file_path'],
+                'created_timestamp': result[0]['created_timestamp'],
+                'file_size': result[0]['file_size']
+            }
+        return None
+
+    async def store_cached_effect(self, cache_key: str, source_emote_name: str, 
+                                source_guild_id: int, source_image_hash: str,
+                                effect_combination: str, cached_file_path: str, 
+                                file_size: int) -> bool:
+        """Store a cached effect result."""
+        try:
+            timestamp = datetime.now(timezone.utc).replace(tzinfo=None)
+            query = """
+            INSERT INTO emote.effects_cache 
+            (cache_key, source_emote_name, source_guild_id, source_image_hash, 
+             effect_combination, cached_file_path, created_timestamp, last_accessed, file_size)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            ON CONFLICT (cache_key) DO UPDATE SET
+                last_accessed = $8,
+                file_size = $9
+            """
+            await self.execute_query(
+                query, cache_key, source_emote_name, source_guild_id, 
+                source_image_hash, effect_combination, cached_file_path, 
+                timestamp, timestamp, file_size
+            )
+            return True
+        except Exception as e:
+            print(f"Error storing cached effect: {e}")
+            return False
+
+    async def cleanup_cache_for_emote(self, emote_name: str, guild_id: int):
+        """Clean up cache entries when an emote is deleted (called automatically by CASCADE)."""
+        # This method is mainly for manual cleanup if needed
+        # The CASCADE DELETE should handle automatic cleanup
+        query = """
+        DELETE FROM emote.effects_cache 
+        WHERE source_emote_name = $1 AND source_guild_id = $2
+        """
+        await self.execute_query(query, emote_name, guild_id)
+
+    async def get_cache_stats(self) -> dict:
+        """Get statistics about the effects cache."""
+        query = """
+        SELECT 
+            COUNT(*) as total_entries,
+            SUM(file_size) as total_size,
+            AVG(file_size) as avg_size
+        FROM emote.effects_cache
+        """
+        result = await self.fetch_query(query)
+        if result and result[0]:
+            return {
+                'total_entries': result[0]['total_entries'] or 0,
+                'total_size': result[0]['total_size'] or 0,
+                'avg_size': result[0]['avg_size'] or 0
+            }
+        return {'total_entries': 0, 'total_size': 0, 'avg_size': 0}
