@@ -232,7 +232,8 @@ class Database:
             created_timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL,
             last_accessed TIMESTAMP WITHOUT TIME ZONE NOT NULL,
             file_size BIGINT NOT NULL,
-            FOREIGN KEY (source_emote_name, source_guild_id) 
+            CONSTRAINT fk_effects_cache_source 
+                FOREIGN KEY (source_emote_name, source_guild_id) 
                 REFERENCES emote.media(emote_name, guild_id) 
                 ON DELETE CASCADE
         )
