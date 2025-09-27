@@ -146,16 +146,27 @@ async def store_effects_cache(cog_instance, emote: Emote, queued_effects: list,
         # Create effect combination string using only visual effects
         effect_combination = ','.join([effect[0] for effect in visual_effects])
 
-        # CRITICAL FIX: Use initialized emote data to match cache check behavior
-        # Both cache check and storage must use the same source image data
-        initialized_emote = await initialize(emote)
-        if not initialized_emote.img_data:
-            print("  ❌ No initialized image data available for cache storage")
+        # CRITICAL FIX: Get the original source emote to match cache check behavior
+        # Cache check and storage must use the same source image data for consistent keys
+        # We need to get the original emote data that was used in cache check, not the processed result
+        
+        # Get the original source emote from the pipeline (before any effects were applied)
+        # This should match what check_effects_cache used
+        from ..slash_commands import db as slash_db
+        original_source_emote = await slash_db.get_emote(emote.name, emote.guild_id, False)
+        if not original_source_emote:
+            print("  ❌ Could not retrieve original source emote for cache key generation")
             return False
             
-        # Generate cache key and paths using initialized image data (same as cache check)
-        cache_key = db.generate_cache_key(initialized_emote.img_data, effect_combination)
-        source_hash = hashlib.sha256(initialized_emote.img_data).hexdigest()[:16]
+        # Initialize the original source emote to get the same data cache check used
+        initialized_source_emote = await initialize(original_source_emote)
+        if not initialized_source_emote.img_data:
+            print("  ❌ No initialized source image data available for cache storage")
+            return False
+            
+        # Generate cache key using the original source data (same as cache check)
+        cache_key = db.generate_cache_key(initialized_source_emote.img_data, effect_combination)
+        source_hash = hashlib.sha256(initialized_source_emote.img_data).hexdigest()[:16]
         
         # Debug logging for cache storage
         print(f"💾 Cache Storage Debug:")
