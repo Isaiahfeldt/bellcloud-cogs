@@ -70,15 +70,8 @@ class Emotes(
             type=discord.AppCommandType.message,
         )
 
-        self.apply_effect_user = discord.app_commands.ContextMenu(
-            name="Apply Effect to Avatar",
-            callback=self.apply_effect_user_context,
-            type=discord.AppCommandType.user,
-        )
-
         self.bot.tree.add_command(self.add_as_emote)
         self.bot.tree.add_command(self.apply_effect)
-        self.bot.tree.add_command(self.apply_effect_user)
 
     async def cog_load(self):
         from emote.slash_commands import db
@@ -100,12 +93,5 @@ class Emotes(
     @app_commands.guild_install()
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     async def apply_effect_context(self, interaction: discord.Interaction, message: discord.Message):
-        """Apply an effect to a message attachment"""
+        """Apply an effect to an emote"""
         await self.handle_apply_effect(interaction, message)
-
-    @app_commands.user_install()
-    @app_commands.guild_install()
-    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-    async def apply_effect_user_context(self, interaction: discord.Interaction, user: discord.User):
-        """Apply an effect to a user's avatar"""
-        await self.handle_apply_effect_user(interaction, user)
