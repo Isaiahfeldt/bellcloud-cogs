@@ -146,9 +146,16 @@ async def store_effects_cache(cog_instance, emote: Emote, queued_effects: list,
         # Create effect combination string using only visual effects
         effect_combination = ','.join([effect[0] for effect in visual_effects])
 
-        # Generate cache key and paths using consistent visual effects filtering
-        cache_key = db.generate_cache_key(emote.img_data, effect_combination)
-        source_hash = hashlib.sha256(emote.img_data).hexdigest()[:16]
+        # CRITICAL FIX: Use initialized emote data to match cache check behavior
+        # Both cache check and storage must use the same source image data
+        initialized_emote = await initialize(emote)
+        if not initialized_emote.img_data:
+            print("  ❌ No initialized image data available for cache storage")
+            return False
+            
+        # Generate cache key and paths using initialized image data (same as cache check)
+        cache_key = db.generate_cache_key(initialized_emote.img_data, effect_combination)
+        source_hash = hashlib.sha256(initialized_emote.img_data).hexdigest()[:16]
         
         # Debug logging for cache storage
         print(f"💾 Cache Storage Debug:")
