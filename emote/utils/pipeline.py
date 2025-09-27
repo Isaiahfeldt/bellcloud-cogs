@@ -358,10 +358,14 @@ async def execute_pipeline(pipeline: list, cog_instance=None, queued_effects: li
         
         try:
             # Store in cache for future use
-            await store_effects_cache(cog_instance, emote_state, queued_effects, emote_state.img_data)
-            emote_state.notes["cache_stored"] = "Result cached for future use"
+            cache_success = await store_effects_cache(cog_instance, emote_state, queued_effects, emote_state.img_data)
+            if cache_success:
+                emote_state.notes["cache_stored"] = "Result processed and cached successfully"
+            else:
+                emote_state.notes["cache_failed"] = "Result processed but caching failed"
         except Exception as e:
             print(f"Failed to cache result: {e}")
+            emote_state.notes["cache_error"] = f"Result processed but caching error: {str(e)}"
             # Don't fail the whole operation if caching fails
     
     return emote_state
