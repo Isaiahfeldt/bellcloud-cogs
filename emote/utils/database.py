@@ -299,6 +299,15 @@ class Database:
         
         # Combine to create cache key
         cache_key = f"{source_hash}_{effects_hash}"
+        
+        # Debug logging for cache key generation
+        print(f"🔑 Database Cache Key Generation:")
+        print(f"  📤 Input effect combination: '{effect_combination}'")
+        print(f"  🔄 Normalized effects: '{effects_normalized}'")
+        print(f"  🏷️ Source image hash (first 16): {source_hash}")
+        print(f"  🎭 Effects hash (first 16): {effects_hash}")
+        print(f"  🎯 Final cache key: {cache_key}")
+        
         return cache_key
 
     def _normalize_effect_combination(self, effect_combination: str) -> str:
@@ -313,30 +322,54 @@ class Database:
 
     async def get_cached_effect(self, cache_key: str) -> Optional[dict]:
         """Get cached effect result by cache key."""
+        print(f"🔍 Database Cache Lookup:")
+        print(f"  🎯 Looking up cache key: {cache_key}")
+        
         query = """
         SELECT cached_file_path, created_timestamp, file_size 
         FROM emote.effects_cache 
         WHERE cache_key = $1
         """
         result = await self.fetch_query(query, cache_key)
+        
         if result:
+            cached_file_path = result[0]['cached_file_path']
+            file_size = result[0]['file_size']
+            created_timestamp = result[0]['created_timestamp']
+            
+            print(f"  ✅ Cache entry found!")
+            print(f"    📁 File path: {cached_file_path}")
+            print(f"    📊 File size: {file_size} bytes")
+            print(f"    🕐 Created: {created_timestamp}")
+            
             # Update last accessed time
             await self.execute_query(
                 "UPDATE emote.effects_cache SET last_accessed = $1 WHERE cache_key = $2",
                 datetime.now(timezone.utc).replace(tzinfo=None), cache_key
             )
+            print(f"    🔄 Last accessed timestamp updated")
+            
             return {
-                'cached_file_path': result[0]['cached_file_path'],
-                'created_timestamp': result[0]['created_timestamp'],
-                'file_size': result[0]['file_size']
+                'cached_file_path': cached_file_path,
+                'created_timestamp': created_timestamp,
+                'file_size': file_size
             }
-        return None
+        else:
+            print(f"  ❌ No cache entry found for key: {cache_key}")
+            return None
 
     async def store_cached_effect(self, cache_key: str, source_emote_name: str, 
                                 source_guild_id: int, source_image_hash: str,
                                 effect_combination: str, cached_file_path: str, 
                                 file_size: int) -> bool:
         """Store a cached effect result."""
+        print(f"💾 Database Cache Storage:")
+        print(f"  🎯 Cache key: {cache_key}")
+        print(f"  🏷️ Source emote: {source_emote_name} (guild: {source_guild_id})")
+        print(f"  🔑 Effect combination: '{effect_combination}'")
+        print(f"  📁 File path: {cached_file_path}")
+        print(f"  📊 File size: {file_size} bytes")
+        
         try:
             timestamp = datetime.now(timezone.utc).replace(tzinfo=None)
             query = """
@@ -348,13 +381,16 @@ class Database:
                 last_accessed = $8,
                 file_size = $9
             """
+            print(f"  🗂️ Executing database insert/update query...")
             await self.execute_query(
                 query, cache_key, source_emote_name, source_guild_id, 
                 source_image_hash, effect_combination, cached_file_path, 
                 timestamp, timestamp, file_size
             )
+            print(f"  ✅ Database storage successful")
             return True
         except Exception as e:
+            print(f"  ❌ Database storage error: {e}")
             print(f"Error storing cached effect: {e}")
             return False
 

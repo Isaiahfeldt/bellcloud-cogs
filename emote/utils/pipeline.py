@@ -1,6 +1,7 @@
 # File: emote/utils/pipeline.py (Refactored)
 
 import asyncio
+import hashlib
 import inspect
 import time
 import traceback
@@ -78,19 +79,39 @@ async def check_effects_cache(cog_instance, emote: Emote, queued_effects: list) 
 
         # Generate cache key based on visual effects only
         cache_key = db.generate_cache_key(initialized_emote.img_data, effect_combination)
+        
+        # Debug logging for cache key generation
+        source_hash = hashlib.sha256(initialized_emote.img_data).hexdigest()[:16]
+        print(f"🔍 Cache Check Debug:")
+        print(f"  📋 Original effects: {[effect[0] for effect in queued_effects]}")
+        print(f"  ✨ Visual effects only: {[effect[0] for effect in visual_effects]}")
+        print(f"  🔑 Effect combination: '{effect_combination}'")
+        print(f"  🏷️ Source hash: {source_hash}")
+        print(f"  🎯 Cache key: {cache_key}")
 
         # Check cache
         cached_result = await db.get_cached_effect(cache_key)
+        print(f"  🗂️ Database cache lookup result: {'Found' if cached_result else 'Not found'}")
+        
         if cached_result:
+            cached_file_path = cached_result['cached_file_path']
+            cached_url = f"https://media.bellbot.xyz/cache/{cached_file_path}"
+            print(f"  📁 Expected cache file path: {cached_file_path}")
+            print(f"  🌐 Cache URL: {cached_url}")
+            
             # Load cached image data from S3
-            cached_url = f"https://media.bellbot.xyz/cache/{cached_result['cached_file_path']}"
             import aiohttp
             async with aiohttp.ClientSession() as session:
                 async with session.get(cached_url) as response:
+                    print(f"  📡 S3 response status: {response.status}")
                     if response.status == 200:
+                        cached_data = await response.read()
+                        print(f"  ✅ Cache hit successful! Retrieved {len(cached_data)} bytes")
                         visual_effect_names = [effect[0] for effect in visual_effects]
                         print(f"Cache hit found for visual effects: {visual_effect_names}")
-                        return await response.read()
+                        return cached_data
+                    else:
+                        print(f"  ❌ S3 file not accessible, treating as cache miss")
 
         visual_effect_names = [effect[0] for effect in visual_effects]
         print(f"Cache miss for visual effects: {visual_effect_names}")
@@ -116,35 +137,53 @@ async def store_effects_cache(cog_instance, emote: Emote, queued_effects: list,
     """
     try:
         from ..slash_commands import db
-        import hashlib
         import tempfile
         import os
 
-        # Create effect combination string
-        effect_combination = ','.join([effect[0] for effect in queued_effects])
+        # CRITICAL FIX: Filter to visual effects only (same as check_effects_cache)
+        visual_effects = filter_visual_effects(queued_effects)
+        
+        # Create effect combination string using only visual effects
+        effect_combination = ','.join([effect[0] for effect in visual_effects])
 
-        # Generate cache key and paths
+        # Generate cache key and paths using consistent visual effects filtering
         cache_key = db.generate_cache_key(emote.img_data, effect_combination)
         source_hash = hashlib.sha256(emote.img_data).hexdigest()[:16]
+        
+        # Debug logging for cache storage
+        print(f"💾 Cache Storage Debug:")
+        print(f"  📋 Original effects: {[effect[0] for effect in queued_effects]}")
+        print(f"  ✨ Visual effects only: {[effect[0] for effect in visual_effects]}")
+        print(f"  🔑 Effect combination: '{effect_combination}'")
+        print(f"  🏷️ Source hash: {source_hash}")
+        print(f"  🎯 Cache key: {cache_key}")
 
         # Determine file extension from original
         file_ext = emote.file_path.split('.')[-1] if emote.file_path else 'png'
         cached_file_path = f"cache/{source_hash[:2]}/{cache_key}.{file_ext}"
+        
+        print(f"  📁 Cache file path: {cached_file_path}")
+        print(f"  📦 File extension: {file_ext}")
+        print(f"  📊 Result data size: {len(result_image_data)} bytes")
 
         # Upload to S3
         with tempfile.NamedTemporaryFile(suffix=f'.{file_ext}', delete=False) as temp_file:
             temp_file.write(result_image_data)
             temp_file.flush()
+            print(f"  💾 Temp file created: {temp_file.name}")
 
             try:
+                print(f"  🌐 Uploading to S3...")
                 db.s3_client.upload_file(
                     temp_file.name,
                     'emote',
                     cached_file_path,
                     ExtraArgs={'ACL': 'public-read', 'ContentType': f'image/{file_ext}'}
                 )
+                print(f"  ✅ S3 upload successful")
 
                 # Store cache entry in database
+                print(f"  🗂️ Storing cache entry in database...")
                 success = await db.store_cached_effect(
                     cache_key=cache_key,
                     source_emote_name=emote.name,
@@ -154,6 +193,12 @@ async def store_effects_cache(cog_instance, emote: Emote, queued_effects: list,
                     cached_file_path=cached_file_path,
                     file_size=len(result_image_data)
                 )
+                
+                if success:
+                    print(f"  ✅ Database storage successful")
+                    print(f"  🎉 Cache storage complete - key: {cache_key}")
+                else:
+                    print(f"  ❌ Database storage failed")
 
                 return success
 
