@@ -129,7 +129,7 @@ async def send_bitter_match_info(bot, match_count: int, threshold: int, attachme
 
         # Create the match info message
         if match_count > threshold or filename_check:
-            status = "DELETED"
+            status = "FLAGGED"
             emoji = "🚨"
         else:
             status = "ALLOWED"
@@ -922,20 +922,16 @@ class SlashCommands(commands.Cog):
 
                             # Check for image matches
                             match_count = await check_image_matches_code(image_bytes)
-                            threshold = 240
+                            threshold = 300
 
                             # Always send match info to debug channel
                             await send_bitter_match_info(self.bot, match_count, threshold, attachment,
                                                          message.author.mention, filename_check=filename_has_cash_app)
 
                             if match_count > threshold:
-                                # Log the blacklist violation before deleting
+                                # Log the blacklist violation (but don't delete message)
                                 await log_blacklist_violation(self.bot, message, "Bitter User Cash App Image Match")
-                                # Delete the message and send reply
-                                await message.delete()
-                                reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
-                                await message.channel.send(reply_msg)
-                                return
+                                # Note: Message is no longer deleted, just logged and checked
 
                         except Exception as e:
                             # Send error info to debug channel as well
