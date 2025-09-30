@@ -78,6 +78,37 @@ async def debug_output(message: discord.Message, debug_text: str):
         print(debug_text)
 
 
+async def log_blacklist_violation(bot, message: discord.Message, reason: str):
+    """
+    Log blacklist violation to the super-private-bot-commands channel.
+    Includes original author, reason for deletion, and original message.
+    """
+    try:
+        # Get the super-private-bot-commands channel
+        log_channel = bot.get_channel(DEBUG_CHANNEL_ID)
+        if log_channel is None:
+            print(f"Super-private-bot-commands channel {DEBUG_CHANNEL_ID} not found")
+            return
+
+        # Prepare the log message
+        log_text = f"🚫 **Message Deleted - {reason}**\n"
+        log_text += f"**Author:** {message.author.mention} ({message.author})\n"
+        log_text += f"**Channel:** {message.channel.mention}\n"
+        log_text += f"**Original Message:** {message.content[:1800]}{'...' if len(message.content) > 1800 else ''}"
+        
+        # Include attachment info if present
+        if message.attachments:
+            log_text += f"\n**Attachments:** {len(message.attachments)} file(s)"
+            for attachment in message.attachments:
+                log_text += f"\n- {attachment.filename}"
+
+        # Send the log message
+        await log_channel.send(log_text)
+
+    except Exception as e:
+        print(f"Failed to log blacklist violation: {e}")
+
+
 def check_filename_contains_cash_app(filename: str) -> bool:
     """
     Check if the filename contains "Cash_App" (case-insensitive).
@@ -533,11 +564,11 @@ class SlashCommands(commands.Cog):
             cache_stats = await db.get_cache_stats()
             total_entries = cache_stats['total_entries']
             total_size = cache_stats['total_size']
-            
+
             if total_entries == 0:
                 await interaction.response.send_message("❌ Cache is already empty - nothing to clear.", ephemeral=True)
                 return
-            
+
             # Format size for display
             if total_size >= 1024 * 1024 * 1024:  # GB
                 size_str = f"{total_size / (1024 * 1024 * 1024):.2f} GB"
@@ -547,7 +578,7 @@ class SlashCommands(commands.Cog):
                 size_str = f"{total_size / 1024:.2f} KB"
             else:
                 size_str = f"{total_size} bytes"
-            
+
             # Create confirmation embed
             embed = discord.Embed(
                 title="⚠️ Cache Wipe Confirmation",
@@ -563,11 +594,11 @@ class SlashCommands(commands.Cog):
                 color=discord.Color.red()
             )
             embed.set_footer(text="Click 'Confirm Wipe' to proceed or wait 30 seconds to cancel.")
-            
+
             # Create confirmation view
             view = CacheWipeConfirmationView(interaction.user, db)
             await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
-            
+
         except Exception as e:
             await interaction.response.send_message(f"❌ Error checking cache status: {str(e)}", ephemeral=True)
 
@@ -839,11 +870,11 @@ class SlashCommands(commands.Cog):
             blacklisted_channels = await emotes_cog.config.guild(message.guild).blacklisted_channels()
             emoji_blacklisted_channels = await emotes_cog.config.guild(message.guild).emoji_blacklisted_channels()
 
-            await debug_output(message, f"Is blacklisted: {message.channel.id in blacklisted_channels}")
-            await debug_output(message, f"Is emoji blacklisted: {message.channel.id in emoji_blacklisted_channels}")
-
             # Check for emote blacklisting
             if message.channel.id in blacklisted_channels and is_enclosed_in_colon(message):
+                # Log the blacklist violation before deleting
+                await log_blacklist_violation(self.bot, message, "Emote Blacklisting")
+                await message.delete()
                 violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                 await message.channel.send(violation_msg)
 
@@ -854,6 +885,8 @@ class SlashCommands(commands.Cog):
             if message.channel.id in emoji_blacklisted_channels:
                 # Special check for Creator November user with attachments
                 if str(message.author.id) == CREATOR_NOVEMBER_USER_ID and message.attachments:
+                    # Log the blacklist violation before deleting
+                    await log_blacklist_violation(self.bot, message, "November User Image Attachments")
                     await message.delete()
                     violation_msg = get_violation_message(message.channel.id, "images", message.author.mention)
                     await message.channel.send(violation_msg)
@@ -875,6 +908,8 @@ class SlashCommands(commands.Cog):
                                 await send_bitter_match_info(self.bot, 0, 240, attachment,
                                                              message.author.mention, filename_check=True)
 
+                                # Log the blacklist violation before deleting
+                                await log_blacklist_violation(self.bot, message, "Bitter User Cash App Filename")
                                 # Delete the message and send reply immediately
                                 await message.delete()
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
@@ -894,6 +929,8 @@ class SlashCommands(commands.Cog):
                                                          message.author.mention, filename_check=filename_has_cash_app)
 
                             if match_count > threshold:
+                                # Log the blacklist violation before deleting
+                                await log_blacklist_violation(self.bot, message, "Bitter User Cash App Image Match")
                                 # Delete the message and send reply
                                 await message.delete()
                                 reply_msg = f"No bitter cashapp codes allowed, {message.author.mention}!!!"
@@ -915,6 +952,8 @@ class SlashCommands(commands.Cog):
             # Check for emoji blacklisting
             if message.channel.id in emoji_blacklisted_channels:
                 if contains_emoji(message.content):
+                    # Log the blacklist violation before deleting
+                    await log_blacklist_violation(self.bot, message, "Emoji Blacklisting")
                     await message.delete()
                     violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
                     await message.channel.send(violation_msg)
@@ -1021,29 +1060,29 @@ class SlashCommands(commands.Cog):
 
 class CacheWipeConfirmationView(discord.ui.View):
     """Confirmation view for cache wipe operations."""
-    
+
     def __init__(self, user: discord.User, database: Database):
         super().__init__(timeout=30.0)
         self.user = user
         self.database = database
-        
+
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         """Ensure only the command user can interact with the view."""
         return interaction.user.id == self.user.id
-    
+
     async def on_timeout(self):
         """Called when the view times out."""
         # Disable all buttons
         for item in self.children:
             item.disabled = True
-    
+
     @discord.ui.button(label="Confirm Wipe", style=discord.ButtonStyle.red, emoji="🗑️")
     async def confirm_wipe(self, interaction: discord.Interaction, button: discord.ui.Button):
         """Execute the cache wipe operation."""
         # Disable the view immediately
         for item in self.children:
             item.disabled = True
-        
+
         # Update message to show processing
         processing_embed = discord.Embed(
             title="🔄 Cache Wipe in Progress",
@@ -1051,20 +1090,20 @@ class CacheWipeConfirmationView(discord.ui.View):
             color=discord.Color.yellow()
         )
         await interaction.response.edit_message(embed=processing_embed, view=self)
-        
+
         try:
             # Clear in-memory cache first
             self.database.cache.clear()
-            
+
             # Perform the comprehensive wipe
             wipe_stats = await self.database.wipe_all_cache()
-            
+
             # Create success embed with results
             success_embed = discord.Embed(
                 title="✅ Cache Wipe Completed",
                 color=discord.Color.green()
             )
-            
+
             # Add statistics fields
             success_embed.add_field(
                 name="📊 Database Entries Deleted",
@@ -1072,11 +1111,11 @@ class CacheWipeConfirmationView(discord.ui.View):
                 inline=True
             )
             success_embed.add_field(
-                name="🗃️ S3 Files Deleted", 
+                name="🗃️ S3 Files Deleted",
                 value=f"{wipe_stats['s3_files_deleted']:,}",
                 inline=True
             )
-            
+
             # Format size freed
             size_freed = wipe_stats.get('total_size_freed', 0)
             if size_freed >= 1024 * 1024 * 1024:  # GB
@@ -1087,13 +1126,13 @@ class CacheWipeConfirmationView(discord.ui.View):
                 size_str = f"{size_freed / 1024:.2f} KB"
             else:
                 size_str = f"{size_freed} bytes"
-                
+
             success_embed.add_field(
                 name="💾 Storage Freed",
                 value=size_str,
                 inline=True
             )
-            
+
             # Add errors if any
             if wipe_stats['errors']:
                 error_text = "\n".join(wipe_stats['errors'][:5])  # Limit to first 5 errors
@@ -1104,11 +1143,11 @@ class CacheWipeConfirmationView(discord.ui.View):
                     value=f"```{error_text}```",
                     inline=False
                 )
-            
+
             success_embed.set_footer(text="Cache will rebuild automatically as effects are used.")
-            
+
             await interaction.edit_original_response(embed=success_embed, view=self)
-            
+
         except Exception as e:
             # Create error embed
             error_embed = discord.Embed(
@@ -1117,23 +1156,23 @@ class CacheWipeConfirmationView(discord.ui.View):
                 color=discord.Color.red()
             )
             error_embed.set_footer(text="Cache may be in an inconsistent state. Contact admin.")
-            
+
             await interaction.edit_original_response(embed=error_embed, view=self)
-    
+
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.gray, emoji="❌")
     async def cancel_wipe(self, interaction: discord.Interaction, button: discord.ui.Button):
         """Cancel the cache wipe operation."""
         # Disable all buttons
         for item in self.children:
             item.disabled = True
-            
+
         # Create cancellation embed
         cancel_embed = discord.Embed(
             title="❌ Cache Wipe Cancelled",
             description="Cache wipe operation was cancelled. No data was deleted.",
             color=discord.Color.green()
         )
-        
+
         await interaction.response.edit_message(embed=cancel_embed, view=self)
 
 
