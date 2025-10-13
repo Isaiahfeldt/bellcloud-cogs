@@ -41,7 +41,7 @@ async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
         dict: {"passes": bool, "reason": str}
     """
     content_lower = content.lower()
-    
+
     # Check for "orange" first (strike condition takes precedence)
     if "orange" in content_lower:
         return {
@@ -93,11 +93,11 @@ class SlashCommands(commands.Cog):
             return
 
         # Check if message is in monitored channels (gen3 channels + testing channel)
-        monitored_channels = ["general-3-uwu", "general-3"]
+        monitored_channels = ["private-bot-commands", "general-3"]
         testing_channel_id = 900659338069295125  # private-bot-commands
-        
-        if (message.channel.name.lower() in monitored_channels or 
-            message.channel.id == testing_channel_id):
+
+        if (message.channel.name.lower() in monitored_channels or
+                message.channel.id == testing_channel_id):
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
                 # Check if the message is not an emote (you might need to import this function)
                 # if not is_enclosed_in_colon(message):
@@ -111,7 +111,7 @@ class SlashCommands(commands.Cog):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
 
         if new_count < 3:
-            channel_names = ["general-3-uwu", "general-3"]
+            channel_names = ["private-bot-commands", "general-3"]
             channel = next(
                 (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
                  discord.utils.get(interaction.guild.channels, name=name)),
@@ -133,7 +133,7 @@ class SlashCommands(commands.Cog):
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
         await db.reset_strikes(user.id, interaction.guild_id)
 
-        channel_names = ["general-3-uwu", "general-3"]
+        channel_names = ["private-bot-commands", "general-3"]
 
         # Find the first matching channel
         channel = next(
@@ -180,7 +180,7 @@ class SlashCommands(commands.Cog):
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                channel_names = ["general-3-uwu", "general-3"]
+                channel_names = ["private-bot-commands", "general-3"]
 
                 channel = next(
                     (discord.utils.get(message.guild.channels, name=name) for name in channel_names if
