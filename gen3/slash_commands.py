@@ -20,11 +20,11 @@ from discord import app_commands
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
-# Reuse the Database class from emote
-from emote.utils.database import Database
+# Use the dedicated Gen3Database class
+from gen3.utils.database import Gen3Database
 
 # Create a global database instance
-db = Database()
+db = Gen3Database()
 
 _ = Translator("Gen3", __file__)
 
