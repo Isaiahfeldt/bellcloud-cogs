@@ -76,87 +76,12 @@ async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
     return await apple_orange_rule(content, current_strikes)
 
 
-def is_channel_in_archived_category(channel: discord.TextChannel) -> bool:
-    """
-    Check if a channel is in an archived category.
-    Returns True if the channel is in a category with 'archive' in the name.
-    """
-    if not hasattr(channel, 'category') or channel.category is None:
-        return False
-    
-    category_name = channel.category.name.lower()
-    archive_indicators = ['archive', 'archived', 'old', 'inactive', 'closed']
-    
-    return any(indicator in category_name for indicator in archive_indicators)
-
-
-def is_monitored_channel(channel: discord.TextChannel, monitored_channels: list) -> bool:
-    """
-    Check if a channel matches any of the monitored channels (by name or ID).
-    
-    Args:
-        channel: The Discord channel to check
-        monitored_channels: List of channel names (str) or channel IDs (int)
-    
-    Returns:
-        bool: True if the channel matches any monitored channel
-    """
-    if is_channel_in_archived_category(channel):
-        return False
-    
-    for identifier in monitored_channels:
-        if isinstance(identifier, str):
-            # Check by name (case-insensitive)
-            if channel.name.lower() == identifier.lower():
-                return True
-        elif isinstance(identifier, int):
-            # Check by ID
-            if channel.id == identifier:
-                return True
-    
-    return False
-
-
-def find_gen3_channel(guild: discord.Guild, monitored_channels: list) -> discord.TextChannel:
-    """
-    Find the first available gen3 channel from the monitored channels list.
-    
-    Args:
-        guild: The Discord guild to search in
-        monitored_channels: List of channel names (str) or channel IDs (int)
-    
-    Returns:
-        discord.TextChannel or None: The first matching channel that's not archived
-    """
-    for identifier in monitored_channels:
-        channel = None
-        
-        if isinstance(identifier, str):
-            # Find by name
-            channel = discord.utils.get(guild.channels, name=identifier)
-        elif isinstance(identifier, int):
-            # Find by ID
-            channel = guild.get_channel(identifier)
-        
-        if channel and isinstance(channel, discord.TextChannel) and not is_channel_in_archived_category(channel):
-            return channel
-    
-    return None
-
-
 @cog_i18n(_)
 class SlashCommands(commands.Cog):
     """
     Slash commands for the Gen3 cog.
     """
     gen3 = app_commands.Group(name="gen3", description="Gen3 event management commands")
-    
-    # Centralized list of monitored channels - supports both names (str) and IDs (int)
-    MONITORED_CHANNELS = [
-        "private-bot-commands", 
-        "general-3",
-        900659338069295125  # private-bot-commands channel ID
-    ]
 
     def __init__(self):
         super().__init__()
@@ -167,7 +92,10 @@ class SlashCommands(commands.Cog):
         if message.author.bot:
             return
 
-        if is_monitored_channel(message.channel, self.MONITORED_CHANNELS):
+        # Check if message is in monitored channels (gen3 channels + testing channel)
+        monitored_channels = ["private-bot-commands", "general-3"]
+
+        if (message.channel.name.lower() in monitored_channels):
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
                 # Check if the message is not an emote (you might need to import this function)
                 # if not is_enclosed_in_colon(message):
@@ -181,7 +109,12 @@ class SlashCommands(commands.Cog):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
 
         if new_count < 3:
-            channel = find_gen3_channel(interaction.guild, self.MONITORED_CHANNELS)
+            channel_names = ["general-3"]
+            channel = next(
+                (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
+                 discord.utils.get(interaction.guild.channels, name=name)),
+                None
+            )
 
             if channel:
                 await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
@@ -198,7 +131,14 @@ class SlashCommands(commands.Cog):
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
         await db.reset_strikes(user.id, interaction.guild_id)
 
-        channel = find_gen3_channel(interaction.guild, self.MONITORED_CHANNELS)
+        channel_names = ["private-bot-commands", "general-3"]
+
+        # Find the first matching channel
+        channel = next(
+            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
+             discord.utils.get(interaction.guild.channels, name=name)),
+            None
+        )
 
         if channel:
             # Reset user permissions for the channel
@@ -222,6 +162,7 @@ class SlashCommands(commands.Cog):
 
     async def handle_gen3_event(self, message: discord.Message):
         content = message.clean_content
+        channel = message.channel
         guild_id = message.guild.id
         user_id = message.author.id
 
@@ -238,16 +179,13 @@ class SlashCommands(commands.Cog):
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                channel = find_gen3_channel(message.guild, self.MONITORED_CHANNELS)
+                await channel.send(f"Channel: {channel}")
 
-                if channel:
-                    await channel.send(f"Channel: {channel}")
-
-                    await channel.set_permissions(
-                        message.author,
-                        send_messages=False,
-                        reason="3 strikes reached"
-                    )
+                await channel.set_permissions(
+                    message.author,
+                    send_messages=False,
+                    reason="3 strikes reached"
+                )
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
                 first_lines = [
