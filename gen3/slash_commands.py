@@ -60,6 +60,26 @@ async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
         }
 
 
+def is_channel_in_archived_category(channel: discord.TextChannel) -> bool:
+    """
+    Check if a channel is in an archived category.
+    
+    Args:
+        channel: The Discord text channel to check
+        
+    Returns:
+        bool: True if the channel is in an archived category, False otherwise
+    """
+    if not hasattr(channel, 'category') or channel.category is None:
+        return False
+    
+    # Check if the category is archived by looking for common archive indicators
+    category_name = channel.category.name.lower()
+    archive_indicators = ['archive', 'archived', 'old', 'closed', 'inactive']
+    
+    return any(indicator in category_name for indicator in archive_indicators)
+
+
 async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
     """
     Flexible rule checker for gen3 events. 
@@ -98,6 +118,10 @@ class SlashCommands(commands.Cog):
 
         if (message.channel.name.lower() in monitored_channels or
                 message.channel.id == testing_channel_id):
+            # Check if channel is in an archived category
+            if is_channel_in_archived_category(message.channel):
+                return  # Skip processing for archived channels
+            
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
                 # Check if the message is not an emote (you might need to import this function)
                 # if not is_enclosed_in_colon(message):
@@ -118,7 +142,7 @@ class SlashCommands(commands.Cog):
                 None
             )
 
-            if channel:
+            if channel and not is_channel_in_archived_category(channel):
                 await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
 
         await interaction.response.send_message(
@@ -142,7 +166,7 @@ class SlashCommands(commands.Cog):
             None
         )
 
-        if channel:
+        if channel and not is_channel_in_archived_category(channel):
             # Reset user permissions for the channel
             await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
 
@@ -188,13 +212,14 @@ class SlashCommands(commands.Cog):
                     None
                 )
 
-                await channel.send(f"Channel: {channel}")
+                if channel and not is_channel_in_archived_category(channel):
+                    await channel.send(f"Channel: {channel}")
 
-                await channel.set_permissions(
-                    message.author,
-                    send_messages=False,
-                    reason="3 strikes reached"
-                )
+                    await channel.set_permissions(
+                        message.author,
+                        send_messages=False,
+                        reason="3 strikes reached"
+                    )
                 await db.reset_strikes(user_id, guild_id)
                 await message.add_reaction("❌")
                 first_lines = [
