@@ -23,10 +23,10 @@ from redbot.core.i18n import Translator, cog_i18n
 # Reuse the Database class from emote
 from emote.utils.database import Database
 
-_ = Translator("Gen3", __file__)
-
-# Initialize database
+# Create a global database instance
 db = Database()
+
+_ = Translator("Gen3", __file__)
 
 
 async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
