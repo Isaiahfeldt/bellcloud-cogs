@@ -14,6 +14,7 @@
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
 import random
+import re
 
 import discord
 from discord import app_commands
@@ -26,37 +27,139 @@ from gen3.utils.database import Gen3Database
 # Create a global database instance
 db = Gen3Database()
 
+# Word chain tracking - global state for current required word
+current_required_word = None
+
+# Common words to exclude from selection
+EXCLUDED_WORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he", "in", "is", "it", 
+    "its", "of", "on", "that", "the", "to", "was", "will", "with", "you", "your", "i", "me", "my",
+    "we", "us", "our", "they", "them", "their", "this", "these", "those", "than", "then", "there",
+    "here", "where", "when", "how", "what", "who", "why", "can", "could", "should", "would", "have",
+    "had", "do", "does", "did", "get", "got", "just", "now", "so", "very", "much", "more", "most",
+    "some", "any", "no", "not", "up", "out", "if", "about", "into", "over", "after"
+}
+
+# Base digit emojis for dynamic number generation
+DIGIT_EMOJIS = {
+    '0': "0️⃣", '1': "1️⃣", '2': "2️⃣", '3': "3️⃣", '4': "4️⃣",
+    '5': "5️⃣", '6': "6️⃣", '7': "7️⃣", '8': "8️⃣", '9': "9️⃣"
+}
+
+def get_position_emoji(position: int) -> str:
+    """
+    Generate emoji representation for any position number dynamically.
+    
+    Args:
+        position: The position number to convert to emoji
+        
+    Returns:
+        str: Emoji representation of the position number
+    """
+    if position == 10:
+        return "🔟"  # Special case for 10
+    
+    # Convert position to string and map each digit to its emoji
+    position_str = str(position)
+    emoji_parts = [DIGIT_EMOJIS[digit] for digit in position_str]
+    
+    return ''.join(emoji_parts)
+
 _ = Translator("Gen3", __file__)
 
 
-async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
+def extract_words(text: str) -> list[str]:
     """
-    Demo rule function for gen3 events - checks for apple (pass) vs orange (strike).
+    Extract meaningful words from text, excluding articles, prepositions, and common words.
+    
+    Args:
+        text: The input text to extract words from
+        
+    Returns:
+        list: List of meaningful words in lowercase
+    """
+    # Remove punctuation and split into words
+    words = re.findall(r'\b[a-zA-Z]+\b', text.lower())
+    
+    # Filter out excluded words and words shorter than 3 characters
+    meaningful_words = [word for word in words if word not in EXCLUDED_WORDS and len(word) >= 3]
+    
+    return meaningful_words
+
+
+async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
+    """
+    Word chain rule function for gen3 events.
     
     Args:
         content: The message content to analyze
         current_strikes: Current number of strikes the user has
     
     Returns:
-        dict: {"passes": bool, "reason": str}
+        dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
+    global current_required_word
+    
+    # If no required word is set, this message passes and we select a new word
+    if current_required_word is None:
+        meaningful_words = extract_words(content)
+        
+        if meaningful_words:
+            # Select a random word from the meaningful words
+            selected_word = random.choice(meaningful_words)
+            
+            # Find the position of this word in the original text
+            content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
+            word_position = content_words.index(selected_word) + 1  # 1-indexed
+            
+            current_required_word = selected_word
+            
+            return {
+                "passes": True,
+                "reason": f"Message accepted! Next person must include the word '{selected_word}' 🎯",
+                "selected_word": selected_word,
+                "word_position": word_position
+            }
+        else:
+            return {
+                "passes": True,
+                "reason": "No meaningful words found to select. Message accepted! 🎯",
+                "selected_word": None,
+                "word_position": None
+            }
+    
+    # Check if the message contains the required word
     content_lower = content.lower()
-
-    # Check for "orange" first (strike condition takes precedence)
-    if "orange" in content_lower:
-        return {
-            "passes": False,
-            "reason": f"Oops! Your message contains 'orange' which is not allowed in this gen3 event. Try using 'apple' instead! 🚫🍊"
-        }
-    elif "apple" in content_lower:
-        return {
-            "passes": True,
-            "reason": f"Great! Your message contains 'apple' and follows the gen3 rules! 🍎"
-        }
+    if current_required_word in content_lower:
+        # Message passes, now select a new word from this message
+        meaningful_words = extract_words(content)
+        
+        if meaningful_words:
+            selected_word = random.choice(meaningful_words)
+            content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
+            word_position = content_words.index(selected_word) + 1  # 1-indexed
+            
+            current_required_word = selected_word
+            
+            return {
+                "passes": True,
+                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}' 🎯",
+                "selected_word": selected_word,
+                "word_position": word_position
+            }
+        else:
+            # Keep the same required word since no new words to select
+            return {
+                "passes": True,
+                "reason": f"Message accepted! Next person still needs to include '{current_required_word}' 🎯",
+                "selected_word": None,
+                "word_position": None
+            }
     else:
+        # Message fails - doesn't contain required word
         return {
             "passes": False,
-            "reason": f"Your message doesn't contain the required word 'apple' for this gen3 event! 🍎"
+            "reason": f"Oops! Your message must contain the word '{current_required_word}' to continue the chain! 🔗❌"
         }
 
 
@@ -70,10 +173,9 @@ async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
         current_strikes: Current number of strikes the user has
     
     Returns:
-        dict: {"passes": bool, "reason": str}
+        dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
-    # For now, use the apple/orange rule - this can be easily swapped out for different events
-    return await apple_orange_rule(content, current_strikes)
+    return await word_chain_rule(content, current_strikes)
 
 
 @cog_i18n(_)
@@ -170,8 +272,12 @@ class SlashCommands(commands.Cog):
         analysis = await check_gen3_rules(content, strikes)
 
         if analysis.get("passes", False):
-            # Rule check passed - no action needed
-            pass
+            # Rule check passed - add emoji reaction if word was selected
+            if analysis.get("selected_word") and analysis.get("word_position"):
+                word_position = analysis.get("word_position")
+                # Generate emoji for any position dynamically
+                emoji = get_position_emoji(word_position)
+                await message.add_reaction(emoji)
         else:
             await message.channel.typing()
             # Increment strike count
