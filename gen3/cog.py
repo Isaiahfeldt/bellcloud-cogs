@@ -13,7 +13,6 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
-import discord
 from redbot.core import Config
 from redbot.core.bot import Red
 from redbot.core.i18n import Translator, cog_i18n
@@ -44,8 +43,10 @@ class Gen3Cog(SlashCommands):
     async def cog_load(self):
         from gen3.slash_commands import db
         await db.init_schema()
+        await db.init_pool()
         print("Gen3 schema initialized")
 
     async def cog_unload(self):
-        # Any cleanup code if needed
-        pass
+        from gen3.slash_commands import db
+        await db.close_pool()
+        print("Pool closed")
