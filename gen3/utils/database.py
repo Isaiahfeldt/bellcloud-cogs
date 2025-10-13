@@ -13,8 +13,9 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+import os
+
 import asyncpg
-from redbot.core import data_manager
 
 
 class Gen3Database:
@@ -22,43 +23,38 @@ class Gen3Database:
     Dedicated database class for Gen3 cog operations.
     Self-contained and independent of other cogs.
     """
-    
+
     def __init__(self):
-        self.pool = None
-    
+        def __init__(self):
+            self.CONNECTION_PARAMS: dict[str, str | None] = {
+                "host": os.getenv('DB_HOST'),
+                "port": os.getenv('DB_PORT'),
+                "database": os.getenv('DB_DATABASE'),
+                "user": os.getenv('DB_USER'),
+                "password": os.getenv('DB_PASSWORD')
+            }
+            self.BUCKET_PARAMS: dict[str, str | None] = {
+                "access_key_id": os.getenv('BK_ACCESS_KEY'),
+                "secret_access_key": os.getenv('BK_SECRET_KEY')
+            }
+            # Connection pool (will be initialized via async call)
+            self.pool: asyncpg.Pool | None = None
+
     async def init_pool(self):
-        """Initialize the database connection pool using Red Bot's database config."""
-        if self.pool is not None:
-            return
-            
-        # Get database credentials from Red Bot's data manager
-        db_config = data_manager.storage_details()
-        
-        if db_config.get("DB_TYPE") == "PostgreSQL":
-            # Use PostgreSQL connection details
-            self.pool = await asyncpg.create_pool(
-                host=db_config.get("DB_HOST", "localhost"),
-                port=db_config.get("DB_PORT", 5432),
-                user=db_config.get("DB_USER", "postgres"),
-                password=db_config.get("DB_PASS", ""),
-                database=db_config.get("DB_NAME", "redbot"),
-                min_size=1,
-                max_size=5
-            )
-        else:
-            raise Exception("Gen3 cog requires PostgreSQL database configuration")
-    
+        """Initialize the asyncpg connection pool."""
+        self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
+
     async def close_pool(self):
         """Close the database connection pool."""
         if self.pool:
             await self.pool.close()
             self.pool = None
-    
+
     async def execute_query(self, query: str, *args, fetchval=False, fetchrow=False, fetch=False):
         """Execute a database query with proper error handling."""
         if self.pool is None:
             await self.init_pool()
-        
+
         async with self.pool.acquire() as connection:
             if fetchval:
                 return await connection.fetchval(query, *args)
@@ -68,11 +64,11 @@ class Gen3Database:
                 return await connection.fetch(query, *args)
             else:
                 await connection.execute(query, *args)
-    
+
     async def fetch_query(self, query: str, *args):
         """Fetch multiple rows from a query."""
         return await self.execute_query(query, *args, fetch=True)
-    
+
     async def init_schema(self):
         """
         Initialize the necessary schema and table if they do not exist.
@@ -80,7 +76,7 @@ class Gen3Database:
         # Ensure pool is initialized
         if self.pool is None:
             await self.init_pool()
-        
+
         # SQL to create the schema if it doesn't exist
         create_schema_query = "CREATE SCHEMA IF NOT EXISTS gen3;"
 
@@ -89,24 +85,24 @@ class Gen3Database:
                              CREATE TABLE IF NOT EXISTS gen3.strikes
                              (
                                  user_id
-                                 BIGINT
-                                 NOT
-                                 NULL,
+                                     BIGINT
+                                     NOT
+                                         NULL,
                                  guild_id
-                                 BIGINT
-                                 NOT
-                                 NULL,
+                                     BIGINT
+                                     NOT
+                                         NULL,
                                  strikes
-                                 INTEGER
-                                 DEFAULT
-                                 0,
+                                     INTEGER
+                                     DEFAULT
+                                         0,
                                  PRIMARY
-                                 KEY
-                             (
-                                 user_id,
-                                 guild_id
-                             )
-                                 ); \
+                                     KEY
+                                     (
+                                      user_id,
+                                      guild_id
+                                         )
+                             ); \
                              """
 
         # Execute the commands
@@ -117,10 +113,10 @@ class Gen3Database:
         """Increment the strike count for a user in a given guild."""
         query = """
                 INSERT INTO gen3.strikes (user_id, guild_id, strikes)
-                VALUES ($1, $2, 1) ON CONFLICT (user_id, guild_id)
-            DO
-                UPDATE SET strikes = gen3.strikes.strikes + 1
-                    RETURNING strikes; \
+                VALUES ($1, $2, 1)
+                ON CONFLICT (user_id, guild_id)
+                    DO UPDATE SET strikes = gen3.strikes.strikes + 1
+                RETURNING strikes; \
                 """
         return await self.execute_query(query, user_id, guild_id, fetchval=True)
 
@@ -130,7 +126,8 @@ class Gen3Database:
                 UPDATE gen3.strikes
                 SET strikes = GREATEST(strikes - 1, 0)
                 WHERE user_id = $1
-                  AND guild_id = $2 RETURNING strikes \
+                  AND guild_id = $2
+                RETURNING strikes \
                 """
         result = await self.execute_query(query, user_id, guild_id, fetchval=True)
 
