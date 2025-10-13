@@ -25,20 +25,19 @@ class Gen3Database:
     """
 
     def __init__(self):
-        def __init__(self):
-            self.CONNECTION_PARAMS: dict[str, str | None] = {
-                "host": os.getenv('DB_HOST'),
-                "port": os.getenv('DB_PORT'),
-                "database": os.getenv('DB_DATABASE'),
-                "user": os.getenv('DB_USER'),
-                "password": os.getenv('DB_PASSWORD')
-            }
-            self.BUCKET_PARAMS: dict[str, str | None] = {
-                "access_key_id": os.getenv('BK_ACCESS_KEY'),
-                "secret_access_key": os.getenv('BK_SECRET_KEY')
-            }
-            # Connection pool (will be initialized via async call)
-            self.pool: asyncpg.Pool | None = None
+        self.CONNECTION_PARAMS: dict[str, str | None] = {
+            "host": os.getenv('DB_HOST'),
+            "port": os.getenv('DB_PORT'),
+            "database": os.getenv('DB_DATABASE'),
+            "user": os.getenv('DB_USER'),
+            "password": os.getenv('DB_PASSWORD')
+        }
+        self.BUCKET_PARAMS: dict[str, str | None] = {
+            "access_key_id": os.getenv('BK_ACCESS_KEY'),
+            "secret_access_key": os.getenv('BK_SECRET_KEY')
+        }
+        # Connection pool (will be initialized via async call)
+        self.pool: asyncpg.Pool | None = None
 
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
