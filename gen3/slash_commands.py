@@ -188,6 +188,8 @@ class SlashCommands(commands.Cog):
                     None
                 )
 
+                await channel.send(f"Channel: {channel}")
+
                 await channel.set_permissions(
                     message.author,
                     send_messages=False,
