@@ -47,6 +47,7 @@ class Database:
     async def init_pool(self):
         """Initialize the asyncpg connection pool."""
         self.pool = await asyncpg.create_pool(**self.CONNECTION_PARAMS, min_size=1, max_size=10)
+        await self.init_schema()
 
     async def close_pool(self):
         """Close the asyncpg connection pool."""
