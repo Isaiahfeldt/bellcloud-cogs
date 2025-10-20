@@ -25,7 +25,8 @@ from redbot.core.i18n import Translator, cog_i18n
 from gen3.utils.database import Gen3Database
 
 # Import the 3-word rule from scratch file for flexible rules
-from three_word_rule_scratch import three_word_rule
+from gen3.rules.three_word import three_word_rule
+from gen3.rules.apple_orange import apple_orange_rule
 
 # Create a global database instance
 db = Gen3Database()
@@ -97,29 +98,6 @@ def extract_words(text: str) -> list[str]:
     return meaningful_words
 
 
-async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
-    """
-    Demo rule: pass if message contains 'apple' (case-insensitive),
-    fail if it contains 'orange'. If both appear, 'orange' takes precedence and it fails.
-    """
-    text = content.lower() if content else ""
-    contains_orange = "orange" in text
-    contains_apple = "apple" in text
-
-    if contains_orange:
-        return {
-            "passes": False,
-            "reason": "Contains forbidden word 'orange'. 🍊❌"
-        }
-    if contains_apple:
-        return {
-            "passes": True,
-            "reason": "Contains required word 'apple'. 🍎✅"
-        }
-    return {
-        "passes": False,
-        "reason": "Message must include 'apple'. 🍎❌"
-    }
 
 
 async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:

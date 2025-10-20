@@ -1,0 +1,205 @@
+"""
+Three-Word Rule: messages must contain exactly three words.
+
+Notes:
+- Emojis, emoticons, symbols, punctuation, and numbers do not count toward the word count.
+- Accepts alphabetic words, contractions, alphanumeric, and hyphenated words as single tokens.
+- Multi-hyphenated words (two or more hyphens in one word) are not allowed.
+- Multiple single-hyphenated words are allowed only if not consecutive (must be separated by a non-hyphenated word).
+"""
+
+from __future__ import annotations
+
+import re
+import unicodedata
+
+
+def extract_words_only(text: str) -> list[str]:
+    """
+    Extract words from text, including:
+    - Alphabetic words (hello, world)
+    - Alphanumeric words (Word1, test123)
+    - Contractions (can't, won't, don't)
+    - Hyphenated words (well-known, twenty-one) as single units
+
+    Excluding:
+    - Emojis and emoticons
+    - Pure symbols and punctuation
+    - Standalone numbers
+    """
+    # Regex for hyphenated words, contractions, and alphanumeric words
+    words = re.findall(
+        r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
+        text,
+    )
+
+    filtered_words: list[str] = []
+    for word in words:
+        if any(char.isalpha() for char in word):
+            filtered_words.append(word.lower())
+
+    return filtered_words
+
+
+def count_hyphenated_words(text: str) -> int:
+    """Count the number of hyphenated words in the text."""
+    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b"
+    hyphenated_words = re.findall(hyphenated_pattern, text)
+    return len(hyphenated_words)
+
+
+def has_multi_hyphenated_words(text: str) -> bool:
+    """Return True if the text contains any multi-hyphenated words (>= 2 hyphens)."""
+    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b"
+    hyphenated_words = re.findall(hyphenated_pattern, text)
+    for word in hyphenated_words:
+        if word.count("-") >= 2:
+            return True
+    return False
+
+
+def are_hyphenated_words_properly_separated(text: str) -> bool:
+    """
+    Validate that hyphenated words are not consecutive. Returns False if any two
+    hyphenated words appear back-to-back.
+    """
+    words = extract_words_only(text)
+    hyphenated_pattern = r"^[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*$"
+
+    for i in range(len(words) - 1):
+        current_word = words[i]
+        next_word = words[i + 1]
+        if re.match(hyphenated_pattern, current_word, re.IGNORECASE) and re.match(
+            hyphenated_pattern, next_word, re.IGNORECASE
+        ):
+            return False
+    return True
+
+
+def is_emoji_or_symbol(char: str) -> bool:
+    """Heuristic: True for many emoji/symbol categories."""
+    category = unicodedata.category(char)
+    return category.startswith(("So", "Sm", "Sc", "Sk", "Pd", "Po", "Ps", "Pe", "Pc", "Mn", "Mc"))
+
+
+def analyze_message_content(text: str) -> dict:
+    """Return analysis details used by the rule for debugging and messaging."""
+    words = extract_words_only(text)
+    word_count = len(words)
+
+    all_tokens = text.split()
+    filtered_out: list[str] = []
+    for token in all_tokens:
+        token_words = re.findall(r"\b[a-zA-Z]+\b", token)
+        if not token_words or not any(word.isalpha() for word in token_words):
+            filtered_out.append(token)
+
+    return {
+        "word_count": word_count,
+        "words": words,
+        "filtered_out": filtered_out,
+        "original": text,
+    }
+
+
+async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
+    """
+    Gen3 rule function: messages must be exactly 3 words long.
+
+    - Emojis, emoticons, symbols, punctuation, and numbers don't count towards word count.
+    - Additional constraint: Multi-hyphenated words are not allowed.
+    - Multiple hyphenated words allowed only if separated by non-hyphenated words.
+    """
+    # Handle empty or whitespace-only messages
+    if not content or not content.strip():
+        return {
+            "passes": False,
+            "reason": "Empty messages are not allowed! You need exactly 3 words. 📝❌",
+            "analysis": {"word_count": 0, "words": [], "filtered_out": [], "original": content},
+        }
+
+    # Multi-hyphenated words are not allowed
+    if has_multi_hyphenated_words(content):
+        return {
+            "passes": False,
+            "reason": "Multi-hyphenated words are not allowed! Words like 'multi-word-compound' are forbidden. Use single-hyphenated words only! 🔗❌",
+            "analysis": {
+                "word_count": 0,
+                "words": [],
+                "filtered_out": [],
+                "original": content,
+            },
+        }
+
+    # If more than one hyphenated word exists, ensure they are not consecutive
+    hyphenated_count = count_hyphenated_words(content)
+    if hyphenated_count > 1 and not are_hyphenated_words_properly_separated(content):
+        return {
+            "passes": False,
+            "reason": f"Hyphenated words must be separated by non-hyphenated words! You have {hyphenated_count} hyphenated words that are too close together. Place non-hyphenated words between them! 🔗❌",
+            "analysis": {
+                "word_count": 0,
+                "words": [],
+                "filtered_out": [],
+                "original": content,
+                "hyphenated_count": hyphenated_count,
+            },
+        }
+
+    # Analyze the message content for word count
+    analysis = analyze_message_content(content)
+    analysis["hyphenated_count"] = hyphenated_count
+    word_count = analysis["word_count"]
+    words = analysis["words"]
+
+    if word_count == 3:
+        if hyphenated_count >= 1:
+            if hyphenated_count == 1:
+                return {
+                    "passes": True,
+                    "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}' ✅🎯🔗",
+                    "analysis": analysis,
+                }
+            else:
+                return {
+                    "passes": True,
+                    "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}' ✅🎯🔗",
+                    "analysis": analysis,
+                }
+        else:
+            return {
+                "passes": True,
+                "reason": f"Perfect! Your message has exactly 3 words: '{' '.join(words)}' ✅🎯",
+                "analysis": analysis,
+            }
+    elif word_count == 0:
+        return {
+            "passes": False,
+            "reason": "Your message contains no valid words! You need exactly 3 alphabetic words. 🚫📝",
+            "analysis": analysis,
+        }
+    elif word_count < 3:
+        missing = 3 - word_count
+        return {
+            "passes": False,
+            "reason": f"Too few words! You have {word_count} word{'s' if word_count != 1 else ''} but need exactly 3. Add {missing} more word{'s' if missing != 1 else ''}! ⬆️📝",
+            "analysis": analysis,
+        }
+    else:
+        excess = word_count - 3
+        return {
+            "passes": False,
+            "reason": f"Too many words! You have {word_count} words but need exactly 3. Remove {excess} word{'s' if excess != 1 else ''}! ⬇️✂️",
+            "analysis": analysis,
+        }
+
+
+__all__ = [
+    "extract_words_only",
+    "count_hyphenated_words",
+    "has_multi_hyphenated_words",
+    "are_hyphenated_words_properly_separated",
+    "is_emoji_or_symbol",
+    "analyze_message_content",
+    "three_word_rule",
+]
