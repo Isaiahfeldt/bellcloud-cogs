@@ -24,11 +24,18 @@ from redbot.core.i18n import Translator, cog_i18n
 # Use the dedicated Gen3Database class
 from gen3.utils.database import Gen3Database
 
+# Import the 3-word rule from scratch file for flexible rules
+from three_word_rule_scratch import three_word_rule
+
 # Create a global database instance
 db = Gen3Database()
 
 # Word chain tracking - global state for current required word
 current_required_word = None
+
+# Active rule selector (global for simplicity/minimal changes)
+# Possible values: "apple_orange", "word_chain", "three_word"
+ACTIVE_RULE = "apple_orange"
 
 # Common words to exclude from selection
 EXCLUDED_WORDS = {
@@ -65,6 +72,9 @@ def get_position_emoji(position: int) -> str:
     
     return ''.join(emoji_parts)
 
+# Provide a legacy/static mapping for tests and convenience (1..20)
+POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
+
 _ = Translator("Gen3", __file__)
 
 
@@ -85,6 +95,31 @@ def extract_words(text: str) -> list[str]:
     meaningful_words = [word for word in words if word not in EXCLUDED_WORDS and len(word) >= 3]
     
     return meaningful_words
+
+
+async def apple_orange_rule(content: str, current_strikes: int = 0) -> dict:
+    """
+    Demo rule: pass if message contains 'apple' (case-insensitive),
+    fail if it contains 'orange'. If both appear, 'orange' takes precedence and it fails.
+    """
+    text = content.lower() if content else ""
+    contains_orange = "orange" in text
+    contains_apple = "apple" in text
+
+    if contains_orange:
+        return {
+            "passes": False,
+            "reason": "Contains forbidden word 'orange'. 🍊❌"
+        }
+    if contains_apple:
+        return {
+            "passes": True,
+            "reason": "Contains required word 'apple'. 🍎✅"
+        }
+    return {
+        "passes": False,
+        "reason": "Message must include 'apple'. 🍎❌"
+    }
 
 
 async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
@@ -165,8 +200,7 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
 
 async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
     """
-    Flexible rule checker for gen3 events. 
-    This function can be easily modified to use different rule functions for different events.
+    Flexible rule checker for gen3 events. Dispatches to the active rule.
     
     Args:
         content: The message content to analyze
@@ -175,7 +209,14 @@ async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
     Returns:
         dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
-    return await word_chain_rule(content, current_strikes)
+    # Minimal global toggle (not persisted). Defaults to apple_orange for backward-compat tests.
+    if ACTIVE_RULE == "word_chain":
+        return await word_chain_rule(content, current_strikes)
+    elif ACTIVE_RULE == "three_word":
+        return await three_word_rule(content, current_strikes)
+    else:
+        # Default / fallback demo rule
+        return await apple_orange_rule(content, current_strikes)
 
 
 @cog_i18n(_)
@@ -187,6 +228,50 @@ class SlashCommands(commands.Cog):
 
     def __init__(self):
         super().__init__()
+
+    @gen3.command(name="set_rule", description="Set the active Gen3 rule")
+    @app_commands.describe(rule="Choose which rule to enforce")
+    @app_commands.choices(
+        rule=[
+            app_commands.Choice(name="Apple/Orange (demo)", value="apple_orange"),
+            app_commands.Choice(name="Word Chain", value="word_chain"),
+            app_commands.Choice(name="Three Word (exactly 3 words)", value="three_word"),
+        ]
+    )
+    @commands.guild_only()
+    @commands.is_owner()
+    async def set_rule(self, interaction: discord.Interaction, rule: app_commands.Choice[str]):
+        global ACTIVE_RULE
+        ACTIVE_RULE = rule.value
+
+        # Reset the word-chain state if switching away from/into it (to avoid confusing carryover)
+        global current_required_word
+        if ACTIVE_RULE != "word_chain":
+            current_required_word = None
+
+        # Friendly confirmation
+        names = {
+            "apple_orange": "Apple/Orange (demo)",
+            "word_chain": "Word Chain",
+            "three_word": "Three Word",
+        }
+        await interaction.response.send_message(
+            f"Active Gen3 rule set to: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
+            ephemeral=False,
+        )
+
+    @gen3.command(name="get_rule", description="Show the currently active Gen3 rule")
+    @commands.guild_only()
+    async def get_rule(self, interaction: discord.Interaction):
+        names = {
+            "apple_orange": "Apple/Orange (demo)",
+            "word_chain": "Word Chain",
+            "three_word": "Three Word",
+        }
+        await interaction.response.send_message(
+            f"Current active Gen3 rule: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
+            ephemeral=True,
+        )
 
     @commands.Cog.listener()
     @commands.guild_only()
