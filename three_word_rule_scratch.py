@@ -18,6 +18,7 @@ def extract_words_only(text: str) -> list[str]:
     - Alphabetic words (hello, world)
     - Alphanumeric words (Word1, test123)  
     - Contractions (can't, won't, don't)
+    - Hyphenated words (well-known, twenty-one) as single units
     
     Excluding:
     - Emojis and emoticons 
@@ -30,15 +31,19 @@ def extract_words_only(text: str) -> list[str]:
     Returns:
         list: List of valid words
     """
-    # Use regex to find words including contractions and alphanumeric combinations
-    # This pattern includes letters, numbers, and apostrophes within words
-    words = re.findall(r"\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b", text)
+    # Use regex to find words including contractions, alphanumeric combinations, and hyphenated words
+    # Pattern breakdown:
+    # 1. \b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b - hyphenated words (well-known, multi-word-compound)
+    # 2. \b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b - contractions and alphanumeric words
+    # 3. \b[a-zA-Z0-9]+\b - simple alphanumeric words
+    words = re.findall(
+        r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b", text)
 
     # Additional filtering to handle edge cases
     filtered_words = []
     for word in words:
         # Accept words that contain at least one letter
-        # This allows contractions (can't) and alphanumeric (Word1) but excludes pure numbers
+        # This allows contractions (can't), alphanumeric (Word1), and hyphenated words (well-known) but excludes pure numbers
         if any(char.isalpha() for char in word):
             filtered_words.append(word.lower())
 
@@ -62,6 +67,59 @@ def count_hyphenated_words(text: str) -> int:
     hyphenated_words = re.findall(hyphenated_pattern, text)
 
     return len(hyphenated_words)
+
+
+def has_multi_hyphenated_words(text: str) -> bool:
+    """
+    Check if the text contains any multi-hyphenated words (words with 2+ hyphens).
+    A multi-hyphenated word is defined as alphabetic characters with 2 or more hyphens.
+    
+    Args:
+        text: The input text to analyze
+        
+    Returns:
+        bool: True if multi-hyphenated words are found, False otherwise
+    """
+    # Find all hyphenated words using regex
+    hyphenated_pattern = r'\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b'
+    hyphenated_words = re.findall(hyphenated_pattern, text)
+    
+    # Check each hyphenated word for multiple hyphens
+    for word in hyphenated_words:
+        hyphen_count = word.count('-')
+        if hyphen_count >= 2:
+            return True
+    
+    return False
+
+
+def are_hyphenated_words_properly_separated(text: str) -> bool:
+    """
+    Check if hyphenated words are properly separated by non-hyphenated words.
+    Multiple hyphenated words are allowed as long as they don't appear consecutively.
+    
+    Args:
+        text: The input text to analyze
+        
+    Returns:
+        bool: True if hyphenated words are properly separated, False otherwise
+    """
+    # Extract all words (both hyphenated and non-hyphenated)
+    words = extract_words_only(text)
+    
+    # Check if any two hyphenated words appear consecutively
+    hyphenated_pattern = r'^[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*$'
+    
+    for i in range(len(words) - 1):
+        current_word = words[i]
+        next_word = words[i + 1]
+        
+        # Check if both current and next words are hyphenated
+        if (re.match(hyphenated_pattern, current_word, re.IGNORECASE) and 
+            re.match(hyphenated_pattern, next_word, re.IGNORECASE)):
+            return False
+    
+    return True
 
 
 def is_emoji_or_symbol(char: str) -> bool:
@@ -135,13 +193,26 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
             "analysis": {"word_count": 0, "words": [], "filtered_out": [], "original": content}
         }
 
-    # Check for hyphenated word constraint FIRST
-    hyphenated_count = count_hyphenated_words(content)
-    if hyphenated_count > 1:
+    # Check for multi-hyphenated words FIRST - they are not allowed
+    if has_multi_hyphenated_words(content):
         return {
             "passes": False,
-            "reason": f"Too many hyphenated words! You have {hyphenated_count} hyphenated words but only 1 is allowed. "
-                      f"Remove {hyphenated_count - 1} hyphenated word{'s' if hyphenated_count > 2 else ''}! 🔗❌",
+            "reason": "Multi-hyphenated words are not allowed! Words like 'multi-word-compound' are forbidden. Use single-hyphenated words only! 🔗❌",
+            "analysis": {
+                "word_count": 0,
+                "words": [],
+                "filtered_out": [],
+                "original": content
+            }
+        }
+
+    # Check for hyphenated word constraint SECOND - multiple allowed if properly separated
+    hyphenated_count = count_hyphenated_words(content)
+    if hyphenated_count > 1 and not are_hyphenated_words_properly_separated(content):
+        return {
+            "passes": False,
+            "reason": f"Hyphenated words must be separated by non-hyphenated words! You have {hyphenated_count} hyphenated words that are too close together. "
+                      f"Place non-hyphenated words between them! 🔗❌",
             "analysis": {
                 "word_count": 0,
                 "words": [],
@@ -159,12 +230,19 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
 
     # Check if exactly 3 words
     if word_count == 3:
-        if hyphenated_count == 1:
-            return {
-                "passes": True,
-                "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word allowed: '{' '.join(words)}' ✅🎯🔗",
-                "analysis": analysis
-            }
+        if hyphenated_count >= 1:
+            if hyphenated_count == 1:
+                return {
+                    "passes": True,
+                    "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}' ✅🎯🔗",
+                    "analysis": analysis
+                }
+            else:
+                return {
+                    "passes": True,
+                    "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}' ✅🎯🔗",
+                    "analysis": analysis
+                }
         else:
             return {
                 "passes": True,
@@ -242,12 +320,13 @@ def test_three_word_rule():
 
         # Hyphenated word constraint tests
         ("twenty-one cats here", True, "3 words with 1 hyphenated word (allowed)"),
+        ("twenty-one cats good-bye", True, "3 words with 2 separated hyphenated words (allowed)"),
         ("well-known public figure", True, "3 words with 1 hyphenated word (allowed)"),
-        ("hello-world good-bye test", False, "5 words with 2 hyphenated words (not allowed)"),
-        ("twenty-one thirty-two cats", False, "4 words with 2 hyphenated words (not allowed)"),
-        ("well-known good-looking nice-person", False, "6 words with 3 hyphenated words (not allowed)"),
-        ("multi-word-compound test case", True, "3 words with 1 multi-hyphenated word (allowed)"),
-        ("first-second-third fourth-fifth sixth", False, "6 words with 2 multi-hyphenated words (not allowed)"),
+        ("hello-world good-bye test", False, "3 words with 2 consecutive hyphenated words (not allowed)"),
+        ("twenty-one thirty-two cats", False, "3 words with 2 consecutive hyphenated words (not allowed)"),
+        ("well-known good-looking nice-person", False, "3 words with 3 consecutive hyphenated words (not allowed)"),
+        ("multi-word-compound test case", False, "3 words but contains multi-hyphenated word (not allowed)"),
+        ("first-second-third fourth-fifth sixth", False, "Contains multi-hyphenated words (not allowed)"),
     ]
 
     print("=== Three Word Rule Test Cases with Expected Outcomes ===\n")
