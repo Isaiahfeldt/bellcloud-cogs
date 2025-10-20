@@ -190,7 +190,7 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
         excess = word_count - 3
         return {
             "passes": False,
-            "reason": f"Too many words! You have {word_count} words but need exactly 3.!️",
+            "reason": f"Too many words! You have {word_count} words but need exactly 3!️",
             "analysis": analysis,
         }
 
