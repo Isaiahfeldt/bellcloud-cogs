@@ -21,12 +21,11 @@ from discord import app_commands
 from redbot.core import commands
 from redbot.core.i18n import Translator, cog_i18n
 
-# Use the dedicated Gen3Database class
-from gen3.utils.database import Gen3Database
-
+from gen3.rules.apple_orange import apple_orange_rule
 # Import the 3-word rule from scratch file for flexible rules
 from gen3.rules.three_word import three_word_rule
-from gen3.rules.apple_orange import apple_orange_rule
+# Use the dedicated Gen3Database class
+from gen3.utils.database import Gen3Database
 
 # Create a global database instance
 db = Gen3Database()
@@ -40,7 +39,7 @@ ACTIVE_RULE = "apple_orange"
 
 # Common words to exclude from selection
 EXCLUDED_WORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he", "in", "is", "it", 
+    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he", "in", "is", "it",
     "its", "of", "on", "that", "the", "to", "was", "will", "with", "you", "your", "i", "me", "my",
     "we", "us", "our", "they", "them", "their", "this", "these", "those", "than", "then", "there",
     "here", "where", "when", "how", "what", "who", "why", "can", "could", "should", "would", "have",
@@ -54,6 +53,7 @@ DIGIT_EMOJIS = {
     '5': "5️⃣", '6': "6️⃣", '7': "7️⃣", '8': "8️⃣", '9': "9️⃣"
 }
 
+
 def get_position_emoji(position: int) -> str:
     """
     Generate emoji representation for any position number dynamically.
@@ -66,12 +66,13 @@ def get_position_emoji(position: int) -> str:
     """
     if position == 10:
         return "🔟"  # Special case for 10
-    
+
     # Convert position to string and map each digit to its emoji
     position_str = str(position)
     emoji_parts = [DIGIT_EMOJIS[digit] for digit in position_str]
-    
+
     return ''.join(emoji_parts)
+
 
 # Provide a legacy/static mapping for tests and convenience (1..20)
 POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
@@ -91,13 +92,11 @@ def extract_words(text: str) -> list[str]:
     """
     # Remove punctuation and split into words
     words = re.findall(r'\b[a-zA-Z]+\b', text.lower())
-    
+
     # Filter out excluded words and words shorter than 3 characters
     meaningful_words = [word for word in words if word not in EXCLUDED_WORDS and len(word) >= 3]
-    
+
     return meaningful_words
-
-
 
 
 async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
@@ -112,21 +111,21 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
         dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
     global current_required_word
-    
+
     # If no required word is set, this message passes and we select a new word
     if current_required_word is None:
         meaningful_words = extract_words(content)
-        
+
         if meaningful_words:
             # Select a random word from the meaningful words
             selected_word = random.choice(meaningful_words)
-            
+
             # Find the position of this word in the original text
             content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
             word_position = content_words.index(selected_word) + 1  # 1-indexed
-            
+
             current_required_word = selected_word
-            
+
             return {
                 "passes": True,
                 "reason": f"Message accepted! Next person must include the word '{selected_word}' 🎯",
@@ -140,20 +139,20 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
                 "selected_word": None,
                 "word_position": None
             }
-    
+
     # Check if the message contains the required word
     content_lower = content.lower()
     if current_required_word in content_lower:
         # Message passes, now select a new word from this message
         meaningful_words = extract_words(content)
-        
+
         if meaningful_words:
             selected_word = random.choice(meaningful_words)
             content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
             word_position = content_words.index(selected_word) + 1  # 1-indexed
-            
+
             current_required_word = selected_word
-            
+
             return {
                 "passes": True,
                 "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}' 🎯",
@@ -348,8 +347,6 @@ class SlashCommands(commands.Cog):
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                await channel.send(f"Channel: {channel}")
-
                 await channel.set_permissions(
                     message.author,
                     send_messages=False,
