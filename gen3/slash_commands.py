@@ -175,21 +175,24 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
         }
 
 
-async def check_gen3_rules(content: str, current_strikes: int = 0) -> dict:
+async def check_gen3_rules(content: str, current_strikes: int = 0, active_rule: str | None = None) -> dict:
     """
     Flexible rule checker for gen3 events. Dispatches to the active rule.
     
     Args:
         content: The message content to analyze
         current_strikes: Current number of strikes the user has
+        active_rule: Optional explicit rule selector (overrides global when provided)
     
     Returns:
         dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
-    # Minimal global toggle (not persisted). Defaults to apple_orange for backward-compat tests.
-    if ACTIVE_RULE == "word_chain":
+    # Use provided rule if available; otherwise fallback to global (keeps tests/backcompat)
+    rule = (active_rule or ACTIVE_RULE) if isinstance(active_rule or ACTIVE_RULE, str) else "apple_orange"
+
+    if rule == "word_chain":
         return await word_chain_rule(content, current_strikes)
-    elif ACTIVE_RULE == "three_word":
+    elif rule == "three_word":
         return await three_word_rule(content, current_strikes)
     else:
         # Default / fallback demo rule
@@ -221,6 +224,13 @@ class SlashCommands(commands.Cog):
         global ACTIVE_RULE
         ACTIVE_RULE = rule.value
 
+        # Persist the selected rule per guild so it survives reloads
+        try:
+            await self.config.guild(interaction.guild).active_rule.set(ACTIVE_RULE)
+        except Exception:
+            # If config isn't available for any reason, continue with in-memory value only
+            pass
+
         # Reset the word-chain state if switching away from/into it (to avoid confusing carryover)
         global current_required_word
         if ACTIVE_RULE != "word_chain":
@@ -245,8 +255,14 @@ class SlashCommands(commands.Cog):
             "word_chain": "Word Chain",
             "three_word": "Three Word",
         }
+        # Read persisted rule for this guild, fallback to in-memory global
+        try:
+            saved_rule = await self.config.guild(interaction.guild).active_rule()
+        except Exception:
+            saved_rule = None
+        rule_key = saved_rule or ACTIVE_RULE
         await interaction.response.send_message(
-            f"Current active Gen3 rule: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
+            f"Current active Gen3 rule: {names.get(rule_key, rule_key)}",
             ephemeral=True,
         )
 
@@ -387,7 +403,12 @@ class SlashCommands(commands.Cog):
         user_id = message.author.id
 
         strikes = await db.get_strikes(user_id, guild_id)
-        analysis = await check_gen3_rules(content, strikes)
+        # Use the persisted active rule for this guild (fallback handled in checker)
+        try:
+            saved_rule = await self.config.guild(message.guild).active_rule()
+        except Exception:
+            saved_rule = None
+        analysis = await check_gen3_rules(content, strikes, active_rule=saved_rule)
 
         if analysis.get("passes", False):
             # Rule check passed - add emoji reaction if word was selected

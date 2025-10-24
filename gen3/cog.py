@@ -40,9 +40,10 @@ class Gen3Cog(SlashCommands):
             force_registration=True,
         )
 
-        # Default configuration for enabled Gen3 channels (per guild)
+        # Default configuration for Gen3 (per guild)
         default_guild = {
-            "enabled_channels": []
+            "enabled_channels": [],
+            "active_rule": "apple_orange"
         }
         self.config.register_guild(**default_guild)
 
