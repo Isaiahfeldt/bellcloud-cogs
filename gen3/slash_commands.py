@@ -335,6 +335,11 @@ class SlashCommands(commands.Cog):
 
             # Ignore owner’s test bang commands in these channels
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
+                # TODO: Send message.content
+                try:
+                    await message.channel.send(f"```{message.content}```")
+                except Exception:
+                    pass
                 await self.handle_gen3_event(message)
 
     @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")
@@ -420,8 +425,8 @@ class SlashCommands(commands.Cog):
         else:
             await self.apply_strike_to_message(message, analysis.get('reason'), show_typing=True)
 
-
-    async def apply_strike_to_message(self, message: discord.Message, reason_text: str | None = None, show_typing: bool = False):
+    async def apply_strike_to_message(self, message: discord.Message, reason_text: str | None = None,
+                                      show_typing: bool = False):
         """
         Shared strike application logic used by rule violations and manual strikes.
         - Increments strike
