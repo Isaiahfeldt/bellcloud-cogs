@@ -194,25 +194,25 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
             if hyphenated_count == 1:
                 return {
                     "passes": True,
-                    "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}' ✅🎯🔗",
+                    "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}'",
                     "analysis": analysis,
                 }
             else:
                 return {
                     "passes": True,
-                    "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}' ✅🎯🔗",
+                    "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}'",
                     "analysis": analysis,
                 }
         else:
             return {
                 "passes": True,
-                "reason": f"Perfect! Your message has exactly 3 words: '{' '.join(words)}' ✅🎯",
+                "reason": f"Perfect! Your message has exactly 3 words: '{' '.join(words)}'",
                 "analysis": analysis,
             }
     elif word_count == 0:
         return {
             "passes": False,
-            "reason": "Your message contains no valid words! You need exactly 3 alphabetic words. 🚫📝",
+            "reason": "Your message contains no valid words! You need exactly 3 alphabetic words.",
             "analysis": analysis,
         }
     elif word_count < 3:
