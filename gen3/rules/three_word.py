@@ -260,12 +260,10 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
 
     # If we have fewer than needed (and didn't match the 2 words + 1 number case)
     if word_count < 3:
+        missing = 3 - word_count
         return {
             "passes": False,
-            "reason": (
-                f"Too few words! You have {word_count} word{'s' if word_count != 1 else ''}. "
-                f"Allowed: exactly 3 words, or 2 words + 1 number."
-            ),
+            "reason": f"Too few words! You have {word_count} word{'s' if word_count != 1 else ''} but need exactly 3!",
             "analysis": analysis,
         }
 
