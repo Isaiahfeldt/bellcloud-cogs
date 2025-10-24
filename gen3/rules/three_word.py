@@ -65,6 +65,18 @@ def extract_words_only(text: str) -> list[str]:
     # Preprocess to remove Discord emoji markup like :name: or <:name:id>
     text = _remove_discord_emojis(text)
 
+    # Normalize various apostrophe characters to ASCII apostrophe to keep contractions as single words
+    # Common variants: RIGHT SINGLE QUOTATION MARK (U+2019), LEFT SINGLE QUOTATION MARK (U+2018), MODIFIER LETTER APOSTROPHE (U+02BC)
+    try:
+        text = (
+            text.replace("\u2019", "'")
+                .replace("\u2018", "'")
+                .replace("\u02BC", "'")
+        )
+    except Exception:
+        # If any unexpected issue occurs, continue with original text
+        pass
+
     # Regex for hyphenated words, contractions, and alphanumeric words
     words = re.findall(
         r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
