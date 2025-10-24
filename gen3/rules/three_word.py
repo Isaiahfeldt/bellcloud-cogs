@@ -18,17 +18,25 @@ import unicodedata
 def _remove_discord_emojis(text: str) -> str:
     """
     Remove Discord emoji markup from text prior to word counting.
-    Handles both:
-    - Shortcode-style tokens like :smile: or :x:
-    - Custom emoji markup like <:name:id> and <a:name:id>
+
+    Handles:
+    - :shortcode: style (e.g., :smile:)
+    - Custom emoji markup: <:name:id> and <a:name:id> (animated)
+    - Collapses leftover whitespace after removals
     """
     try:
         # Remove :shortcode: style (letters, numbers, and underscores inside colons)
         text = re.sub(r":[A-Za-z0-9_]+:", " ", text)
+
         # Remove custom emoji markup like <:name:id> or <a:name:id>
         text = re.sub(r"<a?:[A-Za-z0-9_]+:\d+>", " ", text)
+
+        # Remove mentions and channels (optional cleanup)
+        text = re.sub(r"<[@#&!]\d+>", " ", text)
+
         # Collapse extra whitespace introduced by removals
         text = re.sub(r"\s+", " ", text).strip()
+
         return text
     except Exception:
         # On any regex failure, return original text unchanged
