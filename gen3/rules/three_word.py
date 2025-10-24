@@ -151,7 +151,7 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
     if not content or not content.strip():
         return {
             "passes": False,
-            "reason": "Empty messages are not allowed! You need exactly 3 words. 📝❌",
+            "reason": "Empty messages are not allowed! You need exactly 3 words.",
             "analysis": {"word_count": 0, "words": [], "filtered_out": [], "original": content},
         }
 
@@ -159,7 +159,7 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
     if has_multi_hyphenated_words(content):
         return {
             "passes": False,
-            "reason": "Multi-hyphenated words are not allowed! Words like 'multi-word-compound' are forbidden. Use single-hyphenated words only! 🔗❌",
+            "reason": "Multi-hyphenated words are not allowed! \nWords like 'multi-word-compound' are forbidden. Use single-hyphenated words only!",
             "analysis": {
                 "word_count": 0,
                 "words": [],
@@ -173,7 +173,7 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
     if hyphenated_count > 1 and not are_hyphenated_words_properly_separated(content):
         return {
             "passes": False,
-            "reason": f"Hyphenated words must be separated by non-hyphenated words! You have {hyphenated_count} hyphenated words that are too close together. Place non-hyphenated words between them! 🔗❌",
+            "reason": f"Hyphenated words must be separated by non-hyphenated words!\nYou have {hyphenated_count} hyphenated words that are too close together. Place non-hyphenated words between them!",
             "analysis": {
                 "word_count": 0,
                 "words": [],
