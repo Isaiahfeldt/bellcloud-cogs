@@ -81,6 +81,34 @@ POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
 _ = Translator("Gen3", __file__)
 
 
+def contains_emoji(text: str) -> bool:
+    """Check if the text contains any emojis (Unicode emojis, Discord custom emojis, or emoji shortcodes)."""
+    # Unicode emoji pattern - covers most standard emojis
+    unicode_emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        "\U0001F680-\U0001F6FF"  # transport & map
+        "\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        "\U00002702-\U000027B0"  # dingbats
+        "\U000024C2-\U0001F251"
+        "\U0001F7E0-\U0001F7EB"  # geometric shapes
+        "\U0001F900-\U0001F9FF"  # supplemental symbols
+        "\U0001FA70-\U0001FAFF"  # symbols and pictographs extended-A
+        "]+",
+        flags=re.UNICODE
+    )
+
+    # Discord custom emoji pattern <:name:id> or <a:name:id> for animated
+    discord_emoji_pattern = re.compile(r'<a?:\w+:\d+>')
+
+    # Emoji shortcode pattern :name: (like :green_circle:, :thinking:, etc.)
+    emoji_shortcode_pattern = re.compile(r':[a-zA-Z0-9_+-]+:')
+
+    return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(
+        emoji_shortcode_pattern.search(text))
+
+
 def extract_words(text: str) -> list[str]:
     """
     Extract meaningful words from text, excluding articles, prepositions, and common words.
@@ -316,23 +344,31 @@ class SlashCommands(commands.Cog):
                 channel_is_enabled = message.channel.name.lower() in monitored_channels
 
         if channel_is_enabled:
-            # Delete messages with image attachments in Gen3 channels (no strikes, just delete)
+            # Punish: strike for image attachments and/or emojis; do NOT delete the message
+            violation_reasons = []
+
+            # Check for image attachments
             if message.attachments:
-                has_image = False
                 for attachment in message.attachments:
                     ct = getattr(attachment, "content_type", None) or ""
                     filename = attachment.filename.lower() if attachment.filename else ""
                     if ct.startswith("image/") or filename.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp")):
-                        has_image = True
+                        violation_reasons.append("Images are not allowed in this channel.")
                         break
-                if has_image:
-                    try:
-                        await message.delete()
-                    except Exception:
-                        # If we can't delete for any reason (permissions, etc.), silently ignore
-                        pass
-                    # Regardless of delete success, do not process further or give strikes for these
-                    return
+
+            # Check for emojis in the content
+            try:
+                text_to_check = message.content or ""
+            except Exception:
+                text_to_check = ""
+            if text_to_check and contains_emoji(text_to_check):
+                violation_reasons.append("Emojis are not allowed in this channel.")
+
+            if violation_reasons:
+                # Apply a single strike with combined reasons and stop further processing
+                reason_text = "\n".join(violation_reasons)
+                await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
+                return
 
             # Ignore owner’s test bang commands in these channels
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
