@@ -250,19 +250,75 @@ class SlashCommands(commands.Cog):
             ephemeral=True,
         )
 
+    @gen3.command(name="toggle", description="Enable or disable Gen3 in a specific channel")
+    @app_commands.describe(channel="The channel to configure Gen3 for")
+    @commands.guild_only()
+    @commands.admin_or_permissions(manage_guild=True)
+    async def gen3_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel):
+        """Enable or disable Gen3 processing for a specific channel (per guild)."""
+        # Double-check permissions similar to Emote cog style
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
+
+        # Toggle channel in the enabled_channels list for this guild
+        async with self.config.guild(interaction.guild).enabled_channels() as enabled_channels:
+            if channel.id in enabled_channels:
+                enabled_channels.remove(channel.id)
+                await interaction.response.send_message(
+                    f"Gen3 has been disabled in {channel.mention} 🚫",
+                    ephemeral=False,
+                )
+            else:
+                enabled_channels.append(channel.id)
+                await interaction.response.send_message(
+                    f"Gen3 has been enabled in {channel.mention} ✅",
+                    ephemeral=False,
+                )
+
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message: discord.Message):
         if message.author.bot:
             return
 
-        # Check if message is in monitored channels (gen3 channels + testing channel)
-        monitored_channels = ["private-bot-commands", "general-3"]
+        # Determine whether this channel is enabled for Gen3
+        channel_is_enabled = False
+        if message.guild:
+            try:
+                enabled_channels = await self.config.guild(message.guild).enabled_channels()
+                if enabled_channels:
+                    channel_is_enabled = message.channel.id in enabled_channels
+                else:
+                    # Backward-compat: if no channels configured yet, fall back to name-based defaults
+                    monitored_channels = ["private-bot-commands", "general-3"]
+                    channel_is_enabled = message.channel.name.lower() in monitored_channels
+            except Exception:
+                # If config isn’t available for some reason, fall back to original behavior
+                monitored_channels = ["private-bot-commands", "general-3"]
+                channel_is_enabled = message.channel.name.lower() in monitored_channels
 
-        if (message.channel.name.lower() in monitored_channels):
-            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):  # Ignore owner
-                # Check if the message is not an emote (you might need to import this function)
-                # if not is_enclosed_in_colon(message):
+        if channel_is_enabled:
+            # Delete messages with image attachments in Gen3 channels (no strikes, just delete)
+            if message.attachments:
+                has_image = False
+                for attachment in message.attachments:
+                    ct = getattr(attachment, "content_type", None) or ""
+                    filename = attachment.filename.lower() if attachment.filename else ""
+                    if ct.startswith("image/") or filename.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp")):
+                        has_image = True
+                        break
+                if has_image:
+                    try:
+                        await message.delete()
+                    except Exception:
+                        # If we can't delete for any reason (permissions, etc.), silently ignore
+                        pass
+                    # Regardless of delete success, do not process further or give strikes for these
+                    return
+
+            # Ignore owner’s test bang commands in these channels
+            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
                 await self.handle_gen3_event(message)
 
     @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")

@@ -40,6 +40,12 @@ class Gen3Cog(SlashCommands):
             force_registration=True,
         )
 
+        # Default configuration for enabled Gen3 channels (per guild)
+        default_guild = {
+            "enabled_channels": []
+        }
+        self.config.register_guild(**default_guild)
+
     async def cog_load(self):
         from gen3.slash_commands import db
         await db.init_schema()
