@@ -15,6 +15,26 @@ import re
 import unicodedata
 
 
+def _remove_discord_emojis(text: str) -> str:
+    """
+    Remove Discord emoji markup from text prior to word counting.
+    Handles both:
+    - Shortcode-style tokens like :smile: or :x:
+    - Custom emoji markup like <:name:id> and <a:name:id>
+    """
+    try:
+        # Remove :shortcode: style (letters, numbers, and underscores inside colons)
+        text = re.sub(r":[A-Za-z0-9_]+:", " ", text)
+        # Remove custom emoji markup like <:name:id> or <a:name:id>
+        text = re.sub(r"<a?:[A-Za-z0-9_]+:\d+>", " ", text)
+        # Collapse extra whitespace introduced by removals
+        text = re.sub(r"\s+", " ", text).strip()
+        return text
+    except Exception:
+        # On any regex failure, return original text unchanged
+        return text
+
+
 def extract_words_only(text: str) -> list[str]:
     """
     Extract words from text, including:
@@ -28,6 +48,9 @@ def extract_words_only(text: str) -> list[str]:
     - Pure symbols and punctuation
     - Standalone numbers
     """
+    # Preprocess to remove Discord emoji markup like :name: or <:name:id>
+    text = _remove_discord_emojis(text)
+
     # Regex for hyphenated words, contractions, and alphanumeric words
     words = re.findall(
         r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
