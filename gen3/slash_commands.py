@@ -13,9 +13,9 @@
 #     - You should have received a copy of the GNU Affero General Public License
 #     - If not, please see <https://www.gnu.org/licenses/#GPL>.
 
+import json
 import random
 import re
-import json
 
 import discord
 from discord import app_commands
@@ -336,10 +336,6 @@ class SlashCommands(commands.Cog):
 
             # Ignore owner’s test bang commands in these channels
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
-                try:
-                    await message.channel.send(f"```{message.content}```")
-                except Exception:
-                    pass
                 await self.handle_gen3_event(message)
 
     @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")
@@ -581,10 +577,10 @@ class SlashCommands(commands.Cog):
                 is_mod = False
                 if perms:
                     is_mod = (
-                        perms.administrator
-                        or perms.manage_guild
-                        or getattr(perms, "moderate_members", False)
-                        or perms.manage_messages
+                            perms.administrator
+                            or perms.manage_guild
+                            or getattr(perms, "moderate_members", False)
+                            or perms.manage_messages
                     )
                 if not (is_owner or is_mod):
                     return
