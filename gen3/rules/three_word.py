@@ -70,8 +70,8 @@ def extract_words_only(text: str) -> list[str]:
     try:
         text = (
             text.replace("\u2019", "'")
-                .replace("\u2018", "'")
-                .replace("\u02BC", "'")
+            .replace("\u2018", "'")
+            .replace("\u02BC", "'")
         )
     except Exception:
         # If any unexpected issue occurs, continue with original text
@@ -282,7 +282,7 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
     # Otherwise, too many words
     return {
         "passes": False,
-        "reason": f"Too many words! You have {word_count} words but need exactly 3 (numbers don't count as words).",
+        "reason": f"Too many words! You have {word_count} words but need exactly 3!",
         "analysis": analysis,
     }
 
