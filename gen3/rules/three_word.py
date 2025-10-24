@@ -63,7 +63,7 @@ def extract_words_only(text: str) -> list[str]:
     """
     # Preprocess to remove Discord emoji markup like :name: or <:name:id>
     text = _remove_discord_emojis(text)
-    print(text)
+
     # Regex for hyphenated words, contractions, and alphanumeric words
     words = re.findall(
         r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",

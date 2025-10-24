@@ -15,6 +15,7 @@
 
 import random
 import re
+import json
 
 import discord
 from discord import app_commands
@@ -128,14 +129,14 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
 
             return {
                 "passes": True,
-                "reason": f"Message accepted! Next person must include the word '{selected_word}' 🎯",
+                "reason": f"Message accepted! Next person must include the word '{selected_word}'",
                 "selected_word": selected_word,
                 "word_position": word_position
             }
         else:
             return {
                 "passes": True,
-                "reason": "No meaningful words found to select. Message accepted! 🎯",
+                "reason": "No meaningful words found to select. Message accepted!",
                 "selected_word": None,
                 "word_position": None
             }
@@ -155,7 +156,7 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
 
             return {
                 "passes": True,
-                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}' 🎯",
+                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}'",
                 "selected_word": selected_word,
                 "word_position": word_position
             }
@@ -163,7 +164,7 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
             # Keep the same required word since no new words to select
             return {
                 "passes": True,
-                "reason": f"Message accepted! Next person still needs to include '{current_required_word}' 🎯",
+                "reason": f"Message accepted! Next person still needs to include '{current_required_word}'",
                 "selected_word": None,
                 "word_position": None
             }
@@ -171,7 +172,7 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
         # Message fails - doesn't contain required word
         return {
             "passes": False,
-            "reason": f"Oops! Your message must contain the word '{current_required_word}' to continue the chain! 🔗❌"
+            "reason": f"Oops! Your message must contain the word '{current_required_word}' to continue the chain!"
         }
 
 
@@ -414,7 +415,6 @@ class SlashCommands(commands.Cog):
             saved_rule = None
 
         analysis = await check_gen3_rules(content, strikes, active_rule=saved_rule)
-        await channel.send(analysis)
         if analysis.get("passes", False):
             # Rule check passed - add emoji reaction if word was selected
             if analysis.get("selected_word") and analysis.get("word_position"):
@@ -529,19 +529,13 @@ class SlashCommands(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_reaction_add(self, reaction: discord.Reaction, user):
-        """Owner manual strike via ❌ reaction in Gen3-enabled channels."""
+        """Gen3 reaction handlers:
+        - Owner ❌ on a user's message in enabled channels -> apply a strike
+        - Mod ❓/❔ on a message in enabled channels -> show analysis for that message
+        """
         try:
-            # Only proceed for the specified owner ID
-            if getattr(user, "bot", False) or user.id != 138148168360656896:
-                return
-
-            # Ensure the emoji is the Unicode ❌ strike mark
-            emoji = reaction.emoji
-            is_strike = False
-            if isinstance(emoji, str):
-                is_strike = emoji == "❌"
-            # If it's a custom emoji object, ignore
-            if not is_strike:
+            # ignore bots
+            if getattr(user, "bot", False):
                 return
 
             message: discord.Message = reaction.message
@@ -564,11 +558,54 @@ class SlashCommands(commands.Cog):
             if not channel_is_enabled:
                 return
 
-            # Don't strike bot messages
-            if message.author.bot:
+            # Determine emoji (only process unicode)
+            emoji = reaction.emoji
+            emoji_str = emoji if isinstance(emoji, str) else None
+
+            # Owner manual strike via ❌
+            if emoji_str == "❌" and user.id == 138148168360656896:
+                # Don't strike bot messages
+                if message.author and not getattr(message.author, "bot", False):
+                    await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
                 return
 
-            await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
+            # Mod analysis via question mark emoji
+            if emoji_str in {"❓", "❔"}:
+                # permissions: mods only (or owner)
+                is_owner = False
+                try:
+                    is_owner = await self.bot.is_owner(user)
+                except Exception:
+                    pass
+                perms = getattr(user, "guild_permissions", None)
+                is_mod = False
+                if perms:
+                    is_mod = (
+                        perms.administrator
+                        or perms.manage_guild
+                        or getattr(perms, "moderate_members", False)
+                        or perms.manage_messages
+                    )
+                if not (is_owner or is_mod):
+                    return
+
+                # Compute analysis for the target message
+                try:
+                    content = message.clean_content
+                    guild_id = message.guild.id
+                    author_id = message.author.id if message.author else None
+                    current_strikes = await db.get_strikes(author_id, guild_id) if author_id else 0
+                    try:
+                        saved_rule = await self.config.guild(message.guild).active_rule()
+                    except Exception:
+                        saved_rule = None
+
+                    analysis = await check_gen3_rules(content, current_strikes, active_rule=saved_rule)
+                    pretty = json.dumps(analysis, indent=2, ensure_ascii=False)
+                    await message.channel.send(f"```json\n{pretty}\n```")
+                except Exception:
+                    pass
+                return
         except Exception:
             # Listener should never raise
             pass
