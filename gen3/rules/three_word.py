@@ -3,6 +3,7 @@ Three-Word Rule: messages must contain exactly three words.
 
 Notes:
 - Emojis, emoticons, symbols, punctuation, and numbers do not count toward the word count.
+- Additionally allowed: exactly two words plus one standalone number (e.g., "i ate 6").
 - Accepts alphabetic words, contractions, alphanumeric, and hyphenated words as single tokens.
 - Multi-hyphenated words (two or more hyphens in one word) are not allowed.
 - Multiple single-hyphenated words are allowed only if not consecutive (must be separated by a non-hyphenated word).
@@ -121,10 +122,17 @@ def is_emoji_or_symbol(char: str) -> bool:
 
 def analyze_message_content(text: str) -> dict:
     """Return analysis details used by the rule for debugging and messaging."""
-    words = extract_words_only(text)
+    # Remove Discord emoji markup so numbers inside emoji IDs don't get counted
+    cleaned = _remove_discord_emojis(text)
+
+    words = extract_words_only(cleaned)
     word_count = len(words)
 
-    all_tokens = text.split()
+    # Extract standalone number tokens (integers only for speed and clarity)
+    numbers = re.findall(r"\b\d+\b", cleaned)
+    number_count = len(numbers)
+
+    all_tokens = cleaned.split()
     filtered_out: list[str] = []
     for token in all_tokens:
         token_words = re.findall(r"\b[a-zA-Z]+\b", token)
@@ -134,6 +142,8 @@ def analyze_message_content(text: str) -> dict:
     return {
         "word_count": word_count,
         "words": words,
+        "number_count": number_count,
+        "numbers": numbers,
         "filtered_out": filtered_out,
         "original": text,
     }
@@ -183,52 +193,88 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
             },
         }
 
-    # Analyze the message content for word count
+    # Analyze the message content for word/number count
     analysis = analyze_message_content(content)
     analysis["hyphenated_count"] = hyphenated_count
     word_count = analysis["word_count"]
+    number_count = analysis.get("number_count", 0)
     words = analysis["words"]
 
-    if word_count == 3:
-        if hyphenated_count >= 1:
-            if hyphenated_count == 1:
-                return {
-                    "passes": True,
-                    "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}'",
-                    "analysis": analysis,
-                }
+    # Passing conditions:
+    # - Exactly 3 alphabetic words, or
+    # - Exactly 2 alphabetic words plus exactly 1 standalone number
+    two_words_one_number = (word_count == 2 and number_count == 1)
+    exactly_three_words = (word_count == 3)
+
+    if exactly_three_words or two_words_one_number:
+        # Craft a friendly reason reflecting hyphenation and numbers
+        if two_words_one_number:
+            if hyphenated_count >= 1:
+                if hyphenated_count == 1:
+                    return {
+                        "passes": True,
+                        "reason": f"Perfect! Accepted 2 words + 1 number with 1 hyphenated word: '{' '.join(words)}'",
+                        "analysis": analysis,
+                    }
+                else:
+                    return {
+                        "passes": True,
+                        "reason": f"Perfect! Accepted 2 words + 1 number with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}'",
+                        "analysis": analysis,
+                    }
             else:
                 return {
                     "passes": True,
-                    "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}'",
+                    "reason": f"Perfect! Accepted 2 words + 1 number: '{' '.join(words)}' + 1 number",
                     "analysis": analysis,
                 }
         else:
-            return {
-                "passes": True,
-                "reason": f"Perfect! Your message has exactly 3 words: '{' '.join(words)}'",
-                "analysis": analysis,
-            }
-    elif word_count == 0:
+            # exactly_three_words
+            if hyphenated_count >= 1:
+                if hyphenated_count == 1:
+                    return {
+                        "passes": True,
+                        "reason": f"Perfect! Your message has exactly 3 words with 1 hyphenated word: '{' '.join(words)}'",
+                        "analysis": analysis,
+                    }
+                else:
+                    return {
+                        "passes": True,
+                        "reason": f"Perfect! Your message has exactly 3 words with {hyphenated_count} properly separated hyphenated words: '{' '.join(words)}'",
+                        "analysis": analysis,
+                    }
+            else:
+                return {
+                    "passes": True,
+                    "reason": f"Perfect! Your message has exactly 3 words: '{' '.join(words)}'",
+                    "analysis": analysis,
+                }
+
+    # Failing conditions
+    if word_count == 0:
         return {
             "passes": False,
-            "reason": "Your message contains no valid words! You need exactly 3 alphabetic words.",
+            "reason": "Your message contains no valid words! You need exactly 3 words or 2 words + 1 number.",
             "analysis": analysis,
         }
-    elif word_count < 3:
-        missing = 3 - word_count
+
+    # If we have fewer than needed (and didn't match the 2 words + 1 number case)
+    if word_count < 3:
         return {
             "passes": False,
-            "reason": f"Too few words! You have {word_count} word{'s' if word_count != 1 else ''} but need exactly 3!",
+            "reason": (
+                f"Too few words! You have {word_count} word{'s' if word_count != 1 else ''}. "
+                f"Allowed: exactly 3 words, or 2 words + 1 number."
+            ),
             "analysis": analysis,
         }
-    else:
-        excess = word_count - 3
-        return {
-            "passes": False,
-            "reason": f"Too many words! You have {word_count} words but need exactly 3!️",
-            "analysis": analysis,
-        }
+
+    # Otherwise, too many words
+    return {
+        "passes": False,
+        "reason": f"Too many words! You have {word_count} words but need exactly 3 (numbers don't count as words).",
+        "analysis": analysis,
+    }
 
 
 __all__ = [
