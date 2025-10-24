@@ -335,7 +335,6 @@ class SlashCommands(commands.Cog):
 
             # Ignore owner’s test bang commands in these channels
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
-                # TODO: Send message.content
                 try:
                     await message.channel.send(f"```{message.content}```")
                 except Exception:
@@ -413,8 +412,9 @@ class SlashCommands(commands.Cog):
             saved_rule = await self.config.guild(message.guild).active_rule()
         except Exception:
             saved_rule = None
-        analysis = await check_gen3_rules(content, strikes, active_rule=saved_rule)
 
+        analysis = await check_gen3_rules(content, strikes, active_rule=saved_rule)
+        await channel.send(analysis)
         if analysis.get("passes", False):
             # Rule check passed - add emoji reaction if word was selected
             if analysis.get("selected_word") and analysis.get("word_position"):
