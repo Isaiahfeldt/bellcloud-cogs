@@ -21,15 +21,20 @@ def _remove_discord_emojis(text: str) -> str:
 
     Handles:
     - :shortcode: style (e.g., :smile:)
-    - Custom emoji markup: <:name:id> and <a:name:id> (animated)
+    - Custom emoji markup like:
+        <:name:id>
+        <a:name:id> (animated)
+        <a id> (name omitted form seen in some API contexts)
     - Collapses leftover whitespace after removals
     """
     try:
         # Remove :shortcode: style (letters, numbers, and underscores inside colons)
         text = re.sub(r":[A-Za-z0-9_]+:", " ", text)
 
-        # Remove custom emoji markup like <:name:id> or <a:name:id>
-        text = re.sub(r"<a?:[A-Za-z0-9_]+:\d+>", " ", text)
+        # Remove custom emoji markup, including the <a 1234567890> variant
+        text = re.sub(r"<a?:[A-Za-z0-9_]+:\d+>", " ", text)  # <:name:id> and <a:name:id>
+        text = re.sub(r"<a\s+\d+>", " ", text)  # <a 1234567890>
+        text = re.sub(r"<:\s*\d+>", " ", text)  # (rare malformed <: 1234> edge case)
 
         # Remove mentions and channels (optional cleanup)
         text = re.sub(r"<[@#&!]\d+>", " ", text)
