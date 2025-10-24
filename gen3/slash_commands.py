@@ -353,7 +353,7 @@ class SlashCommands(commands.Cog):
                     ct = getattr(attachment, "content_type", None) or ""
                     filename = attachment.filename.lower() if attachment.filename else ""
                     if ct.startswith("image/") or filename.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp")):
-                        violation_reasons.append("Images are not allowed in this channel.")
+                        violation_reasons.append("Images are not allowed in your message!")
                         break
 
             # Check for emojis in the content
@@ -362,7 +362,7 @@ class SlashCommands(commands.Cog):
             except Exception:
                 text_to_check = ""
             if text_to_check and contains_emoji(text_to_check):
-                violation_reasons.append("Emojis are not allowed in this channel.")
+                violation_reasons.append("Emojis/emotes are not allowed in your message!")
 
             if violation_reasons:
                 # Apply a single strike with combined reasons and stop further processing
