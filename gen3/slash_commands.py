@@ -512,9 +512,7 @@ class SlashCommands(commands.Cog):
                     "**Maximum Strikes!**",
                     "**Three Strikes!**",
                     "**Oops!**",
-                    "**Alert!**",
-                    "**Notice!**",
-                    "**Warning!**"
+                    "**Alert!**"
                 ]
                 first_line = random.choice(first_lines)
                 try:
