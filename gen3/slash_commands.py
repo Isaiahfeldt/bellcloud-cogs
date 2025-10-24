@@ -397,19 +397,57 @@ class SlashCommands(commands.Cog):
                 emoji = get_position_emoji(word_position)
                 await message.add_reaction(emoji)
         else:
-            await message.channel.typing()
+            await self.apply_strike_to_message(message, analysis.get('reason'), show_typing=True)
+
+
+    async def apply_strike_to_message(self, message: discord.Message, reason_text: str | None = None, show_typing: bool = False):
+        """
+        Shared strike application logic used by rule violations and manual strikes.
+        - Increments strike
+        - Handles 3-strike lockout and reset
+        - Adds ❌ reaction
+        - Sends appropriate reply
+        """
+        try:
+            if show_typing:
+                try:
+                    await message.channel.typing()
+                except Exception:
+                    pass
+
+            if message is None or message.guild is None or message.author is None:
+                return
+
+            guild_id = message.guild.id
+            user = message.author
+            channel = message.channel
+
             # Increment strike count
-            current_strikes = await db.increment_strike(user_id, guild_id)
+            current_strikes = await db.increment_strike(user.id, guild_id)
 
             if current_strikes >= 3:
                 # Revoke posting privileges
-                await channel.set_permissions(
-                    message.author,
-                    send_messages=False,
-                    reason="3 strikes reached"
-                )
-                await db.reset_strikes(user_id, guild_id)
-                await message.add_reaction("❌")
+                try:
+                    await channel.set_permissions(
+                        user,
+                        send_messages=False,
+                        reason="3 strikes reached"
+                    )
+                except Exception:
+                    pass
+
+                # Reset strikes after lockout
+                try:
+                    await db.reset_strikes(user.id, guild_id)
+                except Exception:
+                    pass
+
+                # React and notify
+                try:
+                    await message.add_reaction("❌")
+                except Exception:
+                    pass
+
                 first_lines = [
                     "**Strike Out!**",
                     "**Game Over!**",
@@ -421,12 +459,16 @@ class SlashCommands(commands.Cog):
                     "**Warning!**"
                 ]
                 first_line = random.choice(first_lines)
-                await message.reply(
-                    f"{first_line} 🚨🚨🚨\n"
-                    f"{message.author.mention}, you've reached 3 strikes! No more posting for you... 🚫\n"
-                    f"Better luck next time! ✨"
-                )
+                try:
+                    await message.reply(
+                        f"{first_line} 🚨🚨🚨\n"
+                        f"{user.mention}, you've reached 3 strikes! No more posting for you... 🚫\n"
+                        f"Better luck next time! ✨"
+                    )
+                except Exception:
+                    pass
             else:
+                # Warn the user
                 alert_lines = [
                     "**Rule Violation Alert!**",
                     "**Gen3 Rule Alert!**",
@@ -436,11 +478,71 @@ class SlashCommands(commands.Cog):
                 ]
                 alert_line = random.choice(alert_lines)
                 strikes_left = 3 - current_strikes
-                await message.reply(
-                    f"{alert_line} 🚨\n"
-                    f"{analysis['reason']}\n\n"
-                    f"Strike {current_strikes}/3 - "
-                    f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
-                    mention_author=True
-                )
-                await message.add_reaction("❌")  # Rule violation reaction
+
+                reason_section = f"{reason_text}\n\n" if reason_text else ""
+
+                try:
+                    await message.reply(
+                        f"{alert_line} 🚨\n"
+                        f"{reason_section}"
+                        f"Strike {current_strikes}/3 - "
+                        f"You have {strikes_left} {'tries' if strikes_left > 1 else 'try'} remaining! ⚠️\n\n",
+                        mention_author=True
+                    )
+                except Exception:
+                    pass
+
+                try:
+                    await message.add_reaction("❌")
+                except Exception:
+                    pass
+        except Exception:
+            # Never raise from shared handler
+            pass
+
+    @commands.Cog.listener()
+    @commands.guild_only()
+    async def on_reaction_add(self, reaction: discord.Reaction, user):
+        """Owner manual strike via ❌ reaction in Gen3-enabled channels."""
+        try:
+            # Only proceed for the specified owner ID
+            if getattr(user, "bot", False) or user.id != 138148168360656896:
+                return
+
+            # Ensure the emoji is the Unicode ❌ strike mark
+            emoji = reaction.emoji
+            is_strike = False
+            if isinstance(emoji, str):
+                is_strike = emoji == "❌"
+            # If it's a custom emoji object, ignore
+            if not is_strike:
+                return
+
+            message: discord.Message = reaction.message
+            if message is None or message.guild is None:
+                return
+
+            # Respect Gen3 enabled channels setting (with fallback to defaults)
+            channel_is_enabled = False
+            try:
+                enabled_channels = await self.config.guild(message.guild).enabled_channels()
+                if enabled_channels:
+                    channel_is_enabled = message.channel.id in enabled_channels
+                else:
+                    monitored_channels = ["private-bot-commands", "general-3"]
+                    channel_is_enabled = message.channel.name.lower() in monitored_channels
+            except Exception:
+                monitored_channels = ["private-bot-commands", "general-3"]
+                channel_is_enabled = message.channel.name.lower() in monitored_channels
+
+            if not channel_is_enabled:
+                return
+
+            # Don't strike bot messages
+            if message.author.bot:
+                return
+
+            await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
+        except Exception:
+            # Listener should never raise
+            pass
