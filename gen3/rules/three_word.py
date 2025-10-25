@@ -2,9 +2,9 @@
 Three-Word Rule: messages must contain exactly three words.
 
 Notes:
-- Emojis, emoticons, symbols, punctuation, and numbers do count toward the word count.
-- Additionally allowed: exactly two words plus one standalone number (e.g., "i ate 6").
-- Accepts alphabetic words, contractions, alphanumeric, and hyphenated words as single tokens.
+- Numbers DO count toward the word count now. At most one numeric token is allowed per message.
+- Emojis (including Unicode emoji and Discord emoji markup) are not allowed.
+- Accepts alphabetic words, contractions, alphanumeric, numeric, and hyphenated words as single tokens.
 - Multi-hyphenated words (two or more hyphens in one word) are not allowed.
 - Multiple single-hyphenated words are allowed only if not consecutive (must be separated by a non-hyphenated word).
 """
@@ -18,15 +18,12 @@ import unicodedata
 
 def _remove_discord_emojis(text: str) -> str:
     """
-    Remove Discord emoji markup from text prior to word counting.
+    Cleanup Discord-specific markup prior to word counting.
 
-    Handles:
-    - :shortcode: style (e.g., :smile:)
-    - Custom emoji markup like:
-        <:name:id>
-        <a:name:id> (animated)
-        <a id> (name omitted form seen in some API contexts)
-    - Collapses leftover whitespace after removals
+    - Remove :shortcode: style (e.g., :smile:)
+    - Remove custom emoji markup like <:name:id>, <a:name:id>, and <a 123456>
+    - Convert mentions/channels/roles like <@123>, <@!123>, <#555>, <@&777> to their numeric IDs
+    - Collapse leftover whitespace after processing
     """
     try:
         # Remove :shortcode: style (letters, numbers, and underscores inside colons)
@@ -37,10 +34,15 @@ def _remove_discord_emojis(text: str) -> str:
         text = re.sub(r"<a\s+\d+>", " ", text)  # <a 1234567890>
         text = re.sub(r"<:\s*\d+>", " ", text)  # (rare malformed <: 1234> edge case)
 
-        # Remove mentions and channels (optional cleanup)
-        text = re.sub(r"<[@#&!]\d+>", " ", text)
+        # Convert mentions/channels/roles to their numeric IDs
+        # <@123> or <@!123>
+        text = re.sub(r"<@!?([0-9]+)>", r" \1 ", text)
+        # <#555> channels
+        text = re.sub(r"<#([0-9]+)>", r" \1 ", text)
+        # <@&777> roles
+        text = re.sub(r"<@&([0-9]+)>", r" \1 ", text)
 
-        # Collapse extra whitespace introduced by removals
+        # Collapse extra whitespace introduced by removals/conversions
         text = re.sub(r"\s+", " ", text).strip()
 
         return text

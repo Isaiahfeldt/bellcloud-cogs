@@ -501,16 +501,44 @@ class SlashCommands(commands.Cog):
             user = message.author
             channel = message.channel
 
-            # Skip strike accounting in exempt channels
+            # Determine if channel is strike-exempt (strikes paused here)
             try:
                 ch_id = getattr(channel, "id", None)
             except Exception:
                 ch_id = None
-            if ch_id in STRIKE_EXEMPT_CHANNEL_IDS:
-                return
+            exempt_channel = ch_id in STRIKE_EXEMPT_CHANNEL_IDS
 
-            # Increment strike count
-            current_strikes = await db.increment_strike(user.id, guild_id)
+            # Compute strike count (increment only when not exempt)
+            if exempt_channel:
+                current_strikes = await db.get_strikes(user.id, guild_id)
+            else:
+                current_strikes = await db.increment_strike(user.id, guild_id)
+
+            if exempt_channel:
+                # In strike-exempt channels: warn only, do not add a strike or lock out
+                alert_lines = [
+                    "**Rule Violation Alert!**",
+                    "**Gen3 Rule Alert!**",
+                    "**Strike Warning!**",
+                    "**Rule Check Failed!**",
+                    "**Alert! Rule Violation!**"
+                ]
+                alert_line = random.choice(alert_lines)
+                reason_section = f"{reason_text}\n\n" if reason_text else ""
+                try:
+                    await message.reply(
+                        f"{alert_line} 🚨\n"
+                        f"{reason_section}"
+                        f"Strikes are paused in this channel. No strike has been added. This is just a warning. ⚠️",
+                        mention_author=True
+                    )
+                except Exception:
+                    pass
+                try:
+                    await message.add_reaction("❌")
+                except Exception:
+                    pass
+                return
 
             if current_strikes >= 3:
                 # Revoke posting privileges
