@@ -382,15 +382,33 @@ class SlashCommands(commands.Cog):
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
 
         if new_count < 3:
-            channel_names = ["general-3"]
-            channel = next(
-                (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-                 discord.utils.get(interaction.guild.channels, name=name)),
-                None
-            )
+            # Unblock user in any enabled Gen3 channels (or default fallbacks)
+            try:
+                enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
+            except Exception:
+                enabled_ids = []
 
-            if channel:
-                await channel.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+            cleared_any = False
+            if enabled_ids:
+                for ch_id in enabled_ids:
+                    ch = interaction.guild.get_channel(ch_id)
+                    if isinstance(ch, discord.TextChannel):
+                        try:
+                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+                            cleared_any = True
+                        except Exception:
+                            pass
+
+            # Fallback to name-based defaults if no enabled channels configured or none cleared
+            if not cleared_any:
+                for name in ["private-bot-commands", "general-3"]:
+                    ch = discord.utils.get(interaction.guild.channels, name=name)
+                    if ch:
+                        try:
+                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+                            cleared_any = True
+                        except Exception:
+                            pass
 
         await interaction.response.send_message(
             f"Strike removed for {user.mention}! ✨ They now have {new_count}/3 strikes.",
@@ -494,11 +512,6 @@ class SlashCommands(commands.Cog):
                 except Exception:
                     pass
 
-                # Reset strikes after lockout
-                try:
-                    await db.reset_strikes(user.id, guild_id)
-                except Exception:
-                    pass
 
                 # React and notify
                 try:
