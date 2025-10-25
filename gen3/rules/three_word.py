@@ -2,7 +2,7 @@
 Three-Word Rule: messages must contain exactly three words.
 
 Notes:
-- Emojis, emoticons, symbols, punctuation, and numbers do not count toward the word count.
+- Emojis, emoticons, symbols, punctuation, and numbers do count toward the word count.
 - Additionally allowed: exactly two words plus one standalone number (e.g., "i ate 6").
 - Accepts alphabetic words, contractions, alphanumeric, and hyphenated words as single tokens.
 - Multi-hyphenated words (two or more hyphens in one word) are not allowed.
@@ -163,9 +163,9 @@ def analyze_message_content(text: str) -> dict:
 
 async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
     """
-    Gen3 rule function: messages must be exactly 3 words long.
+    Gen3 rule function: messages must be exactly 3 words long or 2 words and 1 number.
 
-    - Emojis, emoticons, symbols, punctuation, and numbers don't count towards word count.
+    - Emojis, emoticons, symbols, punctuation, numbers count towards word count.
     - Additional constraint: Multi-hyphenated words are not allowed.
     - Multiple hyphenated words allowed only if separated by non-hyphenated words.
     """

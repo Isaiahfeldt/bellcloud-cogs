@@ -78,6 +78,9 @@ def get_position_emoji(position: int) -> str:
 # Provide a legacy/static mapping for tests and convenience (1..20)
 POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
 
+# Channels where strikes don't count (hard-coded exemptions)
+STRIKE_EXEMPT_CHANNEL_IDS = {900659338069295125}
+
 _ = Translator("Gen3", __file__)
 
 
@@ -497,6 +500,14 @@ class SlashCommands(commands.Cog):
             guild_id = message.guild.id
             user = message.author
             channel = message.channel
+
+            # Skip strike accounting in exempt channels
+            try:
+                ch_id = getattr(channel, "id", None)
+            except Exception:
+                ch_id = None
+            if ch_id in STRIKE_EXEMPT_CHANNEL_IDS:
+                return
 
             # Increment strike count
             current_strikes = await db.increment_strike(user.id, guild_id)
