@@ -395,9 +395,13 @@ class SlashCommands(commands.Cog):
                 channel_is_enabled = message.channel.name.lower() in monitored_channels
 
         if channel_is_enabled:
-            # Track participation: ensure user exists and increment message count
+            # Track participation: increment message count, except in exempt channels
             try:
-                if message.guild:
+                ch_id = getattr(message.channel, "id", None)
+            except Exception:
+                ch_id = None
+            try:
+                if message.guild and ch_id not in STRIKE_EXEMPT_CHANNEL_IDS:
                     await db.increment_msg_count(message.author.id, message.guild.id)
             except Exception:
                 pass
