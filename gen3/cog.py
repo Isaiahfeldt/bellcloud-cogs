@@ -49,8 +49,8 @@ class Gen3Cog(SlashCommands):
 
     async def cog_load(self):
         from gen3.slash_commands import db
+        # init_schema will initialize the pool if needed and perform migrations
         await db.init_schema()
-        await db.init_pool()
         print("Gen3 schema initialized")
 
     async def cog_unload(self):

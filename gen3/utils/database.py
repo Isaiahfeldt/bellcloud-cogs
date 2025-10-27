@@ -71,6 +71,7 @@ class Gen3Database:
     async def init_schema(self):
         """
         Initialize the necessary schema and table if they do not exist.
+        Also perform lightweight migrations to keep schema up-to-date.
         """
         # Ensure pool is initialized
         if self.pool is None:
@@ -83,30 +84,23 @@ class Gen3Database:
         create_table_query = """
                              CREATE TABLE IF NOT EXISTS gen3.strikes
                              (
-                                 user_id
-                                     BIGINT
-                                     NOT
-                                         NULL,
-                                 guild_id
-                                     BIGINT
-                                     NOT
-                                         NULL,
-                                 strikes
-                                     INTEGER
-                                     DEFAULT
-                                         0,
-                                 PRIMARY
-                                     KEY
-                                     (
-                                      user_id,
-                                      guild_id
-                                         )
+                                 user_id BIGINT NOT NULL,
+                                 guild_id BIGINT NOT NULL,
+                                 strikes INTEGER DEFAULT 0,
+                                 msg_count INTEGER DEFAULT 0,
+                                 PRIMARY KEY (user_id, guild_id)
                              ); \
                              """
+
+        # Migration: ensure msg_count exists with default 0, backfill NULLs
+        alter_msg_count = "ALTER TABLE IF EXISTS gen3.strikes ADD COLUMN IF NOT EXISTS msg_count INTEGER DEFAULT 0;"
+        backfill_msg_count = "UPDATE gen3.strikes SET msg_count = 0 WHERE msg_count IS NULL;"
 
         # Execute the commands
         await self.execute_query(create_schema_query)
         await self.execute_query(create_table_query)
+        await self.execute_query(alter_msg_count)
+        await self.execute_query(backfill_msg_count)
 
     async def increment_strike(self, user_id: int, guild_id: int) -> int:
         """Increment the strike count for a user in a given guild."""
@@ -142,3 +136,39 @@ class Gen3Database:
         """Reset the strike count for a user in a given guild."""
         query = "DELETE FROM gen3.strikes WHERE user_id = $1 AND guild_id = $2"
         await self.execute_query(query, user_id, guild_id)
+
+    async def ensure_user_row(self, user_id: int, guild_id: int) -> None:
+        """Ensure a row exists for the user with strikes=0 and msg_count=0."""
+        query = (
+            "INSERT INTO gen3.strikes (user_id, guild_id, strikes, msg_count) "
+            "VALUES ($1, $2, 0, 0) ON CONFLICT (user_id, guild_id) DO NOTHING;"
+        )
+        await self.execute_query(query, user_id, guild_id)
+
+    async def increment_msg_count(self, user_id: int, guild_id: int) -> int:
+        """Increment the message count for the user in the guild, creating row if needed."""
+        query = (
+            "INSERT INTO gen3.strikes (user_id, guild_id, strikes, msg_count) "
+            "VALUES ($1, $2, 0, 1) "
+            "ON CONFLICT (user_id, guild_id) DO UPDATE SET msg_count = gen3.strikes.msg_count + 1 "
+            "RETURNING msg_count;"
+        )
+        return await self.execute_query(query, user_id, guild_id, fetchval=True)
+
+    async def fetch_standings(self, guild_id: int):
+        """Fetch active standings (strikes < 3), ordered by lowest strikes then msg_count desc."""
+        query = (
+            "SELECT user_id, strikes, msg_count FROM gen3.strikes "
+            "WHERE guild_id = $1 AND strikes < 3 "
+            "ORDER BY strikes ASC, msg_count DESC, user_id ASC"
+        )
+        return await self.fetch_query(query, guild_id)
+
+    async def fetch_struck_out(self, guild_id: int):
+        """Fetch struck-out users (strikes >= 3), ordered by msg_count desc."""
+        query = (
+            "SELECT user_id, strikes, msg_count FROM gen3.strikes "
+            "WHERE guild_id = $1 AND strikes >= 3 "
+            "ORDER BY msg_count DESC, user_id ASC"
+        )
+        return await self.fetch_query(query, guild_id)

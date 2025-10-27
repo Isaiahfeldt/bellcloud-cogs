@@ -298,6 +298,54 @@ class SlashCommands(commands.Cog):
             ephemeral=True,
         )
 
+    @gen3.command(name="standings", description="View Gen3 standings: lowest strikes first, then message count")
+    @commands.guild_only()
+    async def standings(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        try:
+            active_rows = await db.fetch_standings(guild.id)
+            struck_rows = await db.fetch_struck_out(guild.id)
+        except Exception:
+            await interaction.response.send_message("Could not fetch standings due to a database error.", ephemeral=True)
+            return
+
+        def format_rows(rows):
+            lines = []
+            pos = 1
+            for r in rows:
+                try:
+                    uid = int(r["user_id"])  # asyncpg.Record supports key access
+                    strikes = int(r["strikes"])
+                    msg_count = int(r["msg_count"])
+                except Exception:
+                    uid = int(r[0])
+                    strikes = int(r[1])
+                    msg_count = int(r[2])
+                member = guild.get_member(uid)
+                name = member.mention if member else f"<@{uid}>"
+                lines.append(f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs")
+                pos += 1
+            return lines
+
+        active_lines = format_rows(active_rows)
+        struck_lines = format_rows(struck_rows)
+
+        embed = discord.Embed(title="Gen3 Standings", color=discord.Color.blurple())
+        embed.description = "Sorted by lowest strikes first, then by message count to break ties."
+        if active_lines:
+            active_text = "\n".join(active_lines)
+        else:
+            active_text = "No active participants yet."
+        embed.add_field(name="Active Players", value=active_text[:1024], inline=False)
+
+        if struck_lines:
+            struck_text = "\n".join(struck_lines)
+        else:
+            struck_text = "None"
+        embed.add_field(name="Striked Out", value=struck_text[:1024], inline=False)
+
+        await interaction.response.send_message(embed=embed)
+
     @gen3.command(name="toggle", description="Enable or disable Gen3 in a specific channel")
     @app_commands.describe(channel="The channel to configure Gen3 for")
     @commands.guild_only()
@@ -347,6 +395,13 @@ class SlashCommands(commands.Cog):
                 channel_is_enabled = message.channel.name.lower() in monitored_channels
 
         if channel_is_enabled:
+            # Track participation: ensure user exists and increment message count
+            try:
+                if message.guild:
+                    await db.increment_msg_count(message.author.id, message.guild.id)
+            except Exception:
+                pass
+
             # Punish: strike for image attachments and/or emojis; do NOT delete the message
             violation_reasons = []
 
