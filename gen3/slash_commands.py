@@ -299,8 +299,9 @@ class SlashCommands(commands.Cog):
         )
 
     @gen3.command(name="standings", description="View Gen3 standings: lowest strikes first, then message count")
+    @app_commands.describe(user="Optionally show only this user's standing")
     @commands.guild_only()
-    async def standings(self, interaction: discord.Interaction):
+    async def standings(self, interaction: discord.Interaction, user: discord.Member | None = None):
         guild = interaction.guild
         try:
             active_rows = await db.fetch_standings(guild.id)
@@ -309,31 +310,75 @@ class SlashCommands(commands.Cog):
             await interaction.response.send_message("Could not fetch standings due to a database error.", ephemeral=True)
             return
 
-        def format_rows(rows):
+        def to_tuple(r):
+            try:
+                uid = int(r["user_id"])  # asyncpg.Record supports key access
+                strikes = int(r["strikes"])
+                msg_count = int(r["msg_count"])
+            except Exception:
+                uid = int(r[0])
+                strikes = int(r[1])
+                msg_count = int(r[2])
+            return uid, strikes, msg_count
+
+        def format_rows(rows, start_pos: int = 1):
             lines = []
-            pos = 1
+            pos = start_pos
             for r in rows:
-                try:
-                    uid = int(r["user_id"])  # asyncpg.Record supports key access
-                    strikes = int(r["strikes"])
-                    msg_count = int(r["msg_count"])
-                except Exception:
-                    uid = int(r[0])
-                    strikes = int(r[1])
-                    msg_count = int(r[2])
+                uid, strikes, msg_count = to_tuple(r)
                 member = guild.get_member(uid)
                 name = member.mention if member else f"<@{uid}>"
                 lines.append(f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs")
                 pos += 1
             return lines
 
-        active_lines = format_rows(active_rows)
-        struck_lines = format_rows(struck_rows)
+        def find_user_position(rows, target_id: int):
+            pos = 1
+            for r in rows:
+                uid, strikes, msg_count = to_tuple(r)
+                if uid == target_id:
+                    return pos, strikes, msg_count
+                pos += 1
+            return None
+
+        if user:
+            # Show only this user's standing
+            found = find_user_position(active_rows, user.id)
+            embed = discord.Embed(title="Gen3 Standing", color=discord.Color.blurple())
+            if found:
+                pos, strikes, msg_count = found
+                member = guild.get_member(user.id)
+                name = member.mention if member else f"<@{user.id}>"
+                line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                embed.add_field(name="Active Players", value=line, inline=False)
+            else:
+                found = find_user_position(struck_rows, user.id)
+                if found:
+                    pos, strikes, msg_count = found
+                    member = guild.get_member(user.id)
+                    name = member.mention if member else f"<@{user.id}>"
+                    line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                    embed.add_field(name="Striked Out :(", value=line, inline=False)
+                else:
+                    embed.description = f"{user.mention} has no recorded activity yet."
+            await interaction.response.send_message(embed=embed)
+            return
+
+        # Default: show top 10 active and top 10 struck-out
+        top_active = list(active_rows[:10]) if hasattr(active_rows, "__getitem__") else active_rows
+        top_struck = list(struck_rows[:10]) if hasattr(struck_rows, "__getitem__") else struck_rows
+
+        active_lines = format_rows(top_active, start_pos=1)
+        struck_lines = format_rows(top_struck, start_pos=1)
 
         embed = discord.Embed(title="Gen3 Standings!", color=discord.Color.blurple())
         embed.description = "Sorted by lowest strikes first, then by message count to break ties"
         if active_lines:
             active_text = "\n".join(active_lines)
+            # Append summary if more beyond top 10
+            extra = max(len(active_rows) - 10, 0)
+            if extra > 0:
+                active_text += f"\n+{extra} more outside top 10 standings"
         else:
             active_text = "No active participants yet."
         embed.add_field(name="Active Players", value=active_text[:1024], inline=False)
