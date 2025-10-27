@@ -342,7 +342,7 @@ class SlashCommands(commands.Cog):
             struck_text = "\n".join(struck_lines)
         else:
             struck_text = "None"
-        embed.add_field(name="Striked Out", value=struck_text[:1024], inline=False)
+        embed.add_field(name="Striked Out :(", value=struck_text[:1024], inline=False)
 
         await interaction.response.send_message(embed=embed)
 
