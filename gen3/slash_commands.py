@@ -344,19 +344,35 @@ class SlashCommands(commands.Cog):
         if user:
             # Show only this user's standing
             found = find_user_position(active_rows, user.id)
-            embed = discord.Embed(title="Gen3 Standing", color=discord.Color.blurple())
+            # Use member from cache if available; otherwise fall back to provided user
+            member = guild.get_member(user.id) or user
+            display_name = getattr(member, "display_name", getattr(user, "display_name", str(user)))
+            embed_title = f"{display_name}'s Gen3 Standing"
+            embed = discord.Embed(title=embed_title, color=discord.Color.blurple())
+            # Set the user's avatar as the embed thumbnail for a more personal look
+            avatar_url = None
+            try:
+                avatar_url = member.display_avatar.url  # Preferred in discord.py 2.x
+            except Exception:
+                try:
+                    avatar_url = member.avatar.url  # Legacy attribute fallback
+                except Exception:
+                    try:
+                        avatar_url = member.default_avatar.url
+                    except Exception:
+                        avatar_url = None
+            if avatar_url:
+                embed.set_thumbnail(url=avatar_url)
             if found:
                 pos, strikes, msg_count = found
-                member = guild.get_member(user.id)
-                name = member.mention if member else f"<@{user.id}>"
+                name = member.mention if isinstance(member, discord.Member) else f"<@{user.id}>"
                 line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
                 embed.add_field(name="Active Players", value=line, inline=False)
             else:
                 found = find_user_position(struck_rows, user.id)
                 if found:
                     pos, strikes, msg_count = found
-                    member = guild.get_member(user.id)
-                    name = member.mention if member else f"<@{user.id}>"
+                    name = member.mention if isinstance(member, discord.Member) else f"<@{user.id}>"
                     line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
                     embed.add_field(name="Striked Out :(", value=line, inline=False)
                 else:
