@@ -330,8 +330,8 @@ class SlashCommands(commands.Cog):
         active_lines = format_rows(active_rows)
         struck_lines = format_rows(struck_rows)
 
-        embed = discord.Embed(title="Gen3 Standings", color=discord.Color.blurple())
-        embed.description = "Sorted by lowest strikes first, then by message count to break ties."
+        embed = discord.Embed(title="Gen3 Standings!", color=discord.Color.blurple())
+        embed.description = "Sorted by lowest strikes first, then by message count to break ties"
         if active_lines:
             active_text = "\n".join(active_lines)
         else:
