@@ -241,6 +241,7 @@ class SlashCommands(commands.Cog):
     def __init__(self):
         super().__init__()
 
+    # Owner-only commands near the top
     @gen3.command(name="set_rule", description="Set the active Gen3 rule")
     @app_commands.describe(rule="Choose which rule to enforce")
     @app_commands.choices(
@@ -279,6 +280,73 @@ class SlashCommands(commands.Cog):
             ephemeral=False,
         )
 
+    @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")
+    @app_commands.describe(user="User to remove a strike from")
+    @commands.guild_only()
+    @commands.is_owner()
+    async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
+        new_count = await db.decrease_strike(user.id, interaction.guild_id)
+
+        if new_count < 3:
+            # Unblock user in any enabled Gen3 channels (or default fallbacks)
+            try:
+                enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
+            except Exception:
+                enabled_ids = []
+
+            cleared_any = False
+            if enabled_ids:
+                for ch_id in enabled_ids:
+                    ch = interaction.guild.get_channel(ch_id)
+                    if isinstance(ch, discord.TextChannel):
+                        try:
+                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+                            cleared_any = True
+                        except Exception:
+                            pass
+
+            # Fallback to name-based defaults if no enabled channels configured or none cleared
+            if not cleared_any:
+                for name in ["private-bot-commands", "general-3"]:
+                    ch = discord.utils.get(interaction.guild.channels, name=name)
+                    if ch:
+                        try:
+                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
+                            cleared_any = True
+                        except Exception:
+                            pass
+
+        await interaction.response.send_message(
+            f"Strike removed for {user.mention}! ✨ They now have {new_count}/3 strikes.",
+            ephemeral=False
+        )
+
+    @gen3.command(name="forgive", description="Forgive all strikes for a user")
+    @app_commands.describe(user="User to forgive strikes for")
+    @commands.guild_only()
+    @commands.is_owner()
+    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
+        await db.reset_strikes(user.id, interaction.guild_id)
+
+        channel_names = ["private-bot-commands", "general-3"]
+
+        # Find the first matching channel
+        channel = next(
+            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
+             discord.utils.get(interaction.guild.channels, name=name)),
+            None
+        )
+
+        if channel:
+            # Reset user permissions for the channel
+            await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
+
+        await interaction.response.send_message(
+            f"All strikes for {user.mention} have been forgiven! ✨",
+            ephemeral=False
+        )
+
+    # General/admin commands
     @gen3.command(name="get_rule", description="Show the currently active Gen3 rule")
     @commands.guild_only()
     async def get_rule(self, interaction: discord.Interaction):
@@ -296,6 +364,16 @@ class SlashCommands(commands.Cog):
         await interaction.response.send_message(
             f"Current active Gen3 rule: {names.get(rule_key, rule_key)}",
             ephemeral=True,
+        )
+
+    @gen3.command(name="view_strikes", description="View current strikes for a user")
+    @app_commands.describe(user="User to check strikes for")
+    @commands.guild_only()
+    async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
+        strikes = await db.get_strikes(user.id, interaction.guild_id)
+        await interaction.response.send_message(
+            f"{user.mention} has {strikes}/3 strikes. Please be careful! ⚠️",
+            ephemeral=False
         )
 
     @gen3.command(name="standings", description="View Gen3 standings: lowest strikes first, then message count")
@@ -434,153 +512,12 @@ class SlashCommands(commands.Cog):
                     ephemeral=False,
                 )
 
-    @commands.Cog.listener()
-    @commands.guild_only()
-    async def on_message(self, message: discord.Message):
-        if message.author.bot:
-            return
-
-        # Determine whether this channel is enabled for Gen3
-        channel_is_enabled = False
-        if message.guild:
-            try:
-                enabled_channels = await self.config.guild(message.guild).enabled_channels()
-                if enabled_channels:
-                    channel_is_enabled = message.channel.id in enabled_channels
-                else:
-                    # Backward-compat: if no channels configured yet, fall back to name-based defaults
-                    monitored_channels = ["private-bot-commands", "general-3"]
-                    channel_is_enabled = message.channel.name.lower() in monitored_channels
-            except Exception:
-                # If config isn’t available for some reason, fall back to original behavior
-                monitored_channels = ["private-bot-commands", "general-3"]
-                channel_is_enabled = message.channel.name.lower() in monitored_channels
-
-        if channel_is_enabled:
-            # Track participation: increment message count, except in exempt channels
-            try:
-                ch_id = getattr(message.channel, "id", None)
-            except Exception:
-                ch_id = None
-            try:
-                if message.guild and ch_id not in STRIKE_EXEMPT_CHANNEL_IDS:
-                    await db.increment_msg_count(message.author.id, message.guild.id)
-            except Exception:
-                pass
-
-            # Punish: strike for image attachments and/or emojis; do NOT delete the message
-            violation_reasons = []
-
-            # Check for image attachments
-            if message.attachments:
-                for attachment in message.attachments:
-                    ct = getattr(attachment, "content_type", None) or ""
-                    filename = attachment.filename.lower() if attachment.filename else ""
-                    if ct.startswith("image/") or filename.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp")):
-                        violation_reasons.append("Images are not allowed in your message!")
-                        break
-
-            # Check for emojis in the content
-            try:
-                text_to_check = message.content or ""
-            except Exception:
-                text_to_check = ""
-            if text_to_check and contains_emoji(text_to_check):
-                violation_reasons.append("Emojis/emotes are not allowed in your message!")
-
-            if violation_reasons:
-                # Apply a single strike with combined reasons and stop further processing
-                reason_text = "\n".join(violation_reasons)
-                await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
-                return
-
-            # Ignore owner’s test bang commands in these channels
-            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
-                await self.handle_gen3_event(message)
-
-    @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")
-    @app_commands.describe(user="User to remove a strike from")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
-        new_count = await db.decrease_strike(user.id, interaction.guild_id)
-
-        if new_count < 3:
-            # Unblock user in any enabled Gen3 channels (or default fallbacks)
-            try:
-                enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
-            except Exception:
-                enabled_ids = []
-
-            cleared_any = False
-            if enabled_ids:
-                for ch_id in enabled_ids:
-                    ch = interaction.guild.get_channel(ch_id)
-                    if isinstance(ch, discord.TextChannel):
-                        try:
-                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
-                            cleared_any = True
-                        except Exception:
-                            pass
-
-            # Fallback to name-based defaults if no enabled channels configured or none cleared
-            if not cleared_any:
-                for name in ["private-bot-commands", "general-3"]:
-                    ch = discord.utils.get(interaction.guild.channels, name=name)
-                    if ch:
-                        try:
-                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
-                            cleared_any = True
-                        except Exception:
-                            pass
-
-        await interaction.response.send_message(
-            f"Strike removed for {user.mention}! ✨ They now have {new_count}/3 strikes.",
-            ephemeral=False
-        )
-
-    @gen3.command(name="forgive", description="Forgive all strikes for a user")
-    @app_commands.describe(user="User to forgive strikes for")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
-
-        channel_names = ["private-bot-commands", "general-3"]
-
-        # Find the first matching channel
-        channel = next(
-            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-             discord.utils.get(interaction.guild.channels, name=name)),
-            None
-        )
-
-        if channel:
-            # Reset user permissions for the channel
-            await channel.set_permissions(user, overwrite=None, reason="Strikes forgiven")
-
-        await interaction.response.send_message(
-            f"All strikes for {user.mention} have been forgiven! ✨",
-            ephemeral=False
-        )
-
-    @gen3.command(name="view_strikes", description="View current strikes for a user")
-    @app_commands.describe(user="User to check strikes for")
-    @commands.guild_only()
-    @commands.is_owner()
-    async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
-        strikes = await db.get_strikes(user.id, interaction.guild_id)
-        await interaction.response.send_message(
-            f"{user.mention} has {strikes}/3 strikes. Please be careful! ⚠️",
-            ephemeral=False
-        )
-
     @gen3.command(name="edit_msg", description="Edit a previous bot message in this channel")
     @app_commands.describe(
         message_id="The message ID of the bot message to edit (must be in this channel)"
     )
     @commands.guild_only()
-    @commands.admin_or_permissions(manage_messages=True)
+    @commands.is_owner()
     async def edit_msg(self, interaction: discord.Interaction, message_id: str):
         """Edit a prior message authored by this bot in the current channel.
         Uses a modal to collect the new message content.
@@ -714,6 +651,156 @@ class SlashCommands(commands.Cog):
                     pass
 
         await interaction.response.send_modal(EditMessageModal(target_msg))
+
+    # Listener placed before message-processing group
+    @commands.Cog.listener()
+    @commands.guild_only()
+    async def on_reaction_add(self, reaction: discord.Reaction, user):
+        """Gen3 reaction handlers:
+        - Owner ❌ on a user's message in enabled channels -> apply a strike
+        - Mod ❓/❔ on a message in enabled channels -> show analysis for that message
+        """
+        try:
+            # ignore bots
+            if getattr(user, "bot", False):
+                return
+
+            message: discord.Message = reaction.message
+            if message is None or message.guild is None:
+                return
+
+            # Respect Gen3 enabled channels setting (with fallback to defaults)
+            channel_is_enabled = False
+            try:
+                enabled_channels = await self.config.guild(message.guild).enabled_channels()
+                if enabled_channels:
+                    channel_is_enabled = message.channel.id in enabled_channels
+                else:
+                    monitored_channels = ["private-bot-commands", "general-3"]
+                    channel_is_enabled = message.channel.name.lower() in monitored_channels
+            except Exception:
+                monitored_channels = ["private-bot-commands", "general-3"]
+                channel_is_enabled = message.channel.name.lower() in monitored_channels
+
+            if not channel_is_enabled:
+                return
+
+            # Determine emoji (only process unicode)
+            emoji = reaction.emoji
+            emoji_str = emoji if isinstance(emoji, str) else None
+
+            # Owner manual strike via ❌
+            if emoji_str == "❌" and user.id == 138148168360656896:
+                # Don't strike bot messages
+                if message.author and not getattr(message.author, "bot", False):
+                    await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
+                return
+
+            # Mod analysis via question mark emoji
+            if emoji_str in {"❓", "❔"}:
+                # permissions: mods only (or owner)
+                is_owner = False
+                try:
+                    is_owner = await self.bot.is_owner(user)
+                except Exception:
+                    pass
+                perms = getattr(user, "guild_permissions", None)
+                is_mod = False
+                if perms:
+                    is_mod = (
+                            perms.administrator
+                            or perms.manage_guild
+                            or getattr(perms, "moderate_members", False)
+                            or perms.manage_messages
+                    )
+                if not (is_owner or is_mod):
+                    return
+
+                # Compute analysis for the target message
+                try:
+                    content = message.clean_content
+                    guild_id = message.guild.id
+                    author_id = message.author.id if message.author else None
+                    current_strikes = await db.get_strikes(author_id, guild_id) if author_id else 0
+                    try:
+                        saved_rule = await self.config.guild(message.guild).active_rule()
+                    except Exception:
+                        saved_rule = None
+
+                    analysis = await check_gen3_rules(content, current_strikes, active_rule=saved_rule)
+                    pretty = json.dumps(analysis, indent=2, ensure_ascii=False)
+                    await message.channel.send(f"```json\n{pretty}\n```")
+                except Exception:
+                    pass
+                return
+        except Exception:
+            # Listener should never raise
+            pass
+
+    # on_message and supporting functions placed at the end
+    @commands.Cog.listener()
+    @commands.guild_only()
+    async def on_message(self, message: discord.Message):
+        if message.author.bot:
+            return
+
+        # Determine whether this channel is enabled for Gen3
+        channel_is_enabled = False
+        if message.guild:
+            try:
+                enabled_channels = await self.config.guild(message.guild).enabled_channels()
+                if enabled_channels:
+                    channel_is_enabled = message.channel.id in enabled_channels
+                else:
+                    # Backward-compat: if no channels configured yet, fall back to name-based defaults
+                    monitored_channels = ["private-bot-commands", "general-3"]
+                    channel_is_enabled = message.channel.name.lower() in monitored_channels
+            except Exception:
+                # If config isn’t available for some reason, fall back to original behavior
+                monitored_channels = ["private-bot-commands", "general-3"]
+                channel_is_enabled = message.channel.name.lower() in monitored_channels
+
+        if channel_is_enabled:
+            # Track participation: increment message count, except in exempt channels
+            try:
+                ch_id = getattr(message.channel, "id", None)
+            except Exception:
+                ch_id = None
+            try:
+                if message.guild and ch_id not in STRIKE_EXEMPT_CHANNEL_IDS:
+                    await db.increment_msg_count(message.author.id, message.guild.id)
+            except Exception:
+                pass
+
+            # Punish: strike for image attachments and/or emojis; do NOT delete the message
+            violation_reasons = []
+
+            # Check for image attachments
+            if message.attachments:
+                for attachment in message.attachments:
+                    ct = getattr(attachment, "content_type", None) or ""
+                    filename = attachment.filename.lower() if attachment.filename else ""
+                    if ct.startswith("image/") or filename.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp")):
+                        violation_reasons.append("Images are not allowed in your message!")
+                        break
+
+            # Check for emojis in the content
+            try:
+                text_to_check = message.content or ""
+            except Exception:
+                text_to_check = ""
+            if text_to_check and contains_emoji(text_to_check):
+                violation_reasons.append("Emojis/emotes are not allowed in your message!")
+
+            if violation_reasons:
+                # Apply a single strike with combined reasons and stop further processing
+                reason_text = "\n".join(violation_reasons)
+                await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
+                return
+
+            # Ignore owner’s test bang commands in these channels
+            if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
+                await self.handle_gen3_event(message)
 
     async def handle_gen3_event(self, message: discord.Message):
         content = message.clean_content
@@ -866,88 +953,4 @@ class SlashCommands(commands.Cog):
                     pass
         except Exception:
             # Never raise from shared handler
-            pass
-
-    @commands.Cog.listener()
-    @commands.guild_only()
-    async def on_reaction_add(self, reaction: discord.Reaction, user):
-        """Gen3 reaction handlers:
-        - Owner ❌ on a user's message in enabled channels -> apply a strike
-        - Mod ❓/❔ on a message in enabled channels -> show analysis for that message
-        """
-        try:
-            # ignore bots
-            if getattr(user, "bot", False):
-                return
-
-            message: discord.Message = reaction.message
-            if message is None or message.guild is None:
-                return
-
-            # Respect Gen3 enabled channels setting (with fallback to defaults)
-            channel_is_enabled = False
-            try:
-                enabled_channels = await self.config.guild(message.guild).enabled_channels()
-                if enabled_channels:
-                    channel_is_enabled = message.channel.id in enabled_channels
-                else:
-                    monitored_channels = ["private-bot-commands", "general-3"]
-                    channel_is_enabled = message.channel.name.lower() in monitored_channels
-            except Exception:
-                monitored_channels = ["private-bot-commands", "general-3"]
-                channel_is_enabled = message.channel.name.lower() in monitored_channels
-
-            if not channel_is_enabled:
-                return
-
-            # Determine emoji (only process unicode)
-            emoji = reaction.emoji
-            emoji_str = emoji if isinstance(emoji, str) else None
-
-            # Owner manual strike via ❌
-            if emoji_str == "❌" and user.id == 138148168360656896:
-                # Don't strike bot messages
-                if message.author and not getattr(message.author, "bot", False):
-                    await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
-                return
-
-            # Mod analysis via question mark emoji
-            if emoji_str in {"❓", "❔"}:
-                # permissions: mods only (or owner)
-                is_owner = False
-                try:
-                    is_owner = await self.bot.is_owner(user)
-                except Exception:
-                    pass
-                perms = getattr(user, "guild_permissions", None)
-                is_mod = False
-                if perms:
-                    is_mod = (
-                            perms.administrator
-                            or perms.manage_guild
-                            or getattr(perms, "moderate_members", False)
-                            or perms.manage_messages
-                    )
-                if not (is_owner or is_mod):
-                    return
-
-                # Compute analysis for the target message
-                try:
-                    content = message.clean_content
-                    guild_id = message.guild.id
-                    author_id = message.author.id if message.author else None
-                    current_strikes = await db.get_strikes(author_id, guild_id) if author_id else 0
-                    try:
-                        saved_rule = await self.config.guild(message.guild).active_rule()
-                    except Exception:
-                        saved_rule = None
-
-                    analysis = await check_gen3_rules(content, current_strikes, active_rule=saved_rule)
-                    pretty = json.dumps(analysis, indent=2, ensure_ascii=False)
-                    await message.channel.send(f"```json\n{pretty}\n```")
-                except Exception:
-                    pass
-                return
-        except Exception:
-            # Listener should never raise
             pass
