@@ -307,7 +307,8 @@ class SlashCommands(commands.Cog):
             active_rows = await db.fetch_standings(guild.id)
             struck_rows = await db.fetch_struck_out(guild.id)
         except Exception:
-            await interaction.response.send_message("Could not fetch standings due to a database error.", ephemeral=True)
+            await interaction.response.send_message("Could not fetch standings due to a database error.",
+                                                    ephemeral=True)
             return
 
         def to_tuple(r):
@@ -574,6 +575,100 @@ class SlashCommands(commands.Cog):
             ephemeral=False
         )
 
+    @gen3.command(name="edit_msg", description="Edit a previous bot message in this channel")
+    @app_commands.describe(
+        message_id="The message ID of the bot message to edit (must be in this channel)",
+        new_content="The new message content to replace the existing message"
+    )
+    @commands.guild_only()
+    @commands.admin_or_permissions(manage_messages=True)
+    async def edit_msg(self, interaction: discord.Interaction, message_id: str, new_content: str):
+        """Edit a prior message authored by this bot in the current channel."""
+        # Parse the message ID
+        try:
+            target_id = int(str(message_id).strip())
+        except Exception:
+            await interaction.response.send_message(
+                "Invalid message ID. Please provide the numeric ID of the message.",
+                ephemeral=True,
+            )
+            return
+
+        channel = interaction.channel
+
+        # Determine this bot's user id
+        bot_user_id = None
+        try:
+            bot_user_id = self.bot.user.id  # Red's bot
+        except Exception:
+            try:
+                bot_user_id = interaction.client.user.id  # discord.Client
+            except Exception:
+                bot_user_id = None
+
+        # Try fetching the message directly by ID first
+        target_msg: discord.Message | None = None
+        try:
+            target_msg = await channel.fetch_message(target_id)
+        except discord.NotFound:
+            # Fallback: scan recent history just in case
+            try:
+                async for m in channel.history(limit=2000, oldest_first=True):
+                    if m.id == target_id:
+                        target_msg = m
+                        break
+            except Exception:
+                pass
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "I don't have permission to view messages in this channel.",
+                ephemeral=True,
+            )
+            return
+        except discord.HTTPException:
+            # As a fallback, try a manual history scan
+            try:
+                async for m in channel.history(limit=2000, oldest_first=True):
+                    if m.id == target_id:
+                        target_msg = m
+                        break
+            except Exception:
+                pass
+
+        if target_msg is None:
+            await interaction.response.send_message(
+                "I couldn't find a message with that ID in this channel.",
+                ephemeral=True,
+            )
+            return
+
+        # Ensure the message was authored by this bot
+        author_id = getattr(getattr(target_msg, "author", None), "id", None)
+        if bot_user_id is None or author_id != bot_user_id:
+            await interaction.response.send_message(
+                "That message was not sent by me, so I can't edit it.",
+                ephemeral=True,
+            )
+            return
+
+        # Attempt to edit the message content
+        try:
+            await target_msg.edit(content=new_content)
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "I wasn't able to edit that message due to missing permissions.",
+                ephemeral=True,
+            )
+            return
+        except discord.HTTPException as e:
+            await interaction.response.send_message(
+                f"Failed to edit the message: {e}",
+                ephemeral=True,
+            )
+            return
+
+        await interaction.response.send_message("Message updated successfully. ✅", ephemeral=True)
+
     async def handle_gen3_event(self, message: discord.Message):
         content = message.clean_content
         channel = message.channel
@@ -670,7 +765,6 @@ class SlashCommands(commands.Cog):
                     )
                 except Exception:
                     pass
-
 
                 # React and notify
                 try:
