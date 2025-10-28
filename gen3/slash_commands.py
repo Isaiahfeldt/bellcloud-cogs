@@ -79,7 +79,7 @@ def get_position_emoji(position: int) -> str:
 POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
 
 # Channels where strikes don't count (hard-coded exemptions)
-STRIKE_EXEMPT_CHANNEL_IDS = {900659338069295125}
+STRIKE_EXEMPT_CHANNEL_IDS = {}
 
 _ = Translator("Gen3", __file__)
 
