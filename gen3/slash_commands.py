@@ -254,6 +254,9 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @commands.is_owner()
     async def set_rule(self, interaction: discord.Interaction, rule: app_commands.Choice[str]):
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
         global ACTIVE_RULE
         ACTIVE_RULE = rule.value
 
@@ -285,6 +288,9 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @commands.is_owner()
     async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
         new_count = await db.decrease_strike(user.id, interaction.guild_id)
 
         if new_count < 3:
@@ -326,6 +332,9 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @commands.is_owner()
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
         await db.reset_strikes(user.id, interaction.guild_id)
 
         channel_names = ["private-bot-commands", "general-3"]
@@ -522,6 +531,9 @@ class SlashCommands(commands.Cog):
         """Edit a prior message authored by this bot in the current channel.
         Uses a modal to collect the new message content.
         """
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
         # Parse the message ID
         try:
             target_id = int(str(message_id).strip())
