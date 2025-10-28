@@ -133,8 +133,12 @@ class Gen3Database:
         return await self.execute_query(query, user_id, guild_id, fetchval=True) or 0
 
     async def reset_strikes(self, user_id: int, guild_id: int) -> None:
-        """Reset the strike count for a user in a given guild."""
-        query = "DELETE FROM gen3.strikes WHERE user_id = $1 AND guild_id = $2"
+        """Reset the strike count for a user in a given guild without losing message count."""
+        query = (
+            "INSERT INTO gen3.strikes (user_id, guild_id, strikes, msg_count) "
+            "VALUES ($1, $2, 0, 0) "
+            "ON CONFLICT (user_id, guild_id) DO UPDATE SET strikes = 0;"
+        )
         await self.execute_query(query, user_id, guild_id)
 
     async def ensure_user_row(self, user_id: int, guild_id: int) -> None:

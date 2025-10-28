@@ -283,15 +283,21 @@ class SlashCommands(commands.Cog):
             ephemeral=False,
         )
 
-    @gen3.command(name="remove_a_strike", description="Remove a single strike from a user")
-    @app_commands.describe(user="User to remove a strike from")
+    @gen3.command(name="remove_strike", description="Remove one or more strikes from a user")
+    @app_commands.describe(user="User to remove strikes from", value="Number of strikes to remove (1-3)")
     @commands.guild_only()
     @commands.is_owner()
-    async def remove_a_strike(self, interaction: discord.Interaction, user: discord.Member):
+    async def remove_strikes(self, interaction: discord.Interaction, user: discord.Member, value: app_commands.Range[int, 1, 3] = 1):
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
             return
-        new_count = await db.decrease_strike(user.id, interaction.guild_id)
+
+        # Remove the specified number of strikes, capping at 0
+        new_count = None
+        for _ in range(int(value)):
+            new_count = await db.decrease_strike(user.id, interaction.guild_id)
+        if new_count is None:
+            new_count = await db.get_strikes(user.id, interaction.guild_id)
 
         if new_count < 3:
             # Unblock user in any enabled Gen3 channels (or default fallbacks)
@@ -322,8 +328,10 @@ class SlashCommands(commands.Cog):
                         except Exception:
                             pass
 
+        removed = int(value)
+        plural = "strike" if removed == 1 else "strikes"
         await interaction.response.send_message(
-            f"Strike removed for {user.mention}! ✨ They now have {new_count}/3 strikes.",
+            f"Removed {removed} {plural} from {user.mention}! ✨ They now have {new_count}/3 strikes.",
             ephemeral=False
         )
 
