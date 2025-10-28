@@ -577,13 +577,14 @@ class SlashCommands(commands.Cog):
 
     @gen3.command(name="edit_msg", description="Edit a previous bot message in this channel")
     @app_commands.describe(
-        message_id="The message ID of the bot message to edit (must be in this channel)",
-        new_content="The new message content to replace the existing message"
+        message_id="The message ID of the bot message to edit (must be in this channel)"
     )
     @commands.guild_only()
     @commands.admin_or_permissions(manage_messages=True)
-    async def edit_msg(self, interaction: discord.Interaction, message_id: str, new_content: str):
-        """Edit a prior message authored by this bot in the current channel."""
+    async def edit_msg(self, interaction: discord.Interaction, message_id: str):
+        """Edit a prior message authored by this bot in the current channel.
+        Uses a modal to collect the new message content.
+        """
         # Parse the message ID
         try:
             target_id = int(str(message_id).strip())
@@ -651,23 +652,68 @@ class SlashCommands(commands.Cog):
             )
             return
 
-        # Attempt to edit the message content
-        try:
-            await target_msg.edit(content=new_content)
-        except discord.Forbidden:
-            await interaction.response.send_message(
-                "I wasn't able to edit that message due to missing permissions.",
-                ephemeral=True,
-            )
-            return
-        except discord.HTTPException as e:
-            await interaction.response.send_message(
-                f"Failed to edit the message: {e}",
-                ephemeral=True,
-            )
-            return
+        # Build and show a modal to collect the new content
+        class EditMessageModal(discord.ui.Modal):
+            def __init__(self, target: discord.Message):
+                super().__init__(title="Edit Bot Message")
+                self.target = target
+                # Prefill with current content up to 2000 characters
+                try:
+                    current = (target.content or "")[:2000]
+                except Exception:
+                    current = ""
+                self.new_content = discord.ui.TextInput(
+                    label="New content",
+                    style=discord.TextStyle.paragraph,
+                    required=True,
+                    max_length=2000,
+                    placeholder="Enter the new message content...",
+                    default=current,
+                )
+                self.add_item(self.new_content)
 
-        await interaction.response.send_message("Message updated successfully. ✅", ephemeral=True)
+            async def on_submit(self, modal_interaction: discord.Interaction):
+                content = (self.new_content.value or "").strip()
+                if not content:
+                    await modal_interaction.response.send_message(
+                        "Content cannot be empty.", ephemeral=True
+                    )
+                    return
+                try:
+                    await self.target.edit(content=content)
+                except discord.Forbidden:
+                    await modal_interaction.response.send_message(
+                        "I wasn't able to edit that message due to missing permissions.",
+                        ephemeral=True,
+                    )
+                    return
+                except discord.HTTPException as e:
+                    await modal_interaction.response.send_message(
+                        f"Failed to edit the message: {e}",
+                        ephemeral=True,
+                    )
+                    return
+
+                await modal_interaction.response.send_message(
+                    "Message updated successfully. ✅", ephemeral=True
+                )
+
+            async def on_error(self, modal_interaction: discord.Interaction, error: Exception) -> None:
+                try:
+                    if modal_interaction.response.is_done():
+                        await modal_interaction.followup.send(
+                            "An unexpected error occurred while processing the modal.",
+                            ephemeral=True,
+                        )
+                    else:
+                        await modal_interaction.response.send_message(
+                            "An unexpected error occurred while processing the modal.",
+                            ephemeral=True,
+                        )
+                except Exception:
+                    pass
+
+        await interaction.response.send_modal(EditMessageModal(target_msg))
 
     async def handle_gen3_event(self, message: discord.Message):
         content = message.clean_content
