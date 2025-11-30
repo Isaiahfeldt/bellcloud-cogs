@@ -443,7 +443,7 @@ class SlashCommands(commands.Cog):
             # Use member from cache if available; otherwise fall back to provided user
             member = guild.get_member(user.id) or user
             display_name = getattr(member, "display_name", getattr(user, "display_name", str(user)))
-            embed_title = f"{display_name}'s Gen3 Standing"
+            embed_title = f"{display_name}'s Gen3 Standing!"
             embed = discord.Embed(title=embed_title, color=discord.Color.blurple())
             # Set the user's avatar as the embed thumbnail for a more personal look
             avatar_url = None
@@ -463,7 +463,7 @@ class SlashCommands(commands.Cog):
                 pos, strikes, msg_count = found
                 name = member.mention if isinstance(member, discord.Member) else f"<@{user.id}>"
                 line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
-                embed.add_field(name="Active Players", value=line, inline=False)
+                embed.add_field(name="Active Player", value=line, inline=False)
             else:
                 found = find_user_position(struck_rows, user.id)
                 if found:
