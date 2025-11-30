@@ -29,7 +29,7 @@ class Gen3Cog(SlashCommands):
     A flexible cog for managing gen3 events with various content requirements.
     """
 
-    __version__ = "0.0.1"
+    __version__ = "0.1.0"
 
     def __init__(self, bot: Red):
         super().__init__()
