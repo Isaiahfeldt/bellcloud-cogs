@@ -159,9 +159,16 @@ class Gen3Database:
             )
             await connection.execute(
                 """
-                ALTER TABLE gen3.strikes
-                    ADD CONSTRAINT IF NOT EXISTS strikes_season_fk
-                    FOREIGN KEY (season_id) REFERENCES gen3.seasons(id);
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 FROM pg_constraint WHERE conname = 'strikes_season_fk'
+                    ) THEN
+                        ALTER TABLE gen3.strikes
+                            ADD CONSTRAINT strikes_season_fk
+                            FOREIGN KEY (season_id) REFERENCES gen3.seasons(id);
+                    END IF;
+                END$$;
                 """
             )
 
