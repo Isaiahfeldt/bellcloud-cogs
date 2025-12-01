@@ -447,7 +447,7 @@ class SlashCommands(commands.Cog):
             end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
             line = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
             if season_id == active_id and season.get("is_active"):
-                line += " 🟢"
+                line += " — Active 🟢"
             elif multiple_seasons:
                 winner = winners.get(season_id)
                 if winner:
@@ -499,7 +499,7 @@ class SlashCommands(commands.Cog):
         start_fmt = format_short_date(target.get("started_at"))
         end_fmt = format_short_date(target.get("ended_at")) if target.get("ended_at") else "On going"
         label_text = target.get("label") or "—"
-        active_marker = " 🟢" if target.get("is_active") else ""
+        active_marker = " — Active 🟢" if target.get("is_active") else ""
 
         embed = discord.Embed(
             title=f"{label_text} Standings",
@@ -561,7 +561,7 @@ class SlashCommands(commands.Cog):
             end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
             name = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
             if season_id == active_id and season.get("is_active"):
-                name += " 🟢"
+                name += "— Active 🟢"
             elif multiple_seasons:
                 winner = winners.get(season_id)
                 if winner:
