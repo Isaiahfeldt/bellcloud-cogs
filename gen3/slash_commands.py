@@ -141,6 +141,15 @@ def format_dt(dt: datetime | None) -> str:
         return str(dt)
 
 
+def format_short_date(dt: datetime | None) -> str:
+    if not dt:
+        return "On going"
+    try:
+        return dt.strftime("%m/%d/%y")
+    except Exception:
+        return str(dt)
+
+
 async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
     """
     Word chain rule function for gen3 events.
@@ -404,13 +413,47 @@ class SlashCommands(commands.Cog):
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
 
+        multiple_seasons = len(seasons) > 1
+
+        async def get_winner_mention(season_id: int) -> str | None:
+            standings = await db.fetch_standings_for_season(interaction.guild_id, season_id)
+            if standings:
+                try:
+                    uid = int(standings[0]["user_id"])
+                except Exception:
+                    uid = int(standings[0][0])
+                return f"<@{uid}>"
+            struck = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
+            if struck:
+                try:
+                    uid = int(struck[0]["user_id"])
+                except Exception:
+                    uid = int(struck[0][0])
+                return f"<@{uid}>"
+            return None
+
         lines = []
-        for season in seasons:
+        winners: dict[int, str | None] = {}
+        if multiple_seasons:
+            for season in seasons:
+                season_id = int(season["id"])
+                if season_id == active_id and season.get("is_active"):
+                    continue
+                winners[season_id] = await get_winner_mention(season_id)
+
+        for idx, season in enumerate(seasons, start=1):
             season_id = int(season["id"])
-            status = "🟢 Active" if season_id == active_id and season.get("is_active") else "⚪ Archived"
-            lines.append(
-                f"ID {season_id}: {season.get('label') or '—'} — {format_dt(season.get('started_at'))} → {format_dt(season.get('ended_at'))} ({status})"
-            )
+            start_fmt = format_short_date(season.get("started_at"))
+            end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
+            line = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
+            if season_id == active_id and season.get("is_active"):
+                line += " 🟢"
+            elif multiple_seasons:
+                winner = winners.get(season_id)
+                if winner:
+                    line += f" - {winner}"
+            lines.append(line)
+
         embed.description = "\n".join(lines)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
@@ -453,9 +496,14 @@ class SlashCommands(commands.Cog):
                 pos += 1
             return lines
 
+        start_fmt = format_short_date(target.get("started_at"))
+        end_fmt = format_short_date(target.get("ended_at")) if target.get("ended_at") else "On going"
+        label_text = target.get("label") or "—"
+        active_marker = " 🟢" if target.get("is_active") else ""
+
         embed = discord.Embed(
-            title=f"Season {season_id} Standings",
-            description=f"{target.get('label') or 'No label'} — {format_dt(target.get('started_at'))} → {format_dt(target.get('ended_at'))}",
+            title=f"{label_text} Standings",
+            description=f"{start_fmt} - {end_fmt}{active_marker}",
             color=discord.Color.blurple(),
         )
 
@@ -466,6 +514,65 @@ class SlashCommands(commands.Cog):
         embed.add_field(name="Striked Out :(", value="\n".join(struck_lines) or "None", inline=False)
 
         await interaction.response.send_message(embed=embed)
+
+    @season_standings.autocomplete("season_id")
+    async def season_standings_autocomplete(
+        self, interaction: discord.Interaction, current: str
+    ) -> list[app_commands.Choice[int]]:
+        if interaction.guild is None:
+            return []
+
+        seasons = await db.list_seasons(interaction.guild_id)
+        if not seasons:
+            return []
+
+        multiple_seasons = len(seasons) > 1
+        active_id = next((int(s["id"]) for s in seasons if s.get("is_active")), None)
+
+        async def get_winner_mention(season_id: int) -> str | None:
+            standings = await db.fetch_standings_for_season(interaction.guild_id, season_id)
+            if standings:
+                try:
+                    uid = int(standings[0]["user_id"])
+                except Exception:
+                    uid = int(standings[0][0])
+                return f"<@{uid}>"
+            struck = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
+            if struck:
+                try:
+                    uid = int(struck[0]["user_id"])
+                except Exception:
+                    uid = int(struck[0][0])
+                return f"<@{uid}>"
+            return None
+
+        winners: dict[int, str | None] = {}
+        if multiple_seasons:
+            for season in seasons:
+                season_id = int(season["id"])
+                if season_id == active_id and season.get("is_active"):
+                    continue
+                winners[season_id] = await get_winner_mention(season_id)
+
+        choices: list[app_commands.Choice[int]] = []
+        for idx, season in enumerate(seasons, start=1):
+            season_id = int(season["id"])
+            start_fmt = format_short_date(season.get("started_at"))
+            end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
+            name = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
+            if season_id == active_id and season.get("is_active"):
+                name += " 🟢"
+            elif multiple_seasons:
+                winner = winners.get(season_id)
+                if winner:
+                    name += f" - {winner}"
+            choices.append(app_commands.Choice(name=name, value=season_id))
+
+        if current:
+            lowered = current.lower()
+            choices = [choice for choice in choices if lowered in choice.name.lower()]
+
+        return choices[:25]
 
     @gen3.command(name="remove_strike", description="Remove one or more strikes from a user")
     @app_commands.describe(user="User to remove strikes from", value="Number of strikes to remove (1-3)")
