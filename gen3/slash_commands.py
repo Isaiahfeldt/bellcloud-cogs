@@ -261,6 +261,41 @@ class SlashCommands(commands.Cog):
     def __init__(self):
         super().__init__()
 
+    async def _get_enabled_channel_ids(self, guild: discord.Guild | None) -> list[int]:
+        if guild is None:
+            return []
+
+        try:
+            enabled_ids = await self.config.guild(guild).enabled_channels()
+        except Exception:
+            return []
+
+        return enabled_ids or []
+
+    async def _get_enabled_text_channels(self, guild: discord.Guild | None) -> list[discord.TextChannel]:
+        enabled_channels: list[discord.TextChannel] = []
+        channel_ids = await self._get_enabled_channel_ids(guild)
+
+        if guild is None:
+            return enabled_channels
+
+        for ch_id in channel_ids:
+            channel = guild.get_channel(ch_id)
+            if isinstance(channel, discord.TextChannel):
+                enabled_channels.append(channel)
+
+        return enabled_channels
+
+    async def _channel_is_enabled(self, channel: discord.abc.GuildChannel | None) -> bool:
+        if channel is None:
+            return False
+
+        channel_ids = await self._get_enabled_channel_ids(getattr(channel, "guild", None))
+        if not channel_ids:
+            return False
+
+        return getattr(channel, "id", None) in channel_ids
+
     # Owner-only commands near the top
     @gen3.command(name="set_rule", description="Set the active Gen3 rule")
     @app_commands.describe(rule="Choose which rule to enforce")
@@ -328,23 +363,7 @@ class SlashCommands(commands.Cog):
                 struck_rows = []
 
             if struck_rows:
-                try:
-                    enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
-                except Exception:
-                    enabled_ids = []
-
-                target_channels: list[discord.TextChannel] = []
-                if enabled_ids:
-                    for ch_id in enabled_ids:
-                        channel = interaction.guild.get_channel(ch_id)
-                        if isinstance(channel, discord.TextChannel):
-                            target_channels.append(channel)
-
-                if not target_channels:
-                    for name in ["private-bot-commands", "general-3"]:
-                        channel = discord.utils.get(interaction.guild.channels, name=name)
-                        if isinstance(channel, discord.TextChannel):
-                            target_channels.append(channel)
+                target_channels = await self._get_enabled_text_channels(interaction.guild)
 
                 def extract_user_id(row) -> int:
                     try:
@@ -561,33 +580,18 @@ class SlashCommands(commands.Cog):
             new_count = await db.get_strikes(user.id, interaction.guild_id)
 
         if new_count < 3:
-            # Unblock user in any enabled Gen3 channels (or default fallbacks)
-            try:
-                enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
-            except Exception:
-                enabled_ids = []
-
+            # Unblock user in any enabled Gen3 channels
             cleared_any = False
-            if enabled_ids:
-                for ch_id in enabled_ids:
-                    ch = interaction.guild.get_channel(ch_id)
-                    if isinstance(ch, discord.TextChannel):
-                        try:
-                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
-                            cleared_any = True
-                        except Exception:
-                            pass
-
-            # Fallback to name-based defaults if no enabled channels configured or none cleared
-            if not cleared_any:
-                for name in ["private-bot-commands", "general-3"]:
-                    ch = discord.utils.get(interaction.guild.channels, name=name)
-                    if ch:
-                        try:
-                            await ch.set_permissions(user, overwrite=None, reason="Strike count below maximum strikes")
-                            cleared_any = True
-                        except Exception:
-                            pass
+            for channel in await self._get_enabled_text_channels(interaction.guild):
+                try:
+                    await channel.set_permissions(
+                        user,
+                        overwrite=None,
+                        reason="Strike count below maximum strikes",
+                    )
+                    cleared_any = True
+                except Exception:
+                    pass
 
         removed = int(value)
         plural = "strike" if removed == 1 else "strikes"
@@ -606,14 +610,7 @@ class SlashCommands(commands.Cog):
             return
         await db.reset_strikes(user.id, interaction.guild_id)
 
-        channel_names = ["private-bot-commands", "general-3"]
-
-        # Find the first matching channel
-        channel = next(
-            (discord.utils.get(interaction.guild.channels, name=name) for name in channel_names if
-             discord.utils.get(interaction.guild.channels, name=name)),
-            None
-        )
+        channel = next(iter(await self._get_enabled_text_channels(interaction.guild)), None)
 
         if channel:
             # Reset user permissions for the channel
@@ -962,17 +959,7 @@ class SlashCommands(commands.Cog):
                 return
 
             # Respect Gen3 enabled channels setting (with fallback to defaults)
-            channel_is_enabled = False
-            try:
-                enabled_channels = await self.config.guild(message.guild).enabled_channels()
-                if enabled_channels:
-                    channel_is_enabled = message.channel.id in enabled_channels
-                else:
-                    monitored_channels = ["private-bot-commands", "general-3"]
-                    channel_is_enabled = message.channel.name.lower() in monitored_channels
-            except Exception:
-                monitored_channels = ["private-bot-commands", "general-3"]
-                channel_is_enabled = message.channel.name.lower() in monitored_channels
+            channel_is_enabled = await self._channel_is_enabled(message.channel)
 
             if not channel_is_enabled:
                 return
@@ -1037,20 +1024,7 @@ class SlashCommands(commands.Cog):
             return
 
         # Determine whether this channel is enabled for Gen3
-        channel_is_enabled = False
-        if message.guild:
-            try:
-                enabled_channels = await self.config.guild(message.guild).enabled_channels()
-                if enabled_channels:
-                    channel_is_enabled = message.channel.id in enabled_channels
-                else:
-                    # Backward-compat: if no channels configured yet, fall back to name-based defaults
-                    monitored_channels = ["private-bot-commands", "general-3"]
-                    channel_is_enabled = message.channel.name.lower() in monitored_channels
-            except Exception:
-                # If config isn’t available for some reason, fall back to original behavior
-                monitored_channels = ["private-bot-commands", "general-3"]
-                channel_is_enabled = message.channel.name.lower() in monitored_channels
+        channel_is_enabled = await self._channel_is_enabled(message.channel)
 
         if channel_is_enabled:
             # Track participation: increment message count, except in exempt channels
