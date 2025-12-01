@@ -502,7 +502,7 @@ class SlashCommands(commands.Cog):
         active_marker = " 🟢" if target.get("is_active") else ""
 
         embed = discord.Embed(
-            title=f"{label_text} Standings",
+            title=f"Gen3 Standings - {label_text}!",
             description=f"{start_fmt} - {end_fmt}{active_marker}",
             color=discord.Color.blurple(),
         )
