@@ -16,6 +16,7 @@
 import json
 import random
 import re
+from datetime import datetime
 
 import discord
 from discord import app_commands
@@ -131,6 +132,24 @@ def extract_words(text: str) -> list[str]:
     return meaningful_words
 
 
+def format_dt(dt: datetime | None) -> str:
+    if not dt:
+        return "—"
+    try:
+        return dt.strftime("%Y-%m-%d %H:%M %Z")
+    except Exception:
+        return str(dt)
+
+
+def format_short_date(dt: datetime | None) -> str:
+    if not dt:
+        return "On going"
+    try:
+        return dt.strftime("%m/%d/%y")
+    except Exception:
+        return str(dt)
+
+
 async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
     """
     Word chain rule function for gen3 events.
@@ -237,6 +256,7 @@ class SlashCommands(commands.Cog):
     Slash commands for the Gen3 cog.
     """
     gen3 = app_commands.Group(name="gen3", description="Gen3 event management commands")
+    season = app_commands.Group(name="season", description="Manage Gen3 seasons", parent=gen3)
 
     def __init__(self):
         super().__init__()
@@ -282,6 +302,277 @@ class SlashCommands(commands.Cog):
             f"Active Gen3 rule set to: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
             ephemeral=False,
         )
+
+    @season.command(name="new", description="End the current Gen3 season and start a new one")
+    @app_commands.describe(label="Optional label for the new season")
+    @commands.guild_only()
+    @commands.admin_or_permissions(manage_guild=True)
+    async def season_new(self, interaction: discord.Interaction, label: str | None = None):
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
+
+        if interaction.guild is None:
+            await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
+            return
+
+        old_season, new_season = await db.start_new_season(interaction.guild_id, label=label)
+
+        cleared_users: set[int] = set()
+        if old_season:
+            try:
+                struck_rows = await db.fetch_struck_out_for_season(
+                    interaction.guild_id, int(old_season["id"])
+                )
+            except Exception:
+                struck_rows = []
+
+            if struck_rows:
+                try:
+                    enabled_ids = await self.config.guild(interaction.guild).enabled_channels()
+                except Exception:
+                    enabled_ids = []
+
+                target_channels: list[discord.TextChannel] = []
+                if enabled_ids:
+                    for ch_id in enabled_ids:
+                        channel = interaction.guild.get_channel(ch_id)
+                        if isinstance(channel, discord.TextChannel):
+                            target_channels.append(channel)
+
+                if not target_channels:
+                    for name in ["private-bot-commands", "general-3"]:
+                        channel = discord.utils.get(interaction.guild.channels, name=name)
+                        if isinstance(channel, discord.TextChannel):
+                            target_channels.append(channel)
+
+                def extract_user_id(row) -> int:
+                    try:
+                        return int(row["user_id"])
+                    except Exception:
+                        return int(row[0])
+
+                for row in struck_rows:
+                    uid = extract_user_id(row)
+                    member = interaction.guild.get_member(uid)
+                    if not member:
+                        continue
+                    for ch in target_channels:
+                        try:
+                            await ch.set_permissions(member, overwrite=None, reason="Gen3 season reset")
+                            cleared_users.add(uid)
+                        except Exception:
+                            continue
+
+        embed = discord.Embed(title="New Gen3 Season Started!", color=discord.Color.green())
+        if old_season:
+            embed.add_field(
+                name="Previous Season",
+                value=(
+                    f"ID: {old_season['id']}\n"
+                    f"Label: {old_season.get('label') or '—'}\n"
+                    f"Duration: {format_dt(old_season.get('started_at'))} → {format_dt(old_season.get('ended_at'))}"
+                ),
+                inline=False,
+            )
+
+        embed.add_field(
+            name="Active Season",
+            value=(
+                f"ID: {new_season['id']}\n"
+                f"Label: {new_season.get('label') or '—'}\n"
+                f"Started: {format_dt(new_season.get('started_at'))}"
+            ),
+            inline=False,
+        )
+
+        if cleared_users:
+            embed.set_footer(text=f"Cleared channel overrides for {len(cleared_users)} users from the previous season.")
+
+        await interaction.response.send_message(embed=embed)
+
+    @season.command(name="list", description="List all Gen3 seasons for this guild")
+    @commands.guild_only()
+    @commands.admin_or_permissions(manage_guild=True)
+    async def season_list(self, interaction: discord.Interaction):
+        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
+
+        if interaction.guild is None:
+            await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
+            return
+
+        seasons = await db.list_seasons(interaction.guild_id)
+        active = await db.get_active_season(interaction.guild_id)
+        active_id = int(active["id"]) if active else None
+
+        embed = discord.Embed(title="Gen3 Seasons", color=discord.Color.blurple())
+        if not seasons:
+            embed.description = "No seasons recorded for this guild yet."
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+
+        multiple_seasons = len(seasons) > 1
+
+        async def get_winner_mention(season_id: int) -> str | None:
+            standings = await db.fetch_standings_for_season(interaction.guild_id, season_id)
+            if standings:
+                try:
+                    uid = int(standings[0]["user_id"])
+                except Exception:
+                    uid = int(standings[0][0])
+                return f"<@{uid}>"
+            struck = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
+            if struck:
+                try:
+                    uid = int(struck[0]["user_id"])
+                except Exception:
+                    uid = int(struck[0][0])
+                return f"<@{uid}>"
+            return None
+
+        lines = []
+        winners: dict[int, str | None] = {}
+        if multiple_seasons:
+            for season in seasons:
+                season_id = int(season["id"])
+                if season_id == active_id and season.get("is_active"):
+                    continue
+                winners[season_id] = await get_winner_mention(season_id)
+
+        for idx, season in enumerate(seasons, start=1):
+            season_id = int(season["id"])
+            start_fmt = format_short_date(season.get("started_at"))
+            end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
+            line = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
+            if season_id == active_id and season.get("is_active"):
+                line += " 🟢"
+            elif multiple_seasons:
+                winner = winners.get(season_id)
+                if winner:
+                    line += f" - {winner}"
+            lines.append(line)
+
+        embed.description = "\n".join(lines)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @season.command(name="standings", description="View standings for a specific season")
+    @app_commands.describe(season_id="Season ID to view")
+    @commands.guild_only()
+    async def season_standings(self, interaction: discord.Interaction, season_id: int):
+        if interaction.guild is None:
+            await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
+            return
+
+        seasons = await db.list_seasons(interaction.guild_id)
+        target = next((s for s in seasons if int(s["id"]) == season_id), None)
+        if not target:
+            await interaction.response.send_message("Season not found for this guild.", ephemeral=True)
+            return
+
+        active_rows = await db.fetch_standings_for_season(interaction.guild_id, season_id)
+        struck_rows = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
+
+        def to_tuple(r):
+            try:
+                uid = int(r["user_id"])
+                strikes = int(r["strikes"])
+                msg_count = int(r["msg_count"])
+            except Exception:
+                uid = int(r[0])
+                strikes = int(r[1])
+                msg_count = int(r[2])
+            return uid, strikes, msg_count
+
+        def format_rows(rows, start_pos: int = 1):
+            lines = []
+            pos = start_pos
+            for r in rows:
+                uid, strikes, msg_count = to_tuple(r)
+                member = interaction.guild.get_member(uid)
+                name = member.mention if member else f"<@{uid}>"
+                lines.append(f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs")
+                pos += 1
+            return lines
+
+        start_fmt = format_short_date(target.get("started_at"))
+        end_fmt = format_short_date(target.get("ended_at")) if target.get("ended_at") else "On going"
+        label_text = target.get("label") or "—"
+        active_marker = " 🟢" if target.get("is_active") else ""
+
+        embed = discord.Embed(
+            title=f"{label_text} Standings",
+            description=f"{start_fmt} - {end_fmt}{active_marker}",
+            color=discord.Color.blurple(),
+        )
+
+        active_lines = format_rows(active_rows)
+        struck_lines = format_rows(struck_rows)
+
+        embed.add_field(name="Active Players", value="\n".join(active_lines) or "None", inline=False)
+        embed.add_field(name="Striked Out :(", value="\n".join(struck_lines) or "None", inline=False)
+
+        await interaction.response.send_message(embed=embed)
+
+    @season_standings.autocomplete("season_id")
+    async def season_standings_autocomplete(
+        self, interaction: discord.Interaction, current: str
+    ) -> list[app_commands.Choice[int]]:
+        if interaction.guild is None:
+            return []
+
+        seasons = await db.list_seasons(interaction.guild_id)
+        if not seasons:
+            return []
+
+        multiple_seasons = len(seasons) > 1
+        active_id = next((int(s["id"]) for s in seasons if s.get("is_active")), None)
+
+        async def get_winner_mention(season_id: int) -> str | None:
+            standings = await db.fetch_standings_for_season(interaction.guild_id, season_id)
+            if standings:
+                try:
+                    uid = int(standings[0]["user_id"])
+                except Exception:
+                    uid = int(standings[0][0])
+                return f"<@{uid}>"
+            struck = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
+            if struck:
+                try:
+                    uid = int(struck[0]["user_id"])
+                except Exception:
+                    uid = int(struck[0][0])
+                return f"<@{uid}>"
+            return None
+
+        winners: dict[int, str | None] = {}
+        if multiple_seasons:
+            for season in seasons:
+                season_id = int(season["id"])
+                if season_id == active_id and season.get("is_active"):
+                    continue
+                winners[season_id] = await get_winner_mention(season_id)
+
+        choices: list[app_commands.Choice[int]] = []
+        for idx, season in enumerate(seasons, start=1):
+            season_id = int(season["id"])
+            start_fmt = format_short_date(season.get("started_at"))
+            end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
+            name = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
+            if season_id == active_id and season.get("is_active"):
+                name += " 🟢"
+            elif multiple_seasons:
+                winner = winners.get(season_id)
+                if winner:
+                    name += f" - {winner}"
+            choices.append(app_commands.Choice(name=name, value=season_id))
+
+        if current:
+            lowered = current.lower()
+            choices = [choice for choice in choices if lowered in choice.name.lower()]
+
+        return choices[:25]
 
     @gen3.command(name="remove_strike", description="Remove one or more strikes from a user")
     @app_commands.describe(user="User to remove strikes from", value="Number of strikes to remove (1-3)")
