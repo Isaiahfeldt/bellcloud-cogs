@@ -526,33 +526,7 @@ class SlashCommands(commands.Cog):
         if not seasons:
             return []
 
-        multiple_seasons = len(seasons) > 1
         active_id = next((int(s["id"]) for s in seasons if s.get("is_active")), None)
-
-        async def get_winner_mention(season_id: int) -> str | None:
-            standings = await db.fetch_standings_for_season(interaction.guild_id, season_id)
-            if standings:
-                try:
-                    uid = int(standings[0]["user_id"])
-                except Exception:
-                    uid = int(standings[0][0])
-                return f"<@{uid}>"
-            struck = await db.fetch_struck_out_for_season(interaction.guild_id, season_id)
-            if struck:
-                try:
-                    uid = int(struck[0]["user_id"])
-                except Exception:
-                    uid = int(struck[0][0])
-                return f"<@{uid}>"
-            return None
-
-        winners: dict[int, str | None] = {}
-        if multiple_seasons:
-            for season in seasons:
-                season_id = int(season["id"])
-                if season_id == active_id and season.get("is_active"):
-                    continue
-                winners[season_id] = await get_winner_mention(season_id)
 
         choices: list[app_commands.Choice[int]] = []
         for idx, season in enumerate(seasons, start=1):
@@ -562,10 +536,6 @@ class SlashCommands(commands.Cog):
             name = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
             if season_id == active_id and season.get("is_active"):
                 name += " 🟢"
-            elif multiple_seasons:
-                winner = winners.get(season_id)
-                if winner:
-                    name += f" - {winner}"
             choices.append(app_commands.Choice(name=name, value=season_id))
 
         if current:
