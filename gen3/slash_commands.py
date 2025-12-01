@@ -447,7 +447,7 @@ class SlashCommands(commands.Cog):
             end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
             line = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
             if season_id == active_id and season.get("is_active"):
-                line += " — Active 🟢"
+                line += " (Active 🟢)"
             elif multiple_seasons:
                 winner = winners.get(season_id)
                 if winner:
@@ -499,7 +499,7 @@ class SlashCommands(commands.Cog):
         start_fmt = format_short_date(target.get("started_at"))
         end_fmt = format_short_date(target.get("ended_at")) if target.get("ended_at") else "On going"
         label_text = target.get("label") or "—"
-        active_marker = " — Active 🟢" if target.get("is_active") else ""
+        active_marker = " (Active 🟢)" if target.get("is_active") else ""
 
         embed = discord.Embed(
             title=f"{label_text} Standings",
@@ -561,7 +561,7 @@ class SlashCommands(commands.Cog):
             end_fmt = format_short_date(season.get("ended_at")) if season.get("ended_at") else "On going"
             name = f"{idx}. {season.get('label') or '—'}: {start_fmt} - {end_fmt}"
             if season_id == active_id and season.get("is_active"):
-                name += "— Active 🟢"
+                name += " (Active 🟢)"
             elif multiple_seasons:
                 winner = winners.get(season_id)
                 if winner:
@@ -689,6 +689,17 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     async def standings(self, interaction: discord.Interaction, user: discord.Member | None = None):
         guild = interaction.guild
+        active_season = await db.get_active_season(guild.id)
+        season_label = None
+        if active_season:
+            try:
+                season_label = active_season.get("label")
+            except Exception:
+                try:
+                    season_label = active_season["label"]
+                except Exception:
+                    season_label = None
+        embed_title = f"Gen3 Standings - {season_label}!" if season_label else "Gen3 Standings!"
         try:
             active_rows = await db.fetch_standings(guild.id)
             struck_rows = await db.fetch_struck_out(guild.id)
@@ -774,7 +785,7 @@ class SlashCommands(commands.Cog):
         active_lines = format_rows(top_active, start_pos=1)
         struck_lines = format_rows(top_struck, start_pos=1)
 
-        embed = discord.Embed(title="Gen3 Standings!", color=discord.Color.blurple())
+        embed = discord.Embed(title=embed_title, color=discord.Color.blurple())
         embed.description = "Sorted by lowest strikes first, then by message count to break ties"
         if active_lines:
             active_text = "\n".join(active_lines)
