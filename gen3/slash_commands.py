@@ -1012,6 +1012,54 @@ class SlashCommands(commands.Cog):
                 except Exception:
                     pass
                 return
+
+            # Mod strike removal via sparkle emoji
+            if emoji_str == "✨":
+                # permissions: mods only (or owner)
+                is_owner = False
+                try:
+                    is_owner = await self.bot.is_owner(user)
+                except Exception:
+                    pass
+                perms = getattr(user, "guild_permissions", None)
+                is_mod = False
+                if perms:
+                    is_mod = (
+                        perms.administrator
+                        or perms.manage_guild
+                        or getattr(perms, "moderate_members", False)
+                        or perms.manage_messages
+                    )
+                if not (is_owner or is_mod):
+                    return
+
+                # Remove a single strike from the message author
+                target_user = message.author
+                if target_user is None or getattr(target_user, "bot", False):
+                    return
+
+                try:
+                    new_count = await db.decrease_strike(target_user.id, message.guild.id)
+
+                    if new_count < 3:
+                        for channel in await self._get_enabled_text_channels(message.guild):
+                            try:
+                                await channel.set_permissions(
+                                    target_user,
+                                    overwrite=None,
+                                    reason="Strike count below maximum strikes",
+                                )
+                            except Exception:
+                                pass
+
+                    removed = 1
+                    plural = "strike" if removed == 1 else "strikes"
+                    await message.channel.send(
+                        f"Removed {removed} {plural} from {target_user.mention}! ✨ They now have {new_count}/3 strikes.",
+                    )
+                except Exception:
+                    pass
+                return
         except Exception:
             # Listener should never raise
             pass
