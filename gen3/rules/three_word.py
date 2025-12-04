@@ -81,7 +81,7 @@ def extract_words_only(text: str) -> list[str]:
 
     # Regex for hyphenated words, contractions, and alphanumeric words
     words = re.findall(
-        r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
+        r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
         text,
     )
 
@@ -95,14 +95,14 @@ def extract_words_only(text: str) -> list[str]:
 
 def count_hyphenated_words(text: str) -> int:
     """Count the number of hyphenated words in the text."""
-    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b"
+    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b"
     hyphenated_words = re.findall(hyphenated_pattern, text)
     return len(hyphenated_words)
 
 
 def has_multi_hyphenated_words(text: str) -> bool:
     """Return True if the text contains any multi-hyphenated words (>= 2 hyphens)."""
-    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*\b"
+    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b"
     hyphenated_words = re.findall(hyphenated_pattern, text)
     for word in hyphenated_words:
         if word.count("-") >= 2:
@@ -116,7 +116,7 @@ def are_hyphenated_words_properly_separated(text: str) -> bool:
     hyphenated words appear back-to-back.
     """
     words = extract_words_only(text)
-    hyphenated_pattern = r"^[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*$"
+    hyphenated_pattern = r"^[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?$"
 
     for i in range(len(words) - 1):
         current_word = words[i]
