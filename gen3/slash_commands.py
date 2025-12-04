@@ -39,6 +39,9 @@ current_required_word = None
 # Possible values: "apple_orange", "word_chain", "three_word"
 ACTIVE_RULE = "apple_orange"
 
+# Toggle to preserve legacy numbered standings formatting (disabled for alphabetical view)
+USE_LEGACY_STANDINGS_LAYOUT = False
+
 # Common words to exclude from selection
 EXCLUDED_WORDS = {
     "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he", "in", "is", "it",
@@ -651,7 +654,7 @@ class SlashCommands(commands.Cog):
             ephemeral=False
         )
 
-    @gen3.command(name="standings", description="View Gen3 standings: lowest strikes first, then message count")
+    @gen3.command(name="standings", description="View Gen3 standings alphabetically")
     @app_commands.describe(user="Optionally show only this user's standing")
     @commands.guild_only()
     async def standings(self, interaction: discord.Interaction, user: discord.Member | None = None):
@@ -686,7 +689,7 @@ class SlashCommands(commands.Cog):
                 msg_count = int(r[2])
             return uid, strikes, msg_count
 
-        def format_rows(rows, start_pos: int = 1):
+        def format_rows_legacy(rows, start_pos: int = 1):
             lines = []
             pos = start_pos
             for r in rows:
@@ -696,6 +699,17 @@ class SlashCommands(commands.Cog):
                 lines.append(f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs")
                 pos += 1
             return lines
+
+        def format_rows_alpha(rows):
+            entries = []
+            for r in rows:
+                uid, strikes, msg_count = to_tuple(r)
+                member = guild.get_member(uid)
+                mention = member.mention if member else f"<@{uid}>"
+                display_name = getattr(member, "display_name", None) or str(uid)
+                entries.append((display_name.casefold(), f"{mention} — {strikes}/3 strikes"))
+            entries.sort(key=lambda item: item[0])
+            return [entry for _, entry in entries]
 
         def find_user_position(rows, target_id: int):
             pos = 1
@@ -731,43 +745,74 @@ class SlashCommands(commands.Cog):
             if found:
                 pos, strikes, msg_count = found
                 name = member.mention if isinstance(member, discord.Member) else f"<@{user.id}>"
-                line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                if USE_LEGACY_STANDINGS_LAYOUT:
+                    line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                else:
+                    line = f"{name} — {strikes}/3 strikes"
                 embed.add_field(name="Active Player", value=line, inline=False)
             else:
                 found = find_user_position(struck_rows, user.id)
                 if found:
                     pos, strikes, msg_count = found
                     name = member.mention if isinstance(member, discord.Member) else f"<@{user.id}>"
-                    line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                    if USE_LEGACY_STANDINGS_LAYOUT:
+                        line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
+                    else:
+                        line = f"{name} — {strikes}/3 strikes"
                     embed.add_field(name="Striked Out :(", value=line, inline=False)
                 else:
                     embed.description = f"{user.mention} has no recorded activity yet."
             await interaction.response.send_message(embed=embed)
             return
 
-        # Default: show top 10 active and top 10 struck-out
-        top_active = list(active_rows[:10]) if hasattr(active_rows, "__getitem__") else active_rows
-        top_struck = list(struck_rows[:10]) if hasattr(struck_rows, "__getitem__") else struck_rows
-
-        active_lines = format_rows(top_active, start_pos=1)
-        struck_lines = format_rows(top_struck, start_pos=1)
-
         embed = discord.Embed(title=embed_title, color=discord.Color.blurple())
-        embed.description = "Sorted by lowest strikes first, then by message count to break ties"
-        if active_lines:
-            active_text = "\n".join(active_lines)
-            # Append summary if more beyond top 10
-            extra = max(len(active_rows) - 10, 0)
-            if extra > 0:
-                active_text += f"\n+{extra} more outside top 10 standings"
-        else:
-            active_text = "No active participants yet."
-        embed.add_field(name="Active Players", value=active_text[:1024], inline=False)
 
-        if struck_lines:
-            struck_text = "\n".join(struck_lines)
+        if USE_LEGACY_STANDINGS_LAYOUT:
+            # Default: show top 10 active and top 10 struck-out
+            top_active = list(active_rows[:10]) if hasattr(active_rows, "__getitem__") else active_rows
+            top_struck = list(struck_rows[:10]) if hasattr(struck_rows, "__getitem__") else struck_rows
+
+            active_lines = format_rows_legacy(top_active, start_pos=1)
+            struck_lines = format_rows_legacy(top_struck, start_pos=1)
+
+            embed.description = "Sorted by lowest strikes first, then by message count to break ties"
+            if active_lines:
+                active_text = "\n".join(active_lines)
+                # Append summary if more beyond top 10
+                extra = max(len(active_rows) - 10, 0)
+                if extra > 0:
+                    active_text += f"\n+{extra} more outside top 10 standings"
+            else:
+                active_text = "No active participants yet."
+            embed.add_field(name="Active Players", value=active_text[:1024], inline=False)
+
+            if struck_lines:
+                struck_text = "\n".join(struck_lines)
+            else:
+                struck_text = "None"
         else:
-            struck_text = "None"
+            active_lines = format_rows_alpha(active_rows)
+            struck_lines = format_rows_alpha(struck_rows)
+
+            embed.description = "Sorted alphabetically by display name"
+            if active_lines:
+                visible_active = active_lines[:10]
+                active_text = "\n".join(visible_active)
+                extra = max(len(active_lines) - len(visible_active), 0)
+                if extra > 0:
+                    active_text += f"\n+{extra} more outside top 10 standings"
+            else:
+                active_text = "No active participants yet."
+            embed.add_field(name="Active Players", value=active_text[:1024], inline=False)
+
+            if struck_lines:
+                visible_struck = struck_lines[:10]
+                struck_text = "\n".join(visible_struck)
+                extra_struck = max(len(struck_lines) - len(visible_struck), 0)
+                if extra_struck > 0:
+                    struck_text += f"\n+{extra_struck} more outside top 10 standings"
+            else:
+                struck_text = "None"
         embed.add_field(name="Striked Out :(", value=struck_text[:1024], inline=False)
 
         await interaction.response.send_message(embed=embed)
