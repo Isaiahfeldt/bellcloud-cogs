@@ -28,6 +28,13 @@ class ThreeWordRuleTests(unittest.TestCase):
         self.assertFalse(result["passes"])
         self.assertIn("Hyphenated words must be separated", result["reason"])
 
+    def test_decimal_number_counts_as_single_number(self):
+        message = "took 3.5 hours"
+        result = asyncio.run(three_word_rule(message))
+
+        self.assertTrue(result["passes"])
+        self.assertEqual(result["analysis"]["number_count"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
