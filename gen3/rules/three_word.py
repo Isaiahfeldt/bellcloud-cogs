@@ -142,8 +142,8 @@ def analyze_message_content(text: str) -> dict:
     words = extract_words_only(cleaned)
     word_count = len(words)
 
-    # Extract standalone number tokens (integers only for speed and clarity)
-    numbers = re.findall(r"\b\d+\b", cleaned)
+    # Extract standalone number tokens, including decimals like 3.5 as a single token
+    numbers = re.findall(r"\b\d+(?:\.\d+)?\b", cleaned)
     number_count = len(numbers)
 
     all_tokens = cleaned.split()
