@@ -1048,7 +1048,10 @@ class SlashCommands(commands.Cog):
                     content = message.clean_content
                     guild_id = message.guild.id
                     author_id = message.author.id if message.author else None
-                    current_strikes = await db.get_strikes(author_id, guild_id) if author_id else 0
+                    demo_mode = await self._channel_is_demo(message.channel)
+                    current_strikes = 0
+                    if author_id and not demo_mode:
+                        current_strikes = await db.get_strikes(author_id, guild_id)
                     try:
                         saved_rule = await self.config.guild(message.guild).active_rule()
                     except Exception:
@@ -1200,7 +1203,10 @@ class SlashCommands(commands.Cog):
         guild_id = message.guild.id
         user_id = message.author.id
 
-        strikes = await db.get_strikes(user_id, guild_id)
+        if demo_mode:
+            strikes = 0
+        else:
+            strikes = await db.get_strikes(user_id, guild_id)
         rule_key = await self._get_effective_rule(message.guild, channel)
 
         analysis = await check_gen3_rules(content, strikes, active_rule=rule_key)
