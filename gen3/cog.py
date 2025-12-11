@@ -43,7 +43,9 @@ class Gen3Cog(SlashCommands):
         # Default configuration for Gen3 (per guild)
         default_guild = {
             "enabled_channels": [],
-            "active_rule": "apple_orange"
+            "active_rule": "apple_orange",
+            "channel_rule_overrides": {},
+            "demo_channels": [],
         }
         self.config.register_guild(**default_guild)
 

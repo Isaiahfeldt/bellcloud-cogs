@@ -26,14 +26,12 @@ from redbot.core.i18n import Translator, cog_i18n
 from gen3.rules.apple_orange import apple_orange_rule
 # Import the 3-word rule from scratch file for flexible rules
 from gen3.rules.three_word import three_word_rule
+from gen3.rules.word_chain import get_position_emoji, reset_word_chain_state, word_chain_rule
 # Use the dedicated Gen3Database class
 from gen3.utils.database import Gen3Database
 
 # Create a global database instance
 db = Gen3Database()
-
-# Word chain tracking - global state for current required word
-current_required_word = None
 
 # Active rule selector (global for simplicity/minimal changes)
 # Possible values: "apple_orange", "word_chain", "three_word"
@@ -41,46 +39,6 @@ ACTIVE_RULE = "apple_orange"
 
 # Toggle to preserve legacy numbered standings formatting (disabled for alphabetical view)
 USE_LEGACY_STANDINGS_LAYOUT = False
-
-# Common words to exclude from selection
-EXCLUDED_WORDS = {
-    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he", "in", "is", "it",
-    "its", "of", "on", "that", "the", "to", "was", "will", "with", "you", "your", "i", "me", "my",
-    "we", "us", "our", "they", "them", "their", "this", "these", "those", "than", "then", "there",
-    "here", "where", "when", "how", "what", "who", "why", "can", "could", "should", "would", "have",
-    "had", "do", "does", "did", "get", "got", "just", "now", "so", "very", "much", "more", "most",
-    "some", "any", "no", "not", "up", "out", "if", "about", "into", "over", "after"
-}
-
-# Base digit emojis for dynamic number generation
-DIGIT_EMOJIS = {
-    '0': "0️⃣", '1': "1️⃣", '2': "2️⃣", '3': "3️⃣", '4': "4️⃣",
-    '5': "5️⃣", '6': "6️⃣", '7': "7️⃣", '8': "8️⃣", '9': "9️⃣"
-}
-
-
-def get_position_emoji(position: int) -> str:
-    """
-    Generate emoji representation for any position number dynamically.
-    
-    Args:
-        position: The position number to convert to emoji
-        
-    Returns:
-        str: Emoji representation of the position number
-    """
-    if position == 10:
-        return "🔟"  # Special case for 10
-
-    # Convert position to string and map each digit to its emoji
-    position_str = str(position)
-    emoji_parts = [DIGIT_EMOJIS[digit] for digit in position_str]
-
-    return ''.join(emoji_parts)
-
-
-# Provide a legacy/static mapping for tests and convenience (1..20)
-POSITION_EMOJIS = {i: get_position_emoji(i) for i in range(1, 21)}
 
 # Channels where strikes don't count (hard-coded exemptions)
 STRIKE_EXEMPT_CHANNEL_IDS = {}
@@ -116,25 +74,6 @@ def contains_emoji(text: str) -> bool:
         emoji_shortcode_pattern.search(text))
 
 
-def extract_words(text: str) -> list[str]:
-    """
-    Extract meaningful words from text, excluding articles, prepositions, and common words.
-    
-    Args:
-        text: The input text to extract words from
-        
-    Returns:
-        list: List of meaningful words in lowercase
-    """
-    # Remove punctuation and split into words
-    words = re.findall(r'\b[a-zA-Z]+\b', text.lower())
-
-    # Filter out excluded words and words shorter than 3 characters
-    meaningful_words = [word for word in words if word not in EXCLUDED_WORDS and len(word) >= 3]
-
-    return meaningful_words
-
-
 def format_dt(dt: datetime | None) -> str:
     if not dt:
         return "—"
@@ -151,82 +90,6 @@ def format_short_date(dt: datetime | None) -> str:
         return dt.strftime("%m/%d/%y")
     except Exception:
         return str(dt)
-
-
-async def word_chain_rule(content: str, current_strikes: int = 0) -> dict:
-    """
-    Word chain rule function for gen3 events.
-    
-    Args:
-        content: The message content to analyze
-        current_strikes: Current number of strikes the user has
-    
-    Returns:
-        dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
-    """
-    global current_required_word
-
-    # If no required word is set, this message passes and we select a new word
-    if current_required_word is None:
-        meaningful_words = extract_words(content)
-
-        if meaningful_words:
-            # Select a random word from the meaningful words
-            selected_word = random.choice(meaningful_words)
-
-            # Find the position of this word in the original text
-            content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
-            word_position = content_words.index(selected_word) + 1  # 1-indexed
-
-            current_required_word = selected_word
-
-            return {
-                "passes": True,
-                "reason": f"Message accepted! Next person must include the word '{selected_word}'",
-                "selected_word": selected_word,
-                "word_position": word_position
-            }
-        else:
-            return {
-                "passes": True,
-                "reason": "No meaningful words found to select. Message accepted!",
-                "selected_word": None,
-                "word_position": None
-            }
-
-    # Check if the message contains the required word
-    content_lower = content.lower()
-    if current_required_word in content_lower:
-        # Message passes, now select a new word from this message
-        meaningful_words = extract_words(content)
-
-        if meaningful_words:
-            selected_word = random.choice(meaningful_words)
-            content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
-            word_position = content_words.index(selected_word) + 1  # 1-indexed
-
-            current_required_word = selected_word
-
-            return {
-                "passes": True,
-                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}'",
-                "selected_word": selected_word,
-                "word_position": word_position
-            }
-        else:
-            # Keep the same required word since no new words to select
-            return {
-                "passes": True,
-                "reason": f"Message accepted! Next person still needs to include '{current_required_word}'",
-                "selected_word": None,
-                "word_position": None
-            }
-    else:
-        # Message fails - doesn't contain required word
-        return {
-            "passes": False,
-            "reason": f"Oops! Your message must contain the word '{current_required_word}' to continue the chain!"
-        }
 
 
 async def check_gen3_rules(content: str, current_strikes: int = 0, active_rule: str | None = None) -> dict:
@@ -299,9 +162,65 @@ class SlashCommands(commands.Cog):
 
         return getattr(channel, "id", None) in channel_ids
 
+    async def _channel_is_demo(self, channel: discord.abc.GuildChannel | None) -> bool:
+        if channel is None:
+            return False
+
+        try:
+            demo_channels = await self.config.guild(channel.guild).demo_channels()
+        except Exception:
+            return False
+
+        demo_channels = demo_channels or []
+        return getattr(channel, "id", None) in demo_channels
+
+    async def _get_guild_rule(self, guild: discord.Guild | None) -> str | None:
+        if guild is None:
+            return None
+        try:
+            return await self.config.guild(guild).active_rule()
+        except Exception:
+            return None
+
+    async def _get_channel_rule_override(
+        self, guild: discord.Guild | None, channel: discord.abc.GuildChannel | None
+    ) -> str | None:
+        if guild is None or channel is None:
+            return None
+
+        try:
+            overrides = await self.config.guild(guild).channel_rule_overrides()
+        except Exception:
+            return None
+
+        if not overrides:
+            return None
+
+        channel_id = getattr(channel, "id", None)
+        if channel_id is None:
+            return None
+
+        return overrides.get(str(channel_id)) or overrides.get(channel_id)
+
+    async def _get_effective_rule(
+        self, guild: discord.Guild | None, channel: discord.abc.GuildChannel | None
+    ) -> str:
+        override_rule = await self._get_channel_rule_override(guild, channel)
+        if override_rule:
+            return override_rule
+
+        saved_rule = await self._get_guild_rule(guild)
+        if saved_rule:
+            return saved_rule
+
+        return ACTIVE_RULE
+
     # Owner-only commands near the top
     @gen3.command(name="set_rule", description="Set the active Gen3 rule")
-    @app_commands.describe(rule="Choose which rule to enforce")
+    @app_commands.describe(
+        rule="Choose which rule to enforce",
+        channel="Optionally override the rule for a single channel",
+    )
     @app_commands.choices(
         rule=[
             app_commands.Choice(name="Apple/Orange (demo)", value="apple_orange"),
@@ -311,35 +230,52 @@ class SlashCommands(commands.Cog):
     )
     @commands.guild_only()
     @commands.is_owner()
-    async def set_rule(self, interaction: discord.Interaction, rule: app_commands.Choice[str]):
+    async def set_rule(
+        self,
+        interaction: discord.Interaction,
+        rule: app_commands.Choice[str],
+        channel: discord.TextChannel | None = None,
+    ):
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
             return
-        global ACTIVE_RULE
-        ACTIVE_RULE = rule.value
-
-        # Persist the selected rule per guild so it survives reloads
-        try:
-            await self.config.guild(interaction.guild).active_rule.set(ACTIVE_RULE)
-        except Exception:
-            # If config isn't available for any reason, continue with in-memory value only
-            pass
-
-        # Reset the word-chain state if switching away from/into it (to avoid confusing carryover)
-        global current_required_word
-        if ACTIVE_RULE != "word_chain":
-            current_required_word = None
-
+        rule_value = rule.value
         # Friendly confirmation
         names = {
             "apple_orange": "Apple/Orange (demo)",
             "word_chain": "Word Chain",
             "three_word": "Three Word",
         }
-        await interaction.response.send_message(
-            f"Active Gen3 rule set to: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
-            ephemeral=False,
-        )
+
+        if channel:
+            try:
+                async with self.config.guild(interaction.guild).channel_rule_overrides() as overrides:
+                    overrides[str(channel.id)] = rule_value
+            except Exception:
+                pass
+
+            await interaction.response.send_message(
+                f"Active Gen3 rule for {channel.mention} set to: {names.get(rule_value, rule_value)} (channel override)",
+                ephemeral=False,
+            )
+        else:
+            global ACTIVE_RULE
+            ACTIVE_RULE = rule_value
+
+            # Persist the selected rule per guild so it survives reloads
+            try:
+                await self.config.guild(interaction.guild).active_rule.set(ACTIVE_RULE)
+            except Exception:
+                # If config isn't available for any reason, continue with in-memory value only
+                pass
+
+            await interaction.response.send_message(
+                f"Active Gen3 rule set to: {names.get(ACTIVE_RULE, ACTIVE_RULE)}",
+                ephemeral=False,
+            )
+
+        # Reset the word-chain state (fresh start when rules change)
+        reset_word_chain_state()
 
     @season.command(name="new", description="End the current Gen3 season and start a new one")
     @app_commands.describe(label="Optional label for the new season")
@@ -626,23 +562,28 @@ class SlashCommands(commands.Cog):
 
     # General/admin commands
     @gen3.command(name="get_rule", description="Show the currently active Gen3 rule")
+    @app_commands.describe(channel="Optionally view the rule for a specific channel")
     @commands.guild_only()
-    async def get_rule(self, interaction: discord.Interaction):
+    async def get_rule(self, interaction: discord.Interaction, channel: discord.TextChannel | None = None):
         names = {
             "apple_orange": "Apple/Orange (demo)",
             "word_chain": "Word Chain",
             "three_word": "Three Word",
         }
-        # Read persisted rule for this guild, fallback to in-memory global
-        try:
-            saved_rule = await self.config.guild(interaction.guild).active_rule()
-        except Exception:
-            saved_rule = None
-        rule_key = saved_rule or ACTIVE_RULE
-        await interaction.response.send_message(
-            f"Current active Gen3 rule: {names.get(rule_key, rule_key)}",
-            ephemeral=True,
-        )
+        effective_rule = await self._get_effective_rule(interaction.guild, channel)
+        override_rule = await self._get_channel_rule_override(interaction.guild, channel) if channel else None
+
+        if channel:
+            detail = "(channel override)" if override_rule else "(guild default)"
+            await interaction.response.send_message(
+                f"Current Gen3 rule for {channel.mention}: {names.get(effective_rule, effective_rule)} {detail}",
+                ephemeral=True,
+            )
+        else:
+            await interaction.response.send_message(
+                f"Current active Gen3 rule: {names.get(effective_rule, effective_rule)}",
+                ephemeral=True,
+            )
 
     @gen3.command(name="view_strikes", description="View current strikes for a user")
     @app_commands.describe(user="User to check strikes for")
@@ -818,10 +759,18 @@ class SlashCommands(commands.Cog):
         await interaction.response.send_message(embed=embed)
 
     @gen3.command(name="toggle", description="Enable or disable Gen3 in a specific channel")
-    @app_commands.describe(channel="The channel to configure Gen3 for")
+    @app_commands.describe(
+        channel="The channel to configure Gen3 for",
+        demo="Enable demo mode (no strikes) instead of the normal mode",
+    )
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
-    async def gen3_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel):
+    async def gen3_toggle(
+        self,
+        interaction: discord.Interaction,
+        channel: discord.TextChannel,
+        demo: bool | None = None,
+    ):
         """Enable or disable Gen3 processing for a specific channel (per guild)."""
         # Double-check permissions similar to Emote cog style
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
@@ -831,15 +780,64 @@ class SlashCommands(commands.Cog):
         # Toggle channel in the enabled_channels list for this guild
         async with self.config.guild(interaction.guild).enabled_channels() as enabled_channels:
             if channel.id in enabled_channels:
+                if demo is not None:
+                    try:
+                        async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
+                            demo_channels = demo_channels or []
+                            if demo:
+                                if channel.id not in demo_channels:
+                                    demo_channels.append(channel.id)
+                            else:
+                                if channel.id in demo_channels:
+                                    demo_channels.remove(channel.id)
+                    except Exception:
+                        pass
+
+                    mode_text = "demo" if demo else "normal"
+                    await interaction.response.send_message(
+                        f"Updated Gen3 mode for {channel.mention} to {mode_text}.", ephemeral=False
+                    )
+                    return
+
                 enabled_channels.remove(channel.id)
+                try:
+                    async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
+                        demo_channels = demo_channels or []
+                        if channel.id in demo_channels:
+                            demo_channels.remove(channel.id)
+                except Exception:
+                    pass
+
+                try:
+                    async with self.config.guild(interaction.guild).channel_rule_overrides() as overrides:
+                        overrides.pop(str(channel.id), None)
+                        overrides.pop(channel.id, None)
+                except Exception:
+                    pass
+
                 await interaction.response.send_message(
                     f"Gen3 has been disabled in {channel.mention} 🚫",
                     ephemeral=False,
                 )
             else:
                 enabled_channels.append(channel.id)
+                try:
+                    async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
+                        demo_channels = demo_channels or []
+                        if demo:
+                            if channel.id not in demo_channels:
+                                demo_channels.append(channel.id)
+                        elif channel.id in demo_channels:
+                            demo_channels.remove(channel.id)
+                except Exception:
+                    pass
+
+                if demo:
+                    message_text = f"Gen3 has been enabled in {channel.mention} ✅ (demo mode, no strikes will be recorded)"
+                else:
+                    message_text = f"Gen3 has been enabled in {channel.mention} ✅"
                 await interaction.response.send_message(
-                    f"Gen3 has been enabled in {channel.mention} ✅",
+                    message_text,
                     ephemeral=False,
                 )
 
@@ -1118,6 +1116,7 @@ class SlashCommands(commands.Cog):
 
         # Determine whether this channel is enabled for Gen3
         channel_is_enabled = await self._channel_is_enabled(message.channel)
+        demo_mode = await self._channel_is_demo(message.channel)
 
         if channel_is_enabled:
             # Track participation: increment message count, except in exempt channels
@@ -1126,7 +1125,7 @@ class SlashCommands(commands.Cog):
             except Exception:
                 ch_id = None
             try:
-                if message.guild and ch_id not in STRIKE_EXEMPT_CHANNEL_IDS:
+                if message.guild and ch_id not in STRIKE_EXEMPT_CHANNEL_IDS and not demo_mode:
                     await db.increment_msg_count(message.author.id, message.guild.id)
             except Exception:
                 pass
@@ -1154,27 +1153,50 @@ class SlashCommands(commands.Cog):
             if violation_reasons:
                 # Apply a single strike with combined reasons and stop further processing
                 reason_text = "\n".join(violation_reasons)
-                await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
+                if demo_mode:
+                    await self._send_demo_warning(message, reason_text=reason_text)
+                else:
+                    await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
                 return
 
             # Ignore owner’s test bang commands in these channels
             if not (message.author.id == 138148168360656896 and message.content.startswith("!")):
-                await self.handle_gen3_event(message)
+                await self.handle_gen3_event(message, demo_mode=demo_mode)
 
-    async def handle_gen3_event(self, message: discord.Message):
+    async def _send_demo_warning(self, message: discord.Message, reason_text: str | None = None):
+        alert_lines = [
+            "**Rule Violation Alert!**",
+            "**Gen3 Rule Alert!**",
+            "**Strike Warning!**",
+            "**Rule Check Failed!**",
+            "**Alert! Rule Violation!**"
+        ]
+        alert_line = random.choice(alert_lines)
+        reason_section = f"{reason_text}\n\n" if reason_text else ""
+        try:
+            await message.reply(
+                f"{alert_line} 🚨 (demo mode)\n"
+                f"{reason_section}"
+                f"No strikes have been recorded because this channel is in demo mode.",
+                mention_author=True,
+            )
+        except Exception:
+            pass
+        try:
+            await message.add_reaction("❌")
+        except Exception:
+            pass
+
+    async def handle_gen3_event(self, message: discord.Message, demo_mode: bool = False):
         content = message.clean_content
         channel = message.channel
         guild_id = message.guild.id
         user_id = message.author.id
 
         strikes = await db.get_strikes(user_id, guild_id)
-        # Use the persisted active rule for this guild (fallback handled in checker)
-        try:
-            saved_rule = await self.config.guild(message.guild).active_rule()
-        except Exception:
-            saved_rule = None
+        rule_key = await self._get_effective_rule(message.guild, channel)
 
-        analysis = await check_gen3_rules(content, strikes, active_rule=saved_rule)
+        analysis = await check_gen3_rules(content, strikes, active_rule=rule_key)
         if analysis.get("passes", False):
             # Rule check passed - add emoji reaction if word was selected
             if analysis.get("selected_word") and analysis.get("word_position"):
@@ -1183,7 +1205,10 @@ class SlashCommands(commands.Cog):
                 emoji = get_position_emoji(word_position)
                 await message.add_reaction(emoji)
         else:
-            await self.apply_strike_to_message(message, analysis.get('reason'), show_typing=True)
+            if demo_mode:
+                await self._send_demo_warning(message, analysis.get('reason'))
+            else:
+                await self.apply_strike_to_message(message, analysis.get('reason'), show_typing=True)
 
     async def apply_strike_to_message(self, message: discord.Message, reason_text: str | None = None,
                                       show_typing: bool = False):
