@@ -1055,12 +1055,15 @@ class SlashCommands(commands.Cog):
                     current_strikes = 0
                     if author_id and not demo_mode:
                         current_strikes = await db.get_strikes(author_id, guild_id)
+                    # Use the effective rule for this channel, honoring channel overrides
                     try:
-                        saved_rule = await self.config.guild(message.guild).active_rule()
+                        effective_rule = await self._get_effective_rule(message.guild, message.channel)
                     except Exception:
-                        saved_rule = None
+                        effective_rule = None
 
-                    analysis = await check_gen3_rules(content, current_strikes, active_rule=saved_rule)
+                    analysis = await check_gen3_rules(
+                        content, current_strikes, active_rule=effective_rule
+                    )
                     pretty = json.dumps(analysis, indent=2, ensure_ascii=False)
                     await message.channel.send(f"```json\n{pretty}\n```")
                 except Exception:
