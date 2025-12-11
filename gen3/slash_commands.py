@@ -168,7 +168,6 @@ class SlashCommands(commands.Cog):
 
         try:
             demo_channels = await self.config.guild(channel.guild).demo_channels()
-            print(f"demo channels: {demo_channels}")
         except Exception:
             return False
 
@@ -783,14 +782,15 @@ class SlashCommands(commands.Cog):
             if channel.id in enabled_channels:
                 if demo is not None:
                     try:
-                        async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
-                            demo_channels = demo_channels or []
-                            if demo:
-                                if channel.id not in demo_channels:
-                                    demo_channels.append(channel.id)
-                            else:
-                                if channel.id in demo_channels:
-                                    demo_channels.remove(channel.id)
+                        demo_channels = await self.config.guild(interaction.guild).demo_channels()
+                        demo_channels = list(demo_channels or [])
+                        if demo:
+                            if channel.id not in demo_channels:
+                                demo_channels.append(channel.id)
+                        else:
+                            if channel.id in demo_channels:
+                                demo_channels.remove(channel.id)
+                        await self.config.guild(interaction.guild).demo_channels.set(demo_channels)
                     except Exception:
                         pass
 
@@ -802,10 +802,11 @@ class SlashCommands(commands.Cog):
 
                 enabled_channels.remove(channel.id)
                 try:
-                    async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
-                        demo_channels = demo_channels or []
-                        if channel.id in demo_channels:
-                            demo_channels.remove(channel.id)
+                    demo_channels = await self.config.guild(interaction.guild).demo_channels()
+                    demo_channels = list(demo_channels or [])
+                    if channel.id in demo_channels:
+                        demo_channels.remove(channel.id)
+                    await self.config.guild(interaction.guild).demo_channels.set(demo_channels)
                 except Exception:
                     pass
 
@@ -823,13 +824,14 @@ class SlashCommands(commands.Cog):
             else:
                 enabled_channels.append(channel.id)
                 try:
-                    async with self.config.guild(interaction.guild).demo_channels() as demo_channels:
-                        demo_channels = demo_channels or []
-                        if demo:
-                            if channel.id not in demo_channels:
-                                demo_channels.append(channel.id)
-                        elif channel.id in demo_channels:
-                            demo_channels.remove(channel.id)
+                    demo_channels = await self.config.guild(interaction.guild).demo_channels()
+                    demo_channels = list(demo_channels or [])
+                    if demo:
+                        if channel.id not in demo_channels:
+                            demo_channels.append(channel.id)
+                    elif channel.id in demo_channels:
+                        demo_channels.remove(channel.id)
+                    await self.config.guild(interaction.guild).demo_channels.set(demo_channels)
                 except Exception:
                     pass
 
