@@ -1015,12 +1015,7 @@ class SlashCommands(commands.Cog):
             if emoji_str == "❌" and user.id == 138148168360656896:
                 # Don't strike bot messages
                 if message.author and not getattr(message.author, "bot", False):
-                    await self.apply_strike_to_message(
-                        message,
-                        reason_text=None,
-                        show_typing=False,
-                        demo_mode=await self._channel_is_demo(message.channel),
-                    )
+                    await self.apply_strike_to_message(message, reason_text=None, show_typing=False)
                 return
 
             # Mod analysis via question mark emoji
@@ -1161,9 +1156,7 @@ class SlashCommands(commands.Cog):
                 if demo_mode:
                     await self._send_demo_warning(message, reason_text=reason_text)
                 else:
-                    await self.apply_strike_to_message(
-                        message, reason_text=reason_text, show_typing=False, demo_mode=demo_mode
-                    )
+                    await self.apply_strike_to_message(message, reason_text=reason_text, show_typing=False)
                 return
 
             # Ignore owner’s test bang commands in these channels
@@ -1215,20 +1208,10 @@ class SlashCommands(commands.Cog):
             if demo_mode:
                 await self._send_demo_warning(message, analysis.get('reason'))
             else:
-                await self.apply_strike_to_message(
-                    message,
-                    analysis.get('reason'),
-                    show_typing=True,
-                    demo_mode=demo_mode,
-                )
+                await self.apply_strike_to_message(message, analysis.get('reason'), show_typing=True)
 
-    async def apply_strike_to_message(
-        self,
-        message: discord.Message,
-        reason_text: str | None = None,
-        show_typing: bool = False,
-        demo_mode: bool | None = None,
-    ):
+    async def apply_strike_to_message(self, message: discord.Message, reason_text: str | None = None,
+                                      show_typing: bool = False):
         """
         Shared strike application logic used by rule violations and manual strikes.
         - Increments strike
@@ -1249,16 +1232,6 @@ class SlashCommands(commands.Cog):
             guild_id = message.guild.id
             user = message.author
             channel = message.channel
-
-            if demo_mode is None:
-                try:
-                    demo_mode = await self._channel_is_demo(channel)
-                except Exception:
-                    demo_mode = False
-
-            if demo_mode:
-                await self._send_demo_warning(message, reason_text=reason_text or "Rule violation detected.")
-                return
 
             # Determine if channel is strike-exempt (strikes paused here)
             try:
