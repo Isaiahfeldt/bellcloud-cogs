@@ -700,7 +700,7 @@ class SlashCommands(commands.Cog):
                         line = f"{pos}. {name} — {strikes}/3 strikes • {msg_count} msgs"
                     else:
                         line = f"{name} — {strikes}/3 strikes"
-                    embed.add_field(name="Striked Out :(", value=line, inline=False)
+                    embed.add_field(name="Struck Out :(", value=line, inline=False)
                 else:
                     embed.description = f"{user.mention} has no recorded activity yet."
             await interaction.response.send_message(embed=embed)
@@ -754,7 +754,7 @@ class SlashCommands(commands.Cog):
                     struck_text += f"\n+{extra_struck} more outside top 10 standings"
             else:
                 struck_text = "None"
-        embed.add_field(name="Striked Out :(", value=struck_text[:1024], inline=False)
+        embed.add_field(name="Struck Out :(", value=struck_text[:1024], inline=False)
 
         await interaction.response.send_message(embed=embed)
 
