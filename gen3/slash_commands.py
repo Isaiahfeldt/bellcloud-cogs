@@ -1127,7 +1127,7 @@ class SlashCommands(commands.Cog):
         channel_is_enabled = await self._channel_is_enabled(message.channel)
         demo_mode = await self._channel_is_demo(message.channel)
 
-        print(demo_mode)
+        print(f"demo mode: {demo_mode}")
 
         if channel_is_enabled:
             # Track participation: increment message count, except in exempt channels
