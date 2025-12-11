@@ -469,7 +469,7 @@ class SlashCommands(commands.Cog):
         struck_lines = format_rows(struck_rows)
 
         embed.add_field(name="Active Players", value="\n".join(active_lines) or "None", inline=False)
-        embed.add_field(name="Striked Out :(", value="\n".join(struck_lines) or "None", inline=False)
+        embed.add_field(name="Struck Out :(", value="\n".join(struck_lines) or "None", inline=False)
 
         await interaction.response.send_message(embed=embed)
 
