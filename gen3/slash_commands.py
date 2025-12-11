@@ -168,6 +168,7 @@ class SlashCommands(commands.Cog):
 
         try:
             demo_channels = await self.config.guild(channel.guild).demo_channels()
+            print(f"demo channels: {demo_channels}")
         except Exception:
             return False
 
