@@ -954,11 +954,11 @@ class SlashCommands(commands.Cog):
                     violation_msg = get_violation_message(message.channel.id, "emojis", message.author.mention)
                     await message.channel.send(violation_msg)
 
-                    await debug_output(message, "Contained emoji")
+                    # await debug_output(message, "Contained emoji")
                     return
 
-                await debug_output(message, f"Message content: {message.content}")
-                await debug_output(message, "Did nothing")
+                # await debug_output(message, f"Message content: {message.content}")
+                # await debug_output(message, "Did nothing")
 
         if is_enclosed_in_colon(message):
             async with message.channel.typing():
