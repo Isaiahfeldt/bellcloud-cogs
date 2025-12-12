@@ -46,6 +46,20 @@ STRIKE_EXEMPT_CHANNEL_IDS = {}
 _ = Translator("Gen3", __file__)
 
 
+# App command check functions for slash commands
+async def is_owner_or_manage_guild(interaction: discord.Interaction) -> bool:
+    """Check if user is bot owner OR has manage_guild permission"""
+    if interaction.user.guild_permissions.manage_guild:
+        return True
+    # Access bot through interaction.client (which is the bot instance)
+    return await interaction.client.is_owner(interaction.user)
+
+
+async def is_owner_only(interaction: discord.Interaction) -> bool:
+    """Check if user is bot owner"""
+    return await interaction.client.is_owner(interaction.user)
+
+
 def contains_emoji(text: str) -> bool:
     """Check if the text contains any emojis (Unicode emojis, Discord custom emojis, or emoji shortcodes)."""
     # Unicode emoji pattern - covers most standard emojis
@@ -71,7 +85,8 @@ def contains_emoji(text: str) -> bool:
     emoji_shortcode_pattern = re.compile(r':[a-zA-Z0-9_+-]+:')
 
     return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(
-        emoji_shortcode_pattern.search(text))
+        emoji_shortcode_pattern.search(text)
+    )
 
 
 def format_dt(dt: datetime | None) -> str:
@@ -95,12 +110,12 @@ def format_short_date(dt: datetime | None) -> str:
 async def check_gen3_rules(content: str, current_strikes: int = 0, active_rule: str | None = None) -> dict:
     """
     Flexible rule checker for gen3 events. Dispatches to the active rule.
-    
+
     Args:
         content: The message content to analyze
         current_strikes: Current number of strikes the user has
         active_rule: Optional explicit rule selector (overrides global when provided)
-    
+
     Returns:
         dict: {"passes": bool, "reason": str, "selected_word": str|None, "word_position": int|None}
     """
@@ -183,7 +198,8 @@ class SlashCommands(commands.Cog):
             return None
 
     async def _get_channel_rule_override(
-        self, guild: discord.Guild | None, channel: discord.abc.GuildChannel | None
+            self, guild: discord.Guild | None,
+            channel: discord.abc.GuildChannel | None
     ) -> str | None:
         if guild is None or channel is None:
             return None
@@ -203,7 +219,7 @@ class SlashCommands(commands.Cog):
         return overrides.get(str(channel_id)) or overrides.get(channel_id)
 
     async def _get_effective_rule(
-        self, guild: discord.Guild | None, channel: discord.abc.GuildChannel | None
+            self, guild: discord.Guild | None, channel: discord.abc.GuildChannel | None
     ) -> str:
         override_rule = await self._get_channel_rule_override(guild, channel)
         if override_rule:
@@ -229,16 +245,13 @@ class SlashCommands(commands.Cog):
         ]
     )
     @commands.guild_only()
-    @commands.is_owner()
+    @app_commands.check(is_owner_or_manage_guild)
     async def set_rule(
-        self,
-        interaction: discord.Interaction,
-        rule: app_commands.Choice[str],
-        channel: discord.TextChannel | None = None,
+            self,
+            interaction: discord.Interaction,
+            rule: app_commands.Choice[str],
+            channel: discord.TextChannel | None = None,
     ):
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
         rule_value = rule.value
         # Friendly confirmation
         names = {
@@ -280,12 +293,8 @@ class SlashCommands(commands.Cog):
     @season.command(name="new", description="End the current Gen3 season and start a new one")
     @app_commands.describe(label="Optional label for the new season")
     @commands.guild_only()
-    @commands.admin_or_permissions(manage_guild=True)
+    @app_commands.check(is_owner_or_manage_guild)
     async def season_new(self, interaction: discord.Interaction, label: str | None = None):
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
-
         if interaction.guild is None:
             await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
             return
@@ -351,12 +360,8 @@ class SlashCommands(commands.Cog):
 
     @season.command(name="list", description="List all Gen3 seasons for this guild")
     @commands.guild_only()
-    @commands.admin_or_permissions(manage_guild=True)
+    @app_commands.check(is_owner_or_manage_guild)
     async def season_list(self, interaction: discord.Interaction):
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
-
         if interaction.guild is None:
             await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
             return
@@ -475,7 +480,7 @@ class SlashCommands(commands.Cog):
 
     @season_standings.autocomplete("season_id")
     async def season_standings_autocomplete(
-        self, interaction: discord.Interaction, current: str
+            self, interaction: discord.Interaction, current: str
     ) -> list[app_commands.Choice[int]]:
         if interaction.guild is None:
             return []
@@ -505,12 +510,11 @@ class SlashCommands(commands.Cog):
     @gen3.command(name="remove_strike", description="Remove one or more strikes from a user")
     @app_commands.describe(user="User to remove strikes from", value="Number of strikes to remove (1-3)")
     @commands.guild_only()
-    @commands.is_owner()
-    async def remove_strikes(self, interaction: discord.Interaction, user: discord.Member, value: app_commands.Range[int, 1, 3] = 1):
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
-
+    @app_commands.check(is_owner_or_manage_guild)
+    async def remove_strikes(
+            self, interaction: discord.Interaction, user: discord.Member,
+            value: app_commands.Range[int, 1, 3] = 1
+    ):
         # Remove the specified number of strikes, capping at 0
         new_count = None
         for _ in range(int(value)):
@@ -542,11 +546,8 @@ class SlashCommands(commands.Cog):
     @gen3.command(name="forgive", description="Forgive all strikes for a user")
     @app_commands.describe(user="User to forgive strikes for")
     @commands.guild_only()
-    @commands.is_owner()
+    @app_commands.check(is_owner_or_manage_guild)
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
         await db.reset_strikes(user.id, interaction.guild_id)
 
         channel = next(iter(await self._get_enabled_text_channels(interaction.guild)), None)
@@ -615,8 +616,10 @@ class SlashCommands(commands.Cog):
             active_rows = await db.fetch_standings(guild.id)
             struck_rows = await db.fetch_struck_out(guild.id)
         except Exception:
-            await interaction.response.send_message("Could not fetch standings due to a database error.",
-                                                    ephemeral=True)
+            await interaction.response.send_message(
+                "Could not fetch standings due to a database error.",
+                ephemeral=True
+            )
             return
 
         def to_tuple(r):
@@ -764,19 +767,14 @@ class SlashCommands(commands.Cog):
         demo="Enable demo mode (no strikes) instead of the normal mode",
     )
     @commands.guild_only()
-    @commands.admin_or_permissions(manage_guild=True)
+    @app_commands.check(is_owner_or_manage_guild)
     async def gen3_toggle(
-        self,
-        interaction: discord.Interaction,
-        channel: discord.TextChannel,
-        demo: bool | None = None,
+            self,
+            interaction: discord.Interaction,
+            channel: discord.TextChannel,
+            demo: bool | None = None,
     ):
         """Enable or disable Gen3 processing for a specific channel (per guild)."""
-        # Double-check permissions similar to Emote cog style
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
-
         # Toggle channel in the enabled_channels list for this guild
         async with self.config.guild(interaction.guild).enabled_channels() as enabled_channels:
             if channel.id in enabled_channels:
@@ -849,14 +847,11 @@ class SlashCommands(commands.Cog):
         message_id="The message ID of the bot message to edit (must be in this channel)"
     )
     @commands.guild_only()
-    @commands.is_owner()
+    @app_commands.check(is_owner_or_manage_guild)
     async def edit_msg(self, interaction: discord.Interaction, message_id: str):
         """Edit a prior message authored by this bot in the current channel.
         Uses a modal to collect the new message content.
         """
-        if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-            return
         # Parse the message ID
         try:
             target_id = int(str(message_id).strip())
@@ -1082,10 +1077,10 @@ class SlashCommands(commands.Cog):
                 is_mod = False
                 if perms:
                     is_mod = (
-                        perms.administrator
-                        or perms.manage_guild
-                        or getattr(perms, "moderate_members", False)
-                        or perms.manage_messages
+                            perms.administrator
+                            or perms.manage_guild
+                            or getattr(perms, "moderate_members", False)
+                            or perms.manage_messages
                     )
                 if not (is_owner or is_mod):
                     return
@@ -1237,11 +1232,11 @@ class SlashCommands(commands.Cog):
                 )
 
     async def apply_strike_to_message(
-        self,
-        message: discord.Message,
-        reason_text: str | None = None,
-        show_typing: bool = False,
-        demo_mode: bool | None = None,
+            self,
+            message: discord.Message,
+            reason_text: str | None = None,
+            show_typing: bool = False,
+            demo_mode: bool | None = None,
     ):
         """
         Shared strike application logic used by rule violations and manual strikes.
