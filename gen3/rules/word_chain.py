@@ -119,6 +119,7 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict[str, A
     content_lower = content.lower()
     if current_required_word in content_lower:
         # Message passes, now select a new word from this message
+        previous_required_word = current_required_word
         meaningful_words = extract_words(content)
 
         if meaningful_words:
@@ -126,14 +127,16 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict[str, A
             content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
             word_position = content_words.index(selected_word) + 1  # 1-indexed
 
-            current_required_word = selected_word
-
-            return {
+            result = {
                 "passes": True,
-                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}'",
+                "reason": f"Great! Your message contained '{previous_required_word}'. Next person must include '{selected_word}'",
                 "selected_word": selected_word,
                 "word_position": word_position
             }
+
+            current_required_word = selected_word
+
+            return result
         else:
             # Keep the same required word since no new words to select
             return {
