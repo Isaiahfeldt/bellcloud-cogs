@@ -117,30 +117,42 @@ async def word_chain_rule(content: str, current_strikes: int = 0) -> dict[str, A
 
     # Check if the message contains the required word
     content_lower = content.lower()
+    content_words = re.findall(r'\b[a-zA-Z]+\b', content_lower)
     if current_required_word in content_lower:
         # Message passes, now select a new word from this message
+        previous_required_word = current_required_word
         meaningful_words = extract_words(content)
+
+        required_word_position = None
+        try:
+            required_word_position = content_words.index(previous_required_word) + 1
+        except ValueError:
+            for index, word in enumerate(content_words, start=1):
+                if previous_required_word in word:
+                    required_word_position = index
+                    break
 
         if meaningful_words:
             selected_word = random.choice(meaningful_words)
-            content_words = re.findall(r'\b[a-zA-Z]+\b', content.lower())
-            word_position = content_words.index(selected_word) + 1  # 1-indexed
+            word_position = required_word_position
 
-            current_required_word = selected_word
-
-            return {
+            result = {
                 "passes": True,
-                "reason": f"Great! Your message contained '{current_required_word}'. Next person must include '{selected_word}'",
+                "reason": f"Great! Your message contained '{previous_required_word}'. Next person must include '{selected_word}'",
                 "selected_word": selected_word,
                 "word_position": word_position
             }
+
+            current_required_word = selected_word
+
+            return result
         else:
             # Keep the same required word since no new words to select
             return {
                 "passes": True,
                 "reason": f"Message accepted! Next person still needs to include '{current_required_word}'",
                 "selected_word": None,
-                "word_position": None
+                "word_position": required_word_position
             }
     else:
         # Message fails - doesn't contain required word
