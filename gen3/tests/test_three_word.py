@@ -35,6 +35,20 @@ class ThreeWordRuleTests(unittest.TestCase):
         self.assertTrue(result["passes"])
         self.assertEqual(result["analysis"]["number_count"], 1)
 
+    def test_unicode_letters_count_as_single_word(self):
+        message = "rōnin are cool"
+        result = asyncio.run(three_word_rule(message))
+
+        self.assertTrue(result["passes"])
+        self.assertEqual(result["analysis"]["word_count"], 3)
+
+    def test_line_breaks_are_not_allowed(self):
+        message = "hello\nworld today"
+        result = asyncio.run(three_word_rule(message))
+
+        self.assertFalse(result["passes"])
+        self.assertIn("Line breaks are not allowed", result["reason"])
+
 
 if __name__ == "__main__":
     unittest.main()
