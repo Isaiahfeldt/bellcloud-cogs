@@ -15,6 +15,11 @@ import re
 
 import unicodedata
 
+LETTER_PATTERN = r"[^\W\d_]"
+ALNUM_PATTERN = r"[^\W_]"
+HYPHENATED_PATTERN = rf"\b{LETTER_PATTERN}+-(?:{LETTER_PATTERN}+)(?:-{LETTER_PATTERN}+)*(?:'{LETTER_PATTERN}+)?\b"
+WORD_PATTERN = rf"{HYPHENATED_PATTERN}|\b{LETTER_PATTERN}+(?:'{LETTER_PATTERN}+)*(?:{ALNUM_PATTERN}*)\b|\b{ALNUM_PATTERN}+\b"
+
 
 def _remove_discord_emojis(text: str) -> str:
     """
@@ -80,10 +85,7 @@ def extract_words_only(text: str) -> list[str]:
         pass
 
     # Regex for hyphenated words, contractions, and alphanumeric words
-    words = re.findall(
-        r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b|\b[a-zA-Z]+(?:'[a-zA-Z]+)*(?:[a-zA-Z0-9]*)*\b|\b[a-zA-Z0-9]+\b",
-        text,
-    )
+    words = re.findall(WORD_PATTERN, text)
 
     filtered_words: list[str] = []
     for word in words:
@@ -95,15 +97,13 @@ def extract_words_only(text: str) -> list[str]:
 
 def count_hyphenated_words(text: str) -> int:
     """Count the number of hyphenated words in the text."""
-    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b"
-    hyphenated_words = re.findall(hyphenated_pattern, text)
+    hyphenated_words = re.findall(HYPHENATED_PATTERN, text)
     return len(hyphenated_words)
 
 
 def has_multi_hyphenated_words(text: str) -> bool:
     """Return True if the text contains any multi-hyphenated words (>= 2 hyphens)."""
-    hyphenated_pattern = r"\b[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b"
-    hyphenated_words = re.findall(hyphenated_pattern, text)
+    hyphenated_words = re.findall(HYPHENATED_PATTERN, text)
     for word in hyphenated_words:
         if word.count("-") >= 2:
             return True
@@ -116,7 +116,7 @@ def are_hyphenated_words_properly_separated(text: str) -> bool:
     hyphenated words appear back-to-back.
     """
     words = extract_words_only(text)
-    hyphenated_pattern = r"^[a-zA-Z]+-[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?$"
+    hyphenated_pattern = rf"^{LETTER_PATTERN}+-(?:{LETTER_PATTERN}+)(?:-{LETTER_PATTERN}+)*(?:'{LETTER_PATTERN}+)?$"
 
     for i in range(len(words) - 1):
         current_word = words[i]
@@ -149,7 +149,7 @@ def analyze_message_content(text: str) -> dict:
     all_tokens = cleaned.split()
     filtered_out: list[str] = []
     for token in all_tokens:
-        token_words = re.findall(r"\b[a-zA-Z]+\b", token)
+        token_words = re.findall(rf"\b{LETTER_PATTERN}+\b", token)
         if not token_words or not any(word.isalpha() for word in token_words):
             filtered_out.append(token)
 
@@ -176,6 +176,13 @@ async def three_word_rule(content: str, current_strikes: int = 0) -> dict:
         return {
             "passes": False,
             "reason": "Empty messages are not allowed! You need exactly 3 words.",
+            "analysis": {"word_count": 0, "words": [], "filtered_out": [], "original": content},
+        }
+
+    if "\n" in content or "\r" in content:
+        return {
+            "passes": False,
+            "reason": "Line breaks are not allowed! Use a single line with exactly 3 words.",
             "analysis": {"word_count": 0, "words": [], "filtered_out": [], "original": content},
         }
 

@@ -1106,8 +1106,9 @@ class SlashCommands(commands.Cog):
 
                     removed = 1
                     plural = "strike" if removed == 1 else "strikes"
-                    await message.channel.send(
+                    await message.reply(
                         f"Removed {removed} {plural} from {target_user.mention}! ✨ They now have {new_count}/3 strikes.",
+                        mention_author=False,
                     )
                 except Exception:
                     pass
