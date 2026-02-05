@@ -95,7 +95,7 @@ async def log_blacklist_violation(bot, message: discord.Message, reason: str):
         log_text += f"**Author:** {message.author.mention} ({message.author})\n"
         log_text += f"**Channel:** {message.channel.mention}\n"
         log_text += f"**Original Message:** {message.content[:1800]}{'...' if len(message.content) > 1800 else ''}"
-        
+
         # Include attachment info if present
         if message.attachments:
             log_text += f"\n**Attachments:** {len(message.attachments)} file(s)"
@@ -117,8 +117,10 @@ def check_filename_contains_cash_app(filename: str) -> bool:
     return "cash_app" in filename.lower()
 
 
-async def send_bitter_match_info(bot, match_count: int, threshold: int, attachment: discord.Attachment,
-                                 user_mention: str, filename_check: bool = False):
+async def send_bitter_match_info(
+        bot, match_count: int, threshold: int, attachment: discord.Attachment,
+        user_mention: str, filename_check: bool = False
+):
     """Send bitter match information and original image to the debug channel."""
     try:
         # Get the debug channel
@@ -311,7 +313,8 @@ def contains_emoji(text: str) -> bool:
     emoji_shortcode_pattern = re.compile(r':[a-zA-Z0-9_+-]+:')
 
     return bool(unicode_emoji_pattern.search(text)) or bool(discord_emoji_pattern.search(text)) or bool(
-        emoji_shortcode_pattern.search(text))
+        emoji_shortcode_pattern.search(text)
+    )
 
 
 _ = Translator("Emote", __file__)
@@ -523,8 +526,10 @@ class SlashCommands(commands.Cog):
         server_id = interaction.guild_id
 
         url = f"https://bellbot.xyz/emote/{server_id}?token={token}"
-        url_button = discord.ui.Button(style=discord.ButtonStyle.link, label="Visit emote gallery",
-                                       url=f"{url}")
+        url_button = discord.ui.Button(
+            style=discord.ButtonStyle.link, label="Visit emote gallery",
+            url=f"{url}"
+            )
 
         view = discord.ui.View()
         view.add_item(url_button)
@@ -602,15 +607,21 @@ class SlashCommands(commands.Cog):
         except Exception as e:
             await interaction.response.send_message(f"❌ Error checking cache status: {str(e)}", ephemeral=True)
 
-    @emote.command(name="toggle",
-                   description="Enable or disable emotes for a specific channel, optionally also configure emojis")
-    @app_commands.describe(channel="The channel to configure emotes for",
-                           enabled="True to enable emotes, False to disable emotes",
-                           enable_emojis="True to enable emojis, False to disable emojis, None to leave unchanged")
+    @emote.command(
+        name="toggle",
+        description="Enable or disable emotes for a specific channel, optionally also configure emojis"
+        )
+    @app_commands.describe(
+        channel="The channel to configure emotes for",
+        enabled="True to enable emotes, False to disable emotes",
+        enable_emojis="True to enable emojis, False to disable emojis, None to leave unchanged"
+        )
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
-    async def emote_toggle(self, interaction: discord.Interaction, channel: discord.TextChannel,
-                           enabled: bool, enable_emojis: bool = None):
+    async def emote_toggle(
+            self, interaction: discord.Interaction, channel: discord.TextChannel,
+            enabled: bool, enable_emojis: bool = None
+    ):
         """Enable or disable emotes for a specific channel"""
         if not interaction.user.guild_permissions.manage_guild and not await self.bot.is_owner(interaction.user):
             await send_error_embed(interaction, EmoteAddError.INVALID_PERMISSION)
@@ -631,7 +642,8 @@ class SlashCommands(commands.Cog):
 
         # Handle emoji blacklisting if requested
         async with emotes_cog.config.guild(
-                interaction.guild).emoji_blacklisted_channels() as emoji_blacklisted_channels:
+                interaction.guild
+        ).emoji_blacklisted_channels() as emoji_blacklisted_channels:
             if enable_emojis is not None:
                 if enable_emojis:
                     # Enable emojis - remove from blacklist if present
@@ -639,33 +651,41 @@ class SlashCommands(commands.Cog):
                         emoji_blacklisted_channels.remove(channel.id)
                     if enabled:
                         await interaction.response.send_message(
-                            f"Emotes and emojis have been enabled in {channel.mention}!", ephemeral=False)
+                            f"Emotes and emojis have been enabled in {channel.mention}!", ephemeral=False
+                        )
                     else:
                         await interaction.response.send_message(
                             f"Emotes have been disabled but emojis have been enabled in {channel.mention}!",
-                            ephemeral=False)
+                            ephemeral=False
+                        )
                 else:
                     # Disable emojis - add to blacklist if not present
                     if channel.id not in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.append(channel.id)
                     if not enabled:
                         await interaction.response.send_message(
-                            f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False)
+                            f"Emotes and emojis have been disabled in {channel.mention}!", ephemeral=False
+                        )
                     else:
                         await interaction.response.send_message(
                             f"Emotes have been enabled but emojis have been disabled in {channel.mention}!",
-                            ephemeral=False)
+                            ephemeral=False
+                        )
             else:
                 # Only handle emotes, but remove emoji blacklist entry when enabling emotes
                 if enabled:
                     # Also remove from emoji blacklist when enabling emotes to keep lists synchronized
                     if channel.id in emoji_blacklisted_channels:
                         emoji_blacklisted_channels.remove(channel.id)
-                    await interaction.response.send_message(f"Emotes have been enabled in {channel.mention} ✅",
-                                                            ephemeral=False)
+                    await interaction.response.send_message(
+                        f"Emotes have been enabled in {channel.mention} ✅",
+                        ephemeral=False
+                        )
                 else:
-                    await interaction.response.send_message(f"Emotes have been disabled in {channel.mention} 🚫",
-                                                            ephemeral=False)
+                    await interaction.response.send_message(
+                        f"Emotes have been disabled in {channel.mention} 🚫",
+                        ephemeral=False
+                        )
 
     @emote.command(name="effect", description="Learn more about an effect")
     @app_commands.describe(effect_name="Name of the effect to get details about")
@@ -828,8 +848,10 @@ class SlashCommands(commands.Cog):
             title=f"🏆 Top {len(top_emotes)} Most Used Emotes",
             color=EmbedColor.DEFAULT.value
         )
-        embed.set_author(name=f"{interaction.guild.name}",
-                         icon_url=interaction.guild.icon.url if interaction.guild.icon else None)
+        embed.set_author(
+            name=f"{interaction.guild.name}",
+            icon_url=interaction.guild.icon.url if interaction.guild.icon else None
+            )
 
         description_lines = []
         medals = ["🥇", "🥈", "🥉"]
@@ -861,8 +883,8 @@ class SlashCommands(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message(self, message: discord.Message):
-        if message.author.bot:
-            return
+        # if message.author.bot:
+        #     return
 
         # Skip processing if channel is blacklisted
         if message.guild:
@@ -905,8 +927,10 @@ class SlashCommands(commands.Cog):
 
                             if filename_has_cash_app:
                                 # Send debug info with filename check result
-                                await send_bitter_match_info(self.bot, 0, 240, attachment,
-                                                             message.author.mention, filename_check=True)
+                                await send_bitter_match_info(
+                                    self.bot, 0, 240, attachment,
+                                    message.author.mention, filename_check=True
+                                    )
 
                                 # Log the blacklist violation before deleting
                                 await log_blacklist_violation(self.bot, message, "Bitter User Cash App Filename")
@@ -925,8 +949,10 @@ class SlashCommands(commands.Cog):
                             threshold = 300
 
                             # Always send match info to debug channel
-                            await send_bitter_match_info(self.bot, match_count, threshold, attachment,
-                                                         message.author.mention, filename_check=filename_has_cash_app)
+                            await send_bitter_match_info(
+                                self.bot, match_count, threshold, attachment,
+                                message.author.mention, filename_check=filename_has_cash_app
+                                )
 
                             if match_count > threshold:
                                 # Log the blacklist violation (but don't delete message)
@@ -939,7 +965,8 @@ class SlashCommands(commands.Cog):
                                 debug_channel = self.bot.get_channel(DEBUG_CHANNEL_ID)
                                 if debug_channel:
                                     await debug_channel.send(
-                                        f"⚠️ **Error processing bitter's attachment:** {e}\nUser: {message.author.mention}\nFilename: {attachment.filename}")
+                                        f"⚠️ **Error processing bitter's attachment:** {e}\nUser: {message.author.mention}\nFilename: {attachment.filename}"
+                                    )
                             except:
                                 pass
                             await debug_output(message, f"Error processing bitter's attachment: {e}")
