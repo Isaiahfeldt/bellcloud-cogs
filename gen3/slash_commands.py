@@ -28,7 +28,7 @@ from gen3.rules.apple_orange import apple_orange_rule
 from gen3.rules.three_word import three_word_rule
 from gen3.rules.word_chain import get_position_emoji, reset_word_chain_state, word_chain_rule
 # Use the dedicated Gen3Database class
-from gen3.utils.database import Gen3Database
+from gen3.utils.database import Gen3Database, NoActiveSeasonError
 
 # Create a global database instance
 db = Gen3Database()
@@ -290,8 +290,8 @@ class SlashCommands(commands.Cog):
         # Reset the word-chain state (fresh start when rules change)
         reset_word_chain_state()
 
-    @season.command(name="new", description="End the current Gen3 season and start a new one")
-    @app_commands.describe(label="Optional label for the new season")
+    @season.command(name="new", description="Start a new Gen3 season")
+    @app_commands.describe(label="Optional label for the season")
     @commands.guild_only()
     @app_commands.check(is_owner_or_manage_guild)
     async def season_new(self, interaction: discord.Interaction, label: str | None = None):
@@ -299,49 +299,15 @@ class SlashCommands(commands.Cog):
             await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
             return
 
-        old_season, new_season = await db.start_new_season(interaction.guild_id, label=label)
-
-        cleared_users: set[int] = set()
-        if old_season:
-            try:
-                struck_rows = await db.fetch_struck_out_for_season(
-                    interaction.guild_id, int(old_season["id"])
-                )
-            except Exception:
-                struck_rows = []
-
-            if struck_rows:
-                target_channels = await self._get_enabled_text_channels(interaction.guild)
-
-                def extract_user_id(row) -> int:
-                    try:
-                        return int(row["user_id"])
-                    except Exception:
-                        return int(row[0])
-
-                for row in struck_rows:
-                    uid = extract_user_id(row)
-                    member = interaction.guild.get_member(uid)
-                    if not member:
-                        continue
-                    for ch in target_channels:
-                        try:
-                            await ch.set_permissions(member, overwrite=None, reason="Gen3 season reset")
-                            cleared_users.add(uid)
-                        except Exception:
-                            continue
+        new_season = await db.start_season(interaction.guild_id, label=label)
+        if new_season is None:
+            await interaction.response.send_message(
+                "There is already an active season. End it first with `/gen3 season end`.",
+                ephemeral=True,
+            )
+            return
 
         embed = discord.Embed(title="New Gen3 Season Started!", color=discord.Color.green())
-        if old_season:
-            embed.add_field(
-                name="Previous Season",
-                value=(
-                    f"ID: {old_season['id']}\n"
-                    f"Label: {old_season.get('label') or '—'}\n"
-                    f"Duration: {format_dt(old_season.get('started_at'))} → {format_dt(old_season.get('ended_at'))}"
-                ),
-                inline=False,
-            )
 
         embed.add_field(
             name="Active Season",
@@ -353,8 +319,32 @@ class SlashCommands(commands.Cog):
             inline=False,
         )
 
-        if cleared_users:
-            embed.set_footer(text=f"Cleared channel overrides for {len(cleared_users)} users from the previous season.")
+        await interaction.response.send_message(embed=embed)
+
+    @season.command(name="end", description="End the current Gen3 season")
+    @commands.guild_only()
+    @app_commands.check(is_owner_or_manage_guild)
+    async def season_end(self, interaction: discord.Interaction):
+        if interaction.guild is None:
+            await interaction.response.send_message("This command can only be used in a guild.", ephemeral=True)
+            return
+
+        ended_season = await db.end_active_season(interaction.guild_id)
+        if ended_season is None:
+            await interaction.response.send_message("There is no active season to end.", ephemeral=True)
+            return
+
+        embed = discord.Embed(title="Gen3 Season Ended", color=discord.Color.orange())
+        embed.add_field(
+            name="Ended Season",
+            value=(
+                f"ID: {ended_season['id']}\n"
+                f"Label: {ended_season.get('label') or '—'}\n"
+                f"Duration: {format_dt(ended_season.get('started_at'))} → {format_dt(ended_season.get('ended_at'))}"
+            ),
+            inline=False,
+        )
+        embed.set_footer(text="Use `/gen3 season new` when you are ready to start the next season.")
 
         await interaction.response.send_message(embed=embed)
 
@@ -517,10 +507,24 @@ class SlashCommands(commands.Cog):
     ):
         # Remove the specified number of strikes, capping at 0
         new_count = None
-        for _ in range(int(value)):
-            new_count = await db.decrease_strike(user.id, interaction.guild_id)
+        try:
+            for _ in range(int(value)):
+                new_count = await db.decrease_strike(user.id, interaction.guild_id)
+        except NoActiveSeasonError:
+            await interaction.response.send_message(
+                "There is no active season. Start one with `/gen3 season new`.",
+                ephemeral=True,
+            )
+            return
         if new_count is None:
-            new_count = await db.get_strikes(user.id, interaction.guild_id)
+            try:
+                new_count = await db.get_strikes(user.id, interaction.guild_id)
+            except NoActiveSeasonError:
+                await interaction.response.send_message(
+                    "There is no active season. Start one with `/gen3 season new`.",
+                    ephemeral=True,
+                )
+                return
 
         if new_count < 3:
             # Unblock user in any enabled Gen3 channels
@@ -548,7 +552,14 @@ class SlashCommands(commands.Cog):
     @commands.guild_only()
     @app_commands.check(is_owner_or_manage_guild)
     async def forgive_user(self, interaction: discord.Interaction, user: discord.Member):
-        await db.reset_strikes(user.id, interaction.guild_id)
+        try:
+            await db.reset_strikes(user.id, interaction.guild_id)
+        except NoActiveSeasonError:
+            await interaction.response.send_message(
+                "There is no active season. Start one with `/gen3 season new`.",
+                ephemeral=True,
+            )
+            return
 
         channel = next(iter(await self._get_enabled_text_channels(interaction.guild)), None)
 
@@ -590,7 +601,14 @@ class SlashCommands(commands.Cog):
     @app_commands.describe(user="User to check strikes for")
     @commands.guild_only()
     async def view_strikes(self, interaction: discord.Interaction, user: discord.Member):
-        strikes = await db.get_strikes(user.id, interaction.guild_id)
+        try:
+            strikes = await db.get_strikes(user.id, interaction.guild_id)
+        except NoActiveSeasonError:
+            await interaction.response.send_message(
+                "There is no active season. Start one with `/gen3 season new`.",
+                ephemeral=True,
+            )
+            return
         await interaction.response.send_message(
             f"{user.mention} has {strikes}/3 strikes. Please be careful! ⚠️",
             ephemeral=False
@@ -615,6 +633,12 @@ class SlashCommands(commands.Cog):
         try:
             active_rows = await db.fetch_standings(guild.id)
             struck_rows = await db.fetch_struck_out(guild.id)
+        except NoActiveSeasonError:
+            await interaction.response.send_message(
+                "There is no active season. Start one with `/gen3 season new`.",
+                ephemeral=True,
+            )
+            return
         except Exception:
             await interaction.response.send_message(
                 "Could not fetch standings due to a database error.",
@@ -1049,7 +1073,10 @@ class SlashCommands(commands.Cog):
                     demo_mode = await self._channel_is_demo(message.channel)
                     current_strikes = 0
                     if author_id and not demo_mode:
-                        current_strikes = await db.get_strikes(author_id, guild_id)
+                        try:
+                            current_strikes = await db.get_strikes(author_id, guild_id)
+                        except NoActiveSeasonError:
+                            current_strikes = 0
                     # Use the effective rule for this channel, honoring channel overrides
                     try:
                         effective_rule = await self._get_effective_rule(message.guild, message.channel)
@@ -1110,6 +1137,8 @@ class SlashCommands(commands.Cog):
                         f"Removed {removed} {plural} from {target_user.mention}! ✨ They now have {new_count}/3 strikes.",
                         mention_author=False,
                     )
+                except NoActiveSeasonError:
+                    return
                 except Exception:
                     pass
                 return
@@ -1210,7 +1239,10 @@ class SlashCommands(commands.Cog):
         if demo_mode:
             strikes = 0
         else:
-            strikes = await db.get_strikes(user_id, guild_id)
+            try:
+                strikes = await db.get_strikes(user_id, guild_id)
+            except NoActiveSeasonError:
+                return
         rule_key = await self._get_effective_rule(message.guild, channel)
 
         analysis = await check_gen3_rules(content, strikes, active_rule=rule_key)
@@ -1279,9 +1311,15 @@ class SlashCommands(commands.Cog):
 
             # Compute strike count (increment only when not exempt)
             if exempt_channel:
-                current_strikes = await db.get_strikes(user.id, guild_id)
+                try:
+                    current_strikes = await db.get_strikes(user.id, guild_id)
+                except NoActiveSeasonError:
+                    return
             else:
-                current_strikes = await db.increment_strike(user.id, guild_id)
+                try:
+                    current_strikes = await db.increment_strike(user.id, guild_id)
+                except NoActiveSeasonError:
+                    return
 
             if exempt_channel:
                 # In strike-exempt channels: warn only, do not add a strike or lock out

@@ -18,6 +18,10 @@ import os
 import asyncpg
 
 
+class NoActiveSeasonError(RuntimeError):
+    """Raised when an operation requires an active season but none exists."""
+
+
 class Gen3Database:
     """
     Dedicated database class for Gen3 cog operations.
@@ -203,6 +207,30 @@ class Gen3Database:
         )
         return await self.execute_query(query, guild_id, label, fetchrow=True)
 
+    async def start_season(self, guild_id: int, label: str | None = None) -> asyncpg.Record | None:
+        """Start a new season only when no active season exists for the guild."""
+        if self.pool is None:
+            await self.init_pool()
+
+        async with self.pool.acquire() as connection:
+            async with connection.transaction():
+                current = await connection.fetchrow(
+                    "SELECT * FROM gen3.seasons WHERE guild_id = $1 AND is_active = TRUE LIMIT 1;",
+                    guild_id,
+                )
+                if current:
+                    return None
+
+                return await connection.fetchrow(
+                    """
+                    INSERT INTO gen3.seasons (guild_id, label, started_at, is_active)
+                    VALUES ($1, $2, NOW(), TRUE)
+                    RETURNING *;
+                    """,
+                    guild_id,
+                    label,
+                )
+
     async def start_new_season(
         self, guild_id: int, label: str | None = None
     ) -> tuple[asyncpg.Record | None, asyncpg.Record]:
@@ -241,18 +269,44 @@ class Gen3Database:
 
                 return current, new_season
 
+    async def end_active_season(self, guild_id: int) -> asyncpg.Record | None:
+        """Close the active season for a guild without creating a new one."""
+        if self.pool is None:
+            await self.init_pool()
+
+        async with self.pool.acquire() as connection:
+            async with connection.transaction():
+                current = await connection.fetchrow(
+                    "SELECT * FROM gen3.seasons WHERE guild_id = $1 AND is_active = TRUE LIMIT 1;",
+                    guild_id,
+                )
+                if not current:
+                    return None
+
+                await connection.execute(
+                    "UPDATE gen3.seasons SET is_active = FALSE, ended_at = COALESCE(ended_at, NOW()) WHERE id = $1;",
+                    current["id"],
+                )
+
+                return await connection.fetchrow(
+                    "SELECT * FROM gen3.seasons WHERE id = $1;",
+                    current["id"],
+                )
+
     async def list_seasons(self, guild_id: int):
         """Return all seasons for a guild ordered by creation."""
         query = "SELECT * FROM gen3.seasons WHERE guild_id = $1 ORDER BY id ASC;"
         return await self.fetch_query(query, guild_id)
 
-    async def _get_active_season_id(self, guild_id: int) -> int:
-        season = await self.get_or_create_active_season(guild_id)
+    async def _require_active_season_id(self, guild_id: int) -> int:
+        season = await self.get_active_season(guild_id)
+        if not season:
+            raise NoActiveSeasonError("No active season for this guild.")
         return int(season["id"])
 
     async def increment_strike(self, user_id: int, guild_id: int) -> int:
         """Increment the strike count for a user in a given guild's active season."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "INSERT INTO gen3.strikes (user_id, guild_id, season_id, strikes) "
             "VALUES ($1, $2, $3, 1) "
@@ -264,7 +318,7 @@ class Gen3Database:
 
     async def decrease_strike(self, user_id: int, guild_id: int) -> int:
         """Decrement the strike count for a user in a given guild."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "UPDATE gen3.strikes "
             "SET strikes = GREATEST(strikes - 1, 0) "
@@ -278,13 +332,13 @@ class Gen3Database:
 
     async def get_strikes(self, user_id: int, guild_id: int) -> int:
         """Get the strike count for a user in a given guild."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = "SELECT strikes FROM gen3.strikes WHERE user_id = $1 AND guild_id = $2 AND season_id = $3"
         return await self.execute_query(query, user_id, guild_id, season_id, fetchval=True) or 0
 
     async def reset_strikes(self, user_id: int, guild_id: int) -> None:
         """Reset the strike count for a user in a given guild without losing message count."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "INSERT INTO gen3.strikes (user_id, guild_id, season_id, strikes, msg_count) "
             "VALUES ($1, $2, $3, 0, 0) "
@@ -294,7 +348,7 @@ class Gen3Database:
 
     async def ensure_user_row(self, user_id: int, guild_id: int) -> None:
         """Ensure a row exists for the user with strikes=0 and msg_count=0."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "INSERT INTO gen3.strikes (user_id, guild_id, season_id, strikes, msg_count) "
             "VALUES ($1, $2, $3, 0, 0) ON CONFLICT (user_id, guild_id, season_id) DO NOTHING;"
@@ -303,7 +357,7 @@ class Gen3Database:
 
     async def increment_msg_count(self, user_id: int, guild_id: int) -> int:
         """Increment the message count for the user in the guild, creating row if needed."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "INSERT INTO gen3.strikes (user_id, guild_id, season_id, strikes, msg_count) "
             "VALUES ($1, $2, $3, 0, 1) "
@@ -314,7 +368,7 @@ class Gen3Database:
 
     async def fetch_standings(self, guild_id: int):
         """Fetch active standings (strikes < 3), ordered by lowest strikes then msg_count desc."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "SELECT user_id, strikes, msg_count FROM gen3.strikes "
             "WHERE guild_id = $1 AND season_id = $2 AND strikes < 3 "
@@ -324,7 +378,7 @@ class Gen3Database:
 
     async def fetch_struck_out(self, guild_id: int):
         """Fetch struck-out users (strikes >= 3), ordered by msg_count desc."""
-        season_id = await self._get_active_season_id(guild_id)
+        season_id = await self._require_active_season_id(guild_id)
         query = (
             "SELECT user_id, strikes, msg_count FROM gen3.strikes "
             "WHERE guild_id = $1 AND season_id = $2 AND strikes >= 3 "
