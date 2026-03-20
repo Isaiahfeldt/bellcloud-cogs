@@ -106,14 +106,11 @@ async def guild_cogs(request: web.Request) -> web.Response:
     if guild is None:
         return _err(404, "Guild not found")
 
-    from bellapi.manifest import KNOWN_COGS
     result = []
-    for cog_name in KNOWN_COGS:
-        loaded_cog = cog.bot.get_cog(cog_name)
+    for cog_name in sorted(cog.bot.cogs.keys()):
         enabled = not await cog.bot.cog_disabled_in_guild_raw(cog_name, guild_id)
         result.append({
             "name": cog_name,
-            "loaded": loaded_cog is not None,
             "enabled_in_guild": enabled,
         })
     return _json(result)
@@ -125,9 +122,8 @@ async def set_guild_cog(request: web.Request) -> web.Response:
     guild_id = int(request.match_info["guild_id"])
     cog_name = request.match_info["cog_name"]
 
-    from bellapi.manifest import KNOWN_COGS
-    if cog_name not in KNOWN_COGS:
-        return _err(404, f"Cog '{cog_name}' is not a managed cog")
+    if cog.bot.get_cog(cog_name) is None:
+        return _err(404, f"Cog '{cog_name}' is not loaded")
 
     guild = cog.bot.get_guild(guild_id)
     if guild is None:
