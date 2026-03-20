@@ -15,12 +15,12 @@ OWNER_ID = 111111111
 GUILD_USER_ID = 222222222
 
 
-def make_token(sub: int, secret: str = SECRET) -> str:
+def make_token(sub: int, secret: str = SECRET, guild_id: int | None = None) -> str:
     return jwt.encode(
         {
             "iss": "bellbot.xyz",
             "sub": str(sub),
-            "guild_id": None,
+            "guild_id": str(guild_id) if guild_id is not None else None,
             "iat": int(time.time()),
             "exp": int(time.time()) + 300,
         },
@@ -118,3 +118,55 @@ def test_manifest_schema_requires_auth():
     status, _ = run(_get_manifest(app, token=None))
 
     assert status == 403
+
+
+# ---------------------------------------------------------------------------
+# Guild info tests (Task 1)
+# ---------------------------------------------------------------------------
+
+def test_guild_info_returns_member_count():
+    async def _run():
+        cog = make_mock_cog(owner_ids=set())
+        mock_guild = MagicMock()
+        mock_guild.id = 111
+        mock_guild.name = "Test Guild"
+        mock_guild.icon = None
+        mock_guild.member_count = 500
+        cog.bot.get_guild.return_value = mock_guild
+        app = build_app(cog)
+        async with TestClient(TestServer(app)) as client:
+            token = make_token(sub=GUILD_USER_ID, guild_id=111)
+            resp = await client.get("/guilds/111/info",
+                                    headers={"Authorization": f"Bearer {token}"})
+            assert resp.status == 200
+            data = await resp.json()
+            assert data["id"] == "111"
+            assert data["member_count"] == 500
+            assert "name" in data
+
+    asyncio.run(_run())
+
+
+def test_guild_info_404_unknown_guild():
+    async def _run():
+        cog = make_mock_cog(owner_ids=set())
+        cog.bot.get_guild.return_value = None  # guild not found
+        app = build_app(cog)
+        async with TestClient(TestServer(app)) as client:
+            token = make_token(sub=GUILD_USER_ID, guild_id=999)
+            resp = await client.get("/guilds/999/info",
+                                    headers={"Authorization": f"Bearer {token}"})
+            assert resp.status == 404
+
+    asyncio.run(_run())
+
+
+def test_guild_info_requires_auth():
+    async def _run():
+        cog = make_mock_cog(owner_ids=set())
+        app = build_app(cog)
+        async with TestClient(TestServer(app)) as client:
+            resp = await client.get("/guilds/111/info")
+            assert resp.status == 403
+
+    asyncio.run(_run())

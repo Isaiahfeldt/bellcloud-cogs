@@ -94,6 +94,25 @@ async def guilds(request: web.Request) -> web.Response:
 
 
 # ---------------------------------------------------------------------------
+# Guild info (Task 1 — dashboard)
+# ---------------------------------------------------------------------------
+
+async def guild_info(request: web.Request) -> web.Response:
+    payload = await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+    return _json({
+        "id": str(guild.id),
+        "name": guild.name,
+        "icon": str(guild.icon) if guild.icon else None,
+        "member_count": guild.member_count,
+    })
+
+
+# ---------------------------------------------------------------------------
 # Cog enable/disable (Task 7)
 # Uses Red's native bot._disabled_cog_cache — no guild_enabled Config key needed.
 # ---------------------------------------------------------------------------
@@ -351,6 +370,7 @@ def setup_routes(app: web.Application):
     app.router.add_get("/health", health)
     app.router.add_get("/manifest", manifest_schema)
     app.router.add_get("/guilds", guilds)
+    app.router.add_get("/guilds/{guild_id}/info", guild_info)
     app.router.add_get("/guilds/{guild_id}/cogs", guild_cogs)
     app.router.add_put("/guilds/{guild_id}/cogs/{cog_name}", set_guild_cog)
     app.router.add_get("/config/{guild_id}", config_all)
