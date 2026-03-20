@@ -170,3 +170,17 @@ def test_guild_info_requires_auth():
             assert resp.status == 403
 
     asyncio.run(_run())
+
+
+def test_guild_info_rejects_wrong_guild_token():
+    async def _run():
+        cog = make_mock_cog(owner_ids=set())
+        app = build_app(cog)
+        async with TestClient(TestServer(app)) as client:
+            # Token scoped to guild 999, but requesting guild 111
+            token = make_token(sub=GUILD_USER_ID, guild_id=999)
+            resp = await client.get("/guilds/111/info",
+                                    headers={"Authorization": f"Bearer {token}"})
+            assert resp.status == 403
+
+    asyncio.run(_run())

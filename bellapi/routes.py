@@ -98,7 +98,7 @@ async def guilds(request: web.Request) -> web.Response:
 # ---------------------------------------------------------------------------
 
 async def guild_info(request: web.Request) -> web.Response:
-    payload = await _check_auth(request)
+    await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     guild = cog.bot.get_guild(guild_id)
