@@ -1,5 +1,5 @@
 import pytest
-from bellapi.manifest import MANIFEST, validate_value
+from bellapi.manifest import MANIFEST, KNOWN_COGS, validate_value
 
 
 def test_manifest_has_gen3_keys():
@@ -7,14 +7,22 @@ def test_manifest_has_gen3_keys():
     assert "active_rule" in MANIFEST["Gen3Cog"]
     assert "enabled_channels" in MANIFEST["Gen3Cog"]
     assert "demo_channels" in MANIFEST["Gen3Cog"]
-    assert "guild_enabled" in MANIFEST["Gen3Cog"]
 
 
 def test_manifest_has_emotes_keys():
     assert "Emotes" in MANIFEST
     assert "blacklisted_channels" in MANIFEST["Emotes"]
     assert "emoji_blacklisted_channels" in MANIFEST["Emotes"]
-    assert "guild_enabled" in MANIFEST["Emotes"]
+
+
+def test_no_guild_enabled_in_manifest():
+    # guild_enabled is managed by Red's native COG_DISABLE_SETTINGS, not MANIFEST
+    for cog_name, keys in MANIFEST.items():
+        assert "guild_enabled" not in keys, f"{cog_name} should not have guild_enabled in MANIFEST"
+
+
+def test_known_cogs_matches_manifest():
+    assert set(KNOWN_COGS) == set(MANIFEST.keys())
 
 
 def test_all_entries_have_required_fields():
@@ -32,15 +40,6 @@ def test_validate_enum_valid():
 
 def test_validate_enum_invalid():
     assert validate_value("Gen3Cog", "active_rule", "bad_value") is False
-
-
-def test_validate_bool_valid():
-    assert validate_value("Gen3Cog", "guild_enabled", True) is True
-    assert validate_value("Gen3Cog", "guild_enabled", False) is True
-
-
-def test_validate_bool_invalid():
-    assert validate_value("Gen3Cog", "guild_enabled", "yes") is False
 
 
 def test_validate_channel_list_valid():

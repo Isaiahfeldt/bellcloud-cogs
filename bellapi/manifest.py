@@ -1,10 +1,5 @@
 MANIFEST: dict[str, dict[str, dict]] = {
     "Gen3Cog": {
-        "guild_enabled": {
-            "scope": "GUILD",
-            "type": "bool",
-            "display": "Cog Enabled",
-        },
         "active_rule": {
             "scope": "GUILD",
             "type": "enum",
@@ -24,11 +19,6 @@ MANIFEST: dict[str, dict[str, dict]] = {
         },
     },
     "Emotes": {
-        "guild_enabled": {
-            "scope": "GUILD",
-            "type": "bool",
-            "display": "Cog Enabled",
-        },
         "blacklisted_channels": {
             "scope": "GUILD",
             "type": "channel_list",
@@ -42,12 +32,11 @@ MANIFEST: dict[str, dict[str, dict]] = {
     },
 }
 
-# Which cogs use "native_flag" vs "command_disable" for per-guild enable/disable.
-# Custom cogs (in bellcloud-cogs) use "native_flag". Native Red cogs use "command_disable".
-DISABLE_MECHANISM: dict[str, str] = {
-    "Gen3Cog": "native_flag",
-    "Emotes": "native_flag",
-}
+# Cog enable/disable is handled entirely via Red's built-in COG_DISABLE_SETTINGS mechanism
+# (bot._disabled_cog_cache). No guild_enabled key is needed in MANIFEST.
+# Red automatically suppresses commands when a cog is disabled; event listeners
+# (e.g. on_message in Gen3Cog) must check bot.cog_disabled_in_guild_raw() themselves.
+KNOWN_COGS: list[str] = ["Gen3Cog", "Emotes"]
 
 
 def validate_value(cog_name: str, key: str, value) -> bool:
