@@ -4,18 +4,20 @@ MANIFEST: dict[str, dict[str, dict]] = {
             "scope": "GUILD",
             "type": "enum",
             "display": "Active Rule",
-            # Values verified against gen3/slash_commands.py app_commands.choices
             "options": ["apple_orange", "word_chain", "three_word"],
+            "access": "guild",
         },
         "enabled_channels": {
             "scope": "GUILD",
             "type": "channel_list",
             "display": "Enabled Channels",
+            "access": "guild",
         },
         "demo_channels": {
             "scope": "GUILD",
             "type": "channel_list",
             "display": "Demo Channels",
+            "access": "owner",
         },
     },
     "Emotes": {
@@ -23,11 +25,115 @@ MANIFEST: dict[str, dict[str, dict]] = {
             "scope": "GUILD",
             "type": "channel_list",
             "display": "Blacklisted Channels",
+            "access": "guild",
         },
         "emoji_blacklisted_channels": {
             "scope": "GUILD",
             "type": "channel_list",
             "display": "Emoji Blacklisted Channels",
+            "access": "guild",
+        },
+    },
+    "Admin": {
+        "announce_channel": {
+            "scope": "GUILD",
+            "type": "channel",
+            "display": "Announcement Channel",
+            "access": "owner",
+        },
+        "selfroles": {
+            "scope": "GUILD",
+            "type": "role_list",
+            "display": "Self-Assignable Roles",
+            "access": "guild",
+        },
+    },
+    "Mod": {
+        "delete_repeats": {
+            "scope": "GUILD",
+            "type": "int",
+            "display": "Delete Repeated Messages (max count, -1 to disable)",
+            "min": -1,
+            "access": "guild",
+        },
+        "respect_hierarchy": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Respect Role Hierarchy",
+            "access": "guild",
+        },
+        "delete_delay": {
+            "scope": "GUILD",
+            "type": "int",
+            "display": "Delete Delay (seconds, -1 to disable)",
+            "min": -1,
+            "max": 600,
+            "access": "guild",
+        },
+        "reinvite_on_unban": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Reinvite on Unban",
+            "access": "guild",
+        },
+        "dm_on_kickban": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "DM User on Kick/Ban",
+            "access": "guild",
+        },
+        "require_reason": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Require Reason for Mod Actions",
+            "access": "guild",
+        },
+        "default_days": {
+            "scope": "GUILD",
+            "type": "int",
+            "display": "Default Ban Message Delete Days",
+            "min": 0,
+            "max": 7,
+            "access": "guild",
+        },
+        "default_tempban_duration": {
+            "scope": "GUILD",
+            "type": "int",
+            "display": "Default Tempban Duration (seconds)",
+            "min": 60,
+            "access": "guild",
+        },
+        "track_nicknames": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Track Nickname Changes",
+            "access": "guild",
+        },
+        "ban_show_extra": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Show Extra Info in Ban Messages",
+            "access": "guild",
+        },
+        "ban_extra_embed_title": {
+            "scope": "GUILD",
+            "type": "string",
+            "display": "Ban Extra Embed Title",
+            "access": "guild",
+        },
+        "ban_extra_embed_contents": {
+            "scope": "GUILD",
+            "type": "string",
+            "display": "Ban Extra Embed Contents",
+            "access": "guild",
+        },
+    },
+    "Cleanup": {
+        "notify": {
+            "scope": "GUILD",
+            "type": "bool",
+            "display": "Notify Users of Cleanup",
+            "access": "guild",
         },
     },
 }
@@ -36,10 +142,9 @@ MANIFEST: dict[str, dict[str, dict]] = {
 # (bot._disabled_cog_cache). No guild_enabled key is needed in MANIFEST.
 # Red automatically suppresses commands when a cog is disabled; event listeners
 # (e.g. on_message in Gen3Cog) must check bot.cog_disabled_in_guild_raw() themselves.
-KNOWN_COGS: list[str] = ["Gen3Cog", "Emotes"]
 
-# Cogs only visible to / toggleable by the bot owner.
-# Guild managers with MANAGE_GUILD cannot see or modify these.
+# OWNER_ONLY_COGS: entire cogs hidden from guild managers in the dashboard.
+# Per-key access is controlled by the 'access' field in MANIFEST above.
 OWNER_ONLY_COGS: frozenset[str] = frozenset({
     "BellApi",
     "Cleanup",
@@ -66,8 +171,20 @@ def validate_value(cog_name: str, key: str, value) -> bool:
         return value in meta.get("options", [])
     if t == "channel_list":
         return isinstance(value, list) and all(isinstance(v, int) for v in value)
+    if t == "role_list":
+        return isinstance(value, list) and all(isinstance(v, int) for v in value)
     if t == "string_list":
         return isinstance(value, list) and all(isinstance(v, str) for v in value)
     if t == "string":
         return isinstance(value, str)
+    if t == "channel":
+        return value is None or isinstance(value, int)
+    if t == "int":
+        if not isinstance(value, int) or isinstance(value, bool):
+            return False
+        if "min" in meta and value < meta["min"]:
+            return False
+        if "max" in meta and value > meta["max"]:
+            return False
+        return True
     return False
