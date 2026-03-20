@@ -161,6 +161,35 @@ async def set_guild_cog(request: web.Request) -> web.Response:
 
 
 # ---------------------------------------------------------------------------
+# Manifest schema (Task 4)
+# ---------------------------------------------------------------------------
+
+async def manifest_schema(request: web.Request) -> web.Response:
+    payload = await _check_auth(request, required_guild_id=None)
+    cog = request.app["cog"]
+
+    from bellapi.manifest import MANIFEST, OWNER_ONLY_COGS
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+
+    filtered: dict[str, dict] = {}
+    for cog_name, keys in MANIFEST.items():
+        if cog_name in OWNER_ONLY_COGS and not is_owner:
+            continue
+        visible_keys = {
+            k: v for k, v in keys.items()
+            if is_owner or v["access"] == "guild"
+        }
+        if visible_keys:
+            filtered[cog_name] = visible_keys
+
+    return _json({
+        "cogs": filtered,
+        "owner_only_cogs": sorted(OWNER_ONLY_COGS),
+    })
+
+
+# ---------------------------------------------------------------------------
 # Config read helpers (Task 8)
 # ---------------------------------------------------------------------------
 
@@ -320,6 +349,7 @@ async def config_set_key(request: web.Request) -> web.Response:
 
 def setup_routes(app: web.Application):
     app.router.add_get("/health", health)
+    app.router.add_get("/manifest", manifest_schema)
     app.router.add_get("/guilds", guilds)
     app.router.add_get("/guilds/{guild_id}/cogs", guild_cogs)
     app.router.add_put("/guilds/{guild_id}/cogs/{cog_name}", set_guild_cog)
