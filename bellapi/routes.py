@@ -49,7 +49,9 @@ async def _check_auth(request: web.Request, required_guild_id: str | None = "FRO
     Raises web.HTTPForbidden on failure.
     """
     cog = request.app["cog"]
-    remote_ip = request.remote
+    # Prefer X-Real-IP set by Nginx Proxy Manager over the direct connection IP,
+    # which is always NPM's Docker bridge address when running behind NPM.
+    remote_ip = request.headers.get("X-Real-IP") or request.remote
 
     allowed_ips = await cog.config.allowed_ips()
     if not check_ip(remote_ip, allowed_ips):
