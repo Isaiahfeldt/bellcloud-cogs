@@ -38,6 +38,17 @@ MANIFEST: dict[str, dict[str, dict]] = {
 # (e.g. on_message in Gen3Cog) must check bot.cog_disabled_in_guild_raw() themselves.
 KNOWN_COGS: list[str] = ["Gen3Cog", "Emotes"]
 
+# Cogs only visible to / toggleable by the bot owner.
+# Guild managers with MANAGE_GUILD cannot see or modify these.
+OWNER_ONLY_COGS: frozenset[str] = frozenset({
+    "BellApi",
+    "Cleanup",
+    "CycleStatus",
+    "CustomHelp",
+    "Downloader",
+    "Say",
+})
+
 
 def validate_value(cog_name: str, key: str, value) -> bool:
     """Return True if value is valid for the given cog/key per the manifest."""

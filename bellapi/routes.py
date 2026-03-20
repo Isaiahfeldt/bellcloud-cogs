@@ -99,28 +99,42 @@ async def guilds(request: web.Request) -> web.Response:
 # ---------------------------------------------------------------------------
 
 async def guild_cogs(request: web.Request) -> web.Response:
-    await _check_auth(request)
+    payload = await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     guild = cog.bot.get_guild(guild_id)
     if guild is None:
         return _err(404, "Guild not found")
 
+    from bellapi.manifest import OWNER_ONLY_COGS
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+
     result = []
     for cog_name in sorted(cog.bot.cogs.keys()):
+        if cog_name in OWNER_ONLY_COGS and not is_owner:
+            continue
         enabled = not await cog.bot.cog_disabled_in_guild_raw(cog_name, guild_id)
         result.append({
             "name": cog_name,
             "enabled_in_guild": enabled,
+            "owner_only": cog_name in OWNER_ONLY_COGS,
         })
     return _json(result)
 
 
 async def set_guild_cog(request: web.Request) -> web.Response:
-    await _check_auth(request)
+    payload = await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     cog_name = request.match_info["cog_name"]
+
+    from bellapi.manifest import OWNER_ONLY_COGS
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+
+    if cog_name in OWNER_ONLY_COGS and not is_owner:
+        return _err(403, f"Cog '{cog_name}' can only be managed by the bot owner")
 
     if cog.bot.get_cog(cog_name) is None:
         return _err(404, f"Cog '{cog_name}' is not loaded")
