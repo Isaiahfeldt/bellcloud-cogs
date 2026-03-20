@@ -1,0 +1,305 @@
+import json
+from aiohttp import web
+from bellapi.auth import verify_jwt, check_ip, AuthError
+from bellapi.rate_limit import RateLimiter
+
+# Rate limiters
+_health_limiter = RateLimiter(max_calls=10, period=60)
+_write_limiter = RateLimiter(max_calls=30, period=60)
+
+
+# ---------------------------------------------------------------------------
+# Middleware + helpers
+# ---------------------------------------------------------------------------
+
+@web.middleware
+async def json_error_middleware(request: web.Request, handler):
+    """Convert all HTTPException responses to consistent {"error": "..."} JSON."""
+    try:
+        return await handler(request)
+    except web.HTTPException as ex:
+        return web.Response(
+            status=ex.status,
+            content_type="application/json",
+            text=json.dumps({"error": ex.reason}),
+        )
+
+
+def _err(status: int, message: str) -> web.Response:
+    return web.Response(
+        status=status,
+        content_type="application/json",
+        text=json.dumps({"error": message}),
+    )
+
+
+def _json(data) -> web.Response:
+    return web.Response(
+        status=200,
+        content_type="application/json",
+        text=json.dumps(data),
+    )
+
+
+async def _check_auth(request: web.Request, required_guild_id: str | None = "FROM_PATH") -> dict:
+    """
+    Checks IP allowlist then JWT. Returns JWT payload.
+    required_guild_id="FROM_PATH" means extract guild_id from the URL match_info.
+    required_guild_id=None means skip guild_id scope check (list endpoints).
+    Raises web.HTTPForbidden on failure.
+    """
+    cog = request.app["cog"]
+    remote_ip = request.remote
+
+    allowed_ips = await cog.config.allowed_ips()
+    if not check_ip(remote_ip, allowed_ips):
+        raise web.HTTPForbidden(reason="IP not allowed")
+
+    auth_header = request.headers.get("Authorization", "")
+    if not auth_header.startswith("Bearer "):
+        raise web.HTTPForbidden(reason="Missing Bearer token")
+    token = auth_header[len("Bearer "):]
+
+    if required_guild_id == "FROM_PATH":
+        required_guild_id = request.match_info.get("guild_id")
+
+    try:
+        payload = verify_jwt(token, cog._secret, required_guild_id)
+    except AuthError as e:
+        raise web.HTTPForbidden(reason=e.message)
+
+    return payload
+
+
+# ---------------------------------------------------------------------------
+# Health (Task 6)
+# ---------------------------------------------------------------------------
+
+async def health(request: web.Request) -> web.Response:
+    remote_ip = request.remote
+    if not _health_limiter.is_allowed(remote_ip):
+        return _err(429, "Rate limit exceeded")
+    cog = request.app["cog"]
+    latency_ms = round(cog.bot.latency * 1000, 1)
+    return _json({"status": "online", "latency_ms": latency_ms})
+
+
+# ---------------------------------------------------------------------------
+# Guilds list (Task 6)
+# ---------------------------------------------------------------------------
+
+async def guilds(request: web.Request) -> web.Response:
+    await _check_auth(request, required_guild_id=None)
+    cog = request.app["cog"]
+    result = [
+        {"id": str(g.id), "name": g.name, "icon": str(g.icon) if g.icon else None}
+        for g in cog.bot.guilds
+    ]
+    return _json(result)
+
+
+# ---------------------------------------------------------------------------
+# Cog enable/disable (Task 7)
+# Uses Red's native bot._disabled_cog_cache — no guild_enabled Config key needed.
+# ---------------------------------------------------------------------------
+
+async def guild_cogs(request: web.Request) -> web.Response:
+    await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    from bellapi.manifest import KNOWN_COGS
+    result = []
+    for cog_name in KNOWN_COGS:
+        loaded_cog = cog.bot.get_cog(cog_name)
+        enabled = not await cog.bot.cog_disabled_in_guild_raw(cog_name, guild_id)
+        result.append({
+            "name": cog_name,
+            "loaded": loaded_cog is not None,
+            "enabled_in_guild": enabled,
+        })
+    return _json(result)
+
+
+async def set_guild_cog(request: web.Request) -> web.Response:
+    await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    cog_name = request.match_info["cog_name"]
+
+    from bellapi.manifest import KNOWN_COGS
+    if cog_name not in KNOWN_COGS:
+        return _err(404, f"Cog '{cog_name}' is not a managed cog")
+
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    try:
+        body = await request.json()
+        enabled = body["enabled"]
+        if not isinstance(enabled, bool):
+            return _err(400, "'enabled' must be a boolean")
+    except Exception:
+        return _err(400, "Invalid request body — expected {'enabled': bool}")
+
+    cache = cog.bot._disabled_cog_cache
+    if enabled:
+        await cache.enable_cog_in_guild(cog_name, guild_id)
+    else:
+        await cache.disable_cog_in_guild(cog_name, guild_id)
+
+    return _json({"cog_name": cog_name, "enabled": enabled})
+
+
+# ---------------------------------------------------------------------------
+# Config read helpers (Task 8)
+# ---------------------------------------------------------------------------
+
+async def _read_cog_config(bot, guild, cog_name: str) -> dict | None:
+    """
+    Read all GUILD-scope manifest keys for cog_name from Red's Config.
+    Returns None if the cog is not loaded.
+    """
+    from bellapi.manifest import MANIFEST
+    target_cog = bot.get_cog(cog_name)
+    if target_cog is None:
+        return None
+    cog_keys = MANIFEST.get(cog_name, {})
+    result = {}
+    for key, meta in cog_keys.items():
+        if meta["scope"] == "GUILD":
+            result[key] = await target_cog.config.guild(guild).get_attr(key)()
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Config read routes (Task 8)
+# ---------------------------------------------------------------------------
+
+async def config_all(request: web.Request) -> web.Response:
+    await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    from bellapi.manifest import MANIFEST
+    result = {}
+    for cog_name in MANIFEST:
+        data = await _read_cog_config(cog.bot, guild, cog_name)
+        if data is not None:
+            result[cog_name] = data
+    return _json(result)
+
+
+async def config_cog(request: web.Request) -> web.Response:
+    await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    cog_name = request.match_info["cog_name"]
+
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    from bellapi.manifest import MANIFEST
+    if cog_name not in MANIFEST:
+        return _err(404, f"Cog '{cog_name}' is not in the manifest")
+
+    data = await _read_cog_config(cog.bot, guild, cog_name)
+    if data is None:
+        return _err(404, f"Cog '{cog_name}' is not loaded")
+    return _json(data)
+
+
+async def config_key(request: web.Request) -> web.Response:
+    await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    cog_name = request.match_info["cog_name"]
+    key = request.match_info["key"]
+
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    from bellapi.manifest import MANIFEST
+    cog_keys = MANIFEST.get(cog_name)
+    if cog_keys is None:
+        return _err(404, f"Cog '{cog_name}' is not in the manifest")
+    if key not in cog_keys:
+        return _err(404, f"Key '{key}' is not in the manifest for '{cog_name}'")
+
+    target_cog = cog.bot.get_cog(cog_name)
+    if target_cog is None:
+        return _err(404, f"Cog '{cog_name}' is not loaded")
+
+    value = await target_cog.config.guild(guild).get_attr(key)()
+    return _json({"key": key, "value": value})
+
+
+# ---------------------------------------------------------------------------
+# Config write route (Task 9)
+# ---------------------------------------------------------------------------
+
+async def config_set_key(request: web.Request) -> web.Response:
+    payload = await _check_auth(request)
+    cog = request.app["cog"]
+    guild_id = int(request.match_info["guild_id"])
+    cog_name = request.match_info["cog_name"]
+    key = request.match_info["key"]
+    user_id = str(payload.get("sub", "unknown"))
+
+    if not _write_limiter.is_allowed(user_id):
+        return _err(429, "Write rate limit exceeded")
+
+    guild = cog.bot.get_guild(guild_id)
+    if guild is None:
+        return _err(404, "Guild not found")
+
+    from bellapi.manifest import MANIFEST, validate_value
+    cog_keys = MANIFEST.get(cog_name)
+    if cog_keys is None:
+        return _err(404, f"Cog '{cog_name}' is not in the manifest")
+    if key not in cog_keys:
+        return _err(400, f"Key '{key}' is not in the manifest for '{cog_name}'")
+
+    try:
+        body = await request.json()
+        value = body["value"]
+    except Exception:
+        return _err(400, "Invalid request body — expected {'value': ...}")
+
+    if not validate_value(cog_name, key, value):
+        return _err(400, f"Invalid value for '{key}'")
+
+    target_cog = cog.bot.get_cog(cog_name)
+    if target_cog is None:
+        return _err(404, f"Cog '{cog_name}' is not loaded")
+
+    try:
+        await target_cog.config.guild(guild).get_attr(key).set(value)
+    except Exception as e:
+        return _err(503, f"Failed to set config: {e}")
+
+    return _json({"key": key, "value": value, "cog_name": cog_name})
+
+
+# ---------------------------------------------------------------------------
+# Route registration
+# ---------------------------------------------------------------------------
+
+def setup_routes(app: web.Application):
+    app.router.add_get("/health", health)
+    app.router.add_get("/guilds", guilds)
+    app.router.add_get("/guilds/{guild_id}/cogs", guild_cogs)
+    app.router.add_put("/guilds/{guild_id}/cogs/{cog_name}", set_guild_cog)
+    app.router.add_get("/config/{guild_id}", config_all)
+    app.router.add_get("/config/{guild_id}/{cog_name}", config_cog)
+    app.router.add_get("/config/{guild_id}/{cog_name}/{key}", config_key)
+    app.router.add_put("/config/{guild_id}/{cog_name}/{key}", config_set_key)
