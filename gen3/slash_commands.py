@@ -1153,6 +1153,11 @@ class SlashCommands(commands.Cog):
         if message.author.bot:
             return
 
+        # Respect Red's native per-guild cog disable (commands are blocked automatically;
+        # event listeners must check explicitly).
+        if message.guild and await self.bot.cog_disabled_in_guild_raw(self.qualified_name, message.guild.id):
+            return
+
         # Determine whether this channel is enabled for Gen3
         channel_is_enabled = await self._channel_is_enabled(message.channel)
         demo_mode = await self._channel_is_demo(message.channel)
