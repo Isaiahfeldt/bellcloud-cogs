@@ -1,0 +1,10 @@
+{
+  "author": ["N.ovember"],
+  "description": "HTTP API bridge for the bellbot.xyz dashboard.",
+  "install_msg": "Installed BellApi.",
+  "short": "Dashboard config API bridge",
+  "tags": ["api", "dashboard", "config"],
+  "requirements": ["aiohttp", "PyJWT"],
+  "type": "COG",
+  "end_user_data_statement": "This cog stores Discord user IDs in JWT tokens for audit purposes only. No user data is persisted."
+}
