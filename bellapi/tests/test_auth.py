@@ -1,7 +1,7 @@
 import time
 import jwt
 import pytest
-from bellapi.auth import verify_jwt, check_ip, AuthError
+from bellapi.auth import verify_jwt, AuthError
 
 SECRET = "test_secret_abc123"
 
@@ -60,16 +60,3 @@ def test_missing_bearer_prefix_returns_error():
     with pytest.raises(AuthError):
         verify_jwt("", SECRET, required_guild_id=None)
 
-
-# --- check_ip ---
-
-def test_ip_in_allowlist():
-    assert check_ip("1.2.3.4", ["1.2.3.4", "5.6.7.8"]) is True
-
-
-def test_ip_not_in_allowlist():
-    assert check_ip("9.9.9.9", ["1.2.3.4"]) is False
-
-
-def test_empty_allowlist_blocks_all():
-    assert check_ip("1.2.3.4", []) is False

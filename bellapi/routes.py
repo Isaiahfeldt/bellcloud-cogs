@@ -1,6 +1,6 @@
 import json
 from aiohttp import web
-from bellapi.auth import verify_jwt, check_ip, AuthError
+from bellapi.auth import verify_jwt, AuthError
 from bellapi.rate_limit import RateLimiter
 
 # Rate limiters
@@ -43,19 +43,12 @@ def _json(data) -> web.Response:
 
 async def _check_auth(request: web.Request, required_guild_id: str | None = "FROM_PATH") -> dict:
     """
-    Checks IP allowlist then JWT. Returns JWT payload.
+    Validates JWT. Returns JWT payload.
     required_guild_id="FROM_PATH" means extract guild_id from the URL match_info.
     required_guild_id=None means skip guild_id scope check (list endpoints).
     Raises web.HTTPForbidden on failure.
     """
     cog = request.app["cog"]
-    # Prefer X-Real-IP set by Nginx Proxy Manager over the direct connection IP,
-    # which is always NPM's Docker bridge address when running behind NPM.
-    remote_ip = request.headers.get("X-Real-IP") or request.remote
-
-    allowed_ips = await cog.config.allowed_ips()
-    if not check_ip(remote_ip, allowed_ips):
-        raise web.HTTPForbidden(reason=f"IP not allowed: {remote_ip}")
 
     auth_header = request.headers.get("Authorization", "")
     if not auth_header.startswith("Bearer "):

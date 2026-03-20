@@ -32,8 +32,3 @@ def verify_jwt(token: str, secret: str, required_guild_id: str | None) -> dict:
             raise AuthError("Token guild_id does not match request", status=403)
 
     return payload
-
-
-def check_ip(remote_ip: str, allowed_ips: list[str]) -> bool:
-    """Return True if remote_ip is in the allowlist."""
-    return remote_ip in allowed_ips

@@ -15,7 +15,6 @@ class BellApi(commands.Cog):
         self.config = Config.get_conf(self, identifier=7291038456, force_registration=True)
         self.config.register_global(
             port=8765,
-            allowed_ips=[],
         )
         self._runner = None
         self._secret: str | None = None
@@ -40,34 +39,6 @@ class BellApi(commands.Cog):
     async def bellapi(self, ctx):
         """BellApi configuration commands."""
         pass
-
-    @bellapi.command(name="allowip")
-    async def bellapi_allowip(self, ctx, ip: str):
-        """Add an IP address to the allowlist."""
-        allowed = await self.config.allowed_ips()
-        if ip in allowed:
-            return await ctx.send(f"`{ip}` is already in the allowlist.")
-        allowed.append(ip)
-        await self.config.allowed_ips.set(allowed)
-        await ctx.send(f"Added `{ip}` to the allowlist.")
-
-    @bellapi.command(name="removeip")
-    async def bellapi_removeip(self, ctx, ip: str):
-        """Remove an IP address from the allowlist."""
-        allowed = await self.config.allowed_ips()
-        if ip not in allowed:
-            return await ctx.send(f"`{ip}` is not in the allowlist.")
-        allowed.remove(ip)
-        await self.config.allowed_ips.set(allowed)
-        await ctx.send(f"Removed `{ip}` from the allowlist.")
-
-    @bellapi.command(name="listips")
-    async def bellapi_listips(self, ctx):
-        """Show the current IP allowlist."""
-        allowed = await self.config.allowed_ips()
-        if not allowed:
-            return await ctx.send("The allowlist is empty — all requests are blocked.")
-        await ctx.send("Allowed IPs:\n" + "\n".join(f"• `{ip}`" for ip in allowed))
 
     @bellapi.command(name="port")
     async def bellapi_port(self, ctx):
