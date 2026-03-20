@@ -55,7 +55,7 @@ async def _check_auth(request: web.Request, required_guild_id: str | None = "FRO
 
     allowed_ips = await cog.config.allowed_ips()
     if not check_ip(remote_ip, allowed_ips):
-        raise web.HTTPForbidden(reason="IP not allowed")
+        raise web.HTTPForbidden(reason=f"IP not allowed: {remote_ip}")
 
     auth_header = request.headers.get("Authorization", "")
     if not auth_header.startswith("Bearer "):
