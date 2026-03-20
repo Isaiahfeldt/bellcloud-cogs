@@ -188,3 +188,15 @@ def validate_value(cog_name: str, key: str, value) -> bool:
             return False
         return True
     return False
+
+
+def key_access(cog_name: str, key: str) -> str:
+    """
+    Return 'guild' or 'owner' for the given cog/key.
+    Returns 'owner' for any unknown cog or key (fail closed).
+    All keys in MANIFEST are required to have an explicit 'access' field.
+    """
+    meta = MANIFEST.get(cog_name, {}).get(key)
+    if meta is None:
+        return "owner"
+    return meta["access"]

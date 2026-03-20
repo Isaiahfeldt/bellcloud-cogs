@@ -103,3 +103,19 @@ def test_validate_role_list_valid():
 
 def test_validate_role_list_invalid():
     assert validate_value("Admin", "selfroles", "not-a-list") is False
+
+
+def test_key_access_guild_key():
+    from bellapi.manifest import key_access
+    assert key_access("Gen3Cog", "active_rule") == "guild"
+
+
+def test_key_access_owner_key():
+    from bellapi.manifest import key_access
+    assert key_access("Gen3Cog", "demo_channels") == "owner"
+
+
+def test_key_access_unknown_cog_or_key_returns_owner():
+    from bellapi.manifest import key_access
+    assert key_access("Gen3Cog", "nonexistent_key") == "owner"
+    assert key_access("NonexistentCog", "any_key") == "owner"

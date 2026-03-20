@@ -164,9 +164,10 @@ async def set_guild_cog(request: web.Request) -> web.Response:
 # Config read helpers (Task 8)
 # ---------------------------------------------------------------------------
 
-async def _read_cog_config(bot, guild, cog_name: str) -> dict | None:
+async def _read_cog_config(bot, guild, cog_name: str, is_owner: bool = False) -> dict | None:
     """
     Read all GUILD-scope manifest keys for cog_name from Red's Config.
+    Filters out 'owner'-access keys when is_owner is False.
     Returns None if the cog is not loaded.
     """
     from bellapi.manifest import MANIFEST
@@ -177,6 +178,8 @@ async def _read_cog_config(bot, guild, cog_name: str) -> dict | None:
     result = {}
     for key, meta in cog_keys.items():
         if meta["scope"] == "GUILD":
+            if not is_owner and meta.get("access", "guild") == "owner":
+                continue
             result[key] = await target_cog.config.guild(guild).get_attr(key)()
     return result
 
@@ -186,24 +189,27 @@ async def _read_cog_config(bot, guild, cog_name: str) -> dict | None:
 # ---------------------------------------------------------------------------
 
 async def config_all(request: web.Request) -> web.Response:
-    await _check_auth(request)
+    payload = await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     guild = cog.bot.get_guild(guild_id)
     if guild is None:
         return _err(404, "Guild not found")
 
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+
     from bellapi.manifest import MANIFEST
     result = {}
     for cog_name in MANIFEST:
-        data = await _read_cog_config(cog.bot, guild, cog_name)
+        data = await _read_cog_config(cog.bot, guild, cog_name, is_owner=is_owner)
         if data is not None:
             result[cog_name] = data
     return _json(result)
 
 
 async def config_cog(request: web.Request) -> web.Response:
-    await _check_auth(request)
+    payload = await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     cog_name = request.match_info["cog_name"]
@@ -216,14 +222,16 @@ async def config_cog(request: web.Request) -> web.Response:
     if cog_name not in MANIFEST:
         return _err(404, f"Cog '{cog_name}' is not in the manifest")
 
-    data = await _read_cog_config(cog.bot, guild, cog_name)
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+    data = await _read_cog_config(cog.bot, guild, cog_name, is_owner=is_owner)
     if data is None:
         return _err(404, f"Cog '{cog_name}' is not loaded")
     return _json(data)
 
 
 async def config_key(request: web.Request) -> web.Response:
-    await _check_auth(request)
+    payload = await _check_auth(request)
     cog = request.app["cog"]
     guild_id = int(request.match_info["guild_id"])
     cog_name = request.match_info["cog_name"]
@@ -233,12 +241,17 @@ async def config_key(request: web.Request) -> web.Response:
     if guild is None:
         return _err(404, "Guild not found")
 
-    from bellapi.manifest import MANIFEST
+    from bellapi.manifest import MANIFEST, key_access
     cog_keys = MANIFEST.get(cog_name)
     if cog_keys is None:
         return _err(404, f"Cog '{cog_name}' is not in the manifest")
     if key not in cog_keys:
         return _err(404, f"Key '{key}' is not in the manifest for '{cog_name}'")
+
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+    if key_access(cog_name, key) == "owner" and not is_owner:
+        return _err(403, f"Key '{key}' can only be read by the bot owner")
 
     target_cog = cog.bot.get_cog(cog_name)
     if target_cog is None:
@@ -267,12 +280,18 @@ async def config_set_key(request: web.Request) -> web.Response:
     if guild is None:
         return _err(404, "Guild not found")
 
-    from bellapi.manifest import MANIFEST, validate_value
+    from bellapi.manifest import MANIFEST, validate_value, key_access
     cog_keys = MANIFEST.get(cog_name)
     if cog_keys is None:
         return _err(404, f"Cog '{cog_name}' is not in the manifest")
     if key not in cog_keys:
         return _err(400, f"Key '{key}' is not in the manifest for '{cog_name}'")
+
+    # Per-key access check (fail fast before reading request body)
+    caller_id = int(payload.get("sub", 0))
+    is_owner = caller_id in cog.bot.owner_ids
+    if key_access(cog_name, key) == "owner" and not is_owner:
+        return _err(403, f"Key '{key}' can only be set by the bot owner")
 
     try:
         body = await request.json()
