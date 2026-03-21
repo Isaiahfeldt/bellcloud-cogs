@@ -87,7 +87,7 @@ async def guilds(request: web.Request) -> web.Response:
     await _check_auth(request, required_guild_id=None)
     cog = request.app["cog"]
     result = [
-        {"id": str(g.id), "name": g.name, "icon": str(g.icon) if g.icon else None}
+        {"id": str(g.id), "name": g.name, "icon": g.icon.key if g.icon else None}
         for g in cog.bot.guilds
     ]
     return _json(result)
