@@ -4,7 +4,7 @@
   "install_msg": "Installed BellApi.",
   "short": "Dashboard config API bridge",
   "tags": ["api", "dashboard", "config"],
-  "requirements": ["aiohttp", "PyJWT"],
+  "requirements": ["aiohttp", "PyJWT", "redis"],
   "type": "COG",
   "end_user_data_statement": "This cog stores Discord user IDs in JWT tokens for audit purposes only. No user data is persisted."
 }
