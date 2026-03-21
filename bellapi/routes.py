@@ -107,7 +107,7 @@ async def guild_info(request: web.Request) -> web.Response:
     return _json({
         "id": str(guild.id),
         "name": guild.name,
-        "icon": str(guild.icon) if guild.icon else None,
+        "icon": guild.icon.key if guild.icon else None,
         "member_count": guild.member_count,
     })
 
