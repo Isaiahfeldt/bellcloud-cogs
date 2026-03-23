@@ -1,4 +1,5 @@
 import jwt
+from datetime import timedelta
 
 
 class AuthError(Exception):
@@ -6,6 +7,12 @@ class AuthError(Exception):
         super().__init__(message)
         self.status = status
         self.message = message
+
+
+# Allow up to 5 seconds of clock skew between token issuer and Bell.
+# PyJWT 2.x validates the iat claim and rejects tokens where iat > server_now,
+# which causes intermittent 403s when the client clock is slightly ahead.
+_LEEWAY = timedelta(seconds=5)
 
 
 def verify_jwt(token: str, secret: str, required_guild_id: str | None) -> dict:
@@ -21,7 +28,7 @@ def verify_jwt(token: str, secret: str, required_guild_id: str | None) -> dict:
         raise AuthError("Missing token", status=403)
 
     try:
-        payload = jwt.decode(token, secret, algorithms=["HS256"])
+        payload = jwt.decode(token, secret, algorithms=["HS256"], leeway=_LEEWAY)
     except jwt.ExpiredSignatureError:
         raise AuthError("Token expired", status=403)
     except jwt.InvalidTokenError:
