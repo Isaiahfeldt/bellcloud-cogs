@@ -219,8 +219,22 @@ class UserCommands(commands.Cog):
             )
             return
 
-        image_attachment = next((att for att in message.attachments if att.content_type.startswith("image/")), None)
+        image_attachments = [
+            att for att in message.attachments
+            if att.content_type and att.content_type.startswith("image/")
+        ]
+
+        # Prefer animated sources first so effects like shake preserve expected output format.
+        image_attachment = next(
+            (att for att in image_attachments if att.filename.lower().endswith((".gif", ".webp"))),
+            image_attachments[0],
+        )
         image_buffer = await image_attachment.read()
+
+        # Prefer filename extension over Content-Type because Discord may normalize
+        # some attachment content types (e.g., animated uploads presented as image/jpeg).
+        attachment_ext = image_attachment.filename.rsplit(".", 1)[-1].lower() if "." in image_attachment.filename else ""
+        file_type = attachment_ext or image_attachment.content_type.split("/")[-1]
 
         # TODO: image compression / resize to be smaller
 
@@ -256,7 +270,7 @@ class UserCommands(commands.Cog):
         view = EffectView(
             available_options=available_options,
             image_buffer=image_buffer,
-            file_type=image_attachment.content_type.split("/")[-1],
+            file_type=file_type,
             timeout=180
         )
 
